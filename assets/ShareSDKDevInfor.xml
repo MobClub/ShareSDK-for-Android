@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DevInfor>
+    <!--
+    	说明：
+    	
+    	1、表格中的第一项
+    		<ShareSDK 
+        		AppKey="104972cdd48" />
+    	是必须的，其中的AppKey是您在Share SDK上注册的开发者帐号的AppKey
+    	
+    	2、所有集成到您项目的平台都应该为其在表格中填写相对应的开发者信息，以新浪微博为例：
+    	    <SinaWeibo
+                SortId="1"
+                AppKey="3201194191"
+                AppSecret="0334252914651e8f76bad63337b3b78f"
+                Id="1"
+                RedirectUrl="http://appgo.cn" />
+    	其中的SortId是此平台在分享列表中的位置，由开发者自行定义，可以是任何整型数字，数值越大越靠后
+    	AppKey、AppSecret和RedirectUrl是您在新浪微博上注册开发者信息和应用后得到的信息
+    	Id是一个保留的识别符，整型，Share SDK不使用此字段，供您在自己的项目中当作平台的识别符
+    -->
+    
+    <ShareSDK 
+        AppKey="104972cdd48" />
+    
+    <SinaWeibo
+        SortId="1"
+        AppKey="3201194191"
+        AppSecret="0334252914651e8f76bad63337b3b78f"
+        Id="1"
+        RedirectUrl="http://appgo.cn" />
+
+    <TencentWeibo
+        SortId="2"
+        AppKey="801307650"
+        AppSecret="ae36f4ee3946e1cbb98d6965b0b2ff5c"
+        RedirectUri="http://sharesdk.cn"
+        Id="2" />
+
+    <QZone
+        SortId="3"
+        AppId="100371282"
+        AppKey="aed9b0303e3ed1e27bae87c33761161d"
+        Id="3"
+        RedirectUrl="http://www.shareSDK.cn" />
+
+    <Renren
+        SortId="8"
+        AppId="226427"
+        ApiKey="fc5b8aed373c4c27a05b712acba0f8c3"
+        Id="4"
+        SecretKey="f29df781abdd4f49beca5a2194676ca4" />
+    
+    <NetEaseMicroBlog
+        SortId="11"
+        Id="5"
+        ConsumerKey="T5EI7BXe13vfyDuy"
+        ConsumerSecret="gZxwyNOvjFYpxwwlnuizHRRtBRZ2lV1j"
+        RedirectUri="http://www.shareSDK.cn" />
+    
+    <Wechat
+        SortId="4"
+        Id="6"
+        AppId="wx4868b35061f87885"/>
+    
+    <WechatMoments
+        SortId="5"
+        Id="7"
+        AppId="wx4868b35061f87885"/>
+    
+    <Facebook
+        SortId="6"
+        Id="8"
+        ConsumerKey="107704292745179"
+        ConsumerSecret="38053202e1a5fe26c80c753071f0b573" />
+
+    <Twitter
+        SortId="7"
+        Id="9"
+        ConsumerKey="mnTGqtXk0TYMXYTN7qUxg"
+        ConsumerSecret="ROkFqr8c3m1HXqS3rm3TJ0WkAJuwBOSaWhPbZ9Ojuc"
+        CallbackUrl="http://www.sharesdk.cn" />
+    
+    <Douban
+        SortId="12"
+        Id="10"
+        ApiKey="02e2cbe5ca06de5908a863b15e149b0b"
+        Secret="9f1e7b4f71304f2f"
+        RedirectUri="http://sharesdk.cn" />
+    
+    <Evernote
+        SortId="13"
+        Id="11"
+        HostType="sandbox"
+    	ConsumerKey="sharesdk-7807"
+		ConsumerSecret="d05bf86993836004"/>
+    
+    <ShortMessage
+        SortId="10"
+        Id="12" />
+    
+    <Email
+        SortId="9"
+        Id="13" />
+    
+</DevInfor>
