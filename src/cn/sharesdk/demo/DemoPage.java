@@ -8,8 +8,6 @@
 
 package cn.sharesdk.demo;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.HashMap;
 import m.framework.ui.SlidingMenu;
 import cn.sharesdk.douban.Douban;
@@ -26,13 +24,8 @@ import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
 import cn.sharesdk.twitter.Twitter;
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Bitmap.CompressFormat;
 import android.net.Uri;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Handler.Callback;
@@ -41,7 +34,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
-/** Share SDK接口演示页面，包括演示使用快捷分享完成图文分享、
+/** 
+ * Share SDK接口演示页面，包括演示使用快捷分享完成图文分享、
  *无页面直接分享、授权、关注和不同平台的分享等等功能。
  */
 public class DemoPage implements Callback, 
@@ -86,83 +80,81 @@ public class DemoPage implements Callback,
 	}
 	
 	// 使用快捷分享完成图文分享
-	private Thread newLaunchThread(final boolean silent) {
-		return new Thread(){
-			public void run() {
-				final String image = getImagePath();
-				handler.post(new Runnable() {
-					public void run() {
-						Intent i = new Intent(menu.getContext(), ShareAllGird.class);
-						i.putExtra("notif_icon", R.drawable.ic_launcher);
-						i.putExtra("notif_title", menu.getContext().getString(R.string.app_name));
-						
-						i.putExtra("address", "10086");
-						i.putExtra("title", menu.getContext().getString(R.string.share));
-						i.putExtra("text", menu.getContext().getString(R.string.share_content));
-						i.putExtra("image", image);
-						i.putExtra("image_url", "http://sharesdk.cn/Public/Frontend/images/logo.png");
-						i.putExtra("site", menu.getContext().getString(R.string.app_name));
-						i.putExtra("siteUrl", "http://sharesdk.cn");
-						
-						i.putExtra("silent", silent);
-						menu.getContext().startActivity(i);
-					}
-				});
-			}
-		};
+	private void showGrid(boolean silent) {
+		Intent i = new Intent(menu.getContext(), ShareAllGird.class);
+		// 分享时Notification的图标
+		i.putExtra("notif_icon", R.drawable.ic_launcher);
+		// 分享时Notification的标题
+		i.putExtra("notif_title", menu.getContext().getString(R.string.app_name));
+		
+		// address是接收人地址，仅在信息和邮件使用，否则可以不提供
+		i.putExtra("address", "12345678901");
+		// title标题，在印象笔记、邮箱、信息、微信（包括好友和朋友圈）、人人网和QQ空间使用，否则可以不提供
+		i.putExtra("title", menu.getContext().getString(R.string.share));
+		// titleUrl是标题的网络链接，仅在QQ空间使用，否则可以不提供
+		i.putExtra("titleUrl", "http://sharesdk.cn");
+		// text是分享文本，所有平台都需要这个字段
+		i.putExtra("text", menu.getContext().getString(R.string.share_content));
+		// imagePath是本地的图片路径，在豆瓣、Facebook、网易微博、新浪微博、腾讯微博、Twitter、邮箱、
+		// 信息和微信（包括好友和朋友圈）图片分享中使用，否则可以不提供
+		i.putExtra("imagePath", MainActivity.TEST_IMAGE);
+		// imageUrl是网络的图片路径，仅在人人网和QQ空间使用，否则可以不提供
+		i.putExtra("imageUrl", "http://sharesdk.cn/Public/Frontend/images/logo.png");
+		// url仅在人人网和微信（包括好友和朋友圈）中使用，否则可以不提供
+		i.putExtra("url", "http://sharesdk.cn");
+		// thumbPath是缩略图的本地路径，仅在微信（包括好友和朋友圈）中使用，否则可以不提供
+		i.putExtra("thumbPath", MainActivity.TEST_IMAGE);
+		// appPath是待分享应用程序的本地路劲，仅在微信（包括好友和朋友圈）中使用，否则可以不提供
+		i.putExtra("appPath", MainActivity.TEST_IMAGE);
+		// comment是我对这条分享的评论，仅在人人网和QQ空间使用，否则可以不提供
+		i.putExtra("comment", menu.getContext().getString(R.string.share));
+		// site是分享此内容的网站名称，仅在QQ空间使用，否则可以不提供
+		i.putExtra("site", menu.getContext().getString(R.string.app_name));
+		// siteUrl是分享此内容的网站地址，仅在QQ空间使用，否则可以不提供
+		i.putExtra("siteUrl", "http://sharesdk.cn");
+		
+		// 是否直接分享
+		i.putExtra("silent", silent);
+		menu.getContext().startActivity(i);
 	}
 	
 	// 使用快捷分享完成直接分享
-	private Thread newShareThread(final String platform) {
-		return new Thread(){
-			public void run() {
-				final String image = getImagePath();
-				handler.post(new Runnable() {
-					public void run() {
-						Intent i = new Intent(menu.getContext(), SharePage.class);
-						i.putExtra("notif_icon", R.drawable.ic_launcher);
-						i.putExtra("notif_title", menu.getContext().getString(R.string.app_name));
-						
-						i.putExtra("address", "13800123456");
-						i.putExtra("title", menu.getContext().getString(R.string.share));
-						i.putExtra("text", menu.getContext().getString(R.string.share_content));
-						i.putExtra("image", image);
-						i.putExtra("image_url", "http://sharesdk.cn/Public/Frontend/images/logo.png");
-						i.putExtra("site", menu.getContext().getString(R.string.app_name));
-						i.putExtra("siteUrl", "http://sharesdk.cn");
-						
-						i.putExtra("platform", platform);
-						menu.getContext().startActivity(i);
-					}
-				});
-			}
-		};
-	}
-	
-	private String getImagePath() {
-		try {
-			Activity act = (Activity) menu.getContext();
-			String path;
-			if (Environment.getExternalStorageDirectory().exists()) {
-				path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/pic.jpg";
-			}
-			else {
-				path = act.getApplication().getFilesDir().getAbsolutePath() + "/pic.jpg";
-			}
-			File file = new File(path);
-			if (!file.exists()) {
-				file.createNewFile();
-				Bitmap pic = BitmapFactory.decodeResource(act.getResources(), R.drawable.pic);
-				FileOutputStream fos = new FileOutputStream(file);
-				pic.compress(CompressFormat.JPEG, 100, fos);
-				fos.flush();
-				fos.close();
-			}
-			return path;
-		} catch(Throwable t) {
-			t.printStackTrace();
-		}
-		return null;
+	private void showShare(final String platform) {
+		Intent i = new Intent(menu.getContext(), SharePage.class);
+		// 分享时Notification的图标
+		i.putExtra("notif_icon", R.drawable.ic_launcher);
+		// 分享时Notification的标题
+		i.putExtra("notif_title", menu.getContext().getString(R.string.app_name));
+		
+		// address是接收人地址，仅在信息和邮件使用，否则可以不提供
+		i.putExtra("address", "12345678901");
+		// title标题，在印象笔记、邮箱、信息、微信（包括好友和朋友圈）、人人网和QQ空间使用，否则可以不提供
+		i.putExtra("title", menu.getContext().getString(R.string.share));
+		// titleUrl是标题的网络链接，仅在QQ空间使用，否则可以不提供
+		i.putExtra("titleUrl", "http://sharesdk.cn");
+		// text是分享文本，所有平台都需要这个字段
+		i.putExtra("text", menu.getContext().getString(R.string.share_content));
+		// imagePath是本地的图片路径，在豆瓣、Facebook、网易微博、新浪微博、腾讯微博、Twitter、邮箱、
+		// 信息和微信（包括好友和朋友圈）图片分享中使用，否则可以不提供
+		i.putExtra("imagePath", MainActivity.TEST_IMAGE);
+		// imageUrl是网络的图片路径，仅在人人网和QQ空间使用，否则可以不提供
+		i.putExtra("imageUrl", "http://sharesdk.cn/Public/Frontend/images/logo.png");
+		// url仅在人人网和微信（包括好友和朋友圈）中使用，否则可以不提供
+		i.putExtra("url", "http://sharesdk.cn");
+		// thumbPath是缩略图的本地路径，仅在微信（包括好友和朋友圈）中使用，否则可以不提供
+		i.putExtra("thumbPath", MainActivity.TEST_IMAGE);
+		// appPath是待分享应用程序的本地路劲，仅在微信（包括好友和朋友圈）中使用，否则可以不提供
+		i.putExtra("appPath", MainActivity.TEST_IMAGE);
+		// comment是我对这条分享的评论，仅在人人网和QQ空间使用，否则可以不提供
+		i.putExtra("comment", menu.getContext().getString(R.string.share));
+		// site是分享此内容的网站名称，仅在QQ空间使用，否则可以不提供
+		i.putExtra("site", menu.getContext().getString(R.string.app_name));
+		// siteUrl是分享此内容的网站地址，仅在QQ空间使用，否则可以不提供
+		i.putExtra("siteUrl", "http://sharesdk.cn");
+		
+		// 是平台名称
+		i.putExtra("platform", platform);
+		menu.getContext().startActivity(i);
 	}
 	
 	/** 操作演示的代码集中于此方面 */
@@ -180,12 +172,12 @@ public class DemoPage implements Callback,
 		switch (v.getId()) {
 			case R.id.btnShareAllGui: {
 				// 图文分享
-				newLaunchThread(false).start();
+				showGrid(false);
 			}
 			break;
 			case R.id.btnShareAll: {
 				// 直接分享
-				newLaunchThread(true).start();
+				showGrid(true);
 			}
 			break;
 			case R.id.btnFlSw: {
@@ -233,47 +225,47 @@ public class DemoPage implements Callback,
 			break;
 			case R.id.btnShareSw: {
 				// 分享到新浪微博
-				newShareThread(SinaWeibo.NAME).start();
+				showShare(SinaWeibo.NAME);
 			}
 			break;
 			case R.id.btnShareTc: {
 				// 分享到腾讯微博
-				newShareThread(TencentWeibo.NAME).start();
+				showShare(TencentWeibo.NAME);
 			}
 			break;
 			case R.id.btnShareFb: {
 				// 分享到facebook
-				newShareThread(Facebook.NAME).start();
+				showShare(Facebook.NAME);
 			}
 			break;
 			case R.id.btnShareTw: {
 				// 分享到twitter
-				newShareThread(Twitter.NAME).start();
+				showShare(Twitter.NAME);
 			}
 			break;
 			case R.id.btnShareRr: {
 				// 分享到人人网
-				newShareThread(Renren.NAME).start();
+				showShare(Renren.NAME);
 			}
 			break;
 			case R.id.btnShareQz: {
 				// 分享到qq空间
-				newShareThread(QZone.NAME).start();
+				showShare(QZone.NAME);
 			}
 			break;
 			case R.id.btnShareDb: {
 				// 分享到豆瓣
-				newShareThread(Douban.NAME).start();
+				showShare(Douban.NAME);
 			}
 			break;
 			case R.id.btnShareEn: {
 				// 分享到印象笔记
-				newShareThread(Evernote.NAME).start();
+				showShare(Evernote.NAME);
 			}
 			break;
 			case R.id.btnShareNemb: {
 				// 分享到网易微博
-				newShareThread(NetEaseMicroBlog.NAME).start();
+				showShare(NetEaseMicroBlog.NAME);
 			}
 			break;
 		}

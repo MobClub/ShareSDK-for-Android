@@ -8,20 +8,14 @@
 
 package cn.sharesdk.demo;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.HashMap;
 import m.framework.ui.SlidingMenu;
 import cn.sharesdk.framework.AbstractWeibo;
+import cn.sharesdk.framework.AbstractWeibo.ShareParams;
 import cn.sharesdk.framework.TitleLayout;
 import cn.sharesdk.framework.WeiboActionListener;
 import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
-import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Bitmap.CompressFormat;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Handler.Callback;
@@ -39,7 +33,6 @@ public class WechatPage implements Callback,
 	private TitleLayout llTitle;
 	private Handler handler;
 	private CheckedTextView ctvStWm;
-	private String picPath;
 	
 	public WechatPage(SlidingMenu menu) {
 		handler = new Handler(this);
@@ -59,12 +52,6 @@ public class WechatPage implements Callback,
 		pageView.findViewById(R.id.btnVideo).setOnClickListener(this);
 		pageView.findViewById(R.id.btnWebpage).setOnClickListener(this);
 		pageView.findViewById(R.id.btnApp).setOnClickListener(this);
-		
-		new Thread(){
-			public void run() {
-				picPath = getPath();
-			}
-		}.start();
 	}
 	
 	/** 获取页面的View实例 */
@@ -91,69 +78,57 @@ public class WechatPage implements Callback,
 		String name = ctvStWm.isChecked() ? WechatMoments.NAME : Wechat.NAME;
 		AbstractWeibo weibo = AbstractWeibo.getWeibo(menu.getContext(), name);
 		weibo.setWeiboActionListener(this);
-		String title = menu.getContext().getString(R.string.wechat_demo_title);
-		String text = menu.getContext().getString(R.string.share_content);
+		int type = AbstractWeibo.SHARE_TEXT;
 		switch (v.getId()) {
-			case R.id.btnUpdate: {
-				weibo.share(AbstractWeibo.SHARE_TEXT, title, text);
-			}
-			break;
-			case R.id.btnUpload: {
-				weibo.share(AbstractWeibo.SHARE_IMAGE_TEXT, title, text, picPath);
-			}
-			break;
-			case R.id.btnMusic: {
-				String musicUrl = "http://119.188.72.27/2/file.data.vdisk.me/37414786/1f486ed742895fd9e6487568047a20b29a9d0df0?ip=1364785283,10.73.26.26&ssig=1iVh5iRmC%2B&Expires=1364784083&KID=sae,l30zoo1wmz&fn=%E9%93%83%E5%A3%B0%E6%8A%A5%E5%91%8A%E5%A4%A7%E7%8E%8B.mp3";
-				String thumbUrl = picPath;
-				weibo.share(AbstractWeibo.SHARE_MUSIC, title, text, musicUrl, thumbUrl);
-			}
-			break;
-			case R.id.btnVideo: {
-				String videoUrl = "http://t.cn/zT7cZAo";
-				String thumbUrl = picPath;
-				weibo.share(AbstractWeibo.SHARE_VIDEO, title, text, videoUrl, thumbUrl);
-			}
-			break;
-			case R.id.btnWebpage: {
-				String url = "http://sharesdk.cn";
-				String thumbUrl = picPath;
-				weibo.share(AbstractWeibo.SHARE_WEBPAGE, title, text, url, thumbUrl);
-			}
-			break;
-			case R.id.btnApp: {
-				String appPath = picPath; // app的本地地址
-				String thumbUrl = picPath;
-				weibo.share(AbstractWeibo.SHARE_APPS, title, text, appPath, thumbUrl);
-			}
-			break;
+			case R.id.btnUpdate: type = AbstractWeibo.SHARE_TEXT; break;
+			case R.id.btnUpload: type = AbstractWeibo.SHARE_IMAGE; break;
+			case R.id.btnMusic: type = AbstractWeibo.SHARE_MUSIC; break;
+			case R.id.btnVideo: type = AbstractWeibo.SHARE_VIDEO; break;
+			case R.id.btnWebpage: type = AbstractWeibo.SHARE_WEBPAGE; break;
+			case R.id.btnApp: type = AbstractWeibo.SHARE_APPS; break;
 		}
+		ShareParams sp = ctvStWm.isChecked() ? getMomentSP(type) : getWechatSP(type);
+		weibo.share(sp);
 	}
 	
-	private String getPath() {
-		String path = null;
-		try {
-			Activity act = (Activity) menu.getContext();
-			if (Environment.getExternalStorageDirectory().exists()) {
-				path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/pic.jpg";
-			}
-			else {
-				path = act.getApplication().getFilesDir().getAbsolutePath() + "/pic.jpg";
-			}
-			File file = new File(path);
-			if (!file.exists()) {
-				file.createNewFile();
-				Bitmap pic = BitmapFactory.decodeResource(
-						menu.getResources(), R.drawable.pic);
-				FileOutputStream fos = new FileOutputStream(file);
-				pic.compress(CompressFormat.JPEG, 100, fos);
-				fos.flush();
-				fos.close();
-			}
-		} catch(Throwable t) {
-			t.printStackTrace();
-			path = null;
+	private ShareParams getWechatSP(int shareType) {
+		Wechat.ShareParams sp = new Wechat.ShareParams();
+		sp.shareType = shareType;
+		sp.title = menu.getContext().getString(R.string.wechat_demo_title);;
+		sp.text = menu.getContext().getString(R.string.share_content);
+		sp.imagePath = MainActivity.TEST_IMAGE;
+		sp.thumbPath = MainActivity.TEST_IMAGE;
+		sp.appPath = MainActivity.TEST_IMAGE; // app的本地地址
+		
+		String musicUrl = "http://119.188.72.27/2/file.data.vdisk.me/37414786/1f486ed742895fd9e6487568047a20b29a9d0df0?ip=1364785283,10.73.26.26&ssig=1iVh5iRmC%2B&Expires=1364784083&KID=sae,l30zoo1wmz&fn=%E9%93%83%E5%A3%B0%E6%8A%A5%E5%91%8A%E5%A4%A7%E7%8E%8B.mp3";
+		String videoUrl = "http://t.cn/zT7cZAo";
+		String webpageUrl = "http://t.cn/zT7cZAo";
+		switch (shareType) {
+			case AbstractWeibo.SHARE_MUSIC: sp.url = musicUrl; break;
+			case AbstractWeibo.SHARE_VIDEO: sp.url = videoUrl; break;
+			case AbstractWeibo.SHARE_WEBPAGE: sp.url = webpageUrl; break;
 		}
-		return path;
+		return sp;
+	}
+	
+	private ShareParams getMomentSP(int shareType) {
+		WechatMoments.ShareParams sp = new WechatMoments.ShareParams();
+		sp.shareType = shareType;
+		sp.title = menu.getContext().getString(R.string.wechat_demo_title);;
+		sp.text = menu.getContext().getString(R.string.share_content);
+		sp.imagePath = MainActivity.TEST_IMAGE;
+		sp.thumbPath = MainActivity.TEST_IMAGE;
+		sp.appPath = MainActivity.TEST_IMAGE; // app的本地地址
+		
+		String musicUrl = "http://119.188.72.27/2/file.data.vdisk.me/37414786/1f486ed742895fd9e6487568047a20b29a9d0df0?ip=1364785283,10.73.26.26&ssig=1iVh5iRmC%2B&Expires=1364784083&KID=sae,l30zoo1wmz&fn=%E9%93%83%E5%A3%B0%E6%8A%A5%E5%91%8A%E5%A4%A7%E7%8E%8B.mp3";
+		String videoUrl = "http://t.cn/zT7cZAo";
+		String webpageUrl = "http://t.cn/zT7cZAo";
+		switch (shareType) {
+			case AbstractWeibo.SHARE_MUSIC: sp.url = musicUrl; break;
+			case AbstractWeibo.SHARE_VIDEO: sp.url = videoUrl; break;
+			case AbstractWeibo.SHARE_WEBPAGE: sp.url = webpageUrl; break;
+		}
+		return sp;
 	}
 	
 	public void onComplete(AbstractWeibo weibo, int action,

@@ -108,23 +108,32 @@ public final class R {
 		return density * 160 / BITMAP_DPI;
 	}
 	
-	private static Bitmap getBitmap(InputStream is) {
+	private static Bitmap getBitmap(InputStream is, int inSampleSize) {
 		BitmapFactory.Options opt = new BitmapFactory.Options();
 		opt.inPreferredConfig = Bitmap.Config.RGB_565;
 		opt.inPurgeable = true;
 		opt.inInputShareable = true;
+		opt.inSampleSize = inSampleSize;
 		return BitmapFactory.decodeStream(is, null, opt);
 	}
 	
 	public static Bitmap getBitmap(File file) throws Throwable {
+		return getBitmap(file, 1);
+	}
+	
+	public static Bitmap getBitmap(File file, int inSampleSize) throws Throwable {
 		FileInputStream fis = new FileInputStream(file);
-		Bitmap bm = getBitmap(fis);
+		Bitmap bm = getBitmap(fis, inSampleSize);
 		fis.close();
 		return bm;
 	}
 	
 	public static Bitmap getBitmap(String path) throws Throwable {
-		return getBitmap(new File(path));
+		return getBitmap(path, 1);
+	}
+	
+	public static Bitmap getBitmap(String path, int inSampleSize) throws Throwable {
+		return getBitmap(new File(path), inSampleSize);
 	}
 	
 	public static int dipToPx(Context context, int dip) {

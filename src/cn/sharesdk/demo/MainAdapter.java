@@ -226,7 +226,7 @@ public class MainAdapter extends MenuAdapter
 							i.setPackage("com.tencent.mm");
 							menu.getContext().startActivity(i);
 						} catch(Throwable t) {
-							t.printStackTrace();
+							System.err.println("wechat client is not installed correctly or its version is too old.");
 							
 							Intent i = new Intent(Intent.ACTION_VIEW);
 							i.setData(Uri.parse(WECHAT_ADDR));

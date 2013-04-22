@@ -8,10 +8,19 @@
 
 package cn.sharesdk.demo;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import cn.sharesdk.framework.AbstractWeibo;
 import m.framework.ui.SlidingMenu;
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Bitmap.CompressFormat;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
+import android.os.Handler.Callback;
 import android.view.KeyEvent;
 
 /** 
@@ -19,7 +28,8 @@ import android.view.KeyEvent;
  * <p>
  * 侧栏的UI或者逻辑控制基本上都在{@link MainAdapter}中进行
  */
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements Callback {
+	public static String TEST_IMAGE;
 	private SlidingMenu menu;
 	
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +43,42 @@ public class MainActivity extends Activity {
 		setContentView(menu);
 		
 		AbstractWeibo.initSDK(this);
-		menu.postDelayed(new Runnable() {
+		final Handler handler = new Handler(this);
+		new Thread() {
 			public void run() {
-				menu.triggerItem(MainAdapter.GROUP_DEMO, MainAdapter.ITEM_DEMO);
+				initImagePath();
+				handler.sendEmptyMessageDelayed(1, 100);
 			}
-		}, 100);
+		}.start();
+	}
+	
+	private void initImagePath() {
+		try {
+			if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
+					&& Environment.getExternalStorageDirectory().exists()) {
+				TEST_IMAGE = Environment.getExternalStorageDirectory().getAbsolutePath() + "/pic.jpg";
+			}
+			else {
+				TEST_IMAGE = getApplication().getFilesDir().getAbsolutePath() + "/pic.jpg";
+			}
+			File file = new File(TEST_IMAGE);
+			if (!file.exists()) {
+				file.createNewFile();
+				Bitmap pic = BitmapFactory.decodeResource(getResources(), R.drawable.pic);
+				FileOutputStream fos = new FileOutputStream(file);
+				pic.compress(CompressFormat.JPEG, 100, fos);
+				fos.flush();
+				fos.close();
+			}
+		} catch(Throwable t) {
+			t.printStackTrace();
+			TEST_IMAGE = null;
+		}
+	}
+	
+	public boolean handleMessage(Message msg) {
+		menu.triggerItem(MainAdapter.GROUP_DEMO, MainAdapter.ITEM_DEMO);
+		return false;
 	}
 	
 	public boolean onKeyDown(int keyCode, KeyEvent event) {

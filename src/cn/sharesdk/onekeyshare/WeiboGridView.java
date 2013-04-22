@@ -8,15 +8,25 @@
 
 package cn.sharesdk.onekeyshare;
 
+import java.io.File;
 import java.util.HashMap;
 
+import cn.sharesdk.douban.Douban;
 import cn.sharesdk.evernote.Evernote;
+import cn.sharesdk.facebook.Facebook;
 import cn.sharesdk.framework.AbstractWeibo;
 import cn.sharesdk.framework.WeiboActionListener;
+import cn.sharesdk.netease.microblog.NetEaseMicroBlog;
 import cn.sharesdk.onekeyshare.res.R;
+import cn.sharesdk.renren.Renren;
+import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.system.email.Email;
 import cn.sharesdk.system.text.ShortMessage;
 import cn.sharesdk.tencent.qzone.QZone;
+import cn.sharesdk.tencent.weibo.TencentWeibo;
+import cn.sharesdk.twitter.Twitter;
+import cn.sharesdk.wechat.friends.Wechat;
+import cn.sharesdk.wechat.moments.WechatMoments;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -186,8 +196,8 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 			else {
 				String name = weibo.getName();
 				// SharePage不支持微信平台、信息和邮件，总是执行直接分享
-				if ("Wechat".equals(name) || "WechatMoments".equals(name)
-						|| "ShortMessage".equals(name) || "Email".equals(name)) {
+				if (Wechat.NAME.equals(name) || WechatMoments.NAME.equals(name)
+						|| ShortMessage.NAME.equals(name) || Email.NAME.equals(name)) {
 					weibo.setWeiboActionListener(this);
 					shareSilently(weibo);
 					showNotification(5000, R.getString(getContext(), "sharing"));
@@ -205,55 +215,133 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 	}
 	
 	// 直接分享
-	private void shareSilently(final AbstractWeibo weibo) {
-		new Thread() {
-			public void run() {
-				if (intent == null) {
-					return;
-				}
-				
-				String address = intent.getStringExtra("address");
-				String title = intent.getStringExtra("title");
-				String text = intent.getStringExtra("text");
-				String image = intent.getStringExtra("image");
-				String imageUrl = intent.getStringExtra("image_url");
-				String site = intent.getStringExtra("site");
-				String siteUrl = intent.getStringExtra("siteUrl");
-				
-				if ("QZone".equals(weibo.getName())) {
-					if (title != null && imageUrl != null 
-							&& site != null && siteUrl != null) {
-						// qq空间使用“add_share”接口
-						((QZone) weibo).share(title, null, null, text, imageUrl, site, siteUrl);
-					}
-					else {
-						weibo.share(text, image);
-					}
-				}
-				else if ("Evernote".equals(weibo.getName())) {
-					if (title != null) {
-						// 印象笔记使用"save"接口
-						((Evernote) weibo).save(title, text, image);
-					}
-					else {
-						weibo.share(text, image);
-					}
-				}
-				else if ("Twitter".equals(weibo.getName())) {
-					text = getContext().getString(cn.sharesdk.demo.R.string.share_content_short);
-					weibo.share("@Share SDK", image);
-				}
-				else if ("ShortMessage".equals(weibo.getName())) {
-					((ShortMessage) weibo).send(address, title, "1"/*, image*/);
-				}
-				else if ("Email".equals(weibo.getName())) {
-					((Email) weibo).send(address, title, text, image);
-				}
-				else {
-					weibo.share(text, image);
-				}
+	private void shareSilently(AbstractWeibo weibo) {
+		if (intent == null) {
+			return;
+		}
+		
+		String address = intent.getStringExtra("address");
+		String title = intent.getStringExtra("title");
+		String titleUrl = intent.getStringExtra("titleUrl");
+		String text = intent.getStringExtra("text");
+		String imagePath = intent.getStringExtra("imagePath");
+		String imageUrl = intent.getStringExtra("imageUrl");
+		String url = intent.getStringExtra("url");
+		String comment = intent.getStringExtra("comment");
+		String site = intent.getStringExtra("site");
+		String siteUrl = intent.getStringExtra("siteUrl");
+		
+		String platform = weibo.getName();
+		AbstractWeibo.ShareParams shareParams = null;
+		if (ShortMessage.NAME.equals(platform)) {
+			ShortMessage.ShareParams sp = new ShortMessage.ShareParams();
+			shareParams = sp;
+			sp.address = address;
+			sp.title = title;
+			sp.text = text;
+			sp.imagePath = imagePath;
+		}
+		else if (Email.NAME.equals(platform)) {
+			Email.ShareParams sp = new Email.ShareParams();
+			shareParams = sp;
+			sp.address = address;
+			sp.title = title;
+			sp.text = text;
+			sp.imagePath = imagePath;
+		}
+		else if (Wechat.NAME.equals(platform)) {
+			Wechat.ShareParams sp = new Wechat.ShareParams();
+			shareParams = sp;
+			sp.title = title;
+			sp.text = text;
+			sp.imagePath = imagePath;
+			sp.shareType = AbstractWeibo.SHARE_TEXT;
+			if (imagePath != null && (new File(imagePath)).exists()) {
+				sp.shareType = AbstractWeibo.SHARE_WEBPAGE;
 			}
-		}.start();
+			sp.url = url;
+			sp.thumbPath = imagePath;
+		}
+		else if (WechatMoments.NAME.equals(platform)) {
+			WechatMoments.ShareParams sp = new WechatMoments.ShareParams();
+			shareParams = sp;
+			sp.title = title;
+			sp.text = text;
+			sp.imagePath = imagePath;
+			sp.shareType = AbstractWeibo.SHARE_TEXT;
+			if (imagePath != null && (new File(imagePath)).exists()) {
+				sp.shareType = AbstractWeibo.SHARE_WEBPAGE;
+			}
+			sp.url = url;
+			sp.thumbPath = imagePath;
+		}
+		else if (Evernote.NAME.equals(platform)) {
+			Evernote.ShareParams sp = new Evernote.ShareParams();
+			shareParams = sp;
+			sp.title = title;
+			sp.text = text;
+			sp.imagePath = imagePath;
+		}
+		else if (Renren.NAME.equals(platform)) {
+			Renren.ShareParams sp = new Renren.ShareParams();
+			shareParams = sp;
+			sp.title = title;
+			sp.text = text;
+			sp.titleUrl = titleUrl;
+			sp.comment = comment;
+			sp.imageUrl = imageUrl;
+		}
+		else if (QZone.NAME.equals(platform)) {
+			QZone.ShareParams sp = new QZone.ShareParams();
+			shareParams = sp;
+			sp.title = title;
+			sp.text = text;
+			sp.titleUrl = titleUrl;
+			sp.comment = comment;
+			sp.imageUrl = imageUrl;
+			sp.site = site;
+			sp.siteUrl = siteUrl;
+		}
+		else if (Douban.NAME.equals(platform)) {
+			Douban.ShareParams sp = new Douban.ShareParams();
+			shareParams = sp;
+			sp.text = text;
+			sp.imagePath = imagePath;
+		}
+		else if (Facebook.NAME.equals(platform)) {
+			Facebook.ShareParams sp = new Facebook.ShareParams();
+			shareParams = sp;
+			sp.text = text;
+			sp.imagePath = imagePath;
+		}
+		else if (NetEaseMicroBlog.NAME.equals(platform)) {
+			NetEaseMicroBlog.ShareParams sp = new NetEaseMicroBlog.ShareParams();
+			shareParams = sp;
+			sp.text = text;
+			sp.imagePath = imagePath;
+		}
+		else if (SinaWeibo.NAME.equals(platform)) {
+			SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
+			shareParams = sp;
+			sp.text = text;
+			sp.imagePath = imagePath;
+		}
+		else if (TencentWeibo.NAME.equals(platform)) {
+			TencentWeibo.ShareParams sp = new TencentWeibo.ShareParams();
+			shareParams = sp;
+			sp.text = text;
+			sp.imagePath = imagePath;
+		}
+		else if (Twitter.NAME.equals(platform)) {
+			Twitter.ShareParams sp = new Twitter.ShareParams();
+			shareParams = sp;
+			sp.text = text;
+			sp.imagePath = imagePath;
+		}
+		
+		if (shareParams != null) {
+			weibo.share(shareParams);
+		}
 	}
 	
 	public void onComplete(AbstractWeibo weibo, int action,

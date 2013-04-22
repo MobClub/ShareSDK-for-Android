@@ -11,6 +11,7 @@ package cn.sharesdk.onekeyshare;
 import cn.sharesdk.framework.AbstractWeibo;
 import cn.sharesdk.onekeyshare.res.R;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -25,52 +26,133 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 /**
- * 快捷分享入口，也是平台宫格列表的UI外壳
+ * 快捷分享入口，也是平台宫格列表的UI外壳。
  * <p>
- * 下面是启动快捷分享的一个例子，例子里面包含的字段是分享所必需的字段：<br>
- * <table border="1"><tr><td>
- * Intent i = new Intent(v.getContext(), ShareAllGird.class);<br>
- * // 分享内容的文本<br>
- * i.putExtra("text", "share at: " + System.currentTimeMillis());<br>
- * // 分享内容的本地图片路径（为null或文件不存在表示不分享图片 <br>
- * i.putExtra("image", Environment.getExternalStorageDirectory () + "/ssdk.png");<br>
- * startActivity(i);
- * </td></tr></table>
+ * 由于不同分享平台之间存在着各种参数上的差异，所以快捷分享支持下面的参数列表。
+ *列表中的字段可以通过{@link Intent#putExtra(key, value)}的方式传递进来。请注
+ *意：<b>并非 所有的参数都需要一次性传递</b>，实际操作中只要根据
+ *{@link AbstractWeibo#share(int, Object...)}方法的说明，传递不同平台所需要的
+ *字段就行了。
  * <p>
- * 不过请注意，这样子进入分享页面以后，部分平台可能无法很好地工作，比方说
- *QQ空间不使用官方推荐的“add_share”接口，而是用需要申请更多权限的
- *“add_topic”接口，以及印象笔记无法设置笔记标题等等。
+ * <table border="1">
+ * 	<tr>
+ * 		<th align="center">&nbsp;</th>
+ * 		<th align="center">类型</th>
+ * 		<th align="center">说明</th>
+ * 	</tr>
+ * 	<tr>
+ * 		<td align="center">notif_icon</td>
+ * 		<td align="center">int</td>
+ * 		<td>分享时Notification的图标</td>
+ * 	</tr>
+ * 	<tr>
+ * 		<td align="center">notif_title</td>
+ * 		<td align="center">String</td>
+ * 		<td>分享时Notification的标题</td>
+ * 	</tr>
+ *  <tr>
+ * 		<td align="center">address</td>
+ * 		<td align="center">String</td>
+ * 		<td>address是接收人地址，仅在信息和邮件使用，否则可以不提供</td>
+ * 	</tr>
+ *  <tr>
+ * 		<td align="center">title</td>
+ * 		<td align="center">String</td>
+ * 		<td>title标题，在印象笔记、邮箱、信息、微信（包括好友和朋友圈）、人人网和QQ空间使用，否则可以不提供</td>
+ * 	</tr>
+ *  <tr>
+ * 		<td align="center">titleUrl</td>
+ * 		<td align="center">String</td>
+ * 		<td>titleUrl是标题的网络链接，仅在QQ空间使用，否则可以不提供</td>
+ * 	</tr>
+ * 	<tr>
+ * 		<td align="center">text</td>
+ * 		<td align="center">String</td>
+ * 		<td>text是分享文本，所有平台都需要这个字段</td>
+ * 	</tr>
+ *  <tr>
+ * 		<td align="center">imagePath</td>
+ * 		<td align="center">String</td>
+ * 		<td>imagePath是本地的图片路径，在豆瓣、Facebook、网易微博、新浪微博、腾讯微博、Twitter、邮箱、信息和微信（包括好友和朋友圈）图片分享中使用，否则可以不提供</td>
+ * 	</tr>
+ *  <tr>
+ * 		<td align="center">imageUrl</td>
+ * 		<td align="center">String</td>
+ * 		<td>imageUrl是网络的图片路径，仅在人人网和QQ空间使用，否则可以不提供</td>
+ * 	</tr>
+ *  <tr>
+ * 		<td align="center">url</td>
+ * 		<td align="center">String</td>
+ * 		<td>url仅在人人网和微信（包括好友和朋友圈）中使用，否则可以不提供</td>
+ * 	</tr>
+ * <tr>
+ * 		<td align="center">thumbPath</td>
+ * 		<td align="center">String</td>
+ * 		<td>thumbPath是缩略图的本地路径，仅在微信（包括好友和朋友圈）中使用，否则可以不提供</td>
+ * 	</tr>
+ *  <tr>
+ * 		<td align="center">appPath</td>
+ * 		<td align="center">String</td>
+ * 		<td>appPath是待分享应用程序的本地路劲，仅在微信（包括好友和朋友圈）中使用，否则可以不提供</td>
+ * 	</tr>
+ *  <tr>
+ * 		<td align="center">comment</td>
+ * 		<td align="center">String</td>
+ * 		<td>comment是我对这条分享的评论，仅在人人网和QQ空间使用，否则可以不提供</td>
+ * 	</tr>
+ *  <tr>
+ * 		<td align="center">site</td>
+ * 		<td align="center">String</td>
+ * 		<td>site是分享此内容的网站名称，仅在QQ空间使用，否则可以不提供</td>
+ * 	</tr>
+ * 	<tr>
+ * 		<td align="center">siteUrl</td>
+ * 		<td align="center">String</td>
+ * 		<td>siteUrl是分享此内容的网站地址，仅在QQ空间使用，否则可以不提供</td>
+ * 	</tr>
+ *  <tr>
+ * 		<td align="center">silent</td>
+ * 		<td align="center">boolean</td>
+ * 		<td>表示是否直接分享</td>
+ * 	</tr>
+ * </table>
  * <p>
- * 下面例子则展示当前ShareAllGird支持的完整参数列表：<br>
- * <table border="1"><tr><td>
- * Intent i = new Intent(v.getContext(), ShareAllGird.class);<br>
- * // 分享时Notification的图标<br>
- * i.putExtra("notif_icon", R.drawable.ic_launcher);<br>
- * // 分享时Notification的标题<br>
- * i.putExtra("notif_title", getString(R.string.app_name));<br>
- * <br>
- * // 分享内容的标题（仅部分平台需要此字段）<br>
- * i.putExtra("title", "Share SDK Demo");<br>
- * // 分享内容的文本<br>
- * i.putExtra("text", "share at: " + System.currentTimeMillis());<br>
- * // 分享内容的本地图片路径（为null或文件不存在表示不分享图片）<br>
- * i.putExtra("image", Environment.getExternalStorageDirectory () + "/ssdk.png");<br>
- * // 分享内容的网络图片地址（仅部分平台需要此字段）<br>
- * i.putExtra("image_url", "http://sharesdk.cn/Public/Frontend/images/logo.png");<br>
- * // 分享的来源网站名称（仅部分平台需要此字段）<br>
- * i.putExtra("site", "Share SDK");<br>
- * // 分享的来源网站对应的网站地址url（仅部分平台需要此字段）<br>
- * i.putExtra("siteUrl", "http://sharesdk.cn");<br>
- * <br>
- * // 设置是否跳转内容编辑页面，true表示不跳转，不传递表示false（跳转）<br>
- * i.putExtra("silent", false);<br>
- * startActivity(i);
- * </td></tr></table>
+ * 依照上面的参数列表，如果想要事项QQ空间的分享功能，可以这样子操作：
  * <p>
- * 示例代码中的notif_icon和notif_title用于分享时在状态栏上的提示；image_url、
- *site和siteUrl是QQ空间“add_share”接口的参数；title是QQ空间和印象笔记平台
- *的更新标题；silent用于告知ShareAllGird是否使用“直接分享”，还是点击平台
- *图标以后进入{@link SharePage}编辑后才分享。
+ * <table border="1">
+ * 	<tr>
+ * 		<td>
+ * 			Intent i = new Intent(getContext(), ShareAllGird.class);<br>
+ * 			<font color="007f00">// 分享时Notification的图标</font><br>
+ * 			i.putExtra("notif_icon", R.drawable.ic_launcher);<br>
+ * 			<font color="007f00">// 分享时Notification的标题</font><br>
+ * 			i.putExtra("notif_title", getContext().getString(R.string.app_name));<br>
+ * 			<br>
+ * 			<font color="007f00">// 标题</font><br>
+ * 			i.putExtra("title", getContext().getString(R.string.share));<br>
+ * 			<font color="007f00">// 标题的网络链接</font><br>
+ * 			i.putExtra("titleUrl", "http://sharesdk.cn");<br>
+ * 			<font color="007f00">// 分享文本，所有平台都需要这个字段</font><br>
+ * 			i.putExtra("text", getContext().getString(R.string.share_content));<br>
+ * 			<font color="007f00">// 网络的图片路径</font><br>
+ * 			i.putExtra("imageUrl", "http://sharesdk.cn/Public/Frontend/images/logo.png");<br>
+ * 			<font color="007f00">// 我对这条分享的评论</font><br>
+ * 			i.putExtra("comment", getContext().getString(R.string.share));<br>
+ * 			<font color="007f00">// 分享此内容的网站名称</font><br>
+ * 			i.putExtra("site", getContext().getString(R.string.share));<br>
+ * 			<font color="007f00">// 分享此内容的网站地址</font><br>
+ * 			i.putExtra("siteUrl", "http://sharesdk.cn");<br>
+ * 			<br>
+ * 			<font color="007f00">// 是否直接分享</font><br>
+ * 			i.putExtra("silent", false);<br>
+ * 			getContext().startActivity(i);
+ * 		</td>
+ * 	</tr>
+ * </table>
+ * <p>
+ * “直接分享”表示不进入{@link SharePage}而直接执行分享的操作。比如微信（包括好友
+ *和朋友圈）就总是执行直接分享，这是因为微信分享时调用微信客户端，拥有自己的分享
+ *界面。
  */
 public class ShareAllGird extends Activity implements OnClickListener {
 	private FrameLayout flPage; // 页面
@@ -78,6 +160,7 @@ public class ShareAllGird extends Activity implements OnClickListener {
 	private Button btnCancel; // 取消按钮
 	private Animation animShow; // 滑上来的动画
 	private Animation animHide; // 滑下去的动画
+	private boolean finishing;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -154,6 +237,11 @@ public class ShareAllGird extends Activity implements OnClickListener {
 	}
 	
 	public void finish() {
+		if (finishing) {
+			return;
+		}
+		
+		finishing = true;
 		animHide.setAnimationListener(new AnimationListener() {
 			public void onAnimationStart(Animation animation) {
 				

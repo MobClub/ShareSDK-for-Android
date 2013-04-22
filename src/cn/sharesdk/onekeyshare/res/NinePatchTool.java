@@ -2,7 +2,6 @@ package cn.sharesdk.onekeyshare.res;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
@@ -26,7 +25,7 @@ public class NinePatchTool {
 	}
 
 	public static Drawable decodeDrawableFromAsset(Context context,
-			String assetPath) throws Exception {
+			String assetPath) throws Throwable {
 		Bitmap bm = decodeFromAsset(context, assetPath);
 		if (null == bm.getNinePatchChunk()) {
 			BitmapDrawable bitmapDrawable = new BitmapDrawable(bm);
@@ -40,7 +39,7 @@ public class NinePatchTool {
 		}
 	}
 
-	public static Bitmap decodeFromStream(InputStream in) throws Exception {
+	public static Bitmap decodeFromStream(InputStream in) throws Throwable {
 		Bitmap srcBm = BitmapFactory.decodeStream(in);
 		byte[] chunk = readChunk(srcBm);
 		boolean isNinePatchChunk = NinePatch.isNinePatchChunk(chunk);
@@ -57,7 +56,7 @@ public class NinePatchTool {
 		}
 	}
 
-	public static Bitmap decodeFromFile(String path) throws Exception {
+	public static Bitmap decodeFromFile(String path) throws Throwable {
 		InputStream in = new FileInputStream(path);
 		Bitmap bm = decodeFromStream(in);
 		in.close();
@@ -65,7 +64,7 @@ public class NinePatchTool {
 	}
 
 	public static Bitmap decodeFromAsset(Context context,
-			String ninePatchPngPath) throws Exception {
+			String ninePatchPngPath) throws Throwable {
 		InputStream is = context.getAssets().open(ninePatchPngPath);
 		Bitmap bm = decodeFromStream(is);
 		is.close();
@@ -79,7 +78,7 @@ public class NinePatchTool {
 		paddingRect.bottom = getInt(chunk, 24);
 	}
 
-	public static byte[] readChunk(Bitmap yuantuBmp) throws IOException {
+	public static byte[] readChunk(Bitmap yuantuBmp) throws Throwable {
 		final int BM_W = yuantuBmp.getWidth();
 		final int BM_H = yuantuBmp.getHeight();
 
@@ -198,7 +197,7 @@ public class NinePatchTool {
 		}
 	}
 
-	private static void writeInt(OutputStream out, int v) throws IOException {
+	private static void writeInt(OutputStream out, int v) throws Throwable {
 		out.write((v >> 0) & 0xFF);
 		out.write((v >> 8) & 0xFF);
 		out.write((v >> 16) & 0xFF);
