@@ -125,7 +125,11 @@ public class WechatPage implements Callback,
 		String webpageUrl = "http://t.cn/zT7cZAo";
 		switch (shareType) {
 			case AbstractWeibo.SHARE_MUSIC: sp.url = musicUrl; break;
-			case AbstractWeibo.SHARE_VIDEO: sp.url = videoUrl; break;
+			case AbstractWeibo.SHARE_VIDEO: {
+				sp.url = videoUrl; 
+				sp.title = sp.text; // 这个可能是朋友圈的bug，分享内容中的视频描述居然成了标题
+			}
+			break;
 			case AbstractWeibo.SHARE_WEBPAGE: sp.url = webpageUrl; break;
 		}
 		return sp;
