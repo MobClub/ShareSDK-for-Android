@@ -16,6 +16,8 @@ import cn.sharesdk.framework.TitleLayout;
 import cn.sharesdk.framework.WeiboActionListener;
 import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
+import cn.sharesdk.wechat.utils.WechatClientNotExistException;
+import cn.sharesdk.wechat.utils.WechatTimelineNotSupportedException;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Handler.Callback;
@@ -125,11 +127,7 @@ public class WechatPage implements Callback,
 		String webpageUrl = "http://t.cn/zT7cZAo";
 		switch (shareType) {
 			case AbstractWeibo.SHARE_MUSIC: sp.url = musicUrl; break;
-			case AbstractWeibo.SHARE_VIDEO: {
-				sp.url = videoUrl; 
-				sp.title = sp.text; // 这个可能是朋友圈的bug，分享内容中的视频描述居然成了标题
-			}
-			break;
+			case AbstractWeibo.SHARE_VIDEO: sp.url = videoUrl; break;
 			case AbstractWeibo.SHARE_WEBPAGE: sp.url = webpageUrl; break;
 		}
 		return sp;
@@ -154,23 +152,35 @@ public class WechatPage implements Callback,
 	
 	public void onError(AbstractWeibo weibo, int action, Throwable t) {
 		t.printStackTrace();
+		
 		Message msg = new Message();
 		msg.arg1 = 2;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = t;
 		handler.sendMessage(msg);
 	}
 	
 	public boolean handleMessage(Message msg) {
 		AbstractWeibo weibo = (AbstractWeibo) msg.obj;
-		String text = AbstractWeibo.actionToString(msg.arg2);
+		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
 			case 1: { // 成功
 				text = weibo.getName() + " completed at " + text;
 			}
 			break;
 			case 2: { // 失败
-				text = weibo.getName() + " caught error at " + text;
+				if (msg.obj instanceof WechatClientNotExistException) {
+					text = cn.sharesdk.onekeyshare.res.R.getString(
+							menu.getContext(), "wechat_client_not_install");
+				}
+				else if (msg.obj instanceof WechatTimelineNotSupportedException) {
+					text = cn.sharesdk.onekeyshare.res.R.getString(
+							menu.getContext(), "wechat_timeline_not_support");
+				}
+				else {
+					text = cn.sharesdk.onekeyshare.res.R.getString(
+							menu.getContext(), "share_failed");
+				}
 			}
 			break;
 			case 3: { // 取消
@@ -179,7 +189,7 @@ public class WechatPage implements Callback,
 			break;
 		}
 		
-		Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
+		Toast.makeText(menu.getContext(), text, Toast.LENGTH_LONG).show();
 		return false;
 	}
 	

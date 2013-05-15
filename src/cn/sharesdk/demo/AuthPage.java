@@ -27,6 +27,7 @@ import cn.sharesdk.framework.WeiboActionListener;
 import cn.sharesdk.netease.microblog.NetEaseMicroBlog;
 import cn.sharesdk.renren.Renren;
 import cn.sharesdk.sina.weibo.SinaWeibo;
+import cn.sharesdk.sohu.microblog.SohuMicroBlog;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
 import cn.sharesdk.twitter.Twitter;
@@ -65,6 +66,7 @@ public class AuthPage implements Callback,
 		pageView.findViewById(R.id.ctvDb).setOnClickListener(this);
 		pageView.findViewById(R.id.ctvNemb).setOnClickListener(this);
 		pageView.findViewById(R.id.ctvEn).setOnClickListener(this);
+		pageView.findViewById(R.id.ctvShmb).setOnClickListener(this);
 		
 		// 获取平台列表
 		AbstractWeibo[] weibos = AbstractWeibo.getWeiboList(menu.getContext());
@@ -76,7 +78,7 @@ public class AuthPage implements Callback,
 			CheckedTextView ctv = getView(weibo);
 			if (ctv != null) {
 				ctv.setChecked(true);
-				String userName = weibo.getAuthedUserName();
+				String userName = weibo.getDb().get("nickname"); // getAuthedUserName();
 				if (userName == null || userName.length() <= 0
 						|| "null".equals(userName)) {
 					// 如果平台已经授权却没有拿到帐号名称，则自动获取用户资料，以获取名称
@@ -136,6 +138,7 @@ public class AuthPage implements Callback,
 			case R.id.ctvDb: name = Douban.NAME; break;
 			case R.id.ctvEn: name = Evernote.NAME; break;
 			case R.id.ctvNemb: name = NetEaseMicroBlog.NAME; break;
+			case R.id.ctvShmb: name = SohuMicroBlog.NAME; break;
 		}
 		
 		if (name != null) {
@@ -181,6 +184,9 @@ public class AuthPage implements Callback,
 		}
 		else if (NetEaseMicroBlog.NAME.equals(name)) {
 			v = pageView.findViewById(R.id.ctvNemb);
+		}
+		else if (SohuMicroBlog.NAME.equals(name)) {
+			v = pageView.findViewById(R.id.ctvShmb);
 		}
 		
 		if (v == null) {
@@ -250,6 +256,8 @@ public class AuthPage implements Callback,
 	}
 
 	public void onError(AbstractWeibo weibo, int action, Throwable t) {
+		t.printStackTrace();
+		
 		Message msg = new Message();
 		msg.arg1 = 2;
 		msg.arg2 = action;
@@ -273,27 +281,29 @@ public class AuthPage implements Callback,
 	 */
 	public boolean handleMessage(Message msg) {
 		AbstractWeibo weibo = (AbstractWeibo) msg.obj;
-		String text = AbstractWeibo.actionToString(msg.arg2);
+		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
 			case 1: { // 成功
 				text = weibo.getName() + " completed at " + text;
+				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
 			}
 			break;
 			case 2: { // 失败
 				text = weibo.getName() + " caught error at " + text;
+				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
+				return false;
 			}
-			break;
 			case 3: { // 取消
 				text = weibo.getName() + " canceled at " + text;
+				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
+				return false;
 			}
-			break;
 		}
 		
-		Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
 		CheckedTextView ctv = getView(weibo);
 		if (ctv != null) {
 			ctv.setChecked(true);
-			String userName = weibo.getAuthedUserName();
+			String userName = weibo.getDb().get("nickname"); // getAuthedUserName();
 			if (userName == null || userName.length() <= 0
 					|| "null".equals(userName)) {
 				userName = getWeiboName(weibo);

@@ -5,7 +5,7 @@
     	
     	1、表格中的第一项
     		<ShareSDK 
-        		AppKey="104972cdd48" />
+        		AppKey="api20" />
     	是必须的，其中的AppKey是您在Share SDK上注册的开发者帐号的AppKey
     	
     	2、所有集成到您项目的平台都应该为其在表格中填写相对应的开发者信息，以新浪微博为例：
@@ -38,7 +38,7 @@
     -->
     
     <ShareSDK 
-        AppKey="104972cdd48" />
+        AppKey = "api20"/> <!-- AppKey="104972cdd48" "23a9371d3a8"-->
     
     <SinaWeibo
         SortId="1"
@@ -60,20 +60,6 @@
         AppKey="aed9b0303e3ed1e27bae87c33761161d"
         Id="3"
         RedirectUrl="http://www.shareSDK.cn" />
-
-    <Renren
-        SortId="8"
-        AppId="226427"
-        ApiKey="fc5b8aed373c4c27a05b712acba0f8c3"
-        Id="4"
-        SecretKey="f29df781abdd4f49beca5a2194676ca4" />
-    
-    <NetEaseMicroBlog
-        SortId="11"
-        Id="5"
-        ConsumerKey="T5EI7BXe13vfyDuy"
-        ConsumerSecret="gZxwyNOvjFYpxwwlnuizHRRtBRZ2lV1j"
-        RedirectUri="http://www.shareSDK.cn" />
     
     <Wechat
         SortId="4"
@@ -97,9 +83,39 @@
         ConsumerKey="mnTGqtXk0TYMXYTN7qUxg"
         ConsumerSecret="ROkFqr8c3m1HXqS3rm3TJ0WkAJuwBOSaWhPbZ9Ojuc"
         CallbackUrl="http://www.sharesdk.cn" />
+
+    <Renren
+        SortId="8"
+        AppId="226427"
+        ApiKey="fc5b8aed373c4c27a05b712acba0f8c3"
+        Id="4"
+        SecretKey="f29df781abdd4f49beca5a2194676ca4" />
+    
+    <Email
+        SortId="9"
+        Id="13" />
+    
+    <ShortMessage
+        SortId="10"
+        Id="12" />
+    
+    <SohuMicroBlog
+        SortId="11"
+        Id="14"
+        ApiKey="SAfmTG1blxZY3HztESWx"
+        ConsumerKey="SAfmTG1blxZY3HztESWx"
+        ConsumerSecret="yfTZf)!rVwh*3dqQuVJVsUL37!F)!yS9S!Orcsij"
+        CallbackUrl="http://www.sharesdk.cn"/>
+
+    <NetEaseMicroBlog
+        SortId="12"
+        Id="5"
+        ConsumerKey="T5EI7BXe13vfyDuy"
+        ConsumerSecret="gZxwyNOvjFYpxwwlnuizHRRtBRZ2lV1j"
+        RedirectUri="http://www.shareSDK.cn" />
     
     <Douban
-        SortId="12"
+        SortId="13"
         Id="10"
         ApiKey="02e2cbe5ca06de5908a863b15e149b0b"
         Secret="9f1e7b4f71304f2f"
@@ -112,18 +128,10 @@
     	激活成功后，修改HostType为china就好了。
     -->
     <Evernote
-        SortId="13"
+        SortId="14"
         Id="11"
         HostType="sandbox"
     	ConsumerKey="sharesdk-7807"
 		ConsumerSecret="d05bf86993836004"/>
-    
-    <ShortMessage
-        SortId="10"
-        Id="12" />
-    
-    <Email
-        SortId="9"
-        Id="13" />
     
 </DevInfor>

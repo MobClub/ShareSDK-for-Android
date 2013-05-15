@@ -18,6 +18,7 @@ import cn.sharesdk.framework.WeiboActionListener;
 import cn.sharesdk.netease.microblog.NetEaseMicroBlog;
 import cn.sharesdk.renren.Renren;
 import cn.sharesdk.sina.weibo.SinaWeibo;
+import cn.sharesdk.sohu.microblog.SohuMicroBlog;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
 import cn.sharesdk.twitter.Twitter;
@@ -65,6 +66,7 @@ public class GetInforPage extends Activity implements Callback,
 		findViewById(R.id.btnDb).setOnClickListener(this);
 		findViewById(R.id.btnNemb).setOnClickListener(this);
 		findViewById(R.id.btnEn).setOnClickListener(this);
+		findViewById(R.id.btnSh).setOnClickListener(this);
 		
 		if (type != 0) {
 			findViewById(R.id.btnFb).setVisibility(View.GONE);
@@ -74,6 +76,7 @@ public class GetInforPage extends Activity implements Callback,
 			findViewById(R.id.btnDb).setVisibility(View.GONE);
 			findViewById(R.id.btnNemb).setVisibility(View.GONE);
 			findViewById(R.id.btnEn).setVisibility(View.GONE);
+			findViewById(R.id.btnSh).setVisibility(View.GONE);
 		}
 	}
 	
@@ -95,6 +98,7 @@ public class GetInforPage extends Activity implements Callback,
 			case R.id.btnDb: name = Douban.NAME; break;
 			case R.id.btnNemb: name = NetEaseMicroBlog.NAME; break;
 			case R.id.btnEn: name = Evernote.NAME; break;
+			case R.id.btnSh: name = SohuMicroBlog.NAME; break;
 		}
 		
 		if (name != null) {
@@ -128,6 +132,8 @@ public class GetInforPage extends Activity implements Callback,
 	}
 
 	public void onError(AbstractWeibo weibo, int action, Throwable t) {
+		t.printStackTrace();
+		
 		Message msg = new Message();
 		msg.arg1 = 2;
 		msg.arg2 = action;
@@ -154,7 +160,7 @@ public class GetInforPage extends Activity implements Callback,
 			break;
 			default: {
 				AbstractWeibo weibo = (AbstractWeibo) msg.obj;
-				String text = AbstractWeibo.actionToString(msg.arg2);
+				String text = MainActivity.actionToString(msg.arg2);
 				switch (msg.arg1) {
 					case 1: { // 成功
 						text = weibo.getName() + " completed at " + text;

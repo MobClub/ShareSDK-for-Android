@@ -11,22 +11,6 @@ package cn.sharesdk.onekeyshare;
 import java.io.File;
 import java.util.HashMap;
 
-import cn.sharesdk.douban.Douban;
-import cn.sharesdk.evernote.Evernote;
-import cn.sharesdk.facebook.Facebook;
-import cn.sharesdk.framework.AbstractWeibo;
-import cn.sharesdk.framework.WeiboActionListener;
-import cn.sharesdk.netease.microblog.NetEaseMicroBlog;
-import cn.sharesdk.onekeyshare.res.R;
-import cn.sharesdk.renren.Renren;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.system.email.Email;
-import cn.sharesdk.system.text.ShortMessage;
-import cn.sharesdk.tencent.qzone.QZone;
-import cn.sharesdk.tencent.weibo.TencentWeibo;
-import cn.sharesdk.twitter.Twitter;
-import cn.sharesdk.wechat.friends.Wechat;
-import cn.sharesdk.wechat.moments.WechatMoments;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -35,8 +19,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Handler;
-import android.os.Message;
 import android.os.Handler.Callback;
+import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -47,9 +31,21 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ImageView.ScaleType;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import cn.sharesdk.evernote.Evernote;
+import cn.sharesdk.framework.AbstractWeibo;
+import cn.sharesdk.framework.WeiboActionListener;
+import cn.sharesdk.onekeyshare.res.R;
+import cn.sharesdk.renren.Renren;
+import cn.sharesdk.system.email.Email;
+import cn.sharesdk.system.text.ShortMessage;
+import cn.sharesdk.tencent.qzone.QZone;
+import cn.sharesdk.wechat.friends.Wechat;
+import cn.sharesdk.wechat.moments.WechatMoments;
+import cn.sharesdk.wechat.utils.WechatClientNotExistException;
+import cn.sharesdk.wechat.utils.WechatTimelineNotSupportedException;
 
 /**
  * 平台宫格列表显示工具。
@@ -232,115 +228,87 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 		String siteUrl = intent.getStringExtra("siteUrl");
 		
 		String platform = weibo.getName();
-		AbstractWeibo.ShareParams shareParams = null;
-		if (ShortMessage.NAME.equals(platform)) {
-			ShortMessage.ShareParams sp = new ShortMessage.ShareParams();
-			shareParams = sp;
-			sp.address = address;
-			sp.title = title;
-			sp.text = text;
-			sp.imagePath = imagePath;
-		}
-		else if (Email.NAME.equals(platform)) {
-			Email.ShareParams sp = new Email.ShareParams();
-			shareParams = sp;
-			sp.address = address;
-			sp.title = title;
-			sp.text = text;
-			sp.imagePath = imagePath;
-		}
-		else if (Wechat.NAME.equals(platform)) {
-			Wechat.ShareParams sp = new Wechat.ShareParams();
-			shareParams = sp;
-			sp.title = title;
-			sp.text = text;
-			sp.imagePath = imagePath;
-			sp.shareType = AbstractWeibo.SHARE_TEXT;
-			if (imagePath != null && (new File(imagePath)).exists()) {
-				sp.shareType = AbstractWeibo.SHARE_WEBPAGE;
+		try {
+
+			AbstractWeibo.ShareParams shareParams = null;
+			if (ShortMessage.NAME.equals(platform)) {
+				ShortMessage.ShareParams sp = new ShortMessage.ShareParams();
+				shareParams = sp;
+				sp.address = address;
+				sp.title = title;
+				sp.text = text;
+				sp.imagePath = imagePath;
+			} else if (Email.NAME.equals(platform)) {
+				Email.ShareParams sp = new Email.ShareParams();
+				shareParams = sp;
+				sp.address = address;
+				sp.title = title;
+				sp.text = text;
+				sp.imagePath = imagePath;
+			} else if (Wechat.NAME.equals(platform)) {
+				Wechat.ShareParams sp = new Wechat.ShareParams();
+				shareParams = sp;
+				sp.title = title;
+				sp.text = text;
+				sp.imagePath = imagePath;
+				sp.shareType = AbstractWeibo.SHARE_TEXT;
+				if (imagePath != null && (new File(imagePath)).exists()
+						&& url != null && url.length() > 0) {
+					sp.shareType = AbstractWeibo.SHARE_WEBPAGE;
+				}
+				sp.url = url;
+				sp.thumbPath = imagePath;
+			} else if (WechatMoments.NAME.equals(platform)) {
+				WechatMoments.ShareParams sp = new WechatMoments.ShareParams();
+				shareParams = sp;
+				sp.title = title;
+				sp.text = text;
+				sp.imagePath = imagePath;
+				sp.shareType = AbstractWeibo.SHARE_TEXT;
+				if (imagePath != null && (new File(imagePath)).exists()
+						&& url != null && url.length() > 0) {
+					sp.shareType = AbstractWeibo.SHARE_WEBPAGE;
+				}
+				sp.url = url;
+				sp.thumbPath = imagePath;
+			} else if (Evernote.NAME.equals(platform)) {
+				Evernote.ShareParams sp = new Evernote.ShareParams();
+				shareParams = sp;
+				sp.title = title;
+				sp.text = text;
+				sp.imagePath = imagePath;
+			} else if (Renren.NAME.equals(platform)) {
+				Renren.ShareParams sp = new Renren.ShareParams();
+				shareParams = sp;
+				sp.title = title;
+				sp.text = text;
+				sp.titleUrl = titleUrl;
+				sp.comment = comment;
+				sp.imageUrl = imageUrl;
+				sp.imagePath = imagePath;
+			} else if (QZone.NAME.equals(platform)) {
+				QZone.ShareParams sp = new QZone.ShareParams();
+				shareParams = sp;
+				sp.title = title;
+				sp.text = text;
+				sp.titleUrl = titleUrl;
+				sp.comment = comment;
+				sp.imageUrl = imageUrl;
+				sp.imagePath = imagePath;
+				sp.site = site;
+				sp.siteUrl = siteUrl;
+			} else {
+				shareParams = new AbstractWeibo.ShareParams();
+				shareParams.text = text;
+				shareParams.imagePath = imagePath;
 			}
-			sp.url = url;
-			sp.thumbPath = imagePath;
-		}
-		else if (WechatMoments.NAME.equals(platform)) {
-			WechatMoments.ShareParams sp = new WechatMoments.ShareParams();
-			shareParams = sp;
-			sp.title = title;
-			sp.text = text;
-			sp.imagePath = imagePath;
-			sp.shareType = AbstractWeibo.SHARE_TEXT;
-			if (imagePath != null && (new File(imagePath)).exists()) {
-				sp.shareType = AbstractWeibo.SHARE_WEBPAGE;
+
+			if (shareParams != null) {
+				weibo.share(shareParams);
 			}
-			sp.url = url;
-			sp.thumbPath = imagePath;
-		}
-		else if (Evernote.NAME.equals(platform)) {
-			Evernote.ShareParams sp = new Evernote.ShareParams();
-			shareParams = sp;
-			sp.title = title;
-			sp.text = text;
-			sp.imagePath = imagePath;
-		}
-		else if (Renren.NAME.equals(platform)) {
-			Renren.ShareParams sp = new Renren.ShareParams();
-			shareParams = sp;
-			sp.title = title;
-			sp.text = text;
-			sp.titleUrl = titleUrl;
-			sp.comment = comment;
-			sp.imageUrl = imageUrl;
-		}
-		else if (QZone.NAME.equals(platform)) {
-			QZone.ShareParams sp = new QZone.ShareParams();
-			shareParams = sp;
-			sp.title = title;
-			sp.text = text;
-			sp.titleUrl = titleUrl;
-			sp.comment = comment;
-			sp.imageUrl = imageUrl;
-			sp.site = site;
-			sp.siteUrl = siteUrl;
-		}
-		else if (Douban.NAME.equals(platform)) {
-			Douban.ShareParams sp = new Douban.ShareParams();
-			shareParams = sp;
-			sp.text = text;
-			sp.imagePath = imagePath;
-		}
-		else if (Facebook.NAME.equals(platform)) {
-			Facebook.ShareParams sp = new Facebook.ShareParams();
-			shareParams = sp;
-			sp.text = text;
-			sp.imagePath = imagePath;
-		}
-		else if (NetEaseMicroBlog.NAME.equals(platform)) {
-			NetEaseMicroBlog.ShareParams sp = new NetEaseMicroBlog.ShareParams();
-			shareParams = sp;
-			sp.text = text;
-			sp.imagePath = imagePath;
-		}
-		else if (SinaWeibo.NAME.equals(platform)) {
-			SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
-			shareParams = sp;
-			sp.text = text;
-			sp.imagePath = imagePath;
-		}
-		else if (TencentWeibo.NAME.equals(platform)) {
-			TencentWeibo.ShareParams sp = new TencentWeibo.ShareParams();
-			shareParams = sp;
-			sp.text = text;
-			sp.imagePath = imagePath;
-		}
-		else if (Twitter.NAME.equals(platform)) {
-			Twitter.ShareParams sp = new Twitter.ShareParams();
-			shareParams = sp;
-			sp.text = text;
-			sp.imagePath = imagePath;
-		}
-		
-		if (shareParams != null) {
-			weibo.share(shareParams);
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -362,10 +330,12 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 	}
 	
 	public void onError(AbstractWeibo weibo, int action, Throwable t) {
+		t.printStackTrace();
+		
 		Message msg = new Message();
 		msg.arg1 = 2;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = t;
 		handler.sendMessage(msg);
 	}
 	
@@ -376,7 +346,15 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 			}
 			break;
 			case 2: { // 失败
-				showNotification(2000, R.getString(getContext(), "share_failed"));
+				if (msg.obj instanceof WechatClientNotExistException) {
+					showNotification(2000, R.getString(getContext(), "wechat_client_not_install"));
+				}
+				else if (msg.obj instanceof WechatTimelineNotSupportedException) {
+					showNotification(2000, R.getString(getContext(), "wechat_timeline_not_support"));
+				}
+				else {
+					showNotification(2000, R.getString(getContext(), "share_failed"));
+				}
 			}
 			break;
 			case 3: { // 取消
@@ -407,13 +385,14 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 			PendingIntent pi = PendingIntent.getActivity(app, 0, new Intent(), 0);
 			notification.setLatestEventInfo(app, title, text, pi);
 			notification.flags = Notification.FLAG_AUTO_CANCEL;
-			nm.notify(1, notification);
+			final int id = Integer.MAX_VALUE / 13 + 1;
+			nm.notify(id, notification);
 			
 			if (cancelTime > 0) {
 				handler.postDelayed(new Runnable() {
 					public void run() {
 						if (nm != null) {
-							nm.cancelAll();
+							nm.cancel(id);
 						}
 					}
 				}, cancelTime);

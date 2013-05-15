@@ -8,7 +8,8 @@
     <cn.sharesdk.framework.TitleLayout
         android:id="@+id/llTitle"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_back" />
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -101,6 +102,15 @@
                 android:layout_margin="5dp"
                 android:background="@drawable/btn_back"
                 android:text="@string/get_user_info_en"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btnSh"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_back"
+                android:text="@string/get_user_info_sh"
                 android:textSize="16dp" />
         </LinearLayout>
     </ScrollView>

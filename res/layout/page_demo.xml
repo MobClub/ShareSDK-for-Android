@@ -8,7 +8,8 @@
     <cn.sharesdk.framework.TitleLayout
         android:id="@+id/llTitle"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_back" />
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -230,15 +231,14 @@
                     android:textSize="16dp" />
 
                 <Button
-                    android:id="@+id/btnShareKx"
+                    android:id="@+id/btnShareSh"
                     android:layout_width="fill_parent"
                     android:layout_height="44dp"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_back"
-                    android:text="@string/demo_share_to_kx"
-                    android:textSize="16dp"
-                    android:visibility="invisible" />
+                    android:text="@string/demo_share_to_sh"
+                    android:textSize="16dp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

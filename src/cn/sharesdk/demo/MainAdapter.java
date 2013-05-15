@@ -266,6 +266,8 @@ public class MainAdapter extends MenuAdapter
 	}
 	
 	public void onError(AbstractWeibo weibo, int action, Throwable t) {
+		t.printStackTrace();
+		
 		Message msg = new Message();
 		msg.arg1 = 2;
 		msg.arg2 = action;
@@ -275,7 +277,7 @@ public class MainAdapter extends MenuAdapter
 	
 	public boolean handleMessage(Message msg) {
 		AbstractWeibo weibo = (AbstractWeibo) msg.obj;
-		String text = AbstractWeibo.actionToString(msg.arg2);
+		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
 			case 1: { // 成功
 				text = weibo.getName() + " completed at " + text;

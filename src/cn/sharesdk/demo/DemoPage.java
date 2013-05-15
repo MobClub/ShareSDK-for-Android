@@ -21,6 +21,7 @@ import cn.sharesdk.onekeyshare.ShareAllGird;
 import cn.sharesdk.onekeyshare.SharePage;
 import cn.sharesdk.renren.Renren;
 import cn.sharesdk.sina.weibo.SinaWeibo;
+import cn.sharesdk.sohu.microblog.SohuMicroBlog;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
 import cn.sharesdk.twitter.Twitter;
@@ -72,6 +73,7 @@ public class DemoPage implements Callback,
 		pageView.findViewById(R.id.btnShareDb).setOnClickListener(this);
 		pageView.findViewById(R.id.btnShareEn).setOnClickListener(this);
 		pageView.findViewById(R.id.btnShareNemb).setOnClickListener(this);
+		pageView.findViewById(R.id.btnShareSh).setOnClickListener(this);
 	}
 	
 	/** 获取页面View */
@@ -95,11 +97,8 @@ public class DemoPage implements Callback,
 		i.putExtra("titleUrl", "http://sharesdk.cn");
 		// text是分享文本，所有平台都需要这个字段
 		i.putExtra("text", menu.getContext().getString(R.string.share_content));
-		// imagePath是本地的图片路径，在豆瓣、Facebook、网易微博、新浪微博、腾讯微博、Twitter、邮箱、
-		// 信息和微信（包括好友和朋友圈）图片分享中使用，否则可以不提供
+		// imagePath是本地的图片路径，所有平台都支持这个字段，不提供，则表示不分享图片
 		i.putExtra("imagePath", MainActivity.TEST_IMAGE);
-		// imageUrl是网络的图片路径，仅在人人网和QQ空间使用，否则可以不提供
-		i.putExtra("imageUrl", "http://sharesdk.cn/Public/Frontend/images/logo.png");
 		// url仅在人人网和微信（包括好友和朋友圈）中使用，否则可以不提供
 		i.putExtra("url", "http://sharesdk.cn");
 		// thumbPath是缩略图的本地路径，仅在微信（包括好友和朋友圈）中使用，否则可以不提供
@@ -268,6 +267,11 @@ public class DemoPage implements Callback,
 				showShare(NetEaseMicroBlog.NAME);
 			}
 			break;
+			case R.id.btnShareSh: {
+				// 分享到搜狐微博
+				showShare(SohuMicroBlog.NAME);
+			}
+			break;
 		}
 	}
 	
@@ -289,6 +293,8 @@ public class DemoPage implements Callback,
 	}
 	
 	public void onError(AbstractWeibo weibo, int action, Throwable t) {
+		t.printStackTrace();
+		
 		Message msg = new Message();
 		msg.arg1 = 2;
 		msg.arg2 = action;
@@ -299,7 +305,7 @@ public class DemoPage implements Callback,
 	/** 处理操作结果 */
 	public boolean handleMessage(Message msg) {
 		AbstractWeibo weibo = (AbstractWeibo) msg.obj;
-		String text = AbstractWeibo.actionToString(msg.arg2);
+		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
 			case 1: { // 成功
 				text = weibo.getName() + " completed at " + text;

@@ -56,10 +56,10 @@ public class MainActivity extends Activity implements Callback {
 		try {
 			if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
 					&& Environment.getExternalStorageDirectory().exists()) {
-				TEST_IMAGE = Environment.getExternalStorageDirectory().getAbsolutePath() + "/pic.jpg";
+				TEST_IMAGE = Environment.getExternalStorageDirectory().getAbsolutePath() + "/pic.png";
 			}
 			else {
-				TEST_IMAGE = getApplication().getFilesDir().getAbsolutePath() + "/pic.jpg";
+				TEST_IMAGE = getApplication().getFilesDir().getAbsolutePath() + "/pic.png";
 			}
 			File file = new File(TEST_IMAGE);
 			if (!file.exists()) {
@@ -92,8 +92,24 @@ public class MainActivity extends Activity implements Callback {
 	}
 	
 	protected void onDestroy() {
+		AbstractWeibo.stopSDK(this);
 		super.onDestroy();
-		System.exit(0); // 结束进程
+	}
+
+	/** 将action转换为String */
+	public static String actionToString(int action) {
+		switch (action) {
+			case AbstractWeibo.ACTION_AUTHORIZING: return "ACTION_AUTHORIZING";
+			case AbstractWeibo.ACTION_GETTING_FRIEND_LIST: return "ACTION_GETTING_FRIEND_LIST";
+			case AbstractWeibo.ACTION_FOLLOWING_USER: return "ACTION_FOLLOWING_USER";
+			case AbstractWeibo.ACTION_SENDING_DIRECT_MESSAGE: return "ACTION_SENDING_DIRECT_MESSAGE";
+			case AbstractWeibo.ACTION_TIMELINE: return "ACTION_TIMELINE";
+			case AbstractWeibo.ACTION_USER_INFOR: return "ACTION_USER_INFOR";
+			case AbstractWeibo.ACTION_SHARE: return "ACTION_SHARE";
+			default: {
+				return "UNKNOWN";
+			}
+		}
 	}
 	
 }

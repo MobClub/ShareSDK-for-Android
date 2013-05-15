@@ -11,19 +11,6 @@ package cn.sharesdk.onekeyshare;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import cn.sharesdk.douban.Douban;
-import cn.sharesdk.evernote.Evernote;
-import cn.sharesdk.facebook.Facebook;
-import cn.sharesdk.framework.AbstractWeibo;
-import cn.sharesdk.framework.TitleLayout;
-import cn.sharesdk.framework.WeiboActionListener;
-import cn.sharesdk.netease.microblog.NetEaseMicroBlog;
-import cn.sharesdk.onekeyshare.res.R;
-import cn.sharesdk.renren.Renren;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.tencent.qzone.QZone;
-import cn.sharesdk.tencent.weibo.TencentWeibo;
-import cn.sharesdk.twitter.Twitter;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -34,12 +21,13 @@ import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.os.Handler.Callback;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -51,6 +39,15 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import cn.sharesdk.evernote.Evernote;
+import cn.sharesdk.framework.AbstractWeibo;
+import cn.sharesdk.framework.TitleLayout;
+import cn.sharesdk.framework.WeiboActionListener;
+import cn.sharesdk.onekeyshare.res.R;
+import cn.sharesdk.renren.Renren;
+import cn.sharesdk.tencent.qzone.QZone;
+import cn.sharesdk.wechat.utils.WechatClientNotExistException;
+import cn.sharesdk.wechat.utils.WechatTimelineNotSupportedException;
 
 /** 执行图文分享的页面，此页面不支持微信平台的分享 */
 public class SharePage extends Activity implements Callback, Runnable, 
@@ -113,6 +110,7 @@ public class SharePage extends Activity implements Callback, Runnable,
 		llPage.setOrientation(LinearLayout.VERTICAL);
 		
 		llTitle = new TitleLayout(this);
+		llTitle.setBackgroundDrawable(R.getDrawable(this, "title_back"));
 		llTitle.getBtnBack().setOnClickListener(this);
 		llTitle.getTvTitle().setText(R.getString(this, "multi_share"));
 		llTitle.getBtnRight().setVisibility(View.VISIBLE);
@@ -138,7 +136,16 @@ public class SharePage extends Activity implements Callback, Runnable,
 		flPage.addView(llBody);
 		
 		ImageView ivPin = new ImageView(this);
-		ivPin.setImageBitmap(R.getBitmap(this, "pin"));
+		Bitmap bmPin = R.getBitmap(this, "pin");
+		if (bmPin != null && !bmPin.isRecycled()) {
+			int bmW = bmPin.getWidth();
+			int bmH = bmPin.getHeight();
+			int scrW = cn.sharesdk.framework.res.R.getScreenWidth(this);
+			bmW = scrW * bmW / 480;
+			bmH = scrW * bmH / 480;
+			Bitmap scaledBm = Bitmap.createScaledBitmap(bmPin, bmW, bmH, true);
+			ivPin.setImageBitmap(scaledBm == null ? bmPin : scaledBm);
+		}
 		int dp_80 = R.dipToPx(this, 80);
 		int dp_36 = R.dipToPx(this, 36);
 		FrameLayout.LayoutParams lpPin = new FrameLayout.LayoutParams(dp_80, dp_36);
@@ -197,7 +204,7 @@ public class SharePage extends Activity implements Callback, Runnable,
 		ImageView ivImage = new ImageView(this);
 		ivImage.setBackgroundDrawable(R.getDrawable(this, "btn_back"));
 		ivImage.setScaleType(ScaleType.CENTER_INSIDE);
-		String image = getShownImage();
+		String image = getIntent().getStringExtra("imagePath");
 		try {
 			ivImage.setImageBitmap(R.getBitmap(image));
 		} catch(Throwable t) {
@@ -264,16 +271,6 @@ public class SharePage extends Activity implements Callback, Runnable,
 		return getIntent().getStringExtra("text");
 	}
 	
-	private String getShownImage() {
-		if ("Renren".equals(platform)) {
-			return getIntent().getStringExtra("imageUrl");
-		}
-		else if ("QZone".equals(platform)) {
-			return getIntent().getStringExtra("imageUrl");
-		}
-		return getIntent().getStringExtra("imagePath");
-	}
-	
 	/** 显示平台列表 */
 	public void run() {
 		String name = getIntent().getStringExtra("platform");
@@ -310,7 +307,9 @@ public class SharePage extends Activity implements Callback, Runnable,
 			names[i] = weiboList[i].getName();
 			if (names[i].equals(name)) {
 				views[i].setVisibility(View.INVISIBLE);
-				AbstractWeibo.postStatisticsEvent(weiboList[i], 1002);
+				
+				// 编辑分享内容的统计
+				AbstractWeibo.logDemoEvent(3, weiboList[i]);
 			}
 			views[i].setLayoutParams(lpMask);
 			fl.addView(views[i]);
@@ -347,12 +346,19 @@ public class SharePage extends Activity implements Callback, Runnable,
 	
 	public void onClick(View v) {
 		if (v.equals(llTitle.getBtnBack())) {
+
+			AbstractWeibo weibo = null;
 			for (int i = 0; i < views.length; i++) {
 				if (views[i].getVisibility() == View.INVISIBLE) {
-					AbstractWeibo weibo = AbstractWeibo.getWeibo(
-							SharePage.this, names[i]);
-					AbstractWeibo.postStatisticsEvent(weibo, 1004);
+					weibo = AbstractWeibo.getWeibo(SharePage.this, names[i]);
+					break;
 				}
+				weibo = null;
+			}
+			
+			// 取消分享的统计
+			if (weibo != null) {
+				AbstractWeibo.logDemoEvent(5, weibo);
 			}
 			finish();
 			return;
@@ -399,14 +405,14 @@ public class SharePage extends Activity implements Callback, Runnable,
 		
 		String platform = weibo.getName();
 		AbstractWeibo.ShareParams shareParams = null;
-		if (Evernote.NAME.equals(platform)) {
+		if ("Evernote".equals(platform)) {
 			Evernote.ShareParams sp = new Evernote.ShareParams();
 			shareParams = sp;
 			sp.title = title;
 			sp.text = text;
 			sp.imagePath = imagePath;
 		}
-		else if (Renren.NAME.equals(platform)) {
+		else if ("Renren".equals(platform)) {
 			Renren.ShareParams sp = new Renren.ShareParams();
 			shareParams = sp;
 			sp.title = title;
@@ -414,8 +420,9 @@ public class SharePage extends Activity implements Callback, Runnable,
 			sp.titleUrl = titleUrl;
 			sp.comment = comment;
 			sp.imageUrl = imageUrl;
+			sp.imagePath = imagePath;
 		}
-		else if (QZone.NAME.equals(platform)) {
+		else if ("QZone".equals(platform)) {
 			QZone.ShareParams sp = new QZone.ShareParams();
 			shareParams = sp;
 			sp.title = title;
@@ -423,44 +430,13 @@ public class SharePage extends Activity implements Callback, Runnable,
 			sp.titleUrl = titleUrl;
 			sp.comment = comment;
 			sp.imageUrl = imageUrl;
+			sp.imagePath = imagePath;
 			sp.site = site;
 			sp.siteUrl = siteUrl;
-		}
-		else if (Douban.NAME.equals(platform)) {
-			Douban.ShareParams sp = new Douban.ShareParams();
-			shareParams = sp;
-			sp.text = text;
-			sp.imagePath = imagePath;
-		}
-		else if (Facebook.NAME.equals(platform)) {
-			Facebook.ShareParams sp = new Facebook.ShareParams();
-			shareParams = sp;
-			sp.text = text;
-			sp.imagePath = imagePath;
-		}
-		else if (NetEaseMicroBlog.NAME.equals(platform)) {
-			NetEaseMicroBlog.ShareParams sp = new NetEaseMicroBlog.ShareParams();
-			shareParams = sp;
-			sp.text = text;
-			sp.imagePath = imagePath;
-		}
-		else if (SinaWeibo.NAME.equals(platform)) {
-			SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
-			shareParams = sp;
-			sp.text = text;
-			sp.imagePath = imagePath;
-		}
-		else if (TencentWeibo.NAME.equals(platform)) {
-			TencentWeibo.ShareParams sp = new TencentWeibo.ShareParams();
-			shareParams = sp;
-			sp.text = text;
-			sp.imagePath = imagePath;
-		}
-		else if (Twitter.NAME.equals(platform)) {
-			Twitter.ShareParams sp = new Twitter.ShareParams();
-			shareParams = sp;
-			sp.text = text;
-			sp.imagePath = imagePath;
+		}else{
+			shareParams = new AbstractWeibo.ShareParams();
+			shareParams.text = text;
+			shareParams.imagePath = imagePath;
 		}
 		
 		if (shareParams != null) {
@@ -486,11 +462,16 @@ public class SharePage extends Activity implements Callback, Runnable,
 	}
 	
 	public void onError(AbstractWeibo weibo, int action, Throwable t) {
+		t.printStackTrace();
+		
 		Message msg = new Message();
 		msg.arg1 = 2;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = t;
 		handler.sendMessage(msg);
+		
+		// 分享失败的统计
+		AbstractWeibo.logDemoEvent(4, weibo);
 	}
 	
 	public boolean handleMessage(Message msg) {
@@ -500,7 +481,15 @@ public class SharePage extends Activity implements Callback, Runnable,
 			}
 			break;
 			case 2: { // 失败
-				showNotification(2000, R.getString(this, "share_failed"));
+				if (msg.obj instanceof WechatClientNotExistException) {
+					showNotification(2000, R.getString(this, "wechat_client_not_install"));
+				}
+				else if (msg.obj instanceof WechatTimelineNotSupportedException) {
+					showNotification(2000, R.getString(this, "wechat_timeline_not_support"));
+				}
+				else {
+					showNotification(2000, R.getString(this, "share_failed"));
+				}
 			}
 			break;
 			case 3: { // 取消
@@ -526,13 +515,14 @@ public class SharePage extends Activity implements Callback, Runnable,
 			PendingIntent pi = PendingIntent.getActivity(app, 0, new Intent(), 0);
 			notification.setLatestEventInfo(app, title, text, pi);
 			notification.flags = Notification.FLAG_AUTO_CANCEL;
-			nm.notify(1, notification);
+			final int id = Integer.MAX_VALUE / 11 + 1;
+			nm.notify(id, notification);
 			
 			if (cancelTime > 0) {
 				handler.postDelayed(new Runnable() {
 					public void run() {
 						if (nm != null) {
-							nm.cancelAll();
+							nm.cancel(id);
 						}
 					}
 				}, cancelTime);
@@ -550,4 +540,23 @@ public class SharePage extends Activity implements Callback, Runnable,
 		super.finish();
 	}
 
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			AbstractWeibo weibo = null;
+			for (int i = 0; i < views.length; i++) {
+				if (views[i].getVisibility() == View.INVISIBLE) {
+					weibo = AbstractWeibo.getWeibo(SharePage.this, names[i]);
+					break;
+				}
+				weibo = null;
+			}
+			
+			// 取消分享的统计
+			if (weibo != null) {
+				AbstractWeibo.logDemoEvent(5, weibo);
+			}
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+	
 }
