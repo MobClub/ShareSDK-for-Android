@@ -10,6 +10,7 @@ package cn.sharesdk.demo;
 
 import java.util.HashMap;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -41,6 +42,9 @@ public class MyAdapter extends AuthorizeAdapter implements OnClickListener, Weib
 				|| TencentWeibo.NAME.equals(weiboName)) {
 			initUi(weiboName);
 			interceptWeiboActionListener(weiboName);
+		}
+		else {// 使弹出动画失效，只能在onCreate中调用，否则无法起作用
+			disablePopUpAnimation();
 		}
 	}
 
@@ -152,6 +156,12 @@ public class MyAdapter extends AuthorizeAdapter implements OnClickListener, Weib
 				ctvFollow.setVisibility(View.VISIBLE);
 			}
 		}
+	}
+	
+	public boolean onKeyEvent(int arg0, KeyEvent arg1) {
+		return super.onKeyEvent(arg0, arg1);
+		// 此方法用于拦截授权页面的物理按键事件，返回true则表示已经拦截
+		// 一般情况下，此方法不需要处理，因为会影响onCancel事件
 	}
 	
 	private int dipToPx(int dip) {

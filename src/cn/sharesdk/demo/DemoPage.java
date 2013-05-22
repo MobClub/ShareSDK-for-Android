@@ -93,13 +93,13 @@ public class DemoPage implements Callback,
 		i.putExtra("address", "12345678901");
 		// title标题，在印象笔记、邮箱、信息、微信（包括好友和朋友圈）、人人网和QQ空间使用，否则可以不提供
 		i.putExtra("title", menu.getContext().getString(R.string.share));
-		// titleUrl是标题的网络链接，仅在QQ空间使用，否则可以不提供
+		// titleUrl是标题的网络链接，仅在人人网和QQ空间使用，否则可以不提供
 		i.putExtra("titleUrl", "http://sharesdk.cn");
 		// text是分享文本，所有平台都需要这个字段
 		i.putExtra("text", menu.getContext().getString(R.string.share_content));
 		// imagePath是本地的图片路径，所有平台都支持这个字段，不提供，则表示不分享图片
 		i.putExtra("imagePath", MainActivity.TEST_IMAGE);
-		// url仅在人人网和微信（包括好友和朋友圈）中使用，否则可以不提供
+		// url仅在微信（包括好友和朋友圈）中使用，否则可以不提供
 		i.putExtra("url", "http://sharesdk.cn");
 		// thumbPath是缩略图的本地路径，仅在微信（包括好友和朋友圈）中使用，否则可以不提供
 		i.putExtra("thumbPath", MainActivity.TEST_IMAGE);

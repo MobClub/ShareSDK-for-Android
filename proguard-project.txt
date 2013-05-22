@@ -23,6 +23,7 @@
 -keep class com.tencent.mm.**{*;}
 -keep class cn.sharesdk.**{*;}
 -keep class com.sina.**{*;}
+-keep class m.framework.**{*;}
 
 -keepclasseswithmembernames class * {
     native <methods>;
