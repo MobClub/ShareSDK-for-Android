@@ -25,6 +25,5 @@
 	<string name="share_completed">分享成功</string>
 	<string name="share_failed">分享失败</string>
 	<string name="share_canceled">分享已取消</string>
-	<string name="wechat_client_not_install">微信客户端未安装</string>
-	<string name="wechat_timeline_not_support">微信客户端不支持分享到好友圈</string>
+	<string name="wechat_client_inavailable">目前您的微信版本过低或未安装微信，需要安装微信才能使用</string>
 </resources>

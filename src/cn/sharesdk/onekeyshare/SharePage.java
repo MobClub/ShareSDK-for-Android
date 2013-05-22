@@ -506,7 +506,8 @@ public class SharePage extends Activity implements Callback, Runnable,
 			Context app = getApplicationContext();
 			final NotificationManager nm = (NotificationManager) app
 					.getSystemService(Context.NOTIFICATION_SERVICE);
-			nm.cancelAll();
+			final int id = Integer.MAX_VALUE / 13 + 1;
+			nm.cancel(id);
 			
 			int icon = notifIcon;
 			String title = notifTitle;
@@ -515,7 +516,6 @@ public class SharePage extends Activity implements Callback, Runnable,
 			PendingIntent pi = PendingIntent.getActivity(app, 0, new Intent(), 0);
 			notification.setLatestEventInfo(app, title, text, pi);
 			notification.flags = Notification.FLAG_AUTO_CANCEL;
-			final int id = Integer.MAX_VALUE / 11 + 1;
 			nm.notify(id, notification);
 			
 			if (cancelTime > 0) {

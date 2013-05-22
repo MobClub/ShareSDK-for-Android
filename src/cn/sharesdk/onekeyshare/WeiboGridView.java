@@ -34,6 +34,7 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import cn.sharesdk.evernote.Evernote;
 import cn.sharesdk.framework.AbstractWeibo;
 import cn.sharesdk.framework.WeiboActionListener;
@@ -186,7 +187,9 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 		if (weibo != null) {
 			if (silent) { // 直接执行分享
 				weibo.setWeiboActionListener(this);
-				shareSilently(weibo);
+				if (!shareSilently(weibo)) {
+					return;
+				}
 				showNotification(5000, R.getString(getContext(), "sharing"));
 			}
 			else {
@@ -195,7 +198,9 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 				if (Wechat.NAME.equals(name) || WechatMoments.NAME.equals(name)
 						|| ShortMessage.NAME.equals(name) || Email.NAME.equals(name)) {
 					weibo.setWeiboActionListener(this);
-					shareSilently(weibo);
+					if (!shareSilently(weibo)) {
+						return;
+					}
 					showNotification(5000, R.getString(getContext(), "sharing"));
 				}
 				else { // 跳转SharePage分享
@@ -211,9 +216,9 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 	}
 	
 	// 直接分享
-	private void shareSilently(AbstractWeibo weibo) {
+	private boolean shareSilently(AbstractWeibo weibo) {
 		if (intent == null) {
-			return;
+			return false;
 		}
 		
 		String address = intent.getStringExtra("address");
@@ -229,7 +234,6 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 		
 		String platform = weibo.getName();
 		try {
-
 			AbstractWeibo.ShareParams shareParams = null;
 			if (ShortMessage.NAME.equals(platform)) {
 				ShortMessage.ShareParams sp = new ShortMessage.ShareParams();
@@ -246,6 +250,12 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 				sp.text = text;
 				sp.imagePath = imagePath;
 			} else if (Wechat.NAME.equals(platform)) {
+				if (!weibo.isValid()) {
+					String msg = R.getString(getContext(), "wechat_client_inavailable");
+					Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+					return false;
+				}
+				
 				Wechat.ShareParams sp = new Wechat.ShareParams();
 				shareParams = sp;
 				sp.title = title;
@@ -259,6 +269,12 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 				sp.url = url;
 				sp.thumbPath = imagePath;
 			} else if (WechatMoments.NAME.equals(platform)) {
+				if (!weibo.isValid()) {
+					String msg = R.getString(getContext(), "wechat_client_inavailable");
+					Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+					return false;
+				}
+				
 				WechatMoments.ShareParams sp = new WechatMoments.ShareParams();
 				shareParams = sp;
 				sp.title = title;
@@ -306,10 +322,12 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 			if (shareParams != null) {
 				weibo.share(shareParams);
 			}
-
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return false;
 	}
 	
 	public void onComplete(AbstractWeibo weibo, int action,
@@ -347,10 +365,10 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 			break;
 			case 2: { // 失败
 				if (msg.obj instanceof WechatClientNotExistException) {
-					showNotification(2000, R.getString(getContext(), "wechat_client_not_install"));
+					showNotification(2000, R.getString(getContext(), "wechat_client_inavailable"));
 				}
 				else if (msg.obj instanceof WechatTimelineNotSupportedException) {
-					showNotification(2000, R.getString(getContext(), "wechat_timeline_not_support"));
+					showNotification(2000, R.getString(getContext(), "wechat_client_inavailable"));
 				}
 				else {
 					showNotification(2000, R.getString(getContext(), "share_failed"));
@@ -376,7 +394,8 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 			Context app = getContext().getApplicationContext();
 			final NotificationManager nm = (NotificationManager) app
 					.getSystemService(Context.NOTIFICATION_SERVICE);
-			nm.cancelAll();
+			final int id = Integer.MAX_VALUE / 13 + 1;
+			nm.cancel(id);
 			
 			int icon = intent.getIntExtra("notif_icon", 0);
 			String title = intent.getStringExtra("notif_title");
@@ -385,7 +404,6 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 			PendingIntent pi = PendingIntent.getActivity(app, 0, new Intent(), 0);
 			notification.setLatestEventInfo(app, title, text, pi);
 			notification.flags = Notification.FLAG_AUTO_CANCEL;
-			final int id = Integer.MAX_VALUE / 13 + 1;
 			nm.notify(id, notification);
 			
 			if (cancelTime > 0) {

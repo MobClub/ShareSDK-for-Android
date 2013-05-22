@@ -257,6 +257,7 @@ public class ShareAllGird extends Activity implements OnClickListener {
 			}
 
 			public void onAnimationEnd(Animation animation) {
+				flPage.setVisibility(View.GONE);
 				ShareAllGird.super.finish();
 			}
 		});
