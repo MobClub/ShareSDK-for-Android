@@ -1,0 +1,110 @@
+<resources>
+    <string name="app_name">ShareSDK</string>
+    <integer name="app_version_code">12</integer>
+    <string name="app_version">1.2.0</string>
+    <string name="proj_name">ShareSDK</string>
+    
+    <string name="more">更多</string>
+    <string name="sm_item_demo">接口</string>
+    <string name="sm_item_auth">授权</string>
+    <string name="sm_item_wechat">微信</string>
+    <string name="sm_item_fl_weibo">关注新浪微博</string>
+    <string name="sm_item_fl_tc">关注腾讯微博</string>
+    <string name="sm_item_visit_wechat">关注官方微信</string>
+    <string name="sm_item_visit_website">关注官方网站</string>
+    <string name="sm_item_about">Demo版本 Ver. %s</string>
+    <string name="plz_choose_wechat">请选择微信客户端完成操作</string>
+    
+    <string name="demo_share_all_gui">分享全部（有分享界面）</string>
+    <string name="demo_share_all">分享全部（无界面，直接分享）</string>
+    <string name="demo_get_access_token">获取AccessToken</string>
+	<string name="demo_get_my_info">获取授权用户资料</string>
+    <string name="demo_get_other_info">获取其他用户资料</string>
+	<string name="demo_share_to_sw">分享新浪微博</string>
+	<string name="demo_share_to_tc">分享腾讯微博</string>
+	<string name="demo_share_to_fb">分享Facebook</string>
+	<string name="demo_share_to_tw">分享twitter</string>
+	<string name="demo_share_to_rr">分享人人网</string>
+	<string name="demo_share_to_qz">分享QQ空间</string>
+	<string name="demo_share_to_db">分享豆瓣</string>
+	<string name="demo_share_to_en">分享印像笔记</string>
+	<string name="demo_share_to_nemb">分享网易微博</string>
+	<string name="demo_share_to_sh">分享搜狐微博</string>
+	<string name="demo_share_to_kaixin">分享开心网</string>
+	<string name="demo_share_to_youdao">分享有道笔记</string>
+	<string name="demo_share_to_googleplus">分享Google+</string>
+	<string name="demo_share_to_foursquare">分享FourSquare</string>
+	<string name="demo_share_to_linked_in">分享Linkedin</string>
+    
+	<string name="get_token_sw">获取新浪微博AccessToken</string>
+	<string name="get_token_tc">获取腾讯微博AccessToken</string>
+	<string name="get_token_fb">获取Facebook AccessToken</string>
+	<string name="get_token_tw">获取Twitter AccessToken</string>
+	<string name="get_token_rr">获取人人网AccessToken</string>
+	<string name="get_token_qz">获取QQ空间AccessToken</string>
+	<string name="get_token_db">获取豆瓣AccessToken</string>
+	<string name="get_token_en">获取映象笔记AccessToken</string>
+	<string name="get_token_nemb">获取网易微博AccessToken</string>
+	<string name="get_token_sohu">获取搜狐微博AccessToken</string>
+	<string name="get_token_kaixin">获取开心网AccessToken</string>
+	<string name="get_token_youdao">获取有道笔记AccessToken</string>
+	<string name="get_token_googleplus">获取Google+ AccessToken</string>
+	<string name="get_token_foursquare">获取FourSquare AccessToken</string>
+	<string name="get_token_linked_in">Linked In AccessToken</string>
+	
+	<string name="get_user_info_sw">获取新浪微博授权用户资料</string>
+	<string name="get_user_info_tc">获取腾讯微博授权用户资料</string>
+	<string name="get_user_info_fb">获取Facebook授权用户资料</string>
+	<string name="get_user_info_tw">获取Twitter授权用户资料</string>
+	<string name="get_user_info_rr">获取人人网授权用户资料</string>
+	<string name="get_user_info_qz">获取QQ空间授权用户资料</string>
+	<string name="get_user_info_db">获取豆瓣授权用户资料</string>
+	<string name="get_user_info_nemb">获取网易微博授权用户资料</string>
+	<string name="get_user_info_en">获取印象笔记授权用户资料</string>
+	<string name="get_user_info_sh">获取搜狐微博授权用户资料</string>
+	<string name="get_user_info_kaixin">获取开心网授权用户资料</string>
+	<string name="get_user_info_youdao">获取有道笔记授权用户资料</string>
+	<string name="get_user_info_googleplus">获取Google+授权用户资料</string>
+	<string name="get_user_info_foursquare">获取FourSquare授权用户资料</string>
+	<string name="get_user_info_linked_in">获取Linked In授权用户资料</string>
+	
+	<string name="not_yet_authorized">尚未授权</string>
+	<string name="sinaweibo">新浪微博</string>
+	<string name="tencentweibo">腾讯微博</string>
+	<string name="facebook">Facebook</string>
+	<string name="twitter">Twitter</string>
+	<string name="renren">人人网</string>
+	<string name="qzone">QQ空间</string>
+	<string name="douban">豆瓣</string>
+	<string name="evernote">印象笔记</string>
+	<string name="neteasemicroblog">网易微博</string>
+	<string name="wechat">微信好友</string>
+	<string name="wechatmoments">微信朋友圈</string>
+	<string name="sohumicroblog">搜狐微博</string>
+	<string name="kaixin">开心网</string>
+	<string name="youdao">有道笔记</string>
+	<string name="googleplus">Google+</string>
+	<string name="foursquare">FourSquare</string>
+	
+	<string name="cancel">取消</string>
+	<string name="share_content">ShareSDK for Android不仅集成简单、支持如QQ好友、微信、新浪微博、腾讯微博等所有社交平台，而且还有强大的统计分析管理后台，实时了解用户、信息流、回流率、传播效应等数据，详情见官网http://sharesdk.cn @ShareSDK</string>
+	<string name="share_content_short">ShareSDK不仅集成简单、支持如微信、新浪微博、腾讯微博等社交平台，而且还有强大的统计分析管理后台，实时了解用户、信息流、回流率、传播效应等数据，详情见官网http://sharesdk.cn @ShareSDK</string>
+	<string name="evenote_title">这是一个神奇的SDK</string>
+	<string name="sharing">分享操作正在后台进行...</string>
+	<string name="share_to">分享到</string>
+	
+	<string name="share">分享</string>
+	<string name="multi_share">图文分享</string>
+	
+	<string name="update">文字分享</string>
+	<string name="image_upload">图片分享（本地图片）</string>
+	<string name="image_upload_bitmap">图片分享（Bitmap对象）</string>
+	<string name="music_upload">音乐分享</string>
+	<string name="video_upload">视频分享</string>
+	<string name="webpage_upload">网页分享（本地图片）</string>
+	<string name="webpage_upload_bitmap">网页分享（Bitmap对象）</string>
+	<string name="app_upload">应用分享</string>
+	<string name="file_upload">文件分享</string>
+	<string name="share_to_moment">分享到朋友圈</string>
+	<string name="wechat_demo_title">微信分享Demo标题</string>
+</resources>
