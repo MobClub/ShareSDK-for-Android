@@ -1,20 +1,16 @@
-//#if def{lang} == cn
 /*
  * 官网地站:http://www.ShareSDK.cn
  * 技术支持QQ: 4006852216
  * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
- * 
+ *
  * Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
  */
-//#endif
 
 package cn.sharesdk.demo;
 
 import java.util.HashMap;
-import m.framework.ui.SlidingMenu;
-import android.os.Handler;
+import m.framework.ui.widget.slidingmenu.SlidingMenu;
 import android.os.Message;
-import android.os.Handler.Callback;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,8 +33,7 @@ import cn.sharesdk.tencent.weibo.TencentWeibo;
 import cn.sharesdk.twitter.Twitter;
 import cn.sharesdk.youdao.YouDao;
 
-//#if def{lang} == cn
-/** 
+/**
  * 授权和取消授权演示页面
  * <p>
  * 由于UI显示的需要授权过的平台显示账户的名称，
@@ -46,24 +41,19 @@ import cn.sharesdk.youdao.YouDao;
  *授权”两个功能。如果想看纯粹的“授权”操作，请参
  *考{@link GetTokenPage}页面的相关代码。
  */
-//#endif
-public class AuthPage implements Callback, 
+public class AuthPage extends SlidingMenuPage implements
 		OnClickListener, WeiboActionListener {
-	private SlidingMenu menu;
 	private View pageView;
 	private TitleLayout llTitle;
-	private Handler handler;
 
 	public AuthPage(SlidingMenu menu) {
-		handler = new Handler(this);
-		this.menu = menu;
-		pageView = LayoutInflater.from(menu.getContext())
-				.inflate(R.layout.page_auth, null);
-		
+		super(menu);
+		pageView = getPage();
+
 		llTitle = (TitleLayout) pageView.findViewById(R.id.llTitle);
 		llTitle.getBtnBack().setOnClickListener(this);
 		llTitle.getTvTitle().setText(R.string.sm_item_auth);
-		
+
 		pageView.findViewById(R.id.ctvSw).setOnClickListener(this);
 		pageView.findViewById(R.id.ctvTc).setOnClickListener(this);
 		pageView.findViewById(R.id.ctvFb).setOnClickListener(this);
@@ -77,21 +67,21 @@ public class AuthPage implements Callback,
 		pageView.findViewById(R.id.ctvKaiXin).setOnClickListener(this);
 		pageView.findViewById(R.id.ctvYouDao).setOnClickListener(this);
 		pageView.findViewById(R.id.ctvFourSquare).setOnClickListener(this);
-		
-		// def{note.req_weibo_list.def{lang}}
+
+		// 获取平台列表
 		AbstractWeibo[] weibos = AbstractWeibo.getWeiboList(menu.getContext());
 		for (AbstractWeibo weibo : weibos) {
 			if (!weibo.isValid()) {
 				continue;
 			}
-			
+
 			CheckedTextView ctv = getView(weibo);
 			if (ctv != null) {
 				ctv.setChecked(true);
 				String userName = weibo.getDb().get("nickname"); // getAuthedUserName();
 				if (userName == null || userName.length() <= 0
 						|| "null".equals(userName)) {
-					// def{note.authed_but_no_data_then_req.def{lang}}
+					// 如果平台已经授权却没有拿到帐号名称，则自动获取用户资料，以获取名称
 					userName = getWeiboName(weibo);
 					weibo.setWeiboActionListener(this);
 					weibo.showUser(null);
@@ -100,14 +90,13 @@ public class AuthPage implements Callback,
 			}
 		}
 	}
-	
-	public View getPage() {
-		return pageView;
+
+	protected View initPage() {
+		return LayoutInflater.from(menu.getContext())
+				.inflate(R.layout.page_auth, null);
 	}
-	
-	//#if def{lang} == cn
+
 	/** 授权和取消授权的逻辑代码 */
-	//#endif
 	public void onClick(View v) {
 		if (v.equals(llTitle.getBtnBack())) {
 			if (menu.isMenuShown()) {
@@ -118,7 +107,7 @@ public class AuthPage implements Callback,
 			}
 			return;
 		}
-		
+
 		AbstractWeibo weibo = getWeibo(v.getId());
 		CheckedTextView ctv = (CheckedTextView) v;
 		if (weibo == null) {
@@ -126,18 +115,18 @@ public class AuthPage implements Callback,
 			ctv.setText(R.string.not_yet_authorized);
 			return;
 		}
-		
+
 		if (weibo.isValid()) {
 			weibo.removeAccount();
 			ctv.setChecked(false);
 			ctv.setText(R.string.not_yet_authorized);
 			return;
 		}
-		
+
 		weibo.setWeiboActionListener(this);
 		weibo.showUser(null);
 	}
-	
+
 	private AbstractWeibo getWeibo(int vid) {
 		String name = null;
 		switch(vid) {
@@ -155,23 +144,23 @@ public class AuthPage implements Callback,
 			case R.id.ctvYouDao: name = YouDao.NAME; break;
 			case R.id.ctvFourSquare: name = FourSquare.NAME; break;
 		}
-		
+
 		if (name != null) {
 			return AbstractWeibo.getWeibo(menu.getContext(), name);
 		}
 		return null;
 	}
-	
+
 	private CheckedTextView getView(AbstractWeibo weibo) {
 		if (weibo == null) {
 			return null;
 		}
-		
+
 		String name = weibo.getName();
 		if (name == null) {
 			return null;
 		}
-		
+
 		View v = null;
 		if (SinaWeibo.NAME.equals(name)) {
 			v = pageView.findViewById(R.id.ctvSw);
@@ -215,11 +204,11 @@ public class AuthPage implements Callback,
 		if (v == null) {
 			return null;
 		}
-		
+
 		if (! (v instanceof CheckedTextView)) {
 			return null;
 		}
-		
+
 		return (CheckedTextView) v;
 	}
 
@@ -227,12 +216,12 @@ public class AuthPage implements Callback,
 		if (weibo == null) {
 			return null;
 		}
-		
+
 		String name = weibo.getName();
 		if (name == null) {
 			return null;
 		}
-		
+
 		int res = 0;
 		if (SinaWeibo.NAME.equals(name)) {
 			res = R.string.sinaweibo;
@@ -276,10 +265,10 @@ public class AuthPage implements Callback,
 		if (res == 0) {
 			return name;
 		}
-		
+
 		return menu.getResources().getString(res);
 	}
-	
+
 	public void onComplete(AbstractWeibo weibo, int action,
 			HashMap<String, Object> res) {
 		Message msg = new Message();
@@ -291,7 +280,7 @@ public class AuthPage implements Callback,
 
 	public void onError(AbstractWeibo weibo, int action, Throwable t) {
 		t.printStackTrace();
-		
+
 		Message msg = new Message();
 		msg.arg1 = 2;
 		msg.arg2 = action;
@@ -307,35 +296,33 @@ public class AuthPage implements Callback,
 		handler.sendMessage(msg);
 	}
 
-	//#if def{lang} == cn
-	/** 
+	/**
 	 * 处理操作结果
 	 * <p>
 	 * 如果获取到用户的名称，则显示名称；否则如果已经授权，则显示
 	 *平台名称
 	 */
-	//#endif
 	public boolean handleMessage(Message msg) {
 		AbstractWeibo weibo = (AbstractWeibo) msg.obj;
 		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
-			case 1: { // def{note.complete.def{lang}}
+			case 1: { // 成功
 				text = weibo.getName() + " completed at " + text;
 				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
 			}
 			break;
-			case 2: { // def{note.error.def{lang}}
+			case 2: { // 失败
 				text = weibo.getName() + " caught error at " + text;
 				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
 				return false;
 			}
-			case 3: { // def{note.cancel.def{lang}}
+			case 3: { // 取消
 				text = weibo.getName() + " canceled at " + text;
 				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
 				return false;
 			}
 		}
-		
+
 		CheckedTextView ctv = getView(weibo);
 		if (ctv != null) {
 			ctv.setChecked(true);

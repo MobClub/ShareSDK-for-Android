@@ -1,12 +1,10 @@
-//#if def{lang} == cn
 /*
  * 官网地站:http://www.ShareSDK.cn
  * 技术支持QQ: 4006852216
  * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
- * 
+ *
  * Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
  */
-//#endif
 
 package cn.sharesdk.onekeyshare;
 
@@ -40,27 +38,25 @@ import android.widget.Toast;
 import cn.sharesdk.framework.AbstractWeibo;
 import cn.sharesdk.framework.WeiboActionListener;
 
-//#if def{lang} == cn
 /**
  * 平台宫格列表显示工具。
  * <p>
  * WeiboGridView对“android.support”包有依赖，因此请注意检查您项目中是
  *否已经集成了相应的jar包
  */
-//#endif
 public class WeiboGridView extends LinearLayout implements Runnable,
 		OnPageChangeListener, OnClickListener, WeiboActionListener, Callback {
-	private static final int PAGE_SIZE = 9; // def{note.WeiboGridView.9_gird_every_page.def{lang}}
-	private ViewPager pager; // def{note.WeiboGridView.gird_container.def{lang}}
-	private ImageView[] points; // def{note.WeiboGridView.page_indicator.def{lang}}
+	private static final int PAGE_SIZE = 9; // 每页显示9格
+	private ViewPager pager; // 宫格容器
+	private ImageView[] points; // 页面指示器
 	private Bitmap grayPoint;
 	private Bitmap whitePoint;
-	private boolean silent; // def{note.WeiboGridView.flag_of_go_sharepage.def{lang}}
-	private AbstractWeibo[] weiboList; // def{note.WeiboGridView.plat_data.def{lang}}
+	private boolean silent; // 是否不跳转SharePage而直接分享
+	private AbstractWeibo[] weiboList; // 平台数据
 	private Handler handler;
-	private Intent intent; // def{note.WeiboGridView.intent_from_outsize.def{lang}}
+	private Intent intent; // 从外部传进来的Intent（含初始化数据）
 	private WeiboActionListener waListener;
-	
+
 	public WeiboGridView(Context context) {
 		super(context);
 		init(context);
@@ -70,18 +66,18 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 		super(context, attrs);
 		init(context);
 	}
-	
+
 	private void init(final Context context) {
 		handler = new Handler(this);
 		setOrientation(VERTICAL);
 		int dp_10 = cn.sharesdk.framework.res.R.dipToPx(context, 10);
 		setPadding(dp_10, dp_10, dp_10, dp_10);
-		
+
 		pager = new ViewPager(context);
 		pager.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, 1));
 		pager.setOnPageChangeListener(this);
 		addView(pager);
-		
+
 		// 为了更好的ui效果，开启子线程获取平台列表
 		new Thread(){
 			public void run() {
@@ -90,15 +86,13 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 			}
 		}.start();
 	}
-	
-	//#if def{lang} == cn
+
 	/** 初始化宫格列表ui */
-	//#endif
 	public void run() {
 		Context context = getContext();
-		
-		// def{note.WeiboGridView.start_thread_to_get_list.def{lang}}
-		int pageSize = weiboList.length > PAGE_SIZE 
+
+		// 为了更好的ui效果，开启子线程获取平台列表
+		int pageSize = weiboList.length > PAGE_SIZE
 				? PAGE_SIZE : weiboList.length;
 		int lines = pageSize / 3;
 		if (pageSize % 3 > 0) {
@@ -123,15 +117,15 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 		if (points.length <= 0) {
 			return;
 		}
-		
-		// def{note.WeiboGridView.set_page_indicator.def{lang}}
+
+		// 设置页面指示器
 		LinearLayout llPoints = new LinearLayout(context);
 		LayoutParams lpLl = new LayoutParams(
 				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 		lpLl.gravity = Gravity.CENTER_HORIZONTAL;
 		llPoints.setLayoutParams(lpLl);
 		addView(llPoints);
-		
+
 		int dp_5 = cn.sharesdk.framework.res.R.dipToPx(context, 5);
 		grayPoint = BitmapFactory.decodeResource(getResources(), R.drawable.gray_point);
 		whitePoint = BitmapFactory.decodeResource(getResources(), R.drawable.white_point);
@@ -147,44 +141,40 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 		int curPage = pager.getCurrentItem();
 		points[curPage].setImageBitmap(whitePoint);
 	}
-	
+
 	public void onPageScrollStateChanged(int state) {
 		if (ViewPager.SCROLL_STATE_IDLE == state) {
 			for (int i = 0; i < points.length; i++) {
 				points[i].setImageBitmap(grayPoint);
 			}
-			
+
 			int curPage = pager.getCurrentItem();
 			points[curPage].setImageBitmap(whitePoint);
 		}
 	}
 
 	public void onPageScrolled(int arg0, float arg1, int arg2) {
-		
+
 	}
 
 	public void onPageSelected(int position) {
-		
+
 	}
-	
-	//#if def{lang} == cn
+
 	/**
 	 * 设置页面初始化和分享操作需要的数据
 	 * <p>
 	 * 此方法在{@link ShareAllGird}的UI初始化中被调用
-	 * 
+	 *
 	 * @param intent 携带初始化数据的Intent
 	 */
-	//#endif
 	public void setData(Intent intent) {
 		this.intent = intent;
 		silent = intent.getBooleanExtra("silent", false);
 		getWAL(intent);
 	}
-	
-	//#if def{lang} == cn
+
 	// 检测是否设置了自定义的回调，如果有则使用之，否则使用默认的回调
-	//#endif
 	private void getWAL(Intent intent) {
 		waListener = this;
 		try {
@@ -193,15 +183,18 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 			if (WeiboActionListener.class.isAssignableFrom(clz)) {
 				waListener = (WeiboActionListener) clz.newInstance();
 			}
+			else {
+				waListener = this;
+			}
 		} catch(Throwable t) {
 			waListener = this;
 		}
 	}
-	
+
 	public void onClick(View v) {
 		AbstractWeibo weibo = (AbstractWeibo) v.getTag();
 		if (weibo != null) {
-			if (silent) { // def{note.WeiboGridView.share_derectly.def{lang}}
+			if (silent) { // 直接执行分享
 				weibo.setWeiboActionListener(waListener);
 				if (!shareSilently(weibo)) {
 					return;
@@ -210,7 +203,7 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 			}
 			else {
 				String name = weibo.getName();
-				// def{note.WeiboGridView.sharepage_not_suppor_these_plats.def{lang}}
+				// SharePage不支持微信平台、信息和邮件，总是执行直接分享
 				if ("Wechat".equals(name) || "WechatMoments".equals(name)
 						|| "ShortMessage".equals(name) || "Email".equals(name)
 						|| "GooglePlus".equals(name)) {
@@ -220,26 +213,28 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 					}
 					showNotification(5000, getContext().getString(R.string.sharing));
 				}
-				else { // def{note.WeiboGridView.go_sharepage.def{lang}}
-					Intent i = new Intent(getContext(), SharePage.class);
-					i.putExtras(intent.getExtras());
+				else { // 跳转SharePage分享
+					Context app = getContext().getApplicationContext();
+					((Activity) getContext()).finish();
+
+					Intent i = new Intent();
+					i.putExtras(intent);
 					i.putExtra("platform", weibo.getName());
-					getContext().startActivity(i);
+					new SharePage(app).show(i);
+					return;
 				}
 			}
 		}
-		
+
 		((Activity) getContext()).finish();
 	}
-	
-	//#if def{lang} == cn
+
 	// 直接分享
-	//#endif
 	private boolean shareSilently(AbstractWeibo weibo) {
 		if (intent == null) {
 			return false;
 		}
-		
+
 		String platform = weibo.getName();
 		boolean isWechat = "WechatMoments".equals(platform) || "Wechat".equals(platform);
 		if (isWechat && !weibo.isValid()) {
@@ -247,14 +242,14 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 			Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
 			return false;
 		}
+
 		boolean isGooglePlus = "GooglePlus".equals(platform);
 		if (isGooglePlus && !weibo.isValid()) {
 			String msg = getContext().getString(R.string.google_plus_client_inavailable);
 			Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		
-		
+
 		String address = intent.getStringExtra("address");
 		String title = intent.getStringExtra("title");
 		String titleUrl = intent.getStringExtra("titleUrl");
@@ -274,12 +269,13 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 				&& url != null && url.length() > 0) {
 			shareType = AbstractWeibo.SHARE_WEBPAGE;
 		}
-		
+
 		HashMap<String, Object> data = new HashMap<String, Object>();
 		data.put("address", address);
 		data.put("url", url);
 		data.put("text", text);
 		data.put("imagePath", imagePath);
+		data.put("thumbPath", imagePath);
 		data.put("title", title);
 		data.put("comment", comment);
 		data.put("imageUrl", imageUrl);
@@ -293,7 +289,7 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 		data.put("longitude", longitude);
 		return new ShareCore().share(weibo, data);
 	}
-	
+
 	public void onComplete(AbstractWeibo weibo, int action,
 			HashMap<String, Object> res) {
 		Message msg = new Message();
@@ -302,7 +298,7 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 		msg.obj = weibo;
 		handler.sendMessage(msg);
 	}
-	
+
 	public void onCancel(AbstractWeibo weibo, int action) {
 		Message msg = new Message();
 		msg.arg1 = 3;
@@ -310,26 +306,26 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 		msg.obj = weibo;
 		handler.sendMessage(msg);
 	}
-	
+
 	public void onError(AbstractWeibo weibo, int action, Throwable t) {
 		t.printStackTrace();
-		
+
 		Message msg = new Message();
 		msg.arg1 = 2;
 		msg.arg2 = action;
 		msg.obj = t;
 		handler.sendMessage(msg);
 	}
-	
+
 	public boolean handleMessage(Message msg) {
 		switch (msg.arg1) {
-			case 1: { // def{note.complete.def{lang}}
+			case 1: { // 成功
 				showNotification(2000, getContext().getString(R.string.share_completed));
 			}
 			break;
-			case 2: { // def{note.error.def{lang}}
+			case 2: { // 失败
 				String expName = msg.obj.getClass().getSimpleName();
-				if ("WechatClientNotExistException".equals(expName) 
+				if ("WechatClientNotExistException".equals(expName)
 						|| "WechatTimelineNotSupportedException".equals(expName)) {
 					showNotification(2000, getContext().getString(R.string.wechat_client_inavailable));
 				}
@@ -338,30 +334,28 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 				}
 			}
 			break;
-			case 3: { // def{note.cancel.def{lang}}
+			case 3: { // 取消
 				showNotification(2000, getContext().getString(R.string.share_canceled));
 			}
 			break;
 		}
-		
+
 		return false;
 	}
-	
-	//#if def{lang} == cn
+
 	// 在状态栏提示分享操作
-	//#endif
 	private void showNotification(long cancelTime, String text) {
 		if (intent == null) {
 			return;
 		}
-		
+
 		try {
 			Context app = getContext().getApplicationContext();
 			final NotificationManager nm = (NotificationManager) app
 					.getSystemService(Context.NOTIFICATION_SERVICE);
 			final int id = Integer.MAX_VALUE / 13 + 1;
 			nm.cancel(id);
-			
+
 			int icon = intent.getIntExtra("notif_icon", 0);
 			String title = intent.getStringExtra("notif_title");
 			long when = System.currentTimeMillis();
@@ -370,7 +364,7 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 			notification.setLatestEventInfo(app, title, text, pi);
 			notification.flags = Notification.FLAG_AUTO_CANCEL;
 			nm.notify(id, notification);
-			
+
 			if (cancelTime > 0) {
 				handler.postDelayed(new Runnable() {
 					public void run() {
@@ -384,21 +378,19 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 			e.printStackTrace();
 		}
 	}
-	
-	//#if def{lang} == cn
+
 	/** 宫格列表数据适配器 */
-	//#endif
 	private static class WeiboAdapter extends PagerAdapter {
-		private GridView[] girds; // def{note.ShareAllGird.grid.def{lang}}
-		private AbstractWeibo[] weibos; // def{note.WeiboGridView.plat_data.def{lang}}
+		private GridView[] girds; // 宫格列表
+		private AbstractWeibo[] weibos; // 平台数据
 		private OnClickListener callback;
-		private int lines; // def{note.WeiboGridView.line_num.def{lang}}
-		
+		private int lines; // 行数
+
 		public WeiboAdapter(AbstractWeibo[] weibos, OnClickListener callback) {
 			this.weibos = weibos;
 			this.callback = callback;
 			girds = null;
-			
+
 			if (weibos != null) {
 				int size = weibos.length;
 				int pageCount = size / PAGE_SIZE;
@@ -416,7 +408,7 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 		public boolean isViewFromObject(View view, Object obj) {
 			return view == obj;
 		}
-		
+
 		public Object instantiateItem(ViewGroup container, int position) {
 			if (girds[position] == null) {
 				int pageSize = PAGE_SIZE;
@@ -429,7 +421,7 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 				for (int i = 0; i < pageSize; i++) {
 					gridWeibos[i] = weibos[curSize + i];
 				}
-				
+
 				if (position == 0) {
 					lines = gridWeibos.length / 3;
 					if (gridWeibos.length % 3 > 0) {
@@ -442,40 +434,38 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 			container.addView(girds[position]);
 			return girds[position];
 		}
-		
+
 		public void destroyItem(ViewGroup container, int position, Object object) {
 			container.removeView((View) object);
 		}
-		
+
 	}
-	
-	//#if def{lang} == cn
+
 	/** 简易的宫格列表控件 */
-	//#endif
 	private static class GridView extends LinearLayout {
-		private AbstractWeibo[] weibos; // def{note.SharePage.weiboList.def{lang}}
+		private AbstractWeibo[] weibos; // 平台列表
 		private OnClickListener callback;
 		private int lines;
-		private int iconWidth; // def{note.WeiboGridView.icon_width.def{lang}}
+		private int iconWidth; // 格子宽度
 
 		public GridView(Context context, OnClickListener callback) {
 			super(context);
 			this.callback = callback;
 		}
-		
+
 		public void setData(int lines, AbstractWeibo[] weibos) {
 			this.lines = lines;
 			this.weibos = weibos;
 			init();
 		}
-		
+
 		private void init() {
 			int dp_10 = cn.sharesdk.framework.res.R.dipToPx(getContext(), 10);
 			int scrW = getResources().getDisplayMetrics().widthPixels;
 			iconWidth = (scrW - dp_10 * 2) / 3 - dp_10 * 4;
-			
+
 			setOrientation(VERTICAL);
-			
+
 			int size = weibos == null ? 0 : weibos.length;
 			int lineSize = size / 3;
 			if (size % 3 > 0) {
@@ -488,11 +478,11 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 				LinearLayout llLine = new LinearLayout(getContext());
 				llLine.setLayoutParams(lp);
 				addView(llLine);
-				
+
 				if (i >= lineSize) {
 					continue;
 				}
-				
+
 				for (int j = 0; j < 3; j++) {
 					final int index = i * 3 + j;
 					if (index >= size) {
@@ -501,7 +491,7 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 						llLine.addView(llItem);
 						continue;
 					}
-					
+
 					final LinearLayout llItem = getView(index, getContext());
 					llItem.setTag(weibos[index]);
 					llItem.setOnClickListener(callback);
@@ -510,13 +500,13 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 				}
 			}
 		}
-		
+
 		private LinearLayout getView(int position, Context context) {
 			LinearLayout ll = new LinearLayout(context);
 			ll.setOrientation(LinearLayout.VERTICAL);
 			int dp_5 = cn.sharesdk.framework.res.R.dipToPx(context, 5);
 			ll.setPadding(dp_5, dp_5, dp_5, dp_5);
-			
+
 			ImageView iv = new ImageView(context);
 			iv.setScaleType(ScaleType.CENTER_INSIDE);
 			LinearLayout.LayoutParams lpIv = new LinearLayout.LayoutParams(
@@ -525,7 +515,7 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 			iv.setLayoutParams(lpIv);
 			iv.setImageBitmap(getIcon(weibos[position]));
 			ll.addView(iv);
-			
+
 			TextView tv = new TextView(context);
 			tv.setTextColor(0xffffffff);
 			tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
@@ -537,39 +527,39 @@ public class WeiboGridView extends LinearLayout implements Runnable,
 			tv.setLayoutParams(lpTv);
 			tv.setText(getName(weibos[position]));
 			ll.addView(tv);
-			
+
 			return ll;
 		}
-		
+
 		private Bitmap getIcon(AbstractWeibo weibo) {
 			if (weibo == null) {
 				return null;
 			}
-			
+
 			String name = weibo.getName();
 			if (name == null) {
 				return null;
 			}
-			
+
 			String resName = "logo_" + weibo.getName();
 			int resId = cn.sharesdk.framework.res.R.getResId(R.drawable.class, resName);
 			return BitmapFactory.decodeResource(getResources(), resId);
 		}
-		
+
 		private String getName(AbstractWeibo weibo) {
 			if (weibo == null) {
 				return "";
 			}
-			
+
 			String name = weibo.getName();
 			if (name == null) {
 				return "";
 			}
-			
-			int resId = cn.sharesdk.framework.res.R.getResId(R.string.class, weibo.getName());
+
+			int resId = cn.sharesdk.framework.res.R.getStringRes(getContext(), weibo.getName());
 			return getContext().getString(resId);
 		}
-		
+
 	}
-	
+
 }

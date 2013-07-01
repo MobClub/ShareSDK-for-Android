@@ -1,13 +1,14 @@
 <resources>
     <string name="app_name">ShareSDK</string>
-    <integer name="app_version_code">12</integer>
-    <string name="app_version">1.2.0</string>
+    <integer name="app_version_code">13</integer>
+    <string name="app_version">1.2.1</string>
     <string name="proj_name">ShareSDK</string>
     
     <string name="more">更多</string>
     <string name="sm_item_demo">接口</string>
     <string name="sm_item_auth">授权</string>
     <string name="sm_item_wechat">微信</string>
+    <string name="sm_item_customer">自定义接口</string>
     <string name="sm_item_fl_weibo">关注新浪微博</string>
     <string name="sm_item_fl_tc">关注腾讯微博</string>
     <string name="sm_item_visit_wechat">关注官方微信</string>
@@ -31,7 +32,7 @@
 	<string name="demo_share_to_nemb">分享网易微博</string>
 	<string name="demo_share_to_sh">分享搜狐微博</string>
 	<string name="demo_share_to_kaixin">分享开心网</string>
-	<string name="demo_share_to_youdao">分享有道笔记</string>
+	<string name="demo_share_to_youdao">分享有道云笔记</string>
 	<string name="demo_share_to_googleplus">分享Google+</string>
 	<string name="demo_share_to_foursquare">分享FourSquare</string>
 	<string name="demo_share_to_linked_in">分享Linkedin</string>
@@ -47,7 +48,7 @@
 	<string name="get_token_nemb">获取网易微博AccessToken</string>
 	<string name="get_token_sohu">获取搜狐微博AccessToken</string>
 	<string name="get_token_kaixin">获取开心网AccessToken</string>
-	<string name="get_token_youdao">获取有道笔记AccessToken</string>
+	<string name="get_token_youdao">获取有道云笔记AccessToken</string>
 	<string name="get_token_googleplus">获取Google+ AccessToken</string>
 	<string name="get_token_foursquare">获取FourSquare AccessToken</string>
 	<string name="get_token_linked_in">Linked In AccessToken</string>
@@ -63,10 +64,24 @@
 	<string name="get_user_info_en">获取印象笔记授权用户资料</string>
 	<string name="get_user_info_sh">获取搜狐微博授权用户资料</string>
 	<string name="get_user_info_kaixin">获取开心网授权用户资料</string>
-	<string name="get_user_info_youdao">获取有道笔记授权用户资料</string>
+	<string name="get_user_info_youdao">获取有道云笔记授权用户资料</string>
 	<string name="get_user_info_googleplus">获取Google+授权用户资料</string>
 	<string name="get_user_info_foursquare">获取FourSquare授权用户资料</string>
 	<string name="get_user_info_linked_in">获取Linked In授权用户资料</string>
+	
+	<string name="get_sina_friends_list">获取新浪微博关注列表</string>
+	<string name="get_tencent_friends_list">获取腾讯微博关注列表</string>
+	<string name="customer_douban">搜索用户</string>
+	<string name="customer_facebook">获取通知列表</string>
+	<string name="customer_nemb">获取推荐话题</string>
+	<string name="customer_renren">上传照片到用户的相册</string>
+	<string name="customer_sina">获取微博主页列表</string>
+	<string name="customer_qzone">发表日志到QQ空间</string> 
+	<string name="customer_tencent">获取我的粉丝列表</string>
+	<string name="customer_twitter">获取主页列表</string>
+	<string name="customer_kaixin">获取可能认识的人</string>
+	<string name="customer_sohu">获取好友列表</string>
+	<string name="customer_youdao">获取笔记本列表</string>
 	
 	<string name="not_yet_authorized">尚未授权</string>
 	<string name="sinaweibo">新浪微博</string>
@@ -82,7 +97,7 @@
 	<string name="wechatmoments">微信朋友圈</string>
 	<string name="sohumicroblog">搜狐微博</string>
 	<string name="kaixin">开心网</string>
-	<string name="youdao">有道笔记</string>
+	<string name="youdao">有道云笔记</string>
 	<string name="googleplus">Google+</string>
 	<string name="foursquare">FourSquare</string>
 	
@@ -107,4 +122,5 @@
 	<string name="file_upload">文件分享</string>
 	<string name="share_to_moment">分享到朋友圈</string>
 	<string name="wechat_demo_title">微信分享Demo标题</string>
+	<string name="qzone_add_blog_sample"><h1>QQ互联</h1><font color='red'>轻松分享,</font><font color='green'>快乐生活。</font><a href='http://connect.qq.com'>详情请看。</a><img src='http://imgcache.qq.com/ptlogin/head/1_100.gif'></img></string>
 </resources>

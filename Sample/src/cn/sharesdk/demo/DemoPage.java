@@ -1,17 +1,15 @@
-//#if def{lang} == cn
 /*
  * 官网地站:http://www.ShareSDK.cn
  * 技术支持QQ: 4006852216
  * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
- * 
+ *
  * Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
  */
-//#endif
 
 package cn.sharesdk.demo;
 
 import java.util.HashMap;
-import m.framework.ui.SlidingMenu;
+import m.framework.ui.widget.slidingmenu.SlidingMenu;
 import cn.sharesdk.douban.Douban;
 import cn.sharesdk.evernote.Evernote;
 import cn.sharesdk.facebook.Facebook;
@@ -23,7 +21,6 @@ import cn.sharesdk.kaixin.KaiXin;
 import cn.sharesdk.linkedin.LinkedIn;
 import cn.sharesdk.netease.microblog.NetEaseMicroBlog;
 import cn.sharesdk.onekeyshare.ShareAllGird;
-import cn.sharesdk.onekeyshare.SharePage;
 import cn.sharesdk.renren.Renren;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.sohu.microblog.SohuMicroBlog;
@@ -33,37 +30,28 @@ import cn.sharesdk.twitter.Twitter;
 import cn.sharesdk.youdao.YouDao;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Handler;
 import android.os.Message;
-import android.os.Handler.Callback;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
-//#if def{lang} == cn
-/** 
+/**
  * Share SDK接口演示页面，包括演示使用快捷分享完成图文分享、
  *无页面直接分享、授权、关注和不同平台的分享等等功能。
  */
-//#endif
-public class DemoPage implements Callback, 
+public class DemoPage extends SlidingMenuPage implements
 		OnClickListener, WeiboActionListener {
-	private SlidingMenu menu;
-	private View pageView;
 	private TitleLayout llTitle;
-	private Handler handler;
-	
+
 	public DemoPage(SlidingMenu menu) {
-		handler = new Handler(this);
-		this.menu = menu;
-		pageView = LayoutInflater.from(menu.getContext())
-				.inflate(R.layout.page_demo, null);
-		
+		super(menu);
+		View pageView = getPage();
+
 		llTitle = (TitleLayout) pageView.findViewById(R.id.llTitle);
 		llTitle.getBtnBack().setOnClickListener(this);
 		llTitle.getTvTitle().setText(R.string.sm_item_demo);
-		
+
 		pageView.findViewById(R.id.btnShareAllGui).setOnClickListener(this);
 		pageView.findViewById(R.id.btnShareAll).setOnClickListener(this);
 		pageView.findViewById(R.id.btnFlSw).setOnClickListener(this);
@@ -87,119 +75,72 @@ public class DemoPage implements Callback,
 		pageView.findViewById(R.id.btnLinkedIn).setOnClickListener(this);
 		pageView.findViewById(R.id.btnShareFourSquare).setOnClickListener(this);
 	}
-	
-	//#if def{lang} == cn
-	/** 获取页面View */
-	//#endif
-	public View getPage() {
-		return pageView;
+
+	protected View initPage() {
+		return LayoutInflater.from(menu.getContext())
+				.inflate(R.layout.page_demo, null);
 	}
-	
-	//#if def{lang} == cn
+
 	// 使用快捷分享完成分享
-	//#endif
-	private void showGrid(boolean silent) {
-		Intent i = new Intent(menu.getContext(), ShareAllGird.class);
-		// def{note.share.extra.notif_icon.def{lang}}
+	private void showShare(boolean silent, String platform) {
+		Intent i = getShareIntent(silent, platform);
+		new ShareAllGird(menu.getContext()).show(i);
+	}
+
+	private Intent getShareIntent(boolean silent, String platform) {
+		Intent i = new Intent();
+		// 分享时Notification的图标
 		i.putExtra("notif_icon", R.drawable.ic_launcher);
-		// def{note.share.extra.notif_title.def{lang}}
+		// 分享时Notification的标题
 		i.putExtra("notif_title", menu.getContext().getString(R.string.app_name));
-		
-		// def{note.share.extra.address.def{lang}}
+
+		// address是接收人地址，仅在信息和邮件使用，否则可以不提供
 		i.putExtra("address", "12345678901");
-		// def{note.share.extra.title.def{lang}}
+		// title标题，在印象笔记、邮箱、信息、微信（包括好友和朋友圈）、人人网和QQ空间使用，否则可以不提供
 		i.putExtra("title", menu.getContext().getString(R.string.share));
-		// def{note.share.extra.titleUrl.def{lang}}
+		// titleUrl是标题的网络链接，仅在人人网和QQ空间使用，否则可以不提供
 		i.putExtra("titleUrl", "http://sharesdk.cn");
-		// def{note.share.extra.text.def{lang}}
+		// text是分享文本，所有平台都需要这个字段
 		i.putExtra("text", menu.getContext().getString(R.string.share_content));
-		// def{note.share.extra.imagePath.def{lang}}
+		// imagePath是本地的图片路径，除Linked-In外的所有平台都支持这个字段
 		i.putExtra("imagePath", MainActivity.TEST_IMAGE);
-		// def{note.share.extra.imageUrl.def{lang}}
-		i.putExtra("imageUrl", "http://sharesdk.cn/Public/Frontend/images/v2/logo.png?version=20130502");
-		// def{note.share.extra.url.def{lang}}
+		// imageUrl是图片的网络路径，新浪微博、人人网、QQ空间和Linked-In支持此字段
+		i.putExtra("imageUrl", "http://img.appgo.cn/imgs/sharesdk/content/2013/06/13/1371120300254.jpg");
+		// url仅在微信（包括好友和朋友圈）中使用，否则可以不提供
 		i.putExtra("url", "http://sharesdk.cn");
-		// def{note.share.extra.thumbPath.def{lang}}
+		// thumbPath是缩略图的本地路径，仅在微信（包括好友和朋友圈）中使用，否则可以不提供
 		i.putExtra("thumbPath", MainActivity.TEST_IMAGE);
-		// def{note.share.extra.appPath.def{lang}}
+		// appPath是待分享应用程序的本地路劲，仅在微信（包括好友和朋友圈）中使用，否则可以不提供
 		i.putExtra("appPath", MainActivity.TEST_IMAGE);
-		// def{note.share.extra.comment.def{lang}}
+		// comment是我对这条分享的评论，仅在人人网和QQ空间使用，否则可以不提供
 		i.putExtra("comment", menu.getContext().getString(R.string.share));
-		// def{note.share.extra.site.def{lang}}
+		// site是分享此内容的网站名称，仅在QQ空间使用，否则可以不提供
 		i.putExtra("site", menu.getContext().getString(R.string.app_name));
-		// def{note.share.extra.siteUrl.def{lang}}
+		// siteUrl是分享此内容的网站地址，仅在QQ空间使用，否则可以不提供
 		i.putExtra("siteUrl", "http://sharesdk.cn");
-		
-		// def{note.share.extra.venueName.def{lang}}
+
+		// foursquare分享时的地方名
 		i.putExtra("venueName", "Southeast in China");
-		// def{note.share.extra.venueDescription.def{lang}}
+		// foursquare分享时的地方描述
 		i.putExtra("venueDescription", "This is a beautiful place!");
-		// def{note.share.extra.latitude.def{lang}}
+		// foursquare分享时的地方纬度
 		i.putExtra("latitude", 23.122619f);
-		// def{note.share.extra.lontitude.def{lang}}
+		// foursquare分享时的地方经度
 		i.putExtra("longitude", 113.372338f);
-		
-		// def{note.share.extra.silent.def{lang}}
+
+		if (platform != null) {
+			// platform是平台名称
+			i.putExtra("platform", platform);
+		}
+		// 是否直接分享
 		i.putExtra("silent", silent);
-		// def{note.share.extra.callback.def{lang}}
+		// 设置自定义的外部回调
 		i.putExtra("callback", OneKeyShareCallback.class.getName());
-		menu.getContext().startActivity(i);
+
+		return i;
 	}
-	
-	//#if def{lang} == cn
-	// 直接进入分享编辑页面
-	//#endif
-	private void showShare(final String platform) {
-		Intent i = new Intent(menu.getContext(), SharePage.class);
-		// def{note.share.extra.notif_icon.def{lang}}
-		i.putExtra("notif_icon", R.drawable.ic_launcher);
-		// def{note.share.extra.notif_title.def{lang}}
-		i.putExtra("notif_title", menu.getContext().getString(R.string.app_name));
-		
-		// def{note.share.extra.address.def{lang}}
-		i.putExtra("address", "12345678901");
-		// def{note.share.extra.title.def{lang}}
-		i.putExtra("title", menu.getContext().getString(R.string.share));
-		// def{note.share.extra.titleUrl.def{lang}}
-		i.putExtra("titleUrl", "http://sharesdk.cn");
-		// def{note.share.extra.text.def{lang}}
-		i.putExtra("text", menu.getContext().getString(R.string.share_content));
-		// def{note.share.extra.imagePath.def{lang}}
-		i.putExtra("imagePath", MainActivity.TEST_IMAGE);
-		// def{note.share.extra.imageUrl.def{lang}}
-		i.putExtra("imageUrl", "http://sharesdk.cn/Public/Frontend/images/v2/logo.png?version=20130502");
-		// def{note.share.extra.url.def{lang}}
-		i.putExtra("url", "http://sharesdk.cn");
-		// def{note.share.extra.thumbPath.def{lang}}
-		i.putExtra("thumbPath", MainActivity.TEST_IMAGE);
-		// def{note.share.extra.appPath.def{lang}}
-		i.putExtra("appPath", MainActivity.TEST_IMAGE);
-		// def{note.share.extra.comment.def{lang}}
-		i.putExtra("comment", menu.getContext().getString(R.string.share));
-		// def{note.share.extra.site.def{lang}}
-		i.putExtra("site", menu.getContext().getString(R.string.app_name));
-		// def{note.share.extra.siteUrl.def{lang}}
-		i.putExtra("siteUrl", "http://sharesdk.cn");
-		
-		// def{note.share.extra.venueName.def{lang}}
-		i.putExtra("venueName", "Southeast in China");
-		// def{note.share.extra.venueDescription.def{lang}}
-		i.putExtra("venueDescription", "This is a beautiful place!");
-		// def{note.share.extra.latitude.def{lang}}
-		i.putExtra("latitude", 23.122619f);
-		// def{note.share.extra.lontitude.def{lang}}
-		i.putExtra("longitude", 113.372338f);
-		
-		// def{note.share.extra.platform.def{lang}}
-		i.putExtra("platform", platform);
-		// def{note.share.extra.callback.def{lang}}
-		i.putExtra("callback", OneKeyShareCallback.class.getName());
-		menu.getContext().startActivity(i);
-	}
-	
-	//#if def{lang} == cn
+
 	/** 操作演示的代码集中于此方法 */
-	//#endif
 	public void onClick(View v) {
 		if (v.equals(llTitle.getBtnBack())) {
 			if (menu.isMenuShown()) {
@@ -210,20 +151,20 @@ public class DemoPage implements Callback,
 			}
 			return;
 		}
-		
+
 		switch (v.getId()) {
 			case R.id.btnShareAllGui: {
-				// def{note.demo.onclick.btnShareAllGui.def{lang}}
-				showGrid(false);
+				// 图文分享
+				showShare(false, null);
 			}
 			break;
 			case R.id.btnShareAll: {
-				// def{note.demo.onclick.btnShareAll.def{lang}}
-				showGrid(true);
+				// 直接分享
+				showShare(true, null);
 			}
 			break;
 			case R.id.btnFlSw: {
-				// def{note.demo.onclick.btnFlSw.def{lang}}
+				// 关注新浪微博
 				AbstractWeibo weibo = AbstractWeibo.getWeibo(
 						menu.getContext(), SinaWeibo.NAME);
 				weibo.setWeiboActionListener(this);
@@ -231,7 +172,7 @@ public class DemoPage implements Callback,
 			}
 			break;
 			case R.id.btnFlTc: {
-				// def{note.demo.onclick.btnFlTc.def{lang}}
+				// 关注腾讯微博
 				AbstractWeibo weibo = AbstractWeibo.getWeibo(
 						menu.getContext(), TencentWeibo.NAME);
 				weibo.setWeiboActionListener(this);
@@ -239,105 +180,105 @@ public class DemoPage implements Callback,
 			}
 			break;
 			case R.id.btnGetToken: {
-				// def{note.demo.onclick.btnGetToken.def{lang}}
+				// 获取token
 				Intent i = new Intent(menu.getContext(), GetTokenPage.class);
 				menu.getContext().startActivity(i);
 			}
 			break;
 			case R.id.btnVisitWc: {
-				// def{note.demo.onclick.btnVisitWc.def{lang}}
+				// 关注官方微信
 				Intent i = new Intent(Intent.ACTION_VIEW);
 				i.setData(Uri.parse(MainAdapter.WECHAT_ADDR));
 				menu.getContext().startActivity(i);
 			}
 			break;
 			case R.id.btnGetInfor: {
-				// def{note.demo.onclick.btnGetInfor.def{lang}}
+				// 获取自己的资料
 				Intent i = new Intent(menu.getContext(), GetInforPage.class);
 				i.putExtra("type", 0);
 				menu.getContext().startActivity(i);
 			}
 			break;
 			case R.id.btnGetUserInfor: {
-				// def{note.demo.onclick.btnGetUserInfor.def{lang}}
+				// 获取指定帐号的资料
 				Intent i = new Intent(menu.getContext(), GetInforPage.class);
 				i.putExtra("type", 1);
 				menu.getContext().startActivity(i);
 			}
 			break;
 			case R.id.btnShareSw: {
-				// def{note.demo.onclick.btnShareSw.def{lang}}
-				showShare(SinaWeibo.NAME);
+				// 分享到新浪微博
+				showShare(false, SinaWeibo.NAME);
 			}
 			break;
 			case R.id.btnShareTc: {
-				// def{note.demo.onclick.btnShareTc.def{lang}}
-				showShare(TencentWeibo.NAME);
+				// 分享到腾讯微博
+				showShare(false, TencentWeibo.NAME);
 			}
 			break;
 			case R.id.btnShareFb: {
-				// def{note.demo.onclick.btnShareFb.def{lang}}
-				showShare(Facebook.NAME);
+				// 分享到facebook
+				showShare(false, Facebook.NAME);
 			}
 			break;
 			case R.id.btnShareTw: {
-				// def{note.demo.onclick.btnShareTw.def{lang}}
-				showShare(Twitter.NAME);
+				// 分享到twitter
+				showShare(false, Twitter.NAME);
 			}
 			break;
 			case R.id.btnShareRr: {
-				// def{note.demo.onclick.btnShareRr.def{lang}}
-				showShare(Renren.NAME);
+				// 分享到人人网
+				showShare(false, Renren.NAME);
 			}
 			break;
 			case R.id.btnShareQz: {
-				// def{note.demo.onclick.btnShareQz.def{lang}}
-				showShare(QZone.NAME);
+				// 分享到qq空间
+				showShare(false, QZone.NAME);
 			}
 			break;
 			case R.id.btnShareDb: {
-				// def{note.demo.onclick.btnShareDb.def{lang}}
-				showShare(Douban.NAME);
+				// 分享到豆瓣
+				showShare(false, Douban.NAME);
 			}
 			break;
 			case R.id.btnShareEn: {
-				// def{note.demo.onclick.btnShareEn.def{lang}}
-				showShare(Evernote.NAME);
+				// 分享到印象笔记
+				showShare(false, Evernote.NAME);
 			}
 			break;
 			case R.id.btnShareNemb: {
-				// def{note.demo.onclick.btnShareNemb.def{lang}}
-				showShare(NetEaseMicroBlog.NAME);
+				// 分享到网易微博
+				showShare(false, NetEaseMicroBlog.NAME);
 			}
 			break;
 			case R.id.btnShareSh: {
-				// def{note.demo.onclick.btnShareSh.def{lang}}
-				showShare(SohuMicroBlog.NAME);
+				// 分享到搜狐微博
+				showShare(false, SohuMicroBlog.NAME);
 			}
 			break;
 			case R.id.btnShareKaiXin: {
-				// def{note.demo.onclick.btnShareKaiXin.def{lang}}
-				showShare(KaiXin.NAME);
+				// 分享到开心网
+				showShare(false, KaiXin.NAME);
 			}
 			break;
 			case R.id.btnLinkedIn: {
-				// def{note.demo.onclick.btnShareYouDao.def{lang}}
-				showShare(LinkedIn.NAME);
+				// 分享到有道云笔记
+				showShare(false, LinkedIn.NAME);
 			}
 			break;
 			case R.id.btnShareYouDao: {
-				// def{note.demo.onclick.btnShareYouDao.def{lang}}
-				showShare(YouDao.NAME);
+				// 分享到有道云笔记
+				showShare(false, YouDao.NAME);
 			}
 			break;
 			case R.id.btnShareFourSquare: {
-				// def{note.demo.onclick.btnShareFourSquare.def{lang}}
-				showShare(FourSquare.NAME);
+				// 分享到foursquare
+				showShare(false, FourSquare.NAME);
 			}
 			break;
 		}
 	}
-	
+
 	public void onComplete(AbstractWeibo weibo, int action,
 			HashMap<String, Object> res) {
 		Message msg = new Message();
@@ -346,7 +287,7 @@ public class DemoPage implements Callback,
 		msg.obj = weibo;
 		handler.sendMessage(msg);
 	}
-	
+
 	public void onCancel(AbstractWeibo weibo, int action) {
 		Message msg = new Message();
 		msg.arg1 = 3;
@@ -354,40 +295,38 @@ public class DemoPage implements Callback,
 		msg.obj = weibo;
 		handler.sendMessage(msg);
 	}
-	
+
 	public void onError(AbstractWeibo weibo, int action, Throwable t) {
 		t.printStackTrace();
-		
+
 		Message msg = new Message();
 		msg.arg1 = 2;
 		msg.arg2 = action;
 		msg.obj = weibo;
 		handler.sendMessage(msg);
 	}
-	
-	//#if def{lang} == cn
+
 	/** 处理操作结果 */
-	//#endif
 	public boolean handleMessage(Message msg) {
 		AbstractWeibo weibo = (AbstractWeibo) msg.obj;
 		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
-			case 1: { // def{note.complete.def{lang}}
+			case 1: { // 成功
 				text = weibo.getName() + " completed at " + text;
 			}
 			break;
-			case 2: { // def{note.error.def{lang}}
+			case 2: { // 失败
 				text = weibo.getName() + " caught error at " + text;
 			}
 			break;
-			case 3: { // def{note.cancel.def{lang}}
+			case 3: { // 取消
 				text = weibo.getName() + " canceled at " + text;
 			}
 			break;
 		}
-		
+
 		Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
 		return false;
 	}
-	
+
 }

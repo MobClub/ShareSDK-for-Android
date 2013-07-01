@@ -1,12 +1,10 @@
-//#if def{lang} == cn
 /*
  * 官网地站:http://www.ShareSDK.cn
  * 技术支持QQ: 4006852216
  * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
- * 
+ *
  * Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
  */
-//#endif
 
 package cn.sharesdk.demo;
 
@@ -38,14 +36,12 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-//#if def{lang} == cn
 /** 演示授权并获取获取AccessToken */
-//#endif
-public class GetTokenPage extends Activity implements Callback, 
+public class GetTokenPage extends Activity implements Callback,
 		OnClickListener, WeiboActionListener {
 	private TitleLayout llTitle;
 	private Handler handler;
-	
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		handler = new Handler(this);
@@ -53,23 +49,21 @@ public class GetTokenPage extends Activity implements Callback,
 		llTitle = (TitleLayout) findViewById(R.id.llTitle);
 		llTitle.getBtnBack().setOnClickListener(this);
 		llTitle.getTvTitle().setText(R.string.demo_get_access_token);
-		
+
 		LinearLayout llList = (LinearLayout) findViewById(R.id.llList);
 		for (int i = 0, size = llList.getChildCount(); i < size; i++) {
 			llList.getChildAt(i).setOnClickListener(this);
 		}
 		findViewById(R.id.btnFourSquare).setOnClickListener(this);
 	}
-	
-	//#if def{lang} == cn
+
 	/** 演示的逻辑代码 */
-	//#endif
 	public void onClick(View v) {
 		if (v.equals(llTitle.getBtnBack())) {
 			finish();
 			return;
 		}
-		
+
 		String name = null;
 		switch(v.getId()) {
 			case R.id.btnSw: name = SinaWeibo.NAME; break;
@@ -87,15 +81,15 @@ public class GetTokenPage extends Activity implements Callback,
 			case R.id.btnFourSquare: name = FourSquare.NAME; break;
 			case R.id.btnLinkedIn: name = LinkedIn.NAME; break;
 		}
-		
-		// def{note.auth.def{lang}}
+
+		// 授权
 		if (name != null) {
 			AbstractWeibo weibo = AbstractWeibo.getWeibo(this, name);
 			weibo.setWeiboActionListener(this);
 			weibo.authorize();
 		}
 	}
-	
+
 	public void onComplete(AbstractWeibo weibo, int action,
 			HashMap<String, Object> res) {
 		Message msg = new Message();
@@ -104,7 +98,7 @@ public class GetTokenPage extends Activity implements Callback,
 		msg.obj = weibo;
 		handler.sendMessage(msg);
 	}
-	
+
 	public void onCancel(AbstractWeibo weibo, int action) {
 		Message msg = new Message();
 		msg.arg1 = 3;
@@ -112,40 +106,38 @@ public class GetTokenPage extends Activity implements Callback,
 		msg.obj = weibo;
 		handler.sendMessage(msg);
 	}
-	
+
 	public void onError(AbstractWeibo weibo, int action, Throwable t) {
 		t.printStackTrace();
-		
+
 		Message msg = new Message();
 		msg.arg1 = 2;
 		msg.arg2 = action;
 		msg.obj = weibo;
 		handler.sendMessage(msg);
 	}
-	
-	//#if def{lang} == cn
+
 	/** 通过Toast显示操作结果 */
-	//#endif
 	public boolean handleMessage(Message msg) {
 		AbstractWeibo weibo = (AbstractWeibo) msg.obj;
 		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
-			case 1: { // def{note.complete.def{lang}}
+			case 1: { // 成功
 				text = weibo.getName() + " get token: " + weibo.getDb().getToken();
 			}
 			break;
-			case 2: { // def{note.error.def{lang}}
+			case 2: { // 失败
 				text = weibo.getName() + " caught error";
 			}
 			break;
-			case 3: { // def{note.cancel.def{lang}}
+			case 3: { // 取消
 				text = weibo.getName() + " authorization canceled";
 			}
 			break;
 		}
-		
+
 		Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
 		return false;
 	}
-	
+
 }

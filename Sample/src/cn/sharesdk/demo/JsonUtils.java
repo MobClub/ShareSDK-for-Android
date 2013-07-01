@@ -1,12 +1,10 @@
-//#if def{lang} == cn
 /*
  * 官网地站:http://www.ShareSDK.cn
  * 技术支持QQ: 4006852216
  * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
- * 
+ *
  * Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
  */
-//#endif
 
 package cn.sharesdk.demo;
 
@@ -18,25 +16,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-//#if def{lang} == cn
 /**
  * 这是一个简易的Json-HashMap转换工具，可以将普通的json数据（字符串）
  *转换为一个HashMap<Srting, Object>表格，也可以反过来操作。此外还支
  *持将json数据格式化。
  */
-//#endif
 public class JsonUtils {
-	
-	//#if def{lang} == cn
+
 	/** 将指定的json数据转成 {@link HashMap}<String, Object>对象 */
-	//#endif
 	public HashMap<String, Object> fromJson(String jsonStr) {
 		try {
 			if (jsonStr.startsWith("[")
 					&& jsonStr.endsWith("]")) {
 				jsonStr = "{\"fakelist\":" + jsonStr + "}";
 			}
-			
+
 			JSONObject json = new JSONObject(jsonStr);
 			return fromJson(json);
 		} catch (Throwable t) {
@@ -44,8 +38,8 @@ public class JsonUtils {
 		}
 		return new HashMap<String, Object>();
 	}
-	
-	private HashMap<String, Object> fromJson(JSONObject json) 
+
+	private HashMap<String, Object> fromJson(JSONObject json)
 			throws JSONException {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		@SuppressWarnings("unchecked")
@@ -69,7 +63,7 @@ public class JsonUtils {
 		return map;
 	}
 
-	private ArrayList<Object> fromJson(JSONArray array) 
+	private ArrayList<Object> fromJson(JSONArray array)
 			throws JSONException {
 		ArrayList<Object> list = new ArrayList<Object>();
 		for (int i = 0, size = array.length(); i < size; i++) {
@@ -85,9 +79,7 @@ public class JsonUtils {
 		return list;
 	}
 
-	//#if def{lang} == cn
 	/** 将指定的 {@link HashMap}<String, Object>对象转成json数据 */
-	//#endif
 	public String fromHashMap(HashMap<String, Object> map) {
 		try {
 			return getJSONObject(map).toString();
@@ -96,9 +88,9 @@ public class JsonUtils {
 		}
 		return "";
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	private JSONObject getJSONObject(HashMap<String, Object> map) 
+	private JSONObject getJSONObject(HashMap<String, Object> map)
 			throws JSONException {
 		JSONObject json = new JSONObject();
 		for (Entry<String, Object> entry : map.entrySet()) {
@@ -113,9 +105,9 @@ public class JsonUtils {
 		}
 		return json;
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	private JSONArray getJSONArray(ArrayList<Object> list) 
+	private JSONArray getJSONArray(ArrayList<Object> list)
 			throws JSONException {
 		JSONArray array = new JSONArray();
 		for (Object value : list) {
@@ -129,10 +121,8 @@ public class JsonUtils {
 		}
 		return array;
 	}
-	
-	//#if def{lang} == cn
+
 	/** 格式化一个json串 */
-	//#endif
 	public String format(String jsonStr) {
 		try {
 			return format("", fromJson(jsonStr));
@@ -141,7 +131,7 @@ public class JsonUtils {
 		}
 		return "";
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private String format(String sepStr, HashMap<String, Object> map) {
 		StringBuffer sb = new StringBuffer();
@@ -171,7 +161,7 @@ public class JsonUtils {
 		sb.append('\n').append(sepStr).append('}');
 		return sb.toString();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private String format(String sepStr, ArrayList<Object> list) {
 		StringBuffer sb = new StringBuffer();
@@ -200,5 +190,5 @@ public class JsonUtils {
 		sb.append('\n').append(sepStr).append(']');
 		return sb.toString();
 	}
-	
+
 }

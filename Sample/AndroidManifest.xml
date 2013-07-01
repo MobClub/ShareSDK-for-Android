@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.sharesdk.demo"
-    android:versionCode="@integer/app_version_code"
+    android:versionCode="13"
     android:versionName="@string/app_version" >
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -19,7 +19,7 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="15" />
+        android:targetSdkVersion="17" />
 
     <application
         android:debuggable="true"
@@ -49,22 +49,10 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name="cn.sharesdk.demo.ShowInforPage"
+            android:name="cn.sharesdk.demo.JsonPage"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-		
-		<activity
-            android:name="cn.sharesdk.onekeyshare.ShareAllGird"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-		<activity
-            android:name="cn.sharesdk.onekeyshare.SharePage"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
 		
         <activity
             android:name="cn.sharesdk.framework.AuthorizeActivity"

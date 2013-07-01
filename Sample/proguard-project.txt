@@ -18,9 +18,6 @@
 
 -keep class android.net.http.SslError
 -keep class android.webkit.**{*;}
--keep class org.scribe.**{*;}
--keep class com.evernote.**{*;}
--keep class com.tencent.mm.**{*;}
 -keep class cn.sharesdk.**{*;}
 -keep class com.sina.**{*;}
 -keep class m.framework.**{*;}
