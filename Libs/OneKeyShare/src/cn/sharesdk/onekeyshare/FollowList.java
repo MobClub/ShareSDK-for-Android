@@ -94,19 +94,27 @@ public class FollowList extends FakeActivity implements OnClickListener, OnItemC
 			ArrayList<String> selected = new ArrayList<String>();
 			if ("SinaWeibo".equals(platform)) {
 				for (int i = 0, size = adapter.getCount(); i < size; i++) {
-					selected.add(adapter.getItem(i).screeName);
+					if (adapter.getItem(i).checked) {
+						selected.add(adapter.getItem(i).screeName);
+					}
 				}
 			} else if ("TencentWeibo".equals(platform)) {
 				for (int i = 0, size = adapter.getCount(); i < size; i++) {
-					selected.add(adapter.getItem(i).uid);
+					if (adapter.getItem(i).checked) {
+						selected.add(adapter.getItem(i).uid);
+					}
 				}
 			} else if ("Facebook".equals(platform)) {
 				for (int i = 0, size = adapter.getCount(); i < size; i++) {
-					selected.add("[" + adapter.getItem(i).uid + "]");
+					if (adapter.getItem(i).checked) {
+						selected.add("[" + adapter.getItem(i).uid + "]");
+					}
 				}
 			} else if ("Twitter".equals(platform)) {
 				for (int i = 0, size = adapter.getCount(); i < size; i++) {
-					selected.add(adapter.getItem(i).uid);
+					if (adapter.getItem(i).checked) {
+						selected.add(adapter.getItem(i).uid);
+					}
 				}
 			}
 			page.onResult(selected);
