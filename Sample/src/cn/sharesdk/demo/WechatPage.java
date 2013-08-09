@@ -10,47 +10,44 @@ package cn.sharesdk.demo;
 
 import java.util.HashMap;
 import m.framework.ui.widget.slidingmenu.SlidingMenu;
-import cn.sharesdk.framework.AbstractWeibo;
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.Platform.ShareParams;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
-import cn.sharesdk.framework.WeiboActionListener;
 import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
 import cn.sharesdk.wechat.utils.WechatClientNotExistException;
-import cn.sharesdk.wechat.utils.WechatHelper.ShareParams;
 import cn.sharesdk.wechat.utils.WechatTimelineNotSupportedException;
 import android.graphics.BitmapFactory;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.CheckedTextView;
 import android.widget.Toast;
 
 /** 微信api的演示页面，展示了“微信好友”和“微信朋友圈”的接口 */
 public class WechatPage extends SlidingMenuPage implements
-		OnClickListener, WeiboActionListener {
+		OnClickListener, PlatformActionListener {
 	private TitleLayout llTitle;
 	private CheckedTextView ctvStWm;
+	private View pageView;
 
 	public WechatPage(SlidingMenu menu) {
 		super(menu);
-		View pageView = getPage();
+		pageView = getPage();
 
 		llTitle = (TitleLayout) pageView.findViewById(R.id.llTitle);
 		llTitle.getBtnBack().setOnClickListener(this);
 		llTitle.getTvTitle().setText(R.string.sm_item_wechat);
 
 		ctvStWm = (CheckedTextView) pageView.findViewById(R.id.ctvStWm);
-		ctvStWm.setOnClickListener(this);
-		pageView.findViewById(R.id.btnUpdate).setOnClickListener(this);
-		pageView.findViewById(R.id.btnUpload).setOnClickListener(this);
-		pageView.findViewById(R.id.btnUploadBm).setOnClickListener(this);
-		pageView.findViewById(R.id.btnMusic).setOnClickListener(this);
-		pageView.findViewById(R.id.btnVideo).setOnClickListener(this);
-		pageView.findViewById(R.id.btnWebpage).setOnClickListener(this);
-		pageView.findViewById(R.id.btnWebpageBm).setOnClickListener(this);
-		pageView.findViewById(R.id.btnApp).setOnClickListener(this);
-		pageView.findViewById(R.id.btnFile).setOnClickListener(this);
+		ViewGroup vp = (ViewGroup) ctvStWm.getParent();
+		for (int i = 0, size = vp.getChildCount(); i < size; i++) {
+			vp.getChildAt(i).setOnClickListener(this);
+		}
 	}
 
 	protected View initPage() {
@@ -71,88 +68,171 @@ public class WechatPage extends SlidingMenuPage implements
 
 		if (v.equals(ctvStWm)) {
 			ctvStWm.setChecked(!ctvStWm.isChecked());
+			pageView.findViewById(R.id.btnApp).setVisibility(
+					ctvStWm.isChecked() ? View.GONE : View.VISIBLE);
+			pageView.findViewById(R.id.btnAppExt).setVisibility(
+					ctvStWm.isChecked() ? View.GONE : View.VISIBLE);
+			pageView.findViewById(R.id.btnFile).setVisibility(
+					ctvStWm.isChecked() ? View.GONE : View.VISIBLE);
 			return;
 		}
 
 		String name = ctvStWm.isChecked() ? WechatMoments.NAME : Wechat.NAME;
-		AbstractWeibo weibo = AbstractWeibo.getWeibo(menu.getContext(), name);
-		weibo.setWeiboActionListener(this);
+		Platform plat = ShareSDK.getPlatform(menu.getContext(), name);
+		plat.setPlatformActionListener(this);
 		ShareParams sp = ctvStWm.isChecked() ?
-				new WechatMoments.ShareParams() : new Wechat.ShareParams();
+				getWechatMomentsShareParams(v) : getWechatShareParams(v);
+		plat.share(sp);
+	}
+
+	private ShareParams getWechatShareParams(View v) {
+		Wechat.ShareParams sp = new Wechat.ShareParams();
 		sp.title = menu.getContext().getString(R.string.wechat_demo_title);
 		sp.text = menu.getContext().getString(R.string.share_content);
-		sp.shareType = AbstractWeibo.SHARE_TEXT;
+		sp.shareType = Platform.SHARE_TEXT;
 		switch (v.getId()) {
 			case R.id.btnUpload: {
-				sp.shareType = AbstractWeibo.SHARE_IMAGE;
+				sp.shareType = Platform.SHARE_IMAGE;
 				sp.imagePath = MainActivity.TEST_IMAGE;
 			}
 			break;
 			case R.id.btnUploadBm: {
-				sp.shareType = AbstractWeibo.SHARE_IMAGE;
+				sp.shareType = Platform.SHARE_IMAGE;
 				sp.imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
 			}
 			break;
+			case R.id.btnUploadUrl: {
+				sp.shareType = Platform.SHARE_IMAGE;
+				sp.imageUrl = "http://img.appgo.cn/imgs/sharesdk/content/2013/07/16/1373959974649.png";
+			}
+			break;
 			case R.id.btnMusic: {
-				sp.shareType = AbstractWeibo.SHARE_MUSIC;
-				sp.url = "http://119.188.72.27/2/file.data.vdisk.me/37414786/" +
-						"1f486ed742895fd9e6487568047a20b29a9d0df0?ip=1364785283,10.73.26.26&" +
-						"ssig=1iVh5iRmC%2B&Expires=1364784083&KID=sae,l30zoo1wmz&fn=" +
-						"%E9%93%83%E5%A3%B0%E6%8A%A5%E5%91%8A%E5%A4%A7%E7%8E%8B.mp3";
-				sp.thumbPath = MainActivity.TEST_IMAGE;
+				sp.shareType = Platform.SHARE_MUSIC;
+				sp.musicUrl = "http://staff2.ustc.edu.cn/~wdw/softdown/index.asp/0042515_05.ANDY.mp3";
+				sp.url = "http://sharesdk.cn";
+				sp.imagePath = MainActivity.TEST_IMAGE;
 			}
 			break;
 			case R.id.btnVideo: {
-				sp.shareType = AbstractWeibo.SHARE_VIDEO;
+				sp.shareType = Platform.SHARE_VIDEO;
 				sp.url = "http://t.cn/zT7cZAo";
-				sp.thumbPath = MainActivity.TEST_IMAGE;
+				sp.imagePath = MainActivity.TEST_IMAGE;
 			}
 			break;
 			case R.id.btnWebpage: {
-				sp.shareType = AbstractWeibo.SHARE_WEBPAGE;
+				sp.shareType = Platform.SHARE_WEBPAGE;
 				sp.url = "http://t.cn/zT7cZAo";
-				sp.thumbPath = MainActivity.TEST_IMAGE;
+				sp.imagePath = MainActivity.TEST_IMAGE;
 			}
 			break;
 			case R.id.btnWebpageBm: {
-				sp.shareType = AbstractWeibo.SHARE_WEBPAGE;
+				sp.shareType = Platform.SHARE_WEBPAGE;
 				sp.url = "http://t.cn/zT7cZAo";
-				sp.thumbData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
+				sp.imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
+			}
+			break;
+			case R.id.btnWebpageUrl: {
+				sp.shareType = Platform.SHARE_WEBPAGE;
+				sp.url = "http://t.cn/zT7cZAo";
+				sp.imageUrl = "http://img.appgo.cn/imgs/sharesdk/content/2013/07/16/1373959974649.png";
 			}
 			break;
 			case R.id.btnApp: {
-				sp.shareType = AbstractWeibo.SHARE_APPS;
+				sp.shareType = Platform.SHARE_APPS;
 				sp.appPath = MainActivity.TEST_IMAGE; // app的本地地址
-				sp.thumbPath = MainActivity.TEST_IMAGE;
+				sp.extInfo = "Share SDK received an app message from wechat client";
+				sp.imagePath = MainActivity.TEST_IMAGE;
+			}
+			break;
+			case R.id.btnAppExt: {
+				sp.shareType = Platform.SHARE_APPS;
+				sp.extInfo = "Share SDK received an app message from wechat client";  // 供微信回调的第三方信息（或者自定义脚本）
+				sp.imagePath = MainActivity.TEST_IMAGE;
 			}
 			break;
 			case R.id.btnFile: {
-				sp.shareType = AbstractWeibo.SHARE_FILE;
+				sp.shareType = Platform.SHARE_FILE;
 				sp.appPath = MainActivity.TEST_IMAGE; // app的本地地址
-				sp.thumbPath = MainActivity.TEST_IMAGE;
+				sp.imagePath = MainActivity.TEST_IMAGE;
 			}
 		}
-		weibo.share(sp);
+		return sp;
 	}
 
-	public void onComplete(AbstractWeibo weibo, int action,
+	private ShareParams getWechatMomentsShareParams(View v) {
+		WechatMoments.ShareParams sp = new WechatMoments.ShareParams();
+		sp.title = menu.getContext().getString(R.string.wechat_demo_title);
+		sp.text = menu.getContext().getString(R.string.share_content);
+		sp.shareType = Platform.SHARE_TEXT;
+		switch (v.getId()) {
+			case R.id.btnUpload: {
+				sp.shareType = Platform.SHARE_IMAGE;
+				sp.imagePath = MainActivity.TEST_IMAGE;
+			}
+			break;
+			case R.id.btnUploadBm: {
+				sp.shareType = Platform.SHARE_IMAGE;
+				sp.imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
+			}
+			break;
+			case R.id.btnUploadUrl: {
+				sp.shareType = Platform.SHARE_IMAGE;
+				sp.imageUrl = "http://img.appgo.cn/imgs/sharesdk/content/2013/07/16/1373959974649.png";
+			}
+			break;
+			case R.id.btnMusic: {
+				sp.shareType = Platform.SHARE_MUSIC;
+				sp.musicUrl = "http://staff2.ustc.edu.cn/~wdw/softdown/index.asp/0042515_05.ANDY.mp3";
+				sp.url = "http://sharesdk.cn";
+				sp.imagePath = MainActivity.TEST_IMAGE;
+			}
+			break;
+			case R.id.btnVideo: {
+				sp.shareType = Platform.SHARE_VIDEO;
+				sp.url = "http://t.cn/zT7cZAo";
+				sp.imagePath = MainActivity.TEST_IMAGE;
+			}
+			break;
+			case R.id.btnWebpage: {
+				sp.shareType = Platform.SHARE_WEBPAGE;
+				sp.url = "http://t.cn/zT7cZAo";
+				sp.imagePath = MainActivity.TEST_IMAGE;
+			}
+			break;
+			case R.id.btnWebpageBm: {
+				sp.shareType = Platform.SHARE_WEBPAGE;
+				sp.url = "http://t.cn/zT7cZAo";
+				sp.imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
+			}
+			break;
+			case R.id.btnWebpageUrl: {
+				sp.shareType = Platform.SHARE_WEBPAGE;
+				sp.url = "http://t.cn/zT7cZAo";
+				sp.imageUrl = "http://img.appgo.cn/imgs/sharesdk/content/2013/07/16/1373959974649.png";
+			}
+			break;
+		}
+		return sp;
+	}
+
+	public void onComplete(Platform plat, int action,
 			HashMap<String, Object> res) {
 		Message msg = new Message();
 		msg.arg1 = 1;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = plat;
 		handler.sendMessage(msg);
 	}
 
-	public void onCancel(AbstractWeibo weibo, int action) {
+	public void onCancel(Platform plat, int action) {
 		Message msg = new Message();
 		msg.arg1 = 3;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = plat;
 		handler.sendMessage(msg);
 	}
 
-	public void onError(AbstractWeibo weibo, int action, Throwable t) {
+	public void onError(Platform plat, int action, Throwable t) {
 		t.printStackTrace();
 
 		Message msg = new Message();
@@ -166,8 +246,8 @@ public class WechatPage extends SlidingMenuPage implements
 		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
 			case 1: { // 成功
-				AbstractWeibo weibo = (AbstractWeibo) msg.obj;
-				text = weibo.getName() + " completed at " + text;
+				Platform plat = (Platform) msg.obj;
+				text = plat.getName() + " completed at " + text;
 			}
 			break;
 			case 2: { // 失败
@@ -183,8 +263,8 @@ public class WechatPage extends SlidingMenuPage implements
 			}
 			break;
 			case 3: { // 取消
-				AbstractWeibo weibo = (AbstractWeibo) msg.obj;
-				text = weibo.getName() + " canceled at " + text;
+				Platform plat = (Platform) msg.obj;
+				text = plat.getName() + " canceled at " + text;
 			}
 			break;
 		}

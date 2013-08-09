@@ -10,7 +10,8 @@ package cn.sharesdk.demo;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import cn.sharesdk.framework.AbstractWeibo;
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.ShareSDK;
 import m.framework.ui.widget.slidingmenu.SlidingMenu;
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -39,14 +40,16 @@ public class MainActivity extends Activity implements Callback {
 		menu = new SlidingMenu(this);
 		menu.setMenuItemBackground(R.color.sliding_menu_item_down, R.color.sliding_menu_item_release);
 		menu.setMenuBackground(R.color.sliding_menu_background);
-		menu.setTtleHeight(cn.sharesdk.framework.res.R.dipToPx(this, 44));
+		menu.setTtleHeight(cn.sharesdk.framework.utils.R.dipToPx(this, 44));
 		menu.setBodyBackground(R.color.sliding_menu_body_background);
 		menu.setShadowRes(R.drawable.sliding_menu_right_shadow);
 		menu.setMenuDivider(R.drawable.sliding_menu_sep);
 		menu.setAdapter(new MainAdapter(menu));
 		setContentView(menu);
 
-		AbstractWeibo.initSDK(this);
+		ShareSDK.initSDK(this);
+		// 去除注释，可以即可使用应用后台配置的应用信息，否则默认使用ShareSDK.conf中的信息
+		// ShareSDK.setNetworkDevInfoEnable(true);
 		final Handler handler = new Handler(this);
 		new Thread() {
 			public void run() {
@@ -96,20 +99,20 @@ public class MainActivity extends Activity implements Callback {
 	}
 
 	protected void onDestroy() {
-		AbstractWeibo.stopSDK(this);
+		ShareSDK.stopSDK(this);
 		super.onDestroy();
 	}
 
 	/** 将action转换为String */
 	public static String actionToString(int action) {
 		switch (action) {
-			case AbstractWeibo.ACTION_AUTHORIZING: return "ACTION_AUTHORIZING";
-			case AbstractWeibo.ACTION_GETTING_FRIEND_LIST: return "ACTION_GETTING_FRIEND_LIST";
-			case AbstractWeibo.ACTION_FOLLOWING_USER: return "ACTION_FOLLOWING_USER";
-			case AbstractWeibo.ACTION_SENDING_DIRECT_MESSAGE: return "ACTION_SENDING_DIRECT_MESSAGE";
-			case AbstractWeibo.ACTION_TIMELINE: return "ACTION_TIMELINE";
-			case AbstractWeibo.ACTION_USER_INFOR: return "ACTION_USER_INFOR";
-			case AbstractWeibo.ACTION_SHARE: return "ACTION_SHARE";
+			case Platform.ACTION_AUTHORIZING: return "ACTION_AUTHORIZING";
+			case Platform.ACTION_GETTING_FRIEND_LIST: return "ACTION_GETTING_FRIEND_LIST";
+			case Platform.ACTION_FOLLOWING_USER: return "ACTION_FOLLOWING_USER";
+			case Platform.ACTION_SENDING_DIRECT_MESSAGE: return "ACTION_SENDING_DIRECT_MESSAGE";
+			case Platform.ACTION_TIMELINE: return "ACTION_TIMELINE";
+			case Platform.ACTION_USER_INFOR: return "ACTION_USER_INFOR";
+			case Platform.ACTION_SHARE: return "ACTION_SHARE";
 			default: {
 				return "UNKNOWN";
 			}

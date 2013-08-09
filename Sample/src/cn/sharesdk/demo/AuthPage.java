@@ -20,10 +20,12 @@ import cn.sharesdk.douban.Douban;
 import cn.sharesdk.evernote.Evernote;
 import cn.sharesdk.facebook.Facebook;
 import cn.sharesdk.foursquare.FourSquare;
-import cn.sharesdk.framework.AbstractWeibo;
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
-import cn.sharesdk.framework.WeiboActionListener;
 import cn.sharesdk.kaixin.KaiXin;
+import cn.sharesdk.linkedin.LinkedIn;
 import cn.sharesdk.netease.microblog.NetEaseMicroBlog;
 import cn.sharesdk.renren.Renren;
 import cn.sharesdk.sina.weibo.SinaWeibo;
@@ -42,7 +44,7 @@ import cn.sharesdk.youdao.YouDao;
  *考{@link GetTokenPage}页面的相关代码。
  */
 public class AuthPage extends SlidingMenuPage implements
-		OnClickListener, WeiboActionListener {
+		OnClickListener, PlatformActionListener {
 	private View pageView;
 	private TitleLayout llTitle;
 
@@ -67,24 +69,25 @@ public class AuthPage extends SlidingMenuPage implements
 		pageView.findViewById(R.id.ctvKaiXin).setOnClickListener(this);
 		pageView.findViewById(R.id.ctvYouDao).setOnClickListener(this);
 		pageView.findViewById(R.id.ctvFourSquare).setOnClickListener(this);
+		pageView.findViewById(R.id.ctvLinkedin).setOnClickListener(this);
 
 		// 获取平台列表
-		AbstractWeibo[] weibos = AbstractWeibo.getWeiboList(menu.getContext());
-		for (AbstractWeibo weibo : weibos) {
-			if (!weibo.isValid()) {
+		Platform[] platforms = ShareSDK.getPlatformList(menu.getContext());
+		for (Platform plat : platforms) {
+			if (!plat.isValid()) {
 				continue;
 			}
 
-			CheckedTextView ctv = getView(weibo);
+			CheckedTextView ctv = getView(plat);
 			if (ctv != null) {
 				ctv.setChecked(true);
-				String userName = weibo.getDb().get("nickname"); // getAuthedUserName();
+				String userName = plat.getDb().get("nickname"); // getAuthedUserName();
 				if (userName == null || userName.length() <= 0
 						|| "null".equals(userName)) {
 					// 如果平台已经授权却没有拿到帐号名称，则自动获取用户资料，以获取名称
-					userName = getWeiboName(weibo);
-					weibo.setWeiboActionListener(this);
-					weibo.showUser(null);
+					userName = getPlatformName(plat);
+					plat.setPlatformActionListener(this);
+					plat.showUser(null);
 				}
 				ctv.setText(userName);
 			}
@@ -108,26 +111,26 @@ public class AuthPage extends SlidingMenuPage implements
 			return;
 		}
 
-		AbstractWeibo weibo = getWeibo(v.getId());
+		Platform plat = getPlatform(v.getId());
 		CheckedTextView ctv = (CheckedTextView) v;
-		if (weibo == null) {
+		if (plat == null) {
 			ctv.setChecked(false);
 			ctv.setText(R.string.not_yet_authorized);
 			return;
 		}
 
-		if (weibo.isValid()) {
-			weibo.removeAccount();
+		if (plat.isValid()) {
+			plat.removeAccount();
 			ctv.setChecked(false);
 			ctv.setText(R.string.not_yet_authorized);
 			return;
 		}
 
-		weibo.setWeiboActionListener(this);
-		weibo.showUser(null);
+		plat.setPlatformActionListener(this);
+		plat.showUser(null);
 	}
 
-	private AbstractWeibo getWeibo(int vid) {
+	private Platform getPlatform(int vid) {
 		String name = null;
 		switch(vid) {
 			case R.id.ctvSw: name = SinaWeibo.NAME; break;
@@ -143,20 +146,21 @@ public class AuthPage extends SlidingMenuPage implements
 			case R.id.ctvKaiXin: name = KaiXin.NAME; break;
 			case R.id.ctvYouDao: name = YouDao.NAME; break;
 			case R.id.ctvFourSquare: name = FourSquare.NAME; break;
+			case R.id.ctvLinkedin: name = LinkedIn.NAME; break;
 		}
 
 		if (name != null) {
-			return AbstractWeibo.getWeibo(menu.getContext(), name);
+			return ShareSDK.getPlatform(menu.getContext(), name);
 		}
 		return null;
 	}
 
-	private CheckedTextView getView(AbstractWeibo weibo) {
-		if (weibo == null) {
+	private CheckedTextView getView(Platform plat) {
+		if (plat == null) {
 			return null;
 		}
 
-		String name = weibo.getName();
+		String name = plat.getName();
 		if (name == null) {
 			return null;
 		}
@@ -201,6 +205,9 @@ public class AuthPage extends SlidingMenuPage implements
 		else if (FourSquare.NAME.equals(name)) {
 			v = pageView.findViewById(R.id.ctvFourSquare);
 		}
+		else if (LinkedIn.NAME.equals(name)) {
+			v = pageView.findViewById(R.id.ctvLinkedin);
+		}
 		if (v == null) {
 			return null;
 		}
@@ -212,12 +219,12 @@ public class AuthPage extends SlidingMenuPage implements
 		return (CheckedTextView) v;
 	}
 
-	private String getWeiboName(AbstractWeibo weibo) {
-		if (weibo == null) {
+	private String getPlatformName(Platform plat) {
+		if (plat == null) {
 			return null;
 		}
 
-		String name = weibo.getName();
+		String name = plat.getName();
 		if (name == null) {
 			return null;
 		}
@@ -262,6 +269,9 @@ public class AuthPage extends SlidingMenuPage implements
 		else if (FourSquare.NAME.equals(name)) {
 			res = R.string.foursquare;
 		}
+		else if (LinkedIn.NAME.equals(name)) {
+			res = R.string.linkedin;
+		}
 		if (res == 0) {
 			return name;
 		}
@@ -269,30 +279,30 @@ public class AuthPage extends SlidingMenuPage implements
 		return menu.getResources().getString(res);
 	}
 
-	public void onComplete(AbstractWeibo weibo, int action,
+	public void onComplete(Platform plat, int action,
 			HashMap<String, Object> res) {
 		Message msg = new Message();
 		msg.arg1 = 1;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = plat;
 		handler.sendMessage(msg);
 	}
 
-	public void onError(AbstractWeibo weibo, int action, Throwable t) {
+	public void onError(Platform plat, int action, Throwable t) {
 		t.printStackTrace();
 
 		Message msg = new Message();
 		msg.arg1 = 2;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = plat;
 		handler.sendMessage(msg);
 	}
 
-	public void onCancel(AbstractWeibo weibo, int action) {
+	public void onCancel(Platform plat, int action) {
 		Message msg = new Message();
 		msg.arg1 = 3;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = plat;
 		handler.sendMessage(msg);
 	}
 
@@ -303,33 +313,33 @@ public class AuthPage extends SlidingMenuPage implements
 	 *平台名称
 	 */
 	public boolean handleMessage(Message msg) {
-		AbstractWeibo weibo = (AbstractWeibo) msg.obj;
+		Platform plat = (Platform) msg.obj;
 		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
 			case 1: { // 成功
-				text = weibo.getName() + " completed at " + text;
+				text = plat.getName() + " completed at " + text;
 				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
 			}
 			break;
 			case 2: { // 失败
-				text = weibo.getName() + " caught error at " + text;
+				text = plat.getName() + " caught error at " + text;
 				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
 				return false;
 			}
 			case 3: { // 取消
-				text = weibo.getName() + " canceled at " + text;
+				text = plat.getName() + " canceled at " + text;
 				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
 				return false;
 			}
 		}
 
-		CheckedTextView ctv = getView(weibo);
+		CheckedTextView ctv = getView(plat);
 		if (ctv != null) {
 			ctv.setChecked(true);
-			String userName = weibo.getDb().get("nickname"); // getAuthedUserName();
+			String userName = plat.getDb().get("nickname"); // getAuthedUserName();
 			if (userName == null || userName.length() <= 0
 					|| "null".equals(userName)) {
-				userName = getWeiboName(weibo);
+				userName = getPlatformName(plat);
 			}
 			ctv.setText(userName);
 		}

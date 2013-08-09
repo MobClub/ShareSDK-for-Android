@@ -17,9 +17,10 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.CheckedTextView;
 import android.widget.LinearLayout;
-import cn.sharesdk.framework.AbstractWeibo;
-import cn.sharesdk.framework.AuthorizeAdapter;
-import cn.sharesdk.framework.WeiboActionListener;
+import cn.sharesdk.framework.authorize.AuthorizeAdapter;
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
 
@@ -31,36 +32,38 @@ import cn.sharesdk.tencent.weibo.TencentWeibo;
  *注，如果用户最后确定关注此平台官方微博，会在授权结束以
  *后执行关注的方法。
  */
-public class MyAdapter extends AuthorizeAdapter implements OnClickListener, WeiboActionListener {
+public class MyAdapter extends AuthorizeAdapter implements OnClickListener,
+		PlatformActionListener {
 	private CheckedTextView ctvFollow;
-	private WeiboActionListener backListener;
+	private PlatformActionListener backListener;
 
 	public void onCreate() {
-		//注释掉下面两行代码，可以现实在授权页面时显示应用的logo
-//		int count = getTitleLayout().getChildCount();
-//		getTitleLayout().getChildAt(count - 1).setVisibility(View.GONE);
+		// 隐藏标题栏右部的Share SDK Logo
+		// hideShareSDKLogo();
 
-		String weiboName = getWeiboName();
-		if (SinaWeibo.NAME.equals(weiboName)
-				|| TencentWeibo.NAME.equals(weiboName)) {
-			initUi(weiboName);
-			interceptWeiboActionListener(weiboName);
-		} else { // 使弹出动画失效，只能在onCreate中调用，否则无法起作用
-			disablePopUpAnimation();
+		String platName = getPlatformName();
+		if (SinaWeibo.NAME.equals(platName)
+				|| TencentWeibo.NAME.equals(platName)) {
+			initUi(platName);
+			interceptPlatformActionListener(platName);
+			return;
 		}
+
+		// 使弹出动画失效，只能在onCreate中调用，否则无法起作用
+		// disablePopUpAnimation();
 	}
 
-	private void initUi(String weiboName) {
+	private void initUi(String platName) {
 		ctvFollow = new CheckedTextView(getActivity());
 		ctvFollow.setBackgroundResource(R.drawable.auth_follow_bg);
 		ctvFollow.setChecked(true);
-		int dp_10 = cn.sharesdk.framework.res.R.dipToPx(getActivity(), 10);
+		int dp_10 = cn.sharesdk.framework.utils.R.dipToPx(getActivity(), 10);
 		ctvFollow.setCompoundDrawablePadding(dp_10);
 		ctvFollow.setCompoundDrawablesWithIntrinsicBounds(R.drawable.auth_cb, 0, 0, 0);
 		ctvFollow.setGravity(Gravity.CENTER_VERTICAL);
 		ctvFollow.setPadding(dp_10, dp_10, dp_10, dp_10);
 		ctvFollow.setText(R.string.sm_item_fl_weibo);
-		if (weiboName.equals(TencentWeibo.NAME)) {
+		if (platName.equals(TencentWeibo.NAME)) {
 			ctvFollow.setText(R.string.sm_item_fl_tc);
 		}
 		ctvFollow.setTextColor(0xff909090);
@@ -83,62 +86,70 @@ public class MyAdapter extends AuthorizeAdapter implements OnClickListener, Weib
 		ctvFollow.startAnimation(animShow);
 	}
 
-	private void interceptWeiboActionListener(String weiboName) {
-		AbstractWeibo weibo = AbstractWeibo.getWeibo(getActivity(), weiboName);
+	private void interceptPlatformActionListener(String platName) {
+		Platform plat = ShareSDK.getPlatform(getActivity(), platName);
 		// 备份此前设置的事件监听器
-		backListener = weibo.getWeiboActionListener();
+		backListener = plat.getPlatformActionListener();
 		// 设置新的监听器，实现事件拦截
-		weibo.setWeiboActionListener(this);
+		plat.setPlatformActionListener(this);
 	}
 
-	public void onError(AbstractWeibo weibo, int action, Throwable t) {
-		if (action == AbstractWeibo.ACTION_AUTHORIZING) { // 授权时即发生错误
-			weibo.setWeiboActionListener(backListener);
+	public void onError(Platform plat, int action, Throwable t) {
+		if (action == Platform.ACTION_AUTHORIZING) { // null
+			// 授权时即发生错误
+			plat.setPlatformActionListener(backListener);
 			if (backListener != null) {
-				backListener.onError(weibo, action, t);
+				backListener.onError(plat, action, t);
 			}
 		}
-		else { // 授权时即发生错误
-			weibo.setWeiboActionListener(backListener);
+		else {
+			// 关注时发生错误
+			plat.setPlatformActionListener(backListener);
 			if (backListener != null) {
-				backListener.onComplete(weibo, AbstractWeibo.ACTION_AUTHORIZING, null);
+				backListener.onComplete(plat, Platform.ACTION_AUTHORIZING, null);
 			}
 		}
 	}
 
-	public void onComplete(AbstractWeibo weibo, int action,
+	public void onComplete(Platform plat, int action,
 			HashMap<String, Object> res) {
-		if (action == AbstractWeibo.ACTION_FOLLOWING_USER) { // 当作授权以后不做任何事情
-			weibo.setWeiboActionListener(backListener);
+		if (action == Platform.ACTION_FOLLOWING_USER) {
+			// 当作授权以后不做任何事情
+			plat.setPlatformActionListener(backListener);
 			if (backListener != null) {
-				backListener.onComplete(weibo, AbstractWeibo.ACTION_AUTHORIZING, null);
+				backListener.onComplete(plat, Platform.ACTION_AUTHORIZING, null);
 			}
 		}
-		else if (ctvFollow.isChecked()) { // 授权成功，执行关注
+		else if (ctvFollow.isChecked()) {
+			// 授权成功，执行关注
 			String account = MainAdapter.SDK_SINAWEIBO_UID;
-			if (TencentWeibo.NAME.equals(weibo.getName())) {
+			if (TencentWeibo.NAME.equals(plat.getName())) {
 				account = MainAdapter.SDK_TENCENTWEIBO_UID;
 			}
-			weibo.followFriend(account);
+			plat.followFriend(account);
 		}
-		else { // 如果没有标记为“授权并关注”则直接返回
-			weibo.setWeiboActionListener(backListener);
+		else {
+			// 如果没有标记为“授权并关注”则直接返回
+			plat.setPlatformActionListener(backListener);
 			if (backListener != null) {
-				backListener.onComplete(weibo, AbstractWeibo.ACTION_AUTHORIZING, null);
+				// 关注成功也只是当作授权成功返回
+				backListener.onComplete(plat, Platform.ACTION_AUTHORIZING, null);
 			}
 		}
 	}
 
-	public void onCancel(AbstractWeibo weibo, int action) {
-		weibo.setWeiboActionListener(backListener);
-		if (action == AbstractWeibo.ACTION_AUTHORIZING) { // 授权前取消
+	public void onCancel(Platform plat, int action) {
+		plat.setPlatformActionListener(backListener);
+		if (action == Platform.ACTION_AUTHORIZING) {
+			// 授权前取消
 			if (backListener != null) {
-				backListener.onCancel(weibo, action);
+				backListener.onCancel(plat, action);
 			}
 		}
-		else { // 当作授权以后不做任何事情
+		else {
+			// 当作授权以后不做任何事情
 			if (backListener != null) {
-				backListener.onComplete(weibo, AbstractWeibo.ACTION_AUTHORIZING, null);
+				backListener.onComplete(plat, Platform.ACTION_AUTHORIZING, null);
 			}
 
 		}

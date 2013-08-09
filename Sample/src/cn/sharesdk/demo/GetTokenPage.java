@@ -13,9 +13,10 @@ import cn.sharesdk.douban.Douban;
 import cn.sharesdk.evernote.Evernote;
 import cn.sharesdk.facebook.Facebook;
 import cn.sharesdk.foursquare.FourSquare;
-import cn.sharesdk.framework.AbstractWeibo;
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
-import cn.sharesdk.framework.WeiboActionListener;
 import cn.sharesdk.kaixin.KaiXin;
 import cn.sharesdk.linkedin.LinkedIn;
 import cn.sharesdk.netease.microblog.NetEaseMicroBlog;
@@ -38,7 +39,7 @@ import android.widget.Toast;
 
 /** 演示授权并获取获取AccessToken */
 public class GetTokenPage extends Activity implements Callback,
-		OnClickListener, WeiboActionListener {
+		OnClickListener, PlatformActionListener {
 	private TitleLayout llTitle;
 	private Handler handler;
 
@@ -84,54 +85,54 @@ public class GetTokenPage extends Activity implements Callback,
 
 		// 授权
 		if (name != null) {
-			AbstractWeibo weibo = AbstractWeibo.getWeibo(this, name);
-			weibo.setWeiboActionListener(this);
-			weibo.authorize();
+			Platform plat = ShareSDK.getPlatform(this, name);
+			plat.setPlatformActionListener(this);
+			plat.authorize();
 		}
 	}
 
-	public void onComplete(AbstractWeibo weibo, int action,
+	public void onComplete(Platform plat, int action,
 			HashMap<String, Object> res) {
 		Message msg = new Message();
 		msg.arg1 = 1;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = plat;
 		handler.sendMessage(msg);
 	}
 
-	public void onCancel(AbstractWeibo weibo, int action) {
+	public void onCancel(Platform plat, int action) {
 		Message msg = new Message();
 		msg.arg1 = 3;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = plat;
 		handler.sendMessage(msg);
 	}
 
-	public void onError(AbstractWeibo weibo, int action, Throwable t) {
+	public void onError(Platform plat, int action, Throwable t) {
 		t.printStackTrace();
 
 		Message msg = new Message();
 		msg.arg1 = 2;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = plat;
 		handler.sendMessage(msg);
 	}
 
 	/** 通过Toast显示操作结果 */
 	public boolean handleMessage(Message msg) {
-		AbstractWeibo weibo = (AbstractWeibo) msg.obj;
+		Platform plat = (Platform) msg.obj;
 		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
 			case 1: { // 成功
-				text = weibo.getName() + " get token: " + weibo.getDb().getToken();
+				text = plat.getName() + " get token: " + plat.getDb().getToken();
 			}
 			break;
 			case 2: { // 失败
-				text = weibo.getName() + " caught error";
+				text = plat.getName() + " caught error";
 			}
 			break;
 			case 3: { // 取消
-				text = weibo.getName() + " authorization canceled";
+				text = plat.getName() + " authorization canceled";
 			}
 			break;
 		}

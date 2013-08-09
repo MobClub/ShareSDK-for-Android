@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.sharesdk.demo"
-    android:versionCode="13"
+    android:versionCode="@integer/app_version_code"
     android:versionName="@string/app_version" >
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
 
     <supports-screens
         android:anyDensity="true"
@@ -55,13 +57,13 @@
             android:windowSoftInputMode="adjustPan|stateHidden" />
 		
         <activity
-            android:name="cn.sharesdk.framework.AuthorizeActivity"
+            android:name="cn.sharesdk.framework.ShareSDKUIShell"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" >
             <!-- 
-            	Adapter表示一个继承自cn.sharesdk.framework.AuthorizeAdapter的类，
+            	Adapter表示一个继承自cn.sharesdk.framework.authorize.AuthorizeAdapter的类，
             	这个类可以监听到页面的生命周期，也可以获取授权页面的各种UI控件。 
             	开发者可以通过继承AuthorizeAdapter，重写其方法，并获取各种UI来自定义这个页面的行为。
             -->

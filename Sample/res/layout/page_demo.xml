@@ -271,7 +271,7 @@
                 android:layout_height="wrap_content" >
 
                 <Button
-                    android:id="@+id/btnLinkedIn"
+                    android:id="@+id/btnShareLinkedIn"
                     android:layout_width="fill_parent"
                     android:layout_height="44dp"
                     android:layout_margin="5dp"

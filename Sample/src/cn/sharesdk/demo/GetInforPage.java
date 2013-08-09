@@ -9,7 +9,6 @@
 package cn.sharesdk.demo;
 
 import java.util.HashMap;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,9 +23,10 @@ import cn.sharesdk.douban.Douban;
 import cn.sharesdk.evernote.Evernote;
 import cn.sharesdk.facebook.Facebook;
 import cn.sharesdk.foursquare.FourSquare;
-import cn.sharesdk.framework.AbstractWeibo;
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
-import cn.sharesdk.framework.WeiboActionListener;
 import cn.sharesdk.kaixin.KaiXin;
 import cn.sharesdk.linkedin.LinkedIn;
 import cn.sharesdk.netease.microblog.NetEaseMicroBlog;
@@ -48,7 +48,7 @@ import cn.sharesdk.youdao.YouDao;
  * 如果资料获取成功，会通过{@link JsonPage}展示
  */
 public class GetInforPage extends Activity implements Callback,
-		OnClickListener, WeiboActionListener {
+		OnClickListener, PlatformActionListener {
 	private int type; // 0：自己；1：他人
 	private TitleLayout llTitle;
 	private Handler handler;
@@ -103,8 +103,8 @@ public class GetInforPage extends Activity implements Callback,
 		}
 
 		if (name != null) {
-			AbstractWeibo weibo = AbstractWeibo.getWeibo(this, name);
-			weibo.setWeiboActionListener(this);
+			Platform plat = ShareSDK.getPlatform(this, name);
+			plat.setPlatformActionListener(this);
 			String account = null;
 			if ("SinaWeibo".equals(name)) {
 				account = MainAdapter.SDK_SINAWEIBO_UID;
@@ -112,19 +112,16 @@ public class GetInforPage extends Activity implements Callback,
 			else if ("TencentWeibo".equals(name)) {
 				account = MainAdapter.SDK_TENCENTWEIBO_UID;
 			}
-			weibo.showUser(type == 0 ? null : account);
-//			Ln.e("list friend page %s", page);
-//			weibo.listFriend(10, page, account);
-//			page ++;
+			plat.showUser(type == 0 ? null : account);
 		}
 	}
 
-	public void onComplete(AbstractWeibo weibo, int action,
+	public void onComplete(Platform plat, int action,
 			HashMap<String, Object> res) {
 		Message msg = new Message();
 		msg.arg1 = 1;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = plat;
 		handler.sendMessage(msg);
 
 		Message msg2 = new Message();
@@ -135,21 +132,21 @@ public class GetInforPage extends Activity implements Callback,
 		handler.sendMessage(msg2);
 	}
 
-	public void onError(AbstractWeibo weibo, int action, Throwable t) {
+	public void onError(Platform palt, int action, Throwable t) {
 		t.printStackTrace();
 
 		Message msg = new Message();
 		msg.arg1 = 2;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = palt;
 		handler.sendMessage(msg);
 	}
 
-	public void onCancel(AbstractWeibo weibo, int action) {
+	public void onCancel(Platform plat, int action) {
 		Message msg = new Message();
 		msg.arg1 = 3;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = plat;
 		handler.sendMessage(msg);
 	}
 
@@ -164,19 +161,19 @@ public class GetInforPage extends Activity implements Callback,
 			}
 			break;
 			default: {
-				AbstractWeibo weibo = (AbstractWeibo) msg.obj;
+				Platform plat = (Platform) msg.obj;
 				String text = MainActivity.actionToString(msg.arg2);
 				switch (msg.arg1) {
 					case 1: { // 成功
-						text = weibo.getName() + " completed at " + text;
+						text = plat.getName() + " completed at " + text;
 					}
 					break;
 					case 2: { // 失败
-						text = weibo.getName() + " caught error at " + text;
+						text = plat.getName() + " caught error at " + text;
 					}
 					break;
 					case 3: { // 取消
-						text = weibo.getName() + " canceled at " + text;
+						text = plat.getName() + " canceled at " + text;
 					}
 					break;
 				}

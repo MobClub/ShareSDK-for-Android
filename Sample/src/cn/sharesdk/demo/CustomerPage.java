@@ -11,9 +11,10 @@ package cn.sharesdk.demo;
 import java.util.HashMap;
 import cn.sharesdk.douban.Douban;
 import cn.sharesdk.facebook.Facebook;
-import cn.sharesdk.framework.AbstractWeibo;
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
-import cn.sharesdk.framework.WeiboActionListener;
 import cn.sharesdk.kaixin.KaiXin;
 import cn.sharesdk.netease.microblog.NetEaseMicroBlog;
 import cn.sharesdk.renren.Renren;
@@ -34,7 +35,7 @@ import m.framework.ui.widget.slidingmenu.SlidingMenu;
 
 /** 自定义接口的演示页面 */
 public class CustomerPage extends SlidingMenuPage implements
-		OnClickListener, WeiboActionListener {
+		OnClickListener, PlatformActionListener {
 	/** 豆瓣自定义事件代码 */
 	private static final short ACTION_DOUBAN = 1;
 	/** Facebook自定义事件代码 */
@@ -103,8 +104,8 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void doubanEvent() {
-		Douban douban = new Douban(menu.getContext());
-		douban.setWeiboActionListener(this);
+		Platform douban = ShareSDK.getPlatform(menu.getContext(), Douban.NAME);
+		douban.setPlatformActionListener(this);
 		String url = "https://api.douban.com/shuo/v2/users/search";
 		String method = "GET";
 		short customerAction = ACTION_DOUBAN;
@@ -114,8 +115,8 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void facebookEvent() {
-		Facebook facebook = new Facebook(menu.getContext());
-		facebook.setWeiboActionListener(this);
+		Platform facebook = ShareSDK.getPlatform(menu.getContext(), Facebook.NAME);
+		facebook.setPlatformActionListener(this);
 		String url = "https://graph.facebook.com/me/notifications";
 		String method = "GET";
 		short customerAction = ACTION_FACEBOOK;
@@ -123,8 +124,8 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void neteaseMb() {
-		NetEaseMicroBlog nemb = new NetEaseMicroBlog(menu.getContext());
-		nemb.setWeiboActionListener(this);
+		Platform nemb = ShareSDK.getPlatform(menu.getContext(), NetEaseMicroBlog.NAME);
+		nemb.setPlatformActionListener(this);
 		String url = "https://api.t.163.com/trends/recommended.json";
 		String method = "GET";
 		short customerAction = ACTION_NETEASEMB;
@@ -132,22 +133,21 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void renren() {
-		Renren renren = new Renren(menu.getContext());
-		renren.setWeiboActionListener(this);
-		String url = "https://api.renren.com/restserver.do";
+		Platform renren = ShareSDK.getPlatform(menu.getContext(), Renren.NAME);
+		renren.setPlatformActionListener(this);
+		String url = "https://api.renren.com/v2/photo/upload";
 		String method = "POST";
 		short customerAction = ACTION_RENREN;
 		HashMap<String, Object> values = new HashMap<String, Object>();
-		values.put("method", "photos.upload");
-		values.put("caption", "Share SDK customer protocol test");
+		values.put("description", "Share SDK customer protocol test");
 		HashMap<String, String> filePathes = new HashMap<String, String>();
-		filePathes.put("upload", MainActivity.TEST_IMAGE);
+		filePathes.put("file", MainActivity.TEST_IMAGE);
 		renren.customerProtocol(url, method, customerAction, values, filePathes);
 	}
 
 	private void sinaWeibo() {
-		SinaWeibo weibo = new SinaWeibo(menu.getContext());
-		weibo.setWeiboActionListener(this);
+		Platform weibo = ShareSDK.getPlatform(menu.getContext(), SinaWeibo.NAME);
+		weibo.setPlatformActionListener(this);
 		String url = "https://api.weibo.com/2/statuses/friends_timeline.json";
 		String method = "GET";
 		short customerAction = ACTION_SINAWEIBO;
@@ -158,8 +158,8 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void qzone() {
-		QZone qzone = new QZone(menu.getContext());
-		qzone.setWeiboActionListener(this);
+		Platform qzone = ShareSDK.getPlatform(menu.getContext(), QZone.NAME);
+		qzone.setPlatformActionListener(this);
 		String url = "https://graph.qq.com/blog/add_one_blog";
 		String method = "POST";
 		short customerAction = ACTION_QZONE;
@@ -170,8 +170,8 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void tencentWeibo() {
-		TencentWeibo weibo = new TencentWeibo(menu.getContext());
-		weibo.setWeiboActionListener(this);
+		Platform weibo = ShareSDK.getPlatform(menu.getContext(), TencentWeibo.NAME);
+		weibo.setPlatformActionListener(this);
 		String url = "https://open.t.qq.com/api/friends/fanslist";
 		String method = "GET";
 		short customerAction = ACTION_TENCENTWEIBO;
@@ -183,8 +183,8 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void twitter() {
-		Twitter twitter = new Twitter(menu.getContext());
-		twitter.setWeiboActionListener(this);
+		Platform twitter = ShareSDK.getPlatform(menu.getContext(), Twitter.NAME);
+		twitter.setPlatformActionListener(this);
 		String url = "https://api.twitter.com/1.1/statuses/home_timeline.json";
 		String method = "GET";
 		short customerAction = ACTION_TWITTER;
@@ -194,8 +194,8 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void kaixin() {
-		KaiXin kaixin = new KaiXin(menu.getContext());
-		kaixin.setWeiboActionListener(this);
+		Platform kaixin = ShareSDK.getPlatform(menu.getContext(), KaiXin.NAME);
+		kaixin.setPlatformActionListener(this);
 		String url = "https://api.kaixin001.com/users/mfriends.json";
 		String method = "GET";
 		short customerAction = ACTION_KAIXIN;
@@ -205,8 +205,8 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void sohuMb() {
-		SohuMicroBlog shmb = new SohuMicroBlog(menu.getContext());
-		shmb.setWeiboActionListener(this);
+		Platform shmb = ShareSDK.getPlatform(menu.getContext(), SohuMicroBlog.NAME);
+		shmb.setPlatformActionListener(this);
 		String url = "https://api.t.sohu.com/statuses/friends.json";
 		String method = "GET";
 		short customerAction = ACTION_SOHUMB;
@@ -217,16 +217,15 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void youdaoNote() {
-		YouDao youdao = new YouDao(menu.getContext());
-		youdao.setWeiboActionListener(this);
+		Platform youdao = ShareSDK.getPlatform(menu.getContext(), YouDao.NAME);
+		youdao.setPlatformActionListener(this);
 		String url = "http://note.youdao.com/yws/open/notebook/all.json";
 		String method = "POST";
 		short customerAction = ACTION_YOUDAONOTE;
 		youdao.customerProtocol(url, method, customerAction, null, null);
 	}
 
-	public void onComplete(AbstractWeibo weibo, int action,
-			HashMap<String, Object> res) {
+	public void onComplete(Platform plat, int action, HashMap<String, Object> res) {
 		JsonUtils ju = new JsonUtils();
 		String json = ju.format(ju.fromHashMap(res));
 		System.out.println(json);
@@ -238,21 +237,21 @@ public class CustomerPage extends SlidingMenuPage implements
 		handler.sendMessage(msg);
 	}
 
-	public void onCancel(AbstractWeibo weibo, int action) {
+	public void onCancel(Platform plat, int action) {
 		Message msg = new Message();
 		msg.arg1 = 3;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = plat;
 		handler.sendMessage(msg);
 	}
 
-	public void onError(AbstractWeibo weibo, int action, Throwable t) {
+	public void onError(Platform plat, int action, Throwable t) {
 		t.printStackTrace();
 
 		Message msg = new Message();
 		msg.arg1 = 2;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = plat;
 		handler.sendMessage(msg);
 	}
 
@@ -274,16 +273,16 @@ public class CustomerPage extends SlidingMenuPage implements
 			}
 			break;
 			case 2: { // 失败
-				AbstractWeibo weibo = (AbstractWeibo) msg.obj;
+				Platform plat = (Platform) msg.obj;
 				String text = actionToString(msg.arg2);
-				text = weibo.getName() + " caught error at " + text;
+				text = plat.getName() + " caught error at " + text;
 				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
 			}
 			break;
 			case 3: { // 取消
-				AbstractWeibo weibo = (AbstractWeibo) msg.obj;
+				Platform plat = (Platform) msg.obj;
 				String text = actionToString(msg.arg2);
-				text = weibo.getName() + " canceled at " + text;
+				text = plat.getName() + " canceled at " + text;
 				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
 			}
 			break;
@@ -295,15 +294,15 @@ public class CustomerPage extends SlidingMenuPage implements
 	/** 将action转换为String */
 	private String actionToString(int action) {
 		switch (action) {
-			case AbstractWeibo.ACTION_AUTHORIZING: return "ACTION_AUTHORIZING";
-			case AbstractWeibo.ACTION_GETTING_FRIEND_LIST: return "ACTION_GETTING_FRIEND_LIST";
-			case AbstractWeibo.ACTION_FOLLOWING_USER: return "ACTION_FOLLOWING_USER";
-			case AbstractWeibo.ACTION_SENDING_DIRECT_MESSAGE: return "ACTION_SENDING_DIRECT_MESSAGE";
-			case AbstractWeibo.ACTION_TIMELINE: return "ACTION_TIMELINE";
-			case AbstractWeibo.ACTION_USER_INFOR: return "ACTION_USER_INFOR";
-			case AbstractWeibo.ACTION_SHARE: return "ACTION_SHARE";
+			case Platform.ACTION_AUTHORIZING: return "ACTION_AUTHORIZING";
+			case Platform.ACTION_GETTING_FRIEND_LIST: return "ACTION_GETTING_FRIEND_LIST";
+			case Platform.ACTION_FOLLOWING_USER: return "ACTION_FOLLOWING_USER";
+			case Platform.ACTION_SENDING_DIRECT_MESSAGE: return "ACTION_SENDING_DIRECT_MESSAGE";
+			case Platform.ACTION_TIMELINE: return "ACTION_TIMELINE";
+			case Platform.ACTION_USER_INFOR: return "ACTION_USER_INFOR";
+			case Platform.ACTION_SHARE: return "ACTION_SHARE";
 			default: {
-				short customerAction = (short) (action & AbstractWeibo.CUSTOMER_ACTION_MASK);
+				short customerAction = (short) (action & Platform.CUSTOMER_ACTION_MASK);
 				switch(customerAction) {
 					case ACTION_DOUBAN: return "ACTION_DOUBAN";
 					case ACTION_FACEBOOK: return "ACTION_FACEBOOK";

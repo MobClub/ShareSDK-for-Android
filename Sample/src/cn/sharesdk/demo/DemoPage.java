@@ -14,13 +14,14 @@ import cn.sharesdk.douban.Douban;
 import cn.sharesdk.evernote.Evernote;
 import cn.sharesdk.facebook.Facebook;
 import cn.sharesdk.foursquare.FourSquare;
-import cn.sharesdk.framework.AbstractWeibo;
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
-import cn.sharesdk.framework.WeiboActionListener;
 import cn.sharesdk.kaixin.KaiXin;
 import cn.sharesdk.linkedin.LinkedIn;
 import cn.sharesdk.netease.microblog.NetEaseMicroBlog;
-import cn.sharesdk.onekeyshare.ShareAllGird;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.renren.Renren;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.sohu.microblog.SohuMicroBlog;
@@ -41,7 +42,7 @@ import android.widget.Toast;
  *无页面直接分享、授权、关注和不同平台的分享等等功能。
  */
 public class DemoPage extends SlidingMenuPage implements
-		OnClickListener, WeiboActionListener {
+		OnClickListener, PlatformActionListener {
 	private TitleLayout llTitle;
 
 	public DemoPage(SlidingMenu menu) {
@@ -72,7 +73,7 @@ public class DemoPage extends SlidingMenuPage implements
 		pageView.findViewById(R.id.btnShareSh).setOnClickListener(this);
 		pageView.findViewById(R.id.btnShareKaiXin).setOnClickListener(this);
 		pageView.findViewById(R.id.btnShareYouDao).setOnClickListener(this);
-		pageView.findViewById(R.id.btnLinkedIn).setOnClickListener(this);
+		pageView.findViewById(R.id.btnShareLinkedIn).setOnClickListener(this);
 		pageView.findViewById(R.id.btnShareFourSquare).setOnClickListener(this);
 	}
 
@@ -81,63 +82,35 @@ public class DemoPage extends SlidingMenuPage implements
 				.inflate(R.layout.page_demo, null);
 	}
 
-	// 使用快捷分享完成分享
+	// 使用快捷分享完成分享（请务必仔细阅读位于SDK解压目录下Docs文件夹中OnekeyShare类的JavaDoc）
 	private void showShare(boolean silent, String platform) {
-		Intent i = getShareIntent(silent, platform);
-		new ShareAllGird(menu.getContext()).show(i);
-	}
-
-	private Intent getShareIntent(boolean silent, String platform) {
-		Intent i = new Intent();
-		// 分享时Notification的图标
-		i.putExtra("notif_icon", R.drawable.ic_launcher);
-		// 分享时Notification的标题
-		i.putExtra("notif_title", menu.getContext().getString(R.string.app_name));
-
-		// address是接收人地址，仅在信息和邮件使用，否则可以不提供
-		i.putExtra("address", "12345678901");
-		// title标题，在印象笔记、邮箱、信息、微信（包括好友和朋友圈）、人人网和QQ空间使用，否则可以不提供
-		i.putExtra("title", menu.getContext().getString(R.string.share));
-		// titleUrl是标题的网络链接，仅在人人网和QQ空间使用，否则可以不提供
-		i.putExtra("titleUrl", "http://sharesdk.cn");
-		// text是分享文本，所有平台都需要这个字段
-		i.putExtra("text", menu.getContext().getString(R.string.share_content));
-		// imagePath是本地的图片路径，除Linked-In外的所有平台都支持这个字段
-		i.putExtra("imagePath", MainActivity.TEST_IMAGE);
-		// imageUrl是图片的网络路径，新浪微博、人人网、QQ空间和Linked-In支持此字段
-		i.putExtra("imageUrl", "http://img.appgo.cn/imgs/sharesdk/content/2013/06/13/1371120300254.jpg");
-		// url仅在微信（包括好友和朋友圈）中使用，否则可以不提供
-		i.putExtra("url", "http://sharesdk.cn");
-		// thumbPath是缩略图的本地路径，仅在微信（包括好友和朋友圈）中使用，否则可以不提供
-		i.putExtra("thumbPath", MainActivity.TEST_IMAGE);
-		// appPath是待分享应用程序的本地路劲，仅在微信（包括好友和朋友圈）中使用，否则可以不提供
-		i.putExtra("appPath", MainActivity.TEST_IMAGE);
-		// comment是我对这条分享的评论，仅在人人网和QQ空间使用，否则可以不提供
-		i.putExtra("comment", menu.getContext().getString(R.string.share));
-		// site是分享此内容的网站名称，仅在QQ空间使用，否则可以不提供
-		i.putExtra("site", menu.getContext().getString(R.string.app_name));
-		// siteUrl是分享此内容的网站地址，仅在QQ空间使用，否则可以不提供
-		i.putExtra("siteUrl", "http://sharesdk.cn");
-
-		// foursquare分享时的地方名
-		i.putExtra("venueName", "Southeast in China");
-		// foursquare分享时的地方描述
-		i.putExtra("venueDescription", "This is a beautiful place!");
-		// foursquare分享时的地方纬度
-		i.putExtra("latitude", 23.122619f);
-		// foursquare分享时的地方经度
-		i.putExtra("longitude", 113.372338f);
-
+		OnekeyShare oks = new OnekeyShare();
+		oks.setNotification(R.drawable.ic_launcher, menu.getContext().getString(R.string.app_name));
+		oks.setAddress("12345678901");
+		oks.setTitle(menu.getContext().getString(R.string.share));
+		oks.setTitleUrl("http://sharesdk.cn");
+		oks.setText(menu.getContext().getString(R.string.share_content));
+		oks.setImagePath(MainActivity.TEST_IMAGE);
+		oks.setImageUrl("http://img.appgo.cn/imgs/sharesdk/content/2013/07/25/1374723172663.jpg");
+		oks.setUrl("http://sharesdk.cn");
+		oks.setAppPath(MainActivity.TEST_IMAGE);
+		oks.setComment(menu.getContext().getString(R.string.share));
+		oks.setSite(menu.getContext().getString(R.string.app_name));
+		oks.setSiteUrl("http://sharesdk.cn");
+		oks.setVenueName("Southeast in China");
+		oks.setVenueDescription("This is a beautiful place!");
+		oks.setAppName("ShareSDK");
+		oks.setLatitude(23.122619f);
+		oks.setLongitude(113.372338f);
+		oks.setSilent(silent);
 		if (platform != null) {
-			// platform是平台名称
-			i.putExtra("platform", platform);
+			oks.setPlatform(platform);
 		}
-		// 是否直接分享
-		i.putExtra("silent", silent);
-		// 设置自定义的外部回调
-		i.putExtra("callback", OneKeyShareCallback.class.getName());
+		// 去除注释，则快捷分享的分享加过将听过OneKeyShareCallback回调
+//		oks.setCallback(new OneKeyShareCallback());
+		oks.setShareContentCustomizeCallback(new ShareContentCustomizeDemo());
 
-		return i;
+		oks.show(menu.getContext());
 	}
 
 	/** 操作演示的代码集中于此方法 */
@@ -165,18 +138,16 @@ public class DemoPage extends SlidingMenuPage implements
 			break;
 			case R.id.btnFlSw: {
 				// 关注新浪微博
-				AbstractWeibo weibo = AbstractWeibo.getWeibo(
-						menu.getContext(), SinaWeibo.NAME);
-				weibo.setWeiboActionListener(this);
-				weibo.followFriend(MainAdapter.SDK_SINAWEIBO_UID);
+				Platform plat = ShareSDK.getPlatform(menu.getContext(), SinaWeibo.NAME);
+				plat.setPlatformActionListener(this);
+				plat.followFriend(MainAdapter.SDK_SINAWEIBO_UID);
 			}
 			break;
 			case R.id.btnFlTc: {
 				// 关注腾讯微博
-				AbstractWeibo weibo = AbstractWeibo.getWeibo(
-						menu.getContext(), TencentWeibo.NAME);
-				weibo.setWeiboActionListener(this);
-				weibo.followFriend(MainAdapter.SDK_TENCENTWEIBO_UID);
+				Platform plat = ShareSDK.getPlatform(menu.getContext(), TencentWeibo.NAME);
+				plat.setPlatformActionListener(this);
+				plat.followFriend(MainAdapter.SDK_TENCENTWEIBO_UID);
 			}
 			break;
 			case R.id.btnGetToken: {
@@ -208,119 +179,120 @@ public class DemoPage extends SlidingMenuPage implements
 			break;
 			case R.id.btnShareSw: {
 				// 分享到新浪微博
-				showShare(false, SinaWeibo.NAME);
+				showShare(true, SinaWeibo.NAME);
 			}
 			break;
 			case R.id.btnShareTc: {
 				// 分享到腾讯微博
-				showShare(false, TencentWeibo.NAME);
+				showShare(true, TencentWeibo.NAME);
 			}
 			break;
 			case R.id.btnShareFb: {
 				// 分享到facebook
-				showShare(false, Facebook.NAME);
+				showShare(true, Facebook.NAME);
 			}
 			break;
 			case R.id.btnShareTw: {
 				// 分享到twitter
-				showShare(false, Twitter.NAME);
+				showShare(true, Twitter.NAME);
 			}
 			break;
 			case R.id.btnShareRr: {
 				// 分享到人人网
-				showShare(false, Renren.NAME);
+				showShare(true, Renren.NAME);
 			}
 			break;
 			case R.id.btnShareQz: {
 				// 分享到qq空间
-				showShare(false, QZone.NAME);
+				showShare(true, QZone.NAME);
 			}
 			break;
 			case R.id.btnShareDb: {
 				// 分享到豆瓣
-				showShare(false, Douban.NAME);
+				showShare(true, Douban.NAME);
 			}
 			break;
 			case R.id.btnShareEn: {
 				// 分享到印象笔记
-				showShare(false, Evernote.NAME);
+				showShare(true, Evernote.NAME);
 			}
 			break;
 			case R.id.btnShareNemb: {
 				// 分享到网易微博
-				showShare(false, NetEaseMicroBlog.NAME);
+				showShare(true, NetEaseMicroBlog.NAME);
 			}
 			break;
 			case R.id.btnShareSh: {
 				// 分享到搜狐微博
-				showShare(false, SohuMicroBlog.NAME);
+				showShare(true, SohuMicroBlog.NAME);
 			}
 			break;
 			case R.id.btnShareKaiXin: {
 				// 分享到开心网
-				showShare(false, KaiXin.NAME);
+				showShare(true, KaiXin.NAME);
 			}
 			break;
 			case R.id.btnLinkedIn: {
 				// 分享到有道云笔记
-				showShare(false, LinkedIn.NAME);
+				showShare(true, LinkedIn.NAME);
 			}
 			break;
 			case R.id.btnShareYouDao: {
 				// 分享到有道云笔记
-				showShare(false, YouDao.NAME);
+				showShare(true, YouDao.NAME);
 			}
 			break;
 			case R.id.btnShareFourSquare: {
 				// 分享到foursquare
-				showShare(false, FourSquare.NAME);
+				showShare(true, FourSquare.NAME);
 			}
 			break;
 		}
 	}
 
-	public void onComplete(AbstractWeibo weibo, int action,
+	public void onComplete(Platform plat, int action,
 			HashMap<String, Object> res) {
+
 		Message msg = new Message();
 		msg.arg1 = 1;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = plat;
 		handler.sendMessage(msg);
 	}
 
-	public void onCancel(AbstractWeibo weibo, int action) {
+	public void onCancel(Platform palt, int action) {
 		Message msg = new Message();
 		msg.arg1 = 3;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = palt;
 		handler.sendMessage(msg);
 	}
 
-	public void onError(AbstractWeibo weibo, int action, Throwable t) {
+	public void onError(Platform palt, int action, Throwable t) {
 		t.printStackTrace();
 
 		Message msg = new Message();
 		msg.arg1 = 2;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = palt;
 		handler.sendMessage(msg);
 	}
 
 	/** 处理操作结果 */
 	public boolean handleMessage(Message msg) {
-		AbstractWeibo weibo = (AbstractWeibo) msg.obj;
+		Platform plat = (Platform) msg.obj;
 		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
 			case 1: { // 成功
-				text = weibo.getName() + " completed at " + text;
+				text = plat.getName() + " completed at " + text;
 			}
 			break;
 			case 2: { // 失败
-				text = weibo.getName() + " caught error at " + text;
+				text = plat.getName() + " caught error at " + text;
 			}
 			break;
 			case 3: { // 取消
-				text = weibo.getName() + " canceled at " + text;
+				text = plat.getName() + " canceled at " + text;
 			}
 			break;
 		}

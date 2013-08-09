@@ -9,8 +9,9 @@
 package cn.sharesdk.demo;
 
 import java.util.HashMap;
-import cn.sharesdk.framework.AbstractWeibo;
-import cn.sharesdk.framework.WeiboActionListener;
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
 import android.content.Context;
@@ -38,7 +39,7 @@ import m.framework.ui.widget.slidingmenu.SlidingMenuItem;
  * 复制完成侧栏目录的展示、事件的监听、页面主体的显示和切换等等业务。
  */
 public class MainAdapter extends MenuAdapter
-		implements Callback, WeiboActionListener {
+		implements Callback, PlatformActionListener {
 	/** 接口分组 */
 	public static final int GROUP_DEMO = 1;
 	/** “更多”分组 */
@@ -219,17 +220,15 @@ public class MainAdapter extends MenuAdapter
 			case GROUP_MORE: {
 				switch(item.id) {
 					case ITEM_FOLLOW_SINAWEIBO: {
-						AbstractWeibo weibo = AbstractWeibo.getWeibo(
-								menu.getContext(), SinaWeibo.NAME);
-						weibo.setWeiboActionListener(this);
-						weibo.followFriend(SDK_SINAWEIBO_UID);
+						Platform plat = ShareSDK.getPlatform(menu.getContext(), SinaWeibo.NAME);
+						plat.setPlatformActionListener(this);
+						plat.followFriend(SDK_SINAWEIBO_UID);
 					}
 					break;
 					case ITEM_FOLLOW_TECENTWEIBO: {
-						AbstractWeibo weibo = AbstractWeibo.getWeibo(
-								menu.getContext(), TencentWeibo.NAME);
-						weibo.setWeiboActionListener(this);
-						weibo.followFriend(SDK_TENCENTWEIBO_UID);
+						Platform plat = ShareSDK.getPlatform(menu.getContext(), TencentWeibo.NAME);
+						plat.setPlatformActionListener(this);
+						plat.followFriend(SDK_TENCENTWEIBO_UID);
 					}
 					break;
 					case ITEM_VISIT_WECHAT: {
@@ -261,47 +260,47 @@ public class MainAdapter extends MenuAdapter
 		return false;
 	}
 
-	public void onComplete(AbstractWeibo weibo, int action,
+	public void onComplete(Platform plat, int action,
 			HashMap<String, Object> res) {
 		Message msg = new Message();
 		msg.arg1 = 1;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = plat;
 		handler.sendMessage(msg);
 	}
 
-	public void onCancel(AbstractWeibo weibo, int action) {
+	public void onCancel(Platform plat, int action) {
 		Message msg = new Message();
 		msg.arg1 = 3;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = plat;
 		handler.sendMessage(msg);
 	}
 
-	public void onError(AbstractWeibo weibo, int action, Throwable t) {
+	public void onError(Platform plat, int action, Throwable t) {
 		t.printStackTrace();
 
 		Message msg = new Message();
 		msg.arg1 = 2;
 		msg.arg2 = action;
-		msg.obj = weibo;
+		msg.obj = plat;
 		handler.sendMessage(msg);
 	}
 
 	public boolean handleMessage(Message msg) {
-		AbstractWeibo weibo = (AbstractWeibo) msg.obj;
+		Platform palt = (Platform) msg.obj;
 		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
 			case 1: { // 成功
-				text = weibo.getName() + " completed at " + text;
+				text = palt.getName() + " completed at " + text;
 			}
 			break;
 			case 2: { // 取消
-				text = weibo.getName() + " caught error at " + text;
+				text = palt.getName() + " caught error at " + text;
 			}
 			break;
 			case 3: { // 失败
-				text = weibo.getName() + " canceled at " + text;
+				text = palt.getName() + " canceled at " + text;
 			}
 			break;
 		}
