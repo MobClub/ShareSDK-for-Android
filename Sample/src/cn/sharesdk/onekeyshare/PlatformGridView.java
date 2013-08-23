@@ -121,8 +121,9 @@ public class PlatformGridView extends LinearLayout implements
 			return;
 		}
 
-		// 设置页面指示器
 		LinearLayout llPoints = new LinearLayout(context);
+		// 如果页面总是超过1，则设置页面指示器
+		llPoints.setVisibility(pageCount > 1 ? View.VISIBLE: View.GONE);
 		LayoutParams lpLl = new LayoutParams(
 				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 		lpLl.gravity = Gravity.CENTER_HORIZONTAL;

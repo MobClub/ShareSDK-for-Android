@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ShareSDK</string>
-    <integer name="app_version_code">16</integer>
-    <string name="app_version">2.0.1</string>
+    <integer name="app_version_code">17</integer>
+    <string name="app_version">2.0.2</string>
     <string name="proj_name">ShareSDK</string>
     
     <string name="more">更多</string>
@@ -37,6 +37,7 @@
 	<string name="demo_share_to_foursquare">分享FourSquare</string>
 	<string name="demo_share_to_linked_in">分享Linkedin</string>
 	<string name="demo_share_to_qq_friend">分享到QQ好友</string>
+	<string name="demo_share_to_sohu_suishenkan">分享到SOHU随身看</string>
     
 	<string name="get_token_sw">获取新浪微博AccessToken</string>
 	<string name="get_token_tc">获取腾讯微博AccessToken</string>
@@ -53,6 +54,7 @@
 	<string name="get_token_googleplus">获取Google+ AccessToken</string>
 	<string name="get_token_foursquare">获取FourSquare AccessToken</string>
 	<string name="get_token_linked_in">Linked In AccessToken</string>
+	<string name="get_token_suishenkan">获取搜狐随身看AccessToken</string>
 	
 	<string name="get_user_info_sw">获取新浪微博授权用户资料</string>
 	<string name="get_user_info_tc">获取腾讯微博授权用户资料</string>
@@ -69,6 +71,7 @@
 	<string name="get_user_info_googleplus">获取Google+授权用户资料</string>
 	<string name="get_user_info_foursquare">获取FourSquare授权用户资料</string>
 	<string name="get_user_info_linked_in">获取Linked In授权用户资料</string>
+	<string name="get_user_info_suishenkan">获取搜狐随身看授权用户资料</string>
 	
 	<string name="get_sina_friends_list">获取新浪微博关注列表</string>
 	<string name="get_tencent_friends_list">获取腾讯微博关注列表</string>
@@ -83,6 +86,7 @@
 	<string name="customer_kaixin">获取可能认识的人</string>
 	<string name="customer_sohu">获取好友列表</string>
 	<string name="customer_youdao">获取笔记本列表</string>
+	<string name="customer_suishenkan">获取搜狐随身看书签列表</string>
 	
 	<string name="not_yet_authorized">尚未授权</string>
 	<string name="share_content">ShareSDK for Android不仅集成简单、支持如QQ好友、微信、新浪微博、腾讯微博等所有社交平台，而且还有强大的统计分析管理后台，实时了解用户、信息流、回流率、传播效应等数据，详情见官网http://sharesdk.cn @ShareSDK</string>
@@ -104,4 +108,6 @@
 	<string name="share_to_moment">分享到朋友圈</string>
 	<string name="wechat_demo_title">微信分享Demo标题</string>
 	<string name="qzone_add_blog_sample"><h1>QQ互联</h1><font color='red'>轻松分享,</font><font color='green'>快乐生活。</font><a href='http://connect.qq.com'>详情请看。</a><img src='http://imgcache.qq.com/ptlogin/head/1_100.gif'></img></string>
+	<string name="wechat_client_is_not_installed_correctly">微信客户端未安装或版本太旧</string>
+	<string name="wechat_client_not_support_following_operation">微信客户端不支持第三方应用执行关注功能</string>
 </resources>

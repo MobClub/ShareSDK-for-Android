@@ -70,7 +70,7 @@
             <meta-data android:name="Adapter" android:value="cn.sharesdk.demo.MyAdapter" />
         </activity>
         <activity
-            android:name="cn.sharesdk.demo.wxapi.WXEntryActivity"
+            android:name=".wxapi.WXEntryActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:exported="true"
             android:screenOrientation="portrait" />

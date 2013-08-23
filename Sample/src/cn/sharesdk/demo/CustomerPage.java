@@ -20,6 +20,7 @@ import cn.sharesdk.netease.microblog.NetEaseMicroBlog;
 import cn.sharesdk.renren.Renren;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.sohu.microblog.SohuMicroBlog;
+import cn.sharesdk.sohu.suishenkan.SohuSuishenkan;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
 import cn.sharesdk.twitter.Twitter;
@@ -58,6 +59,8 @@ public class CustomerPage extends SlidingMenuPage implements
 	private static final short ACTION_SOHUMB = 10;
 	/** 有道云笔记自定义事件代码 */
 	private static final short ACTION_YOUDAONOTE = 11;
+	/** 搜狐随身看自定义事件代码 */
+	private static final short ACTION_SohuSuishenkan = 12;
 	private TitleLayout llTitle;
 
 	public CustomerPage(SlidingMenu menu) {
@@ -100,6 +103,7 @@ public class CustomerPage extends SlidingMenuPage implements
 			case R.id.btnKx: kaixin(); break;
 			case R.id.btnShmb: sohuMb(); break;
 			case R.id.btnYd: youdaoNote(); break;
+			case R.id.btnShSSK: SohuSuishenkan(); break;
 		}
 	}
 
@@ -135,14 +139,17 @@ public class CustomerPage extends SlidingMenuPage implements
 	private void renren() {
 		Platform renren = ShareSDK.getPlatform(menu.getContext(), Renren.NAME);
 		renren.setPlatformActionListener(this);
-		String url = "https://api.renren.com/v2/photo/upload";
-		String method = "POST";
+		String url = "https://api.renren.com/v2/user/friend/list";//"https://api.renren.com/v2/photo/upload";
+		String method = "GET";//"POST";
 		short customerAction = ACTION_RENREN;
+//		HashMap<String, Object> values = new HashMap<String, Object>();
+//		values.put("description", "Share SDK customer protocol test");
+//		HashMap<String, String> filePathes = new HashMap<String, String>();
+//		filePathes.put("file", MainActivity.TEST_IMAGE);
+//		renren.customerProtocol(url, method, customerAction, values, filePathes);
 		HashMap<String, Object> values = new HashMap<String, Object>();
-		values.put("description", "Share SDK customer protocol test");
-		HashMap<String, String> filePathes = new HashMap<String, String>();
-		filePathes.put("file", MainActivity.TEST_IMAGE);
-		renren.customerProtocol(url, method, customerAction, values, filePathes);
+		values.put("userId", Long.parseLong(renren.getDb().getUserId()));
+		renren.customerProtocol(url, method, customerAction, values, null);
 	}
 
 	private void sinaWeibo() {
@@ -223,6 +230,18 @@ public class CustomerPage extends SlidingMenuPage implements
 		String method = "POST";
 		short customerAction = ACTION_YOUDAONOTE;
 		youdao.customerProtocol(url, method, customerAction, null, null);
+	}
+
+	private void SohuSuishenkan() {
+		Platform  suiShenKan = ShareSDK.getPlatform(menu.getContext(), SohuSuishenkan.NAME);
+		suiShenKan.setPlatformActionListener(this);
+		String url = "https://api.sohu.com/rest/k/prv/1/bookmark/get-list";
+		String method = "GET";
+		short customerAction = ACTION_SohuSuishenkan;
+		HashMap<String, Object> values = new HashMap<String, Object>();
+		values.put("offset", 0);
+		values.put("limit", 10);
+		suiShenKan.customerProtocol(url, method, customerAction, values, null);
 	}
 
 	public void onComplete(Platform plat, int action, HashMap<String, Object> res) {

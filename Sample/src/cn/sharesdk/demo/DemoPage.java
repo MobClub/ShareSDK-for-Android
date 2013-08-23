@@ -25,6 +25,7 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.renren.Renren;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.sohu.microblog.SohuMicroBlog;
+import cn.sharesdk.sohu.suishenkan.SohuSuishenkan;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
 import cn.sharesdk.twitter.Twitter;
@@ -75,6 +76,7 @@ public class DemoPage extends SlidingMenuPage implements
 		pageView.findViewById(R.id.btnShareYouDao).setOnClickListener(this);
 		pageView.findViewById(R.id.btnShareLinkedIn).setOnClickListener(this);
 		pageView.findViewById(R.id.btnShareFourSquare).setOnClickListener(this);
+		pageView.findViewById(R.id.btnShareSohuSuiShenKan).setOnClickListener(this);
 	}
 
 	protected View initPage() {
@@ -92,20 +94,20 @@ public class DemoPage extends SlidingMenuPage implements
 		oks.setText(menu.getContext().getString(R.string.share_content));
 		oks.setImagePath(MainActivity.TEST_IMAGE);
 		oks.setImageUrl("http://img.appgo.cn/imgs/sharesdk/content/2013/07/25/1374723172663.jpg");
-		oks.setUrl("http://sharesdk.cn");
+		oks.setUrl("http://www.sharesdk.cn");
 		oks.setAppPath(MainActivity.TEST_IMAGE);
 		oks.setComment(menu.getContext().getString(R.string.share));
 		oks.setSite(menu.getContext().getString(R.string.app_name));
 		oks.setSiteUrl("http://sharesdk.cn");
 		oks.setVenueName("Southeast in China");
 		oks.setVenueDescription("This is a beautiful place!");
-		oks.setAppName("ShareSDK");
 		oks.setLatitude(23.122619f);
 		oks.setLongitude(113.372338f);
 		oks.setSilent(silent);
 		if (platform != null) {
 			oks.setPlatform(platform);
 		}
+
 		// 去除注释，则快捷分享的分享加过将听过OneKeyShareCallback回调
 //		oks.setCallback(new OneKeyShareCallback());
 		oks.setShareContentCustomizeCallback(new ShareContentCustomizeDemo());
@@ -247,6 +249,10 @@ public class DemoPage extends SlidingMenuPage implements
 				showShare(true, FourSquare.NAME);
 			}
 			break;
+			case R.id.btnShareSohuSuiShenKan:{
+				showShare(true, SohuSuishenkan.NAME);
+				break;
+			}
 		}
 	}
 

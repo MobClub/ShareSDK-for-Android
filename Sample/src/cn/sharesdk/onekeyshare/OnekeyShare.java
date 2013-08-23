@@ -11,7 +11,6 @@ package cn.sharesdk.onekeyshare;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map.Entry;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -19,6 +18,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Message;
 import android.os.Handler.Callback;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -145,11 +145,6 @@ public class OnekeyShare extends FakeActivity implements
 	/** foursquare分享时的地方描述 */
 	public void setVenueDescription(String venueDescription) {
 		reqMap.put("venueDescription", venueDescription);
-	}
-
-	/** appName在QQ客户端分享时使用 */
-	public void setAppName(String appName) {
-		reqMap.put("appName", appName);
 	}
 
 	/** 分享地纬度，新浪微博、腾讯微博和foursquare支持此字段 */
@@ -342,9 +337,17 @@ public class OnekeyShare extends FakeActivity implements
 			String imagePath = String.valueOf(data.get("imagePath"));
 			if (imagePath != null && (new File(imagePath)).exists()) {
 				shareType = Platform.SHARE_IMAGE;
-				String url = String.valueOf(data.get("url"));
-				if (url != null && url.length() > 0) {
+				if (data.containsKey("url") && !TextUtils.isEmpty(data.get("url").toString())) {
 					shareType = Platform.SHARE_WEBPAGE;
+				}
+			}
+			else {
+				String imageUrl = String.valueOf(data.get("imageUrl"));
+				if (imageUrl != null) {
+					shareType = Platform.SHARE_IMAGE;
+					if (data.containsKey("url") && !TextUtils.isEmpty(data.get("url").toString())) {
+						shareType = Platform.SHARE_WEBPAGE;
+					}
 				}
 			}
 			data.put("shareType", shareType);

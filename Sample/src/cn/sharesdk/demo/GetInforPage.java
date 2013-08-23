@@ -33,6 +33,7 @@ import cn.sharesdk.netease.microblog.NetEaseMicroBlog;
 import cn.sharesdk.renren.Renren;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.sohu.microblog.SohuMicroBlog;
+import cn.sharesdk.sohu.suishenkan.SohuSuishenkan;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
 import cn.sharesdk.twitter.Twitter;
@@ -100,6 +101,7 @@ public class GetInforPage extends Activity implements Callback,
 			case R.id.btnYdao: name = YouDao.NAME; break;
 			case R.id.btnFsquare: name = FourSquare.NAME; break;
 			case R.id.btnLinkedIn: name = LinkedIn.NAME; break;
+			case R.id.btnSuiShenKan: name = SohuSuishenkan.NAME; break;
 		}
 
 		if (name != null) {

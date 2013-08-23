@@ -290,6 +290,31 @@
                     android:text="@string/demo_share_to_foursquare"
                     android:textSize="16dp" />
             </LinearLayout>
+             <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/btnShareSohuSuiShenKan"
+                    android:layout_width="fill_parent"
+                    android:layout_height="44dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_back"
+                    android:text="@string/demo_share_to_sohu_suishenkan"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:id="@+id/btnNoUsed"
+                    android:layout_width="fill_parent"
+                    android:layout_height="44dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_back"
+                    android:text="@string/demo_share_to_foursquare"
+                    android:textSize="16dp" 
+                    android:visibility="invisible"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

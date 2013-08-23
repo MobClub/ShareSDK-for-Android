@@ -30,6 +30,7 @@ import cn.sharesdk.netease.microblog.NetEaseMicroBlog;
 import cn.sharesdk.renren.Renren;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.sohu.microblog.SohuMicroBlog;
+import cn.sharesdk.sohu.suishenkan.SohuSuishenkan;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
 import cn.sharesdk.twitter.Twitter;
@@ -70,6 +71,7 @@ public class AuthPage extends SlidingMenuPage implements
 		pageView.findViewById(R.id.ctvYouDao).setOnClickListener(this);
 		pageView.findViewById(R.id.ctvFourSquare).setOnClickListener(this);
 		pageView.findViewById(R.id.ctvLinkedin).setOnClickListener(this);
+		pageView.findViewById(R.id.ctvSuishenkan).setOnClickListener(this);
 
 		// 获取平台列表
 		Platform[] platforms = ShareSDK.getPlatformList(menu.getContext());
@@ -147,6 +149,7 @@ public class AuthPage extends SlidingMenuPage implements
 			case R.id.ctvYouDao: name = YouDao.NAME; break;
 			case R.id.ctvFourSquare: name = FourSquare.NAME; break;
 			case R.id.ctvLinkedin: name = LinkedIn.NAME; break;
+			case R.id.ctvSuishenkan: name = SohuSuishenkan.NAME; break;
 		}
 
 		if (name != null) {
@@ -207,6 +210,9 @@ public class AuthPage extends SlidingMenuPage implements
 		}
 		else if (LinkedIn.NAME.equals(name)) {
 			v = pageView.findViewById(R.id.ctvLinkedin);
+		}
+		else if(SohuSuishenkan.NAME.equals(name)){
+			v = pageView.findViewById(R.id.ctvSuishenkan);
 		}
 		if (v == null) {
 			return null;
@@ -271,6 +277,9 @@ public class AuthPage extends SlidingMenuPage implements
 		}
 		else if (LinkedIn.NAME.equals(name)) {
 			res = R.string.linkedin;
+		}
+		else if(SohuSuishenkan.NAME.equals(name)){
+			res = R.string.sohusuishenkan;;
 		}
 		if (res == 0) {
 			return name;

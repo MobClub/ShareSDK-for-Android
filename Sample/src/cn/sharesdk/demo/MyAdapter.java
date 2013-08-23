@@ -39,7 +39,10 @@ public class MyAdapter extends AuthorizeAdapter implements OnClickListener,
 
 	public void onCreate() {
 		// 隐藏标题栏右部的Share SDK Logo
-		// hideShareSDKLogo();
+		//hideShareSDKLogo();
+
+//		TitleLayout llTitle = getTitleLayout();
+//		llTitle.getTvTitle().setText("xxxx");
 
 		String platName = getPlatformName();
 		if (SinaWeibo.NAME.equals(platName)
@@ -51,11 +54,26 @@ public class MyAdapter extends AuthorizeAdapter implements OnClickListener,
 
 		// 使弹出动画失效，只能在onCreate中调用，否则无法起作用
 		// disablePopUpAnimation();
+
+		// 下面的代码演示如何设置自定义的授权页面打开动画
+//		disablePopUpAnimation();
+//		View rv = (View) getBodyView().getParent();
+//		TranslateAnimation ta = new TranslateAnimation(
+//				Animation.RELATIVE_TO_SELF, -1,
+//				Animation.RELATIVE_TO_SELF, 0,
+//				Animation.RELATIVE_TO_SELF, 0,
+//				Animation.RELATIVE_TO_SELF, 0);
+//		ta.setDuration(500);
+//		rv.setAnimation(ta);
 	}
 
 	private void initUi(String platName) {
 		ctvFollow = new CheckedTextView(getActivity());
-		ctvFollow.setBackgroundResource(R.drawable.auth_follow_bg);
+		try {
+			ctvFollow.setBackgroundResource(R.drawable.auth_follow_bg);
+		} catch (Throwable t) {
+			t.printStackTrace();
+		}
 		ctvFollow.setChecked(true);
 		int dp_10 = cn.sharesdk.framework.utils.R.dipToPx(getActivity(), 10);
 		ctvFollow.setCompoundDrawablePadding(dp_10);

@@ -16,6 +16,8 @@ import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
@@ -232,19 +234,54 @@ public class MainAdapter extends MenuAdapter
 					}
 					break;
 					case ITEM_VISIT_WECHAT: {
+						String packageName = "com.tencent.mm";
+						PackageInfo pi = null;
 						try {
-							Intent i = new Intent(Intent.ACTION_VIEW);
-							i.setData(Uri.parse(WECHAT_ADDR));
-							i.setPackage("com.tencent.mm");
-							menu.getContext().startActivity(i);
-						} catch(Throwable t) {
-							System.err.println("wechat client is not installed correctly or its version is too old.");
-
-							Intent i = new Intent(Intent.ACTION_VIEW);
-							i.setData(Uri.parse(WECHAT_ADDR));
-							String title = menu.getContext().getString(R.string.plz_choose_wechat);
-							menu.getContext().startActivity(Intent.createChooser(i, title));
+							pi = menu.getContext().getPackageManager().getPackageInfo(packageName, 0);
+						} catch (Throwable t) {
+							Toast.makeText(menu.getContext(), R.string.wechat_client_is_not_installed_correctly,
+					    			Toast.LENGTH_SHORT).show();
+							t.printStackTrace();
+							break;
 						}
+
+						if (pi == null) {
+							Toast.makeText(menu.getContext(), R.string.wechat_client_is_not_installed_correctly,
+					    			Toast.LENGTH_SHORT).show();
+							break;
+						}
+
+						Intent i = new Intent(Intent.ACTION_VIEW);
+						i.setData(Uri.parse(WECHAT_ADDR));
+						i.setPackage("com.tencent.mm");
+					    ResolveInfo ri = menu.getContext().getPackageManager().resolveActivity(i, 0);
+					    if (ri == null) {
+					    	Toast.makeText(menu.getContext(), R.string.wechat_client_is_not_installed_correctly,
+					    			Toast.LENGTH_SHORT).show();
+					    	break;
+					    }
+
+					    try {
+					    	menu.getContext().startActivity(i);
+					    } catch (Throwable t) {
+					    	Toast.makeText(menu.getContext(), R.string.wechat_client_not_support_following_operation,
+					    			Toast.LENGTH_SHORT).show();
+					    	t.printStackTrace();
+					    }
+
+//						try {
+//							Intent i = new Intent(Intent.ACTION_VIEW);
+//							i.setData(Uri.parse(WECHAT_ADDR));
+//							i.setPackage("com.tencent.mm");
+//							menu.getContext().startActivity(i);
+//						} catch(Throwable t) {
+//							System.err.println("wechat client is not installed correctly or its version is too old.");
+//
+//							Intent i = new Intent(Intent.ACTION_VIEW);
+//							i.setData(Uri.parse(WECHAT_ADDR));
+//							String title = menu.getContext().getString(R.string.plz_choose_wechat);
+//							menu.getContext().startActivity(Intent.createChooser(i, title));
+//						}
 					}
 					break;
 					case ITEM_VISIT_WEBSITE: {

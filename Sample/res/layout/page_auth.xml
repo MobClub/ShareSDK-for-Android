@@ -403,7 +403,7 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/list_item_last_normal"
+                android:background="@drawable/list_item_middle_normal"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp" >
 
@@ -417,6 +417,35 @@
 
                 <CheckedTextView
                     android:id="@+id/ctvLinkedin"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:drawablePadding="10dp"
+                    android:drawableRight="@drawable/cb_drw"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="@string/not_yet_authorized"
+                    android:textColor="#ff000000"
+                    android:textSize="20dp" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/list_item_last_normal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" >
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/logo_sohusuishenkan" />
+
+                <CheckedTextView
+                    android:id="@+id/ctvSuishenkan"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_gravity="center_vertical"
