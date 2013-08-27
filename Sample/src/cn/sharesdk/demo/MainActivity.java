@@ -49,7 +49,7 @@ public class MainActivity extends Activity implements Callback {
 
 		ShareSDK.initSDK(this);
 		// 去除注释，可以即可使用应用后台配置的应用信息，否则默认使用ShareSDK.conf中的信息
-		// ShareSDK.setNetworkDevInfoEnable(true);
+//		 ShareSDK.setNetworkDevInfoEnable(true);
 		final Handler handler = new Handler(this);
 		new Thread() {
 			public void run() {

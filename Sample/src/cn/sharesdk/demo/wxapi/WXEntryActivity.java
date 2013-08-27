@@ -1,50 +1,44 @@
-/*
- * å®˜ç½‘åœ°ç«™:http://www.ShareSDK.cn
- * æŠ€æœ¯æ”¯æŒQQ: 4006852216
- * å®˜æ–¹å¾®ä¿¡:ShareSDK   ï¼ˆå¦‚æœå‘å¸ƒæ–°ç‰ˆæœ¬çš„è¯ï¼Œæˆ‘ä»¬å°†ä¼šç¬¬ä¸€æ—¶é—´é€šè¿‡å¾®ä¿¡å°†ç‰ˆæœ¬æ›´æ–°å†…å®¹æ¨é€ç»™æ‚¨ã€‚å¦‚æœä½¿ç”¨è¿‡ç¨‹ä¸­æœ‰ä»»ä½•é—®é¢˜ï¼Œä¹Ÿå¯ä»¥é€šè¿‡å¾®ä¿¡ä¸æˆ‘ä»¬å–å¾—è”ç³»ï¼Œæˆ‘ä»¬å°†ä¼šåœ¨24å°æ—¶å†…ç»™äºˆå›å¤ï¼‰
- *
- * Copyright (c) 2013å¹´ ShareSDK.cn. All rights reserved.
- */
-
-package cn.sharesdk.demo.wxapi;
-
-import android.content.Intent;
-import android.widget.Toast;
-import cn.sharesdk.demo.MainActivity;
-import cn.sharesdk.wechat.utils.WXAppExtendObject;
-import cn.sharesdk.wechat.utils.WXMediaMessage;
-import cn.sharesdk.wechat.utils.WechatHandlerActivity;
-
-/** å¾®ä¿¡å®¢æˆ·ç«¯å›è°ƒactivityç¤ºä¾‹ */
-public class WXEntryActivity extends WechatHandlerActivity {
-
-	/**
-	 * å¤„ç†å¾®ä¿¡å‘å‡ºçš„å‘ç¬¬ä¸‰æ–¹åº”ç”¨è¯·æ±‚app message
-	 * <p>
-	 * åœ¨å¾®ä¿¡å®¢æˆ·ç«¯ä¸­çš„èŠå¤©é¡µé¢æœ‰â€œæ·»åŠ å·¥å…·â€ï¼Œå¯ä»¥å°†æœ¬åº”ç”¨çš„å›¾æ ‡æ·»åŠ åˆ°å…¶ä¸­
-	 * æ­¤åç‚¹å‡»å›¾æ ‡ï¼Œä¸‹é¢çš„ä»£ç ä¼šè¢«æ‰§è¡Œã€‚Demoä»…ä»…åªæ˜¯æ‰“å¼€è‡ªå·±è€Œå·²ï¼Œä½†ä½ å¯
-	 * åšç‚¹å…¶ä»–çš„äº‹æƒ…ï¼ŒåŒ…æ‹¬æ ¹æœ¬ä¸æ‰“å¼€ä»»ä½•é¡µé¢
-	 */
-	public void onGetMessageFromWXReq(WXMediaMessage msg) {
-		startActivity(new Intent(this, MainActivity.class));
-	}
-
-	/**
-	 * å¤„ç†å¾®ä¿¡å‘ç¬¬ä¸‰æ–¹åº”ç”¨å‘èµ·çš„æ¶ˆæ¯
-	 * <p>
-	 * æ­¤å¤„ç”¨æ¥æ¥æ”¶ä»å¾®ä¿¡å‘é€è¿‡æ¥çš„æ¶ˆæ¯ï¼Œæ¯”æ–¹è¯´æœ¬demoåœ¨wechatpageé‡Œé¢åˆ†äº«
-	 * åº”ç”¨æ—¶å¯ä»¥ä¸åˆ†äº«åº”ç”¨æ–‡ä»¶ï¼Œè€Œåˆ†äº«ä¸€æ®µåº”ç”¨çš„è‡ªå®šä¹‰ä¿¡æ¯ã€‚æ¥å—æ–¹çš„å¾®ä¿¡
-	 * å®¢æˆ·ç«¯ä¼šé€šè¿‡è¿™ä¸ªæ–¹æ³•ï¼Œå°†è¿™ä¸ªä¿¡æ¯å‘é€å›æ¥æ”¶æ–¹æ‰‹æœºä¸Šçš„æœ¬demoä¸­ï¼Œå½“ä½œ
-	 * å›è°ƒã€‚
-	 * <p>
-	 * æœ¬Demoåªæ˜¯å°†ä¿¡æ¯å±•ç¤ºå‡ºæ¥ï¼Œä½†ä½ å¯åšç‚¹å…¶ä»–çš„äº‹æƒ…ï¼Œè€Œä¸ä»…ä»…åªæ˜¯Toast
-	 */
-	public void onShowMessageFromWXReq(WXMediaMessage msg) {
-		if (msg != null && msg.mediaObject != null
-				&& (msg.mediaObject instanceof WXAppExtendObject)) {
-			WXAppExtendObject obj = (WXAppExtendObject) msg.mediaObject;
-			Toast.makeText(this, obj.extInfo, Toast.LENGTH_SHORT).show();
-		}
-	}
-
-}
+/* 
+ * ¹ÙÍøµØÕ¾:http://www.ShareSDK.cn 
+ * ¼¼ÊõÖ§³ÖQQ: 4006852216 
+ * ¹Ù·½Î¢ĞÅ:ShareSDK   £¨Èç¹û·¢²¼ĞÂ°æ±¾µÄ»°£¬ÎÒÃÇ½«»áµÚÒ»Ê±¼äÍ¨¹ıÎ¢ĞÅ½«°æ±¾¸üĞÂÄÚÈİÍÆËÍ¸øÄú¡£Èç¹ûÊ¹ÓÃ¹ı³ÌÖĞÓĞÈÎºÎÎÊÌâ£¬Ò²¿ÉÒÔÍ¨¹ıÎ¢ĞÅÓëÎÒÃÇÈ¡µÃÁªÏµ£¬ÎÒÃÇ½«»áÔÚ24Ğ¡Ê±ÄÚ¸øÓè»Ø¸´£© 
+ * 
+ * Copyright (c) 2013Äê ShareSDK.cn. All rights reserved. 
+ */ 
+package cn.sharesdk.demo.wxapi; 
+import android.content.Intent; 
+import android.widget.Toast; 
+import cn.sharesdk.demo.MainActivity; 
+import cn.sharesdk.wechat.utils.WXAppExtendObject; 
+import cn.sharesdk.wechat.utils.WXMediaMessage; 
+import cn.sharesdk.wechat.utils.WechatHandlerActivity; 
+/** Î¢ĞÅ¿Í»§¶Ë»Øµ÷activityÊ¾Àı */ 
+public class WXEntryActivity extends WechatHandlerActivity { 
+	/** 
+	 * ´¦ÀíÎ¢ĞÅ·¢³öµÄÏòµÚÈı·½Ó¦ÓÃÇëÇóapp message 
+	 * <p> 
+	 * ÔÚÎ¢ĞÅ¿Í»§¶ËÖĞµÄÁÄÌìÒ³ÃæÓĞ¡°Ìí¼Ó¹¤¾ß¡±£¬¿ÉÒÔ½«±¾Ó¦ÓÃµÄÍ¼±êÌí¼Óµ½ÆäÖĞ 
+	 * ´Ëºóµã»÷Í¼±ê£¬ÏÂÃæµÄ´úÂë»á±»Ö´ĞĞ¡£Demo½ö½öÖ»ÊÇ´ò¿ª×Ô¼º¶øÒÑ£¬µ«Äã¿É 
+	 * ×öµãÆäËûµÄÊÂÇé£¬°üÀ¨¸ù±¾²»´ò¿ªÈÎºÎÒ³Ãæ 
+	 */ 
+	public void onGetMessageFromWXReq(WXMediaMessage msg) { 
+		startActivity(new Intent(this, MainActivity.class)); 
+	} 
+	/** 
+	 * ´¦ÀíÎ¢ĞÅÏòµÚÈı·½Ó¦ÓÃ·¢ÆğµÄÏûÏ¢ 
+	 * <p> 
+	 * ´Ë´¦ÓÃÀ´½ÓÊÕ´ÓÎ¢ĞÅ·¢ËÍ¹ıÀ´µÄÏûÏ¢£¬±È·½Ëµ±¾demoÔÚwechatpageÀïÃæ·ÖÏí 
+	 * Ó¦ÓÃÊ±¿ÉÒÔ²»·ÖÏíÓ¦ÓÃÎÄ¼ş£¬¶ø·ÖÏíÒ»¶ÎÓ¦ÓÃµÄ×Ô¶¨ÒåĞÅÏ¢¡£½ÓÊÜ·½µÄÎ¢ĞÅ 
+	 * ¿Í»§¶Ë»áÍ¨¹ıÕâ¸ö·½·¨£¬½«Õâ¸öĞÅÏ¢·¢ËÍ»Ø½ÓÊÕ·½ÊÖ»úÉÏµÄ±¾demoÖĞ£¬µ±×÷ 
+	 * »Øµ÷¡£ 
+	 * <p> 
+	 * ±¾DemoÖ»ÊÇ½«ĞÅÏ¢Õ¹Ê¾³öÀ´£¬µ«Äã¿É×öµãÆäËûµÄÊÂÇé£¬¶ø²»½ö½öÖ»ÊÇToast 
+	 */ 
+	public void onShowMessageFromWXReq(WXMediaMessage msg) { 
+		if (msg != null 
+				&& (msg.mediaObject instanceof WXAppExtendObject)) { 
+			WXAppExtendObject obj = (WXAppExtendObject) msg.mediaObject; 
+			Toast.makeText(this, obj.extInfo, Toast.LENGTH_SHORT).show(); 
+		} 
+	} 
+} 
