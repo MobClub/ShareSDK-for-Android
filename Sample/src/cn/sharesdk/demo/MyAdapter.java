@@ -113,7 +113,7 @@ public class MyAdapter extends AuthorizeAdapter implements OnClickListener,
 	}
 
 	public void onError(Platform plat, int action, Throwable t) {
-		if (action == Platform.ACTION_AUTHORIZING) { // null
+		if (action == Platform.ACTION_AUTHORIZING) {
 			// 授权时即发生错误
 			plat.setPlatformActionListener(backListener);
 			if (backListener != null) {

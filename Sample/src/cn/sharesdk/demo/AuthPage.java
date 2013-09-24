@@ -8,33 +8,28 @@
 
 package cn.sharesdk.demo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import m.framework.ui.widget.slidingmenu.SlidingMenu;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.CheckedTextView;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
-import cn.sharesdk.douban.Douban;
-import cn.sharesdk.evernote.Evernote;
-import cn.sharesdk.facebook.Facebook;
-import cn.sharesdk.foursquare.FourSquare;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
-import cn.sharesdk.kaixin.KaiXin;
-import cn.sharesdk.linkedin.LinkedIn;
-import cn.sharesdk.netease.microblog.NetEaseMicroBlog;
-import cn.sharesdk.renren.Renren;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.sohu.microblog.SohuMicroBlog;
-import cn.sharesdk.sohu.suishenkan.SohuSuishenkan;
-import cn.sharesdk.tencent.qzone.QZone;
-import cn.sharesdk.tencent.weibo.TencentWeibo;
-import cn.sharesdk.twitter.Twitter;
-import cn.sharesdk.youdao.YouDao;
 
 /**
  * 授权和取消授权演示页面
@@ -48,6 +43,7 @@ public class AuthPage extends SlidingMenuPage implements
 		OnClickListener, PlatformActionListener {
 	private View pageView;
 	private TitleLayout llTitle;
+	private AuthAdapter adapter;
 
 	public AuthPage(SlidingMenu menu) {
 		super(menu);
@@ -57,43 +53,11 @@ public class AuthPage extends SlidingMenuPage implements
 		llTitle.getBtnBack().setOnClickListener(this);
 		llTitle.getTvTitle().setText(R.string.sm_item_auth);
 
-		pageView.findViewById(R.id.ctvSw).setOnClickListener(this);
-		pageView.findViewById(R.id.ctvTc).setOnClickListener(this);
-		pageView.findViewById(R.id.ctvFb).setOnClickListener(this);
-		pageView.findViewById(R.id.ctvTw).setOnClickListener(this);
-		pageView.findViewById(R.id.ctvRr).setOnClickListener(this);
-		pageView.findViewById(R.id.ctvQz).setOnClickListener(this);
-		pageView.findViewById(R.id.ctvDb).setOnClickListener(this);
-		pageView.findViewById(R.id.ctvNemb).setOnClickListener(this);
-		pageView.findViewById(R.id.ctvEn).setOnClickListener(this);
-		pageView.findViewById(R.id.ctvSoHu).setOnClickListener(this);
-		pageView.findViewById(R.id.ctvKaiXin).setOnClickListener(this);
-		pageView.findViewById(R.id.ctvYouDao).setOnClickListener(this);
-		pageView.findViewById(R.id.ctvFourSquare).setOnClickListener(this);
-		pageView.findViewById(R.id.ctvLinkedin).setOnClickListener(this);
-		pageView.findViewById(R.id.ctvSuishenkan).setOnClickListener(this);
-
-		// 获取平台列表
-		Platform[] platforms = ShareSDK.getPlatformList(menu.getContext());
-		for (Platform plat : platforms) {
-			if (!plat.isValid()) {
-				continue;
-			}
-
-			CheckedTextView ctv = getView(plat);
-			if (ctv != null) {
-				ctv.setChecked(true);
-				String userName = plat.getDb().get("nickname"); // getAuthedUserName();
-				if (userName == null || userName.length() <= 0
-						|| "null".equals(userName)) {
-					// 如果平台已经授权却没有拿到帐号名称，则自动获取用户资料，以获取名称
-					userName = getPlatformName(plat);
-					plat.setPlatformActionListener(this);
-					plat.showUser(null);
-				}
-				ctv.setText(userName);
-			}
-		}
+		ListView lvPlats = (ListView) pageView.findViewById(R.id.lvPlats);
+		lvPlats.setSelector(new ColorDrawable());
+		adapter = new AuthAdapter(this);
+		lvPlats.setAdapter(adapter);
+		lvPlats.setOnItemClickListener(adapter);
 	}
 
 	protected View initPage() {
@@ -110,182 +74,7 @@ public class AuthPage extends SlidingMenuPage implements
 			else {
 				menu.showMenu();
 			}
-			return;
 		}
-
-		Platform plat = getPlatform(v.getId());
-		CheckedTextView ctv = (CheckedTextView) v;
-		if (plat == null) {
-			ctv.setChecked(false);
-			ctv.setText(R.string.not_yet_authorized);
-			return;
-		}
-
-		if (plat.isValid()) {
-			plat.removeAccount();
-			ctv.setChecked(false);
-			ctv.setText(R.string.not_yet_authorized);
-			return;
-		}
-
-		plat.setPlatformActionListener(this);
-		plat.showUser(null);
-	}
-
-	private Platform getPlatform(int vid) {
-		String name = null;
-		switch(vid) {
-			case R.id.ctvSw: name = SinaWeibo.NAME; break;
-			case R.id.ctvTc: name = TencentWeibo.NAME; break;
-			case R.id.ctvFb: name = Facebook.NAME; break;
-			case R.id.ctvTw: name = Twitter.NAME; break;
-			case R.id.ctvRr: name = Renren.NAME; break;
-			case R.id.ctvQz: name = QZone.NAME; break;
-			case R.id.ctvDb: name = Douban.NAME; break;
-			case R.id.ctvEn: name = Evernote.NAME; break;
-			case R.id.ctvNemb: name = NetEaseMicroBlog.NAME; break;
-			case R.id.ctvSoHu: name = SohuMicroBlog.NAME; break;
-			case R.id.ctvKaiXin: name = KaiXin.NAME; break;
-			case R.id.ctvYouDao: name = YouDao.NAME; break;
-			case R.id.ctvFourSquare: name = FourSquare.NAME; break;
-			case R.id.ctvLinkedin: name = LinkedIn.NAME; break;
-			case R.id.ctvSuishenkan: name = SohuSuishenkan.NAME; break;
-		}
-
-		if (name != null) {
-			return ShareSDK.getPlatform(menu.getContext(), name);
-		}
-		return null;
-	}
-
-	private CheckedTextView getView(Platform plat) {
-		if (plat == null) {
-			return null;
-		}
-
-		String name = plat.getName();
-		if (name == null) {
-			return null;
-		}
-
-		View v = null;
-		if (SinaWeibo.NAME.equals(name)) {
-			v = pageView.findViewById(R.id.ctvSw);
-		}
-		else if (TencentWeibo.NAME.equals(name)) {
-			v = pageView.findViewById(R.id.ctvTc);
-		}
-		else if (Facebook.NAME.equals(name)) {
-			v = pageView.findViewById(R.id.ctvFb);
-		}
-		else if (Twitter.NAME.equals(name)) {
-			v = pageView.findViewById(R.id.ctvTw);
-		}
-		else if (Renren.NAME.equals(name)) {
-			v = pageView.findViewById(R.id.ctvRr);
-		}
-		else if (QZone.NAME.equals(name)) {
-			v = pageView.findViewById(R.id.ctvQz);
-		}
-		else if (Douban.NAME.equals(name)) {
-			v = pageView.findViewById(R.id.ctvDb);
-		}
-		else if (Evernote.NAME.equals(name)) {
-			v = pageView.findViewById(R.id.ctvEn);
-		}
-		else if (NetEaseMicroBlog.NAME.equals(name)) {
-			v = pageView.findViewById(R.id.ctvNemb);
-		}
-		else if (SohuMicroBlog.NAME.equals(name)) {
-			v = pageView.findViewById(R.id.ctvSoHu);
-		}
-		else if (KaiXin.NAME.equals(name)) {
-			v = pageView.findViewById(R.id.ctvKaiXin);
-		}
-		else if (YouDao.NAME.equals(name)) {
-			v = pageView.findViewById(R.id.ctvYouDao);
-		}
-		else if (FourSquare.NAME.equals(name)) {
-			v = pageView.findViewById(R.id.ctvFourSquare);
-		}
-		else if (LinkedIn.NAME.equals(name)) {
-			v = pageView.findViewById(R.id.ctvLinkedin);
-		}
-		else if(SohuSuishenkan.NAME.equals(name)){
-			v = pageView.findViewById(R.id.ctvSuishenkan);
-		}
-		if (v == null) {
-			return null;
-		}
-
-		if (! (v instanceof CheckedTextView)) {
-			return null;
-		}
-
-		return (CheckedTextView) v;
-	}
-
-	private String getPlatformName(Platform plat) {
-		if (plat == null) {
-			return null;
-		}
-
-		String name = plat.getName();
-		if (name == null) {
-			return null;
-		}
-
-		int res = 0;
-		if (SinaWeibo.NAME.equals(name)) {
-			res = R.string.sinaweibo;
-		}
-		else if (TencentWeibo.NAME.equals(name)) {
-			res = R.string.tencentweibo;
-		}
-		else if (Facebook.NAME.equals(name)) {
-			res = R.string.facebook;
-		}
-		else if (Twitter.NAME.equals(name)) {
-			res = R.string.twitter;
-		}
-		else if (Renren.NAME.equals(name)) {
-			res = R.string.renren;
-		}
-		else if (QZone.NAME.equals(name)) {
-			res = R.string.qzone;
-		}
-		else if (Douban.NAME.equals(name)) {
-			res = R.string.douban;
-		}
-		else if (Evernote.NAME.equals(name)) {
-			res = R.string.evernote;
-		}
-		else if (NetEaseMicroBlog.NAME.equals(name)) {
-			res = R.string.neteasemicroblog;
-		}
-		else if (SohuMicroBlog.NAME.equals(name)) {
-			res = R.string.sohumicroblog;
-		}
-		else if (KaiXin.NAME.equals(name)) {
-			res = R.string.kaixin;
-		}
-		else if (YouDao.NAME.equals(name)) {
-			res = R.string.youdao;
-		}
-		else if (FourSquare.NAME.equals(name)) {
-			res = R.string.foursquare;
-		}
-		else if (LinkedIn.NAME.equals(name)) {
-			res = R.string.linkedin;
-		}
-		else if(SohuSuishenkan.NAME.equals(name)){
-			res = R.string.sohusuishenkan;;
-		}
-		if (res == 0) {
-			return name;
-		}
-
-		return menu.getResources().getString(res);
 	}
 
 	public void onComplete(Platform plat, int action,
@@ -325,34 +114,166 @@ public class AuthPage extends SlidingMenuPage implements
 		Platform plat = (Platform) msg.obj;
 		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
-			case 1: { // 成功
+			case 1: {
+				// 成功
 				text = plat.getName() + " completed at " + text;
 				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
 			}
 			break;
-			case 2: { // 失败
+			case 2: {
+				// 失败
 				text = plat.getName() + " caught error at " + text;
 				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
 				return false;
 			}
-			case 3: { // 取消
+			case 3: {
+				// 取消
 				text = plat.getName() + " canceled at " + text;
 				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
 				return false;
 			}
 		}
 
-		CheckedTextView ctv = getView(plat);
-		if (ctv != null) {
-			ctv.setChecked(true);
-			String userName = plat.getDb().get("nickname"); // getAuthedUserName();
-			if (userName == null || userName.length() <= 0
-					|| "null".equals(userName)) {
-				userName = getPlatformName(plat);
-			}
-			ctv.setText(userName);
-		}
+		adapter.notifyDataSetChanged();
 		return false;
+	}
+
+	private static class AuthAdapter extends BaseAdapter implements OnItemClickListener {
+		private AuthPage page;
+		private ArrayList<Platform> platforms;
+
+		public AuthAdapter(AuthPage page) {
+			this.page = page;
+
+			// 获取平台列表
+			Platform[] tmp = ShareSDK.getPlatformList(page.menu.getContext());
+			platforms = new ArrayList<Platform>();
+			for (Platform p : tmp) {
+				String name = p.getName();
+				if ("Wechat".equals(name) || "WechatMoments".equals(name)
+						|| "QQ".equals(name) || "Email".equals(name)
+						|| "ShortMessage".equals(name) || "GooglePlus".equals(name)
+						|| "Pinterest".equals(name)) {
+					continue;
+				}
+				platforms.add(p);
+			}
+		}
+
+		public int getCount() {
+			return platforms == null ? 0 : platforms.size();
+		}
+
+		public Platform getItem(int position) {
+			return platforms.get(position);
+		}
+
+		public long getItemId(int position) {
+			return position;
+		}
+
+		public View getView(int position, View convertView, ViewGroup parent) {
+			if (convertView == null) {
+				convertView = View.inflate(page.menu.getContext(), R.layout.auth_page_item, null);
+			}
+
+			int count = getCount();
+			View llItem = convertView.findViewById(R.id.llItem);
+			if (count == 1) {
+				llItem.setBackgroundResource(R.drawable.list_item_single_normal);
+			}
+			else if (count == 2) {
+				if (position == 0) {
+					llItem.setBackgroundResource(R.drawable.list_item_first_normal);
+				}
+				else if (position == 1) {
+					llItem.setBackgroundResource(R.drawable.list_item_last_normal);
+				}
+			}
+			else if (position == 0) {
+				llItem.setBackgroundResource(R.drawable.list_item_first_normal);
+			}
+			else if (position == count - 1) {
+				llItem.setBackgroundResource(R.drawable.list_item_last_normal);
+			}
+			else {
+				llItem.setBackgroundResource(R.drawable.list_item_middle_normal);
+			}
+
+			Platform plat = getItem(position);
+			ImageView ivLogo = (ImageView) convertView.findViewById(R.id.ivLogo);
+			Bitmap logo = getIcon(plat);
+			if (logo != null && !logo.isRecycled()) {
+				ivLogo.setImageBitmap(logo);
+			}
+			CheckedTextView ctvName = (CheckedTextView) convertView.findViewById(R.id.ctvName);
+			ctvName.setChecked(plat.isValid());
+			if (plat.isValid()) {
+				String userName = plat.getDb().get("nickname");
+				if (userName == null || userName.length() <= 0
+						|| "null".equals(userName)) {
+					// 如果平台已经授权却没有拿到帐号名称，则自动获取用户资料，以获取名称
+					userName = getName(plat);
+					plat.setPlatformActionListener(page);
+					plat.showUser(null);
+				}
+				ctvName.setText(userName);
+			}
+			else {
+				ctvName.setText(R.string.not_yet_authorized);
+			}
+			return convertView;
+		}
+
+		private Bitmap getIcon(Platform plat) {
+			if (plat == null) {
+				return null;
+			}
+
+			String name = plat.getName();
+			if (name == null) {
+				return null;
+			}
+
+			String resName = "logo_" + plat.getName();
+			int resId = cn.sharesdk.framework.utils.R.getResId(R.drawable.class, resName);
+			return BitmapFactory.decodeResource(page.menu.getResources(), resId);
+		}
+
+		private String getName(Platform plat) {
+			if (plat == null) {
+				return "";
+			}
+
+			String name = plat.getName();
+			if (name == null) {
+				return "";
+			}
+
+			int resId = cn.sharesdk.framework.utils.R.getStringRes(page.menu.getContext(), plat.getName());
+			return page.menu.getContext().getString(resId);
+		}
+
+		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			Platform plat = getItem(position);
+			CheckedTextView ctvName = (CheckedTextView) view.findViewById(R.id.ctvName);
+			if (plat == null) {
+				ctvName.setChecked(false);
+				ctvName.setText(R.string.not_yet_authorized);
+				return;
+			}
+
+			if (plat.isValid()) {
+				plat.removeAccount();
+				ctvName.setChecked(false);
+				ctvName.setText(R.string.not_yet_authorized);
+				return;
+			}
+
+			plat.setPlatformActionListener(page);
+			plat.showUser(null);
+		}
+
 	}
 
 }

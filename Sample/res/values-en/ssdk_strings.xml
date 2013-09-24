@@ -6,6 +6,7 @@
     <string name="wechat_client_inavailable">Wechat client not exists or the version is too low</string>
     <string name="google_plus_client_inavailable">Google+ client not exists or the version is too low</string>
     <string name="qq_client_inavailable">Mobile QQ client not exists or the version is too low</string>
+    <string name="pinterest_client_inavailable">Pinterest client not exists or the version is too low</string>
     
 	<string name="sinaweibo">Sina Weibo</string>
 	<string name="tencentweibo">Tencent Weibo</string>
@@ -28,4 +29,8 @@
 	<string name="foursquare">FourSquare</string>
 	<string name="qq">QQ</string>
 	<string name="sohusuishenkan">Sohu Suishenkan</string>
+	<string name="pinterest">Pinterest</string>
+	<string name="flickr">Flickr</string>
+	<string name="tumblr">Tumblr</string>
+	<string name="dropbox">Dropbox</string>
 </resources>

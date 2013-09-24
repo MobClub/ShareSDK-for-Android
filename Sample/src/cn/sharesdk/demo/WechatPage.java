@@ -139,20 +139,23 @@ public class WechatPage extends SlidingMenuPage implements
 			break;
 			case R.id.btnApp: {
 				sp.shareType = Platform.SHARE_APPS;
-				sp.appPath = MainActivity.TEST_IMAGE; // app的本地地址
+				// 待分享app的本地地址
+				sp.filePath = MainActivity.TEST_IMAGE;
 				sp.extInfo = "Share SDK received an app message from wechat client";
 				sp.imagePath = MainActivity.TEST_IMAGE;
 			}
 			break;
 			case R.id.btnAppExt: {
 				sp.shareType = Platform.SHARE_APPS;
-				sp.extInfo = "Share SDK received an app message from wechat client";  // 供微信回调的第三方信息（或者自定义脚本）
+				// 供微信回调的第三方信息（或者自定义脚本）
+				sp.extInfo = "Share SDK received an app message from wechat client";
 				sp.imagePath = MainActivity.TEST_IMAGE;
 			}
 			break;
 			case R.id.btnFile: {
 				sp.shareType = Platform.SHARE_FILE;
-				sp.appPath = MainActivity.TEST_IMAGE; // app的本地地址
+				// 待分享文件的本地地址
+				sp.filePath = MainActivity.TEST_IMAGE;
 				sp.imagePath = MainActivity.TEST_IMAGE;
 			}
 		}
@@ -245,12 +248,14 @@ public class WechatPage extends SlidingMenuPage implements
 	public boolean handleMessage(Message msg) {
 		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
-			case 1: { // 成功
+			case 1: {
+				// 成功
 				Platform plat = (Platform) msg.obj;
 				text = plat.getName() + " completed at " + text;
 			}
 			break;
-			case 2: { // 失败
+			case 2: {
+				// 失败
 				if (msg.obj instanceof WechatClientNotExistException) {
 					text = menu.getContext().getString(R.string.wechat_client_inavailable);
 				}
@@ -262,7 +267,8 @@ public class WechatPage extends SlidingMenuPage implements
 				}
 			}
 			break;
-			case 3: { // 取消
+			case 3: {
+				// 取消
 				Platform plat = (Platform) msg.obj;
 				text = plat.getName() + " canceled at " + text;
 			}

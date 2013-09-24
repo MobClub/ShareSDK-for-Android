@@ -2,7 +2,8 @@
     package="cn.sharesdk.demo"
     android:versionCode="@integer/app_version_code"
     android:versionName="@string/app_version" >
-
+    
+	<uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -11,7 +12,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-
+    
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -68,6 +69,17 @@
             	开发者可以通过继承AuthorizeAdapter，重写其方法，并获取各种UI来自定义这个页面的行为。
             -->
             <meta-data android:name="Adapter" android:value="cn.sharesdk.demo.MyAdapter" />
+            
+            <!--
+            	Dropbox的SSO功能需要在此处添加一个对ACTION_VIEW事件的过滤器，其中的scheme是
+            	“db-”前缀再开发者应用的加上appKey。如果此过滤器不设置，则不能完成SSO功能授权
+            -->
+            <intent-filter>
+                <data android:scheme="db-7janx53ilz11gbs" />
+        		<action android:name="android.intent.action.VIEW" />
+        		<category android:name="android.intent.category.BROWSABLE"/>
+        		<category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".wxapi.WXEntryActivity"

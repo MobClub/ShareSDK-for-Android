@@ -268,26 +268,18 @@ public class MainAdapter extends MenuAdapter
 					    			Toast.LENGTH_SHORT).show();
 					    	t.printStackTrace();
 					    }
-
-//						try {
-//							Intent i = new Intent(Intent.ACTION_VIEW);
-//							i.setData(Uri.parse(WECHAT_ADDR));
-//							i.setPackage("com.tencent.mm");
-//							menu.getContext().startActivity(i);
-//						} catch(Throwable t) {
-//							System.err.println("wechat client is not installed correctly or its version is too old.");
-//
-//							Intent i = new Intent(Intent.ACTION_VIEW);
-//							i.setData(Uri.parse(WECHAT_ADDR));
-//							String title = menu.getContext().getString(R.string.plz_choose_wechat);
-//							menu.getContext().startActivity(Intent.createChooser(i, title));
-//						}
 					}
 					break;
 					case ITEM_VISIT_WEBSITE: {
 						Intent i = new Intent(Intent.ACTION_VIEW);
 						i.setData(Uri.parse(WEBSITE_ADDR));
 						menu.getContext().startActivity(i);
+					}
+					break;
+					case ITEM_ABOUT: {
+						String appName = menu.getResources().getString(R.string.app_name);
+						String version = menu.getResources().getString(R.string.app_version);
+						Toast.makeText(menu.getContext(), appName + " " + version, Toast.LENGTH_SHORT).show();
 					}
 					break;
 				}
@@ -328,15 +320,18 @@ public class MainAdapter extends MenuAdapter
 		Platform palt = (Platform) msg.obj;
 		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
-			case 1: { // 成功
+			case 1: {
+				// 成功
 				text = palt.getName() + " completed at " + text;
 			}
 			break;
-			case 2: { // 取消
+			case 2: {
+				// 失败
 				text = palt.getName() + " caught error at " + text;
 			}
 			break;
-			case 3: { // 失败
+			case 3: {
+				// 取消
 				text = palt.getName() + " canceled at " + text;
 			}
 			break;

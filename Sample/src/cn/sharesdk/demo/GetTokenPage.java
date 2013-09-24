@@ -8,34 +8,24 @@
 
 package cn.sharesdk.demo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import cn.sharesdk.douban.Douban;
-import cn.sharesdk.evernote.Evernote;
-import cn.sharesdk.facebook.Facebook;
-import cn.sharesdk.foursquare.FourSquare;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
-import cn.sharesdk.kaixin.KaiXin;
-import cn.sharesdk.linkedin.LinkedIn;
-import cn.sharesdk.netease.microblog.NetEaseMicroBlog;
-import cn.sharesdk.renren.Renren;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.sohu.microblog.SohuMicroBlog;
-import cn.sharesdk.sohu.suishenkan.SohuSuishenkan;
-import cn.sharesdk.tencent.qzone.QZone;
-import cn.sharesdk.tencent.weibo.TencentWeibo;
-import cn.sharesdk.twitter.Twitter;
-import cn.sharesdk.youdao.YouDao;
 import android.app.Activity;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Handler.Callback;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.LinearLayout;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 /** 演示授权并获取获取AccessToken */
@@ -43,6 +33,7 @@ public class GetTokenPage extends Activity implements Callback,
 		OnClickListener, PlatformActionListener {
 	private TitleLayout llTitle;
 	private Handler handler;
+	private AuthAdapter adapter;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,44 +43,16 @@ public class GetTokenPage extends Activity implements Callback,
 		llTitle.getBtnBack().setOnClickListener(this);
 		llTitle.getTvTitle().setText(R.string.demo_get_access_token);
 
-		LinearLayout llList = (LinearLayout) findViewById(R.id.llList);
-		for (int i = 0, size = llList.getChildCount(); i < size; i++) {
-			llList.getChildAt(i).setOnClickListener(this);
-		}
-		findViewById(R.id.btnFourSquare).setOnClickListener(this);
+		ListView lvPlats = (ListView) findViewById(R.id.lvPlats);
+		lvPlats.setSelector(new ColorDrawable());
+		adapter = new AuthAdapter(this);
+		lvPlats.setAdapter(adapter);
 	}
 
 	/** 演示的逻辑代码 */
 	public void onClick(View v) {
 		if (v.equals(llTitle.getBtnBack())) {
 			finish();
-			return;
-		}
-
-		String name = null;
-		switch(v.getId()) {
-			case R.id.btnSw: name = SinaWeibo.NAME; break;
-			case R.id.btnTc: name = TencentWeibo.NAME; break;
-			case R.id.btnFb: name = Facebook.NAME; break;
-			case R.id.btnTw: name = Twitter.NAME; break;
-			case R.id.btnRr: name = Renren.NAME; break;
-			case R.id.btnQz: name = QZone.NAME; break;
-			case R.id.btnDb: name = Douban.NAME; break;
-			case R.id.btnEn: name = Evernote.NAME; break;
-			case R.id.btnNemb: name = NetEaseMicroBlog.NAME; break;
-			case R.id.btnSohu: name = SohuMicroBlog.NAME; break;
-			case R.id.btnKaixin: name = KaiXin.NAME; break;
-			case R.id.btnYoudao: name = YouDao.NAME; break;
-			case R.id.btnFourSquare: name = FourSquare.NAME; break;
-			case R.id.btnLinkedIn: name = LinkedIn.NAME; break;
-			case R.id.btnSohuSuiShenKan: name = SohuSuishenkan.NAME; break;
-		}
-
-		// 授权
-		if (name != null) {
-			Platform plat = ShareSDK.getPlatform(this, name);
-			plat.setPlatformActionListener(this);
-			plat.authorize();
 		}
 	}
 
@@ -125,15 +88,18 @@ public class GetTokenPage extends Activity implements Callback,
 		Platform plat = (Platform) msg.obj;
 		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
-			case 1: { // 成功
+			case 1: {
+				// 成功
 				text = plat.getName() + " get token: " + plat.getDb().getToken();
 			}
 			break;
-			case 2: { // 失败
+			case 2: {
+				// 失败
 				text = plat.getName() + " caught error";
 			}
 			break;
-			case 3: { // 取消
+			case 3: {
+				// 取消
 				text = plat.getName() + " authorization canceled";
 			}
 			break;
@@ -141,6 +107,76 @@ public class GetTokenPage extends Activity implements Callback,
 
 		Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
 		return false;
+	}
+
+	private static class AuthAdapter extends BaseAdapter implements OnClickListener {
+		private GetTokenPage page;
+		private ArrayList<Platform> platforms;
+
+		public AuthAdapter(GetTokenPage page) {
+			this.page = page;
+
+			// 获取平台列表
+			Platform[] tmp = ShareSDK.getPlatformList(page);
+			platforms = new ArrayList<Platform>();
+			for (Platform p : tmp) {
+				String name = p.getName();
+				if ("Wechat".equals(name) || "WechatMoments".equals(name)
+						|| "QQ".equals(name) || "Email".equals(name)
+						|| "ShortMessage".equals(name) || "GooglePlus".equals(name)
+						|| "Pinterest".equals(name)) {
+					continue;
+				}
+				platforms.add(p);
+			}
+		}
+
+		public int getCount() {
+			return platforms == null ? 0 : platforms.size();
+		}
+
+		public Platform getItem(int position) {
+			return platforms.get(position);
+		}
+
+		public long getItemId(int position) {
+			return position;
+		}
+
+		public View getView(int position, View convertView, ViewGroup parent) {
+			if (convertView == null) {
+				convertView = View.inflate(page, R.layout.button_list_item, null);
+			}
+
+			Platform plat = getItem(position);
+			Button btn = (Button) convertView.findViewById(R.id.btn);
+			btn.setOnClickListener(this);
+			btn.setText(page.getString(R.string.get_token_format, getName(plat)));
+			btn.setTag(plat);
+
+			return convertView;
+		}
+
+		private String getName(Platform plat) {
+			if (plat == null) {
+				return "";
+			}
+
+			String name = plat.getName();
+			if (name == null) {
+				return "";
+			}
+
+			int resId = cn.sharesdk.framework.utils.R.getStringRes(page, plat.getName());
+			return page.getString(resId);
+		}
+
+		public void onClick(View v) {
+			Platform plat = (Platform) v.getTag();
+			plat.setPlatformActionListener(page);
+			plat.authorize();
+		}
+
 	}
 
 }

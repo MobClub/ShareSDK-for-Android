@@ -9,6 +9,7 @@
 package cn.sharesdk.onekeyshare;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import android.app.Notification;
@@ -16,6 +17,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Message;
 import android.os.Handler.Callback;
 import android.text.TextUtils;
@@ -49,21 +51,29 @@ public class OnekeyShare extends FakeActivity implements
 	private static final int MSG_TOAST = 1;
 	private static final int MSG_ACTION_CCALLBACK = 2;
 	private static final int MSG_CANCEL_NOTIFY = 3;
-	private FrameLayout flPage; // 页面
-	private PlatformGridView grid; // 宫格列表
-	private Button btnCancel; // 取消按钮
-	private Animation animShow; // 滑上来的动画
-	private Animation animHide; // 滑下去的动画
+	// 页面
+	private FrameLayout flPage;
+	// 宫格列表
+	private PlatformGridView grid;
+	// 取消按钮
+	private Button btnCancel;
+	// 滑上来的动画
+	private Animation animShow;
+	// 滑下去的动画
+	private Animation animHide;
 	private boolean finishing;
 	private HashMap<String, Object> reqMap;
+	private ArrayList<CustomerLogo> customers;
 	private int notifyIcon;
 	private String notifyTitle;
 	private boolean silent;
 	private PlatformActionListener callback;
 	private ShareContentCustomizeCallback customizeCallback;
+	private boolean dialogMode;
 
 	public OnekeyShare() {
 		reqMap = new HashMap<String, Object>();
+		customers = new ArrayList<CustomerLogo>();
 		callback = this;
 	}
 
@@ -117,9 +127,9 @@ public class OnekeyShare extends FakeActivity implements
 		reqMap.put("url", url);
 	}
 
-	/** appPath是待分享应用程序的本地路劲，仅在微信（包括好友和朋友圈）中使用，否则可以不提供 */
-	public void setAppPath(String appPath) {
-		reqMap.put("appPath", appPath);
+	/** filePath是待分享应用程序的本地路劲，仅在微信好友和Dropbox中使用，否则可以不提供 */
+	public void setFilePath(String filePath) {
+		reqMap.put("filePath", filePath);
 	}
 
 	/** comment是我对这条分享的评论，仅在人人网和QQ空间使用，否则可以不提供 */
@@ -177,14 +187,56 @@ public class OnekeyShare extends FakeActivity implements
 		customizeCallback = callback;
 	}
 
-	public void onCreate() {
-		if (silent && reqMap.containsKey("platform")) {
-			EditPage page = new EditPage();
-			page.setShareData(reqMap);
-			page.setParent(this);
-			page.show(activity, null);
+	/** 设置自己图标和点击事件，可以重复调用添加多次 */
+	public void setCustomerLogo(Bitmap logo, String label, OnClickListener ocListener) {
+		CustomerLogo cl = new CustomerLogo();
+		cl.label = label;
+		cl.logo = logo;
+		cl.listener = ocListener;
+		customers.add(cl);
+	}
 
-			finish();
+	// 设置编辑页面的显示模式为Dialog模式
+	public void setDialogMode() {
+		dialogMode = true;
+		reqMap.put("dialogMode", dialogMode);
+	}
+
+	public void onCreate() {
+		// 显示方式是由platform和silent两个字段控制的
+		// 如果platform设置了，则无须显示九宫格，否则都会显示；
+		// 如果silent为true，表示不进入编辑页面，否则会进入。
+		// 本类只判断platform，因为九宫格显示以后，事件交给PlatformGridView控制
+		// 当platform和silent都为true，则直接进入分享；
+		// 当platform设置了，但是silent为false，则判断是否是“使用客户端分享”的平台，
+		// 若为“使用客户端分享”的平台，则直接分享，否则进入编辑页面
+		if (reqMap.containsKey("platform")) {
+			String name = String.valueOf(reqMap.get("platform"));
+			if (silent) {
+				HashMap<Platform, HashMap<String, Object>> shareData
+						= new HashMap<Platform, HashMap<String,Object>>();
+				shareData.put(ShareSDK.getPlatform(activity, name), reqMap);
+				share(shareData);
+			} else if ("Wechat".equals(name) || "WechatMoments".equals(name)
+					|| "ShortMessage".equals(name) || "Email".equals(name)
+					|| "GooglePlus".equals(name) || "QQ".equals(name)
+					|| "Pinterest".equals(name)) {
+				HashMap<Platform, HashMap<String, Object>> shareData
+						= new HashMap<Platform, HashMap<String,Object>>();
+				shareData.put(ShareSDK.getPlatform(activity, name), reqMap);
+				share(shareData);
+			} else {
+				EditPage page = new EditPage();
+				page.setShareData(reqMap);
+				page.setParent(this);
+				if (dialogMode) {
+					page.setDialogMode();
+				}
+				page.show(activity, null);
+
+				finish();
+			}
+			return;
 		}
 
 		initPageView();
@@ -193,6 +245,7 @@ public class OnekeyShare extends FakeActivity implements
 
 		// 设置宫格列表数据
 		grid.setData(reqMap, silent);
+		grid.setCustomerLogos(customers);
 		grid.setParent(this);
 		btnCancel.setOnClickListener(this);
 
@@ -332,6 +385,15 @@ public class OnekeyShare extends FakeActivity implements
 				continue;
 			}
 
+			boolean isPinterest = "Pinterest".equals(name);
+			if (isPinterest && !plat.isValid()) {
+				Message msg = new Message();
+				msg.what = MSG_TOAST;
+				msg.obj = activity.getString(R.string.pinterest_client_inavailable);
+				UIHandler.sendMessage(msg, this);
+				continue;
+			}
+
 			HashMap<String, Object> data = ent.getValue();
 			int shareType = Platform.SHARE_TEXT;
 			String imagePath = String.valueOf(data.get("imagePath"));
@@ -342,8 +404,8 @@ public class OnekeyShare extends FakeActivity implements
 				}
 			}
 			else {
-				String imageUrl = String.valueOf(data.get("imageUrl"));
-				if (imageUrl != null) {
+				Object imageUrl = data.get("imageUrl");
+				if (imageUrl != null && !TextUtils.isEmpty(String.valueOf(imageUrl))) {
 					shareType = Platform.SHARE_IMAGE;
 					if (data.containsKey("url") && !TextUtils.isEmpty(data.get("url").toString())) {
 						shareType = Platform.SHARE_WEBPAGE;
@@ -408,11 +470,13 @@ public class OnekeyShare extends FakeActivity implements
 			break;
 			case MSG_ACTION_CCALLBACK: {
 				switch (msg.arg1) {
-					case 1: { // 成功
+					case 1: {
+						// 成功
 						showNotification(2000, getContext().getString(R.string.share_completed));
 					}
 					break;
-					case 2: { // 失败
+					case 2: {
+						// 失败
 						String expName = msg.obj.getClass().getSimpleName();
 						if ("WechatClientNotExistException".equals(expName)
 								|| "WechatTimelineNotSupportedException".equals(expName)) {
@@ -429,7 +493,8 @@ public class OnekeyShare extends FakeActivity implements
 						}
 					}
 					break;
-					case 3: { // 取消
+					case 3: {
+						// 取消
 						showNotification(2000, getContext().getString(R.string.share_canceled));
 					}
 					break;

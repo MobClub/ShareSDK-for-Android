@@ -277,7 +277,8 @@ public class CustomerPage extends SlidingMenuPage implements
 	/** 处理操作结果 */
 	public boolean handleMessage(Message msg) {
 		switch (msg.arg1) {
-			case 1: { // 成功
+			case 1: {
+				// 成功
 				Intent i = new Intent(menu.getContext(), JsonPage.class);
 				i.putExtra("title", llTitle.getTvTitle().getText().toString());
 				String data = String.valueOf(msg.obj);
@@ -291,14 +292,16 @@ public class CustomerPage extends SlidingMenuPage implements
 				menu.getContext().startActivity(i);
 			}
 			break;
-			case 2: { // 失败
+			case 2: {
+				// 失败
 				Platform plat = (Platform) msg.obj;
 				String text = actionToString(msg.arg2);
 				text = plat.getName() + " caught error at " + text;
 				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
 			}
 			break;
-			case 3: { // 取消
+			case 3: {
+				// 取消
 				Platform plat = (Platform) msg.obj;
 				String text = actionToString(msg.arg2);
 				text = plat.getName() + " canceled at " + text;
