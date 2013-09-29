@@ -15,11 +15,12 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
 import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.sharesdk.onekeyshare.ShareCore;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.pm.PackageInfo;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Message;
 import android.view.LayoutInflater;
@@ -71,10 +72,7 @@ public class DemoPage extends SlidingMenuPage implements
 			}
 
 			String name = platform.getName();
-			if ("Wechat".equals(name) || "WechatMoments".equals(name)
-					|| "ShortMessage".equals(name) || "Email".equals(name)
-					|| "GooglePlus".equals(name) || "QQ".equals(name)
-					|| "Pinterest".equals(name)) {
+			if (ShareCore.isUseClientToShare(name)) {
 				continue;
 			}
 
@@ -129,17 +127,17 @@ public class DemoPage extends SlidingMenuPage implements
 //		oks.setCallback(new OneKeyShareCallback());
 		oks.setShareContentCustomizeCallback(new ShareContentCustomizeDemo());
 
-		// 在九宫格设置自定义的图标
-		Bitmap logo = BitmapFactory.decodeResource(menu.getResources(), R.drawable.ic_launcher);
-		String label = menu.getResources().getString(R.string.app_name);
-		OnClickListener listener = new OnClickListener() {
-			public void onClick(View v) {
-				String text = "Customer Logo -- Share SDK " + ShareSDK.getSDKVersionName();
-				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
-				oks.finish();
-			}
-		};
-		oks.setCustomerLogo(logo, label, listener);
+		// 去除注释，演示在九宫格设置自定义的图标
+//		Bitmap logo = BitmapFactory.decodeResource(menu.getResources(), R.drawable.ic_launcher);
+//		String label = menu.getResources().getString(R.string.app_name);
+//		OnClickListener listener = new OnClickListener() {
+//			public void onClick(View v) {
+//				String text = "Customer Logo -- Share SDK " + ShareSDK.getSDKVersionName();
+//				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
+//				oks.finish();
+//			}
+//		};
+//		oks.setCustomerLogo(logo, label, listener);
 
 		oks.show(menu.getContext());
 	}
@@ -189,9 +187,41 @@ public class DemoPage extends SlidingMenuPage implements
 			break;
 			case R.id.btnVisitWc: {
 				// 关注官方微信
+
+				String packageName = "com.tencent.mm";
+				PackageInfo pi = null;
+				try {
+					pi = menu.getContext().getPackageManager().getPackageInfo(packageName, 0);
+				} catch (Throwable t) {
+					Toast.makeText(menu.getContext(), R.string.wechat_client_is_not_installed_correctly,
+			    			Toast.LENGTH_SHORT).show();
+					t.printStackTrace();
+					break;
+				}
+
+				if (pi == null) {
+					Toast.makeText(menu.getContext(), R.string.wechat_client_is_not_installed_correctly,
+			    			Toast.LENGTH_SHORT).show();
+					break;
+				}
+
 				Intent i = new Intent(Intent.ACTION_VIEW);
 				i.setData(Uri.parse(MainAdapter.WECHAT_ADDR));
-				menu.getContext().startActivity(i);
+				i.setPackage("com.tencent.mm");
+			    ResolveInfo ri = menu.getContext().getPackageManager().resolveActivity(i, 0);
+			    if (ri == null) {
+			    	Toast.makeText(menu.getContext(), R.string.wechat_client_is_not_installed_correctly,
+			    			Toast.LENGTH_SHORT).show();
+			    	break;
+			    }
+
+			    try {
+			    	menu.getContext().startActivity(i);
+			    } catch (Throwable t) {
+			    	Toast.makeText(menu.getContext(), R.string.wechat_client_not_support_following_operation,
+			    			Toast.LENGTH_SHORT).show();
+			    	t.printStackTrace();
+			    }
 			}
 			break;
 			case R.id.btnGetInfor: {

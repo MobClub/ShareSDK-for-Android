@@ -8,6 +8,8 @@
 
 package cn.sharesdk.onekeyshare;
 
+import cn.sharesdk.demo.R;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +37,6 @@ import android.widget.TextView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.Toast;
-import cn.sharesdk.demo.R;
 import cn.sharesdk.framework.FakeActivity;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
@@ -110,10 +111,7 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 				ArrayList<Platform> list = new ArrayList<Platform>();
 				for (Platform plat : platformList) {
 					String name = plat.getName();
-					if ("Wechat".equals(name) || "WechatMoments".equals(name)
-							|| "ShortMessage".equals(name) || "Email".equals(name)
-							|| "GooglePlus".equals(name) || "QQ".equals(name)
-							|| "Pinterest".equals(name)) {
+					if (ShareCore.isUseClientToShare(name)) {
 						continue;
 					}
 					list.add(plat);

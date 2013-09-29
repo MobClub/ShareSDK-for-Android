@@ -8,6 +8,8 @@
 
 package cn.sharesdk.onekeyshare;
 
+import cn.sharesdk.demo.R;
+
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,7 +35,6 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import cn.sharesdk.demo.R;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.utils.UIHandler;
@@ -217,10 +218,8 @@ public class PlatformGridView extends LinearLayout implements
 			String name = plat.getName();
 			parent.setPlatform(name);
 			// EditPage不支持微信平台、Google+、QQ分享、Pinterest、信息和邮件，总是执行直接分享
-			if ("Wechat".equals(name) || "WechatMoments".equals(name)
-					|| "ShortMessage".equals(name) || "Email".equals(name)
-					|| "GooglePlus".equals(name) || "QQ".equals(name)
-					|| "Pinterest".equals(name)) {
+			if (ShareCore.isUseClientToShare(name)
+					|| ("Evernote".equals(name) && !plat.isSSODisable())) {
 				HashMap<Platform, HashMap<String, Object>> shareData
 						= new HashMap<Platform, HashMap<String,Object>>();
 				shareData.put(plat, reqData);

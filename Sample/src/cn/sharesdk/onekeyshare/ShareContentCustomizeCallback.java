@@ -1,5 +1,7 @@
 package cn.sharesdk.onekeyshare;
 
+import cn.sharesdk.demo.R;
+
 import cn.sharesdk.framework.Platform;
 
 public interface ShareContentCustomizeCallback {

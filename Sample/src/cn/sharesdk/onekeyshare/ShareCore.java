@@ -8,6 +8,8 @@
 
 package cn.sharesdk.onekeyshare;
 
+import cn.sharesdk.demo.R;
+
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -77,6 +79,18 @@ public class ShareCore {
 		}
 
 		return (Platform.ShareParams) sp;
+	}
+
+	/** 判断指定平台是否使用客户端分享 */
+	public static boolean isUseClientToShare(String platform) {
+		if ("Wechat".equals(platform) || "WechatMoments".equals(platform)
+				|| "ShortMessage".equals(platform) || "Email".equals(platform)
+				|| "GooglePlus".equals(platform) || "QQ".equals(platform)
+				|| "Pinterest".equals(platform)) {
+			return true;
+		}
+
+		return false;
 	}
 
 }

@@ -9,22 +9,10 @@
 package cn.sharesdk.demo;
 
 import java.util.HashMap;
-import cn.sharesdk.douban.Douban;
-import cn.sharesdk.facebook.Facebook;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
-import cn.sharesdk.kaixin.KaiXin;
-import cn.sharesdk.netease.microblog.NetEaseMicroBlog;
-import cn.sharesdk.renren.Renren;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.sohu.microblog.SohuMicroBlog;
-import cn.sharesdk.sohu.suishenkan.SohuSuishenkan;
-import cn.sharesdk.tencent.qzone.QZone;
-import cn.sharesdk.tencent.weibo.TencentWeibo;
-import cn.sharesdk.twitter.Twitter;
-import cn.sharesdk.youdao.YouDao;
 import android.content.Intent;
 import android.os.Message;
 import android.view.LayoutInflater;
@@ -108,7 +96,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void doubanEvent() {
-		Platform douban = ShareSDK.getPlatform(menu.getContext(), Douban.NAME);
+		Platform douban = ShareSDK.getPlatform(menu.getContext(), "Douban");
 		douban.setPlatformActionListener(this);
 		String url = "https://api.douban.com/shuo/v2/users/search";
 		String method = "GET";
@@ -119,7 +107,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void facebookEvent() {
-		Platform facebook = ShareSDK.getPlatform(menu.getContext(), Facebook.NAME);
+		Platform facebook = ShareSDK.getPlatform(menu.getContext(), "Facebook");
 		facebook.setPlatformActionListener(this);
 		String url = "https://graph.facebook.com/me/notifications";
 		String method = "GET";
@@ -128,7 +116,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void neteaseMb() {
-		Platform nemb = ShareSDK.getPlatform(menu.getContext(), NetEaseMicroBlog.NAME);
+		Platform nemb = ShareSDK.getPlatform(menu.getContext(), "NetEaseMicroBlog");
 		nemb.setPlatformActionListener(this);
 		String url = "https://api.t.163.com/trends/recommended.json";
 		String method = "GET";
@@ -137,7 +125,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void renren() {
-		Platform renren = ShareSDK.getPlatform(menu.getContext(), Renren.NAME);
+		Platform renren = ShareSDK.getPlatform(menu.getContext(), "Renren");
 		renren.setPlatformActionListener(this);
 		String url = "https://api.renren.com/v2/user/friend/list";//"https://api.renren.com/v2/photo/upload";
 		String method = "GET";//"POST";
@@ -153,7 +141,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void sinaWeibo() {
-		Platform weibo = ShareSDK.getPlatform(menu.getContext(), SinaWeibo.NAME);
+		Platform weibo = ShareSDK.getPlatform(menu.getContext(), "SinaWeibo");
 		weibo.setPlatformActionListener(this);
 		String url = "https://api.weibo.com/2/statuses/friends_timeline.json";
 		String method = "GET";
@@ -165,7 +153,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void qzone() {
-		Platform qzone = ShareSDK.getPlatform(menu.getContext(), QZone.NAME);
+		Platform qzone = ShareSDK.getPlatform(menu.getContext(), "QZone");
 		qzone.setPlatformActionListener(this);
 		String url = "https://graph.qq.com/blog/add_one_blog";
 		String method = "POST";
@@ -177,7 +165,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void tencentWeibo() {
-		Platform weibo = ShareSDK.getPlatform(menu.getContext(), TencentWeibo.NAME);
+		Platform weibo = ShareSDK.getPlatform(menu.getContext(), "TencentWeibo");
 		weibo.setPlatformActionListener(this);
 		String url = "https://open.t.qq.com/api/friends/fanslist";
 		String method = "GET";
@@ -190,7 +178,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void twitter() {
-		Platform twitter = ShareSDK.getPlatform(menu.getContext(), Twitter.NAME);
+		Platform twitter = ShareSDK.getPlatform(menu.getContext(), "Twitter");
 		twitter.setPlatformActionListener(this);
 		String url = "https://api.twitter.com/1.1/statuses/home_timeline.json";
 		String method = "GET";
@@ -201,7 +189,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void kaixin() {
-		Platform kaixin = ShareSDK.getPlatform(menu.getContext(), KaiXin.NAME);
+		Platform kaixin = ShareSDK.getPlatform(menu.getContext(), "KaiXin");
 		kaixin.setPlatformActionListener(this);
 		String url = "https://api.kaixin001.com/users/mfriends.json";
 		String method = "GET";
@@ -212,7 +200,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void sohuMb() {
-		Platform shmb = ShareSDK.getPlatform(menu.getContext(), SohuMicroBlog.NAME);
+		Platform shmb = ShareSDK.getPlatform(menu.getContext(), "SohuMicroBlog");
 		shmb.setPlatformActionListener(this);
 		String url = "https://api.t.sohu.com/statuses/friends.json";
 		String method = "GET";
@@ -224,7 +212,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void youdaoNote() {
-		Platform youdao = ShareSDK.getPlatform(menu.getContext(), YouDao.NAME);
+		Platform youdao = ShareSDK.getPlatform(menu.getContext(), "YouDao");
 		youdao.setPlatformActionListener(this);
 		String url = "http://note.youdao.com/yws/open/notebook/all.json";
 		String method = "POST";
@@ -233,7 +221,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void SohuSuishenkan() {
-		Platform  suiShenKan = ShareSDK.getPlatform(menu.getContext(), SohuSuishenkan.NAME);
+		Platform  suiShenKan = ShareSDK.getPlatform(menu.getContext(), "SohuSuishenkan");
 		suiShenKan.setPlatformActionListener(this);
 		String url = "https://api.sohu.com/rest/k/prv/1/bookmark/get-list";
 		String method = "GET";

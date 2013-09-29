@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ShareSDK</string>
-    <integer name="app_version_code">19</integer>
-    <string name="app_version">2.1.0</string>
+    <integer name="app_version_code">20</integer>
+    <string name="app_version">2.1.1</string>
     <string name="proj_name">ShareSDK</string>
     
     <string name="more">更多</string>

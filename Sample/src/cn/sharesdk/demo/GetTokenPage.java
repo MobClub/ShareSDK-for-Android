@@ -14,6 +14,7 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
+import cn.sharesdk.onekeyshare.ShareCore;
 import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -121,10 +122,7 @@ public class GetTokenPage extends Activity implements Callback,
 			platforms = new ArrayList<Platform>();
 			for (Platform p : tmp) {
 				String name = p.getName();
-				if ("Wechat".equals(name) || "WechatMoments".equals(name)
-						|| "QQ".equals(name) || "Email".equals(name)
-						|| "ShortMessage".equals(name) || "GooglePlus".equals(name)
-						|| "Pinterest".equals(name)) {
+				if (ShareCore.isUseClientToShare(name)) {
 					continue;
 				}
 				platforms.add(p);

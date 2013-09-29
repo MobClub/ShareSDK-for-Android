@@ -8,10 +8,10 @@
 
 package cn.sharesdk.onekeyshare;
 
+import cn.sharesdk.demo.R;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import cn.sharesdk.demo.R;
 import cn.sharesdk.framework.FakeActivity;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
@@ -243,8 +243,7 @@ public class FollowList extends FakeActivity implements OnClickListener, OnItemC
 			handler.sendEmptyMessage(-1);
 		}
 
-		public void onComplete(Platform plat, int action,
-				HashMap<String, Object> res) {
+		public void onComplete(Platform plat, int action, HashMap<String, Object> res) {
 			if (parseList(res)) {
 				curPage++;
 				handler.sendEmptyMessage(1);
@@ -256,6 +255,10 @@ public class FollowList extends FakeActivity implements OnClickListener, OnItemC
 		}
 
 		private boolean parseList(HashMap<String, Object> res) {
+			if (res == null || res.size() <= 0) {
+				return false;
+			}
+
 			boolean hasData = false;
 			if ("SinaWeibo".equals(platform.getName())) {
 				// users[id, name, description]

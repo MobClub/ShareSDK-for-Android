@@ -8,6 +8,8 @@
 
 package cn.sharesdk.onekeyshare;
 
+import cn.sharesdk.demo.R;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +25,7 @@ import android.os.Handler.Callback;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -34,7 +37,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.FrameLayout.LayoutParams;
-import cn.sharesdk.demo.R;
 import cn.sharesdk.framework.FakeActivity;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
@@ -62,6 +64,7 @@ public class OnekeyShare extends FakeActivity implements
 	// 滑下去的动画
 	private Animation animHide;
 	private boolean finishing;
+	private boolean canceled;
 	private HashMap<String, Object> reqMap;
 	private ArrayList<CustomerLogo> customers;
 	private int notifyIcon;
@@ -217,10 +220,7 @@ public class OnekeyShare extends FakeActivity implements
 						= new HashMap<Platform, HashMap<String,Object>>();
 				shareData.put(ShareSDK.getPlatform(activity, name), reqMap);
 				share(shareData);
-			} else if ("Wechat".equals(name) || "WechatMoments".equals(name)
-					|| "ShortMessage".equals(name) || "Email".equals(name)
-					|| "GooglePlus".equals(name) || "QQ".equals(name)
-					|| "Pinterest".equals(name)) {
+			} else if (ShareCore.isUseClientToShare(name)) {
 				HashMap<Platform, HashMap<String, Object>> shareData
 						= new HashMap<Platform, HashMap<String,Object>>();
 				shareData.put(ShareSDK.getPlatform(activity, name), reqMap);
@@ -316,8 +316,16 @@ public class OnekeyShare extends FakeActivity implements
 
 	public void onClick(View v) {
 		if (v.equals(flPage) || v.equals(btnCancel)) {
+			canceled = true;
 			finish();
 		}
+	}
+
+	public boolean onKeyEvent(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			canceled = true;
+		}
+		return super.onKeyEvent(keyCode, event);
 	}
 
 	public void finish() {
@@ -332,7 +340,9 @@ public class OnekeyShare extends FakeActivity implements
 		}
 
 		// 取消分享菜单的统计
-		ShareSDK.logDemoEvent(2, null);
+		if (canceled) {
+			ShareSDK.logDemoEvent(2, null);
+		}
 		finishing = true;
 		animHide.setAnimationListener(new AnimationListener() {
 			public void onAnimationStart(Animation animation) {
