@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -48,8 +47,12 @@ import cn.sharesdk.framework.utils.UIHandler;
 public class PlatformGridView extends LinearLayout implements
 		OnPageChangeListener, OnClickListener, Callback {
 	private static final int MSG_PLATFORM_LIST_GOT = 1;
-	// 每页显示9格
-	private static final int PAGE_SIZE = 9;
+	// 每行显示的格数
+	private int LINE_PER_PAGE;
+	// 每页显示的行数
+	private int COLUMN_PER_LINE;
+	// 每页显示的格数
+	private int PAGE_SIZE;
 	// 宫格容器
 	private ViewPager pager;
 	// 页面指示器
@@ -76,13 +79,12 @@ public class PlatformGridView extends LinearLayout implements
 	}
 
 	private void init(final Context context) {
+		calPageSize();
 		setOrientation(VERTICAL);
-		int dp_10 = cn.sharesdk.framework.utils.R.dipToPx(context, 10);
-		setPadding(dp_10, dp_10, dp_10, dp_10);
 
 		pager = new ViewPager(context);
 		disableOverScrollMode(pager);
-		pager.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, 1));
+		pager.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
 		pager.setOnPageChangeListener(this);
 		addView(pager);
 
@@ -93,6 +95,31 @@ public class PlatformGridView extends LinearLayout implements
 				UIHandler.sendEmptyMessage(MSG_PLATFORM_LIST_GOT, PlatformGridView.this);
 			}
 		}.start();
+	}
+
+	private void calPageSize() {
+		float scrW = cn.sharesdk.framework.utils.R.getScreenWidth(getContext());
+		float scrH = cn.sharesdk.framework.utils.R.getScreenHeight(getContext());
+		float whR = scrW / scrH;
+		if (whR < 0.6) {
+			COLUMN_PER_LINE = 3;
+			LINE_PER_PAGE = 3;
+		} else if (whR < 0.75) {
+			COLUMN_PER_LINE = 3;
+			LINE_PER_PAGE = 2;
+		} else {
+			LINE_PER_PAGE = 1;
+			if (whR >= 1.75) {
+				COLUMN_PER_LINE = 6;
+			} else if (whR >= 1.5) {
+				COLUMN_PER_LINE = 5;
+			} else if (whR >= 1.3) {
+				COLUMN_PER_LINE = 4;
+			} else {
+				COLUMN_PER_LINE = 3;
+			}
+		}
+		PAGE_SIZE = COLUMN_PER_LINE * LINE_PER_PAGE;
 	}
 
 	public boolean handleMessage(Message msg) {
@@ -107,26 +134,12 @@ public class PlatformGridView extends LinearLayout implements
 
 	/** 初始化宫格列表ui */
 	public void afterPlatformListGot() {
-		Context context = getContext();
-
-		// 为了更好的ui效果，开启子线程获取平台列表
-		int cusSize = customers == null ? 0 : customers.size();
-		int platSize = platformList == null ? 0 : platformList.length;
-		int pageSize = (platSize + cusSize) > PAGE_SIZE
-				? PAGE_SIZE : (platSize + cusSize);
-		int lines = pageSize / 3;
-		if (pageSize % 3 > 0) {
-			lines++;
-		}
-		ViewGroup.LayoutParams lp = pager.getLayoutParams();
-		int dp_10 = cn.sharesdk.framework.utils.R.dipToPx(context, 10);
-		int scrW = getResources().getDisplayMetrics().widthPixels;
-		lp.height = (scrW - dp_10 * 2) * lines / 3;
-		pager.setLayoutParams(lp);
-		PlatformAdapter adapter = new PlatformAdapter(platformList, customers, this);
+		PlatformAdapter adapter = new PlatformAdapter(this);
 		pager.setAdapter(adapter);
 		int pageCount = 0;
 		if (platformList != null) {
+			int cusSize = customers == null ? 0 : customers.size();
+			int platSize = platformList == null ? 0 : platformList.length;
 			int size = platSize + cusSize;
 			pageCount = size / PAGE_SIZE;
 			if (size % PAGE_SIZE > 0) {
@@ -138,6 +151,7 @@ public class PlatformGridView extends LinearLayout implements
 			return;
 		}
 
+		Context context = getContext();
 		LinearLayout llPoints = new LinearLayout(context);
 		// 如果页面总是超过1，则设置页面指示器
 		llPoints.setVisibility(pageCount > 1 ? View.VISIBLE: View.GONE);
@@ -161,6 +175,23 @@ public class PlatformGridView extends LinearLayout implements
 		}
 		int curPage = pager.getCurrentItem();
 		points[curPage].setImageBitmap(whitePoint);
+	}
+
+	/** 屏幕旋转后，此方法会被调用，以刷新宫格列表的布局 */
+	public void onConfigurationChanged() {
+		int curFirst = pager.getCurrentItem() * PAGE_SIZE;
+		calPageSize();
+		int newPage = curFirst / PAGE_SIZE;
+
+		removeViewAt(1);
+		afterPlatformListGot();
+		ViewGroup.LayoutParams lp = pager.getLayoutParams();
+		View v = pager.getChildAt(0);
+		v.measure(0, 0);
+		lp.height = v.getMeasuredHeight();
+		pager.setLayoutParams(lp);
+
+		pager.setCurrentItem(newPage);
 	}
 
 	public void onPageScrollStateChanged(int state) {
@@ -218,8 +249,7 @@ public class PlatformGridView extends LinearLayout implements
 			String name = plat.getName();
 			parent.setPlatform(name);
 			// EditPage不支持微信平台、Google+、QQ分享、Pinterest、信息和邮件，总是执行直接分享
-			if (ShareCore.isUseClientToShare(name)
-					|| ("Evernote".equals(name) && !plat.isSSODisable())) {
+			if (ShareCore.isUseClientToShare(getContext(), name)) {
 				HashMap<Platform, HashMap<String, Object>> shareData
 						= new HashMap<Platform, HashMap<String,Object>>();
 				shareData.put(plat, reqData);
@@ -262,21 +292,25 @@ public class PlatformGridView extends LinearLayout implements
 		private OnClickListener callback;
 		// 行数
 		private int lines;
+		private PlatformGridView platformGridView;
 
-		public PlatformAdapter(Platform[] platforms, ArrayList<CustomerLogo> customers,
-				OnClickListener callback) {
+		public PlatformAdapter(PlatformGridView platformGridView) {
+			this.platformGridView = platformGridView;
 			logos = new ArrayList<Object>();
+			Platform[] platforms = platformGridView.platformList;
 			if (platforms != null) {
 				logos.addAll(Arrays.asList(platforms));
 			}
+			ArrayList<CustomerLogo> customers = platformGridView.customers;
 			if (customers != null) {
 				logos.addAll(customers);
 			}
-			this.callback = callback;
+			this.callback = platformGridView;
 			girds = null;
 
 			if (logos != null) {
 				int size = logos.size();
+				int PAGE_SIZE = platformGridView.PAGE_SIZE;
 				int pageCount = size / PAGE_SIZE;
 				if (size % PAGE_SIZE > 0) {
 					pageCount++;
@@ -295,7 +329,7 @@ public class PlatformGridView extends LinearLayout implements
 
 		public Object instantiateItem(ViewGroup container, int position) {
 			if (girds[position] == null) {
-				int pageSize = PAGE_SIZE;
+				int pageSize = platformGridView.PAGE_SIZE;
 				int curSize = pageSize * position;
 				int listSize = logos == null ? 0 : logos.size();
 				if (curSize + pageSize > listSize) {
@@ -307,13 +341,23 @@ public class PlatformGridView extends LinearLayout implements
 				}
 
 				if (position == 0) {
-					lines = gridBean.length / 3;
-					if (gridBean.length % 3 > 0) {
+					int COLUMN_PER_LINE = platformGridView.COLUMN_PER_LINE;
+					lines = gridBean.length / COLUMN_PER_LINE;
+					if (gridBean.length % COLUMN_PER_LINE > 0) {
 						lines++;
 					}
 				}
-				girds[position] = new GridView(container.getContext(), callback);
+				girds[position] = new GridView(this);
 				girds[position].setData(lines, gridBean);
+			}
+
+			if (position == 0) {
+				ViewGroup.LayoutParams lp = container.getLayoutParams();
+				if (lp.height <= 0) {
+					girds[position].measure(0, 0);
+					lp.height = girds[position].getMeasuredHeight();
+					container.setLayoutParams(lp);
+				}
 			}
 			container.addView(girds[position]);
 			return girds[position];
@@ -330,12 +374,12 @@ public class PlatformGridView extends LinearLayout implements
 		private Object[] beans;
 		private OnClickListener callback;
 		private int lines;
-		// 格子宽度
-		private int iconWidth;
+		private PlatformAdapter platformAdapter;
 
-		public GridView(Context context, OnClickListener callback) {
-			super(context);
-			this.callback = callback;
+		public GridView(PlatformAdapter platformAdapter) {
+			super(platformAdapter.platformGridView.getContext());
+			this.platformAdapter = platformAdapter;
+			this.callback = platformAdapter.callback;
 		}
 
 		public void setData(int lines, Object[] beans) {
@@ -345,31 +389,31 @@ public class PlatformGridView extends LinearLayout implements
 		}
 
 		private void init() {
-			int dp_10 = cn.sharesdk.framework.utils.R.dipToPx(getContext(), 10);
-			int scrW = getResources().getDisplayMetrics().widthPixels;
-			iconWidth = (scrW - dp_10 * 2) / 3 - dp_10 * 4;
-
+			int dp_5 = cn.sharesdk.framework.utils.R.dipToPx(getContext(), 5);
+			setPadding(0, dp_5, 0, dp_5);
 			setOrientation(VERTICAL);
 
 			int size = beans == null ? 0 : beans.length;
-			int lineSize = size / 3;
-			if (size % 3 > 0) {
+			int COLUMN_PER_LINE = platformAdapter.platformGridView.COLUMN_PER_LINE;
+			int lineSize = size / COLUMN_PER_LINE;
+			if (size % COLUMN_PER_LINE > 0) {
 				lineSize++;
 			}
 			LayoutParams lp = new LayoutParams(
-					LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
+					LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
 			lp.weight = 1;
 			for (int i = 0; i < lines; i++) {
 				LinearLayout llLine = new LinearLayout(getContext());
 				llLine.setLayoutParams(lp);
+				llLine.setPadding(dp_5, 0, dp_5, 0);
 				addView(llLine);
 
 				if (i >= lineSize) {
 					continue;
 				}
 
-				for (int j = 0; j < 3; j++) {
-					final int index = i * 3 + j;
+				for (int j = 0; j < COLUMN_PER_LINE; j++) {
+					final int index = i * COLUMN_PER_LINE + j;
 					if (index >= size) {
 						LinearLayout llItem = new LinearLayout(getContext());
 						llItem.setLayoutParams(lp);
@@ -402,13 +446,14 @@ public class PlatformGridView extends LinearLayout implements
 
 			LinearLayout ll = new LinearLayout(context);
 			ll.setOrientation(LinearLayout.VERTICAL);
-			int dp_5 = cn.sharesdk.framework.utils.R.dipToPx(context, 5);
-			ll.setPadding(dp_5, dp_5, dp_5, dp_5);
 
 			ImageView iv = new ImageView(context);
+			int dp_5 = cn.sharesdk.framework.utils.R.dipToPx(context, 5);
+			iv.setPadding(dp_5, dp_5, dp_5, dp_5);
 			iv.setScaleType(ScaleType.CENTER_INSIDE);
 			LinearLayout.LayoutParams lpIv = new LinearLayout.LayoutParams(
-					iconWidth, iconWidth);
+					LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+			lpIv.setMargins(dp_5, dp_5, dp_5, dp_5);
 			lpIv.gravity = Gravity.CENTER_HORIZONTAL;
 			iv.setLayoutParams(lpIv);
 			iv.setImageBitmap(logo);
@@ -418,10 +463,12 @@ public class PlatformGridView extends LinearLayout implements
 			tv.setTextColor(0xffffffff);
 			tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
 			tv.setSingleLine();
-			tv.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP);
+			tv.setGravity(Gravity.CENTER_HORIZONTAL);
+			tv.setIncludeFontPadding(false);
 			LinearLayout.LayoutParams lpTv = new LinearLayout.LayoutParams(
 					LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
 			lpTv.weight = 1;
+			lpTv.setMargins(dp_5, 0, dp_5, dp_5);
 			tv.setLayoutParams(lpTv);
 			tv.setText(label);
 			ll.addView(tv);

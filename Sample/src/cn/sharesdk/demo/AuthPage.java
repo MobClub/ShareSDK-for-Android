@@ -151,7 +151,7 @@ public class AuthPage extends SlidingMenuPage implements
 			platforms = new ArrayList<Platform>();
 			for (Platform p : tmp) {
 				String name = p.getName();
-				if (ShareCore.isUseClientToShare(name)) {
+				if (!ShareCore.canAuthorize(p.getContext(), name)) {
 					continue;
 				}
 				platforms.add(p);
@@ -177,25 +177,26 @@ public class AuthPage extends SlidingMenuPage implements
 
 			int count = getCount();
 			View llItem = convertView.findViewById(R.id.llItem);
+			int dp_10 = cn.sharesdk.framework.utils.R.dipToPx(parent.getContext(), 10);
 			if (count == 1) {
 				llItem.setBackgroundResource(R.drawable.list_item_single_normal);
-			}
-			else if (count == 2) {
-				if (position == 0) {
-					llItem.setBackgroundResource(R.drawable.list_item_first_normal);
-				}
-				else if (position == 1) {
-					llItem.setBackgroundResource(R.drawable.list_item_last_normal);
-				}
+				llItem.setPadding(0, 0, 0, 0);
+				convertView.setPadding(dp_10, dp_10, dp_10, dp_10);
 			}
 			else if (position == 0) {
 				llItem.setBackgroundResource(R.drawable.list_item_first_normal);
+				llItem.setPadding(0, 0, 0, 0);
+				convertView.setPadding(dp_10, dp_10, dp_10, 0);
 			}
 			else if (position == count - 1) {
 				llItem.setBackgroundResource(R.drawable.list_item_last_normal);
+				llItem.setPadding(0, 0, 0, 0);
+				convertView.setPadding(dp_10, 0, dp_10, dp_10);
 			}
 			else {
 				llItem.setBackgroundResource(R.drawable.list_item_middle_normal);
+				llItem.setPadding(0, 0, 0, 0);
+				convertView.setPadding(dp_10, 0, dp_10, 0);
 			}
 
 			Platform plat = getItem(position);

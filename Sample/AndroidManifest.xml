@@ -22,7 +22,7 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="17" />
+        android:targetSdkVersion="16" />
 
     <application
         android:debuggable="true"
@@ -31,9 +31,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="cn.sharesdk.demo.MainActivity" 
-            android:clearTaskOnLaunch="true"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustPan|stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,25 +41,21 @@
         </activity>
         <activity
             android:name="cn.sharesdk.demo.GetTokenPage"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name="cn.sharesdk.demo.GetInforPage"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name="cn.sharesdk.demo.JsonPage"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 		
         <activity
             android:name="cn.sharesdk.framework.ShareSDKUIShell"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="stateHidden|adjustResize" >
             <!-- 
             	Adapter表示一个继承自cn.sharesdk.framework.authorize.AuthorizeAdapter的类，
@@ -84,6 +78,7 @@
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait" />
     </application>

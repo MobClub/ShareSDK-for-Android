@@ -13,7 +13,10 @@ import cn.sharesdk.demo.R;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map.Entry;
+
+import android.content.Context;
 import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.ShareSDK;
 
 /**
  * ShareCore是快捷分享的实际出口，此类使用了反射的方式，配合传递进来的HashMap，
@@ -82,15 +85,31 @@ public class ShareCore {
 	}
 
 	/** 判断指定平台是否使用客户端分享 */
-	public static boolean isUseClientToShare(String platform) {
+	public static boolean isUseClientToShare(Context context, String platform) {
+		if ("Wechat".equals(platform) || "WechatMoments".equals(platform)
+				|| "ShortMessage".equals(platform) || "Email".equals(platform)
+				|| "GooglePlus".equals(platform) || "QQ".equals(platform)
+				|| "Pinterest".equals(platform) || "Instagram".equals(platform)) {
+			return true;
+		} else if ("Evernote".equals(platform)) {
+			Platform plat = ShareSDK.getPlatform(context, platform);
+			if ("true".equals(plat.getDevinfo("ShareByAppClient"))) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/** 判断指定平台是否可以用来授权 */
+	public static boolean canAuthorize(Context context, String platform) {
 		if ("Wechat".equals(platform) || "WechatMoments".equals(platform)
 				|| "ShortMessage".equals(platform) || "Email".equals(platform)
 				|| "GooglePlus".equals(platform) || "QQ".equals(platform)
 				|| "Pinterest".equals(platform)) {
-			return true;
+			return false;
 		}
-
-		return false;
+		return true;
 	}
 
 }

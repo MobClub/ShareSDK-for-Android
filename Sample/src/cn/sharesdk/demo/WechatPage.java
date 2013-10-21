@@ -74,6 +74,12 @@ public class WechatPage extends SlidingMenuPage implements
 					ctvStWm.isChecked() ? View.GONE : View.VISIBLE);
 			pageView.findViewById(R.id.btnFile).setVisibility(
 					ctvStWm.isChecked() ? View.GONE : View.VISIBLE);
+			pageView.findViewById(R.id.btnEmoji).setVisibility(
+					ctvStWm.isChecked() ? View.GONE : View.VISIBLE);
+			pageView.findViewById(R.id.btnEmojiBitmap).setVisibility(
+					ctvStWm.isChecked() ? View.GONE : View.VISIBLE);
+			pageView.findViewById(R.id.btnEmojiUrl).setVisibility(
+					ctvStWm.isChecked() ? View.GONE : View.VISIBLE);
 			return;
 		}
 
@@ -104,6 +110,21 @@ public class WechatPage extends SlidingMenuPage implements
 			case R.id.btnUploadUrl: {
 				sp.shareType = Platform.SHARE_IMAGE;
 				sp.imageUrl = "http://img.appgo.cn/imgs/sharesdk/content/2013/07/16/1373959974649.png";
+			}
+			break;
+			case R.id.btnEmoji: {
+				sp.shareType = Platform.SHARE_EMOJI;
+				sp.imagePath = MainActivity.TEST_IMAGE;
+			}
+			break;
+			case R.id.btnEmojiUrl: {
+				sp.shareType = Platform.SHARE_EMOJI;
+				sp.imageUrl = "http://f1.sharesdk.cn/imgs/2013/10/17/okvCkwz_144x114.gif";
+			}
+			break;
+			case R.id.btnEmojiBitmap: {
+				sp.shareType = Platform.SHARE_EMOJI;
+				sp.imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
 			}
 			break;
 			case R.id.btnMusic: {
@@ -181,6 +202,21 @@ public class WechatPage extends SlidingMenuPage implements
 			case R.id.btnUploadUrl: {
 				sp.shareType = Platform.SHARE_IMAGE;
 				sp.imageUrl = "http://img.appgo.cn/imgs/sharesdk/content/2013/07/16/1373959974649.png";
+			}
+			break;
+			case R.id.btnEmoji: {
+				sp.shareType = Platform.SHARE_EMOJI;
+				sp.imagePath = MainActivity.TEST_IMAGE;
+			}
+			break;
+			case R.id.btnEmojiUrl: {
+				sp.shareType = Platform.SHARE_EMOJI;
+				sp.imageUrl = "http://f1.sharesdk.cn/imgs/2013/10/17/okvCkwz_144x114.gif";
+			}
+			break;
+			case R.id.btnEmojiBitmap: {
+				sp.shareType = Platform.SHARE_EMOJI;
+				sp.imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
 			}
 			break;
 			case R.id.btnMusic: {

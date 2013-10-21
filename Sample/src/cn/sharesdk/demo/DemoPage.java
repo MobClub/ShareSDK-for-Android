@@ -14,6 +14,7 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
+import cn.sharesdk.framework.utils.UIHandler;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.onekeyshare.ShareCore;
 import cn.sharesdk.sina.weibo.SinaWeibo;
@@ -22,6 +23,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Handler.Callback;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +40,7 @@ public class DemoPage extends SlidingMenuPage implements
 		OnClickListener, PlatformActionListener {
 	private TitleLayout llTitle;
 
-	public DemoPage(SlidingMenu menu) {
+	public DemoPage(final SlidingMenu menu) {
 		super(menu);
 		View pageView = getPage();
 
@@ -55,25 +57,40 @@ public class DemoPage extends SlidingMenuPage implements
 		pageView.findViewById(R.id.btnGetInfor).setOnClickListener(this);
 		pageView.findViewById(R.id.btnGetUserInfor).setOnClickListener(this);
 
+		new Thread() {
+			public void run() {
+				Message msg = new Message();
+				msg.obj = ShareSDK.getPlatformList(menu.getContext());
+				UIHandler.sendMessage(msg, new Callback() {
+					public boolean handleMessage(Message msg) {
+						afterPlatformsGot((Platform[]) msg.obj);
+						return false;
+					}
+				});
+			}
+		}.start();
+	}
+
+	private void afterPlatformsGot(Platform[] platforms) {
+		View pageView = getPage();
 		LinearLayout llList = (LinearLayout) pageView.findViewById(R.id.llList);
-		Platform[] platforms = ShareSDK.getPlatformList(menu.getContext());
 		LinearLayout line = (LinearLayout) View.inflate(menu.getContext(),
 				R.layout.demo_page_item, null);
 		llList.addView(line);
 		int lineCount = 0;
 
 		for (Platform platform : platforms) {
+			String name = platform.getName();
+			if (ShareCore.isUseClientToShare(platform.getContext(), name)) {
+				continue;
+			}
+
 			if (lineCount >= 2) {
 				// 每行两个按钮
 				line = (LinearLayout) View.inflate(menu.getContext(),
 						R.layout.demo_page_item, null);
 				llList.addView(line);
 				lineCount = 0;
-			}
-
-			String name = platform.getName();
-			if (ShareCore.isUseClientToShare(name)) {
-				continue;
 			}
 
 			// 处理左边按钮和右边按钮
@@ -111,10 +128,10 @@ public class DemoPage extends SlidingMenuPage implements
 		oks.setComment(menu.getContext().getString(R.string.share));
 		oks.setSite(menu.getContext().getString(R.string.app_name));
 		oks.setSiteUrl("http://sharesdk.cn");
-		oks.setVenueName("Southeast in China");
+		oks.setVenueName("Share SDK");
 		oks.setVenueDescription("This is a beautiful place!");
-		oks.setLatitude(23.122619f);
-		oks.setLongitude(113.372338f);
+		oks.setLatitude(23.056081f);
+		oks.setLongitude(113.385708f);
 		oks.setSilent(silent);
 		if (platform != null) {
 			oks.setPlatform(platform);

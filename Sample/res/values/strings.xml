@@ -50,6 +50,9 @@
 	<string name="image_upload">图片分享（本地图片）</string>
 	<string name="image_upload_bitmap">图片分享（Bitmap对象）</string>
 	<string name="image_upload_url">图片分享（网络图片）</string>
+	<string name="emoji_upload">表情分享（本地图片）</string>
+	<string name="emoji_upload_url">表情分享（网络图片）</string>
+	<string name="emoji_upload_bm">表情分享（Bitmap对象）</string>
 	<string name="music_upload">音乐分享</string>
 	<string name="video_upload">视频分享</string>
 	<string name="webpage_upload">网页分享（本地图片）</string>

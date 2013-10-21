@@ -111,7 +111,7 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 				ArrayList<Platform> list = new ArrayList<Platform>();
 				for (Platform plat : platformList) {
 					String name = plat.getName();
-					if (ShareCore.isUseClientToShare(name)) {
+					if (ShareCore.isUseClientToShare(activity, name)) {
 						continue;
 					}
 					list.add(plat);

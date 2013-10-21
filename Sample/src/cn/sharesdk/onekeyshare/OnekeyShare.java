@@ -19,6 +19,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Message;
 import android.os.Handler.Callback;
@@ -220,7 +221,7 @@ public class OnekeyShare extends FakeActivity implements
 						= new HashMap<Platform, HashMap<String,Object>>();
 				shareData.put(ShareSDK.getPlatform(activity, name), reqMap);
 				share(shareData);
-			} else if (ShareCore.isUseClientToShare(name)) {
+			} else if (ShareCore.isUseClientToShare(activity, name)) {
 				HashMap<Platform, HashMap<String, Object>> shareData
 						= new HashMap<Platform, HashMap<String,Object>>();
 				shareData.put(ShareSDK.getPlatform(activity, name), reqMap);
@@ -279,8 +280,6 @@ public class OnekeyShare extends FakeActivity implements
 		grid = new PlatformGridView(getContext());
 		LinearLayout.LayoutParams lpWg = new LinearLayout.LayoutParams(
 				LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-		int dp_10 = cn.sharesdk.framework.utils.R.dipToPx(getContext(), 10);
-		lpWg.setMargins(0, dp_10, 0, 0);
 		grid.setLayoutParams(lpWg);
 		llPage.addView(grid);
 
@@ -293,7 +292,8 @@ public class OnekeyShare extends FakeActivity implements
 		btnCancel.setBackgroundResource(R.drawable.btn_cancel_back);
 		LinearLayout.LayoutParams lpBtn = new LinearLayout.LayoutParams(
 				LayoutParams.FILL_PARENT, cn.sharesdk.framework.utils.R.dipToPx(getContext(), 45));
-		lpBtn.setMargins(dp_10, 0, dp_10, dp_10 * 2);
+		int dp_10 = cn.sharesdk.framework.utils.R.dipToPx(getContext(), 10);
+		lpBtn.setMargins(dp_10, dp_10, dp_10, dp_10);
 		btnCancel.setLayoutParams(lpBtn);
 		llPage.addView(btnCancel);
 	}
@@ -326,6 +326,12 @@ public class OnekeyShare extends FakeActivity implements
 			canceled = true;
 		}
 		return super.onKeyEvent(keyCode, event);
+	}
+
+	public void onConfigurationChanged(Configuration newConfig) {
+		if (grid != null) {
+			grid.onConfigurationChanged();
+		}
 	}
 
 	public void finish() {
@@ -400,6 +406,15 @@ public class OnekeyShare extends FakeActivity implements
 				Message msg = new Message();
 				msg.what = MSG_TOAST;
 				msg.obj = activity.getString(R.string.pinterest_client_inavailable);
+				UIHandler.sendMessage(msg, this);
+				continue;
+			}
+
+			boolean isInstagram = "Instagram".equals(name);
+			if (isInstagram && !plat.isValid()) {
+				Message msg = new Message();
+				msg.what = MSG_TOAST;
+				msg.obj = activity.getString(R.string.instagram_client_inavailable);
 				UIHandler.sendMessage(msg, this);
 				continue;
 			}

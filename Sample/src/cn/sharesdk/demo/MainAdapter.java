@@ -154,7 +154,7 @@ public class MainAdapter extends MenuAdapter
 		tvTitle.setTextColor(0xff999999);
 		tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13);
 		tvTitle.setLayoutParams(new ScrollView.LayoutParams(
-				LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		return tvTitle;
 	}
 
@@ -174,7 +174,7 @@ public class MainAdapter extends MenuAdapter
 		tvItem.setPadding(dp_13, 0, dp_13, 0);
 		int dp_52 = dipToPx(menu.getContext(), 52);
 		tvItem.setLayoutParams(new LinearLayout.LayoutParams(
-				LayoutParams.FILL_PARENT, dp_52));
+				LayoutParams.MATCH_PARENT, dp_52));
 		return tvItem;
 	}
 

@@ -14,6 +14,7 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
 import m.framework.ui.widget.slidingmenu.SlidingMenu;
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Bitmap.CompressFormat;
@@ -33,9 +34,11 @@ public class MainActivity extends Activity implements Callback {
 	private static final String FILE_NAME = "/pic.jpg";
 	public static String TEST_IMAGE;
 	private SlidingMenu menu;
+	private int orientation;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		orientation = getResources().getConfiguration().orientation;
 
 		menu = new SlidingMenu(this);
 		menu.setMenuItemBackground(R.color.sliding_menu_item_down, R.color.sliding_menu_item_release);
@@ -86,6 +89,15 @@ public class MainActivity extends Activity implements Callback {
 	public boolean handleMessage(Message msg) {
 		menu.triggerItem(MainAdapter.GROUP_DEMO, MainAdapter.ITEM_DEMO);
 		return false;
+	}
+
+	/** 屏幕旋转后，此方法会被调用，以刷新侧栏的布局 */
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		if (orientation != newConfig.orientation) {
+			orientation = newConfig.orientation;
+			menu.refresh();
+		}
 	}
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {

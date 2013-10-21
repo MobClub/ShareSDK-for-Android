@@ -86,7 +86,7 @@ public class MyAdapter extends AuthorizeAdapter implements OnClickListener,
 		}
 		ctvFollow.setTextColor(0xff909090);
 		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-				LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		ctvFollow.setLayoutParams(lp);
 		LinearLayout llBody = (LinearLayout) getBodyView().getChildAt(0);
 		llBody.addView(ctvFollow);

@@ -7,6 +7,7 @@
     <string name="google_plus_client_inavailable">Google+ client not exists or the version is too low</string>
     <string name="qq_client_inavailable">Mobile QQ client not exists or the version is too low</string>
     <string name="pinterest_client_inavailable">Pinterest client not exists or the version is too low</string>
+    <string name="instagram_client_inavailable">Instagram client not exists or the version is too low</string>
     
 	<string name="sinaweibo">Sina Weibo</string>
 	<string name="tencentweibo">Tencent Weibo</string>
@@ -33,4 +34,6 @@
 	<string name="flickr">Flickr</string>
 	<string name="tumblr">Tumblr</string>
 	<string name="dropbox">Dropbox</string>
+	<string name="vkontakte">VK</string>
+	<string name="instagram">Instagram</string>
 </resources>

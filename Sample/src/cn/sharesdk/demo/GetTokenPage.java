@@ -122,7 +122,7 @@ public class GetTokenPage extends Activity implements Callback,
 			platforms = new ArrayList<Platform>();
 			for (Platform p : tmp) {
 				String name = p.getName();
-				if (ShareCore.isUseClientToShare(name)) {
+				if (!ShareCore.canAuthorize(p.getContext(), name)) {
 					continue;
 				}
 				platforms.add(p);
