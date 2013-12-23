@@ -1,13 +1,14 @@
 <resources>
-    <string name="app_name">ShareSDK</string>
-    <integer name="app_version_code">20</integer>
-    <string name="app_version">2.1.1</string>
+    <string name="app_name">Share SDK</string>
+    <integer name="app_version_code">23</integer>
+    <string name="app_version">2.2.0</string>
     <string name="proj_name">ShareSDK</string>
     
     <string name="more">更多</string>
     <string name="sm_item_demo">接口</string>
     <string name="sm_item_auth">授权</string>
     <string name="sm_item_wechat">微信</string>
+    <string name="sm_item_yixin">易信</string>
     <string name="sm_item_customer">自定义接口</string>
     <string name="sm_item_fl_weibo">关注新浪微博</string>
     <string name="sm_item_fl_tc">关注腾讯微博</string>
@@ -61,9 +62,16 @@
 	<string name="app_upload">应用分享（携带文件）</string>
 	<string name="app_upload_extinfo">应用分享（携带脚本）</string>
 	<string name="file_upload">文件分享</string>
-	<string name="share_to_moment">分享到朋友圈</string>
+	<string name="share_to_wechat">微信好友</string>
+	<string name="share_to_moment">微信朋友圈</string>
+	<string name="share_to_favorite">微信收藏</string>
 	<string name="wechat_demo_title">微信分享Demo标题</string>
 	<string name="qzone_add_blog_sample"><h1>QQ互联</h1><font color='red'>轻松分享,</font><font color='green'>快乐生活。</font><a href='http://connect.qq.com'>详情请看。</a><img src='http://imgcache.qq.com/ptlogin/head/1_100.gif'></img></string>
 	<string name="wechat_client_is_not_installed_correctly">微信客户端未安装或版本太旧</string>
 	<string name="wechat_client_not_support_following_operation">微信客户端不支持第三方应用执行关注功能</string>
+	<string name="share_to_yixin">易信好友</string>
+	<string name="share_to_yixin_moment">易信朋友圈</string>
+	<string name="share_to_yixin_favorite">易信收藏</string>
+	<string name="yixin_demo_title">易信分享Demo标题</string>
+	
 </resources>

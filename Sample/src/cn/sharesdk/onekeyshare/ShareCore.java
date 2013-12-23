@@ -8,8 +8,6 @@
 
 package cn.sharesdk.onekeyshare;
 
-import cn.sharesdk.demo.R;
-
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -87,9 +85,11 @@ public class ShareCore {
 	/** 判断指定平台是否使用客户端分享 */
 	public static boolean isUseClientToShare(Context context, String platform) {
 		if ("Wechat".equals(platform) || "WechatMoments".equals(platform)
-				|| "ShortMessage".equals(platform) || "Email".equals(platform)
-				|| "GooglePlus".equals(platform) || "QQ".equals(platform)
-				|| "Pinterest".equals(platform) || "Instagram".equals(platform)) {
+				|| "WechatFavorite".equals(platform) || "ShortMessage".equals(platform)
+				|| "Email".equals(platform) || "GooglePlus".equals(platform)
+				|| "QQ".equals(platform) || "Pinterest".equals(platform)
+				|| "Instagram".equals(platform) || "Yixin".equals(platform)
+				|| "YixinMoments".equals(platform) || "QZone".equals(platform)) {
 			return true;
 		} else if ("Evernote".equals(platform)) {
 			Platform plat = ShareSDK.getPlatform(context, platform);
@@ -104,9 +104,10 @@ public class ShareCore {
 	/** 判断指定平台是否可以用来授权 */
 	public static boolean canAuthorize(Context context, String platform) {
 		if ("Wechat".equals(platform) || "WechatMoments".equals(platform)
-				|| "ShortMessage".equals(platform) || "Email".equals(platform)
-				|| "GooglePlus".equals(platform) || "QQ".equals(platform)
-				|| "Pinterest".equals(platform)) {
+				|| "WechatFavorite".equals(platform) || "ShortMessage".equals(platform)
+				|| "Email".equals(platform) || "GooglePlus".equals(platform)
+				|| "QQ".equals(platform) || "Pinterest".equals(platform)
+				|| "Yixin".equals(platform) || "YixinMoments".equals(platform)) {
 			return false;
 		}
 		return true;

@@ -21,8 +21,6 @@ import cn.sharesdk.framework.authorize.AuthorizeAdapter;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.tencent.weibo.TencentWeibo;
 
 /**
  * 一个用于演示{@link AuthorizeAdapter}的例子。
@@ -45,8 +43,8 @@ public class MyAdapter extends AuthorizeAdapter implements OnClickListener,
 //		llTitle.getTvTitle().setText("xxxx");
 
 		String platName = getPlatformName();
-		if (SinaWeibo.NAME.equals(platName)
-				|| TencentWeibo.NAME.equals(platName)) {
+		if ("SinaWeibo".equals(platName)
+				|| "TencentWeibo".equals(platName)) {
 			initUi(platName);
 			interceptPlatformActionListener(platName);
 			return;
@@ -81,7 +79,7 @@ public class MyAdapter extends AuthorizeAdapter implements OnClickListener,
 		ctvFollow.setGravity(Gravity.CENTER_VERTICAL);
 		ctvFollow.setPadding(dp_10, dp_10, dp_10, dp_10);
 		ctvFollow.setText(R.string.sm_item_fl_weibo);
-		if (platName.equals(TencentWeibo.NAME)) {
+		if (platName.equals("TencentWeibo")) {
 			ctvFollow.setText(R.string.sm_item_fl_tc);
 		}
 		ctvFollow.setTextColor(0xff909090);
@@ -141,7 +139,7 @@ public class MyAdapter extends AuthorizeAdapter implements OnClickListener,
 		else if (ctvFollow.isChecked()) {
 			// 授权成功，执行关注
 			String account = MainAdapter.SDK_SINAWEIBO_UID;
-			if (TencentWeibo.NAME.equals(plat.getName())) {
+			if ("TencentWeibo".equals(plat.getName())) {
 				account = MainAdapter.SDK_TENCENTWEIBO_UID;
 			}
 			plat.followFriend(account);

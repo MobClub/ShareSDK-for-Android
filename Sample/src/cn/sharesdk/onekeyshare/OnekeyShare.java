@@ -8,7 +8,8 @@
 
 package cn.sharesdk.onekeyshare;
 
-import cn.sharesdk.demo.R;
+import static cn.sharesdk.framework.utils.R.getBitmapRes;
+import static cn.sharesdk.framework.utils.R.getStringRes;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -96,7 +97,10 @@ public class OnekeyShare extends FakeActivity implements
 		reqMap.put("address", address);
 	}
 
-	/** title标题，在印象笔记、邮箱、信息、微信（包括好友和朋友圈）、人人网和QQ空间使用，否则可以不提供 */
+	/**
+	 * title标题，在印象笔记、邮箱、信息、微信（包括好友、朋友圈和收藏）、
+	 * 易信（包括好友、朋友圈）、人人网和QQ空间使用，否则可以不提供
+	 */
 	public void setTitle(String title) {
 		reqMap.put("title", title);
 	}
@@ -111,27 +115,29 @@ public class OnekeyShare extends FakeActivity implements
 		reqMap.put("text", text);
 	}
 
+	/** 获取text字段的值 */
+	public String getText() {
+		return reqMap.containsKey("text") ? String.valueOf(reqMap.get("text")) : null;
+	}
+
 	/** imagePath是本地的图片路径，除Linked-In外的所有平台都支持这个字段 */
 	public void setImagePath(String imagePath) {
-		reqMap.put("imagePath", imagePath);
+		if(!TextUtils.isEmpty(imagePath))
+			reqMap.put("imagePath", imagePath);
 	}
 
 	/** imageUrl是图片的网络路径，新浪微博、人人网、QQ空间和Linked-In支持此字段 */
 	public void setImageUrl(String imageUrl) {
-		reqMap.put("imageUrl", imageUrl);
+		if(!TextUtils.isEmpty(imageUrl))
+			reqMap.put("imageUrl", imageUrl);
 	}
 
-	/** musicUrl仅在微信（及朋友圈）中使用，是音乐文件的直接地址 */
-	public void serMusicUrl(String musicUrl) {
-		reqMap.put("musicUrl", musicUrl);
-	}
-
-	/** url仅在微信（包括好友和朋友圈）中使用，否则可以不提供 */
+	/** url在微信（包括好友、朋友圈收藏）和易信（包括好友和朋友圈）中使用，否则可以不提供 */
  	public void setUrl(String url) {
 		reqMap.put("url", url);
 	}
 
-	/** filePath是待分享应用程序的本地路劲，仅在微信好友和Dropbox中使用，否则可以不提供 */
+	/** filePath是待分享应用程序的本地路劲，仅在微信（易信）好友和Dropbox中使用，否则可以不提供 */
 	public void setFilePath(String filePath) {
 		reqMap.put("filePath", filePath);
 	}
@@ -186,9 +192,19 @@ public class OnekeyShare extends FakeActivity implements
 		this.callback = callback;
 	}
 
+	/** 返回操作回调 */
+	public PlatformActionListener getCallback() {
+		return callback;
+	}
+
 	/** 设置用于分享过程中，根据不同平台自定义分享内容的回调 */
 	public void setShareContentCustomizeCallback(ShareContentCustomizeCallback callback) {
 		customizeCallback = callback;
+	}
+
+	/** 返回自定义分享内容的回调 */
+	public ShareContentCustomizeCallback getShareContentCustomizeCallback() {
+		return customizeCallback;
 	}
 
 	/** 设置自己图标和点击事件，可以重复调用添加多次 */
@@ -214,38 +230,41 @@ public class OnekeyShare extends FakeActivity implements
 		// 当platform和silent都为true，则直接进入分享；
 		// 当platform设置了，但是silent为false，则判断是否是“使用客户端分享”的平台，
 		// 若为“使用客户端分享”的平台，则直接分享，否则进入编辑页面
-		if (reqMap.containsKey("platform")) {
-			String name = String.valueOf(reqMap.get("platform"));
+		HashMap<String, Object> copy = new HashMap<String, Object>();
+		copy.putAll(reqMap);
+		if (copy.containsKey("platform")) {
+			String name = String.valueOf(copy.get("platform"));
 			if (silent) {
 				HashMap<Platform, HashMap<String, Object>> shareData
 						= new HashMap<Platform, HashMap<String,Object>>();
-				shareData.put(ShareSDK.getPlatform(activity, name), reqMap);
+				shareData.put(ShareSDK.getPlatform(activity, name), copy);
 				share(shareData);
 			} else if (ShareCore.isUseClientToShare(activity, name)) {
 				HashMap<Platform, HashMap<String, Object>> shareData
 						= new HashMap<Platform, HashMap<String,Object>>();
-				shareData.put(ShareSDK.getPlatform(activity, name), reqMap);
+				shareData.put(ShareSDK.getPlatform(activity, name), copy);
 				share(shareData);
 			} else {
 				EditPage page = new EditPage();
-				page.setShareData(reqMap);
+				page.setShareData(copy);
 				page.setParent(this);
 				if (dialogMode) {
 					page.setDialogMode();
 				}
 				page.show(activity, null);
-
-				finish();
 			}
+			finish();
 			return;
 		}
 
+		finishing = false;
+		canceled = false;
 		initPageView();
 		initAnim();
 		activity.setContentView(flPage);
 
 		// 设置宫格列表数据
-		grid.setData(reqMap, silent);
+		grid.setData(copy, silent);
 		grid.setCustomerLogos(customers);
 		grid.setParent(this);
 		btnCancel.setOnClickListener(this);
@@ -269,9 +288,12 @@ public class OnekeyShare extends FakeActivity implements
 			}
 		};
 		llPage.setOrientation(LinearLayout.VERTICAL);
-		llPage.setBackgroundResource(R.drawable.share_vp_back);
+		int resId = getBitmapRes(getContext(), "share_vp_back");
+		if (resId > 0) {
+			llPage.setBackgroundResource(resId);
+		}
 		FrameLayout.LayoutParams lpLl = new FrameLayout.LayoutParams(
-				LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		lpLl.gravity = Gravity.BOTTOM;
 		llPage.setLayoutParams(lpLl);
 		flPage.addView(llPage);
@@ -279,7 +301,7 @@ public class OnekeyShare extends FakeActivity implements
 		// 宫格列表
 		grid = new PlatformGridView(getContext());
 		LinearLayout.LayoutParams lpWg = new LinearLayout.LayoutParams(
-				LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		grid.setLayoutParams(lpWg);
 		llPage.addView(grid);
 
@@ -287,11 +309,17 @@ public class OnekeyShare extends FakeActivity implements
 		btnCancel = new Button(getContext());
 		btnCancel.setTextColor(0xffffffff);
 		btnCancel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-		btnCancel.setText(R.string.cancel);
+		resId = getStringRes(getContext(), "cancel");
+		if (resId > 0) {
+			btnCancel.setText(resId);
+		}
 		btnCancel.setPadding(0, 0, 0, cn.sharesdk.framework.utils.R.dipToPx(getContext(), 5));
-		btnCancel.setBackgroundResource(R.drawable.btn_cancel_back);
+		resId = getBitmapRes(getContext(), "btn_cancel_back");
+		if (resId > 0) {
+			btnCancel.setBackgroundResource(resId);
+		}
 		LinearLayout.LayoutParams lpBtn = new LinearLayout.LayoutParams(
-				LayoutParams.FILL_PARENT, cn.sharesdk.framework.utils.R.dipToPx(getContext(), 45));
+				LayoutParams.MATCH_PARENT, cn.sharesdk.framework.utils.R.dipToPx(getContext(), 45));
 		int dp_10 = cn.sharesdk.framework.utils.R.dipToPx(getContext(), 10);
 		lpBtn.setMargins(dp_10, dp_10, dp_10, dp_10);
 		btnCancel.setLayoutParams(lpBtn);
@@ -374,11 +402,13 @@ public class OnekeyShare extends FakeActivity implements
 		for (Entry<Platform, HashMap<String, Object>> ent : shareData.entrySet()) {
 			Platform plat = ent.getKey();
 			String name = plat.getName();
-			boolean isWechat = "WechatMoments".equals(name) || "Wechat".equals(name);
+			boolean isWechat = "WechatMoments".equals(name) || "Wechat".equals(name)
+					|| "WechatFavorite".equals(name);
 			if (isWechat && !plat.isValid()) {
 				Message msg = new Message();
 				msg.what = MSG_TOAST;
-				msg.obj = activity.getString(R.string.wechat_client_inavailable);
+				int resId = getStringRes(getContext(), "wechat_client_inavailable");
+				msg.obj = activity.getString(resId);
 				UIHandler.sendMessage(msg, this);
 				continue;
 			}
@@ -387,7 +417,8 @@ public class OnekeyShare extends FakeActivity implements
 			if (isGooglePlus && !plat.isValid()) {
 				Message msg = new Message();
 				msg.what = MSG_TOAST;
-				msg.obj = activity.getString(R.string.google_plus_client_inavailable);
+				int resId = getStringRes(getContext(), "google_plus_client_inavailable");
+				msg.obj = activity.getString(resId);
 				UIHandler.sendMessage(msg, this);
 				continue;
 			}
@@ -396,7 +427,8 @@ public class OnekeyShare extends FakeActivity implements
 			if (isQQ && !plat.isValid()) {
 				Message msg = new Message();
 				msg.what = MSG_TOAST;
-				msg.obj = activity.getString(R.string.qq_client_inavailable);
+				int resId = getStringRes(getContext(), "qq_client_inavailable");
+				msg.obj = activity.getString(resId);
 				UIHandler.sendMessage(msg, this);
 				continue;
 			}
@@ -405,7 +437,8 @@ public class OnekeyShare extends FakeActivity implements
 			if (isPinterest && !plat.isValid()) {
 				Message msg = new Message();
 				msg.what = MSG_TOAST;
-				msg.obj = activity.getString(R.string.pinterest_client_inavailable);
+				int resId = getStringRes(getContext(), "pinterest_client_inavailable");
+				msg.obj = activity.getString(resId);
 				UIHandler.sendMessage(msg, this);
 				continue;
 			}
@@ -414,7 +447,18 @@ public class OnekeyShare extends FakeActivity implements
 			if (isInstagram && !plat.isValid()) {
 				Message msg = new Message();
 				msg.what = MSG_TOAST;
-				msg.obj = activity.getString(R.string.instagram_client_inavailable);
+				int resId = getStringRes(getContext(), "instagram_client_inavailable");
+				msg.obj = activity.getString(resId);
+				UIHandler.sendMessage(msg, this);
+				continue;
+			}
+
+			boolean isYixin = "YixinMoments".equals(name) || "Yixin".equals(name);
+			if (isYixin && !plat.isValid()) {
+				Message msg = new Message();
+				msg.what = MSG_TOAST;
+				int resId = getStringRes(getContext(), "yixin_client_inavailable");
+				msg.obj = activity.getString(resId);
 				UIHandler.sendMessage(msg, this);
 				continue;
 			}
@@ -424,15 +468,18 @@ public class OnekeyShare extends FakeActivity implements
 			String imagePath = String.valueOf(data.get("imagePath"));
 			if (imagePath != null && (new File(imagePath)).exists()) {
 				shareType = Platform.SHARE_IMAGE;
-				if (data.containsKey("url") && !TextUtils.isEmpty(data.get("url").toString())) {
+				if (imagePath.endsWith(".gif")) {
+					shareType = Platform.SHARE_EMOJI;
+				} else if (data.containsKey("url") && !TextUtils.isEmpty(data.get("url").toString())) {
 					shareType = Platform.SHARE_WEBPAGE;
 				}
-			}
-			else {
+			} else {
 				Object imageUrl = data.get("imageUrl");
 				if (imageUrl != null && !TextUtils.isEmpty(String.valueOf(imageUrl))) {
 					shareType = Platform.SHARE_IMAGE;
-					if (data.containsKey("url") && !TextUtils.isEmpty(data.get("url").toString())) {
+					if (String.valueOf(imageUrl).endsWith(".gif")) {
+						shareType = Platform.SHARE_EMOJI;
+					} else if (data.containsKey("url") && !TextUtils.isEmpty(data.get("url").toString())) {
 						shareType = Platform.SHARE_WEBPAGE;
 					}
 				}
@@ -442,7 +489,10 @@ public class OnekeyShare extends FakeActivity implements
 			if (!started) {
 				started = true;
 				if (equals(callback)) {
-					showNotification(2000, getContext().getString(R.string.sharing));
+					int resId = getStringRes(getContext(), "sharing");
+					if (resId > 0) {
+						showNotification(2000, getContext().getString(resId));
+					}
 				}
 				finish();
 			}
@@ -497,30 +547,52 @@ public class OnekeyShare extends FakeActivity implements
 				switch (msg.arg1) {
 					case 1: {
 						// 成功
-						showNotification(2000, getContext().getString(R.string.share_completed));
+						int resId = getStringRes(getContext(), "share_completed");
+						if (resId > 0) {
+							showNotification(2000, getContext().getString(resId));
+						}
 					}
 					break;
 					case 2: {
 						// 失败
 						String expName = msg.obj.getClass().getSimpleName();
 						if ("WechatClientNotExistException".equals(expName)
-								|| "WechatTimelineNotSupportedException".equals(expName)) {
-							showNotification(2000, getContext().getString(R.string.wechat_client_inavailable));
-						}
-						else if ("GooglePlusClientNotExistException".equals(expName)) {
-							showNotification(2000, getContext().getString(R.string.google_plus_client_inavailable));
-						}
-						else if ("QQClientNotExistException".equals(expName)) {
-							showNotification(2000, getContext().getString(R.string.qq_client_inavailable));
-						}
-						else {
-							showNotification(2000, getContext().getString(R.string.share_failed));
+								|| "WechatTimelineNotSupportedException".equals(expName)
+								|| "WechatFavoriteNotSupportedException".equals(expName)) {
+							int resId = getStringRes(getContext(), "wechat_client_inavailable");
+							if (resId > 0) {
+								showNotification(2000, getContext().getString(resId));
+							}
+						} else if ("GooglePlusClientNotExistException".equals(expName)) {
+							int resId = getStringRes(getContext(), "google_plus_client_inavailable");
+							if (resId > 0) {
+								showNotification(2000, getContext().getString(resId));
+							}
+						} else if ("QQClientNotExistException".equals(expName)) {
+							int resId = getStringRes(getContext(), "qq_client_inavailable");
+							if (resId > 0) {
+								showNotification(2000, getContext().getString(resId));
+							}
+						} else if ("YixinClientNotExistException".equals(expName)
+								|| "YixinTimelineNotSupportedException".equals(expName)) {
+							int resId = getStringRes(getContext(), "yixin_client_inavailable");
+							if (resId > 0) {
+								showNotification(2000, getContext().getString(resId));
+							}
+						} else {
+							int resId = getStringRes(getContext(), "share_failed");
+							if (resId > 0) {
+								showNotification(2000, getContext().getString(resId));
+							}
 						}
 					}
 					break;
 					case 3: {
 						// 取消
-						showNotification(2000, getContext().getString(R.string.share_canceled));
+						int resId = getStringRes(getContext(), "share_canceled");
+						if (resId > 0) {
+							showNotification(2000, getContext().getString(resId));
+						}
 					}
 					break;
 				}

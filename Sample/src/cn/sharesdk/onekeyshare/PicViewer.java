@@ -9,8 +9,6 @@
 
 package cn.sharesdk.onekeyshare;
 
-import cn.sharesdk.demo.R;
-
 import android.graphics.Bitmap;
 import android.view.View;
 import android.view.View.OnClickListener;

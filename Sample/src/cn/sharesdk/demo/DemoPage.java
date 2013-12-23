@@ -17,8 +17,6 @@ import cn.sharesdk.framework.TitleLayout;
 import cn.sharesdk.framework.utils.UIHandler;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.onekeyshare.ShareCore;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.tencent.weibo.TencentWeibo;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.ResolveInfo;
@@ -32,9 +30,16 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-/**
- * Share SDK接口演示页面，包括演示使用快捷分享完成图文分享、
- *无页面直接分享、授权、关注和不同平台的分享等等功能。
+
+/**ShareSDK 官网地址 ： http://www.sharesdk.cn </br>
+ *1、Share SDK接口演示页面</br>
+ *包括演示使用快捷分享完成图文分享、</br>
+ *无页面直接分享、授权、关注和不同平台的分享等等功能。</br>
+ *
+ *2、如果要咨询客服，请加企业QQ 4006852216 </br>
+ *3、咨询客服时，请把问题描述清楚，最好附带错误信息截图 </br>
+ *4、一般问题，集成文档中都有，请先看看集成文档；减少客服压力，多谢合作  ^_^
+ *5、由于客服压力巨大，每个月难免有那么几天，请见谅
  */
 public class DemoPage extends SlidingMenuPage implements
 		OnClickListener, PlatformActionListener {
@@ -96,6 +101,7 @@ public class DemoPage extends SlidingMenuPage implements
 			// 处理左边按钮和右边按钮
 			int res = lineCount == 0 ? R.id.btnLeft : R.id.btnRight;
 			Button btn = (Button) line.findViewById(res);
+			btn.setSingleLine();
 			int platNameRes = cn.sharesdk.framework.utils.R.getStringRes(
 					menu.getContext(), name);
 			String platName = menu.getContext().getString(platNameRes);
@@ -114,6 +120,19 @@ public class DemoPage extends SlidingMenuPage implements
 	}
 
 	// 使用快捷分享完成分享（请务必仔细阅读位于SDK解压目录下Docs文件夹中OnekeyShare类的JavaDoc）
+	/**ShareSDK集成方法有两种</br>
+	 * 1、第一种是引用方式，例如引用onekeyshare项目，onekeyshare项目再引用mainlibs库</br>
+	 * 2、第二种是把onekeyshare和mainlibs集成到项目中，本例子就是用第二种方式</br>
+	 * 请看“ShareSDK 使用说明文档”，SDK下载目录中 </br>
+	 * 或者看网络集成文档 http://wiki.sharesdk.cn/Android_%E5%BF%AB%E9%80%9F%E9%9B%86%E6%88%90%E6%8C%87%E5%8D%97
+	 * 3、混淆时，把sample或者本例子的混淆代码copy过去，在proguard-project.txt文件中
+	 *
+	 *
+	 * 平台配置信息有三种方式：
+	 * 1、在我们后台配置各个微博平台的key
+	 * 2、在代码中配置各个微博平台的key，http://sharesdk.cn/androidDoc/cn/sharesdk/framework/ShareSDK.html
+	 * 3、在配置文件中配置，本例子里面的assets/ShareSDK.conf,
+	 */
 	private void showShare(boolean silent, String platform) {
 		final OnekeyShare oks = new OnekeyShare();
 		oks.setNotification(R.drawable.ic_launcher, menu.getContext().getString(R.string.app_name));
@@ -184,14 +203,14 @@ public class DemoPage extends SlidingMenuPage implements
 			break;
 			case R.id.btnFlSw: {
 				// 关注新浪微博
-				Platform plat = ShareSDK.getPlatform(menu.getContext(), SinaWeibo.NAME);
+				Platform plat = ShareSDK.getPlatform(menu.getContext(), "SinaWeibo");
 				plat.setPlatformActionListener(this);
 				plat.followFriend(MainAdapter.SDK_SINAWEIBO_UID);
 			}
 			break;
 			case R.id.btnFlTc: {
 				// 关注腾讯微博
-				Platform plat = ShareSDK.getPlatform(menu.getContext(), TencentWeibo.NAME);
+				Platform plat = ShareSDK.getPlatform(menu.getContext(), "TencentWeibo");
 				plat.setPlatformActionListener(this);
 				plat.followFriend(MainAdapter.SDK_TENCENTWEIBO_UID);
 			}

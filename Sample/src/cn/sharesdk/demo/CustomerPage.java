@@ -125,19 +125,28 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void renren() {
+		// 分享本地图片
 		Platform renren = ShareSDK.getPlatform(menu.getContext(), "Renren");
 		renren.setPlatformActionListener(this);
-		String url = "https://api.renren.com/v2/user/friend/list";//"https://api.renren.com/v2/photo/upload";
-		String method = "GET";//"POST";
+		String url = "https://api.renren.com/v2/photo/upload";
+		String method = "POST";
 		short customerAction = ACTION_RENREN;
-//		HashMap<String, Object> values = new HashMap<String, Object>();
-//		values.put("description", "Share SDK customer protocol test");
-//		HashMap<String, String> filePathes = new HashMap<String, String>();
-//		filePathes.put("file", MainActivity.TEST_IMAGE);
-//		renren.customerProtocol(url, method, customerAction, values, filePathes);
 		HashMap<String, Object> values = new HashMap<String, Object>();
-		values.put("userId", Long.parseLong(renren.getDb().getUserId()));
-		renren.customerProtocol(url, method, customerAction, values, null);
+		values.put("description", "Share SDK customer protocol test");
+		HashMap<String, String> filePathes = new HashMap<String, String>();
+		filePathes.put("file", MainActivity.TEST_IMAGE);
+		renren.customerProtocol(url, method, customerAction, values, filePathes);
+
+		// 分享网络图片
+//		Platform renren = ShareSDK.getPlatform(menu.getContext(), "Renren");
+//		renren.setPlatformActionListener(this);
+//		String url = "https://api.renren.com/v2/share/url/put";
+//		String method = "POST";
+//		short customerAction = ACTION_RENREN;
+//		HashMap<String, Object> values = new HashMap<String, Object>();
+//		values.put("comment", "Share SDK customer protocol test");
+//		values.put("url", "http://img.appgo.cn/imgs/sharesdk/content/2013/07/25/1374723172663.jpg");
+//		renren.customerProtocol(url, method, customerAction, values, null);
 	}
 
 	private void sinaWeibo() {

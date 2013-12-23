@@ -12,8 +12,6 @@ import java.util.HashMap;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.tencent.weibo.TencentWeibo;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -53,18 +51,20 @@ public class MainAdapter extends MenuAdapter
 	public static final int ITEM_AUTH = 2;
 	/** “微信”项 */
 	public static final int ITEM_WECHAT = 3;
+	/** “易信”项 */
+	public static final int ITEM_YIXIN = 4;
 	/** “自定义接口”项 */
-	public static final int ITEM_CUSTOMER = 4;
+	public static final int ITEM_CUSTOMER = 5;
 	/** “关注新浪微博”项 */
-	public static final int ITEM_FOLLOW_SINAWEIBO = 4;
+	public static final int ITEM_FOLLOW_SINAWEIBO = 7;
 	/** “关注腾讯微博”项 */
-	public static final int ITEM_FOLLOW_TECENTWEIBO = 5;
+	public static final int ITEM_FOLLOW_TECENTWEIBO = 8;
 	/** “关注官方微信”项 */
-	public static final int ITEM_VISIT_WECHAT = 6;
+	public static final int ITEM_VISIT_WECHAT = 9;
 	/** “关注官方网站”项 */
-	public static final int ITEM_VISIT_WEBSITE = 7;
+	public static final int ITEM_VISIT_WEBSITE = 10;
 	/** “版本”项 */
-	public static final int ITEM_ABOUT = 8;
+	public static final int ITEM_ABOUT = 11;
 
 	/** 官方微信 */
 	public static final String WECHAT_ADDR = "http://weixin.qq.com/r/HHURHl7EjmDxh099nyA4";
@@ -103,6 +103,11 @@ public class MainAdapter extends MenuAdapter
 		item = new SlidingMenuItem();
 		item.id = ITEM_WECHAT;
 		item.body = menu.getResources().getString(R.string.sm_item_wechat);
+		setItem(GROUP_DEMO, item);
+
+		item = new SlidingMenuItem();
+		item.id = ITEM_YIXIN;
+		item.body = menu.getResources().getString(R.string.sm_item_yixin);
 		setItem(GROUP_DEMO, item);
 
 		item = new SlidingMenuItem();
@@ -209,6 +214,10 @@ public class MainAdapter extends MenuAdapter
 						page = new WechatPage(menu);
 					}
 					break;
+					case ITEM_YIXIN: {
+						page = new YixinPage(menu);
+					}
+					break;
 					case ITEM_CUSTOMER: {
 						page = new CustomerPage(menu);
 					}
@@ -222,13 +231,13 @@ public class MainAdapter extends MenuAdapter
 			case GROUP_MORE: {
 				switch(item.id) {
 					case ITEM_FOLLOW_SINAWEIBO: {
-						Platform plat = ShareSDK.getPlatform(menu.getContext(), SinaWeibo.NAME);
+						Platform plat = ShareSDK.getPlatform(menu.getContext(), "SinaWeibo");
 						plat.setPlatformActionListener(this);
 						plat.followFriend(SDK_SINAWEIBO_UID);
 					}
 					break;
 					case ITEM_FOLLOW_TECENTWEIBO: {
-						Platform plat = ShareSDK.getPlatform(menu.getContext(), TencentWeibo.NAME);
+						Platform plat = ShareSDK.getPlatform(menu.getContext(), "TencentWeibo");
 						plat.setPlatformActionListener(this);
 						plat.followFriend(SDK_TENCENTWEIBO_UID);
 					}

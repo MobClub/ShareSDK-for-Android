@@ -15,10 +15,9 @@ import cn.sharesdk.framework.Platform.ShareParams;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
+import cn.sharesdk.wechat.favorite.WechatFavorite;
 import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
-import cn.sharesdk.wechat.utils.WechatClientNotExistException;
-import cn.sharesdk.wechat.utils.WechatTimelineNotSupportedException;
 import android.graphics.BitmapFactory;
 import android.os.Message;
 import android.view.LayoutInflater;
@@ -28,11 +27,11 @@ import android.view.ViewGroup;
 import android.widget.CheckedTextView;
 import android.widget.Toast;
 
-/** 微信api的演示页面，展示了“微信好友”和“微信朋友圈”的接口 */
+/** 微信api的演示页面，展示了“微信好友”、“微信朋友圈”和“微信收藏夹”的接口 */
 public class WechatPage extends SlidingMenuPage implements
 		OnClickListener, PlatformActionListener {
 	private TitleLayout llTitle;
-	private CheckedTextView ctvStWm;
+	private CheckedTextView[] ctvPlats;
 	private View pageView;
 
 	public WechatPage(SlidingMenu menu) {
@@ -43,8 +42,16 @@ public class WechatPage extends SlidingMenuPage implements
 		llTitle.getBtnBack().setOnClickListener(this);
 		llTitle.getTvTitle().setText(R.string.sm_item_wechat);
 
-		ctvStWm = (CheckedTextView) pageView.findViewById(R.id.ctvStWm);
-		ViewGroup vp = (ViewGroup) ctvStWm.getParent();
+		ctvPlats = new CheckedTextView[] {
+				(CheckedTextView) pageView.findViewById(R.id.ctvStWc),
+				(CheckedTextView) pageView.findViewById(R.id.ctvStWm),
+				(CheckedTextView) pageView.findViewById(R.id.ctvStWf)
+		};
+		ctvPlats[0].setChecked(true);
+		for (View v : ctvPlats) {
+			v.setOnClickListener(this);
+		}
+		ViewGroup vp = (ViewGroup) ctvPlats[0].getParent().getParent();
 		for (int i = 0, size = vp.getChildCount(); i < size; i++) {
 			vp.getChildAt(i).setOnClickListener(this);
 		}
@@ -66,28 +73,96 @@ public class WechatPage extends SlidingMenuPage implements
 			return;
 		}
 
-		if (v.equals(ctvStWm)) {
-			ctvStWm.setChecked(!ctvStWm.isChecked());
-			pageView.findViewById(R.id.btnApp).setVisibility(
-					ctvStWm.isChecked() ? View.GONE : View.VISIBLE);
-			pageView.findViewById(R.id.btnAppExt).setVisibility(
-					ctvStWm.isChecked() ? View.GONE : View.VISIBLE);
-			pageView.findViewById(R.id.btnFile).setVisibility(
-					ctvStWm.isChecked() ? View.GONE : View.VISIBLE);
-			pageView.findViewById(R.id.btnEmoji).setVisibility(
-					ctvStWm.isChecked() ? View.GONE : View.VISIBLE);
-			pageView.findViewById(R.id.btnEmojiBitmap).setVisibility(
-					ctvStWm.isChecked() ? View.GONE : View.VISIBLE);
-			pageView.findViewById(R.id.btnEmojiUrl).setVisibility(
-					ctvStWm.isChecked() ? View.GONE : View.VISIBLE);
+		if (v instanceof CheckedTextView) {
+			for (CheckedTextView ctv : ctvPlats) {
+				ctv.setChecked(ctv.equals(v));
+			}
+
+			int[] visIds = null;
+			int[] invIds = null;
+			if (v.equals(ctvPlats[0])) {
+				visIds = new int[] {
+						R.id.btnUpdate,
+						R.id.btnUpload,
+						R.id.btnUploadBm,
+						R.id.btnUploadUrl,
+						R.id.btnEmoji,
+						R.id.btnEmojiUrl,
+						R.id.btnEmojiBitmap,
+						R.id.btnMusic,
+						R.id.btnVideo,
+						R.id.btnWebpage,
+						R.id.btnWebpageBm,
+						R.id.btnWebpageUrl,
+						R.id.btnApp,
+						R.id.btnAppExt,
+						R.id.btnFile
+				};
+				invIds = new int[] {};
+			} else if (v.equals(ctvPlats[1])) {
+				visIds = new int[] {
+						R.id.btnUpdate,
+						R.id.btnUpload,
+						R.id.btnUploadBm,
+						R.id.btnUploadUrl,
+						R.id.btnMusic,
+						R.id.btnVideo,
+						R.id.btnWebpage,
+						R.id.btnWebpageBm,
+						R.id.btnWebpageUrl
+				};
+				invIds = new int[] {
+						R.id.btnEmoji,
+						R.id.btnEmojiUrl,
+						R.id.btnEmojiBitmap,
+						R.id.btnApp,
+						R.id.btnAppExt,
+						R.id.btnFile
+				};
+			} else {
+				visIds = new int[] {
+						R.id.btnUpdate,
+						R.id.btnUpload,
+						R.id.btnUploadBm,
+						R.id.btnUploadUrl,
+						R.id.btnMusic,
+						R.id.btnVideo,
+						R.id.btnWebpage,
+						R.id.btnWebpageBm,
+						R.id.btnWebpageUrl,
+						R.id.btnFile
+				};
+				invIds = new int[] {
+						R.id.btnEmoji,
+						R.id.btnEmojiUrl,
+						R.id.btnEmojiBitmap,
+						R.id.btnApp,
+						R.id.btnAppExt
+				};
+			}
+
+			for (int id : visIds) {
+				menu.findViewById(id).setVisibility(View.VISIBLE);
+			}
+			for (int id : invIds) {
+				menu.findViewById(id).setVisibility(View.GONE);
+			}
 			return;
 		}
 
-		String name = ctvStWm.isChecked() ? WechatMoments.NAME : Wechat.NAME;
-		Platform plat = ShareSDK.getPlatform(menu.getContext(), name);
+		Platform plat = null;
+		ShareParams sp = null;
+		if (ctvPlats[0].isChecked()) {
+			plat = ShareSDK.getPlatform(menu.getContext(), "Wechat");
+			sp = getWechatShareParams(v);
+		} else if (ctvPlats[1].isChecked()) {
+			plat = ShareSDK.getPlatform(menu.getContext(), "WechatMoments");
+			sp = getWechatMomentsShareParams(v);
+		} else {
+			plat = ShareSDK.getPlatform(menu.getContext(), "WechatFavorite");
+			sp = getWechatFavoriteShareParams(v);
+		}
 		plat.setPlatformActionListener(this);
-		ShareParams sp = ctvStWm.isChecked() ?
-				getWechatMomentsShareParams(v) : getWechatShareParams(v);
 		plat.share(sp);
 	}
 
@@ -129,7 +204,7 @@ public class WechatPage extends SlidingMenuPage implements
 			break;
 			case R.id.btnMusic: {
 				sp.shareType = Platform.SHARE_MUSIC;
-				sp.musicUrl = "http://staff2.ustc.edu.cn/~wdw/softdown/index.asp/0042515_05.ANDY.mp3";
+				sp.musicUrl = "http://ubuntuone.com/45XSEOwdODtXSH0WYGAcR7";
 				sp.url = "http://sharesdk.cn";
 				sp.imagePath = MainActivity.TEST_IMAGE;
 			}
@@ -221,7 +296,7 @@ public class WechatPage extends SlidingMenuPage implements
 			break;
 			case R.id.btnMusic: {
 				sp.shareType = Platform.SHARE_MUSIC;
-				sp.musicUrl = "http://staff2.ustc.edu.cn/~wdw/softdown/index.asp/0042515_05.ANDY.mp3";
+				sp.musicUrl = "http://ubuntuone.com/45XSEOwdODtXSH0WYGAcR7";
 				sp.url = "http://sharesdk.cn";
 				sp.imagePath = MainActivity.TEST_IMAGE;
 			}
@@ -250,6 +325,68 @@ public class WechatPage extends SlidingMenuPage implements
 				sp.imageUrl = "http://img.appgo.cn/imgs/sharesdk/content/2013/07/16/1373959974649.png";
 			}
 			break;
+		}
+		return sp;
+	}
+
+	private ShareParams getWechatFavoriteShareParams(View v) {
+		WechatFavorite.ShareParams sp = new WechatFavorite.ShareParams();
+		sp.title = menu.getContext().getString(R.string.wechat_demo_title);
+		sp.text = menu.getContext().getString(R.string.share_content);
+		sp.shareType = Platform.SHARE_TEXT;
+		switch (v.getId()) {
+			case R.id.btnUpload: {
+				sp.shareType = Platform.SHARE_IMAGE;
+				sp.imagePath = MainActivity.TEST_IMAGE;
+			}
+			break;
+			case R.id.btnUploadBm: {
+				sp.shareType = Platform.SHARE_IMAGE;
+				sp.imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
+			}
+			break;
+			case R.id.btnUploadUrl: {
+				sp.shareType = Platform.SHARE_IMAGE;
+				sp.imageUrl = "http://img.appgo.cn/imgs/sharesdk/content/2013/07/16/1373959974649.png";
+			}
+			break;
+			case R.id.btnMusic: {
+				sp.shareType = Platform.SHARE_MUSIC;
+				sp.musicUrl = "http://ubuntuone.com/45XSEOwdODtXSH0WYGAcR7";
+				sp.url = "http://sharesdk.cn";
+				sp.imagePath = MainActivity.TEST_IMAGE;
+			}
+			break;
+			case R.id.btnVideo: {
+				sp.shareType = Platform.SHARE_VIDEO;
+				sp.url = "http://t.cn/zT7cZAo";
+				sp.imagePath = MainActivity.TEST_IMAGE;
+			}
+			break;
+			case R.id.btnWebpage: {
+				sp.shareType = Platform.SHARE_WEBPAGE;
+				sp.url = "http://t.cn/zT7cZAo";
+				sp.imagePath = MainActivity.TEST_IMAGE;
+			}
+			break;
+			case R.id.btnWebpageBm: {
+				sp.shareType = Platform.SHARE_WEBPAGE;
+				sp.url = "http://t.cn/zT7cZAo";
+				sp.imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
+			}
+			break;
+			case R.id.btnWebpageUrl: {
+				sp.shareType = Platform.SHARE_WEBPAGE;
+				sp.url = "http://t.cn/zT7cZAo";
+				sp.imageUrl = "http://img.appgo.cn/imgs/sharesdk/content/2013/07/16/1373959974649.png";
+			}
+			break;
+			case R.id.btnFile: {
+				sp.shareType = Platform.SHARE_FILE;
+				// 待分享文件的本地地址
+				sp.filePath = MainActivity.TEST_IMAGE;
+				sp.imagePath = MainActivity.TEST_IMAGE;
+			}
 		}
 		return sp;
 	}
@@ -292,10 +429,10 @@ public class WechatPage extends SlidingMenuPage implements
 			break;
 			case 2: {
 				// 失败
-				if (msg.obj instanceof WechatClientNotExistException) {
+				if ("WechatClientNotExistException".equals(msg.obj.getClass().getSimpleName())) {
 					text = menu.getContext().getString(R.string.wechat_client_inavailable);
 				}
-				else if (msg.obj instanceof WechatTimelineNotSupportedException) {
+				else if ("WechatTimelineNotSupportedException".equals(msg.obj.getClass().getSimpleName())) {
 					text = menu.getContext().getString(R.string.wechat_client_inavailable);
 				}
 				else {
