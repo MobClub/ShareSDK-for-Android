@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fff5f5f5"
+    android:orientation="vertical" >
+
+    <cn.sharesdk.framework.TitleLayout
+        android:id="@+id/llTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/auth_title_back" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/llTitle" >
+
+        <LinearLayout
+            android:id="@+id/llList"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp" >
+
+            <Button
+                android:id="@+id/btnShareAllGui"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_back"
+                android:text="@string/demo_share_all_gui"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btnShareAll"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_back"
+                android:text="@string/demo_share_all"
+                android:textSize="16dp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/btnFlSw"
+                    android:layout_width="fill_parent"
+                    android:layout_height="44dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_back"
+                    android:text="@string/sm_item_fl_weibo"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:id="@+id/btnFlTc"
+                    android:layout_width="fill_parent"
+                    android:layout_height="44dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_back"
+                    android:text="@string/sm_item_fl_tc"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/btnGetToken"
+                    android:layout_width="fill_parent"
+                    android:layout_height="44dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_back"
+                    android:text="@string/demo_get_access_token"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:id="@+id/btnVisitWc"
+                    android:layout_width="fill_parent"
+                    android:layout_height="44dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_back"
+                    android:text="@string/sm_item_visit_wechat"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/btnGetInfor"
+                    android:layout_width="fill_parent"
+                    android:layout_height="44dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_back"
+                    android:text="@string/demo_get_my_info"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:id="@+id/btnGetUserInfor"
+                    android:layout_width="fill_parent"
+                    android:layout_height="44dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_back"
+                    android:text="@string/demo_get_other_info"
+                    android:textSize="16dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llTitle"
+        android:background="@drawable/title_shadow" />
+
+</RelativeLayout>
