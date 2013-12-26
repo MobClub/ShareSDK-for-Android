@@ -132,7 +132,7 @@ public class CustomerPage extends SlidingMenuPage implements
 		String method = "POST";
 		short customerAction = ACTION_RENREN;
 		HashMap<String, Object> values = new HashMap<String, Object>();
-		values.put("description", "Share SDK customer protocol test");
+		values.put("description", "ShareSDK customer protocol test");
 		HashMap<String, String> filePathes = new HashMap<String, String>();
 		filePathes.put("file", MainActivity.TEST_IMAGE);
 		renren.customerProtocol(url, method, customerAction, values, filePathes);
@@ -144,7 +144,7 @@ public class CustomerPage extends SlidingMenuPage implements
 //		String method = "POST";
 //		short customerAction = ACTION_RENREN;
 //		HashMap<String, Object> values = new HashMap<String, Object>();
-//		values.put("comment", "Share SDK customer protocol test");
+//		values.put("comment", "ShareSDK customer protocol test");
 //		values.put("url", "http://img.appgo.cn/imgs/sharesdk/content/2013/07/25/1374723172663.jpg");
 //		renren.customerProtocol(url, method, customerAction, values, null);
 	}

@@ -237,14 +237,14 @@ public class WechatPage extends SlidingMenuPage implements
 				sp.shareType = Platform.SHARE_APPS;
 				// 待分享app的本地地址
 				sp.filePath = MainActivity.TEST_IMAGE;
-				sp.extInfo = "Share SDK received an app message from wechat client";
+				sp.extInfo = "ShareSDK received an app message from wechat client";
 				sp.imagePath = MainActivity.TEST_IMAGE;
 			}
 			break;
 			case R.id.btnAppExt: {
 				sp.shareType = Platform.SHARE_APPS;
 				// 供微信回调的第三方信息（或者自定义脚本）
-				sp.extInfo = "Share SDK received an app message from wechat client";
+				sp.extInfo = "ShareSDK received an app message from wechat client";
 				sp.imagePath = MainActivity.TEST_IMAGE;
 			}
 			break;

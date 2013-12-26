@@ -75,6 +75,7 @@ public class OnekeyShare extends FakeActivity implements
 	private PlatformActionListener callback;
 	private ShareContentCustomizeCallback customizeCallback;
 	private boolean dialogMode;
+	private boolean disableSSO;
 
 	public OnekeyShare() {
 		reqMap = new HashMap<String, Object>();
@@ -214,6 +215,11 @@ public class OnekeyShare extends FakeActivity implements
 		cl.logo = logo;
 		cl.listener = ocListener;
 		customers.add(cl);
+	}
+
+	/** 设置一个总开关，用于在分享前若需要授权，则禁用sso功能 */
+	public void disableSSOWhenAuthorize() {
+		disableSSO = true;
 	}
 
 	// 设置编辑页面的显示模式为Dialog模式
@@ -401,6 +407,7 @@ public class OnekeyShare extends FakeActivity implements
 		boolean started = false;
 		for (Entry<Platform, HashMap<String, Object>> ent : shareData.entrySet()) {
 			Platform plat = ent.getKey();
+			plat.SSOSetting(disableSSO);
 			String name = plat.getName();
 			boolean isWechat = "WechatMoments".equals(name) || "Wechat".equals(name)
 					|| "WechatFavorite".equals(name);

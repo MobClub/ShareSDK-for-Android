@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 import android.content.Context;
+import android.text.TextUtils;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
 
@@ -70,11 +71,23 @@ public class ShareCore {
 		}
 
 		for (Entry<String, Object> ent : data.entrySet()) {
+			Object value= ent.getValue();
+			if (value == null) {
+				continue;
+			}
+
+			if (value instanceof String) {
+				String strValue = (String) value;
+				if (TextUtils.isEmpty(strValue)) {
+					continue;
+				}
+			}
+
 			try {
 				Field fld = cls.getField(ent.getKey());
 				if (fld != null) {
 					fld.setAccessible(true);
-					fld.set(sp, ent.getValue());
+					fld.set(sp, value);
 				}
 			} catch(Throwable t) {}
 		}

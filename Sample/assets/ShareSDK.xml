@@ -6,7 +6,7 @@
     	1、表格中的第一项
     		<ShareSDK 
         		AppKey="api20" />
-    	是必须的，其中的AppKey是您在Share SDK上注册的开发者帐号的AppKey
+    	是必须的，其中的AppKey是您在ShareSDK上注册的开发者帐号的AppKey
     	
     	2、所有集成到您项目的平台都应该为其在表格中填写相对应的开发者信息，以新浪微博为例：
     	    <SinaWeibo
@@ -18,7 +18,7 @@
                 Enable="true" />
     	其中的SortId是此平台在分享列表中的位置，由开发者自行定义，可以是任何整型数字，数值越大
     	越靠后AppKey、AppSecret和RedirectUrl是您在新浪微博上注册开发者信息和应用后得到的信息
-    	Id是一个保留的识别符，整型，Share SDK不使用此字段，供您在自己的项目中当作平台的识别符。
+    	Id是一个保留的识别符，整型，ShareSDK不使用此字段，供您在自己的项目中当作平台的识别符。
     	Enable字段表示此平台是否有效，布尔值，默认为true，如果Enable为false，即便平台的jar包
     	已经添加到应用中，平台实例依然不可获取。
     	
@@ -194,7 +194,7 @@
     	为china就好了。至于如果您申请的是国际版的印象笔记（Evernote），则其生产服务器类型为
     	“product”。
     	
-    	如果目标设备上已经安装了印象笔记客户端，Share SDK允许应用调用本地API来完成分享，但
+    	如果目标设备上已经安装了印象笔记客户端，ShareSDK允许应用调用本地API来完成分享，但
     	是需要将应用信息中的“ShareByAppClient”设置为true，此字段默认值为false。
     -->
     <Evernote

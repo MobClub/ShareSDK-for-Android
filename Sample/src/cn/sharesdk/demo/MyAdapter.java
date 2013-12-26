@@ -36,7 +36,7 @@ public class MyAdapter extends AuthorizeAdapter implements OnClickListener,
 	private PlatformActionListener backListener;
 
 	public void onCreate() {
-		// 隐藏标题栏右部的Share SDK Logo
+		// 隐藏标题栏右部的ShareSDK Logo
 		//hideShareSDKLogo();
 
 //		TitleLayout llTitle = getTitleLayout();

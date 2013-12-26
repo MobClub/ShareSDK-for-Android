@@ -12,7 +12,6 @@ package cn.sharesdk.demo.wxapi;
 
 import android.content.Intent;
 import android.widget.Toast;
-import cn.sharesdk.demo.MainActivity;
 import cn.sharesdk.wechat.utils.WXAppExtendObject;
 import cn.sharesdk.wechat.utils.WXMediaMessage;
 import cn.sharesdk.wechat.utils.WechatHandlerActivity;
@@ -32,7 +31,8 @@ public class WXEntryActivity extends WechatHandlerActivity {
 	 */
 	//#endif
 	public void onGetMessageFromWXReq(WXMediaMessage msg) {
-		startActivity(new Intent(this, MainActivity.class));
+		Intent iLaunchMyself = getPackageManager().getLaunchIntentForPackage(getPackageName());
+		startActivity(iLaunchMyself);
 	}
 	
 	//#if def{lang} == cn

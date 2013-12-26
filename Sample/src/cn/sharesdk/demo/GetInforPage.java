@@ -35,7 +35,7 @@ import cn.sharesdk.onekeyshare.ShareCore;
  * <p>
  * 启动页面时传递一个int类型的字段type，用于标记获取自己的资料（type = 0）
  *还是别人的资料（type = 1）。如果尝试获取别人的资料，示例代码会获取不同
- *平台Share SDK的官方帐号的资料。
+ *平台ShareSDK的官方帐号的资料。
  * <p>
  * 如果资料获取成功，会通过{@link JsonPage}展示
  */
