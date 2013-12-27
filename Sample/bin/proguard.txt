@@ -1,0 +1,31 @@
+# view AndroidManifest.xml #generated:46
+-keep class cn.sharesdk.demo.GetInforPage { <init>(...); }
+
+# view AndroidManifest.xml #generated:42
+-keep class cn.sharesdk.demo.GetTokenPage { <init>(...); }
+
+# view AndroidManifest.xml #generated:50
+-keep class cn.sharesdk.demo.JsonPage { <init>(...); }
+
+# view AndroidManifest.xml #generated:32
+-keep class cn.sharesdk.demo.MainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:79
+-keep class cn.sharesdk.demo.wxapi.WXEntryActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:86
+-keep class cn.sharesdk.demo.yxapi.YXEntryActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:55
+-keep class cn.sharesdk.framework.ShareSDKUIShell { <init>(...); }
+
+# view res/layout/page_auth.xml #generated:7
+# view res/layout/page_customer.xml #generated:8
+# view res/layout/page_demo.xml #generated:8
+# view res/layout/page_get_access_token.xml #generated:8
+# view res/layout/page_get_friend_list.xml #generated:6
+# view res/layout/page_get_user_info.xml #generated:8
+# view res/layout/page_show_user_info.xml #generated:8
+# view res/layout/page_wechate.xml #generated:8
+-keep class cn.sharesdk.framework.TitleLayout { <init>(...); }
+

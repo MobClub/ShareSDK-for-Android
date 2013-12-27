@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Sample" default="auto-sign">
+	<!-- 只要是从Android自己的build.xml继承下来的构建脚本都只要下面这样子写就够了 -->
+	<property environment="env" />
+    <property name="sdk.dir" value="${env.ANDROID_HOME}"/>
+    <loadproperties srcFile="project.properties" />
+	<import file="${sdk.dir}/tools/ant/build.xml" />
+	
+	<target name="auto-sign" >
+		<!-- 这不是推荐的做法，因为这样子签名和密码就都公布给整个项目的人看到了 -->
+		<property name="key.store" value="demokey.keystore"/>
+		<property name="key.store.password" value="123456"/>
+		<property name="key.alias" value="${key.store}"/>
+		<property name="key.alias.password" value="${key.store.password}"/>
+		
+		<!-- 启动打包程序 -->
+		<antcall target="release" />
+	</target>
+	
+	<target name="run" >
+		<!-- 打包前要求输入签名文件的名称、别名和密码。签名文件默认放在项目根目录下 -->
+		<input 
+			addproperty="key.store" 
+			message="Please enter keystore name:"/>
+		<input 
+			addproperty="key.store.password" 
+			message="Please enter password for '${key.store}':"/>
+		<input 
+			addproperty="key.alias" 
+			message="Please enter keystore alias:"/>
+		<input 
+			addproperty="key.alias.password" 
+			message="Please enter password for alias '${key.alias}':"/>
+		
+		<!-- 启动打包程序 -->
+		<antcall target="release" />
+	</target>
+</project>
