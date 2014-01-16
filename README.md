@@ -27,15 +27,15 @@ ShareSDK encourage you integrate ShareSDK by referencing its project, because th
 
 (2) Import the SDK projects:
 
-![projects of ShareSDK](http://wiki.sharesdk.cn/images/8/86/wiki_and_fi_4.png)
+![projects of ShareSDK](http://wiki.sharesdk.cn/images/6/64/p1.png)
 
 Select MainLibs and OnekeyShare
 
-![select lib-projects](http://wiki.sharesdk.cn/images/5/52/wiki_and_fi_5.png)
+![select lib-projects](http://wiki.sharesdk.cn/images/0/0f/p2.png)
 
 (3) Change dependency of your project to OnekeyShare (if you need this GUI tool) or MainLibs
 
-![change dependency](http://wiki.sharesdk.cn/images/6/60/wiki_and_fi_6.png)
+![change dependency](http://wiki.sharesdk.cn/images/thumb/2/2d/p3.png/534px-p3.png)
 
 # Step Three: Add Applications Information
 
