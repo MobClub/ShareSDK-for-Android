@@ -57,17 +57,16 @@ public class AuthPage extends SlidingMenuPage implements
 	}
 
 	protected View initPage() {
-		return LayoutInflater.from(menu.getContext())
-				.inflate(R.layout.page_auth, null);
+		return LayoutInflater.from(getContext()).inflate(R.layout.page_auth, null);
 	}
 
 	public void onClick(View v) {
 		if (v.equals(llTitle.getBtnBack())) {
-			if (menu.isMenuShown()) {
-				menu.hideMenu();
+			if (isMenuShown()) {
+				hideMenu();
 			}
 			else {
-				menu.showMenu();
+				showMenu();
 			}
 		}
 	}
@@ -107,19 +106,19 @@ public class AuthPage extends SlidingMenuPage implements
 			case 1: {
 				// success
 				text = plat.getName() + " completed at " + text;
-				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
+				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
 			}
 			break;
 			case 2: {
 				// failed
 				text = plat.getName() + " caught error at " + text;
-				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
+				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
 				return false;
 			}
 			case 3: {
 				// canceled
 				text = plat.getName() + " canceled at " + text;
-				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
+				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
 				return false;
 			}
 		}
@@ -136,7 +135,7 @@ public class AuthPage extends SlidingMenuPage implements
 			this.page = page;
 
 			// quests platform list
-			Platform[] tmp = ShareSDK.getPlatformList(page.menu.getContext());
+			Platform[] tmp = ShareSDK.getPlatformList(page.getContext());
 			platforms = new ArrayList<Platform>();
 			if (tmp == null) {
 				return;
@@ -166,7 +165,7 @@ public class AuthPage extends SlidingMenuPage implements
 
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
-				convertView = View.inflate(page.menu.getContext(), R.layout.auth_page_item, null);
+				convertView = View.inflate(page.getContext(), R.layout.auth_page_item, null);
 			}
 
 			int count = getCount();
@@ -230,7 +229,7 @@ public class AuthPage extends SlidingMenuPage implements
 
 			String resName = "logo_" + plat.getName();
 			int resId = cn.sharesdk.framework.utils.R.getResId(R.drawable.class, resName);
-			return BitmapFactory.decodeResource(page.menu.getResources(), resId);
+			return BitmapFactory.decodeResource(page.getResources(), resId);
 		}
 
 		private String getName(Platform plat) {
@@ -243,8 +242,8 @@ public class AuthPage extends SlidingMenuPage implements
 				return "";
 			}
 
-			int resId = cn.sharesdk.framework.utils.R.getStringRes(page.menu.getContext(), plat.getName());
-			return page.menu.getContext().getString(resId);
+			int resId = cn.sharesdk.framework.utils.R.getStringRes(page.getContext(), plat.getName());
+			return page.getContext().getString(resId);
 		}
 
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

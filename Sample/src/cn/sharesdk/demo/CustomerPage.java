@@ -48,7 +48,9 @@ public class CustomerPage extends SlidingMenuPage implements
 	/** action code of Youdao */
 	private static final short ACTION_YOUDAONOTE = 11;
 	/** action code of SohuSuishenkan */
-	private static final short ACTION_SohuSuishenkan = 12;
+	private static final short ACTION_SOHUSUISHENKAN = 12;
+	/** action code of tumblr */
+	private static final short ACTION_TUMBLR = 13;
 	private TitleLayout llTitle;
 
 	public CustomerPage(SlidingMenu menu) {
@@ -64,17 +66,16 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	protected View initPage() {
-		return LayoutInflater.from(menu.getContext())
-				.inflate(R.layout.page_customer, null);
+		return LayoutInflater.from(getContext()).inflate(R.layout.page_customer, null);
 	}
 
 	public void onClick(View v) {
 		if (v.equals(llTitle.getBtnBack())) {
-			if (menu.isMenuShown()) {
-				menu.hideMenu();
+			if (isMenuShown()) {
+				hideMenu();
 			}
 			else {
-				menu.showMenu();
+				showMenu();
 			}
 			return;
 		}
@@ -92,11 +93,12 @@ public class CustomerPage extends SlidingMenuPage implements
 			case R.id.btnShmb: sohuMb(); break;
 			case R.id.btnYd: youdaoNote(); break;
 			case R.id.btnShSSK: SohuSuishenkan(); break;
+			case R.id.btnTumblr: tumblr();break;
 		}
 	}
 
 	private void doubanEvent() {
-		Platform douban = ShareSDK.getPlatform(menu.getContext(), "Douban");
+		Platform douban = ShareSDK.getPlatform(getContext(), "Douban");
 		douban.setPlatformActionListener(this);
 		String url = "https://api.douban.com/shuo/v2/users/search";
 		String method = "GET";
@@ -107,7 +109,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void facebookEvent() {
-		Platform facebook = ShareSDK.getPlatform(menu.getContext(), "Facebook");
+		Platform facebook = ShareSDK.getPlatform(getContext(), "Facebook");
 		facebook.setPlatformActionListener(this);
 		String url = "https://graph.facebook.com/me/notifications";
 		String method = "GET";
@@ -116,7 +118,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void neteaseMb() {
-		Platform nemb = ShareSDK.getPlatform(menu.getContext(), "NetEaseMicroBlog");
+		Platform nemb = ShareSDK.getPlatform(getContext(), "NetEaseMicroBlog");
 		nemb.setPlatformActionListener(this);
 		String url = "https://api.t.163.com/trends/recommended.json";
 		String method = "GET";
@@ -126,7 +128,7 @@ public class CustomerPage extends SlidingMenuPage implements
 
 	private void renren() {
 		// share local image
-		Platform renren = ShareSDK.getPlatform(menu.getContext(), "Renren");
+		Platform renren = ShareSDK.getPlatform(getContext(), "Renren");
 		renren.setPlatformActionListener(this);
 		String url = "https://api.renren.com/v2/photo/upload";
 		String method = "POST";
@@ -145,7 +147,7 @@ public class CustomerPage extends SlidingMenuPage implements
 //		short customerAction = ACTION_RENREN;
 //		HashMap<String, Object> values = new HashMap<String, Object>();
 //		values.put("comment", "ShareSDK customer protocol test");
-//		values.put("url", "http://img.appgo.cn/imgs/sharesdk/content/2013/07/25/1374723172663.jpg");
+//		values.put("url", MainActivity.TEXT_IMAGE_URL);
 //		renren.customerProtocol(url, method, customerAction, values, null);
 	}
 
@@ -164,7 +166,7 @@ public class CustomerPage extends SlidingMenuPage implements
 //		values.put("data", String.valueOf(System.currentTimeMillis()));
 //		weibo.customerProtocol(url, method, customerAction, values, null);
 
-		Platform weibo = ShareSDK.getPlatform(menu.getContext(), "SinaWeibo");
+		Platform weibo = ShareSDK.getPlatform(getContext(), "SinaWeibo");
 		weibo.setPlatformActionListener(this);
 		String url = "https://api.weibo.com/2/statuses/friends_timeline.json";
 		String method = "GET";
@@ -176,19 +178,19 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void qzone() {
-		Platform qzone = ShareSDK.getPlatform(menu.getContext(), "QZone");
+		Platform qzone = ShareSDK.getPlatform(getContext(), "QZone");
 		qzone.setPlatformActionListener(this);
 		String url = "https://graph.qq.com/blog/add_one_blog";
 		String method = "POST";
 		short customerAction = ACTION_QZONE;
 		HashMap<String, Object> values = new HashMap<String, Object>();
-		values.put("title", menu.getContext().getString(R.string.customer_qzone));
-		values.put("content", menu.getContext().getString(R.string.qzone_add_blog_sample));
+		values.put("title", getContext().getString(R.string.customer_qzone));
+		values.put("content", getContext().getString(R.string.qzone_add_blog_sample));
 		qzone.customerProtocol(url, method, customerAction, values, null);
 	}
 
 	private void tencentWeibo() {
-		Platform weibo = ShareSDK.getPlatform(menu.getContext(), "TencentWeibo");
+		Platform weibo = ShareSDK.getPlatform(getContext(), "TencentWeibo");
 		weibo.setPlatformActionListener(this);
 		String url = "https://open.t.qq.com/api/friends/fanslist";
 		String method = "GET";
@@ -201,7 +203,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void twitter() {
-		Platform twitter = ShareSDK.getPlatform(menu.getContext(), "Twitter");
+		Platform twitter = ShareSDK.getPlatform(getContext(), "Twitter");
 		twitter.setPlatformActionListener(this);
 		String url = "https://api.twitter.com/1.1/statuses/home_timeline.json";
 		String method = "GET";
@@ -212,7 +214,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void kaixin() {
-		Platform kaixin = ShareSDK.getPlatform(menu.getContext(), "KaiXin");
+		Platform kaixin = ShareSDK.getPlatform(getContext(), "KaiXin");
 		kaixin.setPlatformActionListener(this);
 		String url = "https://api.kaixin001.com/users/mfriends.json";
 		String method = "GET";
@@ -223,7 +225,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void sohuMb() {
-		Platform shmb = ShareSDK.getPlatform(menu.getContext(), "SohuMicroBlog");
+		Platform shmb = ShareSDK.getPlatform(getContext(), "SohuMicroBlog");
 		shmb.setPlatformActionListener(this);
 		String url = "https://api.t.sohu.com/statuses/friends.json";
 		String method = "GET";
@@ -235,7 +237,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void youdaoNote() {
-		Platform youdao = ShareSDK.getPlatform(menu.getContext(), "YouDao");
+		Platform youdao = ShareSDK.getPlatform(getContext(), "YouDao");
 		youdao.setPlatformActionListener(this);
 		String url = "http://note.youdao.com/yws/open/notebook/all.json";
 		String method = "POST";
@@ -244,15 +246,28 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void SohuSuishenkan() {
-		Platform  suiShenKan = ShareSDK.getPlatform(menu.getContext(), "SohuSuishenkan");
+		Platform  suiShenKan = ShareSDK.getPlatform(getContext(), "SohuSuishenkan");
 		suiShenKan.setPlatformActionListener(this);
 		String url = "https://api.sohu.com/rest/k/prv/1/bookmark/get-list";
 		String method = "GET";
-		short customerAction = ACTION_SohuSuishenkan;
+		short customerAction = ACTION_SOHUSUISHENKAN;
 		HashMap<String, Object> values = new HashMap<String, Object>();
 		values.put("offset", 0);
 		values.put("limit", 10);
 		suiShenKan.customerProtocol(url, method, customerAction, values, null);
+	}
+
+	private void tumblr() {
+		Platform tumblr = ShareSDK.getPlatform(getContext(), "Tumblr");
+		tumblr.setPlatformActionListener(this);
+		String baseHostName = tumblr.getDb().getUserId() + ".tumblr.com";
+		String url = "http://api.tumblr.com/v2/blog/" + baseHostName + "/posts";
+		String method = "GET";
+		short customerAction = ACTION_TUMBLR;
+		HashMap<String, Object> values = new HashMap<String, Object>();
+		values.put("offset", 0);
+		values.put("limit", 20);
+		tumblr.customerProtocol(url, method, customerAction, values, null);
 	}
 
 	public void onComplete(Platform plat, int action, HashMap<String, Object> res) {
@@ -290,7 +305,7 @@ public class CustomerPage extends SlidingMenuPage implements
 				JsonPage page = new JsonPage();
 				String title = llTitle.getTvTitle().getText().toString();
 				page.setData(title, (HashMap<String, Object>) msg.obj);
-				page.show(menu.getContext(), null);
+				page.show(getContext(), null);
 			}
 			break;
 			case 2: {
@@ -298,7 +313,7 @@ public class CustomerPage extends SlidingMenuPage implements
 				Platform plat = (Platform) msg.obj;
 				String text = actionToString(msg.arg2);
 				text = plat.getName() + " caught error at " + text;
-				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
+				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
 			}
 			break;
 			case 3: {
@@ -306,7 +321,7 @@ public class CustomerPage extends SlidingMenuPage implements
 				Platform plat = (Platform) msg.obj;
 				String text = actionToString(msg.arg2);
 				text = plat.getName() + " canceled at " + text;
-				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
+				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
 			}
 			break;
 		}
@@ -338,6 +353,8 @@ public class CustomerPage extends SlidingMenuPage implements
 					case ACTION_KAIXIN: return "ACTION_KAIXIN";
 					case ACTION_SOHUMB: return "ACTION_SOHUMB";
 					case ACTION_YOUDAONOTE: return "ACTION_YOUDAONOTE";
+					case ACTION_SOHUSUISHENKAN: return "ACTION_SOHUSUISHENKAN";
+					case ACTION_TUMBLR: return "ACTION_TUMBLR";
 				}
 				return "UNKNOWN";
 			}

@@ -33,7 +33,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 public class MainActivity extends Activity implements Callback, OnClickListener {
-	private static final String FILE_NAME = "/pic_2014sf.jpg";
+	private static final String FILE_NAME = "/pic_glance_back.jpg";
 	private String testImage;
 	// Simulat topic ID
 	private String topicId;
@@ -127,7 +127,7 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 			public void onShare(Platform platform, ShareParams paramsToShare) {
 				// shorten the text field of twitter share content
 				if ("Twitter".equals(platform.getName())) {
-					paramsToShare.text = platform.getContext().getString(R.string.share_content_short);
+					paramsToShare.setText(platform.getContext().getString(R.string.share_content_short));
 				}
 			}
 		});

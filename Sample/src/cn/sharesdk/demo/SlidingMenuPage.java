@@ -8,6 +8,8 @@
 
 package cn.sharesdk.demo;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Message;
 import android.os.Handler.Callback;
 import android.view.View;
@@ -15,12 +17,36 @@ import m.framework.ui.widget.slidingmenu.SlidingMenu;
 
 /** super-class of all sliding menu page */
 public abstract class SlidingMenuPage implements Callback {
-	protected SlidingMenu menu;
+	private SlidingMenu menu;
 	private View pageView;
 
 	public SlidingMenuPage(SlidingMenu menu) {
 		this.menu = menu;
 		pageView = initPage();
+	}
+
+	public Context getContext() {
+		return menu.getContext();
+	}
+
+	public Resources getResources() {
+		return menu.getResources();
+	}
+
+	public boolean isMenuShown() {
+		return menu.isMenuShown();
+	}
+
+	public void hideMenu() {
+		menu.hideMenu();
+	}
+
+	public void showMenu() {
+		menu.showMenu();
+	}
+
+	public View findViewById(int id) {
+		return menu.findViewById(id);
 	}
 
 	protected abstract View initPage();

@@ -8,12 +8,10 @@
 
 package cn.sharesdk.onekeyshare;
 
-import java.lang.reflect.Field;
 import java.util.HashMap;
-import java.util.Map.Entry;
 import android.content.Context;
-import android.text.TextUtils;
 import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.Platform.ShareParams;
 import cn.sharesdk.framework.ShareSDK;
 
 /**
@@ -38,63 +36,12 @@ public class ShareCore {
 			return false;
 		}
 
-		Platform.ShareParams sp = null;
-		try {
-			sp = getShareParams(plat, data);
-		} catch(Throwable t) {
-			sp = null;
+		ShareParams sp = new ShareParams(data);
+		if (customizeCallback != null) {
+			customizeCallback.onShare(plat, sp);
 		}
-
-		if (sp != null) {
-			if (customizeCallback != null) {
-				customizeCallback.onShare(plat, sp);
-			}
-			plat.share(sp);
-		}
+		plat.share(sp);
 		return true;
-	}
-
-	private Platform.ShareParams getShareParams(Platform plat,
-			HashMap<String, Object> data) throws Throwable {
-		String className = plat.getClass().getName() + "$ShareParams";
-		Class<?> cls = null;
-		try {
-			cls = Class.forName(className);
-		} catch (Throwable t) {
-			cls = null;
-		}
-		if (cls == null) {
-			cls = Platform.ShareParams.class;
-		}
-
-		Object sp = cls.newInstance();
-		if (sp == null) {
-			return null;
-		}
-
-		for (Entry<String, Object> ent : data.entrySet()) {
-			Object value= ent.getValue();
-			if (value == null) {
-				continue;
-			}
-
-			if (value instanceof String) {
-				String strValue = (String) value;
-				if (TextUtils.isEmpty(strValue)) {
-					continue;
-				}
-			}
-
-			try {
-				Field fld = cls.getField(ent.getKey());
-				if (fld != null) {
-					fld.setAccessible(true);
-					fld.set(sp, value);
-				}
-			} catch(Throwable t) {}
-		}
-
-		return (Platform.ShareParams) sp;
 	}
 
 	/** Determine whether the platform shares by its client or not */

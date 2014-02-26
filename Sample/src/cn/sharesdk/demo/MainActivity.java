@@ -30,8 +30,9 @@ import android.widget.Toast;
  * ui logics and events are handled by {@link MainAdapter}
  */
 public class MainActivity extends Activity implements Callback {
-	private static final String FILE_NAME = "/pic_2014sf.jpg";
+	private static final String FILE_NAME = "pic_glance_back.jpg";
 	public static String TEST_IMAGE;
+	public static String TEST_IMAGE_URL;
 	private SlidingMenu menu;
 	private int orientation;
 
@@ -54,6 +55,7 @@ public class MainActivity extends Activity implements Callback {
 
 		new Thread() {
 			public void run() {
+				TEST_IMAGE_URL = "http://f1.sharesdk.cn/imgs/2014/02/26/owWpLZo_638x960.jpg";
 				initImagePath();
 				UIHandler.sendEmptyMessageDelayed(1, 100, MainActivity.this);
 			}

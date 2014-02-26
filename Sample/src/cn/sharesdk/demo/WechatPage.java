@@ -11,14 +11,12 @@ package cn.sharesdk.demo;
 import java.util.HashMap;
 import m.framework.ui.widget.slidingmenu.SlidingMenu;
 import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.Platform.ShareParams;
 import cn.sharesdk.framework.utils.UIHandler;
+import cn.sharesdk.framework.Platform.ShareParams;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
-import cn.sharesdk.wechat.favorite.WechatFavorite;
-import cn.sharesdk.wechat.friends.Wechat;
-import cn.sharesdk.wechat.moments.WechatMoments;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Message;
 import android.view.LayoutInflater;
@@ -59,17 +57,17 @@ public class WechatPage extends SlidingMenuPage implements
 	}
 
 	protected View initPage() {
-		return LayoutInflater.from(menu.getContext())
+		return LayoutInflater.from(getContext())
 				.inflate(R.layout.page_wechate, null);
 	}
 
 	public void onClick(View v) {
 		if (v.equals(llTitle.getBtnBack())) {
-			if (menu.isMenuShown()) {
-				menu.hideMenu();
+			if (isMenuShown()) {
+				hideMenu();
 			}
 			else {
-				menu.showMenu();
+				showMenu();
 			}
 			return;
 		}
@@ -143,250 +141,121 @@ public class WechatPage extends SlidingMenuPage implements
 			}
 
 			for (int id : visIds) {
-				menu.findViewById(id).setVisibility(View.VISIBLE);
+				findViewById(id).setVisibility(View.VISIBLE);
 			}
 			for (int id : invIds) {
-				menu.findViewById(id).setVisibility(View.GONE);
+				findViewById(id).setVisibility(View.GONE);
 			}
 			return;
 		}
 
 		Platform plat = null;
-		ShareParams sp = null;
+		ShareParams sp = getShareParams(v);
 		if (ctvPlats[0].isChecked()) {
-			plat = ShareSDK.getPlatform(menu.getContext(), "Wechat");
-			sp = getWechatShareParams(v);
+			plat = ShareSDK.getPlatform(getContext(), "Wechat");
 		} else if (ctvPlats[1].isChecked()) {
-			plat = ShareSDK.getPlatform(menu.getContext(), "WechatMoments");
-			sp = getWechatMomentsShareParams(v);
+			plat = ShareSDK.getPlatform(getContext(), "WechatMoments");
 		} else {
-			plat = ShareSDK.getPlatform(menu.getContext(), "WechatFavorite");
-			sp = getWechatFavoriteShareParams(v);
+			plat = ShareSDK.getPlatform(getContext(), "WechatFavorite");
 		}
 		plat.setPlatformActionListener(this);
 		plat.share(sp);
 	}
 
-	private ShareParams getWechatShareParams(View v) {
-		Wechat.ShareParams sp = new Wechat.ShareParams();
-		sp.title = menu.getContext().getString(R.string.wechat_demo_title);
-		sp.text = menu.getContext().getString(R.string.share_content);
-		sp.shareType = Platform.SHARE_TEXT;
+	private ShareParams getShareParams(View v) {
+		ShareParams sp = new ShareParams();
+		sp.setTitle(getContext().getString(R.string.wechat_demo_title));
+		sp.setText(getContext().getString(R.string.share_content));
+		sp.setShareType(Platform.SHARE_TEXT);
 		switch (v.getId()) {
 			case R.id.btnUpload: {
-				sp.shareType = Platform.SHARE_IMAGE;
-				sp.imagePath = MainActivity.TEST_IMAGE;
+				sp.setShareType(Platform.SHARE_IMAGE);
+				sp.setImagePath(MainActivity.TEST_IMAGE);
 			}
 			break;
 			case R.id.btnUploadBm: {
-				sp.shareType = Platform.SHARE_IMAGE;
-				sp.imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
+				sp.setShareType(Platform.SHARE_IMAGE);
+				Bitmap imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
+				sp.setImageData(imageData);
 			}
 			break;
 			case R.id.btnUploadUrl: {
-				sp.shareType = Platform.SHARE_IMAGE;
-				sp.imageUrl = "http://img.appgo.cn/imgs/sharesdk/content/2013/07/16/1373959974649.png";
+				sp.setShareType(Platform.SHARE_IMAGE);
+				sp.setImageUrl(MainActivity.TEST_IMAGE_URL);
 			}
 			break;
 			case R.id.btnEmoji: {
-				sp.shareType = Platform.SHARE_EMOJI;
-				sp.imagePath = MainActivity.TEST_IMAGE;
+				sp.setShareType(Platform.SHARE_EMOJI);
+				sp.setImagePath(MainActivity.TEST_IMAGE);
 			}
 			break;
 			case R.id.btnEmojiUrl: {
-				sp.shareType = Platform.SHARE_EMOJI;
-				sp.imageUrl = "http://f1.sharesdk.cn/imgs/2013/10/17/okvCkwz_144x114.gif";
+				sp.setShareType(Platform.SHARE_EMOJI);
+				String imageUrl = "http://f1.sharesdk.cn/imgs/2013/10/17/okvCkwz_144x114.gif";
+				sp.setImageUrl(imageUrl);
 			}
 			break;
 			case R.id.btnEmojiBitmap: {
-				sp.shareType = Platform.SHARE_EMOJI;
-				sp.imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
+				sp.setShareType(Platform.SHARE_EMOJI);
+				Bitmap imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
+				sp.setImageData(imageData);
 			}
 			break;
 			case R.id.btnMusic: {
-				sp.shareType = Platform.SHARE_MUSIC;
-				sp.musicUrl = "http://ubuntuone.com/45XSEOwdODtXSH0WYGAcR7";
-				sp.url = "http://sharesdk.cn";
-				sp.imagePath = MainActivity.TEST_IMAGE;
+				sp.setShareType(Platform.SHARE_MUSIC);
+				String musicUrl = "http://ubuntuone.com/45XSEOwdODtXSH0WYGAcR7";
+				sp.setMusicUrl(musicUrl);
+				sp.setUrl("http://sharesdk.cn");
+				sp.setImagePath(MainActivity.TEST_IMAGE);
 			}
 			break;
 			case R.id.btnVideo: {
-				sp.shareType = Platform.SHARE_VIDEO;
-				sp.url = "http://t.cn/zT7cZAo";
-				sp.imagePath = MainActivity.TEST_IMAGE;
+				sp.setShareType(Platform.SHARE_VIDEO);
+				sp.setUrl("http://t.cn/zT7cZAo");
+				sp.setImagePath(MainActivity.TEST_IMAGE);
 			}
 			break;
 			case R.id.btnWebpage: {
-				sp.shareType = Platform.SHARE_WEBPAGE;
-				sp.url = "http://t.cn/zT7cZAo";
-				sp.imagePath = MainActivity.TEST_IMAGE;
+				sp.setShareType(Platform.SHARE_WEBPAGE);
+				sp.setUrl("http://t.cn/zT7cZAo");
+				sp.setImagePath(MainActivity.TEST_IMAGE);
 			}
 			break;
 			case R.id.btnWebpageBm: {
-				sp.shareType = Platform.SHARE_WEBPAGE;
-				sp.url = "http://t.cn/zT7cZAo";
-				sp.imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
+				sp.setShareType(Platform.SHARE_WEBPAGE);
+				sp.setUrl("http://t.cn/zT7cZAo");
+				Bitmap imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
+				sp.setImageData(imageData);
 			}
 			break;
 			case R.id.btnWebpageUrl: {
-				sp.shareType = Platform.SHARE_WEBPAGE;
-				sp.url = "http://t.cn/zT7cZAo";
-				sp.imageUrl = "http://img.appgo.cn/imgs/sharesdk/content/2013/07/16/1373959974649.png";
+				sp.setShareType(Platform.SHARE_WEBPAGE);
+				sp.setUrl("http://t.cn/zT7cZAo");
+				sp.setImageUrl(MainActivity.TEST_IMAGE_URL);
 			}
 			break;
 			case R.id.btnApp: {
-				sp.shareType = Platform.SHARE_APPS;
+				sp.setShareType(Platform.SHARE_APPS);
 				// local path of the apk to share
-				sp.filePath = MainActivity.TEST_IMAGE;
-				sp.extInfo = "ShareSDK received an app message from wechat client";
-				sp.imagePath = MainActivity.TEST_IMAGE;
+				sp.setFilePath(MainActivity.TEST_IMAGE);
+				String extInfo = "ShareSDK received an app message from wechat client";
+				sp.setExtInfo(extInfo);
+				sp.setImagePath(MainActivity.TEST_IMAGE);
 			}
 			break;
 			case R.id.btnAppExt: {
-				sp.shareType = Platform.SHARE_APPS;
+				sp.setShareType(Platform.SHARE_APPS);
 				// custom message for wechat to send back to your app installed in receiver's device
-				sp.extInfo = "ShareSDK received an app message from wechat client";
-				sp.imagePath = MainActivity.TEST_IMAGE;
+				String extInfo = "ShareSDK received an app message from wechat client";
+				sp.setExtInfo(extInfo);
+				sp.setImagePath(MainActivity.TEST_IMAGE);
 			}
 			break;
 			case R.id.btnFile: {
-				sp.shareType = Platform.SHARE_FILE;
+				sp.setShareType(Platform.SHARE_FILE);
 				// local path of the file to share
-				sp.filePath = MainActivity.TEST_IMAGE;
-				sp.imagePath = MainActivity.TEST_IMAGE;
-			}
-		}
-		return sp;
-	}
-
-	private ShareParams getWechatMomentsShareParams(View v) {
-		WechatMoments.ShareParams sp = new WechatMoments.ShareParams();
-		sp.title = menu.getContext().getString(R.string.wechat_demo_title);
-		sp.text = menu.getContext().getString(R.string.share_content);
-		sp.shareType = Platform.SHARE_TEXT;
-		switch (v.getId()) {
-			case R.id.btnUpload: {
-				sp.shareType = Platform.SHARE_IMAGE;
-				sp.imagePath = MainActivity.TEST_IMAGE;
-			}
-			break;
-			case R.id.btnUploadBm: {
-				sp.shareType = Platform.SHARE_IMAGE;
-				sp.imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
-			}
-			break;
-			case R.id.btnUploadUrl: {
-				sp.shareType = Platform.SHARE_IMAGE;
-				sp.imageUrl = "http://img.appgo.cn/imgs/sharesdk/content/2013/07/16/1373959974649.png";
-			}
-			break;
-			case R.id.btnEmoji: {
-				sp.shareType = Platform.SHARE_EMOJI;
-				sp.imagePath = MainActivity.TEST_IMAGE;
-			}
-			break;
-			case R.id.btnEmojiUrl: {
-				sp.shareType = Platform.SHARE_EMOJI;
-				sp.imageUrl = "http://f1.sharesdk.cn/imgs/2013/10/17/okvCkwz_144x114.gif";
-			}
-			break;
-			case R.id.btnEmojiBitmap: {
-				sp.shareType = Platform.SHARE_EMOJI;
-				sp.imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
-			}
-			break;
-			case R.id.btnMusic: {
-				sp.shareType = Platform.SHARE_MUSIC;
-				sp.musicUrl = "http://ubuntuone.com/45XSEOwdODtXSH0WYGAcR7";
-				sp.url = "http://sharesdk.cn";
-				sp.imagePath = MainActivity.TEST_IMAGE;
-			}
-			break;
-			case R.id.btnVideo: {
-				sp.shareType = Platform.SHARE_VIDEO;
-				sp.url = "http://t.cn/zT7cZAo";
-				sp.imagePath = MainActivity.TEST_IMAGE;
-			}
-			break;
-			case R.id.btnWebpage: {
-				sp.shareType = Platform.SHARE_WEBPAGE;
-				sp.url = "http://t.cn/zT7cZAo";
-				sp.imagePath = MainActivity.TEST_IMAGE;
-			}
-			break;
-			case R.id.btnWebpageBm: {
-				sp.shareType = Platform.SHARE_WEBPAGE;
-				sp.url = "http://t.cn/zT7cZAo";
-				sp.imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
-			}
-			break;
-			case R.id.btnWebpageUrl: {
-				sp.shareType = Platform.SHARE_WEBPAGE;
-				sp.url = "http://t.cn/zT7cZAo";
-				sp.imageUrl = "http://img.appgo.cn/imgs/sharesdk/content/2013/07/16/1373959974649.png";
-			}
-			break;
-		}
-		return sp;
-	}
-
-	private ShareParams getWechatFavoriteShareParams(View v) {
-		WechatFavorite.ShareParams sp = new WechatFavorite.ShareParams();
-		sp.title = menu.getContext().getString(R.string.wechat_demo_title);
-		sp.text = menu.getContext().getString(R.string.share_content);
-		sp.shareType = Platform.SHARE_TEXT;
-		switch (v.getId()) {
-			case R.id.btnUpload: {
-				sp.shareType = Platform.SHARE_IMAGE;
-				sp.imagePath = MainActivity.TEST_IMAGE;
-			}
-			break;
-			case R.id.btnUploadBm: {
-				sp.shareType = Platform.SHARE_IMAGE;
-				sp.imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
-			}
-			break;
-			case R.id.btnUploadUrl: {
-				sp.shareType = Platform.SHARE_IMAGE;
-				sp.imageUrl = "http://img.appgo.cn/imgs/sharesdk/content/2013/07/16/1373959974649.png";
-			}
-			break;
-			case R.id.btnMusic: {
-				sp.shareType = Platform.SHARE_MUSIC;
-				sp.musicUrl = "http://ubuntuone.com/45XSEOwdODtXSH0WYGAcR7";
-				sp.url = "http://sharesdk.cn";
-				sp.imagePath = MainActivity.TEST_IMAGE;
-			}
-			break;
-			case R.id.btnVideo: {
-				sp.shareType = Platform.SHARE_VIDEO;
-				sp.url = "http://t.cn/zT7cZAo";
-				sp.imagePath = MainActivity.TEST_IMAGE;
-			}
-			break;
-			case R.id.btnWebpage: {
-				sp.shareType = Platform.SHARE_WEBPAGE;
-				sp.url = "http://t.cn/zT7cZAo";
-				sp.imagePath = MainActivity.TEST_IMAGE;
-			}
-			break;
-			case R.id.btnWebpageBm: {
-				sp.shareType = Platform.SHARE_WEBPAGE;
-				sp.url = "http://t.cn/zT7cZAo";
-				sp.imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
-			}
-			break;
-			case R.id.btnWebpageUrl: {
-				sp.shareType = Platform.SHARE_WEBPAGE;
-				sp.url = "http://t.cn/zT7cZAo";
-				sp.imageUrl = "http://img.appgo.cn/imgs/sharesdk/content/2013/07/16/1373959974649.png";
-			}
-			break;
-			case R.id.btnFile: {
-				sp.shareType = Platform.SHARE_FILE;
-				// local path of the file to share
-				sp.filePath = MainActivity.TEST_IMAGE;
-				sp.imagePath = MainActivity.TEST_IMAGE;
+				sp.setFilePath(MainActivity.TEST_IMAGE);
+				sp.setImagePath(MainActivity.TEST_IMAGE);
 			}
 		}
 		return sp;
@@ -431,13 +300,13 @@ public class WechatPage extends SlidingMenuPage implements
 			case 2: {
 				// failed
 				if ("WechatClientNotExistException".equals(msg.obj.getClass().getSimpleName())) {
-					text = menu.getContext().getString(R.string.wechat_client_inavailable);
+					text = getContext().getString(R.string.wechat_client_inavailable);
 				}
 				else if ("WechatTimelineNotSupportedException".equals(msg.obj.getClass().getSimpleName())) {
-					text = menu.getContext().getString(R.string.wechat_client_inavailable);
+					text = getContext().getString(R.string.wechat_client_inavailable);
 				}
 				else {
-					text = menu.getContext().getString(R.string.share_failed);
+					text = getContext().getString(R.string.share_failed);
 				}
 			}
 			break;
@@ -449,7 +318,7 @@ public class WechatPage extends SlidingMenuPage implements
 			break;
 		}
 
-		Toast.makeText(menu.getContext(), text, Toast.LENGTH_LONG).show();
+		Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();
 		return false;
 	}
 

@@ -11,13 +11,12 @@ package cn.sharesdk.demo;
 import java.util.HashMap;
 import m.framework.ui.widget.slidingmenu.SlidingMenu;
 import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.Platform.ShareParams;
 import cn.sharesdk.framework.utils.UIHandler;
+import cn.sharesdk.framework.Platform.ShareParams;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
-import cn.sharesdk.yixin.friends.Yixin;
-import cn.sharesdk.yixin.moments.YixinMoments;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Message;
 import android.view.LayoutInflater;
@@ -77,17 +76,17 @@ public class YixinPage extends SlidingMenuPage implements
 	}
 
 	protected View initPage() {
-		return LayoutInflater.from(menu.getContext())
+		return LayoutInflater.from(getContext())
 				.inflate(R.layout.page_wechate, null);
 	}
 
 	public void onClick(View v) {
 		if (v.equals(llTitle.getBtnBack())) {
-			if (menu.isMenuShown()) {
-				menu.hideMenu();
+			if (isMenuShown()) {
+				hideMenu();
 			}
 			else {
-				menu.showMenu();
+				showMenu();
 			}
 			return;
 		}
@@ -162,133 +161,78 @@ public class YixinPage extends SlidingMenuPage implements
 			}
 
 			for (int id : visIds) {
-				menu.findViewById(id).setVisibility(View.VISIBLE);
+				findViewById(id).setVisibility(View.VISIBLE);
 			}
 			for (int id : invIds) {
-				menu.findViewById(id).setVisibility(View.GONE);
+				findViewById(id).setVisibility(View.GONE);
 			}
 			return;
 		}
 
 		Platform plat = null;
-		ShareParams sp = null;
+		ShareParams sp = getShareParams(v);
 		if (ctvPlats[0].isChecked()) {
-			plat = ShareSDK.getPlatform(menu.getContext(), "Yixin");
-			sp = getYixinShareParams(v);
+			plat = ShareSDK.getPlatform(getContext(), "Yixin");
 		} else if (ctvPlats[1].isChecked()) {
-			plat = ShareSDK.getPlatform(menu.getContext(), "YixinMoments");
-			sp = getYixinMomentsShareParams(v);
+			plat = ShareSDK.getPlatform(getContext(), "YixinMoments");
 		}
 		plat.setPlatformActionListener(this);
 		plat.share(sp);
 	}
 
-	private ShareParams getYixinShareParams(View v) {
-		Yixin.ShareParams sp = new Yixin.ShareParams();
-		sp.title = menu.getContext().getString(R.string.yixin_demo_title);
-		sp.text = menu.getContext().getString(R.string.share_content);
-		sp.shareType = Platform.SHARE_TEXT;
+	private ShareParams getShareParams(View v) {
+		ShareParams sp = new ShareParams();
+		sp.setTitle(getContext().getString(R.string.wechat_demo_title));
+		sp.setText(getContext().getString(R.string.share_content));
+		sp.setShareType(Platform.SHARE_TEXT);
 		switch (v.getId()) {
 			case R.id.btnUpload: {
-				sp.shareType = Platform.SHARE_IMAGE;
-				sp.imagePath = MainActivity.TEST_IMAGE;
+				sp.setShareType(Platform.SHARE_IMAGE);
+				sp.setImagePath(MainActivity.TEST_IMAGE);
 			}
 			break;
 			case R.id.btnUploadBm: {
-				sp.shareType = Platform.SHARE_IMAGE;
-				sp.imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
+				sp.setShareType(Platform.SHARE_IMAGE);
+				Bitmap imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
+				sp.setImageData(imageData);
 			}
 			break;
 			case R.id.btnUploadUrl: {
-				sp.shareType = Platform.SHARE_IMAGE;
-				sp.imageUrl = "http://img.appgo.cn/imgs/sharesdk/content/2013/07/16/1373959974649.png";
+				sp.setShareType(Platform.SHARE_IMAGE);
+				sp.setImageUrl(MainActivity.TEST_IMAGE_URL);
 			}
 			break;
 			case R.id.btnMusic: {
-				sp.shareType = Platform.SHARE_MUSIC;
-				sp.musicUrl = "http://ubuntuone.com/45XSEOwdODtXSH0WYGAcR7";
-				sp.url = "http://sharesdk.cn";
-				sp.imagePath = MainActivity.TEST_IMAGE;
+				sp.setShareType(Platform.SHARE_MUSIC);
+				String musicUrl = "http://ubuntuone.com/45XSEOwdODtXSH0WYGAcR7";
+				sp.setMusicUrl(musicUrl);
+				sp.setUrl("http://sharesdk.cn");
+				sp.setImagePath(MainActivity.TEST_IMAGE);
 			}
 			break;
 			case R.id.btnVideo: {
-				sp.shareType = Platform.SHARE_VIDEO;
-				sp.url = "http://t.cn/zT7cZAo";
-				sp.imagePath = MainActivity.TEST_IMAGE;
+				sp.setShareType(Platform.SHARE_VIDEO);
+				sp.setUrl("http://t.cn/zT7cZAo");
+				sp.setImagePath(MainActivity.TEST_IMAGE);
 			}
 			break;
 			case R.id.btnWebpage: {
-				sp.shareType = Platform.SHARE_WEBPAGE;
-				sp.url = "http://t.cn/zT7cZAo";
-				sp.imagePath = MainActivity.TEST_IMAGE;
+				sp.setShareType(Platform.SHARE_WEBPAGE);
+				sp.setUrl("http://t.cn/zT7cZAo");
+				sp.setImagePath(MainActivity.TEST_IMAGE);
 			}
 			break;
 			case R.id.btnWebpageBm: {
-				sp.shareType = Platform.SHARE_WEBPAGE;
-				sp.url = "http://t.cn/zT7cZAo";
-				sp.imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
+				sp.setShareType(Platform.SHARE_WEBPAGE);
+				sp.setUrl("http://t.cn/zT7cZAo");
+				Bitmap imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
+				sp.setImageData(imageData);
 			}
 			break;
 			case R.id.btnWebpageUrl: {
-				sp.shareType = Platform.SHARE_WEBPAGE;
-				sp.url = "http://t.cn/zT7cZAo";
-				sp.imageUrl = "http://img.appgo.cn/imgs/sharesdk/content/2013/07/16/1373959974649.png";
-			}
-			break;
-		}
-		return sp;
-	}
-
-	private ShareParams getYixinMomentsShareParams(View v) {
-		YixinMoments.ShareParams sp = new YixinMoments.ShareParams();
-		sp.title = menu.getContext().getString(R.string.yixin_demo_title);
-		sp.text = menu.getContext().getString(R.string.share_content);
-		sp.shareType = Platform.SHARE_TEXT;
-		switch (v.getId()) {
-			case R.id.btnUpload: {
-				sp.shareType = Platform.SHARE_IMAGE;
-				sp.imagePath = MainActivity.TEST_IMAGE;
-			}
-			break;
-			case R.id.btnUploadBm: {
-				sp.shareType = Platform.SHARE_IMAGE;
-				sp.imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
-			}
-			break;
-			case R.id.btnUploadUrl: {
-				sp.shareType = Platform.SHARE_IMAGE;
-				sp.imageUrl = "http://img.appgo.cn/imgs/sharesdk/content/2013/07/16/1373959974649.png";
-			}
-			break;
-			case R.id.btnMusic: {
-				sp.shareType = Platform.SHARE_MUSIC;
-				sp.musicUrl = "http://ubuntuone.com/45XSEOwdODtXSH0WYGAcR7";
-				sp.url = "http://sharesdk.cn";
-				sp.imagePath = MainActivity.TEST_IMAGE;
-			}
-			break;
-			case R.id.btnVideo: {
-				sp.shareType = Platform.SHARE_VIDEO;
-				sp.url = "http://t.cn/zT7cZAo";
-				sp.imagePath = MainActivity.TEST_IMAGE;
-			}
-			break;
-			case R.id.btnWebpage: {
-				sp.shareType = Platform.SHARE_WEBPAGE;
-				sp.url = "http://t.cn/zT7cZAo";
-				sp.imagePath = MainActivity.TEST_IMAGE;
-			}
-			break;
-			case R.id.btnWebpageBm: {
-				sp.shareType = Platform.SHARE_WEBPAGE;
-				sp.url = "http://t.cn/zT7cZAo";
-				sp.imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
-			}
-			break;
-			case R.id.btnWebpageUrl: {
-				sp.shareType = Platform.SHARE_WEBPAGE;
-				sp.url = "http://t.cn/zT7cZAo";
-				sp.imageUrl = "http://img.appgo.cn/imgs/sharesdk/content/2013/07/16/1373959974649.png";
+				sp.setShareType(Platform.SHARE_WEBPAGE);
+				sp.setUrl("http://t.cn/zT7cZAo");
+				sp.setImageUrl(MainActivity.TEST_IMAGE_URL);
 			}
 			break;
 		}
@@ -334,11 +278,11 @@ public class YixinPage extends SlidingMenuPage implements
 			case 2: {
 				// failed
 				if ("YixinClientNotExistException".equals(msg.obj.getClass().getSimpleName())) {
-					text = menu.getContext().getString(R.string.yixin_client_inavailable);
+					text = getContext().getString(R.string.yixin_client_inavailable);
 				} else if ("YixinClientNotExistException".equals(msg.obj.getClass().getSimpleName())) {
-					text = menu.getContext().getString(R.string.yixin_client_inavailable);
+					text = getContext().getString(R.string.yixin_client_inavailable);
 				} else {
-					text = menu.getContext().getString(R.string.share_failed);
+					text = getContext().getString(R.string.share_failed);
 				}
 			}
 			break;
@@ -350,7 +294,7 @@ public class YixinPage extends SlidingMenuPage implements
 			break;
 		}
 
-		Toast.makeText(menu.getContext(), text, Toast.LENGTH_LONG).show();
+		Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();
 		return false;
 	}
 

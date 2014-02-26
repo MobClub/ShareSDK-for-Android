@@ -24,7 +24,8 @@ public class ShareContentCustomizeDemo implements ShareContentCustomizeCallback 
 	public void onShare(Platform platform, ShareParams paramsToShare) {
 		// shorten the text field of twitter share content
 		if ("Twitter".equals(platform.getName())) {
-			paramsToShare.text = platform.getContext().getString(R.string.share_content_short);
+			String text = platform.getContext().getString(R.string.share_content_short);
+			paramsToShare.setText(text);
 		}
 	}
 

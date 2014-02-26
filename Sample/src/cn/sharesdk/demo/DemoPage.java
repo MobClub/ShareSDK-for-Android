@@ -75,7 +75,7 @@ public class DemoPage extends SlidingMenuPage implements
 	private void afterPlatformsGot(Platform[] platforms) {
 		View pageView = getPage();
 		LinearLayout llList = (LinearLayout) pageView.findViewById(R.id.llList);
-		LinearLayout line = (LinearLayout) View.inflate(menu.getContext(),
+		LinearLayout line = (LinearLayout) View.inflate(getContext(),
 				R.layout.demo_page_item, null);
 		llList.addView(line);
 		int lineCount = 0;
@@ -92,7 +92,7 @@ public class DemoPage extends SlidingMenuPage implements
 
 			if (lineCount >= 2) {
 				// place tow buttons in each line
-				line = (LinearLayout) View.inflate(menu.getContext(),
+				line = (LinearLayout) View.inflate(getContext(),
 						R.layout.demo_page_item, null);
 				llList.addView(line);
 				lineCount = 0;
@@ -103,10 +103,10 @@ public class DemoPage extends SlidingMenuPage implements
 			Button btn = (Button) line.findViewById(res);
 			btn.setSingleLine();
 			int platNameRes = cn.sharesdk.framework.utils.R.getStringRes(
-					menu.getContext(), name);
+					getContext(), name);
 			if (platNameRes > 0) {
-				String platName = menu.getContext().getString(platNameRes);
-				String text = menu.getContext().getString(R.string.share_to_format, platName);
+				String platName = getContext().getString(platNameRes);
+				String text = getContext().getString(R.string.share_to_format, platName);
 				btn.setText(text);
 			}
 			btn.setTag(platform);
@@ -117,24 +117,24 @@ public class DemoPage extends SlidingMenuPage implements
 	}
 
 	protected View initPage() {
-		return LayoutInflater.from(menu.getContext())
+		return LayoutInflater.from(getContext())
 				.inflate(R.layout.page_demo, null);
 	}
 
 	// sharing by onekeyshare
 	private void showShare(boolean silent, String platform) {
 		final OnekeyShare oks = new OnekeyShare();
-		oks.setNotification(R.drawable.ic_launcher, menu.getContext().getString(R.string.app_name));
+		oks.setNotification(R.drawable.ic_launcher, getContext().getString(R.string.app_name));
 		oks.setAddress("12345678901");
-		oks.setTitle(menu.getContext().getString(R.string.evenote_title));
+		oks.setTitle(getContext().getString(R.string.evenote_title));
 		oks.setTitleUrl("http://sharesdk.cn");
-		oks.setText(menu.getContext().getString(R.string.share_content));
+		oks.setText(getContext().getString(R.string.share_content));
 		oks.setImagePath(MainActivity.TEST_IMAGE);
-		oks.setImageUrl("http://sharesdk.cn/media/sharesdk.jpg");
+		oks.setImageUrl(MainActivity.TEST_IMAGE_URL);
 		oks.setUrl("http://www.sharesdk.cn");
 		oks.setFilePath(MainActivity.TEST_IMAGE);
-		oks.setComment(menu.getContext().getString(R.string.share));
-		oks.setSite(menu.getContext().getString(R.string.app_name));
+		oks.setComment(getContext().getString(R.string.share));
+		oks.setSite(getContext().getString(R.string.app_name));
 		oks.setSiteUrl("http://sharesdk.cn");
 		oks.setVenueName("ShareSDK");
 		oks.setVenueDescription("This is a beautiful place!");
@@ -167,16 +167,16 @@ public class DemoPage extends SlidingMenuPage implements
 //		};
 //		oks.setCustomerLogo(logo, label, listener);
 
-		oks.show(menu.getContext());
+		oks.show(getContext());
 	}
 
 	public void onClick(View v) {
 		if (v.equals(llTitle.getBtnBack())) {
-			if (menu.isMenuShown()) {
-				menu.hideMenu();
+			if (isMenuShown()) {
+				hideMenu();
 			}
 			else {
-				menu.showMenu();
+				showMenu();
 			}
 			return;
 		}
@@ -194,14 +194,14 @@ public class DemoPage extends SlidingMenuPage implements
 			break;
 			case R.id.btnFlSw: {
 				// follow our official sina weibo
-				Platform plat = ShareSDK.getPlatform(menu.getContext(), "SinaWeibo");
+				Platform plat = ShareSDK.getPlatform(getContext(), "SinaWeibo");
 				plat.setPlatformActionListener(this);
 				plat.followFriend(MainAdapter.SDK_SINAWEIBO_UID);
 			}
 			break;
 			case R.id.btnFlTc: {
 				// follow our official tencent weibo
-				Platform plat = ShareSDK.getPlatform(menu.getContext(), "TencentWeibo");
+				Platform plat = ShareSDK.getPlatform(getContext(), "TencentWeibo");
 				plat.setPlatformActionListener(this);
 				plat.followFriend(MainAdapter.SDK_TENCENTWEIBO_UID);
 			}
@@ -209,7 +209,7 @@ public class DemoPage extends SlidingMenuPage implements
 			case R.id.btnGetToken: {
 				// request token
 				GetTokenPage page = new GetTokenPage();
-				page.show(menu.getContext(), null);
+				page.show(getContext(), null);
 			}
 			break;
 			case R.id.btnVisitWc: {
@@ -217,16 +217,16 @@ public class DemoPage extends SlidingMenuPage implements
 				String packageName = "com.tencent.mm";
 				PackageInfo pi = null;
 				try {
-					pi = menu.getContext().getPackageManager().getPackageInfo(packageName, 0);
+					pi = getContext().getPackageManager().getPackageInfo(packageName, 0);
 				} catch (Throwable t) {
-					Toast.makeText(menu.getContext(), R.string.wechat_client_is_not_installed_correctly,
+					Toast.makeText(getContext(), R.string.wechat_client_is_not_installed_correctly,
 			    			Toast.LENGTH_SHORT).show();
 					t.printStackTrace();
 					break;
 				}
 
 				if (pi == null) {
-					Toast.makeText(menu.getContext(), R.string.wechat_client_is_not_installed_correctly,
+					Toast.makeText(getContext(), R.string.wechat_client_is_not_installed_correctly,
 			    			Toast.LENGTH_SHORT).show();
 					break;
 				}
@@ -234,17 +234,17 @@ public class DemoPage extends SlidingMenuPage implements
 				Intent i = new Intent(Intent.ACTION_VIEW);
 				i.setData(Uri.parse(MainAdapter.WECHAT_ADDR));
 				i.setPackage("com.tencent.mm");
-			    ResolveInfo ri = menu.getContext().getPackageManager().resolveActivity(i, 0);
+			    ResolveInfo ri = getContext().getPackageManager().resolveActivity(i, 0);
 			    if (ri == null) {
-			    	Toast.makeText(menu.getContext(), R.string.wechat_client_is_not_installed_correctly,
+			    	Toast.makeText(getContext(), R.string.wechat_client_is_not_installed_correctly,
 			    			Toast.LENGTH_SHORT).show();
 			    	break;
 			    }
 
 			    try {
-			    	menu.getContext().startActivity(i);
+			    	getContext().startActivity(i);
 			    } catch (Throwable t) {
-			    	Toast.makeText(menu.getContext(), R.string.wechat_client_not_support_following_operation,
+			    	Toast.makeText(getContext(), R.string.wechat_client_not_support_following_operation,
 			    			Toast.LENGTH_SHORT).show();
 			    	t.printStackTrace();
 			    }
@@ -254,14 +254,14 @@ public class DemoPage extends SlidingMenuPage implements
 				// request user info of the authorizing account
 				GetInforPage page = new GetInforPage();
 				page.setType(0);
-				page.show(menu.getContext(), null);
+				page.show(getContext(), null);
 			}
 			break;
 			case R.id.btnGetUserInfor: {
 				// request user info of other account
-				Intent i = new Intent(menu.getContext(), GetInforPage.class);
-				i.putExtra("type", 1);
-				menu.getContext().startActivity(i);
+				GetInforPage page = new GetInforPage();
+				page.setType(1);
+				page.show(getContext(), null);
 			}
 			break;
 			default: {
@@ -324,7 +324,7 @@ public class DemoPage extends SlidingMenuPage implements
 			break;
 		}
 
-		Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
+		Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
 		return false;
 	}
 
