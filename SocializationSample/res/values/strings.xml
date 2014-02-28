@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ShareSDK社会化评论组件</string>
-    <integer name="app_version_code">2</integer>
-    <string name="app_version">1.0.1</string>
+    <integer name="app_version_code">3</integer>
+    <string name="app_version">1.0.2</string>
     <string name="proj_name">ShareSDK Socialization</string>
     <string name="sm_item_comment_like">评论与赞</string>
     <string name="share_content">ShareSDK for Android不仅集成简单、支持如QQ好友、微信、新浪微博、腾讯微博等所有社交平台，而且还有强大的统计分析管理后台，实时了解用户、信息流、回流率、传播效应等数据，详情见官网http://sharesdk.cn @ShareSDK</string>
@@ -11,4 +11,5 @@
 	<string name="comment_like_publich_time">2013-12-20 19:00</string>
 	<string name="comment_like_author">ShareSDK</string>
 	<string name="comment_like_comment_list">跟帖</string>
+	<string name="sharesdk">ShareSDK评论与赞组件</string>
 </resources>

@@ -625,7 +625,10 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 
 		String resName = "logo_" + plat.getName();
 		int resId = getBitmapRes(activity, resName);
-		return BitmapFactory.decodeResource(activity.getResources(), resId);
+		if(resId > 0) {
+			return BitmapFactory.decodeResource(activity.getResources(), resId);
+		}
+		return null;
 	}
 
 	public void beforeTextChanged(CharSequence s, int start, int count,

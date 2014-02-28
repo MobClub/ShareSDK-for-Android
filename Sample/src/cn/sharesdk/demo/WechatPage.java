@@ -181,7 +181,7 @@ public class WechatPage extends SlidingMenuPage implements
 			break;
 			case R.id.btnUploadUrl: {
 				sp.setShareType(Platform.SHARE_IMAGE);
-				sp.setImageUrl(MainActivity.TEST_IMAGE_URL);
+				sp.setImageUrl("http://www.wyl.cc/wp-content/uploads/2014/02/10060381306b675f5c5.jpg");
 			}
 			break;
 			case R.id.btnEmoji: {

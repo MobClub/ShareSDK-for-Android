@@ -467,7 +467,10 @@ public class PlatformGridView extends LinearLayout implements
 			}
 
 			int resId = cn.sharesdk.framework.utils.R.getStringRes(getContext(), plat.getName());
-			return getContext().getString(resId);
+			if (resId > 0) {
+				return getContext().getString(resId);
+			}
+			return null;
 		}
 
 	}

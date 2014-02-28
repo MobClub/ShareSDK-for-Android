@@ -97,6 +97,8 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 		tt.setPublishTime(getString(R.string.comment_like_publich_time));
 		tt.setAuthor(getString(R.string.comment_like_author));
 
+		Socialization service = ShareSDK.getService(Socialization.class);
+		service.setCustomPlatform(new MyPlatform(this));
 		initOnekeyShare();
 		initQuickCommentBar();
 		return false;
@@ -106,7 +108,7 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 	// the following codes are copied from DemoPage
 	private void initOnekeyShare() {
 		oks = new OnekeyShare();
-		oks.setNotification(R.drawable.ic_launcher, getString(R.string.app_name));
+		oks.setNotification(R.drawable.logo_sharesdk, getString(R.string.app_name));
 		oks.setAddress("12345678901");
 		oks.setTitle(getString(R.string.share));
 		oks.setTitleUrl("http://sharesdk.cn");
