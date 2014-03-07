@@ -167,6 +167,10 @@ public class DemoPage extends SlidingMenuPage implements
 //		};
 //		oks.setCustomerLogo(logo, label, listener);
 
+		// remove comments, hide logos of sinaweibo and tencentweibo in platform gridview
+//		oks.addHiddenPlatform(SinaWeibo.NAME);
+//		oks.addHiddenPlatform(TencentWeibo.NAME);
+
 		oks.show(getContext());
 	}
 

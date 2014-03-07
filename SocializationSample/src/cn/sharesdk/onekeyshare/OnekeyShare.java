@@ -77,11 +77,13 @@ public class OnekeyShare extends FakeActivity implements
 	private ShareContentCustomizeCallback customizeCallback;
 	private boolean dialogMode;
 	private boolean disableSSO;
+	private HashMap<String, String> hiddenPlatforms;
 
 	public OnekeyShare() {
 		reqMap = new HashMap<String, Object>();
 		customers = new ArrayList<CustomerLogo>();
 		callback = this;
+		hiddenPlatforms = new HashMap<String, String>();
 	}
 
 	public void show(Context context) {
@@ -226,6 +228,11 @@ public class OnekeyShare extends FakeActivity implements
 		reqMap.put("dialogMode", dialogMode);
 	}
 
+	/** add a hidden platform */
+	public void addHiddenPlatform(String platform) {
+		hiddenPlatforms.put(platform, platform);
+	}
+
 	public void onCreate() {
 		// display mode of onekeyshare is controled by the field of platform and silent,
 		// if platform is set, platform gridview won't be display, onekeyshare will jump to editpage directly
@@ -276,6 +283,7 @@ public class OnekeyShare extends FakeActivity implements
 
 		// set the data for platform gridview
 		grid.setData(copy, silent);
+		grid.setHiddenPlatforms(hiddenPlatforms);
 		grid.setCustomerLogos(customers);
 		grid.setParent(this);
 		btnCancel.setOnClickListener(this);

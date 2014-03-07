@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">ShareSDK</string>
-    <integer name="app_version_code">30</integer>
-    <string name="app_version">2.3.5</string>
-    <string name="proj_name">ShareSDK</string>
     
     <string name="more">更多</string>
     <string name="sm_item_demo">接口</string>
@@ -78,4 +75,5 @@
 	<string name="buy_success">购买成功</string>
 	<string name="buy_failed">购买失败</string>
 	<string name="laiwang">来往</string>
+	<string name="qzone_customer_share_style">自定义QQ空间分享风格</string>
 </resources>

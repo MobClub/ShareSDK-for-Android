@@ -16,6 +16,7 @@ import cn.sharesdk.framework.utils.UIHandler;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Message;
@@ -132,7 +133,7 @@ public class MainAdapter extends MenuAdapter
 
 		item = new SlidingMenuItem();
 		item.id = ITEM_ABOUT;
-		String appVer = menu.getResources().getString(R.string.app_version);
+		String appVer = getAppVersion();
 		item.body = menu.getResources().getString(R.string.sm_item_about, appVer);
 		setItem(GROUP_MORE, item);
 	}
@@ -277,9 +278,8 @@ public class MainAdapter extends MenuAdapter
 					}
 					break;
 					case ITEM_ABOUT: {
-						String appName = menu.getResources().getString(R.string.app_name);
-						String version = menu.getResources().getString(R.string.app_version);
-						Toast.makeText(menu.getContext(), appName + " " + version, Toast.LENGTH_SHORT).show();
+						String msg = getAppName() + " " + getAppVersion();
+						Toast.makeText(menu.getContext(), msg, Toast.LENGTH_SHORT).show();
 					}
 					break;
 				}
@@ -287,6 +287,31 @@ public class MainAdapter extends MenuAdapter
 			}
 		}
 		return false;
+	}
+
+	private String getAppName() {
+		String appName = menu.getContext().getApplicationInfo().name;
+		if (appName != null) {
+			return appName;
+		}
+
+		int appLbl = menu.getContext().getApplicationInfo().labelRes;
+		if (appLbl > 0) {
+			appName = menu.getContext().getString(appLbl);
+		}
+
+		return appName;
+	}
+
+	private String getAppVersion() {
+		try {
+			PackageManager pm = menu.getContext().getPackageManager();
+	        PackageInfo pi = pm.getPackageInfo(menu.getContext().getPackageName(), 0);
+	        return pi.versionName;
+		} catch(Throwable t) {
+			t.printStackTrace();
+		}
+		return null;
 	}
 
 	public void onComplete(Platform plat, int action,

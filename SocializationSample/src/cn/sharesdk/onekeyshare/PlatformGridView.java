@@ -62,6 +62,7 @@ public class PlatformGridView extends LinearLayout implements
 	private HashMap<String, Object> reqData;
 	private OnekeyShare parent;
 	private ArrayList<CustomerLogo> customers;
+	private HashMap<String, String> hiddenPlatforms;
 
 	public PlatformGridView(Context context) {
 		super(context);
@@ -197,6 +198,10 @@ public class PlatformGridView extends LinearLayout implements
 		this.silent = silent;
 	}
 
+	public void setHiddenPlatforms(HashMap<String, String> hiddenPlatforms) {
+		this.hiddenPlatforms = hiddenPlatforms;
+	}
+
 	/** Set the Click event of the custom icon */
 	public void setCustomerLogos(ArrayList<CustomerLogo> customers) {
 		this.customers = customers;
@@ -270,7 +275,23 @@ public class PlatformGridView extends LinearLayout implements
 			this.platformGridView = platformGridView;
 			logos = new ArrayList<Object>();
 			Platform[] platforms = platformGridView.platformList;
+			HashMap<String, String> hiddenPlatforms = platformGridView.hiddenPlatforms;
 			if (platforms != null) {
+				if (hiddenPlatforms != null && hiddenPlatforms.size() > 0) {
+					ArrayList<Platform> ps = new ArrayList<Platform>();
+					for (Platform p : platforms) {
+						if (hiddenPlatforms.containsKey(p.getName())) {
+							continue;
+						}
+						ps.add(p);
+					}
+
+					platforms = new Platform[ps.size()];
+					for (int i = 0; i < platforms.length; i++) {
+						platforms[i] = ps.get(i);
+					}
+				}
+
 				logos.addAll(Arrays.asList(platforms));
 			}
 			ArrayList<CustomerLogo> customers = platformGridView.customers;

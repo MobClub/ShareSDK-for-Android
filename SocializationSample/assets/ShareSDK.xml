@@ -69,11 +69,13 @@
         RedirectUri="http://sharesdk.cn"
         Enable="true" />
 
+    <!-- ShareByAppClient标识是否使用微博客户端分享，默认是false -->
     <QZone
         Id="3"
         SortId="3"
         AppId="100371282"
         AppKey="aed9b0303e3ed1e27bae87c33761161d"
+        ShareByAppClient="false"
         Enable="true" />
     
     <!-- 
@@ -214,7 +216,7 @@
         HostType="sandbox"
     	ConsumerKey="sharesdk-7807"
 		ConsumerSecret="d05bf86993836004"
-		ShareByAppClient="true"
+		ShareByAppClient="false"
 		Enable="true" />
     
     <LinkedIn
@@ -281,17 +283,30 @@
 		RedirectUri="http://sharesdk.cn"
         Enable="true" />
     
+    <!-- 
+    	Yixin易信和YixinMoments易信朋友圈的appid是一样的；
+    
+                       注意：开发者不能用我们这两个平台的appid,否则分享不了
+    
+       	 易信测试的时候需要先签名打包出apk,
+		sample测试易信，要先签名打包，keystore在sample项目中，密码123456
+		
+		BypassApproval是绕过审核的标记，设置为true后AppId将被忽略，故不经过
+		审核的应用也可以执行分享，但是仅限于分享文字或图片，不能分享其他类型，
+		默认值为false。
+	-->
 	<Yixin 
     	Id="29"
         SortId="29"
         AppId="yx0d9a9f9088ea44d78680f3274da1765f"
+        ShareByAppClient="false"
         Enable="true" />
-	<!-- AppId="yx28eafabad0934f8d8d34a2a7238f53a0" -->
 	
 	<YixinMoments
     	Id="30"
         SortId="30"
         AppId="yx0d9a9f9088ea44d78680f3274da1765f"
+        ShareByAppClient="false"
         Enable="true" />
 
 </DevInfor>
