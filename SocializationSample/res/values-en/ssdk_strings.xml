@@ -40,10 +40,13 @@
 	<string name="instagram">Instagram</string>
 	<string name="yixin">Yixin</string>
 	<string name="yixinmoments">Yixin Moments</string>
+	<string name="mingdao">Mingdao</string>
 	
 	<string name="share_to_qzone">Share To QZone</string>
 	<string name="incentive_title">Sharing Incentives</string>
 	<string name="failed_to_start_incentive_page">Failed to Start Sharing Incentives Page</string>
 	<string name="download_faield">Download Failed</string>
 	<string name="app_downloading">App is downloading</string>
+	<string name="mingdao_share_content">Share webpage</string>
+	<string name="share_to_mingdao">Share To Mingdao</string>
 </resources>

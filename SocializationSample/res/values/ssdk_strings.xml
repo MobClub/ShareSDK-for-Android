@@ -40,10 +40,13 @@
 	<string name="instagram">Instagram</string>
 	<string name="yixin">易信</string>
 	<string name="yixinmoments">易信朋友圈</string>
+	<string name="mingdao">明道</string>
 	
 	<string name="share_to_qzone">分享到QQ空间</string>
 	<string name="incentive_title">分享有奖</string>
 	<string name="failed_to_start_incentive_page">无法打开“分享有奖页面”</string>
 	<string name="download_faield">下载失败</string>
 	<string name="app_downloading">应用正在后台下载</string>
+	<string name="mingdao_share_content">网页分享</string>
+	<string name="share_to_mingdao">分享到明道</string>
 </resources>

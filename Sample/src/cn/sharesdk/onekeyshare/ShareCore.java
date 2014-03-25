@@ -10,6 +10,9 @@ package cn.sharesdk.onekeyshare;
 
 import java.util.HashMap;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ResolveInfo;
+import android.text.TextUtils;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.Platform.ShareParams;
 import cn.sharesdk.framework.ShareSDK;
@@ -36,6 +39,12 @@ public class ShareCore {
 			return false;
 		}
 
+		String imagePath = (String) data.get("imagePath");
+		String viewToShare = (String) data.get("viewToShare");
+		if (TextUtils.isEmpty(imagePath) && !TextUtils.isEmpty(viewToShare)) {
+			data.put("imagePath", data.get("viewToShare"));
+		}
+
 		ShareParams sp = new ShareParams(data);
 		if (customizeCallback != null) {
 			customizeCallback.onShare(plat, sp);
@@ -51,7 +60,8 @@ public class ShareCore {
 				|| "Email".equals(platform) || "GooglePlus".equals(platform)
 				|| "QQ".equals(platform) || "Pinterest".equals(platform)
 				|| "Instagram".equals(platform) || "Yixin".equals(platform)
-				|| "YixinMoments".equals(platform) || "QZone".equals(platform)) {
+				|| "YixinMoments".equals(platform) || "QZone".equals(platform)
+				|| "Mingdao".equals(platform)) {
 			return true;
 		} else if ("Evernote".equals(platform)) {
 			Platform plat = ShareSDK.getPlatform(context, platform);
@@ -61,7 +71,11 @@ public class ShareCore {
 		} else if ("SinaWeibo".equals(platform)) {
 			Platform plat = ShareSDK.getPlatform(context, platform);
 			if ("true".equals(plat.getDevinfo("ShareByAppClient"))) {
-				return true;
+				Intent test = new Intent(Intent.ACTION_SEND);
+				test.setPackage("com.sina.weibo");
+				test.setType("image/*");
+				ResolveInfo ri = plat.getContext().getPackageManager().resolveActivity(test, 0);
+				return (ri != null);
 			}
 		}
 

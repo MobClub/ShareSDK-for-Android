@@ -58,7 +58,7 @@
         AppKey="568898243"
         AppSecret="38a4f8204cc784f81f9f0daaf31e02e3"
         RedirectUrl="http://www.sharesdk.cn"
-        ShareByAppClient="false"
+        ShareByAppClient="true"
         Enable="true" />
 
     <TencentWeibo
@@ -75,7 +75,7 @@
         SortId="3"
         AppId="100371282"
         AppKey="aed9b0303e3ed1e27bae87c33761161d"
-        ShareByAppClient="false"
+        ShareByAppClient="true"
         Enable="true" />
     
     <!-- 
@@ -309,4 +309,12 @@
         ShareByAppClient="false"
         Enable="true" />
 
+	<Mingdao
+    	Id="31"
+        SortId="31"
+        AppKey="EEEE9578D1D431D3215D8C21BF5357E3"
+        AppSecret="5EDE59F37B3EFA8F65EEFB9976A4E933"
+        RedirectUri="http://sharesdk.cn"
+        Enable="true" />
+	
 </DevInfor>

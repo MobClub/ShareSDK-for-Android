@@ -253,7 +253,8 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 
 		int dp_74 = dipToPx(getContext(), 74);
 		int dp_16 = dipToPx(getContext(), 16);
-		String imagePath = String.valueOf(reqData.get("imagePath"));
+		String imagePath = (String) reqData.get("imagePath");
+		String viewToShare = (String) reqData.get("viewToShare");
 		if(!TextUtils.isEmpty(imagePath) && new File(imagePath).exists()){
 			try {
 				shareImage = true;
@@ -262,6 +263,20 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 				System.gc();
 				try {
 					image = getBitmap(imagePath, 2);
+				} catch(Throwable t1) {
+					t1.printStackTrace();
+					shareImage = false;
+				}
+			}
+			initImage(llInput);
+		} else if(!TextUtils.isEmpty(viewToShare) && new File(viewToShare).exists()){
+			try {
+				shareImage = true;
+				image = getBitmap(viewToShare);
+			} catch(Throwable t) {
+				System.gc();
+				try {
+					image = getBitmap(viewToShare, 2);
 				} catch(Throwable t1) {
 					t1.printStackTrace();
 					shareImage = false;
@@ -483,8 +498,13 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 			reqData.put("text", text);
 			if(!shareImage){
 				if (reqData.get("imagePath") == null) {
+					reqData.put("viewToShare", null);
 					reqData.put("imageUrl", null);
+				} else if (reqData.get("imageUrl") == null) {
+					reqData.put("imagePath", null);
+					reqData.put("viewToShare", null);
 				} else {
+					reqData.put("imageUrl", null);
 					reqData.put("imagePath", null);
 				}
 			}
@@ -504,8 +524,7 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 					parent.share(editRes);
 				}
 				finish();
-			}
-			else {
+			} else {
 				int resId = getStringRes(activity, "select_one_plat_at_least");
 				if (resId > 0) {
 					Toast.makeText(getContext(), resId, Toast.LENGTH_SHORT).show();

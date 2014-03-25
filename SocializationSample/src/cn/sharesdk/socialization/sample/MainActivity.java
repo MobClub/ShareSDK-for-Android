@@ -138,7 +138,9 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 	private void initQuickCommentBar() {
 		qcBar = (QuickCommentBar) findViewById(R.id.qcBar);
 		qcBar.setTopic(topicId, topicTitle, topicPublishTime, topicAuthor);
+		qcBar.setTextToShare(getString(R.string.share_content));
 		qcBar.getBackButton().setOnClickListener(this);
+		qcBar.setAuthedAccountChangeable(false);
 		CommentFilter.Builder builder = new CommentFilter.Builder();
 		// non-empty filter
 		builder.append(new FilterItem() {

@@ -9,6 +9,8 @@
 package cn.sharesdk.demo;
 
 import java.util.HashMap;
+
+import android.util.Log;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.onekeyshare.OnekeyShare;
@@ -22,7 +24,7 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
 public class OneKeyShareCallback implements PlatformActionListener {
 
 	public void onComplete(Platform plat, int action, HashMap<String, Object> res) {
-		System.out.println(res.toString());
+		Log.d(getClass().getSimpleName(), res.toString());
 		// add codes here to handle success result
 	}
 

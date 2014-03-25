@@ -145,6 +145,9 @@ public class DemoPage extends SlidingMenuPage implements
 			oks.setPlatform(platform);
 		}
 
+		// remove comments, add a view to be captured to share
+//		oks.setViewToShare(getPage());
+
 		// remove comments, display editpage in dialog mode
 //		oks.setDialogMode();
 
