@@ -1,0 +1,48 @@
+<resources>
+    <string name="ssdk_socialization_let_me_say">我来说两句</string>
+    <string name="ssdk_socialization_comment_like_author_title">来源：</string>
+    <string name="ssdk_socialization_comment_like_comment_list_title">评论列表</string>
+    <string name="ssdk_socialization_hot_list">热门评论</string>
+    <string name="ssdk_socialization_new_list">最新评论</string>
+    <string name="ssdk_socialization_right_now">刚刚</string>
+    <string name="ssdk_socialization_xx_min_before">%s分钟前</string>
+    <string name="ssdk_socialization_xx_hour_before">%s小时前</string>
+    <string name="ssdk_socialization_reply_page_title">评论</string>
+    <string name="ssdk_socialization_reply_to">回复 %s</string>
+    <string name="ssdk_socialization_reply">回复</string>
+    <string name="ssdk_socialization_copy">复制</string>
+    <string name="ssdk_socialization_text_copied">文本已经复制</string>
+    <string name="ssdk_socialization_click_to_unfold">展开隐藏评论</string>
+    <string name="ssdk_socialization_loading_next">正在加载下一页…</string>
+    <string name="ssdk_socialization_failed_to_reply">评论失败</string>
+   <string name="ssdk_socialization_reply_succeeded">评论已发送</string>
+   <string name="ssdk_socialization_not_yet_authorized">尚未授权</string>
+   <string name="ssdk_socialization_auth_failed">授权失败</string>
+   <string name="ssdk_socialization_selsect_account">请选择授权方式</string>
+   <string name="ssdk_socialization_replying">评论发送中…</string>
+   <string name="ssdk_socialization_like_failed">称赞失败</string>
+   <string name="ssdk_socialization_spam_reply">评论内容不合法，请重新填写</string>
+   <string name="ssdk_socialization_you_have_liked_the_topic">已经赞了此话题</string>
+   <string name="ssdk_socialization_select_account">选择发表评论帐号：</string>
+   <string name="ssdk_socialization_select_another">添加更多帐号…</string>
+   <string name="ssdk_socialization_change_account">更换帐号</string>
+   <string name="ssdk_socialization_bind_account">绑定帐号</string>
+   <string name="ssdk_socialization_last_refresh_time">上次刷新时间：%s</string>
+   <string name="ssdk_socialization_replay_too_frequently">回复过于频繁，请稍后再回复</string>
+   <string name="ssdk_socialization_comment_rejected">该评论已被屏蔽</string>
+   <string name="ssdk_socialization_comment_list_is_empty">还没有评论哦\n单击页面抢沙发\nempty…</string>
+	<string name="ssdk_socialization_pull_to_refresh">下拉刷新</string>
+	<string name="ssdk_socialization_release_to_refresh">松开刷新</string>
+	<string name="ssdk_socialization_refreshing">刷新中…</string>
+	<string name="ssdk_socialization_share">分享</string>
+	<string name="ssdk_socialization_nickname">匿名用户</string>
+	<string name="ssdk_socialization_progressdialog_msg">请等待......</string>
+	<string name="ssdk_socialization_progressdialog_auth">授权</string>
+	<string name="ssdk_socialization_progressdialog_do_authing">分享需要先授权......</string>
+   
+   <string name="ssdk_socialization_comment_error">内容包含敏感字符</string>
+   <string name="ssdk_socialization_comment_too_short">字符长度不足</string>
+   <string name="ssdk_socialization_comment_too_long">字符长度过长</string>
+   <string name="ssdk_socialization_comment_repeat">重复字符过多</string>   
+   
+</resources>

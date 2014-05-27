@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fff5f5f5"
+    android:orientation="vertical" >
+
+    <cn.sharesdk.framework.TitleLayout
+        android:id="@+id/llTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/auth_title_back" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/llTitle" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+
+                <CheckedTextView
+                    android:id="@+id/ctvStWc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="41dp"
+                    android:drawableLeft="@drawable/cb_drw"
+                    android:drawablePadding="2dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="@string/share_to_wechat"
+                    android:textColor="#ff000000"
+                    android:textSize="16dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="41dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <CheckedTextView
+                        android:id="@+id/ctvStWm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:drawableLeft="@drawable/cb_drw"
+                        android:drawablePadding="2dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp"
+                        android:singleLine="true"
+                        android:text="@string/share_to_moment"
+                        android:textColor="#ff000000"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <CheckedTextView
+                    android:id="@+id/ctvStWf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="41dp"
+                    android:drawableLeft="@drawable/cb_drw"
+                    android:drawablePadding="2dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="@string/share_to_favorite"
+                    android:textColor="#ff000000"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnUpdate"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_back"
+                android:text="@string/update"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btnUpload"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_back"
+                android:text="@string/image_upload"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btnUploadBm"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_back"
+                android:text="@string/image_upload_bitmap"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btnUploadUrl"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_back"
+                android:text="@string/image_upload_url"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btnEmoji"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_back"
+                android:text="@string/emoji_upload"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btnEmojiUrl"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_back"
+                android:text="@string/emoji_upload_url"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btnEmojiBitmap"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_back"
+                android:text="@string/emoji_upload_bm"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btnMusic"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_back"
+                android:text="@string/music_upload"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btnVideo"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_back"
+                android:text="@string/video_upload"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btnWebpage"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_back"
+                android:text="@string/webpage_upload"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btnWebpageBm"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_back"
+                android:text="@string/webpage_upload_bitmap"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btnWebpageUrl"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_back"
+                android:text="@string/webpage_upload_url"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btnApp"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_back"
+                android:text="@string/app_upload"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btnAppExt"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_back"
+                android:text="@string/app_upload_extinfo"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btnFile"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_back"
+                android:text="@string/file_upload"
+                android:textSize="16dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llTitle"
+        android:background="@drawable/title_shadow" />
+
+</RelativeLayout>

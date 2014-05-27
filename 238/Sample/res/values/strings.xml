@@ -1,0 +1,79 @@
+<resources>
+    <string name="app_name">ShareSDK</string>
+    
+    <string name="more">更多</string>
+    <string name="sm_item_demo">接口</string>
+    <string name="sm_item_auth">授权</string>
+    <string name="sm_item_wechat">微信</string>
+    <string name="sm_item_yixin">易信</string>
+    <string name="sm_item_customer">自定义接口</string>
+    <string name="sm_item_fl_weibo">关注新浪微博</string>
+    <string name="sm_item_fl_tc">关注腾讯微博</string>
+    <string name="sm_item_share_view">摇一摇截屏分享</string>
+    <string name="sm_item_visit_website">关注官方网站</string>
+    <string name="sm_item_about">Demo版本 Ver. %s</string>
+    <string name="plz_choose_wechat">请选择微信客户端完成操作</string>
+    <string name="get_token_format">获取%s的AccessToken</string>
+    <string name="get_user_info_format">获取%s授权用户资料</string>
+    <string name="get_other_info_format">获取%s其他用户资料</string>
+    <string name="share_to_format">分享到%s</string>
+    
+    <string name="demo_share_all_gui">分享全部（有分享界面）</string>
+    <string name="demo_share_all">分享全部（无界面，直接分享）</string>
+    <string name="demo_get_access_token">获取AccessToken</string>
+	<string name="demo_get_my_info">获取授权用户资料</string>
+    <string name="demo_get_other_info">获取其他用户资料</string>
+	
+	<string name="get_sina_friends_list">获取新浪微博关注列表</string>
+	<string name="get_tencent_friends_list">获取腾讯微博关注列表</string>
+	<string name="customer_douban">搜索用户</string>
+	<string name="customer_facebook">获取通知列表</string>
+	<string name="customer_nemb">获取推荐话题</string>
+	<string name="customer_renren">上传照片到用户的相册</string>
+	<string name="customer_sina">获取微博主页列表</string>
+	<string name="customer_qzone">发表日志到QQ空间</string> 
+	<string name="customer_tencent">获取我的粉丝列表</string>
+	<string name="customer_twitter">获取主页列表</string>
+	<string name="customer_kaixin">获取可能认识的人</string>
+	<string name="customer_sohu">获取好友列表</string>
+	<string name="customer_youdao">获取笔记本列表</string>
+	<string name="customer_suishenkan">获取搜狐随身看书签列表</string>
+	<string name="customer_tumblr">获取Tumblr用户Post列表</string>
+	
+	<string name="not_yet_authorized">尚未授权</string>
+	<string name="share_content">ShareSDK for Android不仅集成简单、支持如QQ好友、微信、新浪微博、腾讯微博等所有社交平台，而且还有强大的统计分析管理后台，实时了解用户、信息流、回流率、传播效应等数据，详情见官网http://sharesdk.cn @ShareSDK</string>
+	<string name="share_content_short">ShareSDK不仅集成简单、支持如微信、新浪微博、腾讯微博等社交平台，而且还有强大的统计分析管理后台，实时了解用户、信息流、回流率、传播效应等数据，详情见官网http://sharesdk.cn @ShareSDK</string>
+	<string name="evenote_title">ShareSDK是一个神奇的SDK</string>
+	
+	<string name="update">文字分享</string>
+	<string name="image_upload">图片分享（本地图片）</string>
+	<string name="image_upload_bitmap">图片分享（Bitmap对象）</string>
+	<string name="image_upload_url">图片分享（网络图片）</string>
+	<string name="emoji_upload">表情分享（本地图片）</string>
+	<string name="emoji_upload_url">表情分享（网络图片）</string>
+	<string name="emoji_upload_bm">表情分享（Bitmap对象）</string>
+	<string name="music_upload">音乐分享</string>
+	<string name="video_upload">视频分享</string>
+	<string name="webpage_upload">网页分享（本地图片）</string>
+	<string name="webpage_upload_bitmap">网页分享（Bitmap对象）</string>
+	<string name="webpage_upload_url">网页分享（网络图片）</string>
+	<string name="app_upload">应用分享（携带文件）</string>
+	<string name="app_upload_extinfo">应用分享（携带脚本）</string>
+	<string name="file_upload">文件分享</string>
+	<string name="share_to_wechat">微信好友</string>
+	<string name="share_to_moment">微信朋友圈</string>
+	<string name="share_to_favorite">微信收藏</string>
+	<string name="wechat_demo_title">微信分享Demo标题</string>
+	<string name="qzone_add_blog_sample"><h1>QQ互联</h1><font color='red'>轻松分享,</font><font color='green'>快乐生活。</font><a href='http://connect.qq.com'>详情请看。</a><img src='http://imgcache.qq.com/ptlogin/head/1_100.gif'></img></string>
+	<string name="wechat_client_is_not_installed_correctly">微信客户端未安装或版本太旧</string>
+	<string name="wechat_client_not_support_following_operation">微信客户端不支持第三方应用执行关注功能</string>
+	<string name="share_to_yixin">易信好友</string>
+	<string name="share_to_yixin_moment">易信朋友圈</string>
+	<string name="share_to_yixin_favorite">易信收藏</string>
+	<string name="yixin_demo_title">易信分享Demo标题</string>
+	<string name="receive_rewards">恭喜你得到%s个金币！</string>
+	<string name="buy_success">购买成功</string>
+	<string name="buy_failed">购买失败</string>
+	<string name="laiwang">来往</string>
+	<string name="qzone_customer_share_style">自定义QQ空间分享风格</string>
+</resources>

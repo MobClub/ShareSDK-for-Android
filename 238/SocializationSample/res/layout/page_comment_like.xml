@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fff5f5f5" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="45dp" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <cn.sharesdk.socialization.component.TopicTitle
+                android:id="@+id/llTopicTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/ivIllustration"
+                android:layout_width="fill_parent"
+                android:layout_height="240dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/pic" />
+
+            <TextView
+                android:id="@+id/tvText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="all"
+                android:padding="10dp"
+                android:text="@string/share_content"
+                android:textColor="#ff383838"
+                android:textSize="17dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <cn.sharesdk.socialization.QuickCommentBar
+        android:id="@+id/qcBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="#fff3f3f3" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_above="@+id/qcBar"
+        android:background="#ffa6a6a6" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_above="@+id/qcBar"
+        android:layout_marginBottom="1px"
+        android:background="#ffd6d6d6" />
+
+</RelativeLayout>

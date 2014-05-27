@@ -13,9 +13,9 @@ Open the **ShareSDK for Android** directory, you will find **MainLibs** and **On
 
 # Step Two: Import ShareSDK to Your Project
 
-There are two ways to import ShareSDK into your project: **reference to the ShareSDK project** or **copy the jars and resources into your project**. If you select the second way, we provide the following tool to help you quickly finish these operations on Windows:
+There are two ways to import ShareSDK into your project: **reference to the ShareSDK project** or **copy the jars and resources into your project**. If you select the second way, we provide the following tool to help you quickly finish these operations:
 
-![quick integrating tool](http://wiki.sharesdk.cn/images/8/89/wiki_and_fi_15.png)
+![quick integrating tool](http://wiki.sharesdk.cn/images/d/d6/ssdk_qig_qi_win.png)
 
 Execute this tool and copy its products into your project.
 
