@@ -219,8 +219,7 @@ public class GetInforPage extends FakeActivity implements Callback,
 			String account = null;
 			if ("SinaWeibo".equals(name)) {
 				account = MainAdapter.SDK_SINAWEIBO_UID;
-			}
-			else if ("TencentWeibo".equals(name)) {
+			} else if ("TencentWeibo".equals(name)) {
 				account = MainAdapter.SDK_TENCENTWEIBO_UID;
 			}
 			plat.showUser(type == 0 ? null : account);

@@ -77,7 +77,7 @@ public class ShareCore {
 				|| "QQ".equals(platform) || "Pinterest".equals(platform)
 				|| "Instagram".equals(platform) || "Yixin".equals(platform)
 				|| "YixinMoments".equals(platform) || "QZone".equals(platform)
-				|| "Mingdao".equals(platform)) {
+				|| "Mingdao".equals(platform) || "Line".equals(platform)) {
 			return true;
 		} else if ("Evernote".equals(platform)) {
 			Platform plat = ShareSDK.getPlatform(platform);
@@ -104,7 +104,8 @@ public class ShareCore {
 				|| "WechatFavorite".equals(platform) || "ShortMessage".equals(platform)
 				|| "Email".equals(platform) || "GooglePlus".equals(platform)
 				|| "QQ".equals(platform) || "Pinterest".equals(platform)
-				|| "Yixin".equals(platform) || "YixinMoments".equals(platform)) {
+				|| "Yixin".equals(platform) || "YixinMoments".equals(platform)
+				|| "Line".equals(platform)) {
 			return false;
 		}
 		return true;

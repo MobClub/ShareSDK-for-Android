@@ -40,6 +40,7 @@ import cn.sharesdk.framework.utils.UIHandler;
 /** platform logo list gridview */
 public class PlatformGridView extends LinearLayout implements
 		OnClickListener, Callback {
+	private static final int MIN_CLICK_INTERVAL = 1000;
 	private static final int MSG_PLATFORM_LIST_GOT = 1;
 	// grids in each line
 	private int LINE_PER_PAGE;
@@ -63,6 +64,7 @@ public class PlatformGridView extends LinearLayout implements
 	private ArrayList<CustomerLogo> customers;
 	private HashMap<String, String> hiddenPlatforms;
 	private View bgView;
+	private long lastClickTime;
 
 	public PlatformGridView(Context context) {
 		super(context);
@@ -84,7 +86,7 @@ public class PlatformGridView extends LinearLayout implements
 		addView(pager);
 
 		// in order to have a better UI effect, opening a thread request the list of platforms
-		new Thread(){
+		new Thread() {
 			public void run() {
 				platformList = ShareSDK.getPlatformList();
 				if (platformList == null) {
@@ -219,6 +221,12 @@ public class PlatformGridView extends LinearLayout implements
 	}
 
 	public void onClick(View v) {
+		long time = System.currentTimeMillis();
+		if (time - lastClickTime < MIN_CLICK_INTERVAL) {
+			return;
+		}
+		lastClickTime = time;
+
 		Platform plat = (Platform) v.getTag();
 		if (plat != null) {
 			if (silent) {

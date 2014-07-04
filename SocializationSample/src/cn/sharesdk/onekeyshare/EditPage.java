@@ -745,23 +745,18 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 	}
 
 	private void hideSoftInput() {
-		InputMethodManager imm = null;
 		try {
-			imm = (InputMethodManager) activity.getSystemService(
+			InputMethodManager imm = (InputMethodManager) activity.getSystemService(
 					Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(etContent.getWindowToken(), 0);
 		} catch (Throwable t) {
 			t.printStackTrace();
-			imm = null;
-		}
-
-		if (imm != null) {
-			imm.hideSoftInputFromWindow(etContent.getWindowToken(), 0);
 		}
 	}
 
-	public void finish() {
+	public boolean onFinish() {
 		hideSoftInput();
-		super.finish();
+		return super.onFinish();
 	}
 
 	public void onConfigurationChanged(Configuration newConfig) {

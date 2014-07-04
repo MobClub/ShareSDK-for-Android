@@ -121,7 +121,7 @@ public class MainActivity extends Activity implements Callback {
 	}
 
 	protected void onDestroy() {
-		ShareSDK.stopSDK(this);
+		ShareSDK.stopSDK();
 		super.onDestroy();
 	}
 

@@ -400,15 +400,15 @@ public class OnekeyShare extends FakeActivity implements
 		}
 	}
 
-	public void finish() {
+	public boolean onFinish() {
 		if (finishing) {
-			return;
+			return super.onFinish();
 		}
 
 		if (animHide == null) {
 			finishing = true;
 			super.finish();
-			return;
+			return super.onFinish();
 		}
 
 		// a statistics of cancel sharing
@@ -432,6 +432,7 @@ public class OnekeyShare extends FakeActivity implements
 		});
 		flPage.clearAnimation();
 		flPage.startAnimation(animHide);
+		return super.onFinish();
 	}
 
 	/** execute the loop of share */
@@ -487,7 +488,7 @@ public class OnekeyShare extends FakeActivity implements
 				test.setPackage("com.instagram.android");
 				test.setType("image/*");
 				ResolveInfo ri = activity.getPackageManager().resolveActivity(test, 0);
-				if ( ri == null) {
+				if (ri == null) {
 					Message msg = new Message();
 					msg.what = MSG_TOAST;
 					int resId = getStringRes(getContext(), "instagram_client_inavailable");
@@ -521,8 +522,11 @@ public class OnekeyShare extends FakeActivity implements
 				Bitmap viewToShare = (Bitmap) data.get("viewToShare");
 				if (viewToShare != null && !viewToShare.isRecycled()) {
 					shareType = Platform.SHARE_IMAGE;
-					if (data.containsKey("url") && !TextUtils.isEmpty(data.get("url").toString())) {
-						shareType = Platform.SHARE_WEBPAGE;
+					if (data.containsKey("url")) {
+						Object url = data.get("url");
+						if (url != null && !TextUtils.isEmpty(url.toString())) {
+							shareType = Platform.SHARE_WEBPAGE;
+						}
 					}
 				} else {
 					Object imageUrl = data.get("imageUrl");
@@ -530,8 +534,11 @@ public class OnekeyShare extends FakeActivity implements
 						shareType = Platform.SHARE_IMAGE;
 						if (String.valueOf(imageUrl).endsWith(".gif")) {
 							shareType = Platform.SHARE_EMOJI;
-						} else if (data.containsKey("url") && !TextUtils.isEmpty(data.get("url").toString())) {
-							shareType = Platform.SHARE_WEBPAGE;
+						} else if (data.containsKey("url")) {
+							Object url = data.get("url");
+							if (url != null && !TextUtils.isEmpty(url.toString())) {
+								shareType = Platform.SHARE_WEBPAGE;
+							}
 						}
 					}
 				}

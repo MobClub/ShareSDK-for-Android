@@ -36,6 +36,10 @@ public class YixinPage extends SlidingMenuPage implements
 	public YixinPage(SlidingMenu menu) {
 		super(menu);
 		pageView = getPage();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("BypassApproval", false);
+		ShareSDK.setPlatformDevInfo("Yixin", map);
+		ShareSDK.setPlatformDevInfo("YixinMoments", map);
 
 		llTitle = (TitleLayout) pageView.findViewById(R.id.llTitle);
 		llTitle.getBtnBack().setOnClickListener(this);
