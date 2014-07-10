@@ -202,12 +202,8 @@ public class AuthPage extends SlidingMenuPage implements
 			ctvName.setChecked(plat.isValid());
 			if (plat.isValid()) {
 				String userName = plat.getDb().get("nickname");
-				if (userName == null || userName.length() <= 0
-						|| "null".equals(userName)) {
-					// if the platform has been authorized but the user info does not exists, request user info and show his nickname
+				if (userName == null || userName.length() <= 0 || "null".equals(userName)) {
 					userName = getName(plat);
-					plat.setPlatformActionListener(page);
-					plat.showUser(null);
 				}
 				ctvName.setText(userName);
 			}
