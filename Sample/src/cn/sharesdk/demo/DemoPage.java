@@ -10,8 +10,6 @@ package cn.sharesdk.demo;
 
 import java.util.HashMap;
 import m.framework.ui.widget.slidingmenu.SlidingMenu;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Handler.Callback;
 import android.os.Message;
 import android.view.LayoutInflater;

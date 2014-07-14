@@ -57,7 +57,7 @@
         AppKey="568898243"
         AppSecret="38a4f8204cc784f81f9f0daaf31e02e3"
         RedirectUrl="http://www.sharesdk.cn"
-        ShareByAppClient="true"
+        ShareByAppClient="false"
         Enable="true" />
 
     <TencentWeibo
@@ -74,7 +74,7 @@
         SortId="3"
         AppId="100371282"
         AppKey="aed9b0303e3ed1e27bae87c33761161d"
-        ShareByAppClient="true"
+        ShareByAppClient="false"
         Enable="true" />
     
     <!-- 
@@ -93,14 +93,14 @@
         Id="4"
         SortId="4"
         AppId="wx4868b35061f87885"
-        BypassApproval="true"
+        BypassApproval="false"
         Enable="true" />
     
     <WechatMoments
         Id="5"
         SortId="5"
         AppId="wx4868b35061f87885"
-        BypassApproval="true"
+        BypassApproval="false"
         Enable="true" />
         
 	<WechatFavorite
@@ -115,7 +115,7 @@
         SortId="7"
         AppId="100371282"
         AppKey="aed9b0303e3ed1e27bae87c33761161d"
-        ShareByAppClient="true"
+        ShareByAppClient="false"
         Enable="true" />
     
     <Facebook
@@ -300,14 +300,14 @@
     	Id="29"
         SortId="29"
         AppId="yx0d9a9f9088ea44d78680f3274da1765f"
-        BypassApproval="true"
+        BypassApproval="false"
         Enable="true" />
 	
 	<YixinMoments
     	Id="30"
         SortId="30"
         AppId="yx0d9a9f9088ea44d78680f3274da1765f"
-        BypassApproval="true"
+        BypassApproval="false"
         Enable="true" />
 
 	<Mingdao

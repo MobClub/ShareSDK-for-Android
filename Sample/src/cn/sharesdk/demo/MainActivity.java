@@ -10,20 +10,20 @@ package cn.sharesdk.demo;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.framework.utils.UIHandler;
 import m.framework.ui.widget.slidingmenu.SlidingMenu;
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Message;
 import android.os.Handler.Callback;
+import android.os.Message;
 import android.view.KeyEvent;
 import android.widget.Toast;
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.framework.utils.UIHandler;
 
 /**
  * entrance of the project, UI shell of sliding menu
