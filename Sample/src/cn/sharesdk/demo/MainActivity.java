@@ -10,6 +10,10 @@ package cn.sharesdk.demo;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.HashMap;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import m.framework.network.NetworkHelper;
 import m.framework.ui.widget.slidingmenu.SlidingMenu;
 import android.app.Activity;
 import android.content.res.Configuration;
@@ -33,6 +37,7 @@ public class MainActivity extends Activity implements Callback {
 	private static final String FILE_NAME = "pic_beauty_on_sofa.jpg";
 	public static String TEST_IMAGE;
 	public static String TEST_IMAGE_URL;
+	public static HashMap<Integer, String> TEST_TEXT;
 	private SlidingMenu menu;
 	private int orientation;
 
@@ -59,6 +64,7 @@ public class MainActivity extends Activity implements Callback {
 			public void run() {
 				TEST_IMAGE_URL = "http://f1.sharesdk.cn/imgs/2014/05/21/oESpJ78_533x800.jpg";
 				initImagePath();
+				initTestText();
 				UIHandler.sendEmptyMessageDelayed(1, 100, MainActivity.this);
 			}
 		}.start();
@@ -80,6 +86,31 @@ public class MainActivity extends Activity implements Callback {
 		} catch(Throwable t) {
 			t.printStackTrace();
 			TEST_IMAGE = null;
+		}
+	}
+
+	private void initTestText() {
+		TEST_TEXT = new HashMap<Integer, String>();
+		try {
+			NetworkHelper network = new NetworkHelper();
+			String resp = network.httpGet("http://mob.com/Assets/snsplat.json", null, null);
+			JSONObject json = new JSONObject(resp);
+			int status = json.optInt("status");
+			if (status == 200) {
+				JSONArray democont = json.optJSONArray("democont");
+				if (democont != null && democont.length() > 0) {
+					for (int i = 0, size = democont.length(); i < size; i++) {
+						JSONObject plat = democont.optJSONObject(i);
+						if (plat != null) {
+							int snsplat = plat.optInt("snsplat", -1);
+							String cont = plat.optString("cont");
+							TEST_TEXT.put(snsplat, cont);
+						}
+					}
+				}
+			}
+		} catch(Throwable t) {
+			t.printStackTrace();
 		}
 	}
 
@@ -118,11 +149,6 @@ public class MainActivity extends Activity implements Callback {
 				&& menu.isMenuShown()) {
 		}
 		return super.onKeyDown(keyCode, event);
-	}
-
-	protected void onDestroy() {
-		ShareSDK.stopSDK();
-		super.onDestroy();
 	}
 
 	/** converts ShareSDK actions into string */

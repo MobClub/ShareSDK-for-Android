@@ -206,8 +206,7 @@ public class AuthPage extends SlidingMenuPage implements
 					userName = getName(plat);
 				}
 				ctvName.setText(userName);
-			}
-			else {
+			} else {
 				ctvName.setText(R.string.not_yet_authorized);
 			}
 			return convertView;

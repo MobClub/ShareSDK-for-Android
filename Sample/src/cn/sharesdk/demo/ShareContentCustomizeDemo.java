@@ -10,6 +10,7 @@ package cn.sharesdk.demo;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.Platform.ShareParams;
+import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.ShareContentCustomizeCallback;
 
 /**
@@ -22,8 +23,12 @@ import cn.sharesdk.onekeyshare.ShareContentCustomizeCallback;
 public class ShareContentCustomizeDemo implements ShareContentCustomizeCallback {
 
 	public void onShare(Platform platform, ShareParams paramsToShare) {
-		// shorten the text field of twitter share content
-		if ("Twitter".equals(platform.getName())) {
+		int id = ShareSDK.platformNameToId(platform.getName());
+		if (MainActivity.TEST_TEXT != null && MainActivity.TEST_TEXT.containsKey(id)) {
+			String text = MainActivity.TEST_TEXT.get(id);
+			paramsToShare.setText(text);
+		} else if ("Twitter".equals(platform.getName())) {
+			// shorten the text field of twitter share content
 			String text = platform.getContext().getString(R.string.share_content_short);
 			paramsToShare.setText(text);
 		}

@@ -62,11 +62,6 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 		}.start();
 	}
 
-	protected void onDestroy() {
-		ShareSDK.stopSDK(this);
-		super.onDestroy();
-	}
-
 	private void initImagePath() {
 		try {
 			String cachePath = cn.sharesdk.framework.utils.R.getCachePath(this, null);

@@ -282,11 +282,19 @@ public class OnekeyShare extends FakeActivity implements
 					page.setBackGround(bgView);
 					bgView = null;
 					page.setShareData(copy);
-					page.setParent(this);
 					if (dialogMode) {
 						page.setDialogMode();
 					}
-					page.show(activity, null);
+					page.showForResult(activity, null, new FakeActivity() {
+						public void onResult(HashMap<String, Object> data) {
+							if (data != null && data.containsKey("editRes")) {
+								@SuppressWarnings("unchecked")
+								HashMap<Platform, HashMap<String, Object>> editRes
+										= (HashMap<Platform, HashMap<String, Object>>) data.get("editRes");
+								share(editRes);
+							}
+						}
+					});
 				}
 			}
 			finish();
@@ -458,16 +466,6 @@ public class OnekeyShare extends FakeActivity implements
 				Message msg = new Message();
 				msg.what = MSG_TOAST;
 				int resId = getStringRes(getContext(), "google_plus_client_inavailable");
-				msg.obj = activity.getString(resId);
-				UIHandler.sendMessage(msg, this);
-				continue;
-			}
-
-			boolean isQQ = "QQ".equals(name);
-			if (isQQ && !plat.isValid()) {
-				Message msg = new Message();
-				msg.what = MSG_TOAST;
-				int resId = getStringRes(getContext(), "qq_client_inavailable");
 				msg.obj = activity.getString(resId);
 				UIHandler.sendMessage(msg, this);
 				continue;

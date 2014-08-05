@@ -64,7 +64,6 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 	private static final int MAX_TEXT_COUNT = 140;
 	private static final int DIM_COLOR = 0x7f323232;
 	private HashMap<String, Object> reqData;
-	private OnekeyShare parent;
 	private RelativeLayout rlPage;
 	private TitleLayout llTitle;
 	private LinearLayout llBody;
@@ -91,10 +90,6 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 
 	public void setShareData(HashMap<String, Object> data) {
 		reqData = data;
-	}
-
-	public void setParent(OnekeyShare parent) {
-		this.parent = parent;
 	}
 
 	/** set to display as a dialog */
@@ -447,8 +442,7 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 					FollowList subPage = new FollowList();
 					String platform = String.valueOf(reqData.get("platform"));
 					subPage.setPlatform(ShareSDK.getPlatform(platform));
-					subPage.setBackPage(EditPage.this);
-					subPage.show(activity, null);
+					subPage.showForResult(activity, null, EditPage.this);
 				}
 			});
 
@@ -624,9 +618,9 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 			}
 
 			if (selected) {
-				if (parent != null) {
-					parent.share(editRes);
-				}
+				HashMap<String, Object> res = new HashMap<String, Object>();
+				res.put("editRes", editRes);
+				setResult(res);
 				finish();
 			} else {
 				int resId = getStringRes(activity, "select_one_plat_at_least");
@@ -736,12 +730,16 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 
 	}
 
-	public void onResult(ArrayList<String> selected) {
-		StringBuilder sb = new StringBuilder();
-		for (String sel : selected) {
-			sb.append('@').append(sel).append(' ');
+	public void onResult(HashMap<String, Object> data) {
+		if (data != null && data.containsKey("selected")) {
+			@SuppressWarnings("unchecked")
+			ArrayList<String> selected = (ArrayList<String>) data.get("selected");
+			StringBuilder sb = new StringBuilder();
+			for (String sel : selected) {
+				sb.append('@').append(sel).append(' ');
+			}
+			etContent.append(sb.toString());
 		}
-		etContent.append(sb.toString());
 	}
 
 	private void hideSoftInput() {

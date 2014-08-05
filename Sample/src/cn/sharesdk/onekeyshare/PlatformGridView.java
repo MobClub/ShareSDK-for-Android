@@ -33,6 +33,7 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import cn.sharesdk.framework.CustomPlatform;
+import cn.sharesdk.framework.FakeActivity;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.utils.UIHandler;
@@ -255,11 +256,19 @@ public class PlatformGridView extends LinearLayout implements
 			page.setBackGround(bgView);
 			bgView = null;
 			page.setShareData(reqData);
-			page.setParent(parent);
 			if ("true".equals(String.valueOf(reqData.get("dialogMode")))) {
 				page.setDialogMode();
 			}
-			page.show(parent.getContext(), null);
+			page.showForResult(parent.getContext(), null, new FakeActivity() {
+				public void onResult(HashMap<String, Object> data) {
+					if (data != null && data.containsKey("editRes")) {
+						@SuppressWarnings("unchecked")
+						HashMap<Platform, HashMap<String, Object>> editRes
+								= (HashMap<Platform, HashMap<String, Object>>) data.get("editRes");
+						parent.share(editRes);
+					}
+				}
+			});
 			parent.finish();
 		}
 	}

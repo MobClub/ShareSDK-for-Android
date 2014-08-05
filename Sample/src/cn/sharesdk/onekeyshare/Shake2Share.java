@@ -107,7 +107,7 @@ public class Shake2Share extends FakeActivity implements SensorEventListener {
 				float deltaY = y - mLastY;
 				float deltaZ = z - mLastZ;
 				float delta = FloatMath.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ) / diffTime * 10000;
-				if (delta > SHAKE_THRESHOLD) { // 当加速度的差值大于指定的阈值，认为这是一个摇晃
+				if (delta > SHAKE_THRESHOLD) {
 					if (!shaken) {
 						shaken = true;
 						finish();

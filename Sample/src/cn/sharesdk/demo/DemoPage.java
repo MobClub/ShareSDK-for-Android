@@ -124,7 +124,11 @@ public class DemoPage extends SlidingMenuPage implements
 		oks.setAddress("12345678901");
 		oks.setTitle(getContext().getString(R.string.evenote_title));
 		oks.setTitleUrl("http://sharesdk.cn");
-		oks.setText(getContext().getString(R.string.share_content));
+		if (MainActivity.TEST_TEXT != null && MainActivity.TEST_TEXT.containsKey(0)) {
+			oks.setText(MainActivity.TEST_TEXT.get(0));
+		} else {
+			oks.setText(getContext().getString(R.string.share_content));
+		}
 		if (captureView) {
 			oks.setViewToShare(getPage());
 		} else {

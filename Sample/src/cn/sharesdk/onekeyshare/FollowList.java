@@ -46,7 +46,6 @@ public class FollowList extends FakeActivity implements OnClickListener, OnItemC
 	private TitleLayout llTitle;
 	private Platform platform;
 	private FollowAdapter adapter;
-	private EditPage page;
 
 	public void setPlatform(Platform platform) {
 		this.platform = platform;
@@ -140,7 +139,10 @@ public class FollowList extends FakeActivity implements OnClickListener, OnItemC
 					}
 				}
 			}
-			page.onResult(selected);
+
+			HashMap<String, Object> res = new HashMap<String, Object>();
+			res.put("selected", selected);
+			setResult(res);
 		}
 
 		finish();
@@ -150,10 +152,6 @@ public class FollowList extends FakeActivity implements OnClickListener, OnItemC
 		Following following = adapter.getItem(position);
 		following.checked = !following.checked;
 		adapter.notifyDataSetChanged();
-	}
-
-	public void setBackPage(EditPage page) {
-		this.page = page;
 	}
 
 	private static class FollowAdapter extends PullToRefreshListAdapter

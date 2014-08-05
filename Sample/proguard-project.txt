@@ -1,7 +1,7 @@
 -dontoptimize
 -dontusemixedcaseclassnames
 -dontskipnonpubliclibraryclasses
--dontpreverify
+#-dontpreverify
 -verbose
 -dontwarn
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
