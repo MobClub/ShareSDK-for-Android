@@ -8,8 +8,9 @@
 
 package cn.sharesdk.demo;
 
-import java.util.HashMap;
-import m.framework.ui.widget.slidingmenu.SlidingMenu;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.os.Handler.Callback;
 import android.os.Message;
 import android.view.LayoutInflater;
@@ -18,6 +19,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import java.util.HashMap;
+
 import cn.sharesdk.framework.CustomPlatform;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
@@ -28,11 +32,16 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.onekeyshare.Shake2Share;
 import cn.sharesdk.onekeyshare.Shake2Share.OnShakeListener;
 import cn.sharesdk.onekeyshare.ShareCore;
+import cn.sharesdk.tencent.qq.QQ;
+import cn.sharesdk.tencent.qzone.QZone;
+import cn.sharesdk.tencent.weibo.TencentWeibo;
+import m.framework.ui.widget.slidingmenu.SlidingMenu;
 
 /** page to show how to use onekeyshare, how to get accse token, how to get user info etc. */
 public class DemoPage extends SlidingMenuPage implements
 		OnClickListener, PlatformActionListener {
 	private TitleLayout llTitle;
+	private boolean shareFromQQLogin = false;
 
 	public DemoPage(final SlidingMenu menu) {
 		super(menu);
@@ -135,7 +144,7 @@ public class DemoPage extends SlidingMenuPage implements
 			oks.setImagePath(MainActivity.TEST_IMAGE);
 			oks.setImageUrl(MainActivity.TEST_IMAGE_URL);
 		}
-		oks.setUrl("http://www.sharesdk.cn");
+		oks.setUrl("http://www.mob.com");
 		oks.setFilePath(MainActivity.TEST_IMAGE);
 		oks.setComment(getContext().getString(R.string.share));
 		oks.setSite(getContext().getString(R.string.app_name));
@@ -145,6 +154,7 @@ public class DemoPage extends SlidingMenuPage implements
 		oks.setLatitude(23.056081f);
 		oks.setLongitude(113.385708f);
 		oks.setSilent(silent);
+		oks.setShareFromQQAuthSupport(shareFromQQLogin);
 		if (platform != null) {
 			oks.setPlatform(platform);
 		}
@@ -153,10 +163,13 @@ public class DemoPage extends SlidingMenuPage implements
 		oks.setDialogMode();
 
 		// disable sso in authorizing
-		oks.disableSSOWhenAuthorize();
+		if(!shareFromQQLogin)
+			oks.disableSSOWhenAuthorize();
 
 		// remove comments, use OneKeyShareCallback as the share action callback
 //		oks.setCallback(new OneKeyShareCallback());
+
+		// Custom fields content of different platforms
 		oks.setShareContentCustomizeCallback(new ShareContentCustomizeDemo());
 
 		// remove comments, shows how to add custom logos in platform gridview
@@ -177,6 +190,11 @@ public class DemoPage extends SlidingMenuPage implements
 
 		// set a view to be the background of EditPage
 		oks.setEditPageBackground(getPage());
+
+		//kakaoTalk-platform share link. Setting the app-download-url of app,clicking the share-msg, then go to the url when the app is not exist
+		oks.setInstallUrl("http://www.mob.com");
+		//kakaoTalk-platform share link. Setting the app-open-activity of app, clicking the share-msg, then open the app when the app is
+		oks.setExecuteUrl("kakaoTalkTest://starActivity");
 
 		oks.show(getContext());
 	}
@@ -252,7 +270,36 @@ public class DemoPage extends SlidingMenuPage implements
 				// share to platforms
 				Object tag = v.getTag();
 				if (tag != null) {
-					showShare(false, ((Platform) tag).getName(), false);
+					final String platformName = ((Platform) tag).getName();
+					//QQ,QZone授权登录后发微博
+					if(TencentWeibo.NAME.equals(platformName)){
+						new AlertDialog.Builder(getContext())
+								.setMessage(R.string.qq_share_way)
+								.setPositiveButton(R.string.qq_share_from_qqlogin, new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog, int which) {
+										shareFromQQLogin = true;
+										try
+										{
+											getContext().getPackageManager().getPackageInfo("com.qzone", 0);
+											showShare(false, QZone.NAME, false);
+										} catch (PackageManager.NameNotFoundException e)
+										{
+											showShare(false, QQ.NAME, false);
+										}
+									}
+								})
+								.setNegativeButton(R.string.qq_share_from_tlogin, new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog, int which) {
+										shareFromQQLogin = false;
+										showShare(false, platformName, false);
+									}
+								})
+								.setIcon(android.R.drawable.ic_dialog_alert)
+								.show();
+					}else{
+						showShare(false, platformName, false);
+					}
+
 				}
 			}
 			break;

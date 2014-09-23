@@ -70,7 +70,21 @@ Add the following permissions into your AndroidMenifest.xml:
 <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
 <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
 ```
-
+You should add the intent-filter in your  launchActivity if you want to use the KakaoTalk to share msg.
+<!--
+	If you share msg in KakaoTalk, your share-params of executeUrl should set the value "kakaoTalkTest://starActivity"
+	So it do, when the user to click the share-msg, then startActivity of your app's launch-activity. 
+	When you use the lib of onekeyshare, you can use the method of 
+    setExecuteUrl("kakaoTalkTest://starActivity") to set executeUrl.
+-->
+    <intent-filter>
+        <data android:scheme="kakaoTalkTest" android:host="starActivity"/>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <category android:name="android.intent.category.DEFAULT" />
+    </intent-filter>
+```
+		
 And the single Activity for GUIs of ShareSDK:
 
 ```` xml

@@ -190,6 +190,16 @@ public class OnekeyShare extends FakeActivity implements
 		reqMap.put("platform", platform);
 	}
 
+	/** Setting the selected platform of KakaoTalk ，go to the url when click the share msg */
+	public void setInstallUrl(String installurl) {
+		reqMap.put("installurl", installurl);
+	}
+
+	/** Setting the selected platform of KakaoTalk  ，open the app-url when click the share msg */
+	public void setExecuteUrl(String executeurl) {
+		reqMap.put("executeurl", executeurl);
+	}
+
 	/** setting custom external callback */
 	public void setCallback(PlatformActionListener callback) {
 		this.callback = callback;
@@ -450,22 +460,32 @@ public class OnekeyShare extends FakeActivity implements
 			Platform plat = ent.getKey();
 			plat.SSOSetting(disableSSO);
 			String name = plat.getName();
-			boolean isWechat = "WechatMoments".equals(name) || "Wechat".equals(name)
-					|| "WechatFavorite".equals(name);
-			if (isWechat && !plat.isValid()) {
-				Message msg = new Message();
-				msg.what = MSG_TOAST;
-				int resId = getStringRes(getContext(), "wechat_client_inavailable");
-				msg.obj = activity.getString(resId);
-				UIHandler.sendMessage(msg, this);
-				continue;
-			}
 
 			boolean isGooglePlus = "GooglePlus".equals(name);
 			if (isGooglePlus && !plat.isValid()) {
 				Message msg = new Message();
 				msg.what = MSG_TOAST;
 				int resId = getStringRes(getContext(), "google_plus_client_inavailable");
+				msg.obj = activity.getString(resId);
+				UIHandler.sendMessage(msg, this);
+				continue;
+			}
+
+			boolean isKakaoTalk = "KakaoTalk".equals(name);
+			if (isKakaoTalk && !plat.isValid()) {
+				Message msg = new Message();
+				msg.what = MSG_TOAST;
+				int resId = getStringRes(getContext(), "kakaotalk_client_inavailable");
+				msg.obj = activity.getString(resId);
+				UIHandler.sendMessage(msg, this);
+				continue;
+			}
+
+			boolean isKakaoStory = "KakaoStory".equals(name);
+			if (isKakaoStory && !plat.isValid()) {
+				Message msg = new Message();
+				msg.what = MSG_TOAST;
+				int resId = getStringRes(getContext(), "kakaostory_client_inavailable");
 				msg.obj = activity.getString(resId);
 				UIHandler.sendMessage(msg, this);
 				continue;
@@ -636,7 +656,17 @@ public class OnekeyShare extends FakeActivity implements
 							if (resId > 0) {
 								showNotification(2000, getContext().getString(resId));
 							}
-						} else {
+						} else if ("KakaoTalkClientNotExistException".equals(expName)) {
+							int resId = getStringRes(getContext(), "kakaotalk_client_inavailable");
+							if (resId > 0) {
+								showNotification(2000, getContext().getString(resId));
+							}
+						}else if ("KakaoStoryClientNotExistException".equals(expName)) {
+							int resId = getStringRes(getContext(), "kakaostory_client_inavailable");
+							if (resId > 0) {
+								showNotification(2000, getContext().getString(resId));
+							}
+						}else {
 							int resId = getStringRes(getContext(), "share_failed");
 							if (resId > 0) {
 								showNotification(2000, getContext().getString(resId));
@@ -694,4 +724,9 @@ public class OnekeyShare extends FakeActivity implements
 		}
 	}
 
+	/** QQ,QZone login after send weibo */
+	public void setShareFromQQAuthSupport(boolean shareFromQQLogin)
+	{
+		reqMap.put("isShareTencentWeibo", shareFromQQLogin);
+	}
 }

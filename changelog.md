@@ -1,3 +1,10 @@
+版本：V2.4.0 2014-09-23
+1、添加KakaoTalk平台
+2、添加KakaoStory平台
+3、增加微信登录
+4、增加Qzone分享到腾讯微博
+5、优化微信缩略图
+
 版本：V2.3.12 2014-08-04
 - QQ开放授权功能
 - facebook授权添加“publish_actions”权限

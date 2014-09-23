@@ -84,7 +84,8 @@ public class ShareCore {
 				|| "QQ".equals(platform) || "Pinterest".equals(platform)
 				|| "Instagram".equals(platform) || "Yixin".equals(platform)
 				|| "YixinMoments".equals(platform) || "QZone".equals(platform)
-				|| "Mingdao".equals(platform) || "Line".equals(platform)) {
+				|| "Mingdao".equals(platform) || "Line".equals(platform)
+				|| "KakaoStory".equals(platform) || "KakaoTalk".equals(platform)) {
 			return true;
 		} else if ("Evernote".equals(platform)) {
 			Platform plat = ShareSDK.getPlatform(platform);
@@ -107,11 +108,12 @@ public class ShareCore {
 
 	/** Determine whether the platform can authorize */
 	public static boolean canAuthorize(Context context, String platform) {
-		if ("Wechat".equals(platform) || "WechatMoments".equals(platform)
+		if ("WechatMoments".equals(platform)
 				|| "WechatFavorite".equals(platform) || "ShortMessage".equals(platform)
 				|| "Email".equals(platform) || "GooglePlus".equals(platform)
 				|| "Pinterest".equals(platform) || "Yixin".equals(platform)
-				|| "YixinMoments".equals(platform) || "Line".equals(platform)) {
+				|| "YixinMoments".equals(platform) || "Line".equals(platform)
+				|| "KakaoStory".equals(platform) || "KakaoTalk".equals(platform)) {
 			return false;
 		}
 		return true;

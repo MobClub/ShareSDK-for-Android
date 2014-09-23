@@ -76,4 +76,7 @@
 	<string name="buy_failed">购买失败</string>
 	<string name="laiwang">来往</string>
 	<string name="qzone_customer_share_style">自定义QQ空间分享风格</string>
+  <string name="qq_share_way">请选择分享方式</string>
+  <string name="qq_share_from_qqlogin">QQ/QZone登录发微博</string>
+  <string name="qq_share_from_tlogin">腾讯微博登录发微博</string>
 </resources>

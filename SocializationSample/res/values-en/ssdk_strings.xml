@@ -10,6 +10,8 @@
     <string name="instagram_client_inavailable">Instagram client not exists or the version is too low</string>
     <string name="yixin_client_inavailable">Yixin client not exists or the version is too low</string>
     <string name="line_client_inavailable">Line client not exists or the version is too low</string>
+    <string name="kakaotalk_client_inavailable">KakaoTalk client not exists or the version is too low</string>
+    <string name="kakaostory_client_inavailable">KakaoStory client not exists or the version is too low</string>
     
 	<string name="sinaweibo">Sina Weibo</string>
 	<string name="tencentweibo">Tencent Weibo</string>
@@ -42,6 +44,8 @@
 	<string name="yixin">Yixin</string>
 	<string name="yixinmoments">Yixin Moments</string>
 	<string name="mingdao">Mingdao</string>
+	<string name="kakaotalk">KakaoTalk</string>
+	<string name="kakaostory">KakaoStory</string>
 	<string name="line">Line</string>
 	
 	<string name="share_to_qzone">Share To QZone</string>
