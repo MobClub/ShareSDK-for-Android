@@ -39,6 +39,17 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+			 <!--
+               KakaoTalk , 分享应用的时候，可以设置打开应用的参数 excuteUrl, 用户点击分享的内容时，就会打开相应的应用，
+                如果应用不存在，可以设置 installURL参数, 打开下载应用的相关网址  (executeUrl)
+               设置后intent-filter 后，分享时，需要设置参数 setExecuteUrl("kakaoTalkTest://starActivity");
+            -->
+            <intent-filter>
+                <data android:scheme="kakaoTalkTest" android:host="starActivity"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         
         <activity
