@@ -1,9 +1,9 @@
 /*
- * Offical Website:http://www.ShareSDK.cn
+ * Offical Website:http://www.mob.com
  * Support QQ: 4006852216
  * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
  *
- * Copyright (c) 2013 ShareSDK.cn. All rights reserved.
+ * Copyright (c) 2013 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.demo;
@@ -132,7 +132,7 @@ public class DemoPage extends SlidingMenuPage implements
 		oks.setNotification(R.drawable.ic_launcher, getContext().getString(R.string.app_name));
 		oks.setAddress("12345678901");
 		oks.setTitle(getContext().getString(R.string.evenote_title));
-		oks.setTitleUrl("http://sharesdk.cn");
+		oks.setTitleUrl("http://mob.com");
 		if (MainActivity.TEST_TEXT != null && MainActivity.TEST_TEXT.containsKey(0)) {
 			oks.setText(MainActivity.TEST_TEXT.get(0));
 		} else {
@@ -148,7 +148,7 @@ public class DemoPage extends SlidingMenuPage implements
 		oks.setFilePath(MainActivity.TEST_IMAGE);
 		oks.setComment(getContext().getString(R.string.share));
 		oks.setSite(getContext().getString(R.string.app_name));
-		oks.setSiteUrl("http://sharesdk.cn");
+		oks.setSiteUrl("http://mob.com");
 		oks.setVenueName("ShareSDK");
 		oks.setVenueDescription("This is a beautiful place!");
 		oks.setLatitude(23.056081f);
@@ -163,8 +163,8 @@ public class DemoPage extends SlidingMenuPage implements
 		oks.setDialogMode();
 
 		// disable sso in authorizing
-		if(!shareFromQQLogin)
-			oks.disableSSOWhenAuthorize();
+		//if(!shareFromQQLogin)
+		//	oks.disableSSOWhenAuthorize();
 
 		// remove comments, use OneKeyShareCallback as the share action callback
 //		oks.setCallback(new OneKeyShareCallback());

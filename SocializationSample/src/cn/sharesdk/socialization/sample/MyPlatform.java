@@ -32,7 +32,7 @@ public class MyPlatform extends SocializationCustomPlatform {
 		UserBrief user = new UserBrief();
 		user.userId = "123456";
 		user.userNickname = getName() + "_123456";
-		user.userAvatar = "http://sharesdk.cn/Public/Frontend/images/android-log-bg.png";
+		user.userAvatar = "http://mob.com/Public/Frontend/images/android-log-bg.png";
 		user.userGender = UserGender.Male;
 		user.userVerifyType = UserVerifyType.Verified;
 		return user;

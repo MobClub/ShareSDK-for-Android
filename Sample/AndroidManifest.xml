@@ -1,18 +1,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.sharesdk.demo"
-    android:versionCode="38"
-    android:versionName="2.4.0" >
+    android:versionCode="39"
+    android:versionName="2.4.1" >
     
-	<uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-    
+  <uses-permission android:name="android.permission.GET_TASKS" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+  <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+  <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+  <!-- 蓝牙分享所需的权限 -->
+  <uses-permission android:name="android.permission.BLUETOOTH" />
+  <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -37,11 +39,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <!--
+             <!--
                KakaoTalk , 分享应用的时候，可以设置打开应用的参数 excuteUrl, 用户点击分享的内容时，就会打开相应的应用，
-                如果应用不存在，可以设置 installURL参数, 打开下载应用的相关网址  (executeUrl)
-               设置后intent-filter 后，分享时，需要设置参数 setExecuteUrl("kakaoTalkTest://starActivity");
-            -->
+                                                   如果应用不存在，可以设置 installURL参数, 打开下载应用的相关网址  (executeUrl)
+                                                   设置后intent-filter 后，分享时，需要设置参数 setExecuteUrl("kakaoTalkTest://starActivity");
+           -->
             <intent-filter>
                 <data android:scheme="kakaoTalkTest" android:host="starActivity"/>
                 <action android:name="android.intent.action.VIEW" />

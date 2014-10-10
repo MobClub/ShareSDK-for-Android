@@ -1,9 +1,9 @@
 /*
- * Offical Website:http://www.ShareSDK.cn
+ * Offical Website:http://www.mob.com
  * Support QQ: 4006852216
  * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
  *
- * Copyright (c) 2013 ShareSDK.cn. All rights reserved.
+ * Copyright (c) 2013 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.demo;
@@ -195,7 +195,7 @@ public class WechatPage extends SlidingMenuPage implements
 			break;
 			case R.id.btnEmojiUrl: {
 				sp.setShareType(Platform.SHARE_EMOJI);
-				String imageUrl = "http://f1.sharesdk.cn/imgs/2013/10/17/okvCkwz_144x114.gif";
+				String imageUrl = "http://f1.mob.com/imgs/2013/10/17/okvCkwz_144x114.gif";
 				sp.setImageUrl(imageUrl);
 			}
 			break;
@@ -209,7 +209,7 @@ public class WechatPage extends SlidingMenuPage implements
 				sp.setShareType(Platform.SHARE_MUSIC);
 				String musicUrl = "http://ubuntuone.com/45XSEOwdODtXSH0WYGAcR7";
 				sp.setMusicUrl(musicUrl);
-				sp.setUrl("http://sharesdk.cn");
+				sp.setUrl("http://mob.com");
 				sp.setImagePath(MainActivity.TEST_IMAGE);
 			}
 			break;

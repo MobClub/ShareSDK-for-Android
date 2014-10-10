@@ -1,9 +1,9 @@
 /*
- * Offical Website:http://www.ShareSDK.cn
+ * Offical Website:http://www.mob.com
  * Support QQ: 4006852216
  * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
  *
- * Copyright (c) 2013 ShareSDK.cn. All rights reserved.
+ * Copyright (c) 2013 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.socialization.sample;
@@ -107,15 +107,15 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 		oks.setNotification(R.drawable.logo_sharesdk, getString(R.string.app_name));
 		oks.setAddress("12345678901");
 		oks.setTitle(getString(R.string.share));
-		oks.setTitleUrl("http://sharesdk.cn");
+		oks.setTitleUrl("http://mob.com");
 		oks.setText(getString(R.string.share_content));
 		oks.setImagePath(testImage);
 		oks.setImageUrl("http://img.appgo.cn/imgs/sharesdk/content/2013/07/25/1374723172663.jpg");
-		oks.setUrl("http://www.sharesdk.cn");
+		oks.setUrl("http://www.mob.com");
 		oks.setFilePath(testImage);
 		oks.setComment(getString(R.string.share));
 		oks.setSite(getString(R.string.app_name));
-		oks.setSiteUrl("http://sharesdk.cn");
+		oks.setSiteUrl("http://mob.com");
 		oks.setVenueName("ShareSDK");
 		oks.setVenueDescription("This is a beautiful place!");
 		oks.setLatitude(23.056081f);

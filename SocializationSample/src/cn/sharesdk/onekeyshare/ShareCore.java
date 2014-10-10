@@ -1,26 +1,28 @@
 /*
- * Offical Website:http://www.ShareSDK.cn
+ * Offical Website:http://www.mob.com
  * Support QQ: 4006852216
  * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
  *
- * Copyright (c) 2013 ShareSDK.cn. All rights reserved.
+ * Copyright (c) 2013 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.onekeyshare;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.HashMap;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.text.TextUtils;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.HashMap;
+
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.Platform.ShareParams;
-import cn.sharesdk.framework.utils.R;
 import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.framework.utils.R;
 
 /**
  * ShareCore the actual export of OnekeyShare, which reflects
@@ -85,7 +87,9 @@ public class ShareCore {
 				|| "Instagram".equals(platform) || "Yixin".equals(platform)
 				|| "YixinMoments".equals(platform) || "QZone".equals(platform)
 				|| "Mingdao".equals(platform) || "Line".equals(platform)
-				|| "KakaoStory".equals(platform) || "KakaoTalk".equals(platform)) {
+				|| "KakaoStory".equals(platform) || "KakaoTalk".equals(platform)
+				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform)
+				) {
 			return true;
 		} else if ("Evernote".equals(platform)) {
 			Platform plat = ShareSDK.getPlatform(platform);
@@ -113,10 +117,27 @@ public class ShareCore {
 				|| "Email".equals(platform) || "GooglePlus".equals(platform)
 				|| "Pinterest".equals(platform) || "Yixin".equals(platform)
 				|| "YixinMoments".equals(platform) || "Line".equals(platform)
-				|| "KakaoStory".equals(platform) || "KakaoTalk".equals(platform)) {
+				|| "KakaoStory".equals(platform) || "KakaoTalk".equals(platform)
+				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform)
+				) {
 			return false;
 		}
 		return true;
 	}
 
+
+	/** Determine whether the platform can get user info */
+	public static boolean canGetUserInfo(Context context, String platform) {
+		if ("WechatMoments".equals(platform)
+				|| "WechatFavorite".equals(platform) || "ShortMessage".equals(platform)
+				|| "Email".equals(platform) || "GooglePlus".equals(platform)
+				|| "Pinterest".equals(platform) || "Yixin".equals(platform)
+				|| "YixinMoments".equals(platform) || "Line".equals(platform)
+				|| "KakaoStory".equals(platform) || "KakaoTalk".equals(platform)
+				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform)
+				|| "Pocket".equals(platform)) {
+			return false;
+		}
+		return true;
+	}
 }

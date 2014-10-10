@@ -1,9 +1,9 @@
 /*
- * Offical Website:http://www.ShareSDK.cn
+ * Offical Website:http://www.mob.com
  * Support QQ: 4006852216
  * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
  *
- * Copyright (c) 2013 ShareSDK.cn. All rights reserved.
+ * Copyright (c) 2013 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.demo;
@@ -64,7 +64,7 @@ public class MainAdapter extends MenuAdapter
 	/** official wecaht account */
 	public static final String WECHAT_ADDR = "http://weixin.qq.com/r/HHURHl7EjmDxh099nyA4";
 	/** official website */
-	public static final String WEBSITE_ADDR = "http://www.shareSDK.cn";
+	public static final String WEBSITE_ADDR = "http://www.mob.com";
 	/** official sina weibo */
 	public static final String SDK_SINAWEIBO_UID = "3189087725";
 	/** official tencent weibo */

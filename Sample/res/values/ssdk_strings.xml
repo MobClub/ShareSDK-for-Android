@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="weibo_oauth_regiseter">应用授权</string>
-    <string name="website">http://www.shareSDK.cn</string>
+    <string name="website">http://www.mob.com</string>
     <string name="weibo_upload_content">分享图片</string>
     <string name="wechat_client_inavailable">目前您的微信版本过低或未安装微信，需要安装微信才能使用</string>
     <string name="google_plus_client_inavailable">Google+ 版本过低或者没有安装，需要升级或安装Google+才能使用！</string>
@@ -47,7 +47,10 @@
 	<string name="kakaotalk">KakaoTalk</string>
 	<string name="kakaostory">KakaoStory</string>
 	<string name="line">Line</string>
-	
+	<string name="bluetooth">蓝牙</string>
+	<string name="whatsapp">WhatsApp</string>
+	<string name="pocket">Pocket</string>
+
 	<string name="share_to_qzone">分享到QQ空间</string>
 	<string name="share_to_qq">分享到QQ</string>
 	<string name="mingdao_share_content">网页分享</string>
