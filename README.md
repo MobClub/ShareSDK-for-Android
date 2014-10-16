@@ -1,11 +1,11 @@
 # ShareSDK for Android
-- website -- http://sharesdk.cn
-- wiki -- http://wiki.sharesdk.cn/Android_%E5%BF%AB%E9%80%9F%E9%9B%86%E6%88%90%E6%8C%87%E5%8D%97
-- bbs -- http://bbs.sharesdk.cn/forum-36-1.html
+- website -- http://www.mob.com
+- wiki -- http://wiki.mob.com/Android_%E5%BF%AB%E9%80%9F%E9%9B%86%E6%88%90%E6%8C%87%E5%8D%97
+- bbs -- http://bbs.mob.com/forum-36-1.html
 
 # Step One: Download the SDK
 
-Visit our [official website](http://sharesdk.cn/) and download the latest version of ShareSDK. After extracting the downloaded file, you will find the following directory structure：
+Visit our [official website](http://www.mob.com/) and download the latest version of ShareSDK. After extracting the downloaded file, you will find the following directory structure：
 
 ![directory structure](http://wiki.sharesdk.cn/images/7/71/wiki_and_fi_1.png)
 
