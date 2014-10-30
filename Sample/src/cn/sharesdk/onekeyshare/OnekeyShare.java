@@ -495,6 +495,26 @@ public class OnekeyShare extends FakeActivity implements
 				continue;
 			}
 
+			boolean isLine = "Line".equals(name);
+			if (isLine && !plat.isValid()) {
+				Message msg = new Message();
+				msg.what = MSG_TOAST;
+				int resId = getStringRes(getContext(), "line_client_inavailable");
+				msg.obj = activity.getString(resId);
+				UIHandler.sendMessage(msg, this);
+				continue;
+			}
+			
+			boolean isWhatsApp = "WhatsApp".equals(name);
+			if (isWhatsApp && !plat.isValid()) {
+				Message msg = new Message();
+				msg.what = MSG_TOAST;
+				int resId = getStringRes(getContext(), "whatsapp_client_inavailable");
+				msg.obj = activity.getString(resId);
+				UIHandler.sendMessage(msg, this);
+				continue;
+			}
+			
 			boolean isPinterest = "Pinterest".equals(name);
 			if (isPinterest && !plat.isValid()) {
 				Message msg = new Message();

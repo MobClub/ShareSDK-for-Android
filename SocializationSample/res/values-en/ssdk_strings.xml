@@ -2,7 +2,7 @@
 <resources>
     <string name="weibo_oauth_regiseter">Authorization</string>
     <string name="website">http://www.mob.com</string>
-    <string name="weibo_upload_content">分享图片</string>
+    <string name="weibo_upload_content">share picture</string>
     <string name="wechat_client_inavailable">Wechat client not exists or the version is too low</string>
     <string name="google_plus_client_inavailable">Google+ client not exists or the version is too low</string>
     <string name="qq_client_inavailable">Mobile QQ client not exists or the version is too low</string>
@@ -12,6 +12,7 @@
     <string name="line_client_inavailable">Line client not exists or the version is too low</string>
     <string name="kakaotalk_client_inavailable">KakaoTalk client not exists or the version is too low</string>
     <string name="kakaostory_client_inavailable">KakaoStory client not exists or the version is too low</string>
+    <string name="whatsapp_client_inavailable">WhatsApp client not exists or the version is too low</string>
     
 	<string name="sinaweibo">Sina Weibo</string>
 	<string name="tencentweibo">Tencent Weibo</string>
