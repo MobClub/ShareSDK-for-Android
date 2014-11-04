@@ -9,6 +9,7 @@
 package cn.sharesdk.demo;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Handler.Callback;
@@ -38,7 +39,8 @@ import cn.sharesdk.tencent.weibo.TencentWeibo;
 import m.framework.ui.widget.slidingmenu.SlidingMenu;
 
 /** page to show how to use onekeyshare, how to get accse token, how to get user info etc. */
-public class DemoPage extends SlidingMenuPage implements
+public class
+		DemoPage extends SlidingMenuPage implements
 		OnClickListener, PlatformActionListener {
 	private TitleLayout llTitle;
 	private boolean shareFromQQLogin = false;
@@ -128,29 +130,35 @@ public class DemoPage extends SlidingMenuPage implements
 
 	// sharing by onekeyshare
 	private void showShare(boolean silent, String platform, boolean captureView) {
+		Context context = getContext();
 		final OnekeyShare oks = new OnekeyShare();
-		oks.setNotification(R.drawable.ic_launcher, getContext().getString(R.string.app_name));
-		oks.setAddress("12345678901");
-		oks.setTitle(getContext().getString(R.string.evenote_title));
-		oks.setTitleUrl("http://mob.com");
-		if (MainActivity.TEST_TEXT != null && MainActivity.TEST_TEXT.containsKey(0)) {
+
+		oks.setNotification(R.drawable.ic_launcher, context.getString(R.string.app_name));
+		//oks.setAddress("12345678901");
+		oks.setTitle(CustomShareFieldsPage.getString("title", context.getString(R.string.evenote_title)));
+		oks.setTitleUrl(CustomShareFieldsPage.getString("titleUrl", "http://mob.com"));
+		String customText = CustomShareFieldsPage.getString( "text", null);
+		if (customText != null) {
+			oks.setText(customText);
+		} else if (MainActivity.TEST_TEXT != null && MainActivity.TEST_TEXT.containsKey(0)) {
 			oks.setText(MainActivity.TEST_TEXT.get(0));
 		} else {
-			oks.setText(getContext().getString(R.string.share_content));
+			oks.setText(context.getString(R.string.share_content));
 		}
 		if (captureView) {
 			oks.setViewToShare(getPage());
 		} else {
-			oks.setImagePath(MainActivity.TEST_IMAGE);
-			oks.setImageUrl(MainActivity.TEST_IMAGE_URL);
+			oks.setImagePath(CustomShareFieldsPage.getString("imagePath", MainActivity.TEST_IMAGE));
+			oks.setImageUrl(CustomShareFieldsPage.getString("imageUrl", MainActivity.TEST_IMAGE_URL));
+			oks.setImageArray(new String[]{MainActivity.TEST_IMAGE, MainActivity.TEST_IMAGE_URL});
 		}
-		oks.setUrl("http://www.mob.com");
-		oks.setFilePath(MainActivity.TEST_IMAGE);
-		oks.setComment(getContext().getString(R.string.share));
-		oks.setSite(getContext().getString(R.string.app_name));
-		oks.setSiteUrl("http://mob.com");
-		oks.setVenueName("ShareSDK");
-		oks.setVenueDescription("This is a beautiful place!");
+		oks.setUrl(CustomShareFieldsPage.getString("url", "http://www.mob.com"));
+		oks.setFilePath(CustomShareFieldsPage.getString("filePath", MainActivity.TEST_IMAGE));
+		oks.setComment(CustomShareFieldsPage.getString("comment", context.getString(R.string.share)));
+		oks.setSite(CustomShareFieldsPage.getString("site", context.getString(R.string.app_name)));
+		oks.setSiteUrl(CustomShareFieldsPage.getString("siteUrl", "http://mob.com"));
+		oks.setVenueName(CustomShareFieldsPage.getString("venueName", "ShareSDK"));
+		oks.setVenueDescription(CustomShareFieldsPage.getString("venueDescription", "This is a beautiful place!"));
 		oks.setLatitude(23.056081f);
 		oks.setLongitude(113.385708f);
 		oks.setSilent(silent);
@@ -196,7 +204,7 @@ public class DemoPage extends SlidingMenuPage implements
 		//kakaoTalk-platform share link. Setting the app-open-activity of app, clicking the share-msg, then open the app when the app is
 		oks.setExecuteUrl("kakaoTalkTest://starActivity");
 
-		oks.show(getContext());
+		oks.show(context);
 	}
 
 	public void onClick(View v) {

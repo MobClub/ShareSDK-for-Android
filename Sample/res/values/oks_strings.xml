@@ -15,4 +15,5 @@
 	<string name="release_to_refresh">松开刷新</string>
 	<string name="refreshing">刷新中…</string>
 	<string name="shake2share">摇晃手机！</string>
+	<string name="select_a_friend">请选择一个朋友</string>
 </resources>

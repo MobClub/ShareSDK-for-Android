@@ -8,27 +8,29 @@
 
 package cn.sharesdk.demo;
 
-import java.util.HashMap;
-import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.framework.utils.UIHandler;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Message;
 import android.os.Handler.Callback;
+import android.os.Message;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.FrameLayout.LayoutParams;
+
+import java.util.HashMap;
+
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.framework.utils.UIHandler;
 import m.framework.ui.widget.slidingmenu.MenuAdapter;
 import m.framework.ui.widget.slidingmenu.SlidingMenu;
 import m.framework.ui.widget.slidingmenu.SlidingMenuItem;
@@ -58,8 +60,9 @@ public class MainAdapter extends MenuAdapter
 	/** "visit our website" item */
 	public static final int ITEM_VISIT_WEBSITE = 9;
 	/** "version" item */
-	/** “版本”项 */
 	public static final int ITEM_ABOUT = 10;
+	/** "custom share fields" item */
+	public static final int ITEM_CUSTOM_FIELDS = 11;
 
 	/** official wecaht account */
 	public static final String WECHAT_ADDR = "http://weixin.qq.com/r/HHURHl7EjmDxh099nyA4";
@@ -106,6 +109,11 @@ public class MainAdapter extends MenuAdapter
 		item = new SlidingMenuItem();
 		item.id = ITEM_CUSTOMER;
 		item.body = menu.getResources().getString(R.string.sm_item_customer);
+		setItem(GROUP_DEMO, item);
+
+		item = new SlidingMenuItem();
+		item.id = ITEM_CUSTOM_FIELDS;
+		item.body = menu.getResources().getString(R.string.sm_item_custom_fields);
 		setItem(GROUP_DEMO, item);
 
 		item = new SlidingMenuItem();
@@ -204,6 +212,10 @@ public class MainAdapter extends MenuAdapter
 					break;
 					case ITEM_CUSTOMER: {
 						page = new CustomerPage(menu);
+					}
+					break;
+					case ITEM_CUSTOM_FIELDS: {
+						page = new CustomShareFieldsPage(menu);
 					}
 					break;
 				}

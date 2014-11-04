@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Mob.COM $year.14-10-27 下午4:04
+  ~
+  ~ @author Milk <jecelyin@gmail.com>
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:background="#fff5f5f5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <cn.sharesdk.framework.TitleLayout
+        android:id="@+id/llTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/auth_title_back" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/llTitle" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llTitle"
+        android:background="@drawable/title_shadow" />
+</RelativeLayout>

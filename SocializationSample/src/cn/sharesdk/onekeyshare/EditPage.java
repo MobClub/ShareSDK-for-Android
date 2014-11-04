@@ -8,12 +8,6 @@
 
 package cn.sharesdk.onekeyshare;
 
-import static cn.sharesdk.framework.utils.R.*;
-import static cn.sharesdk.framework.utils.BitmapHelper.*;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -24,8 +18,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
-import android.os.Message;
 import android.os.Handler.Callback;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -41,18 +35,31 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.ImageView.ScaleType;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.Toast;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import cn.sharesdk.framework.CustomPlatform;
 import cn.sharesdk.framework.FakeActivity;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
 import cn.sharesdk.framework.utils.UIHandler;
+
+import static cn.sharesdk.framework.utils.BitmapHelper.blur;
+import static cn.sharesdk.framework.utils.BitmapHelper.captureView;
+import static cn.sharesdk.framework.utils.BitmapHelper.getBitmap;
+import static cn.sharesdk.framework.utils.R.dipToPx;
+import static cn.sharesdk.framework.utils.R.getBitmapRes;
+import static cn.sharesdk.framework.utils.R.getScreenWidth;
+import static cn.sharesdk.framework.utils.R.getStringRes;
 
 /**
  * Photo-text Sharing will be handling in this page
@@ -87,6 +94,7 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 	private boolean dialogMode;
 	private View tmpBgView;
 	private Drawable background;
+	private ArrayList<String> toFriendList;
 
 	public void setShareData(HashMap<String, Object> data) {
 		reqData = data;
@@ -429,7 +437,8 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 	// in the left-bottom of the page, which provides At-friends function
 	private LinearLayout getAtLine(String platform) {
 		if ("SinaWeibo".equals(platform) || "TencentWeibo".equals(platform)
-				|| "Facebook".equals(platform) || "Twitter".equals(platform)) {
+				|| "Facebook".equals(platform) || "Twitter".equals(platform)
+				|| "FacebookMessenger".equals(platform)) {
 			LinearLayout llAt = new LinearLayout(getContext());
 			LinearLayout.LayoutParams lpAt = new LinearLayout.LayoutParams(
 					LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
@@ -454,7 +463,7 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 			int dp_32 = dipToPx(getContext(), 32);
 			tvAt.setLayoutParams(new LinearLayout.LayoutParams(dp_32, dp_32));
 			tvAt.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
-			tvAt.setText("@");
+			tvAt.setText("FacebookMessenger".equals(platform) ? "To" : "@");
 			int dp_2 = dipToPx(getContext(), 2);
 			tvAt.setPadding(0, 0, 0, dp_2);
 			tvAt.setTypeface(Typeface.DEFAULT_BOLD);
@@ -606,6 +615,19 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 					reqData.put("imagePath", null);
 				}
 			}
+			String platform = String.valueOf(reqData.get("platform"));
+			if("FacebookMessenger".equals(platform)) {
+				if(toFriendList != null && toFriendList.size() > 0) {
+					reqData.put("address", toFriendList.get(toFriendList.size()-1));
+				}
+				if(reqData.get("address") == null) {
+					int resId = getStringRes(activity, "select_a_friend");
+					if (resId > 0) {
+						Toast.makeText(getContext(), resId, Toast.LENGTH_SHORT).show();
+					}
+					return;
+				}
+			}
 
 			HashMap<Platform, HashMap<String, Object>> editRes
 					= new HashMap<Platform, HashMap<String,Object>>();
@@ -734,6 +756,11 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 		if (data != null && data.containsKey("selected")) {
 			@SuppressWarnings("unchecked")
 			ArrayList<String> selected = (ArrayList<String>) data.get("selected");
+			String platform = String.valueOf(reqData.get("platform"));
+			if("FacebookMessenger".equals(platform)) {
+				toFriendList = selected;
+				return;
+			}
 			StringBuilder sb = new StringBuilder();
 			for (String sel : selected) {
 				sb.append('@').append(sel).append(' ');

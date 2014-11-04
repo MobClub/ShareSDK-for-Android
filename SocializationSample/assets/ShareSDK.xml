@@ -107,7 +107,7 @@
         SortId="5"
         AppId="wx4868b35061f87885"
         AppSecret="64020361b8ec4c99936c0e3999a9f249"
-        BypassApproval="true"
+        BypassApproval="false"
         Enable="true" />
         
 	<WechatFavorite
@@ -345,4 +345,30 @@
         Id="35"
         SortId="35"
         Enable="true" />
+    
+    <Bluetooth
+        Id="36"
+        SortId="36"
+        Enable="true" />
+
+    <Pocket
+        Id="37"
+        SortId="37"
+        ConsumerKey="32741-389c565043c49947ba7edf05"
+        Enable="true" />
+    
+    <Instapaper
+        Id="38"
+        SortId="38"
+        ConsumerKey="4rDJORmcOcSAZL1YpqGHRI605xUvrLbOhkJ07yO0wWrYrc61FA"
+        ConsumerSecret="GNr1GespOQbrm8nvd7rlUsyRQsIo3boIbMguAl9gfpdL0aKZWe"
+        Enable="true" />
+    
+    <FacebookMessenger
+        Id="39"
+        SortId="39"
+        ConsumerKey="107704292745179"
+        ConsumerSecret="38053202e1a5fe26c80c753071f0b573"
+        Enable="true" />
+    
 </DevInfor>

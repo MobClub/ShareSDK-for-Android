@@ -8,14 +8,6 @@
 
 package cn.sharesdk.demo;
 
-import java.util.HashMap;
-import m.framework.ui.widget.slidingmenu.SlidingMenu;
-import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.utils.UIHandler;
-import cn.sharesdk.framework.Platform.ShareParams;
-import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.framework.TitleLayout;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Message;
@@ -25,6 +17,16 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.CheckedTextView;
 import android.widget.Toast;
+
+import java.util.HashMap;
+
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.Platform.ShareParams;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.framework.TitleLayout;
+import cn.sharesdk.framework.utils.UIHandler;
+import m.framework.ui.widget.slidingmenu.SlidingMenu;
 
 /** page to show Wechat apis. */
 public class WechatPage extends SlidingMenuPage implements
@@ -195,7 +197,7 @@ public class WechatPage extends SlidingMenuPage implements
 			break;
 			case R.id.btnEmojiUrl: {
 				sp.setShareType(Platform.SHARE_EMOJI);
-				String imageUrl = "http://f1.mob.com/imgs/2013/10/17/okvCkwz_144x114.gif";
+				String imageUrl = "http://f1.sharesdk.cn/imgs/2013/10/17/okvCkwz_144x114.gif";
 				sp.setImageUrl(imageUrl);
 			}
 			break;
@@ -207,7 +209,7 @@ public class WechatPage extends SlidingMenuPage implements
 			break;
 			case R.id.btnMusic: {
 				sp.setShareType(Platform.SHARE_MUSIC);
-				String musicUrl = "http://ubuntuone.com/45XSEOwdODtXSH0WYGAcR7";
+				String musicUrl = "http://media.ringring.vn/ringtone/realtone/0/0/161/165346.mp3";
 				sp.setMusicUrl(musicUrl);
 				sp.setUrl("http://mob.com");
 				sp.setImagePath(MainActivity.TEST_IMAGE);

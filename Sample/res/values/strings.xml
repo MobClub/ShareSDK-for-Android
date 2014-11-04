@@ -7,6 +7,7 @@
     <string name="sm_item_wechat">微信</string>
     <string name="sm_item_yixin">易信</string>
     <string name="sm_item_customer">自定义接口</string>
+    <string name="sm_item_custom_fields">自定义分享内容</string>
     <string name="sm_item_fl_weibo">关注新浪微博</string>
     <string name="sm_item_fl_tc">关注腾讯微博</string>
     <string name="sm_item_share_view">摇一摇截屏分享</string>
@@ -76,7 +77,7 @@
 	<string name="buy_failed">购买失败</string>
 	<string name="laiwang">来往</string>
 	<string name="qzone_customer_share_style">自定义QQ空间分享风格</string>
-  <string name="qq_share_way">请选择分享方式</string>
-  <string name="qq_share_from_qqlogin">QQ/QZone登录发微博</string>
-  <string name="qq_share_from_tlogin">腾讯微博登录发微博</string>
+  	<string name="qq_share_way">请选择分享方式</string>
+  	<string name="qq_share_from_qqlogin">QQ/QZone登录发微博</string>
+  	<string name="qq_share_from_tlogin">腾讯微博登录发微博</string>
 </resources>

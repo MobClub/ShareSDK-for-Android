@@ -204,6 +204,11 @@ public class OnekeyShare extends FakeActivity implements
 		reqMap.put("executeurl", executeurl);
 	}
 
+	/** Setting the musicUrl when share msg using Wechat*/
+	public void setMusicUrl(String musicUrl) {
+		reqMap.put("musicUrl", musicUrl);
+	}
+
 	/** setting custom external callback */
 	public void setCallback(PlatformActionListener callback) {
 		this.callback = callback;
@@ -259,11 +264,17 @@ public class OnekeyShare extends FakeActivity implements
 		}
 	}
 
+	/** share multi local pic to tencent weibo */
+	public void setImageArray(String[] imageArray) {
+		reqMap.put("imageArray", imageArray);
+	}
+
 	public void setEditPageBackground(View bgView) {
 		this.bgView = bgView;
 	}
 
 	public void onCreate() {
+
 		// display mode of onekeyshare is controled by the field of platform and silent,
 		// if platform is set, platform gridview won't be display, onekeyshare will jump to editpage directly
 		// if silent is true, onekeyshare will skip the editpage and shares directly
@@ -504,7 +515,7 @@ public class OnekeyShare extends FakeActivity implements
 				UIHandler.sendMessage(msg, this);
 				continue;
 			}
-			
+
 			boolean isWhatsApp = "WhatsApp".equals(name);
 			if (isWhatsApp && !plat.isValid()) {
 				Message msg = new Message();
@@ -514,7 +525,7 @@ public class OnekeyShare extends FakeActivity implements
 				UIHandler.sendMessage(msg, this);
 				continue;
 			}
-			
+
 			boolean isPinterest = "Pinterest".equals(name);
 			if (isPinterest && !plat.isValid()) {
 				Message msg = new Message();
@@ -559,15 +570,18 @@ public class OnekeyShare extends FakeActivity implements
 					shareType = Platform.SHARE_EMOJI;
 				} else if (data.containsKey("url") && !TextUtils.isEmpty(data.get("url").toString())) {
 					shareType = Platform.SHARE_WEBPAGE;
+					if (data.containsKey("musicUrl") && !TextUtils.isEmpty(data.get("musicUrl").toString())) {
+						shareType = Platform.SHARE_MUSIC;
+					}
 				}
 			} else {
 				Bitmap viewToShare = (Bitmap) data.get("viewToShare");
 				if (viewToShare != null && !viewToShare.isRecycled()) {
 					shareType = Platform.SHARE_IMAGE;
-					if (data.containsKey("url")) {
-						Object url = data.get("url");
-						if (url != null && !TextUtils.isEmpty(url.toString())) {
-							shareType = Platform.SHARE_WEBPAGE;
+					if (data.containsKey("url") && !TextUtils.isEmpty(data.get("url").toString())) {
+						shareType = Platform.SHARE_WEBPAGE;
+						if (data.containsKey("musicUrl") && !TextUtils.isEmpty(data.get("musicUrl").toString())) {
+							shareType = Platform.SHARE_MUSIC;
 						}
 					}
 				} else {
@@ -576,10 +590,10 @@ public class OnekeyShare extends FakeActivity implements
 						shareType = Platform.SHARE_IMAGE;
 						if (String.valueOf(imageUrl).endsWith(".gif")) {
 							shareType = Platform.SHARE_EMOJI;
-						} else if (data.containsKey("url")) {
-							Object url = data.get("url");
-							if (url != null && !TextUtils.isEmpty(url.toString())) {
-								shareType = Platform.SHARE_WEBPAGE;
+						} else if (data.containsKey("url") && !TextUtils.isEmpty(data.get("url").toString())) {
+							shareType = Platform.SHARE_WEBPAGE;
+							if (data.containsKey("musicUrl") && !TextUtils.isEmpty(data.get("musicUrl").toString())) {
+								shareType = Platform.SHARE_MUSIC;
 							}
 						}
 					}
@@ -687,6 +701,11 @@ public class OnekeyShare extends FakeActivity implements
 							}
 						}else if ("KakaoStoryClientNotExistException".equals(expName)) {
 							int resId = getStringRes(getContext(), "kakaostory_client_inavailable");
+							if (resId > 0) {
+								showNotification(2000, getContext().getString(resId));
+							}
+						}else if("WhatsAppClientNotExistException".equals(expName)){
+							int resId = getStringRes(getContext(), "whatsapp_client_inavailable");
 							if (resId > 0) {
 								showNotification(2000, getContext().getString(resId));
 							}

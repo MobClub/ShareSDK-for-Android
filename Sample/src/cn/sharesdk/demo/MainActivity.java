@@ -11,10 +11,13 @@ package cn.sharesdk.demo;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.HashMap;
-import org.json.JSONArray;
-import org.json.JSONObject;
+
 import m.framework.network.NetworkHelper;
 import m.framework.ui.widget.slidingmenu.SlidingMenu;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -29,14 +32,13 @@ import android.widget.Toast;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.utils.UIHandler;
-import cn.sharesdk.sina.weibo.SinaWeibo;
 
 /**
  * entrance of the project, UI shell of sliding menu
  * ui logics and events are handled by {@link MainAdapter}
  */
 public class MainActivity extends Activity implements Callback {
-	private static final String FILE_NAME = "pic_beauty_on_sofa.jpg";
+	private static final String FILE_NAME = "pic_beauty_on_sofa1.jpg";
 	public static String TEST_IMAGE;
 	public static String TEST_IMAGE_URL;
 	public static HashMap<Integer, String> TEST_TEXT;

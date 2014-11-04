@@ -68,12 +68,6 @@ public class ShareCore {
 			customizeCallback.onShare(plat, sp);
 		}
 
-		String[] flags = new String[] {
-				"OnekeyShare",
-				plat.getContext().getPackageName(),
-				String.valueOf(ShareSDK.getSDKVersionCode())
-		};
-		sp.setCustomFlag(flags);
 		plat.share(sp);
 		return true;
 	}
