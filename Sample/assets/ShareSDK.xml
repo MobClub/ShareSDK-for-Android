@@ -131,6 +131,7 @@
         SortId="8"
         ConsumerKey="107704292745179"
         ConsumerSecret="38053202e1a5fe26c80c753071f0b573"
+        RedirectUrl="http://mob.com"
         Enable="true" />
 
     <Twitter
@@ -369,6 +370,7 @@
         SortId="39"
         ConsumerKey="107704292745179"
         ConsumerSecret="38053202e1a5fe26c80c753071f0b573"
+        RedirectUrl="http://mob.com"
         Enable="true" />
     
 </DevInfor>

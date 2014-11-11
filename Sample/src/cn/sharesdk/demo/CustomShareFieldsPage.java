@@ -6,9 +6,6 @@
 
 package cn.sharesdk.demo;
 
-import java.util.HashMap;
-
-import m.framework.ui.widget.slidingmenu.SlidingMenu;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -20,7 +17,11 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.HashMap;
+
 import cn.sharesdk.framework.TitleLayout;
+import m.framework.ui.widget.slidingmenu.SlidingMenu;
 
 /**
  * @author Jecelyin <jecelyin@gmail.com>
@@ -29,7 +30,8 @@ import cn.sharesdk.framework.TitleLayout;
 public class CustomShareFieldsPage extends SlidingMenuPage implements View.OnClickListener, AdapterView.OnItemClickListener {
 	private final TitleLayout llTitle;
 	private final static String[] KEYS = {
-			"title"
+			"enableSSO"
+			,"title"
 			,"titleUrl"
 			,"text"
 			,"imagePath"
@@ -48,6 +50,15 @@ public class CustomShareFieldsPage extends SlidingMenuPage implements View.OnCli
 	public static String getString(String key, String def) {
 		if(storeMap.containsKey(key))
 			return storeMap.get(key);
+		return def;
+	}
+
+	public static boolean getBoolean(String key, boolean def) {
+		if(storeMap.containsKey(key))
+		{
+			String val = storeMap.get(key).trim();
+			return "1".equals(val) || "yes".equals(val) || "true".equals(val);
+		}
 		return def;
 	}
 

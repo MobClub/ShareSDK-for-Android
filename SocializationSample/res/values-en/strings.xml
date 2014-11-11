@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ShareSDK Socialization Comment &amp; Like Module</string>
+    <integer name="app_version_code">3</integer>
+    <string name="app_version">1.0.2</string>
+    <string name="proj_name">ShareSDK Socialization Comment &amp; Like Module</string>
+    <string name="sm_item_comment_like">Comment &amp; Like</string>
+    <string name="share_content">ShareSDK for Android not only integration social platforms, like Facebook, Twitter, Google+. But also Our strong professional backend support can easy to know the Users,Information Flow,Backflow, Backflow rate, Share Rate,etc. See more detail on website http://mob.com @ShareSDK</string>
+	<string name="share_content_short">ShareSDK for Android not only integration social platforms, like Facebook, Twitter, Google+. But also Our strong professional backend support can easy to know the Users,Information Flow,Backflow, Backflow rate, Share Rate,etc. See more detail on website http://mob.com @ShareSDK</string>
+	<string name="comment_like_id">ssdk20131220190000</string>
+	<string name="comment_like_title">ShareSDK Socialization Comment &amp; Like Module Release</string>
+	<string name="comment_like_publich_time">2013–12–20 19:00</string>
+	<string name="comment_like_author">ShareSDK</string>
+	<string name="comment_like_comment_list">Comment</string>
+	<string name="sharesdk">ShareSDK Socialization Comment &amp; Like Module</string>
+</resources>

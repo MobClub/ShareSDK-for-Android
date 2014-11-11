@@ -8,9 +8,6 @@
 
 package cn.sharesdk.demo;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import m.framework.ui.widget.slidingmenu.SlidingMenu;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
@@ -19,13 +16,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import cn.sharesdk.framework.CustomPlatform;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
@@ -33,6 +34,7 @@ import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
 import cn.sharesdk.framework.utils.UIHandler;
 import cn.sharesdk.onekeyshare.ShareCore;
+import m.framework.ui.widget.slidingmenu.SlidingMenu;
 
 /** page to show how to authorize and get user info */
 public class AuthPage extends SlidingMenuPage implements
@@ -257,9 +259,9 @@ public class AuthPage extends SlidingMenuPage implements
 				return;
 			}
 			//这里开启一下SSO，防止OneKeyShare分享时调用了oks.disableSSOWhenAuthorize();把SSO关闭了
-			plat.SSOSetting(false);
+			plat.SSOSetting(!CustomShareFieldsPage.getBoolean("enableSSO", true));
 			plat.setPlatformActionListener(page);
-			plat.showUser(null);
+			plat.authorize();
 		}
 
 	}

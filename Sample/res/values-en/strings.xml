@@ -45,8 +45,8 @@
 	<string name="customer_tumblr">Get Post list of Tumblr users</string>
 	
 	<string name="not_yet_authorized">Not Authorized</string>
-	<string name="share_content">ShareSDK for Android is easy to integrate Facebook, Twitter, Google+ and all other social platforms, and also powerful statistical analysis and management panel, real-time ﻿analysis of the Users Info, Users Flow, Returning Visitor, propagation effects and other data, more at official website http://mob.com @Mob</string>
-	<string name="share_content_short">ShareSDK for Android is easy to integrate Facebook, Twitter, Google+ and all other social platforms, and also powerful statistical analysis and management panel, real-time ﻿analysis of the Users Info, Users Flow, Returning Visitor, propagation effects and other data, more at official website http://mob.com @Mob</string>
+	<string name="share_content">ShareSDK for Android not only integration social platforms, like Facebook, Twitter, Google+. But also Our strong professional backend support can easy to know the Users,Information Flow,Backflow, Backflow rate, Share Rate,etc. See more detail on website http://mob.com @ShareSDK</string>
+	<string name="share_content_short">ShareSDK for Android not only integration social platforms, like Facebook, Twitter, Google+. But also Our strong professional backend support can easy to know the Users,Information Flow,Backflow, Backflow rate, Share Rate,etc. See more detail on website http://mob.com @ShareSDK</string>
 	<string name="evenote_title">ShareSDK is a magical SDK</string>
 	
 	<string name="update">Share Text</string>

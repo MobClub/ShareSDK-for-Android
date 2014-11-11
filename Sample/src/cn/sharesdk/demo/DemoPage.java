@@ -171,8 +171,8 @@ public class
 		oks.setDialogMode();
 
 		// disable sso in authorizing
-		//if(!shareFromQQLogin)
-		//	oks.disableSSOWhenAuthorize();
+		if(!CustomShareFieldsPage.getBoolean("enableSSO", true))
+			oks.disableSSOWhenAuthorize();
 
 		// remove comments, use OneKeyShareCallback as the share action callback
 //		oks.setCallback(new OneKeyShareCallback());

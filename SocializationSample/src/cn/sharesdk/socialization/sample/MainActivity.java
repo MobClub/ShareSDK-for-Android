@@ -31,6 +31,7 @@ import cn.sharesdk.socialization.CommentFilter;
 import cn.sharesdk.socialization.CommentFilter.FilterItem;
 import cn.sharesdk.socialization.QuickCommentBar;
 import cn.sharesdk.socialization.Socialization;
+import cn.sharesdk.socialization.SocializationCustomPlatform;
 import cn.sharesdk.socialization.component.TopicTitle;
 
 public class MainActivity extends Activity implements Callback, OnClickListener {
@@ -93,8 +94,8 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 		tt.setPublishTime(getString(R.string.comment_like_publich_time));
 		tt.setAuthor(getString(R.string.comment_like_author));
 
-		Socialization service = ShareSDK.getService(Socialization.class);
-		service.setCustomPlatform(new MyPlatform(this));
+//		Socialization service = ShareSDK.getService(Socialization.class);
+//		service.setCustomPlatform(new MyPlatform(this));
 		initOnekeyShare();
 		initQuickCommentBar();
 		return false;
