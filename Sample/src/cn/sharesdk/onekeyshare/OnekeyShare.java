@@ -8,7 +8,17 @@
 
 package cn.sharesdk.onekeyshare;
 
+import static cn.sharesdk.framework.utils.BitmapHelper.captureView;
+import static cn.sharesdk.framework.utils.R.getBitmapRes;
+import static cn.sharesdk.framework.utils.R.getStringRes;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
+
 import android.app.Notification;
+import android.app.Notification.Builder;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -33,22 +43,12 @@ import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map.Entry;
-
 import cn.sharesdk.framework.CustomPlatform;
 import cn.sharesdk.framework.FakeActivity;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.utils.UIHandler;
-
-import static cn.sharesdk.framework.utils.BitmapHelper.captureView;
-import static cn.sharesdk.framework.utils.R.getBitmapRes;
-import static cn.sharesdk.framework.utils.R.getStringRes;
 
 /**
  * entrance of onekeyshare
@@ -749,10 +749,19 @@ public class OnekeyShare extends FakeActivity implements
 			nm.cancel(id);
 
 			long when = System.currentTimeMillis();
-			Notification notification = new Notification(notifyIcon, text, when);
 			PendingIntent pi = PendingIntent.getActivity(app, 0, new Intent(), 0);
-			notification.setLatestEventInfo(app, notifyTitle, text, pi);
-			notification.flags = Notification.FLAG_AUTO_CANCEL;
+
+			Builder builder = new Notification.Builder(app);
+			builder.setSmallIcon(notifyIcon);
+			builder.setContentTitle(notifyTitle);
+			builder.setTicker(text);
+			builder.setContentInfo(text);
+			builder.setContentText(text);
+			builder.setWhen(when);
+			builder.setContentIntent(pi);
+
+			Notification notification = builder.build();
+			notification.flags |= Notification.FLAG_AUTO_CANCEL;
 			nm.notify(id, notification);
 
 			if (cancelTime > 0) {

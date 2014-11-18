@@ -8,6 +8,7 @@
 
 package cn.sharesdk.demo;
 
+import cn.sharesdk.framework.CustomPlatform;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.Platform.ShareParams;
 import cn.sharesdk.framework.ShareSDK;
@@ -23,6 +24,9 @@ import cn.sharesdk.onekeyshare.ShareContentCustomizeCallback;
 public class ShareContentCustomizeDemo implements ShareContentCustomizeCallback {
 
 	public void onShare(Platform platform, ShareParams paramsToShare) {
+		if(platform instanceof CustomPlatform){
+			return;
+		}
 		int id = ShareSDK.platformNameToId(platform.getName());
 		if (MainActivity.TEST_TEXT != null && MainActivity.TEST_TEXT.containsKey(id)) {
 			String text = MainActivity.TEST_TEXT.get(id);

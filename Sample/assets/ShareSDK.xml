@@ -176,14 +176,6 @@
         ConsumerSecret="XXYrx%QXbS!uA^m2$8TaD4T1HQoRPUH0gaG2BgBd"
         CallbackUrl="http://www.sharesdk.cn"
         Enable="true" />
-	
-    <NetEaseMicroBlog
-        Id="15"
-        SortId="15"
-        ConsumerKey="T5EI7BXe13vfyDuy"
-        ConsumerSecret="gZxwyNOvjFYpxwwlnuizHRRtBRZ2lV1j"
-        RedirectUri="http://www.shareSDK.cn"
-        Enable="true" />
     
     <Douban
         Id="16"

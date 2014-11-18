@@ -167,7 +167,7 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 
 	private RelativeLayout getPageView() {
 		rlPage = new RelativeLayout(getContext());
-		rlPage.setBackgroundDrawable(background);
+		rlPage.setBackground(background);
 		if (dialogMode) {
 			RelativeLayout rlDialog = new RelativeLayout(getContext());
 			rlDialog.setBackgroundColor(0xc0323232);
@@ -268,7 +268,7 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 		// share content editor
 		etContent = new EditText(getContext());
 		etContent.setGravity(Gravity.LEFT | Gravity.TOP);
-		etContent.setBackgroundDrawable(null);
+		etContent.setBackground(null);
 		etContent.setText(String.valueOf(reqData.get("text")));
 		etContent.addTextChangedListener(this);
 		LinearLayout.LayoutParams lpEt = new LinearLayout.LayoutParams(
@@ -795,7 +795,7 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 			rlPage.postDelayed(new Runnable() {
 				public void run() {
 					genBackground();
-					rlPage.setBackgroundDrawable(background);
+					rlPage.setBackground(background);
 				}
 			}, 1000);
 		} else {
@@ -807,7 +807,7 @@ public class EditPage extends FakeActivity implements OnClickListener, TextWatch
 			rlPage.postDelayed(new Runnable() {
 				public void run() {
 					genBackground();
-					rlPage.setBackgroundDrawable(background);
+					rlPage.setBackground(background);
 				}
 			}, 1000);
 		}

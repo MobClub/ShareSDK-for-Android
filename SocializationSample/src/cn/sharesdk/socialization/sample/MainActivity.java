@@ -8,10 +8,13 @@
 
 package cn.sharesdk.socialization.sample;
 
+import static cn.sharesdk.framework.utils.R.getStringRes;
+
 import java.io.File;
 import java.io.FileOutputStream;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
@@ -21,6 +24,7 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.Platform.ShareParams;
 import cn.sharesdk.framework.ShareSDK;
@@ -29,9 +33,11 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.onekeyshare.ShareContentCustomizeCallback;
 import cn.sharesdk.socialization.CommentFilter;
 import cn.sharesdk.socialization.CommentFilter.FilterItem;
+import cn.sharesdk.socialization.Comment;
+import cn.sharesdk.socialization.CommentListener;
 import cn.sharesdk.socialization.QuickCommentBar;
 import cn.sharesdk.socialization.Socialization;
-import cn.sharesdk.socialization.SocializationCustomPlatform;
+import cn.sharesdk.socialization.component.ReplyTooFrequentlyException;
 import cn.sharesdk.socialization.component.TopicTitle;
 
 public class MainActivity extends Activity implements Callback, OnClickListener {
@@ -48,12 +54,15 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 	private OnekeyShare oks;
 	private QuickCommentBar qcBar;
 	private CommentFilter filter;
-
+	private Context context;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.page_comment_like);
+		context = MainActivity.this;
 		ShareSDK.initSDK(this);
 		ShareSDK.registerService(Socialization.class);
+		//Socialization service = ShareSDK.getService(Socialization.class);
+		//service.setCustomPlatform(new MyPlatform(this));
 
 		new Thread() {
 			public void run() {
@@ -61,6 +70,35 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 				UIHandler.sendEmptyMessageDelayed(1, 100, MainActivity.this);
 			}
 		}.start();
+
+		//设置评论监听
+		Socialization.setCommentListener(new CommentListener() {
+
+			@Override
+			public void onSuccess(Comment comment) {
+				int resId = getStringRes(context, "ssdk_socialization_reply_succeeded");
+				if (resId > 0) {
+					Toast.makeText(context, resId, Toast.LENGTH_SHORT).show();
+				}
+			}
+
+			@Override
+			public void onFail(Comment comment) {
+				Toast.makeText(context, comment.getFileCodeString(context), Toast.LENGTH_SHORT).show();
+			}
+
+			@Override
+			public void onError(Throwable throwable) {
+				if (throwable instanceof ReplyTooFrequentlyException) {
+					int resId = getStringRes(context, "ssdk_socialization_replay_too_frequently");
+					if (resId > 0) {
+						Toast.makeText(context, resId, Toast.LENGTH_SHORT).show();
+					}
+				} else {
+					throwable.printStackTrace();
+				}
+			}
+		});
 	}
 
 	private void initImagePath() {
@@ -94,8 +132,8 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 		tt.setPublishTime(getString(R.string.comment_like_publich_time));
 		tt.setAuthor(getString(R.string.comment_like_author));
 
-//		Socialization service = ShareSDK.getService(Socialization.class);
-//		service.setCustomPlatform(new MyPlatform(this));
+		Socialization service = ShareSDK.getService(Socialization.class);
+		service.setCustomPlatform(new MyPlatform(this));
 		initOnekeyShare();
 		initQuickCommentBar();
 		return false;
@@ -138,6 +176,7 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 		qcBar.setTextToShare(getString(R.string.share_content));
 		qcBar.getBackButton().setOnClickListener(this);
 		qcBar.setAuthedAccountChangeable(false);
+
 		CommentFilter.Builder builder = new CommentFilter.Builder();
 		// non-empty filter
 		builder.append(new FilterItem() {

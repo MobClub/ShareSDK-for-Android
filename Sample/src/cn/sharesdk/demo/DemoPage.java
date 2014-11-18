@@ -8,6 +8,9 @@
 
 package cn.sharesdk.demo;
 
+import java.util.HashMap;
+
+import m.framework.ui.widget.slidingmenu.SlidingMenu;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -20,9 +23,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
-import java.util.HashMap;
-
 import cn.sharesdk.framework.CustomPlatform;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
@@ -36,11 +36,9 @@ import cn.sharesdk.onekeyshare.ShareCore;
 import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
-import m.framework.ui.widget.slidingmenu.SlidingMenu;
 
 /** page to show how to use onekeyshare, how to get accse token, how to get user info etc. */
-public class
-		DemoPage extends SlidingMenuPage implements
+public class DemoPage extends SlidingMenuPage implements
 		OnClickListener, PlatformActionListener {
 	private TitleLayout llTitle;
 	private boolean shareFromQQLogin = false;
@@ -145,6 +143,7 @@ public class
 		} else {
 			oks.setText(context.getString(R.string.share_content));
 		}
+
 		if (captureView) {
 			oks.setViewToShare(getPage());
 		} else {
@@ -166,6 +165,7 @@ public class
 		if (platform != null) {
 			oks.setPlatform(platform);
 		}
+
 
 		// display editpage in dialog mode
 		oks.setDialogMode();
