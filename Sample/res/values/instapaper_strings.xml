@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) Mob.COM $year.14-10-27 上午11:02
-  ~
-  ~ @author Milk <jecelyin@gmail.com>
-  -->
 
 <resources>
     <string name="instapager_login_html" formatted="false"><![CDATA[
@@ -57,14 +52,14 @@ function login(form){
     if(!u || !p)
         return false;
     form[\"s\"].disabled = true;
-    Android.onLogin(u, p);
-    return false;
+    return true;
 }
 </script>
 <form style=\"margin-top:45px;\" action=\"%s\" metho=\"get\" onsubmit=\"return login(this);\">
 %s
 <div style=\"padding-left:15px;border-top:1px solid #E3E3E5;border-bottom:1px solid #E3E3E5;\">
- <input class=\"inputstyle\" id=\"u\" name=\"u\" type=\"text\" placeholder=\"%s\" style=\"border-bottom:1px solid #E3E3E5;\"/>
+ <input type=\"hidden\" name=\"ID_SIGN\" value=\"OWELJSFPWECSFEW\"/>
+ <input class=\"inputstyle\" id=\"u\" name=\"u\" type=\"text\" value=\"%s\" placeholder=\"%s\" style=\"border-bottom:1px solid #E3E3E5;\"/>
  <input class=\"inputstyle\" id=\"p\" name=\"p\" type=\"password\" placeholder=\"%s\"/>
 </div>
 <p><input style=\"margin:0 auto;\" type=\"submit\" name=\"s\" value=\"  %s  \" class=\"btn\"/></p>

@@ -35,6 +35,7 @@ import cn.sharesdk.socialization.CommentFilter;
 import cn.sharesdk.socialization.CommentFilter.FilterItem;
 import cn.sharesdk.socialization.Comment;
 import cn.sharesdk.socialization.CommentListener;
+import cn.sharesdk.socialization.LikeListener;
 import cn.sharesdk.socialization.QuickCommentBar;
 import cn.sharesdk.socialization.Socialization;
 import cn.sharesdk.socialization.component.ReplyTooFrequentlyException;
@@ -55,6 +56,10 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 	private QuickCommentBar qcBar;
 	private CommentFilter filter;
 	private Context context;
+
+	private static final int INIT_SDK = 1;
+	private static final int AFTER_LIKE = 2;
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.page_comment_like);
@@ -67,7 +72,7 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 		new Thread() {
 			public void run() {
 				initImagePath();
-				UIHandler.sendEmptyMessageDelayed(1, 100, MainActivity.this);
+				UIHandler.sendEmptyMessageDelayed(INIT_SDK, 100, MainActivity.this);
 			}
 		}.start();
 
@@ -99,6 +104,26 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 				}
 			}
 		});
+
+		Socialization.setLikeListener(new LikeListener() {
+
+			@Override
+			public void onSuccess(String topicId, String topicTitle, String commentId) {
+				Message msg = new Message();
+				msg.what = AFTER_LIKE;
+				msg.arg1 = 1;
+				UIHandler.sendMessage(msg, MainActivity.this);
+			}
+
+			@Override
+			public void onFail(String topicId, String topicTitle, String commentId, String error) {
+				Message msg = new Message();
+				msg.what = AFTER_LIKE;
+				msg.arg1 = 2;
+				UIHandler.sendMessage(msg, MainActivity.this);
+			}
+
+		});
 	}
 
 	private void initImagePath() {
@@ -121,21 +146,46 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 	}
 
 	public boolean handleMessage(Message msg) {
-		topicId = getString(R.string.comment_like_id);
-		topicTitle = getString(R.string.comment_like_title);
-		topicPublishTime = getString(R.string.comment_like_publich_time);
-		topicAuthor = getString(R.string.comment_like_author);
+		switch (msg.what) {
+		case INIT_SDK:
+			topicId = getString(R.string.comment_like_id);
+			topicTitle = getString(R.string.comment_like_title);
+			topicPublishTime = getString(R.string.comment_like_publich_time);
+			topicAuthor = getString(R.string.comment_like_author);
 
-		TopicTitle tt = (TopicTitle) findViewById(R.id.llTopicTitle);
-		String topicTitle = getString(R.string.comment_like_title);
-		tt.setTitle(topicTitle);
-		tt.setPublishTime(getString(R.string.comment_like_publich_time));
-		tt.setAuthor(getString(R.string.comment_like_author));
+			TopicTitle tt = (TopicTitle) findViewById(R.id.llTopicTitle);
+			String topicTitle = getString(R.string.comment_like_title);
+			tt.setTitle(topicTitle);
+			tt.setPublishTime(getString(R.string.comment_like_publich_time));
+			tt.setAuthor(getString(R.string.comment_like_author));
 
-		Socialization service = ShareSDK.getService(Socialization.class);
-		service.setCustomPlatform(new MyPlatform(this));
-		initOnekeyShare();
-		initQuickCommentBar();
+			Socialization service = ShareSDK.getService(Socialization.class);
+			service.setCustomPlatform(new MyPlatform(this));
+			initOnekeyShare();
+			initQuickCommentBar();
+			break;
+		case AFTER_LIKE:
+			if(msg.arg1 == 1){
+				//success
+				int resId = getStringRes(context, "like_success");
+				if (resId > 0) {
+					Toast.makeText(context, resId, Toast.LENGTH_SHORT).show();
+				}
+			}else {
+				//fail
+				int resId = getStringRes(context, "like_fail");
+				if (resId > 0) {
+					Toast.makeText(context, resId, Toast.LENGTH_SHORT).show();
+				}
+			}
+			break;
+		case 3:
+			break;
+		default:
+			break;
+
+		}
+
 		return false;
 	}
 

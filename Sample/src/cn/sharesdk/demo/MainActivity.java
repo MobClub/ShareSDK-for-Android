@@ -61,8 +61,8 @@ public class MainActivity extends Activity implements Callback {
 
 		ShareSDK.initSDK(this);
 		ShareSDK.registerPlatform(Laiwang.class);
-		ShareSDK.setConnTimeout(5000);
-		ShareSDK.setReadTimeout(10000);
+		ShareSDK.setConnTimeout(20000);
+		ShareSDK.setReadTimeout(20000);
 
 		new Thread() {
 			public void run() {

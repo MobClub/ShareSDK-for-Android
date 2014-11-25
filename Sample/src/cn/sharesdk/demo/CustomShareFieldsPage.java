@@ -30,7 +30,8 @@ import m.framework.ui.widget.slidingmenu.SlidingMenu;
 public class CustomShareFieldsPage extends SlidingMenuPage implements View.OnClickListener, AdapterView.OnItemClickListener {
 	private final TitleLayout llTitle;
 	private final static String[] KEYS = {
-			"enableSSO"
+			"enableSSO(1,0)"
+			,"theme(classic,skyblue)"
 			,"title"
 			,"titleUrl"
 			,"text"
@@ -112,7 +113,7 @@ public class CustomShareFieldsPage extends SlidingMenuPage implements View.OnCli
 		alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 				String newValue = editText.getText().toString().trim();
-				setString(key, newValue);
+				setString(key.replaceAll("\\(.+?\\)", ""), newValue);
 				dialog.dismiss();
 				adapter.notifyDataSetChanged();
 			}
@@ -142,7 +143,7 @@ public class CustomShareFieldsPage extends SlidingMenuPage implements View.OnCli
 
 		@Override
 		public Object getItem(int position) {
-			return getString(KEYS[position], "");
+			return getString(KEYS[position].replaceAll("\\(.+?\\)",""), "");
 		}
 
 		@Override

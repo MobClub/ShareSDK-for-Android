@@ -30,6 +30,7 @@ import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
 import cn.sharesdk.framework.utils.UIHandler;
 import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.sharesdk.onekeyshare.OnekeyShareTheme;
 import cn.sharesdk.onekeyshare.Shake2Share;
 import cn.sharesdk.onekeyshare.Shake2Share.OnShakeListener;
 import cn.sharesdk.onekeyshare.ShareCore;
@@ -162,6 +163,13 @@ public class DemoPage extends SlidingMenuPage implements
 		oks.setLongitude(113.385708f);
 		oks.setSilent(silent);
 		oks.setShareFromQQAuthSupport(shareFromQQLogin);
+		String theme = CustomShareFieldsPage.getString("theme", null);
+		if(OnekeyShareTheme.SKYBLUE.toString().toLowerCase().equals(theme)){
+			oks.setTheme(OnekeyShareTheme.SKYBLUE);
+		}else{
+			oks.setTheme(OnekeyShareTheme.CLASSIC);
+		}
+
 		if (platform != null) {
 			oks.setPlatform(platform);
 		}

@@ -11,5 +11,7 @@
 	<string name="comment_like_publich_time">2013-12-20 19:00</string>
 	<string name="comment_like_author">ShareSDK</string>
 	<string name="comment_like_comment_list">跟帖</string>
+	<string name="like_success">点赞成功</string>
+	<string name="like_fail">点赞失败</string>
 	<string name="sharesdk">ShareSDK评论与赞组件</string>
 </resources>

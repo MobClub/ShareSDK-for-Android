@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.HashMap;
 
+import cn.sharesdk.framework.CustomPlatform;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.Platform.ShareParams;
 import cn.sharesdk.framework.ShareSDK;
@@ -106,32 +107,30 @@ public class ShareCore {
 
 	/** Determine whether the platform can authorize */
 	public static boolean canAuthorize(Context context, String platform) {
-		if ("WechatMoments".equals(platform)
+		return !("WechatMoments".equals(platform)
 				|| "WechatFavorite".equals(platform) || "ShortMessage".equals(platform)
 				|| "Email".equals(platform) || "GooglePlus".equals(platform)
 				|| "Pinterest".equals(platform) || "Yixin".equals(platform)
 				|| "YixinMoments".equals(platform) || "Line".equals(platform)
 				|| "KakaoStory".equals(platform) || "KakaoTalk".equals(platform)
-				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform)
-				) {
-			return false;
-		}
-		return true;
+				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform));
 	}
 
 
 	/** Determine whether the platform can get user info */
 	public static boolean canGetUserInfo(Context context, String platform) {
-		if ("WechatMoments".equals(platform)
+		return !("WechatMoments".equals(platform)
 				|| "WechatFavorite".equals(platform) || "ShortMessage".equals(platform)
 				|| "Email".equals(platform) || "GooglePlus".equals(platform)
 				|| "Pinterest".equals(platform) || "Yixin".equals(platform)
 				|| "YixinMoments".equals(platform) || "Line".equals(platform)
 				|| "KakaoStory".equals(platform) || "KakaoTalk".equals(platform)
 				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform)
-				|| "Pocket".equals(platform)) {
-			return false;
-		}
-		return true;
+				|| "Pocket".equals(platform));
+	}
+
+	/** Determine whether direct share */
+	public static boolean isDirectShare(Platform platform) {
+		return platform instanceof CustomPlatform || isUseClientToShare(platform.getName());
 	}
 }
