@@ -163,7 +163,7 @@ public class DemoPage extends SlidingMenuPage implements
 		oks.setLongitude(113.385708f);
 		oks.setSilent(silent);
 		oks.setShareFromQQAuthSupport(shareFromQQLogin);
-		String theme = CustomShareFieldsPage.getString("theme", null);
+		String theme = CustomShareFieldsPage.getString("theme", "skyblue");
 		if(OnekeyShareTheme.SKYBLUE.toString().toLowerCase().equals(theme)){
 			oks.setTheme(OnekeyShareTheme.SKYBLUE);
 		}else{
