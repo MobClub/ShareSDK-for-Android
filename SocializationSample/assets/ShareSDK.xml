@@ -31,8 +31,6 @@
 			Twitter        https://dev.twitter.com
 			人人网          http://dev.renren.com
 			开心网          http://open.kaixin001.com
-			搜狐微博        http://open.t.sohu.com
-			网易微博        http://open.t.163.com
 			豆瓣           http://developers.douban.com
 			
 			有道云笔记      http://note.youdao.com/open/developguide.html#app
@@ -99,7 +97,7 @@
         SortId="4"
         AppId="wx4868b35061f87885"
         AppSecret="64020361b8ec4c99936c0e3999a9f249"
-        BypassApproval="true"
+        BypassApproval="false"
         Enable="true" />
     
     <WechatMoments
@@ -107,7 +105,7 @@
         SortId="5"
         AppId="wx4868b35061f87885"
         AppSecret="64020361b8ec4c99936c0e3999a9f249"
-        BypassApproval="true"
+        BypassApproval="false"
         Enable="true" />
         
 	<WechatFavorite
@@ -131,6 +129,7 @@
         SortId="8"
         ConsumerKey="107704292745179"
         ConsumerSecret="38053202e1a5fe26c80c753071f0b573"
+        RedirectUrl="http://mob.com"
         Enable="true" />
 
     <Twitter
@@ -165,15 +164,6 @@
     <ShortMessage
         Id="13" 
         SortId="13"
-        Enable="true" />
-    
-    <SohuMicroBlog
-        Id="14"
-        SortId="14"
-        ApiKey="q70QBQM9T0COxzYpGLj9"
-        ConsumerKey="q70QBQM9T0COxzYpGLj9"
-        ConsumerSecret="XXYrx%QXbS!uA^m2$8TaD4T1HQoRPUH0gaG2BgBd"
-        CallbackUrl="http://www.sharesdk.cn"
         Enable="true" />
     
     <Douban
@@ -361,6 +351,7 @@
         SortId="39"
         ConsumerKey="107704292745179"
         ConsumerSecret="38053202e1a5fe26c80c753071f0b573"
+        RedirectUrl="http://mob.com"
         Enable="true" />
     
 </DevInfor>

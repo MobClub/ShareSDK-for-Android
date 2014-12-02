@@ -50,8 +50,8 @@
             	Adapter表示一个继承自cn.sharesdk.framework.authorize.AuthorizeAdapter的类，
             	这个类可以监听到页面的生命周期，也可以获取授权页面的各种UI控件。 
             	开发者可以通过继承AuthorizeAdapter，重写其方法，并获取各种UI来自定义这个页面的行为。
+            <meta-data android:name="Adapter" android:value="cn.sharesdk.demo.MyAdapter" />            
             -->
-            <meta-data android:name="Adapter" android:value="cn.sharesdk.demo.MyAdapter" />
             
             <!--
             	Dropbox的SSO功能需要在此处添加一个对ACTION_VIEW事件的过滤器，其中的scheme是

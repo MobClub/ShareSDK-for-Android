@@ -135,7 +135,7 @@ public class DemoPage extends SlidingMenuPage implements
 		oks.setNotification(R.drawable.ic_launcher, context.getString(R.string.app_name));
 		//oks.setAddress("12345678901");
 		oks.setTitle(CustomShareFieldsPage.getString("title", context.getString(R.string.evenote_title)));
-		oks.setTitleUrl(CustomShareFieldsPage.getString("titleUrl", "http://mob.com"));
+		//oks.setTitleUrl(CustomShareFieldsPage.getString("titleUrl", "http://mob.com"));
 		String customText = CustomShareFieldsPage.getString( "text", null);
 		if (customText != null) {
 			oks.setText(customText);

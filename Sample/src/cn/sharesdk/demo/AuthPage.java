@@ -253,7 +253,7 @@ public class AuthPage extends SlidingMenuPage implements
 			}
 
 			if (plat.isValid()) {
-				plat.removeAccount();
+				plat.removeAccount(true);
 				ctvName.setChecked(false);
 				ctvName.setText(R.string.not_yet_authorized);
 				return;

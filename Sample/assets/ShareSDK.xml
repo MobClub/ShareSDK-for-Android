@@ -31,8 +31,6 @@
 			Twitter        https://dev.twitter.com
 			人人网          http://dev.renren.com
 			开心网          http://open.kaixin001.com
-			搜狐微博        http://open.t.sohu.com
-			网易微博        http://open.t.163.com
 			豆瓣           http://developers.douban.com
 			
 			有道云笔记      http://note.youdao.com/open/developguide.html#app
@@ -167,25 +165,6 @@
         Id="13" 
         SortId="13"
         Enable="true" />
-    
-    <SohuMicroBlog
-        Id="14"
-        SortId="14"
-        ApiKey="q70QBQM9T0COxzYpGLj9"
-        ConsumerKey="q70QBQM9T0COxzYpGLj9"
-        ConsumerSecret="XXYrx%QXbS!uA^m2$8TaD4T1HQoRPUH0gaG2BgBd"
-        CallbackUrl="http://www.sharesdk.cn"
-        Enable="true" />
-    
-	<!--
-    <NetEaseMicroBlog
-        Id="15"
-        SortId="15"
-        ConsumerKey="T5EI7BXe13vfyDuy"
-        ConsumerSecret="gZxwyNOvjFYpxwwlnuizHRRtBRZ2lV1j"
-        RedirectUri="http://www.shareSDK.cn"
-        Enable="true" />
-    -->
     
     <Douban
         Id="16"
