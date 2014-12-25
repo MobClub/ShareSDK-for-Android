@@ -38,7 +38,7 @@ import cn.sharesdk.framework.utils.UIHandler;
  * ui logics and events are handled by {@link MainAdapter}
  */
 public class MainActivity extends Activity implements Callback {
-	private static final String FILE_NAME = "pic_beauty_on_sofa1.jpg";
+	private static final String FILE_NAME = "pic_beauty_on_sofa2.jpg";
 	public static String TEST_IMAGE;
 	public static String TEST_IMAGE_URL;
 	public static HashMap<Integer, String> TEST_TEXT;
@@ -72,6 +72,7 @@ public class MainActivity extends Activity implements Callback {
 				UIHandler.sendEmptyMessageDelayed(1, 100, MainActivity.this);
 			}
 		}.start();
+
 	}
 
 	private void initImagePath() {

@@ -84,6 +84,7 @@ public class ShareCore {
 				|| "Mingdao".equals(platform) || "Line".equals(platform)
 				|| "KakaoStory".equals(platform) || "KakaoTalk".equals(platform)
 				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform)
+				|| "BaiduTieba".equals(platform)
 				) {
 			return true;
 		} else if ("Evernote".equals(platform)) {
@@ -109,11 +110,12 @@ public class ShareCore {
 	public static boolean canAuthorize(Context context, String platform) {
 		return !("WechatMoments".equals(platform)
 				|| "WechatFavorite".equals(platform) || "ShortMessage".equals(platform)
-				|| "Email".equals(platform) || "GooglePlus".equals(platform)
+				|| "Email".equals(platform)
 				|| "Pinterest".equals(platform) || "Yixin".equals(platform)
 				|| "YixinMoments".equals(platform) || "Line".equals(platform)
 				|| "KakaoStory".equals(platform) || "KakaoTalk".equals(platform)
-				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform));
+				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform)
+				|| "BaiduTieba".equals(platform));
 	}
 
 
@@ -121,12 +123,12 @@ public class ShareCore {
 	public static boolean canGetUserInfo(Context context, String platform) {
 		return !("WechatMoments".equals(platform)
 				|| "WechatFavorite".equals(platform) || "ShortMessage".equals(platform)
-				|| "Email".equals(platform) || "GooglePlus".equals(platform)
+				|| "Email".equals(platform)
 				|| "Pinterest".equals(platform) || "Yixin".equals(platform)
 				|| "YixinMoments".equals(platform) || "Line".equals(platform)
 				|| "KakaoStory".equals(platform) || "KakaoTalk".equals(platform)
 				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform)
-				|| "Pocket".equals(platform));
+				|| "Pocket".equals(platform) || "BaiduTieba".equals(platform));
 	}
 
 	/** Determine whether direct share */

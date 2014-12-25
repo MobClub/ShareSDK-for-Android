@@ -14,6 +14,7 @@ import android.view.View.OnClickListener;
 /** custom gridview logo item */
 public class CustomerLogo {
 	public String label;
-	public Bitmap logo;
+	public Bitmap enableLogo;
+	public Bitmap disableLogo;
 	public OnClickListener listener;
 }

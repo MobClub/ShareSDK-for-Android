@@ -8,7 +8,13 @@
 
 package cn.sharesdk.onekeyshare.theme.classic;
 
+import static cn.sharesdk.framework.utils.R.getStringRes;
+import static cn.sharesdk.framework.utils.R.getBitmapRes;
+
+import java.util.ArrayList;
+
 import android.content.res.Configuration;
+import android.graphics.drawable.ColorDrawable;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -18,13 +24,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-
-import java.util.ArrayList;
-
 import cn.sharesdk.onekeyshare.PlatformListFakeActivity;
-
-import static cn.sharesdk.framework.utils.R.getBitmapRes;
-import static cn.sharesdk.framework.utils.R.getStringRes;
 
 public class PlatformListPage extends PlatformListFakeActivity implements View.OnClickListener {
 	// page container
@@ -38,7 +38,7 @@ public class PlatformListPage extends PlatformListFakeActivity implements View.O
 	// sliding down animation
 	private Animation animHide;
 	private boolean finishing;
-
+	private LinearLayout llPage;
 
 	public void onCreate() {
 		super.onCreate();
@@ -56,25 +56,23 @@ public class PlatformListPage extends PlatformListFakeActivity implements View.O
 		btnCancel.setOnClickListener(this);
 
 		// display gridviews
-		flPage.clearAnimation();
-		flPage.startAnimation(animShow);
+		llPage.clearAnimation();
+		llPage.startAnimation(animShow);
 	}
 
 	private void initPageView() {
 		flPage = new FrameLayout(getContext());
 		flPage.setOnClickListener(this);
+		flPage.setBackground(new ColorDrawable(0x55000000));
 
 		// container of the platform gridview
-		LinearLayout llPage = new LinearLayout(getContext()) {
+		llPage = new LinearLayout(getContext()) {
 			public boolean onTouchEvent(MotionEvent event) {
 				return true;
 			}
 		};
 		llPage.setOrientation(LinearLayout.VERTICAL);
-		int resId = getBitmapRes(getContext(), "share_vp_back");
-		if (resId > 0) {
-			llPage.setBackgroundResource(resId);
-		}
+		llPage.setBackground(new ColorDrawable(0xffffffff));
 		FrameLayout.LayoutParams lpLl = new FrameLayout.LayoutParams(
 				FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
 		lpLl.gravity = Gravity.BOTTOM;
@@ -91,17 +89,21 @@ public class PlatformListPage extends PlatformListFakeActivity implements View.O
 
 		// cancel button
 		btnCancel = new Button(getContext());
-		btnCancel.setTextColor(0xffffffff);
+		btnCancel.setTextColor(0xff3a65ff);
 		btnCancel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-		resId = getStringRes(getContext(), "cancel");
+		int resId = getStringRes(getContext(), "cancel");
 		if (resId > 0) {
 			btnCancel.setText(resId);
 		}
 		btnCancel.setPadding(0, 0, 0, cn.sharesdk.framework.utils.R.dipToPx(getContext(), 5));
-		resId = getBitmapRes(getContext(), "btn_cancel_back");
-		if (resId > 0) {
+
+		resId = getBitmapRes(getContext(), "classic_platform_corners_bg");
+		if(resId > 0){
 			btnCancel.setBackgroundResource(resId);
+		}else {
+		    btnCancel.setBackground(new ColorDrawable(0xffffffff));
 		}
+
 		LinearLayout.LayoutParams lpBtn = new LinearLayout.LayoutParams(
 				LinearLayout.LayoutParams.MATCH_PARENT, cn.sharesdk.framework.utils.R.dipToPx(getContext(), 45));
 		int dp_10 = cn.sharesdk.framework.utils.R.dipToPx(getContext(), 10);
@@ -157,8 +159,8 @@ public class PlatformListPage extends PlatformListFakeActivity implements View.O
 				finish();
 			}
 		});
-		flPage.clearAnimation();
-		flPage.startAnimation(animHide);
+		llPage.clearAnimation();
+		llPage.startAnimation(animHide);
 		//中断finish操作
 		return true;
 	}

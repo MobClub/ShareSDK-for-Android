@@ -80,15 +80,14 @@ public class PlatformListPage extends PlatformListFakeActivity implements View.O
 	private void onShareButtonClick(View v) {
 		if(gridViewAdapter == null || "locked".equals(v.getTag()))
 			return;
-		v.setTag("locked");
 
 		List<Object> checkedPlatforms = gridViewAdapter.getCheckedItems();
-		if(checkedPlatforms.size() == 0)
-		{
+		if(checkedPlatforms.size() == 0){
 			Toast.makeText(activity, getStringRes(activity, "select_one_plat_at_least"), Toast.LENGTH_SHORT).show();
 			return;
 		}
 
+		v.setTag("locked");
 		onShareButtonClick(v, checkedPlatforms);
 	}
 

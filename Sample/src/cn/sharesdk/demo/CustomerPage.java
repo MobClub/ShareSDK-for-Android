@@ -29,8 +29,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	private static final short ACTION_DOUBAN = 1;
 	/** action code of Facebook */
 	private static final short ACTION_FACEBOOK = 2;
-	/** action code of NetEaseMicroBlog */
-	private static final short ACTION_NETEASEMB = 3;
+
 	/** action code of Renren */
 	private static final short ACTION_RENREN = 4;
 	/** action code of SinaWeibo */
@@ -43,8 +42,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	private static final short ACTION_TWITTER = 8;
 	/** action code of Kaixin */
 	private static final short ACTION_KAIXIN = 9;
-	/** action code of SohuMicroBlog */
-	private static final short ACTION_SOHUMB = 10;
+
 	/** action code of Youdao */
 	private static final short ACTION_YOUDAONOTE = 11;
 	/** action code of SohuSuishenkan */
@@ -83,14 +81,12 @@ public class CustomerPage extends SlidingMenuPage implements
 		switch(v.getId()) {
 			case R.id.btnDb: doubanEvent(); break;
 			case R.id.btnFb: facebookEvent(); break;
-			case R.id.btnNemb: neteaseMb(); break;
 			case R.id.btnRr: renren(); break;
 			case R.id.btnSw: sinaWeibo(); break;
 			case R.id.btnQz: qzone(); break;
 			case R.id.btnTc: tencentWeibo(); break;
 			case R.id.btnTw: twitter(); break;
 			case R.id.btnKx: kaixin(); break;
-			case R.id.btnShmb: sohuMb(); break;
 			case R.id.btnYd: youdaoNote(); break;
 			case R.id.btnShSSK: SohuSuishenkan(); break;
 			case R.id.btnTumblr: tumblr();break;
@@ -115,15 +111,6 @@ public class CustomerPage extends SlidingMenuPage implements
 		String method = "GET";
 		short customerAction = ACTION_FACEBOOK;
 		facebook.customerProtocol(url, method, customerAction, null, null);
-	}
-
-	private void neteaseMb() {
-		Platform nemb = ShareSDK.getPlatform("NetEaseMicroBlog");
-		nemb.setPlatformActionListener(this);
-		String url = "https://api.t.163.com/trends/recommended.json";
-		String method = "GET";
-		short customerAction = ACTION_NETEASEMB;
-		nemb.customerProtocol(url, method, customerAction, null, null);
 	}
 
 	private void renren() {
@@ -222,18 +209,6 @@ public class CustomerPage extends SlidingMenuPage implements
 		HashMap<String, Object> values = new HashMap<String, Object>();
 		values.put("num", 20);
 		kaixin.customerProtocol(url, method, customerAction, values, null);
-	}
-
-	private void sohuMb() {
-		Platform shmb = ShareSDK.getPlatform("SohuMicroBlog");
-		shmb.setPlatformActionListener(this);
-		String url = "https://api.t.sohu.com/statuses/friends.json";
-		String method = "GET";
-		short customerAction = ACTION_SOHUMB;
-		HashMap<String, Object> values = new HashMap<String, Object>();
-		values.put("page", 1);
-		values.put("count", 20);
-		shmb.customerProtocol(url, method, customerAction, values, null);
 	}
 
 	private void youdaoNote() {
@@ -344,14 +319,12 @@ public class CustomerPage extends SlidingMenuPage implements
 				switch(customerAction) {
 					case ACTION_DOUBAN: return "ACTION_DOUBAN";
 					case ACTION_FACEBOOK: return "ACTION_FACEBOOK";
-					case ACTION_NETEASEMB: return "ACTION_NETEASEMB";
 					case ACTION_RENREN: return "ACTION_RENREN";
 					case ACTION_SINAWEIBO: return "ACTION_SINAWEIBO";
 					case ACTION_QZONE: return "ACTION_QZONE";
 					case ACTION_TENCENTWEIBO: return "ACTION_TENCENTWEIBO";
 					case ACTION_TWITTER: return "ACTION_TWITTER";
 					case ACTION_KAIXIN: return "ACTION_KAIXIN";
-					case ACTION_SOHUMB: return "ACTION_SOHUMB";
 					case ACTION_YOUDAONOTE: return "ACTION_YOUDAONOTE";
 					case ACTION_SOHUSUISHENKAN: return "ACTION_SOHUSUISHENKAN";
 					case ACTION_TUMBLR: return "ACTION_TUMBLR";

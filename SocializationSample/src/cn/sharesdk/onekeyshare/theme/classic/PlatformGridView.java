@@ -55,7 +55,7 @@ public class PlatformGridView extends LinearLayout implements
 	// indicators
 	private ImageView[] points;
 	private Bitmap grayPoint;
-	private Bitmap whitePoint;
+	private Bitmap bluePoint;
 	// Determine whether don't jump editpage and share directly
 	private boolean silent;
 	// platforms
@@ -166,13 +166,13 @@ public class PlatformGridView extends LinearLayout implements
 		addView(llPoints);
 
 		int dp_5 = cn.sharesdk.framework.utils.R.dipToPx(context, 5);
-		int resId = getBitmapRes(getContext(), "gray_point");
+		int resId = getBitmapRes(getContext(), "light_blue_point");
 		if (resId > 0) {
 			grayPoint = BitmapFactory.decodeResource(getResources(), resId);
 		}
-		resId = getBitmapRes(getContext(), "white_point");
+		resId = getBitmapRes(getContext(), "blue_point");
 		if (resId > 0) {
-			whitePoint = BitmapFactory.decodeResource(getResources(), resId);
+			bluePoint = BitmapFactory.decodeResource(getResources(), resId);
 		}
 		for (int i = 0; i < pageCount; i++) {
 			points[i] = new ImageView(context);
@@ -184,7 +184,7 @@ public class PlatformGridView extends LinearLayout implements
 			llPoints.addView(points[i]);
 		}
 		int curPage = pager.getCurrentScreen();
-		points[curPage].setImageBitmap(whitePoint);
+		points[curPage].setImageBitmap(bluePoint);
 	}
 
 	/** after the screen rotates, this method will be called to refresh the list of gridviews */
@@ -229,9 +229,8 @@ public class PlatformGridView extends LinearLayout implements
 		}
 		lastClickTime = time;
 
-		Platform plat = (Platform) v.getTag();
 		ArrayList<Object> platforms = new ArrayList<Object>(1);
-		platforms.add(plat);
+		platforms.add(v.getTag());
 		parent.onPlatformIconClick(v, platforms);
 	}
 
@@ -337,7 +336,7 @@ public class PlatformGridView extends LinearLayout implements
 				points[i].setImageBitmap(platformGridView.grayPoint);
 			}
 
-			points[currentScreen].setImageBitmap(platformGridView.whitePoint);
+			points[currentScreen].setImageBitmap(platformGridView.bluePoint);
 		}
 
 	}
@@ -411,9 +410,9 @@ public class PlatformGridView extends LinearLayout implements
 				label = getName((Platform) beans[position]);
 				listener = ocL;
 			} else {
-				logo = ((CustomerLogo) beans[position]).logo;
+				logo = ((CustomerLogo) beans[position]).enableLogo;
 				label = ((CustomerLogo) beans[position]).label;
-				listener = ((CustomerLogo) beans[position]).listener;
+				listener = ocL;
 			}
 
 			LinearLayout ll = new LinearLayout(context);
@@ -432,7 +431,7 @@ public class PlatformGridView extends LinearLayout implements
 			ll.addView(iv);
 
 			TextView tv = new TextView(context);
-			tv.setTextColor(0xffffffff);
+			tv.setTextColor(0xff000000);
 			tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
 			tv.setSingleLine();
 			tv.setIncludeFontPadding(false);

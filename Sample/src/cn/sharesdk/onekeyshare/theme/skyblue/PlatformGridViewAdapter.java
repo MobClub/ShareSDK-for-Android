@@ -81,21 +81,25 @@ public class PlatformGridViewAdapter extends BaseAdapter implements View.OnClick
 		Bitmap logo;
 		String label;
 		Object item = getItem(position);
+		boolean disabled;
+		boolean isDirectShare = item instanceof Platform ? ShareCore.isDirectShare((Platform) item) : true;
+		if(directOnlyPosition == -1) {
+			disabled = !checkedPositionList.isEmpty() && isDirectShare;
+		} else {
+			disabled = position != directOnlyPosition;
+		}
+
 		if (item instanceof Platform) {
-			boolean disabled;
-			if(directOnlyPosition == -1) {
-				disabled = !checkedPositionList.isEmpty() && ShareCore.isDirectShare((Platform) item);
-			} else {
-				disabled = position != directOnlyPosition;
-			}
 			logo = getIcon((Platform) item, disabled ? "" : "_checked");
 			label = getName((Platform) item);
 			view.setOnClickListener(this);
 		} else {
 			CustomerLogo customerLogo = (CustomerLogo) item;
-			logo = customerLogo.logo;
+			logo = disabled ? customerLogo.disableLogo : customerLogo.enableLogo;
 			label = customerLogo.label;
-			view.setOnClickListener(((CustomerLogo) item).listener);
+			view.setOnClickListener(this);
+			//TODO 需要整理
+		//	view.setOnClickListener(((CustomerLogo) item).listener);
 		}
 		String checkedResName = directOnlyPosition != -1 && directOnlyPosition != position ? "skyblue_platform_checked_disabled" : "skyblue_platform_checked";
 		viewHolder.position = position;
@@ -116,7 +120,14 @@ public class PlatformGridViewAdapter extends BaseAdapter implements View.OnClick
 			return;
 
 		Object item = getItem(position);
-		boolean direct = ShareCore.isDirectShare((Platform) item);
+		boolean direct = false;
+		//normal platform
+		if(item instanceof Platform){
+			direct = ShareCore.isDirectShare((Platform) item);
+		}else{
+			//自定义图标
+			direct = true;
+		}
 		//EditPage Platforms only
 		if(direct && directOnlyPosition == -1 && !checkedPositionList.isEmpty())
 			return;

@@ -101,33 +101,6 @@
                     android:textColor="@android:color/black"
                     android:textSize="16dp" />
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/btnNemb"
-                android:layout_width="fill_parent"
-                android:layout_height="44dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/btn_back"
-                android:visibility="gone" >
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/logo_neteasemicroblog" />
-
-                <TextView
-                    android:text="@string/customer_nemb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginRight="52dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
-            </LinearLayout>
             <LinearLayout
                 android:id="@+id/btnRr"
                 android:layout_width="fill_parent"
@@ -170,32 +143,6 @@
 
                 <TextView
                     android:text="@string/customer_sina"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginRight="52dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/btnShmb"
-                android:layout_width="fill_parent"
-                android:layout_height="44dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/btn_back"
-                android:visibility="gone" >
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/logo_sohumicroblog" />
-
-                <TextView
-                    android:text="@string/customer_sohu"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_marginRight="52dp"

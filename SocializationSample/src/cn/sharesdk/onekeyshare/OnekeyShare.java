@@ -270,10 +270,11 @@ public class OnekeyShare implements PlatformActionListener, Callback {
 	}
 
 	/** add a custom icon and its click event listener */
-	public void setCustomerLogo(Bitmap logo, String label, OnClickListener ocListener) {
+	public void setCustomerLogo(Bitmap enableLogo,Bitmap disableLogo, String label, OnClickListener ocListener) {
 		CustomerLogo cl = new CustomerLogo();
 		cl.label = label;
-		cl.logo = logo;
+		cl.enableLogo = enableLogo;
+		cl.disableLogo = disableLogo;
 		cl.listener = ocListener;
 		customers.add(cl);
 	}
@@ -325,15 +326,15 @@ public class OnekeyShare implements PlatformActionListener, Callback {
 			plat.SSOSetting(disableSSO);
 			String name = plat.getName();
 
-			boolean isGooglePlus = "GooglePlus".equals(name);
-			if (isGooglePlus && !plat.isValid()) {
-				Message msg = new Message();
-				msg.what = MSG_TOAST;
-				int resId = getStringRes(context, "google_plus_client_inavailable");
-				msg.obj = context.getString(resId);
-				UIHandler.sendMessage(msg, this);
-				continue;
-			}
+//			boolean isGooglePlus = "GooglePlus".equals(name);
+//			if (isGooglePlus && !plat.isValid()) {
+//				Message msg = new Message();
+//				msg.what = MSG_TOAST;
+//				int resId = getStringRes(context, "google_plus_client_inavailable");
+//				msg.obj = context.getString(resId);
+//				UIHandler.sendMessage(msg, this);
+//				continue;
+//			}
 
 			boolean isKakaoTalk = "KakaoTalk".equals(name);
 			if (isKakaoTalk && !plat.isValid()) {

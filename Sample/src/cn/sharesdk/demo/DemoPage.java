@@ -15,6 +15,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Handler.Callback;
 import android.os.Message;
 import android.view.LayoutInflater;
@@ -135,7 +137,7 @@ public class DemoPage extends SlidingMenuPage implements
 		oks.setNotification(R.drawable.ic_launcher, context.getString(R.string.app_name));
 		//oks.setAddress("12345678901");
 		oks.setTitle(CustomShareFieldsPage.getString("title", context.getString(R.string.evenote_title)));
-		//oks.setTitleUrl(CustomShareFieldsPage.getString("titleUrl", "http://mob.com"));
+		oks.setTitleUrl(CustomShareFieldsPage.getString("titleUrl", "http://mob.com"));
 		String customText = CustomShareFieldsPage.getString( "text", null);
 		if (customText != null) {
 			oks.setText(customText);
@@ -150,8 +152,9 @@ public class DemoPage extends SlidingMenuPage implements
 		} else {
 			oks.setImagePath(CustomShareFieldsPage.getString("imagePath", MainActivity.TEST_IMAGE));
 			oks.setImageUrl(CustomShareFieldsPage.getString("imageUrl", MainActivity.TEST_IMAGE_URL));
-			oks.setImageArray(new String[]{MainActivity.TEST_IMAGE, MainActivity.TEST_IMAGE_URL});
+		//	oks.setImageArray(new String[]{MainActivity.TEST_IMAGE, MainActivity.TEST_IMAGE_URL});
 		}
+
 		oks.setUrl(CustomShareFieldsPage.getString("url", "http://www.mob.com"));
 		oks.setFilePath(CustomShareFieldsPage.getString("filePath", MainActivity.TEST_IMAGE));
 		oks.setComment(CustomShareFieldsPage.getString("comment", context.getString(R.string.share)));
@@ -183,22 +186,22 @@ public class DemoPage extends SlidingMenuPage implements
 			oks.disableSSOWhenAuthorize();
 
 		// remove comments, use OneKeyShareCallback as the share action callback
-//		oks.setCallback(new OneKeyShareCallback());
+		//oks.setCallback(new OneKeyShareCallback());
 
 		// Custom fields content of different platforms
 		oks.setShareContentCustomizeCallback(new ShareContentCustomizeDemo());
 
 		// remove comments, shows how to add custom logos in platform gridview
-//		Bitmap logo = BitmapFactory.decodeResource(menu.getResources(), R.drawable.ic_launcher);
-//		String label = menu.getResources().getString(R.string.app_name);
+//		Bitmap enableLogo = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+//		Bitmap disableLogo = BitmapFactory.decodeResource(getResources(), R.drawable.sharesdk_unchecked);
+//		String label = getResources().getString(R.string.app_name);
 //		OnClickListener listener = new OnClickListener() {
 //			public void onClick(View v) {
 //				String text = "Customer Logo -- ShareSDK " + ShareSDK.getSDKVersionName();
-//				Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();
-//				oks.finish();
+//				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
 //			}
 //		};
-//		oks.setCustomerLogo(logo, label, listener);
+//		oks.setCustomerLogo(enableLogo, disableLogo, label, listener);
 
 		// remove comments, hide logos of sinaweibo and tencentweibo in platform gridview
 //		oks.addHiddenPlatform(SinaWeibo.NAME);

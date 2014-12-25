@@ -43,7 +43,7 @@ import cn.sharesdk.socialization.component.ReplyTooFrequentlyException;
 import cn.sharesdk.socialization.component.TopicTitle;
 
 public class MainActivity extends Activity implements Callback, OnClickListener {
-	private static final String FILE_NAME = "/pic_glance_back.jpg";
+	private static final String FILE_NAME = "/pic_glance_back2.jpg";
 	private String testImage;
 	// Simulat topic ID
 	private String topicId;
@@ -67,8 +67,8 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 		context = MainActivity.this;
 		ShareSDK.initSDK(this);
 		ShareSDK.registerService(Socialization.class);
-		//Socialization service = ShareSDK.getService(Socialization.class);
-		//service.setCustomPlatform(new MyPlatform(this));
+		Socialization service = ShareSDK.getService(Socialization.class);
+		service.setCustomPlatform(new MyPlatform(this));
 
 		new Thread() {
 			public void run() {
