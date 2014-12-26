@@ -63,7 +63,7 @@ public class PlatformListPage extends PlatformListFakeActivity implements View.O
 	private void initPageView() {
 		flPage = new FrameLayout(getContext());
 		flPage.setOnClickListener(this);
-		flPage.setBackground(new ColorDrawable(0x55000000));
+		flPage.setBackgroundDrawable(new ColorDrawable(0x55000000));
 
 		// container of the platform gridview
 		llPage = new LinearLayout(getContext()) {
@@ -72,7 +72,7 @@ public class PlatformListPage extends PlatformListFakeActivity implements View.O
 			}
 		};
 		llPage.setOrientation(LinearLayout.VERTICAL);
-		llPage.setBackground(new ColorDrawable(0xffffffff));
+		llPage.setBackgroundDrawable(new ColorDrawable(0xffffffff));
 		FrameLayout.LayoutParams lpLl = new FrameLayout.LayoutParams(
 				FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
 		lpLl.gravity = Gravity.BOTTOM;
@@ -101,7 +101,7 @@ public class PlatformListPage extends PlatformListFakeActivity implements View.O
 		if(resId > 0){
 			btnCancel.setBackgroundResource(resId);
 		}else {
-		    btnCancel.setBackground(new ColorDrawable(0xffffffff));
+		    btnCancel.setBackgroundDrawable(new ColorDrawable(0xffffffff));
 		}
 
 		LinearLayout.LayoutParams lpBtn = new LinearLayout.LayoutParams(
