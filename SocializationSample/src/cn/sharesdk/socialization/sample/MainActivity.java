@@ -211,7 +211,7 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 		oks.setLatitude(23.056081f);
 		oks.setLongitude(113.385708f);
 		oks.disableSSOWhenAuthorize();
-		oks.setTheme(OnekeyShareTheme.SKYBLUE);
+		oks.setTheme(OnekeyShareTheme.CLASSIC);
 		oks.setShareContentCustomizeCallback(new ShareContentCustomizeCallback() {
 			public void onShare(Platform platform, ShareParams paramsToShare) {
 				// shorten the text field of twitter share content

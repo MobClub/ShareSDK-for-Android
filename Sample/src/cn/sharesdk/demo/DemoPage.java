@@ -166,7 +166,7 @@ public class DemoPage extends SlidingMenuPage implements
 		oks.setLongitude(113.385708f);
 		oks.setSilent(silent);
 		oks.setShareFromQQAuthSupport(shareFromQQLogin);
-		String theme = CustomShareFieldsPage.getString("theme", "skyblue");
+		String theme = CustomShareFieldsPage.getString("theme", "classic");
 		if(OnekeyShareTheme.SKYBLUE.toString().toLowerCase().equals(theme)){
 			oks.setTheme(OnekeyShareTheme.SKYBLUE);
 		}else{
@@ -192,16 +192,16 @@ public class DemoPage extends SlidingMenuPage implements
 		oks.setShareContentCustomizeCallback(new ShareContentCustomizeDemo());
 
 		// remove comments, shows how to add custom logos in platform gridview
-//		Bitmap enableLogo = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-//		Bitmap disableLogo = BitmapFactory.decodeResource(getResources(), R.drawable.sharesdk_unchecked);
-//		String label = getResources().getString(R.string.app_name);
-//		OnClickListener listener = new OnClickListener() {
-//			public void onClick(View v) {
-//				String text = "Customer Logo -- ShareSDK " + ShareSDK.getSDKVersionName();
-//				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
-//			}
-//		};
-//		oks.setCustomerLogo(enableLogo, disableLogo, label, listener);
+		Bitmap enableLogo = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+		Bitmap disableLogo = BitmapFactory.decodeResource(getResources(), R.drawable.sharesdk_unchecked);
+		String label = getResources().getString(R.string.app_name);
+		OnClickListener listener = new OnClickListener() {
+			public void onClick(View v) {
+				String text = "Customer Logo -- ShareSDK " + ShareSDK.getSDKVersionName();
+				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+			}
+		};
+		oks.setCustomerLogo(enableLogo, disableLogo, label, listener);
 
 		// remove comments, hide logos of sinaweibo and tencentweibo in platform gridview
 //		oks.addHiddenPlatform(SinaWeibo.NAME);
