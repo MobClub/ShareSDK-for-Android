@@ -17,7 +17,7 @@ public class MyPlatform extends SocializationCustomPlatform {
 
 	public int getLogo() {
 		// returns the icon resource display in account selecting page
-		return R.drawable.logo_sharesdk;
+		return R.drawable.logo_sharesdk_social;
 	}
 
 	protected boolean checkAuthorize(int action) {

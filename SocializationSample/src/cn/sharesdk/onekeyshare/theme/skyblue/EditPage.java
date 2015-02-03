@@ -215,7 +215,7 @@ public class EditPage extends EditPageFakeActivity implements OnClickListener, T
 	}
 
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
-		int remain = MAX_TEXT_COUNT - count;
+		int remain = MAX_TEXT_COUNT - textEditText.length();
 		textCounterTextView.setText(String.valueOf(remain));
 		textCounterTextView.setTextColor(remain > 0 ? 0xffcfcfcf : 0xffff0000);
 	}

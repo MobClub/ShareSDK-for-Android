@@ -43,7 +43,7 @@ import cn.sharesdk.socialization.component.ReplyTooFrequentlyException;
 import cn.sharesdk.socialization.component.TopicTitle;
 
 public class MainActivity extends Activity implements Callback, OnClickListener {
-	private static final String FILE_NAME = "/pic_glance_back2.jpg";
+	private static final String FILE_NAME = "/pic_lovely_cats.jpg";
 	private String testImage;
 	// Simulat topic ID
 	private String topicId;
@@ -194,7 +194,7 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 	// the following codes are copied from DemoPage
 	private void initOnekeyShare() {
 		oks = new OnekeyShare();
-		oks.setNotification(R.drawable.logo_sharesdk, getString(R.string.app_name));
+		oks.setNotification(R.drawable.logo_sharesdk_social, getString(R.string.app_name));
 		oks.setAddress("12345678901");
 		oks.setTitle(getString(R.string.share));
 		oks.setTitleUrl("http://mob.com");
@@ -211,7 +211,6 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 		oks.setLatitude(23.056081f);
 		oks.setLongitude(113.385708f);
 		oks.disableSSOWhenAuthorize();
-		oks.setTheme(OnekeyShareTheme.CLASSIC);
 		oks.setShareContentCustomizeCallback(new ShareContentCustomizeCallback() {
 			public void onShare(Platform platform, ShareParams paramsToShare) {
 				// shorten the text field of twitter share content

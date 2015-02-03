@@ -182,14 +182,14 @@ public class DemoPage extends SlidingMenuPage implements
 		oks.setDialogMode();
 
 		// disable sso in authorizing
-		if(!CustomShareFieldsPage.getBoolean("enableSSO", true))
+		//if(!CustomShareFieldsPage.getBoolean("enableSSO", true))
 			oks.disableSSOWhenAuthorize();
 
 		// remove comments, use OneKeyShareCallback as the share action callback
 		//oks.setCallback(new OneKeyShareCallback());
 
 		// Custom fields content of different platforms
-		oks.setShareContentCustomizeCallback(new ShareContentCustomizeDemo());
+		//oks.setShareContentCustomizeCallback(new ShareContentCustomizeDemo());
 
 		// remove comments, shows how to add custom logos in platform gridview
 		Bitmap enableLogo = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);

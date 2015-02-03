@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.sharesdk.demo"
-    android:versionCode="46"
-    android:versionName="2.5.5" >
+    android:versionCode="49"
+    android:versionName="2.5.8" >
     
   <uses-permission android:name="android.permission.GET_TASKS" />
   <uses-permission android:name="android.permission.INTERNET" />
@@ -15,6 +15,7 @@
   <!-- 蓝牙分享所需的权限 -->
   <uses-permission android:name="android.permission.BLUETOOTH" />
   <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+  
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -29,7 +30,8 @@
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:debuggable="true" >
         <activity
             android:name="cn.sharesdk.demo.MainActivity" 
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -68,8 +70,9 @@
             	QZoneWebShareAdapter表示一个继承自cn.sharesdk.tencent.qzone.QZoneWebShareAdapter
             	的类，这个类可以监听到页面的生命周期，也可以获QQ空间网页分享权页面的各种UI控件。 
             	开发者可以通过继承QZoneWebShareAdapter，重写其方法，并获取各种UI来自定义这个页面的行为。
-            -->
+            	
             <meta-data android:name="QZoneWebShareAdapter" android:value="cn.sharesdk.demo.MyQZoneWebShareAdapter" />
+            -->
             <!--
             	Dropbox的SSO功能需要在此处添加一个对ACTION_VIEW事件的过滤器，其中的scheme是
             	“db-”前缀再开发者应用的加上appKey。如果此过滤器不设置，则不能完成SSO功能授权
@@ -108,6 +111,24 @@
             android:excludeFromRecents="true"
             android:exported="true"
             android:launchMode="singleTop" />
+        
+        <!-- 调用新浪原生SDK，需要注册的activity -->
+        <activity
+			android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
+			android:configChanges="keyboardHidden|orientation"
+			android:windowSoftInputMode="adjustResize"
+			android:exported="false" >
+		</activity>
+		
+        <!-- 调用新浪原生SDK，需要注册的回调activity -->
+        <activity
+            android:name="cn.sharesdk.sina.weibo.SinaActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+				<action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+        </activity>
     </application>
 
 </manifest>
