@@ -27,7 +27,7 @@
 
     <application
         android:debuggable="true"
-        android:icon="@drawable/logo_sharesdk_social"
+        android:icon="@drawable/logo_myplatform"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity

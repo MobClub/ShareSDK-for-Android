@@ -60,7 +60,7 @@ public class MainActivity extends Activity implements Callback {
 		setContentView(menu);
 
 		ShareSDK.initSDK(this);
-		ShareSDK.registerPlatform(Laiwang.class);
+		ShareSDK.registerPlatform(LaiwangCustomize.class);
 		ShareSDK.setConnTimeout(20000);
 		ShareSDK.setReadTimeout(20000);
 

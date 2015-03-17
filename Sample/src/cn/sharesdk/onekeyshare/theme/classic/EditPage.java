@@ -629,7 +629,7 @@ public class EditPage extends EditPageFakeActivity implements OnClickListener, T
 		}
 
 		String resName = "logo_" + plat.getName();
-		int resId = getBitmapRes(activity, resName);
+		int resId = getBitmapRes(activity, resName.toLowerCase());
 		if(resId > 0) {
 			return BitmapFactory.decodeResource(activity.getResources(), resId);
 		}

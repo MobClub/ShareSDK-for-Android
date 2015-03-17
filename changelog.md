@@ -1,3 +1,16 @@
+版本：V2.5.9 2015-3-12
+- 升级Dropbox对API接口的调用，
+  包括授权、获取用户信息，分享三个接口
+- 级KakaoTalk、KakaoStrory对API接口的调用；
+  优化分享功能，添加授权、获取用户信息接口
+- 修复ShareSDK的核心库，
+  在5.0.2系统上集成U3D时，捕获不了异常的Bug
+- 废除isValid接口，添加两个新接口：
+  isClientValid客户端是否可用（针对需要客户端分享的平台），
+  isAuthValid授权是否有效（是否有授权，或授权时候过期）；
+- 在android-studio上使用ShareSDK集成文档已经发布，
+  具体可以查看 http://bbs.mob.com/thread-5148-1-1.html
+   
 版本：V2.5.8 2015-2-2
 - 支持新浪微博原生SDK的分享
 - 修复在某些没有SD卡的手机上，抛出异常的BUG

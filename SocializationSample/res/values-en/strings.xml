@@ -13,5 +13,5 @@
 	<string name="comment_like_comment_list">Comment</string>
 	<string name="like_success">Doing like successfully!</string>
 	<string name="like_fail">Fail to do like!</string>
-	<string name="sharesdk">ShareSDK Socialization Comment &amp; Like Module</string>
+	<string name="myplatform">Comment &amp; Like</string>
 </resources>

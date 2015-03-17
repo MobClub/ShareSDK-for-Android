@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.sharesdk.demo"
-    android:versionCode="49"
-    android:versionName="2.5.8" >
+    android:versionCode="50"
+    android:versionName="2.5.9" >
     
   <uses-permission android:name="android.permission.GET_TASKS" />
   <uses-permission android:name="android.permission.INTERNET" />
@@ -42,15 +42,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
              <!--
-               KakaoTalk , 分享应用的时候，可以设置打开应用的参数 excuteUrl, 用户点击分享的内容时，就会打开相应的应用，
-                                                   如果应用不存在，可以设置 installURL参数, 打开下载应用的相关网址  (executeUrl)
-                                                   设置后intent-filter 后，分享时，需要设置参数 setExecuteUrl("kakaoTalkTest://starActivity");
-           -->
+               KakaoTalk ,分享应用的时候需要添加这个intent-filter,用于点击应用按钮跳转到APP
+               	其中android:scheme="kakaoc53410d71a7d6b96671aac1bd13a1982"是由"kakao"+APPKey               	
+           -->                       
             <intent-filter>
-                <data android:scheme="kakaoTalkTest" android:host="starActivity"/>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="kakao48d3f524e4a636b08d81b3ceb50f1003" android:host="kakaolink" />
             </intent-filter>
         </activity>
 		

@@ -77,11 +77,11 @@
 	<string name="receive_rewards">Congratulations, you get %s gold!</string>
 	<string name="buy_success">Buy Success</string>
 	<string name="buy_failed">Buy Failed</string>
-	<string name="laiwang">Laiwang</string>
+	<string name="laiwangcustomize">Customize-Laiwang</string>
 	<string name="qzone_customer_share_style">custom QZone share style</string>
-  <string name="qq_share_way">Please Select Share way</string>
-  <string name="qq_share_from_qqlogin">QQ/QZone login to post Weibo</string>
-  <string name="qq_share_from_tlogin">Tencent Weibo login to post Weibo</string>
+  	<string name="qq_share_way">Please Select Share way</string>
+  	<string name="qq_share_from_qqlogin">QQ/QZone login to post Weibo</string>
+ 	<string name="qq_share_from_tlogin">Tencent Weibo login to post Weibo</string>
     <string name="get_sina_friends_list">Get Sina Weibo followers</string>
     <string name="more">More</string>
     <string name="sm_item_yixin">Yixin</string>

@@ -111,7 +111,7 @@ public class DemoPage extends SlidingMenuPage implements
 			Button btn = (Button) line.findViewById(res);
 			btn.setSingleLine();
 			int platNameRes = cn.sharesdk.framework.utils.R.getStringRes(
-					getContext(), name);
+					getContext(), name.toLowerCase());
 			if (platNameRes > 0) {
 				String platName = getContext().getString(platNameRes);
 				String text = getContext().getString(R.string.share_to_format, platName);
@@ -134,7 +134,6 @@ public class DemoPage extends SlidingMenuPage implements
 		Context context = getContext();
 		final OnekeyShare oks = new OnekeyShare();
 
-		oks.setNotification(R.drawable.ic_launcher, context.getString(R.string.app_name));
 		//oks.setAddress("12345678901");
 		oks.setTitle(CustomShareFieldsPage.getString("title", context.getString(R.string.evenote_title)));
 		oks.setTitleUrl(CustomShareFieldsPage.getString("titleUrl", "http://mob.com"));
@@ -209,12 +208,6 @@ public class DemoPage extends SlidingMenuPage implements
 
 		// set a view to be the background of EditPage
 		oks.setEditPageBackground(getPage());
-
-		//kakaoTalk-platform share link. Setting the app-download-url of app,clicking the share-msg, then go to the url when the app is not exist
-		oks.setInstallUrl("http://www.mob.com");
-		//kakaoTalk-platform share link. Setting the app-open-activity of app, clicking the share-msg, then open the app when the app is
-		oks.setExecuteUrl("kakaoTalkTest://starActivity");
-
 		oks.show(context);
 	}
 

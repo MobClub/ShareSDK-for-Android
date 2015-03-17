@@ -30,11 +30,10 @@ import cn.sharesdk.framework.Platform.ShareParams;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.utils.UIHandler;
 import cn.sharesdk.onekeyshare.OnekeyShare;
-import cn.sharesdk.onekeyshare.OnekeyShareTheme;
 import cn.sharesdk.onekeyshare.ShareContentCustomizeCallback;
+import cn.sharesdk.socialization.Comment;
 import cn.sharesdk.socialization.CommentFilter;
 import cn.sharesdk.socialization.CommentFilter.FilterItem;
-import cn.sharesdk.socialization.Comment;
 import cn.sharesdk.socialization.CommentListener;
 import cn.sharesdk.socialization.LikeListener;
 import cn.sharesdk.socialization.QuickCommentBar;
@@ -194,7 +193,6 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 	// the following codes are copied from DemoPage
 	private void initOnekeyShare() {
 		oks = new OnekeyShare();
-		oks.setNotification(R.drawable.logo_sharesdk_social, getString(R.string.app_name));
 		oks.setAddress("12345678901");
 		oks.setTitle(getString(R.string.share));
 		oks.setTitleUrl("http://mob.com");

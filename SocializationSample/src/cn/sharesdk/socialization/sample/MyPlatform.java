@@ -12,12 +12,12 @@ public class MyPlatform extends SocializationCustomPlatform {
 
 	public String getName() {
 		// returns the name display in account selecting page
-		return "ShareSDK";
+		return "MyPlatform";
 	}
 
 	public int getLogo() {
 		// returns the icon resource display in account selecting page
-		return R.drawable.logo_sharesdk_social;
+		return R.drawable.logo_myplatform;
 	}
 
 	protected boolean checkAuthorize(int action) {

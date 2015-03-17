@@ -34,6 +34,7 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import cn.sharesdk.framework.CustomPlatform;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.utils.UIHandler;
@@ -103,7 +104,7 @@ public class PlatformGridView extends LinearLayout implements
 		float scrW = cn.sharesdk.framework.utils.R.getScreenWidth(getContext());
 		float scrH = cn.sharesdk.framework.utils.R.getScreenHeight(getContext());
 		float whR = scrW / scrH;
-		if (whR < 0.6) {
+		if (whR < 0.63) {
 			COLUMN_PER_LINE = 3;
 			LINE_PER_PAGE = 3;
 		} else if (whR < 0.75) {
@@ -459,7 +460,7 @@ public class PlatformGridView extends LinearLayout implements
 			}
 
 			String resName = "logo_" + plat.getName();
-			int resId = getBitmapRes(getContext(), resName);
+			int resId = getBitmapRes(getContext(), resName.toLowerCase());
 			return BitmapFactory.decodeResource(getResources(), resId);
 		}
 
@@ -473,7 +474,7 @@ public class PlatformGridView extends LinearLayout implements
 				return "";
 			}
 
-			int resId = cn.sharesdk.framework.utils.R.getStringRes(getContext(), plat.getName());
+			int resId = cn.sharesdk.framework.utils.R.getStringRes(getContext(), plat.getName().toLowerCase());
 			if (resId > 0) {
 				return getContext().getString(resId);
 			}

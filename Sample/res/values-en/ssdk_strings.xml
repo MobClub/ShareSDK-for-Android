@@ -13,6 +13,7 @@
     <string name="kakaotalk_client_inavailable">KakaoTalk client not exists or the version is too low</string>
     <string name="kakaostory_client_inavailable">KakaoStory client not exists or the version is too low</string>
     <string name="whatsapp_client_inavailable">WhatsApp client not exists or the version is too low</string>
+    <string name="laiwang_client_inavailable">Laiwangs client not exists or the version is too low</string>
     
 	<string name="sinaweibo">Sina Weibo</string>
 	<string name="tencentweibo">Tencent Weibo</string>
@@ -58,6 +59,8 @@
     <string name="instapaper_logining">Sign In…</string>
 	<string name="instapager_email_or_password_incorrect">Email or Password incorrect</string>
     <string name="facebookmessenger">Facebook Messenger</string>
+    <string name="laiwang">Laiwang</string>
+    <string name="laiwangmoments">Laiwang Moments</string>
 
 	<string name="share_to_qzone">Share To QZone</string>
 	<string name="share_to_qq">Share To QQ</string>

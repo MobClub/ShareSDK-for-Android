@@ -8,17 +8,16 @@
 
 package cn.sharesdk.onekeyshare;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.HashMap;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.text.TextUtils;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.HashMap;
-
 import cn.sharesdk.framework.CustomPlatform;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.Platform.ShareParams;
@@ -84,7 +83,8 @@ public class ShareCore {
 				|| "Mingdao".equals(platform) || "Line".equals(platform)
 				|| "KakaoStory".equals(platform) || "KakaoTalk".equals(platform)
 				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform)
-				|| "BaiduTieba".equals(platform)
+				|| "BaiduTieba".equals(platform) || "Laiwang".equals(platform)
+				|| "LaiwangMoments".equals(platform)
 				) {
 			return true;
 		} else if ("Evernote".equals(platform)) {
@@ -113,9 +113,9 @@ public class ShareCore {
 				|| "Email".equals(platform)
 				|| "Pinterest".equals(platform) || "Yixin".equals(platform)
 				|| "YixinMoments".equals(platform) || "Line".equals(platform)
-				|| "KakaoStory".equals(platform) || "KakaoTalk".equals(platform)
 				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform)
-				|| "BaiduTieba".equals(platform));
+				|| "BaiduTieba".equals(platform)) || "Laiwang".equals(platform)
+				|| "LaiwangMoments".equals(platform);
 	}
 
 
@@ -126,9 +126,9 @@ public class ShareCore {
 				|| "Email".equals(platform)
 				|| "Pinterest".equals(platform) || "Yixin".equals(platform)
 				|| "YixinMoments".equals(platform) || "Line".equals(platform)
-				|| "KakaoStory".equals(platform) || "KakaoTalk".equals(platform)
 				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform)
-				|| "Pocket".equals(platform) || "BaiduTieba".equals(platform));
+				|| "Pocket".equals(platform) || "BaiduTieba".equals(platform)
+				|| "Laiwang".equals(platform) || "LaiwangMoments".equals(platform));
 	}
 
 	/** Determine whether direct share */

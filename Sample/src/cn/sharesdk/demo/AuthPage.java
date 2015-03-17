@@ -201,8 +201,8 @@ public class AuthPage extends SlidingMenuPage implements
 				ivLogo.setImageBitmap(logo);
 			}
 			CheckedTextView ctvName = (CheckedTextView) convertView.findViewById(R.id.ctvName);
-			ctvName.setChecked(plat.isValid());
-			if (plat.isValid()) {
+			ctvName.setChecked(plat.isAuthValid());
+			if (plat.isAuthValid()) {
 				String userName = plat.getDb().get("nickname");
 				if (userName == null || userName.length() <= 0 || "null".equals(userName)) {
 					userName = getName(plat);
@@ -225,7 +225,7 @@ public class AuthPage extends SlidingMenuPage implements
 			}
 
 			String resName = "logo_" + plat.getName();
-			int resId = cn.sharesdk.framework.utils.R.getResId(R.drawable.class, resName);
+			int resId = cn.sharesdk.framework.utils.R.getBitmapRes(page.getContext(), resName.toLowerCase());
 			return BitmapFactory.decodeResource(page.getResources(), resId);
 		}
 
@@ -252,7 +252,7 @@ public class AuthPage extends SlidingMenuPage implements
 				return;
 			}
 
-			if (plat.isValid()) {
+			if (plat.isAuthValid()) {
 				plat.removeAccount(true);
 				ctvName.setChecked(false);
 				ctvName.setText(R.string.not_yet_authorized);
@@ -260,6 +260,7 @@ public class AuthPage extends SlidingMenuPage implements
 			}
 			//这里开启一下SSO，防止OneKeyShare分享时调用了oks.disableSSOWhenAuthorize();把SSO关闭了
 			plat.SSOSetting(!CustomShareFieldsPage.getBoolean("enableSSO", true));
+//			plat.SSOSetting(true);
 			plat.setPlatformActionListener(page);
 			plat.authorize();
 		}

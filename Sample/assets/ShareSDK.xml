@@ -107,7 +107,7 @@
         SortId="5"
         AppId="wx4868b35061f87885"
         AppSecret="64020361b8ec4c99936c0e3999a9f249"
-        BypassApproval="false"
+        BypassApproval="true"
         Enable="true" />
         
 	<WechatFavorite
@@ -137,9 +137,9 @@
     <Twitter
         Id="9"
         SortId="9"
-        ConsumerKey="mnTGqtXk0TYMXYTN7qUxg"
-        ConsumerSecret="ROkFqr8c3m1HXqS3rm3TJ0WkAJuwBOSaWhPbZ9Ojuc"
-        CallbackUrl="http://www.sharesdk.cn"
+        ConsumerKey="TKantJ5z9s7P82pAjzSWLe5cy"
+        ConsumerSecret="Eq6g48dFwURskGlAFCq5Y4WqTwl7kfW3aFYKQ6KwG82trbSBwD"
+        CallbackUrl="http://www.mob.com"
         Enable="true" />
 
     <Renren
@@ -258,8 +258,9 @@
 	<Dropbox
         Id="26"
         SortId="26"
-        AppKey="7janx53ilz11gbs"
-		AppSecret="c1hpx5fz6tzkm32"
+        AppKey="i5vw2mex1zcgjcj" 
+		AppSecret="3i9xifsgb4omr0s"
+		RedirectUri="https://www.sharesdk.cn"
         Enable="true" />
         
     <VKontakte 
@@ -318,11 +319,13 @@
 	<KakaoTalk
 	    Id="33"
         SortId="33"
+        AppKey="48d3f524e4a636b08d81b3ceb50f1003"
         Enable="true" />
 	
 	<KakaoStory
 	    Id="34"
         SortId="34"
+        AppKey="48d3f524e4a636b08d81b3ceb50f1003"
         Enable="true" />
 
     <WhatsApp

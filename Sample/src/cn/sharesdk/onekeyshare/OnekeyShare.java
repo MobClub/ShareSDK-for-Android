@@ -16,12 +16,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.os.Handler.Callback;
 import android.os.Message;
@@ -47,8 +43,6 @@ public class OnekeyShare implements PlatformActionListener, Callback {
 
 	private HashMap<String, Object> shareParamsMap;
 	private ArrayList<CustomerLogo> customers;
-	private int notifyIcon;
-	private String notifyTitle;
 	private boolean silent;
 	private PlatformActionListener callback;
 	private ShareContentCustomizeCallback customizeCallback;
@@ -134,12 +128,6 @@ public class OnekeyShare implements PlatformActionListener, Callback {
 
 	public void setTheme(OnekeyShareTheme theme) {
 		this.theme = theme;
-	}
-
-	/** icon and text to notify after sharing */
-	public void setNotification(int icon, String title) {
-		notifyIcon = icon;
-		notifyTitle = title;
 	}
 
 	/** short message address or email address */
@@ -337,7 +325,7 @@ public class OnekeyShare implements PlatformActionListener, Callback {
 //			}
 
 			boolean isKakaoTalk = "KakaoTalk".equals(name);
-			if (isKakaoTalk && !plat.isValid()) {
+			if (isKakaoTalk && !plat.isClientValid()) {
 				Message msg = new Message();
 				msg.what = MSG_TOAST;
 				int resId = getStringRes(context, "kakaotalk_client_inavailable");
@@ -347,7 +335,7 @@ public class OnekeyShare implements PlatformActionListener, Callback {
 			}
 
 			boolean isKakaoStory = "KakaoStory".equals(name);
-			if (isKakaoStory && !plat.isValid()) {
+			if (isKakaoStory && !plat.isClientValid()) {
 				Message msg = new Message();
 				msg.what = MSG_TOAST;
 				int resId = getStringRes(context, "kakaostory_client_inavailable");
@@ -357,7 +345,7 @@ public class OnekeyShare implements PlatformActionListener, Callback {
 			}
 
 			boolean isLine = "Line".equals(name);
-			if (isLine && !plat.isValid()) {
+			if (isLine && !plat.isClientValid()) {
 				Message msg = new Message();
 				msg.what = MSG_TOAST;
 				int resId = getStringRes(context, "line_client_inavailable");
@@ -367,7 +355,7 @@ public class OnekeyShare implements PlatformActionListener, Callback {
 			}
 
 			boolean isWhatsApp = "WhatsApp".equals(name);
-			if (isWhatsApp && !plat.isValid()) {
+			if (isWhatsApp && !plat.isClientValid()) {
 				Message msg = new Message();
 				msg.what = MSG_TOAST;
 				int resId = getStringRes(context, "whatsapp_client_inavailable");
@@ -377,7 +365,7 @@ public class OnekeyShare implements PlatformActionListener, Callback {
 			}
 
 			boolean isPinterest = "Pinterest".equals(name);
-			if (isPinterest && !plat.isValid()) {
+			if (isPinterest && !plat.isClientValid()) {
 				Message msg = new Message();
 				msg.what = MSG_TOAST;
 				int resId = getStringRes(context, "pinterest_client_inavailable");
@@ -386,15 +374,22 @@ public class OnekeyShare implements PlatformActionListener, Callback {
 				continue;
 			}
 
-			if ("Instagram".equals(name)) {
-				Intent test = new Intent(Intent.ACTION_SEND);
-				test.setPackage("com.instagram.android");
-				test.setType("image/*");
-				ResolveInfo ri = context.getPackageManager().resolveActivity(test, 0);
-				if (ri == null) {
+			if ("Instagram".equals(name) && !plat.isClientValid()) {
+				Message msg = new Message();
+				msg.what = MSG_TOAST;
+				int resId = getStringRes(context, "instagram_client_inavailable");
+				msg.obj = context.getString(resId);
+				UIHandler.sendMessage(msg, this);
+				continue;
+			}
+
+			boolean isLaiwang = "Laiwang".equals(name);
+			boolean isLaiwangMoments = "LaiwangMoments".equals(name);
+			if(isLaiwang || isLaiwangMoments){
+				if (!plat.isClientValid()) {
 					Message msg = new Message();
 					msg.what = MSG_TOAST;
-					int resId = getStringRes(context, "instagram_client_inavailable");
+					int resId = getStringRes(context, "laiwang_client_inavailable");
 					msg.obj = context.getString(resId);
 					UIHandler.sendMessage(msg, this);
 					continue;
@@ -402,7 +397,7 @@ public class OnekeyShare implements PlatformActionListener, Callback {
 			}
 
 			boolean isYixin = "YixinMoments".equals(name) || "Yixin".equals(name);
-			if (isYixin && !plat.isValid()) {
+			if (isYixin && !plat.isClientValid()) {
 				Message msg = new Message();
 				msg.what = MSG_TOAST;
 				int resId = getStringRes(context, "yixin_client_inavailable");
@@ -456,7 +451,7 @@ public class OnekeyShare implements PlatformActionListener, Callback {
 				if (this == callback) {
 					int resId = getStringRes(context, "sharing");
 					if (resId > 0) {
-						showNotification(2000, context.getString(resId));
+						showNotification(context.getString(resId));
 					}
 				}
 			}
@@ -513,7 +508,7 @@ public class OnekeyShare implements PlatformActionListener, Callback {
 						// success
 						int resId = getStringRes(context, "share_completed");
 						if (resId > 0) {
-							showNotification(2000, context.getString(resId));
+							showNotification(context.getString(resId));
 						}
 					}
 					break;
@@ -525,43 +520,43 @@ public class OnekeyShare implements PlatformActionListener, Callback {
 								|| "WechatFavoriteNotSupportedException".equals(expName)) {
 							int resId = getStringRes(context, "wechat_client_inavailable");
 							if (resId > 0) {
-								showNotification(2000, context.getString(resId));
+								showNotification(context.getString(resId));
 							}
 						} else if ("GooglePlusClientNotExistException".equals(expName)) {
 							int resId = getStringRes(context, "google_plus_client_inavailable");
 							if (resId > 0) {
-								showNotification(2000, context.getString(resId));
+								showNotification(context.getString(resId));
 							}
 						} else if ("QQClientNotExistException".equals(expName)) {
 							int resId = getStringRes(context, "qq_client_inavailable");
 							if (resId > 0) {
-								showNotification(2000, context.getString(resId));
+								showNotification(context.getString(resId));
 							}
 						} else if ("YixinClientNotExistException".equals(expName)
 								|| "YixinTimelineNotSupportedException".equals(expName)) {
 							int resId = getStringRes(context, "yixin_client_inavailable");
 							if (resId > 0) {
-								showNotification(2000, context.getString(resId));
+								showNotification(context.getString(resId));
 							}
 						} else if ("KakaoTalkClientNotExistException".equals(expName)) {
 							int resId = getStringRes(context, "kakaotalk_client_inavailable");
 							if (resId > 0) {
-								showNotification(2000, context.getString(resId));
+								showNotification(context.getString(resId));
 							}
 						}else if ("KakaoStoryClientNotExistException".equals(expName)) {
 							int resId = getStringRes(context, "kakaostory_client_inavailable");
 							if (resId > 0) {
-								showNotification(2000, context.getString(resId));
+								showNotification(context.getString(resId));
 							}
 						}else if("WhatsAppClientNotExistException".equals(expName)){
 							int resId = getStringRes(context, "whatsapp_client_inavailable");
 							if (resId > 0) {
-								showNotification(2000, context.getString(resId));
+								showNotification(context.getString(resId));
 							}
 						}else {
 							int resId = getStringRes(context, "share_failed");
 							if (resId > 0) {
-								showNotification(2000, context.getString(resId));
+								showNotification(context.getString(resId));
 							}
 						}
 					}
@@ -570,7 +565,7 @@ public class OnekeyShare implements PlatformActionListener, Callback {
 						// canceled
 						int resId = getStringRes(context, "share_canceled");
 						if (resId > 0) {
-							showNotification(2000, context.getString(resId));
+							showNotification(context.getString(resId));
 						}
 					}
 					break;
@@ -589,31 +584,8 @@ public class OnekeyShare implements PlatformActionListener, Callback {
 	}
 
 	// notify the share result
-	private void showNotification(long cancelTime, String text) {
-		try {
-			Context app = context.getApplicationContext();
-			NotificationManager nm = (NotificationManager) app
-					.getSystemService(Context.NOTIFICATION_SERVICE);
-			final int id = Integer.MAX_VALUE / 13 + 1;
-			nm.cancel(id);
-
-			long when = System.currentTimeMillis();
-			Notification notification = new Notification(notifyIcon, text, when);
-			PendingIntent pi = PendingIntent.getActivity(app, 0, new Intent(), 0);
-			notification.setLatestEventInfo(app, notifyTitle, text, pi);
-			notification.flags = Notification.FLAG_AUTO_CANCEL;
-			nm.notify(id, notification);
-
-			if (cancelTime > 0) {
-				Message msg = new Message();
-				msg.what = MSG_CANCEL_NOTIFY;
-				msg.obj = nm;
-				msg.arg1 = id;
-				UIHandler.sendMessageDelayed(msg, cancelTime, this);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	private void showNotification(String text) {
+		Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
 	}
 
 	/** QQ,QZone login after send weibo */
