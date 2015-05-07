@@ -1,3 +1,13 @@
+版本：V2.6.0 2015-5-7
+- 【重要更新】AndroidManifest文件中，类名cn.sharesdk.framework.ShareSDKShell 
+  改为com.mob.tools.MobUIShell,包括“评论赞”项目的配置需同时修改
+- 修复集成onekeyshare时，缺少引用的bug
+- 修复新浪微博5.2.8绕开审核分享失败的bug
+- 修复Facebook、FacebookMessenger在5.1系统上，授权页面关闭后崩溃的bug
+- QQ、Qzone、明道、人人、新浪、腾讯微博、添加是否有客户端的方法isClientValid
+- 优化ShareSDK内部代码，剥离独立工具库MobTools.jar
+- 优化ShareSDK在多进程的application中调用initSDK初始化
+
 版本：V2.5.9 2015-3-12
 - 升级Dropbox对API接口的调用，
   包括授权、获取用户信息，分享三个接口

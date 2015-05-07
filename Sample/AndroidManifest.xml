@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.sharesdk.demo"
-    android:versionCode="50"
-    android:versionName="2.5.9" >
+    android:versionCode="51"
+    android:versionName="2.6.0" >
     
   <uses-permission android:name="android.permission.GET_TASKS" />
   <uses-permission android:name="android.permission.INTERNET" />
@@ -54,7 +54,7 @@
         </activity>
 		
         <activity
-            android:name="cn.sharesdk.framework.ShareSDKUIShell"
+            android:name="com.mob.tools.MobUIShell"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="stateHidden|adjustResize" >

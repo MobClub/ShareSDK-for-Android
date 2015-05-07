@@ -8,12 +8,12 @@
 
 package cn.sharesdk.demo;
 
+import cn.sharesdk.demo.widget.SlidingMenu;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Message;
 import android.os.Handler.Callback;
 import android.view.View;
-import m.framework.ui.widget.slidingmenu.SlidingMenu;
 
 /** super-class of all sliding menu page */
 public abstract class SlidingMenuPage implements Callback {

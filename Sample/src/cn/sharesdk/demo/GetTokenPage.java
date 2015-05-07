@@ -12,12 +12,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import cn.sharesdk.framework.CustomPlatform;
-import cn.sharesdk.framework.FakeActivity;
+import com.mob.tools.FakeActivity;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
-import cn.sharesdk.framework.utils.UIHandler;
+import com.mob.tools.utils.UIHandler;
 import cn.sharesdk.onekeyshare.ShareCore;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Message;
@@ -167,7 +167,7 @@ public class GetTokenPage extends FakeActivity implements Callback,
 				return "";
 			}
 
-			int resId = cn.sharesdk.framework.utils.R.getStringRes(page.activity, plat.getName());
+			int resId = com.mob.tools.utils.R.getStringRes(page.activity, plat.getName());
 			return page.activity.getString(resId);
 		}
 

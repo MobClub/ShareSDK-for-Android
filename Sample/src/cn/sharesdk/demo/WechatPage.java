@@ -20,13 +20,13 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 
+import cn.sharesdk.demo.widget.SlidingMenu;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.Platform.ShareParams;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
-import cn.sharesdk.framework.utils.UIHandler;
-import m.framework.ui.widget.slidingmenu.SlidingMenu;
+import com.mob.tools.utils.UIHandler;
 
 /** page to show Wechat apis. */
 public class WechatPage extends SlidingMenuPage implements

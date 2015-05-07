@@ -19,12 +19,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import cn.sharesdk.framework.FakeActivity;
+import com.mob.tools.FakeActivity;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.framework.utils.BitmapHelper;
+import com.mob.tools.utils.BitmapHelper;
 
-import static cn.sharesdk.framework.utils.R.getStringRes;
+import static com.mob.tools.utils.R.getStringRes;
 
 public class EditPageFakeActivity extends FakeActivity {
 
@@ -37,7 +37,7 @@ public class EditPageFakeActivity extends FakeActivity {
 	protected ArrayList<String> toFriendList;
 	private ArrayList<ImageInfo> shareImageList;
 
-	protected static class ImageInfo {
+	public static class ImageInfo {
 		public String paramName;
 		public String srcValue;
 		public Bitmap bitmap;
@@ -102,6 +102,25 @@ public class EditPageFakeActivity extends FakeActivity {
 			return sb.toString();
 		}
 		return null;
+	}
+
+	public boolean haveImage(){
+		String imageUrl = (String) shareParamMap.get("imageUrl");
+		String imagePath = (String) shareParamMap.get("imagePath");
+		Bitmap viewToShare = (Bitmap) shareParamMap.get("viewToShare");
+		String[] imageArray = (String[]) shareParamMap.get("imageArray");
+
+		if(!TextUtils.isEmpty(imagePath) && new File(imagePath).exists()) {
+			return true;
+		} else if(viewToShare != null && !viewToShare.isRecycled()){
+			return true;
+		} else if (!TextUtils.isEmpty(imageUrl)) {
+			return true;
+		} else if(imageArray != null && imageArray.length > 0) {
+			return true;
+		}
+
+		return false;
 	}
 
 	protected boolean initImageList(ImageListResultsCallback callback) {

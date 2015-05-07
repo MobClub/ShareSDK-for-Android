@@ -80,7 +80,7 @@ public class MyAdapter extends AuthorizeAdapter implements OnClickListener,
 			t.printStackTrace();
 		}
 		ctvFollow.setChecked(true);
-		int dp_10 = cn.sharesdk.framework.utils.R.dipToPx(getActivity(), 10);
+		int dp_10 = com.mob.tools.utils.R.dipToPx(getActivity(), 10);
 		ctvFollow.setCompoundDrawablePadding(dp_10);
 		ctvFollow.setCompoundDrawablesWithIntrinsicBounds(R.drawable.auth_cb, 0, 0, 0);
 		ctvFollow.setGravity(Gravity.CENTER_VERTICAL);

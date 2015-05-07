@@ -22,7 +22,7 @@ import cn.sharesdk.framework.CustomPlatform;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.Platform.ShareParams;
 import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.framework.utils.R;
+import com.mob.tools.utils.R;
 
 /**
  * ShareCore the actual export of OnekeyShare, which reflects

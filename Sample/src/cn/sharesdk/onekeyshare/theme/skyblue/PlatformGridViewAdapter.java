@@ -27,9 +27,9 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.onekeyshare.CustomerLogo;
 import cn.sharesdk.onekeyshare.ShareCore;
 
-import static cn.sharesdk.framework.utils.R.getBitmapRes;
-import static cn.sharesdk.framework.utils.R.getIdRes;
-import static cn.sharesdk.framework.utils.R.getLayoutRes;
+import static com.mob.tools.utils.R.getBitmapRes;
+import static com.mob.tools.utils.R.getIdRes;
+import static com.mob.tools.utils.R.getLayoutRes;
 
 public class PlatformGridViewAdapter extends BaseAdapter implements View.OnClickListener {
 
@@ -203,7 +203,7 @@ public class PlatformGridViewAdapter extends BaseAdapter implements View.OnClick
 			return "";
 		}
 
-		int resId = cn.sharesdk.framework.utils.R.getStringRes(context, plat.getName());
+		int resId = com.mob.tools.utils.R.getStringRes(context, plat.getName());
 		if (resId > 0) {
 			return context.getString(resId);
 		}

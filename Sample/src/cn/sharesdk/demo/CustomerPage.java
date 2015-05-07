@@ -9,18 +9,19 @@
 package cn.sharesdk.demo;
 
 import java.util.HashMap;
+
+import cn.sharesdk.demo.widget.SlidingMenu;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
-import cn.sharesdk.framework.utils.UIHandler;
+import com.mob.tools.utils.UIHandler;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import m.framework.ui.widget.slidingmenu.SlidingMenu;
 
 /** examples of custom interfaces */
 public class CustomerPage extends SlidingMenuPage implements

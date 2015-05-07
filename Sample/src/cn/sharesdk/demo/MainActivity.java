@@ -12,9 +12,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.HashMap;
 
-import m.framework.network.NetworkHelper;
-import m.framework.ui.widget.slidingmenu.SlidingMenu;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -29,9 +26,11 @@ import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
+import cn.sharesdk.demo.widget.SlidingMenu;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.framework.utils.UIHandler;
+import com.mob.tools.network.NetworkHelper;
+import com.mob.tools.utils.UIHandler;
 
 /**
  * entrance of the project, UI shell of sliding menu
@@ -52,7 +51,7 @@ public class MainActivity extends Activity implements Callback {
 		menu = new SlidingMenu(this);
 		menu.setMenuItemBackground(R.color.sliding_menu_item_down, R.color.sliding_menu_item_release);
 		menu.setMenuBackground(R.color.sliding_menu_background);
-		menu.setTtleHeight(cn.sharesdk.framework.utils.R.dipToPx(this, 44));
+		menu.setTtleHeight(com.mob.tools.utils.R.dipToPx(this, 44));
 		menu.setBodyBackground(R.color.sliding_menu_body_background);
 		menu.setShadowRes(R.drawable.sliding_menu_right_shadow);
 		menu.setMenuDivider(R.drawable.sliding_menu_sep);
@@ -77,7 +76,7 @@ public class MainActivity extends Activity implements Callback {
 
 	private void initImagePath() {
 		try {
-			String cachePath = cn.sharesdk.framework.utils.R.getCachePath(this, null);
+			String cachePath = com.mob.tools.utils.R.getCachePath(this, null);
 			TEST_IMAGE = cachePath + FILE_NAME;
 			File file = new File(TEST_IMAGE);
 			if (!file.exists()) {
@@ -99,7 +98,7 @@ public class MainActivity extends Activity implements Callback {
 		TEST_TEXT = new HashMap<Integer, String>();
 		try {
 			NetworkHelper network = new NetworkHelper();
-			String resp = network.httpGet("http://mob.com/Assets/snsplat.json", null, null);
+			String resp = network.httpGet("http://mob.com/Assets/snsplat.json", null, null, null);
 			JSONObject json = new JSONObject(resp);
 			int status = json.optInt("status");
 			if (status == 200) {

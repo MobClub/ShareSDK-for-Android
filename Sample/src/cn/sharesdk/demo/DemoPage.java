@@ -10,7 +10,6 @@ package cn.sharesdk.demo;
 
 import java.util.HashMap;
 
-import m.framework.ui.widget.slidingmenu.SlidingMenu;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -25,12 +24,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import cn.sharesdk.demo.widget.SlidingMenu;
 import cn.sharesdk.framework.CustomPlatform;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
-import cn.sharesdk.framework.utils.UIHandler;
+import com.mob.tools.utils.UIHandler;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.onekeyshare.OnekeyShareTheme;
 import cn.sharesdk.onekeyshare.Shake2Share;
@@ -110,7 +110,7 @@ public class DemoPage extends SlidingMenuPage implements
 			int res = lineCount == 0 ? R.id.btnLeft : R.id.btnRight;
 			Button btn = (Button) line.findViewById(res);
 			btn.setSingleLine();
-			int platNameRes = cn.sharesdk.framework.utils.R.getStringRes(
+			int platNameRes = com.mob.tools.utils.R.getStringRes(
 					getContext(), name.toLowerCase());
 			if (platNameRes > 0) {
 				String platName = getContext().getString(platNameRes);

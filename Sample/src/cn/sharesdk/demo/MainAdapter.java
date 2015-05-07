@@ -27,13 +27,13 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 
+import cn.sharesdk.demo.widget.MenuAdapter;
+import cn.sharesdk.demo.widget.SlidingMenu;
+import cn.sharesdk.demo.widget.SlidingMenuItem;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.framework.utils.UIHandler;
-import m.framework.ui.widget.slidingmenu.MenuAdapter;
-import m.framework.ui.widget.slidingmenu.SlidingMenu;
-import m.framework.ui.widget.slidingmenu.SlidingMenuItem;
+import com.mob.tools.utils.UIHandler;
 
 /** Adapter of sliding menu, handles ui events of sliding menu */
 public class MainAdapter extends MenuAdapter

@@ -27,14 +27,14 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import cn.sharesdk.demo.widget.SlidingMenu;
 import cn.sharesdk.framework.CustomPlatform;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
-import cn.sharesdk.framework.utils.UIHandler;
+import com.mob.tools.utils.UIHandler;
 import cn.sharesdk.onekeyshare.ShareCore;
-import m.framework.ui.widget.slidingmenu.SlidingMenu;
 
 /** page to show how to authorize and get user info */
 public class AuthPage extends SlidingMenuPage implements
@@ -172,7 +172,7 @@ public class AuthPage extends SlidingMenuPage implements
 
 			int count = getCount();
 			View llItem = convertView.findViewById(R.id.llItem);
-			int dp_10 = cn.sharesdk.framework.utils.R.dipToPx(parent.getContext(), 10);
+			int dp_10 = com.mob.tools.utils.R.dipToPx(parent.getContext(), 10);
 			if (count == 1) {
 				llItem.setBackgroundResource(R.drawable.list_item_single_normal);
 				llItem.setPadding(0, 0, 0, 0);
@@ -225,7 +225,7 @@ public class AuthPage extends SlidingMenuPage implements
 			}
 
 			String resName = "logo_" + plat.getName();
-			int resId = cn.sharesdk.framework.utils.R.getBitmapRes(page.getContext(), resName.toLowerCase());
+			int resId = com.mob.tools.utils.R.getBitmapRes(page.getContext(), resName.toLowerCase());
 			return BitmapFactory.decodeResource(page.getResources(), resId);
 		}
 
@@ -239,7 +239,7 @@ public class AuthPage extends SlidingMenuPage implements
 				return "";
 			}
 
-			int resId = cn.sharesdk.framework.utils.R.getStringRes(page.getContext(), plat.getName());
+			int resId = com.mob.tools.utils.R.getStringRes(page.getContext(), plat.getName());
 			return page.getContext().getString(resId);
 		}
 

@@ -3,7 +3,7 @@ package cn.sharesdk.onekeyshare;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import cn.sharesdk.framework.FakeActivity;
+import com.mob.tools.FakeActivity;
 import cn.sharesdk.framework.Platform;
 
 public class FollowerListFakeActivity extends FakeActivity {

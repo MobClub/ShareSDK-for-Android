@@ -9,9 +9,10 @@
 package cn.sharesdk.demo;
 
 import java.util.HashMap;
-import m.framework.ui.widget.slidingmenu.SlidingMenu;
+
+import cn.sharesdk.demo.widget.SlidingMenu;
 import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.utils.UIHandler;
+import com.mob.tools.utils.UIHandler;
 import cn.sharesdk.framework.Platform.ShareParams;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;

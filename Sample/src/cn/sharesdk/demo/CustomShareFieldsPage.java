@@ -20,8 +20,8 @@ import android.widget.TextView;
 
 import java.util.HashMap;
 
+import cn.sharesdk.demo.widget.SlidingMenu;
 import cn.sharesdk.framework.TitleLayout;
-import m.framework.ui.widget.slidingmenu.SlidingMenu;
 
 /**
  * @author Jecelyin <jecelyin@gmail.com>

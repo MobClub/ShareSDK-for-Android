@@ -358,5 +358,29 @@
         ConsumerSecret="38053202e1a5fe26c80c753071f0b573"
         RedirectUrl="http://mob.com"
         Enable="true" />
+    <!-- 
+     ID：5013938
+ 	 API Key：UDOaqgDgMILm2TZTqh4gc6Dg
+     Secret Key：GDSqSAwjibaxkupWODPHcH4tPXHciCT6
+     
+     ID：5022762
+     API Key：XkRZXE8ZyrUm72tH8HenBOdw
+     Secret Key：GrRKPfxqXPtRLC2vGXtH64CRjCkacpFO     
+	 -->
+    <BaiduTieba
+        Id="40"
+        SortId="40"
+        ApiKey="XkRZXE8ZyrUm72tH8HenBOdw"
+        Enable="true" />
+    
+    <Laiwang
+        Id="50"
+        SortId="50"
+        Enable="true"/>
+    
+    <LaiwangMoments
+        Id="51"
+        SortId="51"
+        Enable="true"/>
     
 </DevInfor>

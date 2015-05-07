@@ -8,7 +8,7 @@
 
 package cn.sharesdk.socialization.sample;
 
-import static cn.sharesdk.framework.utils.R.getStringRes;
+import static com.mob.tools.utils.R.getStringRes;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -28,7 +28,6 @@ import android.widget.Toast;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.Platform.ShareParams;
 import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.framework.utils.UIHandler;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.onekeyshare.ShareContentCustomizeCallback;
 import cn.sharesdk.socialization.Comment;
@@ -40,6 +39,8 @@ import cn.sharesdk.socialization.QuickCommentBar;
 import cn.sharesdk.socialization.Socialization;
 import cn.sharesdk.socialization.component.ReplyTooFrequentlyException;
 import cn.sharesdk.socialization.component.TopicTitle;
+
+import com.mob.tools.utils.UIHandler;
 
 public class MainActivity extends Activity implements Callback, OnClickListener {
 	private static final String FILE_NAME = "/pic_lovely_cats.jpg";
@@ -128,7 +129,7 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 
 	private void initImagePath() {
 		try {
-			String cachePath = cn.sharesdk.framework.utils.R.getCachePath(this, null);
+			String cachePath = com.mob.tools.utils.R.getCachePath(this, null);
 			testImage = cachePath + FILE_NAME;
 			File file = new File(testImage);
 			if (!file.exists()) {
@@ -251,7 +252,7 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 			public boolean onFilter(String comment) {
 				if (comment != null) {
 					String pureComment = comment.trim();
-					String wordText = cn.sharesdk.framework.utils.R.toWordText(pureComment, 140);
+					String wordText = com.mob.tools.utils.R.toWordText(pureComment, 140);
 					if (wordText.length() != pureComment.length()) {
 						return true;
 					}

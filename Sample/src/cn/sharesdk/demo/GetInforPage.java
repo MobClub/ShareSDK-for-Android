@@ -21,12 +21,12 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 import cn.sharesdk.framework.CustomPlatform;
-import cn.sharesdk.framework.FakeActivity;
+import com.mob.tools.FakeActivity;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
-import cn.sharesdk.framework.utils.UIHandler;
+import com.mob.tools.utils.UIHandler;
 import cn.sharesdk.onekeyshare.ShareCore;
 
 /** page shows how to request your or other user's info */
@@ -208,7 +208,7 @@ public class GetInforPage extends FakeActivity implements Callback,
 				return "";
 			}
 
-			int resId = cn.sharesdk.framework.utils.R.getStringRes(page.activity, plat.getName());
+			int resId = com.mob.tools.utils.R.getStringRes(page.activity, plat.getName());
 			return page.activity.getString(resId);
 		}
 
