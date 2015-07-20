@@ -33,7 +33,9 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
+
 import com.mob.tools.utils.UIHandler;
+
 import cn.sharesdk.onekeyshare.ShareCore;
 
 /** page to show how to authorize and get user info */
@@ -54,6 +56,7 @@ public class AuthPage extends SlidingMenuPage implements
 		ListView lvPlats = (ListView) pageView.findViewById(R.id.lvPlats);
 		lvPlats.setSelector(new ColorDrawable());
 		adapter = new AuthAdapter(this);
+		lvPlats.setLayoutAnimation(InLayoutAnim.getAnimationController());
 		lvPlats.setAdapter(adapter);
 		lvPlats.setOnItemClickListener(adapter);
 	}

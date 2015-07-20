@@ -2,11 +2,6 @@ package cn.sharesdk.demo.widget;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
-
-import com.mob.tools.utils.Ln;
-
-
-
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
@@ -442,7 +437,7 @@ public class SlidingMenu extends RelativeLayout {
 			m.setAccessible(true);
 			m.invoke(view, 2); // OVER_SCROLL_NEVER = 2
 		} catch(Throwable t) {
-			Ln.w(t);
+			t.printStackTrace();
 		}
 	}
 

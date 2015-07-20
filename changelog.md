@@ -1,3 +1,12 @@
+版本：V2.6.1 2015-7-20
+- 增加新浪授权时，可以关注官方账号的功能
+- 增加QQ、Qzone授权时，保存支付信息
+- 修复facebook、linkin授权失败的bug
+- 修复调用新浪原生SDK，获取不到expire_in的bug
+- 修复豆瓣授权和获取用户资料错误的bug
+- 优化ShareSDK架构,减少错误信息的打印
+- 优化ShareSDK多进程调用，需在每个进程中初始化
+
 版本：V2.6.0 2015-5-7
 - 【重要更新】AndroidManifest文件中，类名cn.sharesdk.framework.ShareSDKShell 
   改为com.mob.tools.MobUIShell,包括“评论赞”项目的配置需同时修改

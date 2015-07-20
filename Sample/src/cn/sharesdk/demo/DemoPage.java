@@ -30,15 +30,13 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
-import com.mob.tools.utils.UIHandler;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.onekeyshare.OnekeyShareTheme;
 import cn.sharesdk.onekeyshare.Shake2Share;
 import cn.sharesdk.onekeyshare.Shake2Share.OnShakeListener;
 import cn.sharesdk.onekeyshare.ShareCore;
-import cn.sharesdk.tencent.qq.QQ;
-import cn.sharesdk.tencent.qzone.QZone;
-import cn.sharesdk.tencent.weibo.TencentWeibo;
+
+import com.mob.tools.utils.UIHandler;
 
 /** page to show how to use onekeyshare, how to get accse token, how to get user info etc. */
 public class DemoPage extends SlidingMenuPage implements
@@ -63,6 +61,11 @@ public class DemoPage extends SlidingMenuPage implements
 		pageView.findViewById(R.id.btnGetInfor).setOnClickListener(this);
 		pageView.findViewById(R.id.btnGetUserInfor).setOnClickListener(this);
 
+		LinearLayout llList = (LinearLayout) pageView.findViewById(R.id.llList);
+		for (int i = 0, count = llList.getChildCount(); i < count; i++) {
+			llList.getChildAt(i).setVisibility(View.INVISIBLE);
+		}
+
 		new Thread() {
 			public void run() {
 				Platform[] list = ShareSDK.getPlatformList();
@@ -83,6 +86,11 @@ public class DemoPage extends SlidingMenuPage implements
 	private void afterPlatformsGot(Platform[] platforms) {
 		View pageView = getPage();
 		LinearLayout llList = (LinearLayout) pageView.findViewById(R.id.llList);
+		llList.setLayoutAnimation(InLayoutAnim.getAnimationController());
+		for (int i = 0, count = llList.getChildCount(); i < count; i++) {
+			llList.getChildAt(i).setVisibility(View.VISIBLE);
+		}
+
 		LinearLayout line = (LinearLayout) View.inflate(getContext(),
 				R.layout.demo_page_item, null);
 		llList.addView(line);
@@ -125,8 +133,7 @@ public class DemoPage extends SlidingMenuPage implements
 	}
 
 	protected View initPage() {
-		return LayoutInflater.from(getContext())
-				.inflate(R.layout.page_demo, null);
+		return LayoutInflater.from(getContext()).inflate(R.layout.page_demo, null);
 	}
 
 	// sharing by onekeyshare
@@ -284,7 +291,7 @@ public class DemoPage extends SlidingMenuPage implements
 				if (tag != null) {
 					final String platformName = ((Platform) tag).getName();
 					//QQ,QZone授权登录后发微博
-					if(TencentWeibo.NAME.equals(platformName)){
+					if("TencentWeibo".equals(platformName)){
 						new AlertDialog.Builder(getContext())
 								.setMessage(R.string.qq_share_way)
 								.setPositiveButton(R.string.qq_share_from_qqlogin, new DialogInterface.OnClickListener() {
@@ -293,10 +300,10 @@ public class DemoPage extends SlidingMenuPage implements
 										try
 										{
 											getContext().getPackageManager().getPackageInfo("com.qzone", 0);
-											showShare(false, QZone.NAME, false);
+											showShare(false, "QZone", false);
 										} catch (PackageManager.NameNotFoundException e)
 										{
-											showShare(false, QQ.NAME, false);
+											showShare(false, "QQ", false);
 										}
 									}
 								})

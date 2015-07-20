@@ -12,7 +12,9 @@ import java.util.HashMap;
 
 import cn.sharesdk.demo.widget.SlidingMenu;
 import cn.sharesdk.framework.Platform;
+
 import com.mob.tools.utils.UIHandler;
+
 import cn.sharesdk.framework.Platform.ShareParams;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
@@ -61,6 +63,7 @@ public class YixinPage extends SlidingMenuPage implements
 			ctvPlats[i].setOnClickListener(this);
 		}
 		ViewGroup vp = (ViewGroup) ctvPlats[0].getParent().getParent();
+		vp.setLayoutAnimation(InLayoutAnim.getAnimationController());
 		for (int i = 0, size = vp.getChildCount(); i < size; i++) {
 			vp.getChildAt(i).setOnClickListener(this);
 		}
@@ -81,8 +84,7 @@ public class YixinPage extends SlidingMenuPage implements
 	}
 
 	protected View initPage() {
-		return LayoutInflater.from(getContext())
-				.inflate(R.layout.page_wechate, null);
+		return LayoutInflater.from(getContext()).inflate(R.layout.page_wechate, null);
 	}
 
 	public void onClick(View v) {

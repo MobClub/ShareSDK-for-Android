@@ -15,7 +15,9 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
+
 import com.mob.tools.utils.UIHandler;
+
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,6 +61,7 @@ public class CustomerPage extends SlidingMenuPage implements
 		llTitle.getBtnBack().setOnClickListener(this);
 		llTitle.getTvTitle().setText(R.string.sm_item_customer);
 		LinearLayout llList = (LinearLayout) pageView.findViewById(R.id.llList);
+		llList.setLayoutAnimation(InLayoutAnim.getAnimationController());
 		for (int i = 0, size = llList.getChildCount(); i < size; i++) {
 			llList.getChildAt(i).setOnClickListener(this);
 		}

@@ -29,6 +29,7 @@ import android.widget.Toast;
 import cn.sharesdk.demo.widget.SlidingMenu;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
+
 import com.mob.tools.network.NetworkHelper;
 import com.mob.tools.utils.UIHandler;
 
@@ -123,13 +124,11 @@ public class MainActivity extends Activity implements Callback {
 		switch (msg.what) {
 			case 1: {
 				menu.triggerItem(MainAdapter.GROUP_DEMO, MainAdapter.ITEM_DEMO);
-			}
-			break;
+			} break;
 			case 2: {
 				String text = getString(R.string.receive_rewards, msg.arg1);
 				Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-			}
-			break;
+			} break;
 		}
 		return false;
 	}

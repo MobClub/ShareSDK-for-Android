@@ -79,7 +79,7 @@
         SortId="3"
         AppId="100371282"
         AppKey="aed9b0303e3ed1e27bae87c33761161d"
-        ShareByAppClient="true"
+        ShareByAppClient="false"
         Enable="true" />
     
     <!-- 
@@ -107,7 +107,7 @@
         SortId="5"
         AppId="wx4868b35061f87885"
         AppSecret="64020361b8ec4c99936c0e3999a9f249"
-        BypassApproval="true"
+        BypassApproval="false"
         Enable="true" />
         
 	<WechatFavorite
@@ -137,11 +137,11 @@
     <Twitter
         Id="9"
         SortId="9"
-        ConsumerKey="TKantJ5z9s7P82pAjzSWLe5cy"
-        ConsumerSecret="Eq6g48dFwURskGlAFCq5Y4WqTwl7kfW3aFYKQ6KwG82trbSBwD"
-        CallbackUrl="http://www.mob.com"
+        ConsumerKey="LRBM0H75rWrU9gNHvlEAA2aOy"
+        ConsumerSecret="gbeWsZvA9ELJSdoBzJ5oLKX0TU09UOwrzdGfo9Tg7DjyGuMe8G"
+        CallbackUrl="http://mob.com"
         Enable="true" />
-
+    
     <Renren
         Id="10"
         SortId="10"
@@ -171,9 +171,9 @@
     <Douban
         Id="16"
         SortId="16"
-        ApiKey="02e2cbe5ca06de5908a863b15e149b0b"
-        Secret="9f1e7b4f71304f2f"
-        RedirectUri="http://www.sharesdk.cn"
+        ApiKey="031a96a3aa8b28af094fc3eaffa17a0d"
+        Secret="2e675e730571b75d"
+        RedirectUri="http://mob.com"
         Enable="true" />
     
     <YouDao
@@ -358,5 +358,5 @@
         ConsumerSecret="38053202e1a5fe26c80c753071f0b573"
         RedirectUrl="http://mob.com"
         Enable="true" />
-    
+   
 </DevInfor>

@@ -82,7 +82,9 @@ public class CustomShareFieldsPage extends SlidingMenuPage implements View.OnCli
 
 	@Override
 	protected View initPage() {
-		return View.inflate(getContext(), R.layout.page_custom_fields, null);
+		View v = View.inflate(getContext(), R.layout.page_custom_fields, null);
+		((ListView) v.findViewById(R.id.listView)).setLayoutAnimation(InLayoutAnim.getAnimationController());
+		return v;
 	}
 
 	@Override

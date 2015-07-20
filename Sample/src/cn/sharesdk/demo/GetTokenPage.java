@@ -12,12 +12,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import cn.sharesdk.framework.CustomPlatform;
+
 import com.mob.tools.FakeActivity;
+
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
+
 import com.mob.tools.utils.UIHandler;
+
 import cn.sharesdk.onekeyshare.ShareCore;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Message;
@@ -44,6 +48,7 @@ public class GetTokenPage extends FakeActivity implements Callback,
 
 		ListView lvPlats = (ListView) activity.findViewById(R.id.lvPlats);
 		lvPlats.setSelector(new ColorDrawable());
+		lvPlats.setLayoutAnimation(InLayoutAnim.getAnimationController());
 		adapter = new AuthAdapter(this);
 		lvPlats.setAdapter(adapter);
 	}

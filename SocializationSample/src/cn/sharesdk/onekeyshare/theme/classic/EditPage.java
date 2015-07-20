@@ -403,9 +403,16 @@ public class EditPage extends EditPageFakeActivity implements OnClickListener, T
 		llAt.setLayoutParams(lpAt);
 		llAt.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				FollowListPage subPage = new FollowListPage();
-				subPage.setPlatform(platforms.get(0));
-				subPage.showForResult(activity, null, EditPage.this);
+				if(platforms != null && platforms.size() > 0){
+					FollowListPage subPage = new FollowListPage();
+					subPage.setPlatform(platforms.get(0));
+					subPage.showForResult(activity, null, EditPage.this);
+				} else {
+					int resId = getStringRes(activity, "select_one_plat_at_least");
+					if (resId > 0) {
+						Toast.makeText(getContext(), resId, Toast.LENGTH_SHORT).show();
+					}
+				}
 			}
 		});
 

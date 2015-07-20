@@ -51,6 +51,7 @@ public class GetInforPage extends FakeActivity implements Callback,
 		lvPlats.setSelector(new ColorDrawable());
 		adapter = new PlatAdapter(this);
 		adapter.setType(type);
+		lvPlats.setLayoutAnimation(InLayoutAnim.getAnimationController());
 		lvPlats.setAdapter(adapter);
 	}
 

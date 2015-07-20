@@ -9,7 +9,6 @@
 
 package cn.sharesdk.onekeyshare;
 
-import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.PointF;
@@ -201,7 +200,6 @@ public class PicViewer extends FakeActivity implements OnTouchListener {
     /**
      * 两点的距离
      */
-    @SuppressLint("FloatMath")
 	private float spacing(MotionEvent event) {
         float x = event.getX(0) - event.getX(1);
         float y = event.getY(0) - event.getY(1);

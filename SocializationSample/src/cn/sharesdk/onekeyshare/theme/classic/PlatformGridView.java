@@ -9,13 +9,11 @@
 package cn.sharesdk.onekeyshare.theme.classic;
 
 import static com.mob.tools.utils.R.getBitmapRes;
-
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -40,6 +38,7 @@ import com.mob.tools.utils.UIHandler;
 import cn.sharesdk.onekeyshare.CustomerLogo;
 
 /** platform logo list gridview */
+@SuppressWarnings("deprecation")
 public class PlatformGridView extends LinearLayout implements
 		OnClickListener, Callback {
 	private static final int MIN_CLICK_INTERVAL = 1000;
@@ -306,7 +305,7 @@ public class PlatformGridView extends LinearLayout implements
 			return girds == null ? 0 : girds.length;
 		}
 
-		public View getView(int position, ViewGroup parent) {
+		public View getView(int position, View convertView, ViewGroup parent) {
 			if (girds[position] == null) {
 				int pageSize = platformGridView.PAGE_SIZE;
 				int curSize = pageSize * position;
