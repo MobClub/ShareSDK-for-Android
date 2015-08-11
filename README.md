@@ -7,7 +7,7 @@
 
 Visit our [official website](http://www.mob.com/) and download the latest version of ShareSDK. After extracting the downloaded file, you will find the following directory structure：
 
-![directory structure](http://a3.qpic.cn/psb?/V14GftmO22fJgW/Nbet1MJDwbjbxV26N9bmmt4OcRk8z.HVLaUTR0nRB1Y!/b/dBQAAAAAAAAA&bo=oAPhAAAAAAAFB2Y!&rf=viewer_4)
+![directory structure](http://a1.qpic.cn/psb?/V14GftmO22fJgW/D2jYRnjuvUQiyfrGferrGKctas.joCRNNESfma6IB0M!/b/dBUAAAAAAAAA&bo=hAPIAQAAAAAFB2o!&rf=viewer_4)
 
 Open the **ShareSDK for Android** directory, you will find **MainLibs** and **OnekeyShare**. ShareSDK is stored in the MainLibs directory, and OnekeyShare is a GUI tool for developers to quickly complete the share feature by ShareSDK.
 
@@ -15,7 +15,7 @@ Open the **ShareSDK for Android** directory, you will find **MainLibs** and **On
 
 There are two ways to import ShareSDK into your project: **reference to the ShareSDK project** or **copy the jars and resources into your project**. If you select the second way, we provide the following tool to help you quickly finish these operations:
 
-![quick integrating tool](http://wiki.sharesdk.cn/images/d/d6/ssdk_qig_qi_win.png)
+![quick integrating tool](http://a3.qpic.cn/psb?/V14GftmO22fJgW/qx8h1C30NL54RLlMd7R9BKh*yL4b37aHk3otu.*G1Sc!/b/dAsAAAAAAAAA&bo=EwOAAgAAAAAFALE!&rf=viewer_4)
 
 Execute this tool and copy its products into your project.
 
@@ -25,15 +25,15 @@ ShareSDK encourage you integrate ShareSDK by referencing its project, because th
 
 (2) Import the SDK projects:
 
-![projects of ShareSDK](http://wiki.sharesdk.cn/images/6/64/p1.png)
+![projects of ShareSDK](http://a3.qpic.cn/psb?/V14GftmO22fJgW/9tjZSx7IlbFqvbZB2d1Nh.Z9rEPHLjFUJGFpy89QPdU!/b/dCwAAAAAAAAA&bo=sAJMAgAAAAAFAN8!&rf=viewer_4)
 
 Select MainLibs and OnekeyShare
 
-![select lib-projects](http://wiki.sharesdk.cn/images/0/0f/p2.png)
+![select lib-projects](http://a3.qpic.cn/psb?/V14GftmO22fJgW/BwUzD2sMwuZCm8YVYRkTg9*1U6QrJsCgxxvhvTmNecE!/b/dE0AAAAAAAAA&bo=sAJOAgAAAAADANs!&rf=viewer_4)
 
 (3) Change dependency of your project to OnekeyShare (if you need this GUI tool) or MainLibs
 
-![change dependency](http://wiki.sharesdk.cn/images/thumb/2/2d/p3.png/534px-p3.png)
+![change dependency](http://a3.qpic.cn/psb?/V14GftmO22fJgW/WM8W63pq8nuXMARQOSW7FuvuqS3belOTaYngPE9Gn1A!/b/dE0AAAAAAAAA&bo=FgJXAgAAAAAFAGI!&rf=viewer_4)
 
 # Step Three: Add Applications Information
 
@@ -133,10 +133,10 @@ ShareSDK.stopSDK(this);
 ```
 
 # Screenshots
-![logo grid view of onekeyshare](http://wiki.sharesdk.cn/images/thumb/a/ad/p4.png/337px-p4.png)
-![edit page of onekeyshare](http://wiki.sharesdk.cn/images/thumb/b/b1/p5.png/337px-p5.png)
-![image preview](http://wiki.sharesdk.cn/images/thumb/8/88/p6.png/337px-p6.png)
-![authorizes](http://wiki.sharesdk.cn/images/thumb/6/69/p7.png/337px-p7.png)
+![logo grid view of onekeyshare](http://a3.qpic.cn/psb?/V14GftmO22fJgW/1cUPaAxmqxnyzWXbeWEWkOVNFcxv7laksaKs*d7Aq4c!/b/dAsAAAAAAAAA&bo=UQFXAgAAAAAFACY!&rf=viewer_4)
+![edit page of onekeyshare](http://a3.qpic.cn/psb?/V14GftmO22fJgW/.wTX0fqSedSyZW8VZSvhY3oZLVLAqrcAqLKHwkYigdc!/b/dAsAAAAAAAAA&bo=UQFXAgAAAAAFACY!&rf=viewer_4)
+![image preview](http://a3.qpic.cn/psb?/V14GftmO22fJgW/a*51wOzdPkjZJP*GBvmREgDhZa*txPSj6FU6nuFKFi8!/b/dBQAAAAAAAAA&bo=UQFXAgAAAAAFACY!&rf=viewer_4)
+![authorizes](http://a1.qpic.cn/psb?/V14GftmO22fJgW/WJQD2wK4WBpfTBdNR24vDf0taBOzBTqThEcxIRtdfk0!/b/dA8AAAAAAAAA&bo=UQFXAgAAAAAFACY!&rf=viewer_4)
 
 # And the Next
 
