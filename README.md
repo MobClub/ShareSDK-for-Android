@@ -7,7 +7,7 @@
 
 Visit our [official website](http://www.mob.com/) and download the latest version of ShareSDK. After extracting the downloaded file, you will find the following directory structure：
 
-![directory structure](http://wiki.sharesdk.cn/images/7/71/wiki_and_fi_1.png)
+![directory structure](http://pan.baidu.com/s/1qWj4bla)
 
 Open the **ShareSDK for Android** directory, you will find **MainLibs** and **OnekeyShare**. ShareSDK is stored in the MainLibs directory, and OnekeyShare is a GUI tool for developers to quickly complete the share feature by ShareSDK.
 
