@@ -8,23 +8,22 @@
 
 package cn.sharesdk.onekeyshare;
 
-import android.graphics.Bitmap;
-import android.os.AsyncTask;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.Toast;
+import static com.mob.tools.utils.R.getStringRes;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.mob.tools.FakeActivity;
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Toast;
 import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.ShareSDK;
-import com.mob.tools.utils.BitmapHelper;
 
-import static com.mob.tools.utils.R.getStringRes;
+import com.mob.tools.FakeActivity;
+import com.mob.tools.utils.BitmapHelper;
 
 public class EditPageFakeActivity extends FakeActivity {
 
@@ -239,12 +238,8 @@ public class EditPageFakeActivity extends FakeActivity {
 					return;
 				}
 				editRes.put(platform, param);
-				// a statistics of Sharing
-				ShareSDK.logDemoEvent(3, platform);
 				continue;
 			}
-			// a statistics of Sharing
-			ShareSDK.logDemoEvent(3, platform);
 			editRes.put(platform, shareParamMap);
 		}
 

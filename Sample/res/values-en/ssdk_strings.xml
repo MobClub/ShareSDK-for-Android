@@ -14,13 +14,14 @@
     <string name="kakaostory_client_inavailable">KakaoStory client not exists or the version is too low</string>
     <string name="whatsapp_client_inavailable">WhatsApp client not exists or the version is too low</string>
     <string name="laiwang_client_inavailable">Laiwangs client not exists or the version is too low</string>
+    <string name="alipay_client_inavailable">Alipay client not exists or the version is too low</string>
     
 	<string name="sinaweibo">Sina Weibo</string>
 	<string name="tencentweibo">Tencent Weibo</string>
 	<string name="qzone">QZone</string>
-	<string name="wechat">Wechat</string>
-	<string name="wechatmoments">Wechat Moments</string>
-	<string name="wechatfavorite">Wechat Favorite</string>
+	<string name="wechat">WeChat</string>
+	<string name="wechatmoments">WeChat Moments</string>
+	<string name="wechatfavorite">WeChat Favorite</string>
 	<string name="facebook">Facebook</string>
 	<string name="twitter">Twitter</string>
 	<string name="renren">Renren</string>
@@ -61,6 +62,7 @@
     <string name="facebookmessenger">Facebook Messenger</string>
     <string name="laiwang">Laiwang</string>
     <string name="laiwangmoments">Laiwang Moments</string>
+    <string name="alipay">Alipay</string>
 
 	<string name="share_to_qzone">Share To QZone</string>
 	<string name="share_to_qq">Share To QQ</string>

@@ -98,6 +98,7 @@
             </intent-filter>
             
         </activity>
+        
         <!-- 微信分享回调 -->
         <activity
             android:name=".wxapi.WXEntryActivity"
@@ -112,6 +113,12 @@
             android:excludeFromRecents="true"
             android:exported="true"
             android:launchMode="singleTop" />
+        <!-- 支付宝分享回调 -->
+        <activity
+            android:name=".apshare.ShareEntryActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"/>
         
         <!-- 调用新浪原生SDK，需要注册的activity -->
         <activity

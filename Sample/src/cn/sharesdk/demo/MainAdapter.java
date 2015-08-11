@@ -51,8 +51,13 @@ public class MainAdapter extends MenuAdapter
 	public static final int ITEM_WECHAT = 3;
 	/** "yixin" item */
 	public static final int ITEM_YIXIN = 4;
+	/** "Alipay" item */
+	public static final int ITEM_ALIPAY = 5;
+	/** "QR Code" item */
+	public static final int ITEM_QRCODE = 100;
+
 	/** "custom interfaces" item */
-	public static final int ITEM_CUSTOMER = 5;
+	public static final int ITEM_CUSTOMER = 6;
 	/** "follow our sina weibo" item */
 	public static final int ITEM_FOLLOW_SINAWEIBO = 7;
 	/** "follow our tencent weibo" item */
@@ -105,6 +110,12 @@ public class MainAdapter extends MenuAdapter
 		item.id = ITEM_YIXIN;
 		item.body = menu.getResources().getString(R.string.sm_item_yixin);
 		setItem(GROUP_DEMO, item);
+
+		item = new SlidingMenuItem();
+		item.id = ITEM_ALIPAY;
+		item.body = menu.getResources().getString(R.string.sm_item_alipay);
+		setItem(GROUP_DEMO, item);
+
 
 		item = new SlidingMenuItem();
 		item.id = ITEM_CUSTOMER;
@@ -208,6 +219,10 @@ public class MainAdapter extends MenuAdapter
 					break;
 					case ITEM_YIXIN: {
 						page = new YixinPage(menu);
+					}
+					break;
+					case ITEM_ALIPAY: {
+						page = new AlipayPage(menu);
 					}
 					break;
 					case ITEM_CUSTOMER: {

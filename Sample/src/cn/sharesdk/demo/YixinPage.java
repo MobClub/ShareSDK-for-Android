@@ -219,26 +219,26 @@ public class YixinPage extends SlidingMenuPage implements
 			break;
 			case R.id.btnVideo: {
 				sp.setShareType(Platform.SHARE_VIDEO);
-				sp.setUrl("http://t.cn/zT7cZAo");
+				sp.setUrl("http://www.mob.com");
 				sp.setImagePath(MainActivity.TEST_IMAGE);
 			}
 			break;
 			case R.id.btnWebpage: {
 				sp.setShareType(Platform.SHARE_WEBPAGE);
-				sp.setUrl("http://t.cn/zT7cZAo");
+				sp.setUrl("http://www.mob.com");
 				sp.setImagePath(MainActivity.TEST_IMAGE);
 			}
 			break;
 			case R.id.btnWebpageBm: {
 				sp.setShareType(Platform.SHARE_WEBPAGE);
-				sp.setUrl("http://t.cn/zT7cZAo");
+				sp.setUrl("http://www.mob.com");
 				Bitmap imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
 				sp.setImageData(imageData);
 			}
 			break;
 			case R.id.btnWebpageUrl: {
 				sp.setShareType(Platform.SHARE_WEBPAGE);
-				sp.setUrl("http://t.cn/zT7cZAo");
+				sp.setUrl("http://www.mob.com");
 				sp.setImageUrl(MainActivity.TEST_IMAGE_URL);
 			}
 			break;

@@ -336,7 +336,7 @@
     <Bluetooth
         Id="36"
         SortId="36"
-        Enable="true" />
+        Enable="false" />
 
     <Pocket
         Id="37"
@@ -358,5 +358,10 @@
         ConsumerSecret="38053202e1a5fe26c80c753071f0b573"
         RedirectUrl="http://mob.com"
         Enable="true" />
-   
+    
+     <Alipay
+        Id="52"
+        SortId="52"  
+        AppId="2015072400185895"
+        Enable="true"/>
 </DevInfor>

@@ -183,6 +183,9 @@ public class PlatformListFakeActivity extends FakeActivity {
 	}
 
 	protected void showEditPage(Context context, List<Platform> platforms) {
+		// a statistics of Sharing
+		ShareSDK.logDemoEvent(3, null);
+
 		EditPageFakeActivity editPageFakeActivity;
 		String editPageClass = ((Object)this).getClass().getPackage().getName()+".EditPage";
 		try {

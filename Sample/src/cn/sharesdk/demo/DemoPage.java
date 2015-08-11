@@ -153,13 +153,13 @@ public class DemoPage extends SlidingMenuPage implements
 			oks.setText(context.getString(R.string.share_content));
 		}
 
-		if (captureView) {
-			oks.setViewToShare(getPage());
-		} else {
-			oks.setImagePath(CustomShareFieldsPage.getString("imagePath", MainActivity.TEST_IMAGE));
-			oks.setImageUrl(CustomShareFieldsPage.getString("imageUrl", MainActivity.TEST_IMAGE_URL));
+//		if (captureView) {
+//			oks.setViewToShare(getPage());
+//		} else {
+//			oks.setImagePath(CustomShareFieldsPage.getString("imagePath", MainActivity.TEST_IMAGE));
+//			oks.setImageUrl(CustomShareFieldsPage.getString("imageUrl", MainActivity.TEST_IMAGE_URL));
 		//	oks.setImageArray(new String[]{MainActivity.TEST_IMAGE, MainActivity.TEST_IMAGE_URL});
-		}
+//		}
 
 		oks.setUrl(CustomShareFieldsPage.getString("url", "http://www.mob.com"));
 		oks.setFilePath(CustomShareFieldsPage.getString("filePath", MainActivity.TEST_IMAGE));

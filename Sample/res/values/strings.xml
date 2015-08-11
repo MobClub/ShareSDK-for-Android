@@ -6,6 +6,8 @@
     <string name="sm_item_auth">授权</string>
     <string name="sm_item_wechat">微信</string>
     <string name="sm_item_yixin">易信</string>
+    <string name="sm_item_alipay">支付宝</string>
+    <string name="sm_item_qrcode">二维码</string>
     <string name="sm_item_customer">自定义接口</string>
     <string name="sm_item_custom_fields">自定义分享内容</string>
     <string name="sm_item_fl_weibo">关注新浪微博</string>
@@ -42,8 +44,8 @@
 	<string name="customer_tumblr">获取Tumblr用户Post列表</string>
 	
 	<string name="not_yet_authorized">尚未授权</string>
-	<string name="share_content">ShareSDK for Android不仅集成简单、支持如QQ好友、微信、新浪微博、腾讯微博等所有社交平台，而且还有强大的统计分析管理后台，实时了解用户、信息流、回流率、传播效应等数据，详情见官网http://mob.com @Mob移动开发者服务平台</string>
-	<string name="share_content_short">ShareSDK不仅集成简单、支持如微信、新浪微博、腾讯微博等平台，还有强大的统计分析管理后台，实时了解用户、信息流、回流率、传播效应等数据，详情见官网http://mob.com @Mob移动开发者服务平台</string>
+	<string name="share_content">ShareSDK for Android不仅集成简单、支持如QQ好友、微信、新浪微博、腾讯微博等所有社交平台，而且还有强大的统计分析管理后台，实时了解用户、信息流、回流率、传播效应等数据，详情见官网 http://mob.com @Mob移动开发者服务平台</string>
+	<string name="share_content_short">ShareSDK不仅集成简单、支持如微信、新浪微博、腾讯微博等平台，还有强大的统计分析管理后台，实时了解用户、信息流、回流率、传播效应等数据，详情见官网 http://mob.com @Mob移动开发者服务平台</string>
 	<string name="evenote_title">ShareSDK是一个神奇的SDK</string>
 	
 	<string name="update">文字分享</string>
@@ -80,4 +82,10 @@
   	<string name="qq_share_way">请选择分享方式</string>
   	<string name="qq_share_from_qqlogin">QQ/QZone登录发微博</string>
   	<string name="qq_share_from_tlogin">腾讯微博登录发微博</string>
+  	<string name="share_to_alipay">支付宝朋友</string>
+  	
+  	<string name="qrcode_type_url">短链模式</string>
+  	<string name="qrcode_type_uri">自定义模式</string>
+  	<string name="qrcode_generate">生成二维码</string>
+  	<string name="qrcode_hint">请输入二维码的内容</string>
 </resources>

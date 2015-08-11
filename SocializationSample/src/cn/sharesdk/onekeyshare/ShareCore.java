@@ -84,7 +84,7 @@ public class ShareCore {
 				|| "KakaoStory".equals(platform) || "KakaoTalk".equals(platform)
 				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform)
 				|| "BaiduTieba".equals(platform) || "Laiwang".equals(platform)
-				|| "LaiwangMoments".equals(platform)
+				|| "LaiwangMoments".equals(platform) || "Alipay".equals(platform)
 				) {
 			return true;
 		} else if ("Evernote".equals(platform)) {
@@ -114,8 +114,8 @@ public class ShareCore {
 				|| "Pinterest".equals(platform) || "Yixin".equals(platform)
 				|| "YixinMoments".equals(platform) || "Line".equals(platform)
 				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform)
-				|| "BaiduTieba".equals(platform)) || "Laiwang".equals(platform)
-				|| "LaiwangMoments".equals(platform);
+				|| "BaiduTieba".equals(platform) || "Laiwang".equals(platform)
+				|| "LaiwangMoments".equals(platform) || "Alipay".equals(platform));
 	}
 
 
@@ -128,7 +128,8 @@ public class ShareCore {
 				|| "YixinMoments".equals(platform) || "Line".equals(platform)
 				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform)
 				|| "Pocket".equals(platform) || "BaiduTieba".equals(platform)
-				|| "Laiwang".equals(platform) || "LaiwangMoments".equals(platform));
+				|| "Laiwang".equals(platform) || "LaiwangMoments".equals(platform)
+				|| "Alipay".equals(platform));
 	}
 
 	/** Determine whether direct share */

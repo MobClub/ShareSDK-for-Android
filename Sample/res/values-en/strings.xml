@@ -10,6 +10,9 @@
     <string name="sm_item_demo">API</string>
     <string name="sm_item_auth">Authorize</string>
     <string name="sm_item_wechat">Wechat</string>
+    <string name="sm_item_yixin">Yixin</string>
+    <string name="sm_item_alipay">Alipay</string>
+    <string name="sm_item_qrcode">QR Code</string>
     <string name="sm_item_customer">Custom API</string>
     <string name="sm_item_custom_fields">Custom share fields</string>
     <string name="sm_item_fl_weibo">Follow Sina Weibo</string>
@@ -84,6 +87,11 @@
  	<string name="qq_share_from_tlogin">Tencent Weibo login to post Weibo</string>
     <string name="get_sina_friends_list">Get Sina Weibo followers</string>
     <string name="more">More</string>
-    <string name="sm_item_yixin">Yixin</string>
     <string name="video_upload">Share Video</string>
+  	<string name="share_to_alipay">Alipay Friends</string>
+  	
+  	<string name="qrcode_type_url">Http Url</string>
+  	<string name="qrcode_type_uri">Raw Content</string>
+  	<string name="qrcode_generate">Generate Code</string>
+  	<string name="qrcode_hint">input QR Code content</string>
 </resources>

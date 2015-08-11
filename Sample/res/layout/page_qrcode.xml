@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fff5f5f5"
+    android:orientation="vertical" >
+
+    <cn.sharesdk.framework.TitleLayout
+        android:id="@+id/llTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/auth_title_back" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/llTitle" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp" >
+
+            <EditText
+                android:id="@+id/codeContent"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:textSize="15sp"
+                android:hint="@string/qrcode_hint" />
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+
+                <CheckedTextView
+                    android:id="@+id/ctvStWc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="41dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/cb_drw"
+                    android:drawablePadding="2dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="@string/share_to_wechat"
+                    android:textColor="#ff000000"
+                    android:textSize="16dp" />
+
+                <CheckedTextView
+                    android:id="@+id/ctvStWf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="41dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/cb_drw"
+                    android:drawablePadding="2dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="@string/share_to_favorite"
+                    android:textColor="#ff000000"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnGenerate"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_back"
+                android:text="@string/qrcode_generate"
+                android:textSize="16dp" />
+            
+            <cn.sharesdk.demo.QRCodeView
+                android:id="@+id/codeView"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:minHeight="250dp"
+                android:layout_weight="1"
+                android:layout_margin="5dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llTitle"
+        android:background="@drawable/title_shadow" />
+
+</RelativeLayout>

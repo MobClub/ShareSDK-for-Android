@@ -93,6 +93,13 @@
             android:excludeFromRecents="true"
             android:exported="true"
             android:launchMode="singleTop" />
+        
+        <!-- 支付宝分享回调 -->
+        <activity
+            android:name=".apshare.ShareEntryActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"/>
     </application>
 
 </manifest>
