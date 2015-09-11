@@ -31,6 +31,7 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
 
 import com.mob.tools.network.NetworkHelper;
+import com.mob.tools.network.NetworkHelper.NetworkTimeOut;
 import com.mob.tools.utils.UIHandler;
 
 /**
@@ -99,7 +100,8 @@ public class MainActivity extends Activity implements Callback {
 		TEST_TEXT = new HashMap<Integer, String>();
 		try {
 			NetworkHelper network = new NetworkHelper();
-			String resp = network.httpGet("http://mob.com/Assets/snsplat.json", null, null, null);
+			NetworkTimeOut timeOut = null;
+			String resp = network.httpGet("http://mob.com/Assets/snsplat.json", null, null, timeOut);
 			JSONObject json = new JSONObject(resp);
 			int status = json.optInt("status");
 			if (status == 200) {
