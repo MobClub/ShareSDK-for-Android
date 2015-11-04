@@ -1,9 +1,9 @@
 /*
- * Offical Website:http://www.mob.com
- * Support QQ: 4006852216
- * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 官网地站:http://www.mob.com
+ * 技术支持QQ: 4006852216
+ * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
  *
- * Copyright (c) 2013 mob.com. All rights reserved.
+ * Copyright (c) 2013年 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.onekeyshare;
@@ -25,22 +25,24 @@ import cn.sharesdk.framework.ShareSDK;
 import com.mob.tools.utils.R;
 
 /**
- * ShareCore the actual export of OnekeyShare, which reflects
- * the pass in HashMap to a {@link ShareParams} of the target platform,
- * and shares it
+ * ShareCore是快捷分享的实际出口，此类使用了反射的方式，配合传递进来的HashMap，
+ *构造{@link ShareParams}对象，并执行分享，使快捷分享不再需要考虑目标平台
  */
 public class ShareCore {
 	private ShareContentCustomizeCallback customizeCallback;
 
-	/**
-	 * add a customize share content callback which will be
-	 * involved before the target platform sharing
-	 */
+	/** 设置用于分享过程中，根据不同平台自定义分享内容的回调 */
 	public void setShareContentCustomizeCallback(ShareContentCustomizeCallback callback) {
 		customizeCallback = callback;
 	}
 
-	/** perform sharing */
+	/**
+	 * 向指定平台分享内容
+	 * <p>
+	 * <b>注意：</b><br>
+	 * 参数data的键值需要严格按照{@link ShareParams}不同子类具体字段来命名，
+	 *否则无法反射此字段，也无法设置其值。
+	 */
 	public boolean share(Platform plat, HashMap<String, Object> data) {
 		if (plat == null || data == null) {
 			return false;
@@ -72,7 +74,7 @@ public class ShareCore {
 		return true;
 	}
 
-	/** Determine whether the platform shares by its client or not */
+	/** 判断指定平台是否使用客户端分享 */
 	public static boolean isUseClientToShare(String platform) {
 		if ("Wechat".equals(platform) || "WechatMoments".equals(platform)
 				|| "WechatFavorite".equals(platform) || "ShortMessage".equals(platform)
@@ -106,7 +108,7 @@ public class ShareCore {
 		return false;
 	}
 
-	/** Determine whether the platform can authorize */
+	/** 判断指定平台是否可以用来授权 */
 	public static boolean canAuthorize(Context context, String platform) {
 		return !("WechatMoments".equals(platform)
 				|| "WechatFavorite".equals(platform) || "ShortMessage".equals(platform)
@@ -119,7 +121,7 @@ public class ShareCore {
 	}
 
 
-	/** Determine whether the platform can get user info */
+	/** 判断指定平台是否可以用来获取用户资料 */
 	public static boolean canGetUserInfo(Context context, String platform) {
 		return !("WechatMoments".equals(platform)
 				|| "WechatFavorite".equals(platform) || "ShortMessage".equals(platform)
@@ -132,7 +134,7 @@ public class ShareCore {
 				|| "Alipay".equals(platform));
 	}
 
-	/** Determine whether direct share */
+	/** 判断是否直接分享 */
 	public static boolean isDirectShare(Platform platform) {
 		return platform instanceof CustomPlatform || isUseClientToShare(platform.getName());
 	}

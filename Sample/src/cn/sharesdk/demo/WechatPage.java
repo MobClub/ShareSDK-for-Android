@@ -1,9 +1,9 @@
 /*
- * Offical Website:http://www.mob.com
- * Support QQ: 4006852216
- * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 官网地站:http://www.mob.com
+ * 技术支持QQ: 4006852216
+ * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
  *
- * Copyright (c) 2013 mob.com. All rights reserved.
+ * Copyright (c) 2013年 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.demo;
@@ -29,7 +29,7 @@ import cn.sharesdk.framework.TitleLayout;
 
 import com.mob.tools.utils.UIHandler;
 
-/** page to show Wechat apis. */
+/** 微信api的演示页面，展示了“微信好友”、“微信朋友圈”和“微信收藏夹”的接口 */
 public class WechatPage extends SlidingMenuPage implements
 		OnClickListener, PlatformActionListener {
 	private TitleLayout llTitle;
@@ -212,7 +212,7 @@ public class WechatPage extends SlidingMenuPage implements
 				sp.setShareType(Platform.SHARE_MUSIC);
 				String musicUrl = "http://media.ringring.vn/ringtone/realtone/0/0/161/165346.mp3";
 				sp.setMusicUrl(musicUrl);
-				sp.setUrl("http://mob.com");
+				sp.setUrl("http://www.mob.com");
 				sp.setImagePath(MainActivity.TEST_IMAGE);
 			}
 			break;
@@ -243,7 +243,7 @@ public class WechatPage extends SlidingMenuPage implements
 			break;
 			case R.id.btnApp: {
 				sp.setShareType(Platform.SHARE_APPS);
-				// local path of the apk to share
+				// 待分享app的本地地址
 				sp.setFilePath(MainActivity.TEST_IMAGE);
 				String extInfo = "ShareSDK received an app message from wechat client";
 				sp.setExtInfo(extInfo);
@@ -252,7 +252,7 @@ public class WechatPage extends SlidingMenuPage implements
 			break;
 			case R.id.btnAppExt: {
 				sp.setShareType(Platform.SHARE_APPS);
-				// custom message for wechat to send back to your app installed in receiver's device
+				// 供微信回调的第三方信息（或者自定义脚本）
 				String extInfo = "ShareSDK received an app message from wechat client";
 				sp.setExtInfo(extInfo);
 				sp.setImagePath(MainActivity.TEST_IMAGE);
@@ -260,7 +260,7 @@ public class WechatPage extends SlidingMenuPage implements
 			break;
 			case R.id.btnFile: {
 				sp.setShareType(Platform.SHARE_FILE);
-				// local path of the file to share
+				// 待分享文件的本地地址
 				sp.setFilePath(MainActivity.TEST_IMAGE);
 				sp.setImagePath(MainActivity.TEST_IMAGE);
 			}
@@ -299,26 +299,26 @@ public class WechatPage extends SlidingMenuPage implements
 		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
 			case 1: {
-				// success
+				// 成功
 				Platform plat = (Platform) msg.obj;
 				text = plat.getName() + " completed at " + text;
 			}
 			break;
 			case 2: {
-				// failed
+				// 失败
 				if ("WechatClientNotExistException".equals(msg.obj.getClass().getSimpleName())) {
-					text = getContext().getString(R.string.wechat_client_inavailable);
+					text = getContext().getString(R.string.ssdk_wechat_client_inavailable);
 				}
 				else if ("WechatTimelineNotSupportedException".equals(msg.obj.getClass().getSimpleName())) {
-					text = getContext().getString(R.string.wechat_client_inavailable);
+					text = getContext().getString(R.string.ssdk_wechat_client_inavailable);
 				}
 				else {
-					text = getContext().getString(R.string.share_failed);
+					text = getContext().getString(R.string.ssdk_oks_share_failed);
 				}
 			}
 			break;
 			case 3: {
-				// canceled
+				// 取消
 				Platform plat = (Platform) msg.obj;
 				text = plat.getName() + " canceled at " + text;
 			}

@@ -9,7 +9,7 @@
         android:id="@+id/llTitle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/auth_title_back" />
+        android:background="@drawable/ssdk_oks_auth_title_back" />
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -38,6 +38,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/llTitle"
-        android:background="@drawable/title_shadow" />
+        android:background="@drawable/ssdk_oks_title_shadow" />
 
 </RelativeLayout>

@@ -8,7 +8,8 @@
 
 package cn.sharesdk.onekeyshare.theme.classic;
 
-import static com.mob.tools.utils.R.getBitmapRes;
+import static cn.sharesdk.framework.utils.ShareSDKR.getBitmapRes;
+import static cn.sharesdk.framework.utils.ShareSDKR.getStringRes;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -169,11 +170,11 @@ public class PlatformGridView extends LinearLayout implements
 		addView(llPoints);
 
 		int dp_5 = com.mob.tools.utils.R.dipToPx(context, 5);
-		int resId = getBitmapRes(getContext(), "light_blue_point");
+		int resId = getBitmapRes(getContext(), "ssdk_oks_light_blue_point");
 		if (resId > 0) {
 			grayPoint = BitmapFactory.decodeResource(getResources(), resId);
 		}
-		resId = getBitmapRes(getContext(), "blue_point");
+		resId = getBitmapRes(getContext(), "ssdk_oks_blue_point");
 		if (resId > 0) {
 			bluePoint = BitmapFactory.decodeResource(getResources(), resId);
 		}
@@ -476,7 +477,7 @@ public class PlatformGridView extends LinearLayout implements
 				return "";
 			}
 
-			int resId = com.mob.tools.utils.R.getStringRes(getContext(), plat.getName().toLowerCase());
+			int resId = getStringRes(getContext(), plat.getName().toLowerCase());
 			if (resId > 0) {
 				return getContext().getString(resId);
 			}

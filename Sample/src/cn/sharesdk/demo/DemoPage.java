@@ -1,9 +1,9 @@
 /*
- * Offical Website:http://www.mob.com
- * Support QQ: 4006852216
- * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 官网地站:http://www.mob.com
+ * 技术支持QQ: 4006852216
+ * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
  *
- * Copyright (c) 2013 mob.com. All rights reserved.
+ * Copyright (c) 2013年 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.demo;
@@ -38,7 +38,17 @@ import cn.sharesdk.onekeyshare.ShareCore;
 
 import com.mob.tools.utils.UIHandler;
 
-/** page to show how to use onekeyshare, how to get accse token, how to get user info etc. */
+/**
+ * ShareSDK 官网地址 ： http://www.mob.com </br>
+ *1、ShareSDK接口演示页面</br>
+ *包括演示使用快捷分享完成图文分享、</br>
+ *无页面直接分享、授权、关注和不同平台的分享等等功能。</br>
+ *
+ *2、如果要咨询客服，请加企业QQ 4006852216 </br>
+ *3、咨询客服时，请把问题描述清楚，最好附带错误信息截图 </br>
+ *4、一般问题，集成文档中都有，请先看看集成文档；减少客服压力，多谢合作  ^_^
+ *5、由于客服压力巨大，每个月难免有那么几天，请见谅
+ */
 public class DemoPage extends SlidingMenuPage implements
 		OnClickListener, PlatformActionListener {
 	private TitleLayout llTitle;
@@ -107,19 +117,19 @@ public class DemoPage extends SlidingMenuPage implements
 			}
 
 			if (lineCount >= 2) {
-				// place tow buttons in each line
+				// 每行两个按钮
 				line = (LinearLayout) View.inflate(getContext(),
 						R.layout.demo_page_item, null);
 				llList.addView(line);
 				lineCount = 0;
 			}
 
-			// initiate buttons
+			// 处理左边按钮和右边按钮
 			int res = lineCount == 0 ? R.id.btnLeft : R.id.btnRight;
 			Button btn = (Button) line.findViewById(res);
 			btn.setSingleLine();
 			int platNameRes = com.mob.tools.utils.R.getStringRes(
-					getContext(), name.toLowerCase());
+					getContext(), "ssdk_" +name.toLowerCase());
 			if (platNameRes > 0) {
 				String platName = getContext().getString(platNameRes);
 				String text = getContext().getString(R.string.share_to_format, platName);
@@ -136,7 +146,20 @@ public class DemoPage extends SlidingMenuPage implements
 		return LayoutInflater.from(getContext()).inflate(R.layout.page_demo, null);
 	}
 
-	// sharing by onekeyshare
+	// 使用快捷分享完成分享（请务必仔细阅读位于SDK解压目录下Docs文件夹中OnekeyShare类的JavaDoc）
+	/**ShareSDK集成方法有两种</br>
+	 * 1、第一种是引用方式，例如引用onekeyshare项目，onekeyshare项目再引用mainlibs库</br>
+	 * 2、第二种是把onekeyshare和mainlibs集成到项目中，本例子就是用第二种方式</br>
+	 * 请看“ShareSDK 使用说明文档”，SDK下载目录中 </br>
+	 * 或者看网络集成文档 http://wiki.mob.com/Android_%E5%BF%AB%E9%80%9F%E9%9B%86%E6%88%90%E6%8C%87%E5%8D%97
+	 * 3、混淆时，把sample或者本例子的混淆代码copy过去，在proguard-project.txt文件中
+	 *
+	 *
+	 * 平台配置信息有三种方式：
+	 * 1、在我们后台配置各个微博平台的key
+	 * 2、在代码中配置各个微博平台的key，http://mob.com/androidDoc/cn/sharesdk/framework/ShareSDK.html
+	 * 3、在配置文件中配置，本例子里面的assets/ShareSDK.conf,
+	 */
 	private void showShare(boolean silent, String platform, boolean captureView) {
 		Context context = getContext();
 		final OnekeyShare oks = new OnekeyShare();
@@ -153,23 +176,21 @@ public class DemoPage extends SlidingMenuPage implements
 			oks.setText(context.getString(R.string.share_content));
 		}
 
-//		if (captureView) {
-//			oks.setViewToShare(getPage());
-//		} else {
-//			oks.setImagePath(CustomShareFieldsPage.getString("imagePath", MainActivity.TEST_IMAGE));
-//			oks.setImageUrl(CustomShareFieldsPage.getString("imageUrl", MainActivity.TEST_IMAGE_URL));
+		if (captureView) {
+			oks.setViewToShare(getPage());
+		} else {
+		//	oks.setImagePath(CustomShareFieldsPage.getString("imagePath", MainActivity.TEST_IMAGE));
+			oks.setImageUrl(CustomShareFieldsPage.getString("imageUrl", MainActivity.TEST_IMAGE_URL));
 		//	oks.setImageArray(new String[]{MainActivity.TEST_IMAGE, MainActivity.TEST_IMAGE_URL});
-//		}
+		}
 
 		oks.setUrl(CustomShareFieldsPage.getString("url", "http://www.mob.com"));
 		oks.setFilePath(CustomShareFieldsPage.getString("filePath", MainActivity.TEST_IMAGE));
-		oks.setComment(CustomShareFieldsPage.getString("comment", context.getString(R.string.share)));
+		oks.setComment(CustomShareFieldsPage.getString("comment", context.getString(R.string.ssdk_oks_share)));
 		oks.setSite(CustomShareFieldsPage.getString("site", context.getString(R.string.app_name)));
 		oks.setSiteUrl(CustomShareFieldsPage.getString("siteUrl", "http://mob.com"));
 		oks.setVenueName(CustomShareFieldsPage.getString("venueName", "ShareSDK"));
 		oks.setVenueDescription(CustomShareFieldsPage.getString("venueDescription", "This is a beautiful place!"));
-		oks.setLatitude(23.056081f);
-		oks.setLongitude(113.385708f);
 		oks.setSilent(silent);
 		oks.setShareFromQQAuthSupport(shareFromQQLogin);
 		String theme = CustomShareFieldsPage.getString("theme", "classic");
@@ -184,20 +205,20 @@ public class DemoPage extends SlidingMenuPage implements
 		}
 
 
-		// display editpage in dialog mode
+		// 令编辑页面显示为Dialog模式
 		oks.setDialogMode();
 
-		// disable sso in authorizing
+		// 在自动授权时可以禁用SSO方式
 		//if(!CustomShareFieldsPage.getBoolean("enableSSO", true))
 			oks.disableSSOWhenAuthorize();
 
-		// remove comments, use OneKeyShareCallback as the share action callback
+		// 去除注释，则快捷分享的操作结果将通过OneKeyShareCallback回调
 		//oks.setCallback(new OneKeyShareCallback());
 
-		// Custom fields content of different platforms
+		// 去自定义不同平台的字段内容
 		//oks.setShareContentCustomizeCallback(new ShareContentCustomizeDemo());
 
-		// remove comments, shows how to add custom logos in platform gridview
+		// 去除注释，演示在九宫格设置自定义的图标
 		Bitmap enableLogo = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
 		Bitmap disableLogo = BitmapFactory.decodeResource(getResources(), R.drawable.sharesdk_unchecked);
 		String label = getResources().getString(R.string.app_name);
@@ -209,11 +230,11 @@ public class DemoPage extends SlidingMenuPage implements
 		};
 		oks.setCustomerLogo(enableLogo, disableLogo, label, listener);
 
-		// remove comments, hide logos of sinaweibo and tencentweibo in platform gridview
+		// 去除注释，则快捷分享九宫格中将隐藏新浪微博和腾讯微博
 //		oks.addHiddenPlatform(SinaWeibo.NAME);
 //		oks.addHiddenPlatform(TencentWeibo.NAME);
 
-		// set a view to be the background of EditPage
+		// 为EditPage设置一个背景的View
 		oks.setEditPageBackground(getPage());
 		oks.show(context);
 	}
@@ -231,17 +252,17 @@ public class DemoPage extends SlidingMenuPage implements
 
 		switch (v.getId()) {
 			case R.id.btnShareAllGui: {
-				// photo-text sharing
+				// 图文分享
 				showShare(false, null, false);
 			}
 			break;
 			case R.id.btnShareAll: {
-				// share directly
+				// 直接分享
 				showShare(true, null, false);
 			}
 			break;
 			case R.id.btnShareView: {
-				// shake to share the current page view
+				// 摇一摇截图分享
 				Shake2Share ss = new Shake2Share();
 				ss.setOnShakeListener(new OnShakeListener() {
 					public void onShake() {
@@ -252,41 +273,41 @@ public class DemoPage extends SlidingMenuPage implements
 			}
 			break;
 			case R.id.btnFlSw: {
-				// follow our official sina weibo
+				// 关注新浪微博
 				Platform plat = ShareSDK.getPlatform("SinaWeibo");
 				plat.setPlatformActionListener(this);
 				plat.followFriend(MainAdapter.SDK_SINAWEIBO_UID);
 			}
 			break;
 			case R.id.btnFlTc: {
-				// follow our official tencent weibo
+				// 关注腾讯微博
 				Platform plat = ShareSDK.getPlatform("TencentWeibo");
 				plat.setPlatformActionListener(this);
 				plat.followFriend(MainAdapter.SDK_TENCENTWEIBO_UID);
 			}
 			break;
 			case R.id.btnGetToken: {
-				// request token
+				// 获取token
 				GetTokenPage page = new GetTokenPage();
 				page.show(getContext(), null);
 			}
 			break;
 			case R.id.btnGetInfor: {
-				// request user info of the authorizing account
+				// 获取自己的资料
 				GetInforPage page = new GetInforPage();
 				page.setType(0);
 				page.show(getContext(), null);
 			}
 			break;
 			case R.id.btnGetUserInfor: {
-				// request user info of other account
+				// 获取指定帐号的资料
 				GetInforPage page = new GetInforPage();
 				page.setType(1);
 				page.show(getContext(), null);
 			}
 			break;
 			default: {
-				// share to platforms
+				// 分享到具体的平台
 				Object tag = v.getTag();
 				if (tag != null) {
 					final String platformName = ((Platform) tag).getName();
@@ -358,17 +379,17 @@ public class DemoPage extends SlidingMenuPage implements
 		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
 			case 1: {
-				// success
+				// 成功
 				text = plat.getName() + " completed at " + text;
 			}
 			break;
 			case 2: {
-				// failed
+				// 失败
 				text = plat.getName() + " caught error at " + text;
 			}
 			break;
 			case 3: {
-				// canceled
+				// 取消
 				text = plat.getName() + " canceled at " + text;
 			}
 			break;

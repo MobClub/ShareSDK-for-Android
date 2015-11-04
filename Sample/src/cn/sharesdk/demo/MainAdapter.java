@@ -1,9 +1,9 @@
 /*
- * Offical Website:http://www.mob.com
- * Support QQ: 4006852216
- * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 官网地站:http://www.mob.com
+ * 技术支持QQ: 4006852216
+ * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
  *
- * Copyright (c) 2013 mob.com. All rights reserved.
+ * Copyright (c) 2013年 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.demo;
@@ -35,47 +35,51 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import com.mob.tools.utils.UIHandler;
 
-/** Adapter of sliding menu, handles ui events of sliding menu */
+/**
+ * 侧栏实际逻辑类。
+ * <p>
+ * 负责完成侧栏目录的展示、事件的监听、页面主体的显示和切换等等业务。
+ */
 public class MainAdapter extends MenuAdapter
 		implements Callback, PlatformActionListener {
-	/** "interfaces" group */
+	/** "接口"分组 */
 	public static final int GROUP_DEMO = 1;
-	/** "more" group*/
+	/** “更多”分组 */
 	public static final int GROUP_MORE = 2;
 
-	/** "interface" item */
+	/** “接口”项 */
 	public static final int ITEM_DEMO = 1;
-	/** "authorize" item */
+	/** “授权”项 */
 	public static final int ITEM_AUTH = 2;
-	/** "wechat" item */
+	/** “微信”项 */
 	public static final int ITEM_WECHAT = 3;
-	/** "yixin" item */
+	/** “易信”项 */
 	public static final int ITEM_YIXIN = 4;
-	/** "Alipay" item */
+	/** “支付宝”项  */
 	public static final int ITEM_ALIPAY = 5;
-	/** "QR Code" item */
+	/** “二维码”项  */
 	public static final int ITEM_QRCODE = 100;
 
-	/** "custom interfaces" item */
+	/** “自定义接口”项 */
 	public static final int ITEM_CUSTOMER = 6;
-	/** "follow our sina weibo" item */
+	/** “关注新浪微博”项 */
 	public static final int ITEM_FOLLOW_SINAWEIBO = 7;
-	/** "follow our tencent weibo" item */
+	/** “关注腾讯微博”项 */
 	public static final int ITEM_FOLLOW_TECENTWEIBO = 8;
-	/** "visit our website" item */
+	/** “关注官方网站”项 */
 	public static final int ITEM_VISIT_WEBSITE = 9;
-	/** "version" item */
+	/** “版本”项 */
 	public static final int ITEM_ABOUT = 10;
-	/** "custom share fields" item */
+	/** “自定义分享内容”项 */
 	public static final int ITEM_CUSTOM_FIELDS = 11;
 
-	/** official wecaht account */
+	/** 官方微信 */
 	public static final String WECHAT_ADDR = "http://weixin.qq.com/r/HHURHl7EjmDxh099nyA4";
-	/** official website */
+	/** 官方网站 */
 	public static final String WEBSITE_ADDR = "http://www.mob.com";
-	/** official sina weibo */
+	/** 官方新浪微博 */
 	public static final String SDK_SINAWEIBO_UID = "3189087725";
-	/** official tencent weibo */
+	/** 官方腾讯微博 */
 	public static final String SDK_TENCENTWEIBO_UID = "shareSDK";
 
 	private SlidingMenu menu;
@@ -149,7 +153,7 @@ public class MainAdapter extends MenuAdapter
 		setItem(GROUP_MORE, item);
 	}
 
-	/** create group title */
+	/** 造“组”标题 */
 	public View getGroupView(int position, ViewGroup menu) {
 		String text = getTitle(position);
 		if (text == null || text.length() <= 0) {
@@ -170,7 +174,7 @@ public class MainAdapter extends MenuAdapter
 		return tvTitle;
 	}
 
-	/** create menu items */
+	/** 造“菜单项” */
 	public View getItemView(SlidingMenuItem item, ViewGroup menu) {
 		TextView tvItem = new TextView(menu.getContext());
 		tvItem.setGravity(Gravity.CENTER_VERTICAL);
@@ -193,7 +197,10 @@ public class MainAdapter extends MenuAdapter
 		return (int) (dip * context.getResources().getDisplayMetrics().density + 0.5f);
 	}
 
-	/** this methos will be called after the menu item is clicked */
+	/**
+	 * 当菜单项被点击的时候，此方法会被触发。用于处理菜单项的业务逻辑
+	 *并加载对应的页面主体。
+	 */
 	public boolean onItemTrigger(SlidingMenuItem item) {
 		if (curItem != null && curItem.equals(item)
 				&& item.group == GROUP_DEMO) {
@@ -328,17 +335,17 @@ public class MainAdapter extends MenuAdapter
 		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
 			case 1: {
-				// success
+				// 成功
 				text = palt.getName() + " completed at " + text;
 			}
 			break;
 			case 2: {
-				// failed
+				// 失败
 				text = palt.getName() + " caught error at " + text;
 			}
 			break;
 			case 3: {
-				// canceled
+				// 取消
 				text = palt.getName() + " canceled at " + text;
 			}
 			break;

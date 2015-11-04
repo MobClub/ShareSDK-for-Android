@@ -1,9 +1,9 @@
 /*
- * Offical Website:http://www.mob.com
- * Support QQ: 4006852216
- * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 官网地站:http://www.mob.com
+ * 技术支持QQ: 4006852216
+ * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
  *
- * Copyright (c) 2013 mob.com. All rights reserved.
+ * Copyright (c) 2013年 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.onekeyshare.theme.skyblue;
@@ -19,15 +19,15 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.PlatformListFakeActivity;
 
-import static com.mob.tools.utils.R.getLayoutRes;
-import static com.mob.tools.utils.R.getStringRes;
+import static cn.sharesdk.framework.utils.ShareSDKR.getLayoutRes;
+import static cn.sharesdk.framework.utils.ShareSDKR.getStringRes;
 
 public class PlatformListPage extends PlatformListFakeActivity implements View.OnClickListener {
 	private PlatformGridViewAdapter gridViewAdapter;
 
 	public void onCreate() {
 		super.onCreate();
-		activity.setContentView(getLayoutRes(activity, "skyblue_share_platform_list"));
+		activity.setContentView(getLayoutRes(activity, "ssdk_oks_skyblue_share_platform_list"));
 
 		initView();
 	}
@@ -83,7 +83,7 @@ public class PlatformListPage extends PlatformListFakeActivity implements View.O
 
 		List<Object> checkedPlatforms = gridViewAdapter.getCheckedItems();
 		if(checkedPlatforms.size() == 0){
-			Toast.makeText(activity, getStringRes(activity, "select_one_plat_at_least"), Toast.LENGTH_SHORT).show();
+			Toast.makeText(activity, getStringRes(activity, "ssdk_oks_select_one_plat_at_least"), Toast.LENGTH_SHORT).show();
 			return;
 		}
 

@@ -1,9 +1,9 @@
 /*
- * Offical Website:http://www.mob.com
- * Support QQ: 4006852216
- * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 官网地站:http://www.mob.com
+ * 技术支持QQ: 4006852216
+ * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
  *
- * Copyright (c) 2013 mob.com. All rights reserved.
+ * Copyright (c) 2013年 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.demo;
@@ -25,32 +25,32 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-/** examples of custom interfaces */
+/** 自定义接口的演示页面 */
 public class CustomerPage extends SlidingMenuPage implements
 		OnClickListener, PlatformActionListener {
-	/** action code of Douban */
+	/** 豆瓣自定义事件代码 */
 	private static final short ACTION_DOUBAN = 1;
-	/** action code of Facebook */
+	/** Facebook自定义事件代码 */
 	private static final short ACTION_FACEBOOK = 2;
 
-	/** action code of Renren */
+	/** 人人网自定义事件代码 */
 	private static final short ACTION_RENREN = 4;
-	/** action code of SinaWeibo */
+	/** 新浪微博自定义事件代码 */
 	private static final short ACTION_SINAWEIBO = 5;
-	/** action code of Qzone */
+	/** QQ空间自定义事件代码 */
 	private static final short ACTION_QZONE = 6;
-	/** action code of TencentWeibo */
+	/** 腾讯微博自定义事件代码 */
 	private static final short ACTION_TENCENTWEIBO = 7;
-	/** action code of Twitter */
+	/** twitter自定义事件代码 */
 	private static final short ACTION_TWITTER = 8;
-	/** action code of Kaixin */
+	/** 开心网自定义事件代码 */
 	private static final short ACTION_KAIXIN = 9;
 
-	/** action code of Youdao */
+	/** 有道云笔记自定义事件代码 */
 	private static final short ACTION_YOUDAONOTE = 11;
-	/** action code of SohuSuishenkan */
+	/** 搜狐随身看自定义事件代码 */
 	private static final short ACTION_SOHUSUISHENKAN = 12;
-	/** action code of tumblr */
+	/** tumblr自定义事件代码 */
 	private static final short ACTION_TUMBLR = 13;
 	private TitleLayout llTitle;
 
@@ -118,7 +118,7 @@ public class CustomerPage extends SlidingMenuPage implements
 	}
 
 	private void renren() {
-		// share local image
+		// 分享本地图片
 		Platform renren = ShareSDK.getPlatform("Renren");
 		renren.setPlatformActionListener(this);
 		String url = "https://api.renren.com/v2/photo/upload";
@@ -130,7 +130,7 @@ public class CustomerPage extends SlidingMenuPage implements
 		filePathes.put("file", MainActivity.TEST_IMAGE);
 		renren.customerProtocol(url, method, customerAction, values, filePathes);
 
-		// share online image
+		// 分享网络图片
 //		Platform renren = ShareSDK.getPlatform("Renren");
 //		renren.setPlatformActionListener(this);
 //		String url = "https://api.renren.com/v2/share/url/put";
@@ -275,12 +275,12 @@ public class CustomerPage extends SlidingMenuPage implements
 		UIHandler.sendMessage(msg, this);
 	}
 
-	/** handling custom actions */
+	/** 处理操作结果 */
 	@SuppressWarnings("unchecked")
 	public boolean handleMessage(Message msg) {
 		switch (msg.arg1) {
 			case 1: {
-				// success
+				// 成功
 				JsonPage page = new JsonPage();
 				String title = llTitle.getTvTitle().getText().toString();
 				page.setData(title, (HashMap<String, Object>) msg.obj);
@@ -288,7 +288,7 @@ public class CustomerPage extends SlidingMenuPage implements
 			}
 			break;
 			case 2: {
-				// failed
+				// 失败
 				Platform plat = (Platform) msg.obj;
 				String text = actionToString(msg.arg2);
 				text = plat.getName() + " caught error at " + text;
@@ -296,7 +296,7 @@ public class CustomerPage extends SlidingMenuPage implements
 			}
 			break;
 			case 3: {
-				// canceled
+				// 取消
 				Platform plat = (Platform) msg.obj;
 				String text = actionToString(msg.arg2);
 				text = plat.getName() + " canceled at " + text;
@@ -308,7 +308,7 @@ public class CustomerPage extends SlidingMenuPage implements
 		return false;
 	}
 
-	/** converts ShareSDK actions into string */
+	/** 将action转换为String */
 	private String actionToString(int action) {
 		switch (action) {
 			case Platform.ACTION_AUTHORIZING: return "ACTION_AUTHORIZING";

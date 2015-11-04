@@ -7,7 +7,7 @@
         android:id="@+id/llTitle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/auth_title_back" />
+        android:background="@drawable/ssdk_oks_auth_title_back" />
     <ListView 
         android:id="@+id/lvFriendList"
         android:layout_width="fill_parent"

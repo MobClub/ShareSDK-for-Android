@@ -1,9 +1,9 @@
 /*
- * Offical Website:http://www.mob.com
- * Support QQ: 4006852216
- * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 官网地站:http://www.mob.com
+ * 技术支持QQ: 4006852216
+ * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
  *
- * Copyright (c) 2013 mob.com. All rights reserved.
+ * Copyright (c) 2013年 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.onekeyshare.theme.skyblue;
@@ -43,10 +43,10 @@ import com.mob.tools.utils.UIHandler;
 import cn.sharesdk.onekeyshare.FollowerListFakeActivity;
 
 import static com.mob.tools.utils.R.dipToPx;
-import static com.mob.tools.utils.R.getBitmapRes;
-import static com.mob.tools.utils.R.getStringRes;
+import static cn.sharesdk.framework.utils.ShareSDKR.getBitmapRes;
+import static cn.sharesdk.framework.utils.ShareSDKR.getStringRes;
 
-/** Request a list of friends or followings */
+/** 获取好友或关注列表 */
 public class FollowListPage extends FollowerListFakeActivity implements OnClickListener, OnItemClickListener {
 	private TitleLayout llTitle;
 	private FollowAdapter adapter;
@@ -59,19 +59,19 @@ public class FollowListPage extends FollowerListFakeActivity implements OnClickL
 		llPage.setOrientation(LinearLayout.VERTICAL);
 		activity.setContentView(llPage);
 
-		// title bar
+		// 标题栏
 		llTitle = new TitleLayout(getContext());
-		int resId = getBitmapRes(getContext(), "title_back");
+		int resId = getBitmapRes(getContext(), "ssdk_oks_title_back");
 		if (resId > 0) {
 			llTitle.setBackgroundResource(resId);
 		}
 		llTitle.getBtnBack().setOnClickListener(this);
-		resId = getStringRes(getContext(), "multi_share");
+		resId = getStringRes(getContext(), "ssdk_oks_multi_share");
 		if (resId > 0) {
 			llTitle.getTvTitle().setText(resId);
 		}
 		llTitle.getBtnRight().setVisibility(View.VISIBLE);
-		resId = getStringRes(getContext(), "finish");
+		resId = getStringRes(getContext(), "ssdk_oks_finish");
 		if (resId > 0) {
 			llTitle.getBtnRight().setText(resId);
 		}
@@ -87,7 +87,7 @@ public class FollowListPage extends FollowerListFakeActivity implements OnClickL
 		flPage.setLayoutParams(lpFl);
 		llPage.addView(flPage);
 
-		// the list of friends or followings
+		// 关注（或朋友）列表
 		PullToRefreshView followList = new PullToRefreshView(getContext());
 		FrameLayout.LayoutParams lpLv = new FrameLayout.LayoutParams(
 				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
@@ -99,7 +99,7 @@ public class FollowListPage extends FollowerListFakeActivity implements OnClickL
 		adapter.getListView().setOnItemClickListener(this);
 
 		ImageView ivShadow = new ImageView(getContext());
-		resId = getBitmapRes(getContext(), "title_shadow");
+		resId = getBitmapRes(getContext(), "ssdk_oks_title_shadow");
 		if (resId > 0) {
 			ivShadow.setBackgroundResource(resId);
 		}
@@ -108,7 +108,7 @@ public class FollowListPage extends FollowerListFakeActivity implements OnClickL
 		ivShadow.setLayoutParams(lpSd);
 		flPage.addView(ivShadow);
 
-		// request data
+		// 请求数据
 		followList.performPulling(true);
 	}
 
@@ -162,11 +162,11 @@ public class FollowListPage extends FollowerListFakeActivity implements OnClickL
 
 			llHeader = new PRTHeader(getContext());
 
-			int resId = getBitmapRes(getContext(), "auth_follow_cb_chd");
+			int resId = getBitmapRes(getContext(), "ssdk_oks_auth_follow_cb_chd");
 			if (resId > 0) {
 				bmChd = BitmapFactory.decodeResource(view.getResources(), resId);
 			}
-			resId = getBitmapRes(getContext(), "auth_follow_cb_unc");
+			resId = getBitmapRes(getContext(), "ssdk_oks_auth_follow_cb_unc");
 			if (resId > 0) {
 				bmUnch = BitmapFactory.decodeResource(view.getResources(), resId);
 			}
@@ -408,12 +408,12 @@ public class FollowListPage extends FollowerListFakeActivity implements OnClickL
 			}
 
 			if (percent < 100) {
-				int resId = getStringRes(getContext(), "pull_to_refresh");
+				int resId = getStringRes(getContext(), "ssdk_oks_pull_to_refresh");
 				if (resId > 0) {
 					tvHeader.setText(resId);
 				}
 			} else {
-				int resId = getStringRes(getContext(), "release_to_refresh");
+				int resId = getStringRes(getContext(), "ssdk_oks_release_to_refresh");
 				if (resId > 0) {
 					tvHeader.setText(resId);
 				}
@@ -423,7 +423,7 @@ public class FollowListPage extends FollowerListFakeActivity implements OnClickL
 		public void onRequest() {
 			ivArrow.setVisibility(View.GONE);
 			pbRefreshing.setVisibility(View.VISIBLE);
-			int resId = getStringRes(getContext(), "refreshing");
+			int resId = getStringRes(getContext(), "ssdk_oks_refreshing");
 			if (resId > 0) {
 				tvHeader.setText(resId);
 			}

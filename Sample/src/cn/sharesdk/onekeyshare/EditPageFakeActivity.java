@@ -1,14 +1,14 @@
 /*
- * Offical Website:http://www.mob.com
- * Support QQ: 4006852216
- * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 官网地站:http://www.mob.com
+ * 技术支持QQ: 4006852216
+ * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
  *
- * Copyright (c) 2013 mob.com. All rights reserved.
+ * Copyright (c) 2013年 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.onekeyshare;
 
-import static com.mob.tools.utils.R.getStringRes;
+import static cn.sharesdk.framework.utils.ShareSDKR.getStringRes;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class EditPageFakeActivity extends FakeActivity {
 	protected List<Platform> platforms;
 
 	protected HashMap<String, Object> shareParamMap;
-	// set to display as a dialog
+	// 设置显示模式为Dialog模式
 	protected boolean dialogMode;
 	protected View backgroundView;
 	protected ArrayList<String> toFriendList;
@@ -50,7 +50,7 @@ public class EditPageFakeActivity extends FakeActivity {
 		shareParamMap = data;
 	}
 
-	/** set to display as a dialog */
+	/** 设置显示模式为Dialog模式 */
 	public void setDialogMode() {
 		dialogMode = true;
 	}
@@ -71,7 +71,7 @@ public class EditPageFakeActivity extends FakeActivity {
 			return "";
 		}
 
-		int resId = getStringRes(getContext(), platform);
+		int resId = getStringRes(getContext(), "ssdk_" + platform);
 		return getContext().getString(resId);
 	}
 
@@ -164,7 +164,6 @@ public class EditPageFakeActivity extends FakeActivity {
 		}
 
 		new AsyncTask<Object, Void, ImageListResultsCallback>() {
-			@Override
 			protected ImageListResultsCallback doInBackground(Object... objects) {
 				for(ImageInfo imageInfo : shareImageList) {
 					if(imageInfo.bitmap == null) {
@@ -187,7 +186,6 @@ public class EditPageFakeActivity extends FakeActivity {
 				return (ImageListResultsCallback) objects[0];
 			}
 
-			@Override
 			protected void onPostExecute(ImageListResultsCallback callback1) {
 				callback1.onFinish(shareImageList);
 			}
@@ -231,7 +229,7 @@ public class EditPageFakeActivity extends FakeActivity {
 					param.put("address", toFriendList.get(toFriendList.size() - 1));
 				}
 				if(param.get("address") == null) {
-					int resId = getStringRes(activity, "select_a_friend");
+					int resId = getStringRes(activity, "ssdk_oks_select_a_friend");
 					if (resId > 0) {
 						Toast.makeText(getContext(), activity.getString(resId) + " - " + platform.getName(), Toast.LENGTH_SHORT).show();
 					}

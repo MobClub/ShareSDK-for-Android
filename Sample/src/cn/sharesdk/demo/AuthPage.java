@@ -1,9 +1,9 @@
 /*
- * Offical Website:http://www.mob.com
- * Support QQ: 4006852216
- * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 官网地站:http://www.mob.com
+ * 技术支持QQ: 4006852216
+ * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
  *
- * Copyright (c) 2013 mob.com. All rights reserved.
+ * Copyright (c) 2013年 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.demo;
@@ -38,7 +38,14 @@ import com.mob.tools.utils.UIHandler;
 
 import cn.sharesdk.onekeyshare.ShareCore;
 
-/** page to show how to authorize and get user info */
+/**
+ * 授权和取消授权演示页面
+ * <p>
+ * 由于UI显示的需要授权过的平台显示账户的名称，
+ *因此此页面事实上展示的是“获取用户资料”和“取消
+ *授权”两个功能。如果想看纯粹的“授权”操作，请参
+ *考{@link GetTokenPage}页面的相关代码。
+ */
 public class AuthPage extends SlidingMenuPage implements
 		OnClickListener, PlatformActionListener {
 	private View pageView;
@@ -103,25 +110,30 @@ public class AuthPage extends SlidingMenuPage implements
 		UIHandler.sendMessage(msg, this);
 	}
 
-	/** handling user info */
+	/**
+	 * 处理操作结果
+	 * <p>
+	 * 如果获取到用户的名称，则显示名称；否则如果已经授权，则显示
+	 *平台名称
+	 */
 	public boolean handleMessage(Message msg) {
 		Platform plat = (Platform) msg.obj;
 		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
 			case 1: {
-				// success
+				// 成功
 				text = plat.getName() + " completed at " + text;
 				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
 			}
 			break;
 			case 2: {
-				// failed
+				// 失败
 				text = plat.getName() + " caught error at " + text;
 				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
 				return false;
 			}
 			case 3: {
-				// canceled
+				// 取消
 				text = plat.getName() + " canceled at " + text;
 				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
 				return false;
@@ -139,7 +151,7 @@ public class AuthPage extends SlidingMenuPage implements
 		public AuthAdapter(AuthPage page) {
 			this.page = page;
 
-			// quests platform list
+			// 获取平台列表
 			Platform[] tmp = ShareSDK.getPlatformList();
 			platforms = new ArrayList<Platform>();
 			if (tmp == null) {
@@ -227,7 +239,7 @@ public class AuthPage extends SlidingMenuPage implements
 				return null;
 			}
 
-			String resName = "logo_" + plat.getName();
+			String resName = "ssdk_oks_logo_" + plat.getName();
 			int resId = com.mob.tools.utils.R.getBitmapRes(page.getContext(), resName.toLowerCase());
 			return BitmapFactory.decodeResource(page.getResources(), resId);
 		}
@@ -242,7 +254,7 @@ public class AuthPage extends SlidingMenuPage implements
 				return "";
 			}
 
-			int resId = com.mob.tools.utils.R.getStringRes(page.getContext(), plat.getName());
+			int resId = com.mob.tools.utils.R.getStringRes(page.getContext(), "ssdk_" + plat.getName());
 			return page.getContext().getString(resId);
 		}
 

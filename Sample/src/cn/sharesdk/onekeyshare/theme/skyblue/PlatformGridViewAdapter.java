@@ -1,9 +1,9 @@
 /*
- * Offical Website:http://www.mob.com
- * Support QQ: 4006852216
- * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 官网地站:http://www.mob.com
+ * 技术支持QQ: 4006852216
+ * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
  *
- * Copyright (c) 2013 mob.com. All rights reserved.
+ * Copyright (c) 2013年 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.onekeyshare.theme.skyblue;
@@ -27,9 +27,10 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.onekeyshare.CustomerLogo;
 import cn.sharesdk.onekeyshare.ShareCore;
 
-import static com.mob.tools.utils.R.getBitmapRes;
-import static com.mob.tools.utils.R.getIdRes;
-import static com.mob.tools.utils.R.getLayoutRes;
+import static cn.sharesdk.framework.utils.ShareSDKR.getStringRes;
+import static cn.sharesdk.framework.utils.ShareSDKR.getBitmapRes;
+import static cn.sharesdk.framework.utils.ShareSDKR.getIdRes;
+import static cn.sharesdk.framework.utils.ShareSDKR.getLayoutRes;
 
 public class PlatformGridViewAdapter extends BaseAdapter implements View.OnClickListener {
 
@@ -68,7 +69,7 @@ public class PlatformGridViewAdapter extends BaseAdapter implements View.OnClick
 	public View getView(int position, View view, ViewGroup viewGroup) {
 		ViewHolder viewHolder;
 		if(view == null) {
-			view = LayoutInflater.from(context).inflate(getLayoutRes(context, "skyblue_share_platform_list_item"), null);
+			view = LayoutInflater.from(context).inflate(getLayoutRes(context, "ssdk_oks_skyblue_share_platform_list_item"), null);
 			viewHolder = new ViewHolder();
 			viewHolder.checkedImageView = (ImageView) view.findViewById(getIdRes(context, "checkedImageView"));
 			viewHolder.logoImageView = (ImageView) view.findViewById(getIdRes(context, "logoImageView"));
@@ -101,7 +102,7 @@ public class PlatformGridViewAdapter extends BaseAdapter implements View.OnClick
 			//TODO 需要整理
 		//	view.setOnClickListener(((CustomerLogo) item).listener);
 		}
-		String checkedResName = directOnlyPosition != -1 && directOnlyPosition != position ? "skyblue_platform_checked_disabled" : "skyblue_platform_checked";
+		String checkedResName = directOnlyPosition != -1 && directOnlyPosition != position ? "ssdk_oks_skyblue_platform_checked_disabled" : "ssdk_oks_skyblue_platform_checked";
 		viewHolder.position = position;
 		viewHolder.checkedImageView.setImageBitmap(BitmapFactory.decodeResource(context.getResources(), getBitmapRes(context, checkedResName)));
 		viewHolder.checkedImageView.setVisibility(checkedPositionList.contains(viewHolder.position) ? View.VISIBLE : View.GONE);
@@ -188,7 +189,7 @@ public class PlatformGridViewAdapter extends BaseAdapter implements View.OnClick
 	}
 
 	private Bitmap getIcon(Platform plat, String subfix) {
-		String resName = "skyblue_logo_" + plat.getName() + subfix;
+		String resName = "ssdk_oks_skyblue_logo_" + plat.getName() + subfix;
 		int resId = getBitmapRes(context, resName);
 		return BitmapFactory.decodeResource(context.getResources(), resId);
 	}
@@ -203,7 +204,7 @@ public class PlatformGridViewAdapter extends BaseAdapter implements View.OnClick
 			return "";
 		}
 
-		int resId = com.mob.tools.utils.R.getStringRes(context, plat.getName());
+		int resId = getStringRes(context, "ssdk_" + plat.getName());
 		if (resId > 0) {
 			return context.getString(resId);
 		}

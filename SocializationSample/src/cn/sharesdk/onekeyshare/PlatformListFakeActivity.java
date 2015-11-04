@@ -52,7 +52,7 @@ public class PlatformListFakeActivity extends FakeActivity {
 
 	public boolean onFinish() {
 
-		// a statistics of cancel sharing
+		// 取消分享菜单的统计
 		if (canceled) {
 			ShareSDK.logDemoEvent(2, null);
 		}
@@ -150,8 +150,7 @@ public class PlatformListFakeActivity extends FakeActivity {
 			plat = (Platform)item;
 			String name = plat.getName();
 
-			// EditPage don't support Wechat, google+, QQ, pinterest, short message and email,
-			// these performs always share directly
+			// EditPage不支持微信平台、Google+、QQ分享、Pinterest、信息和邮件，总是执行直接分享
 			if(silent || ShareCore.isDirectShare(plat)) {
 				shareParam = new HashMap<String, Object>(shareParamsMap);
 				shareParam.put("platform", name);
@@ -164,7 +163,7 @@ public class PlatformListFakeActivity extends FakeActivity {
 			themeShareCallback.doShare(silentShareData);
 		}
 
-		// jump in editpage to share
+		// 跳转EditPage分享
 		if(supportEditPagePlatforms.size() > 0) {
 			showEditPage(supportEditPagePlatforms);
 		}
@@ -183,7 +182,7 @@ public class PlatformListFakeActivity extends FakeActivity {
 	}
 
 	protected void showEditPage(Context context, List<Platform> platforms) {
-		// a statistics of Sharing
+		// 编辑分享内容的统计
 		ShareSDK.logDemoEvent(3, null);
 
 		EditPageFakeActivity editPageFakeActivity;

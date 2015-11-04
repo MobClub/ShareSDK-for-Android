@@ -1,15 +1,15 @@
 /*
- * Offical Website:http://www.mob.com
- * Support QQ: 4006852216
- * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 官网地站:http://www.mob.com
+ * 技术支持QQ: 4006852216
+ * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
  *
- * Copyright (c) 2013 mob.com. All rights reserved.
+ * Copyright (c) 2013年 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.onekeyshare.theme.classic;
 
-import static com.mob.tools.utils.R.getStringRes;
-import static com.mob.tools.utils.R.getBitmapRes;
+import static cn.sharesdk.framework.utils.ShareSDKR.getStringRes;
+import static cn.sharesdk.framework.utils.ShareSDKR.getBitmapRes;
 
 import java.util.ArrayList;
 
@@ -91,13 +91,13 @@ public class PlatformListPage extends PlatformListFakeActivity implements View.O
 		btnCancel = new Button(getContext());
 		btnCancel.setTextColor(0xff3a65ff);
 		btnCancel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-		int resId = getStringRes(getContext(), "cancel");
+		int resId = getStringRes(getContext(), "ssdk_oks_cancel");
 		if (resId > 0) {
 			btnCancel.setText(resId);
 		}
 		btnCancel.setPadding(0, 0, 0, com.mob.tools.utils.R.dipToPx(getContext(), 5));
 
-		resId = getBitmapRes(getContext(), "classic_platform_corners_bg");
+		resId = getBitmapRes(getContext(), "ssdk_oks_classic_platform_corners_bg");
 		if(resId > 0){
 			btnCancel.setBackgroundResource(resId);
 		}else {

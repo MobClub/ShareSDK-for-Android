@@ -1,9 +1,9 @@
 /*
- * Offical Website:http://www.mob.com
- * Support QQ: 4006852216
- * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 官网地站:http://www.mob.com
+ * 技术支持QQ: 4006852216
+ * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
  *
- * Copyright (c) 2013 mob.com. All rights reserved.
+ * Copyright (c) 2013年 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.demo;
@@ -34,7 +34,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-/** page to show how to authorize and get accesstoken by sharesdk */
+/** 演示授权并获取获取AccessToken */
 public class GetTokenPage extends FakeActivity implements Callback,
 		OnClickListener, PlatformActionListener {
 	private TitleLayout llTitle;
@@ -86,23 +86,23 @@ public class GetTokenPage extends FakeActivity implements Callback,
 		UIHandler.sendMessage(msg, this);
 	}
 
-	/** display authorize result by toast */
+	/** 通过Toast显示操作结果 */
 	public boolean handleMessage(Message msg) {
 		Platform plat = (Platform) msg.obj;
 		String text = MainActivity.actionToString(msg.arg2);
 		switch (msg.arg1) {
 			case 1: {
-				// success
+				// 成功
 				text = plat.getName() + " get token: " + plat.getDb().getToken();
 			}
 			break;
 			case 2: {
-				// failed
+				// 失败
 				text = plat.getName() + " caught error";
 			}
 			break;
 			case 3: {
-				// canceled
+				// 取消
 				text = plat.getName() + " authorization canceled";
 			}
 			break;
@@ -119,7 +119,7 @@ public class GetTokenPage extends FakeActivity implements Callback,
 		public AuthAdapter(GetTokenPage page) {
 			this.page = page;
 
-			// request platform list
+			// 获取平台列表
 			Platform[] tmp = ShareSDK.getPlatformList();
 			platforms = new ArrayList<Platform>();
 			if (tmp == null) {
@@ -172,13 +172,14 @@ public class GetTokenPage extends FakeActivity implements Callback,
 				return "";
 			}
 
-			int resId = com.mob.tools.utils.R.getStringRes(page.activity, plat.getName());
+			int resId = com.mob.tools.utils.R.getStringRes(page.activity, "ssdk_" + plat.getName());
 			return page.activity.getString(resId);
 		}
 
 		public void onClick(View v) {
 			Platform plat = (Platform) v.getTag();
 			plat.setPlatformActionListener(page);
+			plat.removeAccount(true);
 			plat.authorize();
 		}
 

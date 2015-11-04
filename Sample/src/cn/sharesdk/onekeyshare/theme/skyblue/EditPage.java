@@ -1,9 +1,9 @@
 /*
- * Offical Website:http://www.mob.com
- * Support QQ: 4006852216
- * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 官网地站:http://www.mob.com
+ * 技术支持QQ: 4006852216
+ * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
  *
- * Copyright (c) 2013 mob.com. All rights reserved.
+ * Copyright (c) 2013年 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.onekeyshare.theme.skyblue;
@@ -28,20 +28,15 @@ import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.EditPageFakeActivity;
 import cn.sharesdk.onekeyshare.PicViewer;
 
-import static com.mob.tools.utils.R.getIdRes;
-import static com.mob.tools.utils.R.getLayoutRes;
-import static com.mob.tools.utils.R.getStringRes;
+import static cn.sharesdk.framework.utils.ShareSDKR.getIdRes;
+import static cn.sharesdk.framework.utils.ShareSDKR.getLayoutRes;
+import static cn.sharesdk.framework.utils.ShareSDKR.getStringRes;
 
-/**
- * Photo-text Sharing will be handling in this page
- * <p>
- * note:
- * wechat, yixin, qzone, etc. are shared in their clients, not in this page
- */
+/** 执行图文分享的页面，此页面不支持微信平台的分享 */
 public class EditPage extends EditPageFakeActivity implements OnClickListener, TextWatcher {
 	private static final int MAX_TEXT_COUNT = 140;
 
-	// Words counter
+	// 字数计算器
 	private TextView textCounterTextView;
 	private EditText titleEditText;
 	private EditText textEditText;
@@ -52,7 +47,7 @@ public class EditPage extends EditPageFakeActivity implements OnClickListener, T
 			return;
 		}
 
-		activity.setContentView(getLayoutRes(activity, "skyblue_editpage"));
+		activity.setContentView(getLayoutRes(activity, "ssdk_oks_skyblue_editpage"));
 		initView();
 	}
 
@@ -104,7 +99,7 @@ public class EditPage extends EditPageFakeActivity implements OnClickListener, T
 		for(Platform platform : platforms) {
 			String platformName = platform.getName();
 			if (isShowAtUserLayout(platformName)) {
-				View view = LayoutInflater.from(activity).inflate(getLayoutRes(activity, "skyblue_editpage_at_layout"), null);
+				View view = LayoutInflater.from(activity).inflate(getLayoutRes(activity, "ssdk_oks_skyblue_editpage_at_layout"), null);
 				TextView atDescTextView = (TextView) view.findViewById(getIdRes(activity, "atDescTextView"));
 				TextView atTextView = (TextView) view.findViewById(getIdRes(activity, "atTextView"));
 
@@ -121,7 +116,7 @@ public class EditPage extends EditPageFakeActivity implements OnClickListener, T
 				atDescTextView.setOnClickListener(atBtnClickListener);
 
 				atTextView.setText(getAtUserButtonText(platformName));
-				atDescTextView.setText(getContext().getString(getStringRes(activity, "list_friends"), getLogoName(platformName)));
+				atDescTextView.setText(getContext().getString(getStringRes(activity, "ssdk_oks_list_friends"), getLogoName(platformName)));
 
 				atLayout.addView(view);
 			}
@@ -152,7 +147,7 @@ public class EditPage extends EditPageFakeActivity implements OnClickListener, T
 	}
 
 	private View makeImageItemView(final ImageInfo imageInfo) {
-		final View view = LayoutInflater.from(activity).inflate(getLayoutRes(activity, "skyblue_editpage_inc_image_layout"), null);
+		final View view = LayoutInflater.from(activity).inflate(getLayoutRes(activity, "ssdk_oks_skyblue_editpage_inc_image_layout"), null);
 
 		ImageView imageView = (ImageView) view.findViewById(getIdRes(activity, "imageView"));
 		imageView.setImageBitmap(imageInfo.bitmap);
@@ -183,7 +178,7 @@ public class EditPage extends EditPageFakeActivity implements OnClickListener, T
 			return;
 		String tag = (String) v.getTag();
 		if (tag.equals("close")) {
-			// a statistics of Cancel-sharing
+			// 取消分享的统计
 			for(Platform plat : platforms) {
 				ShareSDK.logDemoEvent(5, plat);
 			}

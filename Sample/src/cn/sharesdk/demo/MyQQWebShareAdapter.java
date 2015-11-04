@@ -4,19 +4,26 @@ import android.view.Window;
 import cn.sharesdk.tencent.qq.QQWebShareAdapter;
 import cn.sharesdk.tencent.qzone.QZoneWebShareAdapter;
 
-/** a example of {@link QZoneWebShareAdapter} */
+/** 一个用于演示{@link QZoneWebShareAdapter}的例子。 */
 public class MyQQWebShareAdapter extends QQWebShareAdapter {
 
 	public void onCreate() {
-		// display the page in dialog mode
+		// 设置页面以Dialog的方式展示
 		getActivity().setTheme(android.R.style.Theme_Dialog);
 		getActivity().requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		super.onCreate();
 
-		// change page title
+		// 修改页面标题
 		getTitleLayout().getTvTitle().setText("QQ SHARE Tilte");//R.string.qzone_customer_share_style);
 
+		// 下面的代码可以拦截webview加载的页面地址，但是添加后，分享操作将可能无法正确执行
+//		getWebBody().setWebViewClient(new WebViewClient() {
+//			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//				System.out.println("=========== " + url);
+//				return super.shouldOverrideUrlLoading(view, url);
+//			}
+//		});
 
 	}
 

@@ -1,9 +1,9 @@
 /*
- * Offical Website:http://www.mob.com
- * Support QQ: 4006852216
- * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 官网地站:http://www.mob.com
+ * 技术支持QQ: 4006852216
+ * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
  *
- * Copyright (c) 2013 mob.com. All rights reserved.
+ * Copyright (c) 2013年 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.demo;
@@ -35,8 +35,9 @@ import com.mob.tools.network.NetworkHelper.NetworkTimeOut;
 import com.mob.tools.utils.UIHandler;
 
 /**
- * entrance of the project, UI shell of sliding menu
- * ui logics and events are handled by {@link MainAdapter}
+ * 项目的入口类，是侧栏控件的外壳
+ * <p>
+ * 侧栏的UI或者逻辑控制基本上都在{@link MainAdapter}中进行
  */
 public class MainActivity extends Activity implements Callback {
 	private static final String FILE_NAME = "pic_lovely_cats.jpg";
@@ -135,7 +136,7 @@ public class MainActivity extends Activity implements Callback {
 		return false;
 	}
 
-	/** this method will be called after the screen rotation to refresh the sliding menu */
+	/** 屏幕旋转后，此方法会被调用，以刷新侧栏的布局 */
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		if (orientation != newConfig.orientation) {
@@ -157,7 +158,7 @@ public class MainActivity extends Activity implements Callback {
 		return super.onKeyDown(keyCode, event);
 	}
 
-	/** converts ShareSDK actions into string */
+	/** 将action转换为String */
 	public static String actionToString(int action) {
 		switch (action) {
 			case Platform.ACTION_AUTHORIZING: return "ACTION_AUTHORIZING";

@@ -1,32 +1,33 @@
 /*
- * Offical Website:http://www.mob.com
- * Support QQ: 4006852216
- * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 官网地站:http://www.mob.com
+ * 技术支持QQ: 4006852216
+ * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
  *
- * Copyright (c) 2013 mob.com. All rights reserved.
+ * Copyright (c) 2013年 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.onekeyshare;
 
-import static com.mob.tools.utils.R.*;
+import static cn.sharesdk.framework.utils.ShareSDKR.getBitmapRes;
+import static cn.sharesdk.framework.utils.ShareSDKR.getStringRes;
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.util.FloatMath;
 import android.view.Window;
 import android.widget.ImageView;
-import android.widget.Toast;
 import android.widget.ImageView.ScaleType;
+import android.widget.Toast;
+
 import com.mob.tools.FakeActivity;
 
-/** a demo for shake-to-share */
+/** 摇一摇启动分享的例子 */
 public class Shake2Share extends FakeActivity implements SensorEventListener {
-	// sensor state update interval
+	// 检测的时间间隔
 	private static final int UPDATE_INTERVAL = 100;
-	// shaking detecting threshold, the smaller the more sensitive
+	// 摇晃检测阈值，决定了对摇晃的敏感程度，越小越敏感
 	private static final int SHAKE_THRESHOLD = 1500;
 
 	private OnShakeListener listener;
@@ -63,7 +64,7 @@ public class Shake2Share extends FakeActivity implements SensorEventListener {
 			activity.setContentView(iv);
 		}
 
-		resId = getStringRes(activity, "shake2share");
+		resId = getStringRes(activity, "ssdk_oks_shake2share");
 		if (resId > 0) {
 			Toast.makeText(activity, resId, Toast.LENGTH_SHORT).show();
 		}
@@ -106,7 +107,7 @@ public class Shake2Share extends FakeActivity implements SensorEventListener {
 				float deltaX = x - mLastX;
 				float deltaY = y - mLastY;
 				float deltaZ = z - mLastZ;
-				float delta = FloatMath.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ) / diffTime * 10000;
+				float delta = (float)Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ) / diffTime * 10000;
 				if (delta > SHAKE_THRESHOLD) {
 					if (!shaken) {
 						shaken = true;

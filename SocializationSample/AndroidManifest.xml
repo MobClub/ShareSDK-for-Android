@@ -64,13 +64,6 @@
         		<category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             
-        </activity>
-        
-        <!-- QQ客户端回调 -->
-        <activity 
-        	android:name="cn.sharesdk.tencent.qq.ResultReceiver"
-            android:launchMode="singleTask"
-            android:noHistory="true">
             <!--
             	如果集成QQ分享，或者使用QQ客户端来进行QQ空间的分享，须要在此处添加一个对ACTION_VIEW
             	事件的过滤器，其中的scheme是“tencent”前缀再开发者应用的加上appId。如果此过滤器不设置，
@@ -83,7 +76,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
-        
+                
         <!-- 微信分享回调 -->
         <activity
             android:name=".wxapi.WXEntryActivity"
@@ -101,12 +94,16 @@
             android:exported="true"
             android:launchMode="singleTop" />
         
-        <!-- 支付宝分享回调 -->
+        <!-- 调用新浪客户端分享，需要注册的回调activity -->
         <activity
-            android:name=".apshare.ShareEntryActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true"/>
+            android:name="cn.sharesdk.sina.weibo.SinaActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+				<action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+        </activity>
+        
     </application>
 
 </manifest>

@@ -1,9 +1,9 @@
 /*
- * Offical Website:http://www.mob.com
- * Support QQ: 4006852216
- * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 官网地站:http://www.mob.com
+ * 技术支持QQ: 4006852216
+ * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
  *
- * Copyright (c) 2013 mob.com. All rights reserved.
+ * Copyright (c) 2013年 mob.com. All rights reserved.
  */
 
 package cn.sharesdk.demo;
@@ -29,7 +29,15 @@ import cn.sharesdk.framework.TitleLayout;
 import com.mob.tools.utils.UIHandler;
 import cn.sharesdk.onekeyshare.ShareCore;
 
-/** page shows how to request your or other user's info */
+/**
+ * 演示获取用户资料
+ * <p>
+ * 启动页面时传递一个int类型的字段type，用于标记获取自己的资料（type = 0）
+ *还是别人的资料（type = 1）。如果尝试获取别人的资料，示例代码会获取不同
+ *平台ShareSDK的官方帐号的资料。
+ * <p>
+ * 如果资料获取成功，会通过{@link JsonPage}展示
+ */
 public class GetInforPage extends FakeActivity implements Callback,
 		OnClickListener, PlatformActionListener {
 	private int type;
@@ -93,7 +101,7 @@ public class GetInforPage extends FakeActivity implements Callback,
 		UIHandler.sendMessage(msg, this);
 	}
 
-	/** handling request result */
+	/** 处理操作结果 */
 	@SuppressWarnings("unchecked")
 	public boolean handleMessage(Message msg) {
 		switch(msg.what) {
@@ -109,17 +117,17 @@ public class GetInforPage extends FakeActivity implements Callback,
 				String text = MainActivity.actionToString(msg.arg2);
 				switch (msg.arg1) {
 					case 1: {
-						// success
+						// 成功
 						text = plat.getName() + " completed at " + text;
 					}
 					break;
 					case 2: {
-						// failed
+						// 失败
 						text = plat.getName() + " caught error at " + text;
 					}
 					break;
 					case 3: {
-						// canceled
+						// 取消
 						text = plat.getName() + " canceled at " + text;
 					}
 					break;
@@ -135,7 +143,7 @@ public class GetInforPage extends FakeActivity implements Callback,
 	private static class PlatAdapter extends BaseAdapter implements OnClickListener {
 		private GetInforPage page;
 		private ArrayList<Platform> platforms;
-		// target to request info: 0, myself; 1, other people
+		// 要获取资料的对象：0：自己的资料；1：他人的资料
 		private int type;
 
 		public PlatAdapter(GetInforPage page) {
@@ -145,7 +153,7 @@ public class GetInforPage extends FakeActivity implements Callback,
 		public void setType(int type) {
 			this.type = type;
 
-			// request platform list
+			// 获取平台列表
 			Platform[] tmp = ShareSDK.getPlatformList();
 			platforms = new ArrayList<Platform>();
 			if (tmp == null) {
@@ -209,7 +217,7 @@ public class GetInforPage extends FakeActivity implements Callback,
 				return "";
 			}
 
-			int resId = com.mob.tools.utils.R.getStringRes(page.activity, plat.getName());
+			int resId = com.mob.tools.utils.R.getStringRes(page.activity, "ssdk_" + plat.getName());
 			return page.activity.getString(resId);
 		}
 
