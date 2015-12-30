@@ -183,13 +183,14 @@ public class EditPage extends EditPageFakeActivity implements OnClickListener, T
 	// title bar
 	private TitleLayout getPageTitle() {
 		llTitle = new TitleLayout(getContext());
-		llTitle.setId(1);
-//		int resId = getBitmapRes(activity, "title_back");
-//		if (resId > 0) {
-//			llTitle.setBackgroundResource(resId);
-//		}
+		llTitle.setId(22222);
+		int resId = getBitmapRes(activity, "title_back");
+		if (resId > 0) {
+			llTitle.setBackgroundResource(resId);
+		}
 		llTitle.getBtnBack().setOnClickListener(this);
-		int resId = getStringRes(activity, "ssdk_oks_multi_share");
+
+		resId = getStringRes(activity, "ssdk_oks_multi_share");
 		if (resId > 0) {
 			llTitle.getTvTitle().setText(resId);
 		}
