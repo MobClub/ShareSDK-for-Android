@@ -92,7 +92,6 @@ public class CustomerPage extends SlidingMenuPage implements
 			case R.id.btnTw: twitter(); break;
 			case R.id.btnKx: kaixin(); break;
 			case R.id.btnYd: youdaoNote(); break;
-			case R.id.btnShSSK: SohuSuishenkan(); break;
 			case R.id.btnTumblr: tumblr();break;
 		}
 	}
@@ -222,18 +221,6 @@ public class CustomerPage extends SlidingMenuPage implements
 		String method = "POST";
 		short customerAction = ACTION_YOUDAONOTE;
 		youdao.customerProtocol(url, method, customerAction, null, null);
-	}
-
-	private void SohuSuishenkan() {
-		Platform  suiShenKan = ShareSDK.getPlatform("SohuSuishenkan");
-		suiShenKan.setPlatformActionListener(this);
-		String url = "https://api.sohu.com/rest/k/prv/1/bookmark/get-list";
-		String method = "GET";
-		short customerAction = ACTION_SOHUSUISHENKAN;
-		HashMap<String, Object> values = new HashMap<String, Object>();
-		values.put("offset", 0);
-		values.put("limit", 10);
-		suiShenKan.customerProtocol(url, method, customerAction, values, null);
 	}
 
 	private void tumblr() {

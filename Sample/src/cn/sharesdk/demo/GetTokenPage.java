@@ -11,28 +11,24 @@ package cn.sharesdk.demo;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.graphics.drawable.ColorDrawable;
+import android.os.Handler.Callback;
+import android.os.Message;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
 import cn.sharesdk.framework.CustomPlatform;
-
-import com.mob.tools.FakeActivity;
-
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
 
+import com.mob.tools.FakeActivity;
 import com.mob.tools.utils.UIHandler;
-
-import cn.sharesdk.onekeyshare.ShareCore;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Message;
-import android.os.Handler.Callback;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Toast;
 
 /** 演示授权并获取获取AccessToken */
 public class GetTokenPage extends FakeActivity implements Callback,
@@ -129,7 +125,7 @@ public class GetTokenPage extends FakeActivity implements Callback,
 			for (Platform p : tmp) {
 				String name = p.getName();
 				if ((p instanceof CustomPlatform)
-						|| !ShareCore.canAuthorize(p.getContext(), name)) {
+						|| !DemoUtils.canAuthorize(name)) {
 					continue;
 				}
 				platforms.add(p);

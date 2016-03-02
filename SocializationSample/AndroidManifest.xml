@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.sharesdk.socialization.sample"
-    android:versionCode="3"
-    android:versionName="2.1" >
+    android:versionCode="4"
+    android:versionName="4.0" >
 
 	<uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,6 +13,9 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+	<!-- 蓝牙分享所需的权限 -->
+	<uses-permission android:name="android.permission.BLUETOOTH" />
+	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     
     <supports-screens
         android:anyDensity="true"
@@ -75,11 +78,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
-            <!-- 新浪回调 -->
-            <intent-filter>
-				<action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
         </activity>
                 
         <!-- 微信分享回调 -->
@@ -98,13 +96,6 @@
             android:excludeFromRecents="true"
             android:exported="true"
             android:launchMode="singleTop" />
-                       
-        <!-- 支付宝分享回调 -->
-        <activity
-            android:name=".apshare.ShareEntryActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true"/>   
     </application>
 
 </manifest>

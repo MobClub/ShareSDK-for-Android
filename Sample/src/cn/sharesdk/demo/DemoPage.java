@@ -31,10 +31,6 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
 import cn.sharesdk.onekeyshare.OnekeyShare;
-import cn.sharesdk.onekeyshare.OnekeyShareTheme;
-import cn.sharesdk.onekeyshare.Shake2Share;
-import cn.sharesdk.onekeyshare.Shake2Share.OnShakeListener;
-import cn.sharesdk.onekeyshare.ShareCore;
 
 import com.mob.tools.utils.UIHandler;
 
@@ -52,7 +48,6 @@ import com.mob.tools.utils.UIHandler;
 public class DemoPage extends SlidingMenuPage implements
 		OnClickListener, PlatformActionListener {
 	private TitleLayout llTitle;
-	private boolean shareFromQQLogin = false;
 
 	public DemoPage(final SlidingMenu menu) {
 		super(menu);
@@ -64,7 +59,7 @@ public class DemoPage extends SlidingMenuPage implements
 
 		pageView.findViewById(R.id.btnShareAllGui).setOnClickListener(this);
 		pageView.findViewById(R.id.btnShareAll).setOnClickListener(this);
-		pageView.findViewById(R.id.btnShareView).setOnClickListener(this);
+		pageView.findViewById(R.id.btnShareView).setVisibility(View.GONE);
 		pageView.findViewById(R.id.btnFlSw).setOnClickListener(this);
 		pageView.findViewById(R.id.btnGetToken).setOnClickListener(this);
 		pageView.findViewById(R.id.btnFlTc).setOnClickListener(this);
@@ -91,6 +86,7 @@ public class DemoPage extends SlidingMenuPage implements
 				}
 			}
 		}.start();
+
 	}
 
 	private void afterPlatformsGot(Platform[] platforms) {
@@ -108,7 +104,7 @@ public class DemoPage extends SlidingMenuPage implements
 
 		for (Platform platform : platforms) {
 			String name = platform.getName();
-			if (ShareCore.isUseClientToShare(name)) {
+			if (DemoUtils.isUseClientToShare(name)) {
 				continue;
 			}
 
@@ -164,9 +160,10 @@ public class DemoPage extends SlidingMenuPage implements
 		Context context = getContext();
 		final OnekeyShare oks = new OnekeyShare();
 
-		//oks.setAddress("12345678901");
+		oks.setAddress("12345678901");
 		oks.setTitle(CustomShareFieldsPage.getString("title", context.getString(R.string.evenote_title)));
 		oks.setTitleUrl(CustomShareFieldsPage.getString("titleUrl", "http://mob.com"));
+		oks.setMusicUrl("http://play.baidu.com/?__m=mboxCtrl.playSong&__a=7320512&__o=song/7320512||playBtn&fr=altg_new3||www.baidu.com#");
 		String customText = CustomShareFieldsPage.getString( "text", null);
 		if (customText != null) {
 			oks.setText(customText);
@@ -184,7 +181,7 @@ public class DemoPage extends SlidingMenuPage implements
 		//	oks.setImageArray(new String[]{MainActivity.TEST_IMAGE, MainActivity.TEST_IMAGE_URL});
 		}
 
-		oks.setUrl(CustomShareFieldsPage.getString("url", "http://www.mob.com"));
+		oks.setUrl(CustomShareFieldsPage.getString("url", "http://mob.com"));
 		oks.setFilePath(CustomShareFieldsPage.getString("filePath", MainActivity.TEST_IMAGE));
 		oks.setComment(CustomShareFieldsPage.getString("comment", context.getString(R.string.ssdk_oks_share)));
 		oks.setSite(CustomShareFieldsPage.getString("site", context.getString(R.string.app_name)));
@@ -192,21 +189,16 @@ public class DemoPage extends SlidingMenuPage implements
 		oks.setVenueName(CustomShareFieldsPage.getString("venueName", "ShareSDK"));
 		oks.setVenueDescription(CustomShareFieldsPage.getString("venueDescription", "This is a beautiful place!"));
 		oks.setSilent(silent);
-		oks.setShareFromQQAuthSupport(shareFromQQLogin);
-		String theme = CustomShareFieldsPage.getString("theme", "classic");
-		if(OnekeyShareTheme.SKYBLUE.toString().toLowerCase().equals(theme)){
-			oks.setTheme(OnekeyShareTheme.SKYBLUE);
-		}else{
-			oks.setTheme(OnekeyShareTheme.CLASSIC);
-		}
 
 		if (platform != null) {
 			oks.setPlatform(platform);
 		}
 
+		oks.setLatitude(23.169f);
+		oks.setLongitude(112.908f);
 
 		// 令编辑页面显示为Dialog模式
-		oks.setDialogMode();
+		//oks.setDialogMode();
 
 		// 在自动授权时可以禁用SSO方式
 		//if(!CustomShareFieldsPage.getBoolean("enableSSO", true))
@@ -219,8 +211,7 @@ public class DemoPage extends SlidingMenuPage implements
 		//oks.setShareContentCustomizeCallback(new ShareContentCustomizeDemo());
 
 		// 去除注释，演示在九宫格设置自定义的图标
-		Bitmap enableLogo = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-		Bitmap disableLogo = BitmapFactory.decodeResource(getResources(), R.drawable.sharesdk_unchecked);
+		Bitmap logo = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
 		String label = getResources().getString(R.string.app_name);
 		OnClickListener listener = new OnClickListener() {
 			public void onClick(View v) {
@@ -228,14 +219,13 @@ public class DemoPage extends SlidingMenuPage implements
 				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
 			}
 		};
-		oks.setCustomerLogo(enableLogo, disableLogo, label, listener);
+		oks.setCustomerLogo(logo, label, listener);
 
 		// 去除注释，则快捷分享九宫格中将隐藏新浪微博和腾讯微博
 //		oks.addHiddenPlatform(SinaWeibo.NAME);
 //		oks.addHiddenPlatform(TencentWeibo.NAME);
 
 		// 为EditPage设置一个背景的View
-		oks.setEditPageBackground(getPage());
 		oks.show(context);
 	}
 
@@ -263,13 +253,13 @@ public class DemoPage extends SlidingMenuPage implements
 			break;
 			case R.id.btnShareView: {
 				// 摇一摇截图分享
-				Shake2Share ss = new Shake2Share();
-				ss.setOnShakeListener(new OnShakeListener() {
-					public void onShake() {
-						showShare(false, "SinaWeibo", true);
-					}
-				});
-				ss.show(getContext(), null);
+//				Shake2Share ss = new Shake2Share();
+//				ss.setOnShakeListener(new OnShakeListener() {
+//					public void onShake() {
+//						showShare(false, "SinaWeibo", true);
+//					}
+//				});
+//				ss.show(getContext(), null);
 			}
 			break;
 			case R.id.btnFlSw: {
@@ -317,7 +307,6 @@ public class DemoPage extends SlidingMenuPage implements
 								.setMessage(R.string.qq_share_way)
 								.setPositiveButton(R.string.qq_share_from_qqlogin, new DialogInterface.OnClickListener() {
 									public void onClick(DialogInterface dialog, int which) {
-										shareFromQQLogin = true;
 										try
 										{
 											getContext().getPackageManager().getPackageInfo("com.qzone", 0);
@@ -330,7 +319,6 @@ public class DemoPage extends SlidingMenuPage implements
 								})
 								.setNegativeButton(R.string.qq_share_from_tlogin, new DialogInterface.OnClickListener() {
 									public void onClick(DialogInterface dialog, int which) {
-										shareFromQQLogin = false;
 										showShare(false, platformName, false);
 									}
 								})

@@ -7,11 +7,11 @@
     <string name="share_content">ShareSDK for Android not only integration social platforms, like Facebook, Twitter, Google+. But also Our strong professional backend support can easy to know the Users,Information Flow,Backflow, Backflow rate, Share Rate,etc. See more detail on website http://mob.com @ShareSDK</string>
 	<string name="share_content_short">ShareSDK for Android not only integration social platforms, like Facebook, Twitter, Google+. But also Our strong professional backend support can easy to know the Users,Information Flow,Backflow, Backflow rate, Share Rate,etc. See more detail on website http://mob.com @ShareSDK</string>
 	<string name="comment_like_id">ssdk20131220190000</string>
-	<string name="comment_like_title">ShareSDK Socialization Comment &amp; Like Module Release</string>
+	<string name="comment_like_title">ShareSDK“评论与赞”模块发布</string>
 	<string name="comment_like_publich_time">2013–12–20 19:00</string>
 	<string name="comment_like_author">ShareSDK</string>
 	<string name="comment_like_comment_list">Comment</string>
-	<string name="like_success">Doing like successfully!</string>
-	<string name="like_fail">Fail to do like!</string>
+	<string name="like_success">Like Successfully</string>
+	<string name="like_fail">Like failed</string>
 	<string name="myplatform">Comment &amp; Like</string>
 </resources>

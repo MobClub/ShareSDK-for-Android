@@ -37,7 +37,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ssdk_oks_logo_douban" />
+                    android:src="@drawable/ssdk_oks_classic_douban" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -63,7 +63,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ssdk_oks_logo_facebook" />
+                    android:src="@drawable/ssdk_oks_classic_facebook" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ssdk_oks_logo_kaixin" />
+                    android:src="@drawable/ssdk_oks_classic_kaixin" />
 
                 <TextView
                     android:text="@string/customer_kaixin"
@@ -114,7 +114,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ssdk_oks_logo_renren" />
+                    android:src="@drawable/ssdk_oks_classic_renren" />
 
                 <TextView
                     android:text="@string/customer_renren"
@@ -139,7 +139,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ssdk_oks_logo_sinaweibo" />
+                    android:src="@drawable/ssdk_oks_classic_sinaweibo" />
 
                 <TextView
                     android:text="@string/customer_sina"
@@ -164,7 +164,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ssdk_oks_logo_qzone" />
+                    android:src="@drawable/ssdk_oks_classic_qzone" />
 
                 <TextView
                     android:text="@string/customer_qzone"
@@ -189,7 +189,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ssdk_oks_logo_tencentweibo" />
+                    android:src="@drawable/ssdk_oks_classic_tencentweibo" />
 
                 <TextView
                     android:text="@string/customer_tencent"
@@ -214,7 +214,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ssdk_oks_logo_twitter" />
+                    android:src="@drawable/ssdk_oks_classic_twitter" />
 
                 <TextView
                     android:text="@string/customer_twitter"
@@ -240,7 +240,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ssdk_oks_logo_youdao" />
+                    android:src="@drawable/ssdk_oks_classic_youdao" />
 
                 <TextView
                     android:text="@string/customer_youdao"
@@ -251,32 +251,7 @@
                     android:gravity="center"
                     android:textColor="@android:color/black"
                     android:textSize="16dp" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/btnShSSK"
-                android:layout_width="fill_parent"
-                android:layout_height="44dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/btn_back" >
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/ssdk_oks_logo_sohusuishenkan" />
-
-                <TextView
-                    android:text="@string/customer_suishenkan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginRight="52dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
-            </LinearLayout>
+            </LinearLayout>            
             <LinearLayout
                 android:id="@+id/btnTumblr"
                 android:layout_width="fill_parent"
@@ -290,7 +265,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ssdk_oks_logo_tumblr" />
+                    android:src="@drawable/ssdk_oks_classic_tumblr" />
 
                 <TextView
                     android:text="@string/customer_tumblr"

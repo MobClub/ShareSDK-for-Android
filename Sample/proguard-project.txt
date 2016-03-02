@@ -20,7 +20,7 @@
 -keep class android.webkit.**{*;}
 -keep class cn.sharesdk.**{*;}
 -keep class com.sina.**{*;}
--keep class m.framework.**{*;}
+-keep class com.alipay.share.sdk.**{*;}
 
 -keepclasseswithmembernames class * {
     native <methods>;

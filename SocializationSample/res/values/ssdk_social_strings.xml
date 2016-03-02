@@ -7,6 +7,7 @@
     <string name="ssdk_socialization_right_now">刚刚</string>
     <string name="ssdk_socialization_xx_min_before">%s分钟前</string>
     <string name="ssdk_socialization_xx_hour_before">%s小时前</string>
+    <string name="ssdk_socialization_one_hour_before">%s小时前</string>
     <string name="ssdk_socialization_reply_page_title">评论</string>
     <string name="ssdk_socialization_reply_to">回复 %s</string>
     <string name="ssdk_socialization_reply">回复</string>
@@ -43,6 +44,10 @@
    <string name="ssdk_socialization_comment_error">内容包含敏感字符</string>
    <string name="ssdk_socialization_comment_too_short">字符长度不足</string>
    <string name="ssdk_socialization_comment_too_long">字符长度过长</string>
+   <string name="ssdk_socialization_comment_over_140">超过140个字符长度</string>
    <string name="ssdk_socialization_comment_repeat">重复字符过多</string>   
+   <string name="ssdk_socialization_comment_too_much_urls">内容中URL数量过多</string>   
+   <string name="ssdk_socialization_comment_mustbe_chinese">评论内容需要包含中文</string>   
+   <string name="ssdk_socialization_comment_floor_over_100">评论数超过100个</string>
    
 </resources>

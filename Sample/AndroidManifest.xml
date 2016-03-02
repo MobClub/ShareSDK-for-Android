@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.sharesdk.demo"
-    android:versionCode="57"
-    android:versionName="2.6.6" >
+    android:versionCode="58"
+    android:versionName="2.7.0" >
     
 	<uses-permission android:name="android.permission.GET_TASKS" />
 	<uses-permission android:name="android.permission.INTERNET" />
@@ -32,6 +32,8 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="107704292745179"/>
+        
         <activity
             android:name="cn.sharesdk.demo.MainActivity" 
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -41,19 +43,26 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-             <!--
+            </intent-filter>        
+            
+            <!--
                KakaoTalk ,分享应用的时候需要添加这个intent-filter,用于点击应用按钮跳转到APP
-               	其中android:scheme="kakaoc53410d71a7d6b96671aac1bd13a1982"是由"kakao"+APPKey               	
-           -->                       
+               	其中android:scheme="kakaoc53410d71a7d6b96671aac1bd13a1982"是由"kakao"+APPKey      
+            -->                                           
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <data android:scheme="kakao48d3f524e4a636b08d81b3ceb50f1003" android:host="kakaolink" />
-            </intent-filter>
+            </intent-filter>   
+            
+            <!-- FacebookMessenger,分享成功后，点击分享信息的按钮，跳转到APP中-->
+            <intent-filter>
+			    <action android:name="android.intent.action.PICK"/>
+			    <category android:name="android.intent.category.DEFAULT" />
+			    <category android:name="com.facebook.orca.category.PLATFORM_THREAD_20150314" />
+			</intent-filter>
         </activity>
-		
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
@@ -89,18 +98,19 @@
             	如果集成QQ分享，或者使用QQ客户端来进行QQ空间的分享，须要在此处添加一个对ACTION_VIEW
             	事件的过滤器，其中的scheme是“tencent”前缀再开发者应用的加上appId。如果此过滤器不设置，
             	则分享结束以后不能得到正确的回调             
-           -->
+            -->
             <intent-filter android:priority="1000">
                 <data android:scheme="tencent100371282" />
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
-            <!-- 新浪回调 -->
+            
+			<!-- 调用新浪客户端分享，需要注册的回调activity -->
             <intent-filter>
 				<action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
 				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
+			</intent-filter>			
         </activity>
                               
         <!-- 微信分享回调 -->
@@ -122,8 +132,8 @@
             android:name=".apshare.ShareEntryActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true"/>        
-        
+            android:exported="true"/>
+                
     </application>
 
 </manifest>

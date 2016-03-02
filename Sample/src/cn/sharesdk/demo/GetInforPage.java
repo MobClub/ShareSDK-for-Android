@@ -10,6 +10,7 @@ package cn.sharesdk.demo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler.Callback;
 import android.os.Message;
@@ -21,13 +22,13 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 import cn.sharesdk.framework.CustomPlatform;
-import com.mob.tools.FakeActivity;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
+
+import com.mob.tools.FakeActivity;
 import com.mob.tools.utils.UIHandler;
-import cn.sharesdk.onekeyshare.ShareCore;
 
 /**
  * 演示获取用户资料
@@ -164,7 +165,7 @@ public class GetInforPage extends FakeActivity implements Callback,
 				for (Platform p : tmp) {
 					String name = p.getName();
 					if ((p instanceof CustomPlatform)
-							|| !ShareCore.canGetUserInfo(p.getContext(), name)) {
+							|| !DemoUtils.canGetUserInfo(name)) {
 						continue;
 					}
 					platforms.add(p);

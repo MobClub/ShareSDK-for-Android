@@ -9,15 +9,8 @@
 package cn.sharesdk.socialization.sample;
 
 import static com.mob.tools.utils.R.getStringRes;
-
-import java.io.File;
-import java.io.FileOutputStream;
-
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.CompressFormat;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler.Callback;
 import android.os.Message;
@@ -44,8 +37,6 @@ import com.mob.tools.utils.UIHandler;
 
 /** 评论和赞功能的演示页面 */
 public class MainActivity extends Activity implements Callback, OnClickListener {
-	private static final String FILE_NAME = "/pic_lovely_cats.jpg";
-	private String testImage;
 	// 模拟的主题id
 	private String topicId;
 	// 模拟的主题标题
@@ -73,7 +64,6 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 
 		new Thread() {
 			public void run() {
-				initImagePath();
 				UIHandler.sendEmptyMessageDelayed(INIT_SDK, 100, MainActivity.this);
 			}
 		}.start();
@@ -128,25 +118,6 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 		});
 	}
 
-	private void initImagePath() {
-		try {
-			String cachePath = com.mob.tools.utils.R.getCachePath(this, null);
-			testImage = cachePath + FILE_NAME;
-			File file = new File(testImage);
-			if (!file.exists()) {
-				file.createNewFile();
-				Bitmap pic = BitmapFactory.decodeResource(getResources(), R.drawable.pic);
-				FileOutputStream fos = new FileOutputStream(file);
-				pic.compress(CompressFormat.JPEG, 100, fos);
-				fos.flush();
-				fos.close();
-			}
-		} catch(Throwable t) {
-			t.printStackTrace();
-			testImage = null;
-		}
-	}
-
 	public boolean handleMessage(Message msg) {
 		switch (msg.what) {
 		case INIT_SDK:
@@ -199,10 +170,7 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 		oks.setTitle(getString(R.string.ssdk_oks_share));
 		oks.setTitleUrl("http://mob.com");
 		oks.setText(getString(R.string.share_content));
-		//oks.setImagePath(testImage);
-		oks.setImageUrl("http://f1.sharesdk.cn/imgs/2014/05/21/oESpJ78_533x800.jpg");
 		oks.setUrl("http://www.mob.com");
-		oks.setFilePath(testImage);
 		oks.setComment(getString(R.string.ssdk_oks_share));
 		oks.setSite(getString(R.string.app_name));
 		oks.setSiteUrl("http://mob.com");

@@ -8,8 +8,6 @@
 
 package cn.sharesdk.demo;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.HashMap;
 
 import org.json.JSONArray;
@@ -17,13 +15,9 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.CompressFormat;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler.Callback;
 import android.os.Message;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
 import cn.sharesdk.demo.widget.SlidingMenu;
@@ -32,6 +26,7 @@ import cn.sharesdk.framework.ShareSDK;
 
 import com.mob.tools.network.NetworkHelper;
 import com.mob.tools.network.NetworkHelper.NetworkTimeOut;
+import com.mob.tools.utils.BitmapHelper;
 import com.mob.tools.utils.UIHandler;
 
 /**
@@ -40,7 +35,6 @@ import com.mob.tools.utils.UIHandler;
  * 侧栏的UI或者逻辑控制基本上都在{@link MainAdapter}中进行
  */
 public class MainActivity extends Activity implements Callback {
-	private static final String FILE_NAME = "pic_lovely_cats.jpg";
 	public static String TEST_IMAGE;
 	public static String TEST_IMAGE_URL;
 	public static HashMap<Integer, String> TEST_TEXT;
@@ -68,33 +62,19 @@ public class MainActivity extends Activity implements Callback {
 
 		new Thread() {
 			public void run() {
-				TEST_IMAGE_URL = "http://f1.sharesdk.cn/imgs/2014/05/21/oESpJ78_533x800.jpg";
-				initImagePath();
+				String[] urls = randomPic();
+				TEST_IMAGE_URL = urls[1];
+				try {
+					TEST_IMAGE = BitmapHelper.downloadBitmap(MainActivity.this, urls[1]);
+				} catch(Throwable t) {
+					t.printStackTrace();
+					TEST_IMAGE = null;
+				}
 				initTestText();
 				UIHandler.sendEmptyMessageDelayed(1, 100, MainActivity.this);
 			}
 		}.start();
 
-	}
-
-	private void initImagePath() {
-		try {
-			String cachePath = com.mob.tools.utils.R.getCachePath(this, null);
-			TEST_IMAGE = cachePath + FILE_NAME;
-			File file = new File(TEST_IMAGE);
-			if (!file.exists()) {
-				file.createNewFile();
-				Bitmap pic = BitmapFactory.decodeResource(getResources(), R.drawable.pic);
-				FileOutputStream fos = new FileOutputStream(file);
-				pic.compress(CompressFormat.JPEG, 100, fos);
-				fos.flush();
-				fos.close();
-			}
-		} catch(Throwable t) {
-			t.printStackTrace();
-			TEST_IMAGE = null;
-		}
-		Log.i("TEST_IMAGE path ==>>>", TEST_IMAGE);
 	}
 
 	private void initTestText() {
@@ -172,6 +152,38 @@ public class MainActivity extends Activity implements Callback {
 				return "UNKNOWN";
 			}
 		}
+	}
+
+	public static String[] randomPic() {
+		String url = "http://git.oschina.net/alexyu.yxj/MyTmpFiles/raw/master/kmk_pic_fld/";
+		String urlSmall = "http://git.oschina.net/alexyu.yxj/MyTmpFiles/raw/master/kmk_pic_fld/small/";
+		String[] pics = new String[] {
+				"120.JPG",
+				"127.JPG",
+				"130.JPG",
+				"18.JPG",
+				"184.JPG",
+				"22.JPG",
+				"236.JPG",
+				"237.JPG",
+				"254.JPG",
+				"255.JPG",
+				"263.JPG",
+				"265.JPG",
+				"273.JPG",
+				"37.JPG",
+				"39.JPG",
+				"IMG_2219.JPG",
+				"IMG_2270.JPG",
+				"IMG_2271.JPG",
+				"IMG_2275.JPG",
+				"107.JPG"
+		};
+		int index = (int) (System.currentTimeMillis() % pics.length);
+		return new String[] {
+				url + pics[index],
+				urlSmall + pics[index]
+		};
 	}
 
 }

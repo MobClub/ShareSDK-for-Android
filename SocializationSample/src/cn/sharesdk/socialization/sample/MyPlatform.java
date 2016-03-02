@@ -1,6 +1,7 @@
 package cn.sharesdk.socialization.sample;
 
 import cn.sharesdk.socialization.SocializationCustomPlatform;
+import cn.sharesdk.socialization.sample.R;
 import android.content.Context;
 
 /**

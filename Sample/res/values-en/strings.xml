@@ -80,7 +80,6 @@
 	<string name="receive_rewards">Congratulations, you get %s gold!</string>
 	<string name="buy_success">Buy Success</string>
 	<string name="buy_failed">Buy Failed</string>
-	<string name="laiwangcustomize">Customize-Laiwang</string>
 	<string name="qzone_customer_share_style">custom QZone share style</string>
   	<string name="qq_share_way">Please Select Share way</string>
   	<string name="qq_share_from_qqlogin">QQ/QZone login to post Weibo</string>
@@ -94,4 +93,6 @@
   	<string name="qrcode_type_uri">Raw Content</string>
   	<string name="qrcode_generate">Generate Code</string>
   	<string name="qrcode_hint">input QR Code content</string>
+  	
+	<string name="ssdk_laiwangcustomize">Customize-Laiwang</string>
 </resources>

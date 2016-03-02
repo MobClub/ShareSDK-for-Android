@@ -8,6 +8,9 @@
 
 package cn.sharesdk.demo;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
@@ -23,10 +26,6 @@ import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import cn.sharesdk.demo.widget.SlidingMenu;
 import cn.sharesdk.framework.CustomPlatform;
 import cn.sharesdk.framework.Platform;
@@ -35,8 +34,6 @@ import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
 
 import com.mob.tools.utils.UIHandler;
-
-import cn.sharesdk.onekeyshare.ShareCore;
 
 /**
  * 授权和取消授权演示页面
@@ -161,7 +158,7 @@ public class AuthPage extends SlidingMenuPage implements
 			for (Platform p : tmp) {
 				String name = p.getName();
 				if ((p instanceof CustomPlatform)
-						|| !ShareCore.canGetUserInfo(p.getContext(), name)) {
+						|| !DemoUtils.canGetUserInfo(name)) {
 					continue;
 				}
 				platforms.add(p);
@@ -239,7 +236,7 @@ public class AuthPage extends SlidingMenuPage implements
 				return null;
 			}
 
-			String resName = "ssdk_oks_logo_" + plat.getName();
+			String resName = "ssdk_oks_classic_" + plat.getName();
 			int resId = com.mob.tools.utils.R.getBitmapRes(page.getContext(), resName.toLowerCase());
 			return BitmapFactory.decodeResource(page.getResources(), resId);
 		}
