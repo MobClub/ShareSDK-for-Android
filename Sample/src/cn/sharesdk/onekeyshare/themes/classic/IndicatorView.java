@@ -39,6 +39,10 @@ public class IndicatorView extends View {
 	}
 
 	protected void onDraw(Canvas canvas) {
+		if (count <= 1) {
+			this.setVisibility(View.GONE);
+			return;
+		}
 		float height = getHeight();
 		float radius = height * DESIGN_INDICATOR_RADIUS / DESIGN_BOTTOM_HEIGHT;
 		float distance = height * DESIGN_INDICATOR_DISTANCE / DESIGN_BOTTOM_HEIGHT;

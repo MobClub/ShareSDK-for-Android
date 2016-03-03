@@ -99,7 +99,7 @@ public abstract class PlatformPageAdapter extends ViewPagerAdapter implements On
 	private View createPanel(Context context) {
 		LinearLayout llPanel = new LinearLayout(context);
 		llPanel.setOrientation(LinearLayout.VERTICAL);
-		llPanel.setBackgroundColor(0xffffffff);//(0xffff2f2);
+		llPanel.setBackgroundColor(0xfff2f2f2);
 
 		int lineCount = panelHeight / cellHeight;
 		LinearLayout[] llCells = new LinearLayout[lineCount * lineSize];
@@ -151,18 +151,20 @@ public abstract class PlatformPageAdapter extends ViewPagerAdapter implements On
 	}
 
 	private void refreshPanel(LinearLayout[] llCells, Object[] logos) {
-
+		int cellBack = R.getBitmapRes(page.getContext(), "ssdk_oks_classic_platform_cell_back");
+		int disableBack = R.getBitmapRes(page.getContext(), "ssdk_oks_classic_platfrom_cell_back_nor");
 		for (int i = 0; i < logos.length; i++) {
 			ImageView ivLogo = R.forceCast(llCells[i].getChildAt(0));
 			TextView tvName = R.forceCast(llCells[i].getChildAt(1));
 			if (logos[i] == null) {
 				ivLogo.setVisibility(View.INVISIBLE);
 				tvName.setVisibility(View.INVISIBLE);
-				llCells[i].setVisibility(View.INVISIBLE);
+				llCells[i].setBackgroundResource(disableBack);
+				llCells[i].setOnClickListener(null);
 			} else {
 				ivLogo.setVisibility(View.VISIBLE);
 				tvName.setVisibility(View.VISIBLE);
-				llCells[i].setVisibility(View.VISIBLE);
+				llCells[i].setBackgroundResource(cellBack);
 				llCells[i].setOnClickListener(this);
 				llCells[i].setTag(logos[i]);
 
