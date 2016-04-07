@@ -109,10 +109,9 @@ public abstract class PlatformPage extends OnekeySharePage {
 		}
 
 		ArrayList<CustomerLogo> customers = getCustomerLogos();
-		if (customers == null) {
-			customers = new ArrayList<CustomerLogo>();
+		if (customers != null && customers.size() > 0) {
+			cells.addAll(customers);
 		}
-		cells.addAll(customers);
 
 		return cells;
 	}

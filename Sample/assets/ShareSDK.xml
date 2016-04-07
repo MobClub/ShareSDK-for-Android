@@ -50,6 +50,8 @@
 			明道	           http://open.mingdao.com/
 			Line           http://media.line.me/zh-hant/
 			Pocket         http://getpocket.com/developer/apps/new
+			KakaoTalk      https://developers.kakao.com/
+			KakaoStory     https://developers.kakao.com/
     -->
     
     <ShareSDK 
@@ -62,7 +64,7 @@
         AppKey="568898243"
         AppSecret="38a4f8204cc784f81f9f0daaf31e02e3"
         RedirectUrl="http://www.sharesdk.cn"
-        ShareByAppClient="false"
+        ShareByAppClient="true"
         Enable="true" />
 
     <TencentWeibo
@@ -72,14 +74,11 @@
         AppSecret="ae36f4ee3946e1cbb98d6965b0b2ff5c"
         RedirectUri="http://sharesdk.cn"
         Enable="true" />
-
-    <!-- ShareByAppClient标识是否使用微博客户端分享，默认是false -->
     <QZone
         Id="3"
         SortId="3"
         AppId="100371282"
         AppKey="aed9b0303e3ed1e27bae87c33761161d"
-        ShareByAppClient="false"
         Enable="true" />
     
     <!-- 
@@ -185,14 +184,6 @@
         RedirectUri="http://www.sharesdk.cn/"
         Enable="true" />
         
-	<SohuSuishenkan
-        Id="18"
-        SortId="18"
-        AppKey="e16680a815134504b746c86e08a19db0"
-        AppSecret="b8eec53707c3976efc91614dd16ef81c"
-        RedirectUri="http://sharesdk.cn"
-        Enable="true" />
-        
     <!-- 
     	在中国大陆，印象笔记有两个服务器，一个是沙箱（sandbox），一个是生产服务器（china）。
     	一般你注册应用，它会先让你使用sandbox，当你完成测试以后，可以到
@@ -209,7 +200,7 @@
         HostType="sandbox"
     	ConsumerKey="sharesdk-7807"
 		ConsumerSecret="d05bf86993836004"
-		ShareByAppClient="false"
+		ShareByAppClient="true"
 		Enable="true" />
     
     <LinkedIn
@@ -336,7 +327,7 @@
     <Bluetooth
         Id="36"
         SortId="36"
-        Enable="false" />
+        Enable="true" />
 
     <Pocket
         Id="37"
@@ -354,9 +345,7 @@
     <FacebookMessenger
         Id="39"
         SortId="39"
-        ConsumerKey="107704292745179"
-        ConsumerSecret="38053202e1a5fe26c80c753071f0b573"
-        RedirectUrl="http://mob.com"
+        AppId="107704292745179"
         Enable="true" />
     
      <Alipay
