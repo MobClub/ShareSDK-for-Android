@@ -327,7 +327,7 @@
     <Bluetooth
         Id="36"
         SortId="36"
-        Enable="true" />
+        Enable="false" />
 
     <Pocket
         Id="37"
