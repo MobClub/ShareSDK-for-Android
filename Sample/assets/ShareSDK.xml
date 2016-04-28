@@ -74,6 +74,7 @@
         AppSecret="ae36f4ee3946e1cbb98d6965b0b2ff5c"
         RedirectUri="http://sharesdk.cn"
         Enable="true" />
+    
     <QZone
         Id="3"
         SortId="3"
@@ -327,7 +328,7 @@
     <Bluetooth
         Id="36"
         SortId="36"
-        Enable="false" />
+        Enable="true" />
 
     <Pocket
         Id="37"

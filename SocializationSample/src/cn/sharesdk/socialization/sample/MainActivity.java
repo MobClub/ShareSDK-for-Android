@@ -59,8 +59,6 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 		context = MainActivity.this;
 		ShareSDK.initSDK(this);
 		ShareSDK.registerService(Socialization.class);
-		Socialization service = ShareSDK.getService(Socialization.class);
-		service.setCustomPlatform(new MyPlatform(this));
 
 		new Thread() {
 			public void run() {
@@ -176,6 +174,8 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 		oks.setSiteUrl("http://mob.com");
 		oks.setVenueName("ShareSDK");
 		oks.setVenueDescription("This is a beautiful place!");
+		oks.setLatitude(23.169f);
+		oks.setLongitude(112.908f);
 		oks.disableSSOWhenAuthorize();
 		oks.setShareContentCustomizeCallback(new ShareContentCustomizeCallback() {
 			public void onShare(Platform platform, ShareParams paramsToShare) {

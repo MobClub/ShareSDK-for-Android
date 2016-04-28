@@ -13,5 +13,5 @@
 	<string name="comment_like_comment_list">Comment</string>
 	<string name="like_success">Like Successfully</string>
 	<string name="like_fail">Like failed</string>
-	<string name="myplatform">Comment &amp; Like</string>
+	<string name="ssdk_myplatform">Comment &amp; Like</string>
 </resources>

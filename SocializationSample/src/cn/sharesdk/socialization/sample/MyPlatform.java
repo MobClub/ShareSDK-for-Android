@@ -23,7 +23,7 @@ public class MyPlatform extends SocializationCustomPlatform {
 
 	public int getLogo() {
 		// 返回显示在帐号选择列表中的平台图标
-		return R.drawable.logo_myplatform;
+		return R.drawable.ssdk_oks_classic_myplatform;
 	}
 
 	protected boolean checkAuthorize(int action) {
