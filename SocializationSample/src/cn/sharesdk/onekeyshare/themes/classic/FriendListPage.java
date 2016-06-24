@@ -28,7 +28,7 @@ import cn.sharesdk.onekeyshare.OnekeySharePage;
 import cn.sharesdk.onekeyshare.OnekeyShareThemeImpl;
 import cn.sharesdk.onekeyshare.themes.classic.FriendAdapter.Following;
 
-import com.mob.tools.gui.PullToRefreshView;
+import com.mob.tools.gui.PullToRequestView;
 import com.mob.tools.utils.R;
 
 /** 编辑界面，@好友时，弹出的好友列表 */
@@ -82,7 +82,7 @@ public abstract class FriendListPage extends OnekeySharePage implements OnClickL
 		llPage.addView(flPage);
 
 		// 关注（或朋友）列表
-		PullToRefreshView followList = new PullToRefreshView(getContext());
+		PullToRequestView followList = new PullToRequestView(getContext());
 		FrameLayout.LayoutParams lpLv = new FrameLayout.LayoutParams(
 				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		followList.setLayoutParams(lpLv);
@@ -95,7 +95,7 @@ public abstract class FriendListPage extends OnekeySharePage implements OnClickL
 		followList.setAdapter(adapter);
 
 		// 请求数据
-		followList.performPulling(true);
+		followList.performPullingDown(true);
 	}
 
 	protected abstract float getRatio();
