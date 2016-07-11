@@ -174,8 +174,6 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 		oks.setSiteUrl("http://mob.com");
 		oks.setVenueName("ShareSDK");
 		oks.setVenueDescription("This is a beautiful place!");
-		oks.setLatitude(23.169f);
-		oks.setLongitude(112.908f);
 		oks.disableSSOWhenAuthorize();
 		oks.setShareContentCustomizeCallback(new ShareContentCustomizeCallback() {
 			public void onShare(Platform platform, ShareParams paramsToShare) {

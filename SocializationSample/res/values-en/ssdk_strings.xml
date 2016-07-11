@@ -64,9 +64,12 @@
     <string name="ssdk_laiwang">Laiwang</string>
     <string name="ssdk_laiwangmoments">Laiwang Moments</string>
     <string name="ssdk_alipay">Alipay</string>
+        <string name="ssdk_plurk">Plurk</string>
 
 	<string name="ssdk_share_to_qzone">Share To QZone</string>
 	<string name="ssdk_share_to_qq">Share To QQ</string>
+	<string name="ssdk_share_to_googleplus">Share To Google+</string>
+	<string name="ssdk_share_to_facebook">Share To Facebook</string>
 	<string name="ssdk_mingdao_share_content">Share webpage</string>
 	<string name="ssdk_share_to_mingdao">Share To Mingdao</string>
 	<string name="ssdk_share_to_qzone_default">Shared from %s</string>
