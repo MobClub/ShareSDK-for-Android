@@ -52,6 +52,7 @@
 			Pocket         http://getpocket.com/developer/apps/new
 			KakaoTalk      https://developers.kakao.com/
 			KakaoStory     https://developers.kakao.com/
+			Plurk          http://www.plurk.com/API
     -->
     
     <ShareSDK 
@@ -215,6 +216,9 @@
      <GooglePlus
     	Id="21"
         SortId="21"
+        ClientID="682795613743-cfo3a8r4va0ujja7qofr54hobt2kv3cq.apps.googleusercontent.com"
+        RedirectUrl="http://localhost"
+        ShareByAppClient = "false"
         Enable="true" />
      
      <FourSquare
@@ -354,4 +358,5 @@
         SortId="52"  
         AppId="2015072400185895"
         Enable="true"/>
+
 </DevInfor>

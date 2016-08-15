@@ -105,7 +105,7 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 		String name = platform.getName();
 		if ("Wechat".equals(name) || "WechatMoments".equals(name)
 				|| "WechatFavorite".equals(name) || "ShortMessage".equals(name)
-				|| "Email".equals(name) || "GooglePlus".equals(name)
+				|| "Email".equals(name) || "Qzone".equals(name)
 				|| "QQ".equals(name) || "Pinterest".equals(name)
 				|| "Instagram".equals(name) || "Yixin".equals(name)
 				|| "YixinMoments".equals(name) || "QZone".equals(name)
@@ -114,7 +114,7 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 				|| "Bluetooth".equals(name) || "WhatsApp".equals(name)
 				|| "BaiduTieba".equals(name) || "Laiwang".equals(name)
 				|| "LaiwangMoments".equals(name) || "Alipay".equals(name)
-				|| "FacebookMessenger".equals(name)
+				|| "FacebookMessenger".equals(name) || "GooglePlus".equals(name)
 				) {
 			return true;
 		} else if ("Evernote".equals(name)) {
@@ -213,6 +213,11 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 
 		if ("Instagram".equals(name) && !plat.isClientValid()) {
 			toast("ssdk_instagram_client_inavailable");
+			return false;
+		}
+
+		if ("QZone".equals(name) && !plat.isClientValid()) {
+			toast("ssdk_qq_client_inavailable");
 			return false;
 		}
 
