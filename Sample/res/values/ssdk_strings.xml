@@ -64,6 +64,7 @@
     <string name="ssdk_laiwang">来往</string>
     <string name="ssdk_laiwangmoments">来往动态</string>
     <string name="ssdk_alipay">支付宝好友</string>
+    <string name="ssdk_alipaymoments">支付宝生活圈</string>
     <string name="ssdk_plurk">Plurk</string>
 
 	<string name="ssdk_share_to_qzone">分享到QQ空间</string>

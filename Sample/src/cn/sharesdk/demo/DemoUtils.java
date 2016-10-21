@@ -16,7 +16,8 @@ public class DemoUtils {
 				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform)
 				|| "Pocket".equals(platform) || "BaiduTieba".equals(platform)
 				|| "Laiwang".equals(platform) || "LaiwangMoments".equals(platform)
-				|| "Alipay".equals(platform) || "FacebookMessenger".equals(platform));
+				|| "Alipay".equals(platform) || "AlipayMoments".endsWith(platform)
+				|| "FacebookMessenger".equals(platform));
 	}
 
 	public static boolean canAuthorize(String platform) {
@@ -28,7 +29,7 @@ public class DemoUtils {
 				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform)
 				|| "BaiduTieba".equals(platform) || "Laiwang".equals(platform)
 				|| "LaiwangMoments".equals(platform) || "Alipay".equals(platform)
-				|| "FacebookMessenger".equals(platform));
+				|| "AlipayMoments".equals(platform) || "FacebookMessenger".equals(platform));
 	}
 
 	public static boolean isUseClientToShare(String platform) {
@@ -43,8 +44,7 @@ public class DemoUtils {
 				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform)
 				|| "BaiduTieba".equals(platform) || "Laiwang".equals(platform)
 				|| "LaiwangMoments".equals(platform) || "Alipay".equals(platform)
-				|| "FacebookMessenger".equals(platform)
-				) {
+				|| "AlipayMoments".equals(platform) || "FacebookMessenger".equals(platform)) {
 			return true;
 		} else if ("Evernote".equals(platform)) {
 			Platform plat = ShareSDK.getPlatform(platform);

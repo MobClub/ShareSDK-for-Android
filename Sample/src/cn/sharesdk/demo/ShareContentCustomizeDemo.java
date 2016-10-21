@@ -35,6 +35,10 @@ public class ShareContentCustomizeDemo implements ShareContentCustomizeCallback 
 			// 因为twitter会将图片地址当作文本的一部分去计算长度
 			String text = platform.getContext().getString(R.string.share_content_short);
 			paramsToShare.setText(text);
+		} else if ("QQ".equals(platform.getName())) {
+			paramsToShare.setHidden(1);
+		} else if ("Facebook".equals(platform.getName())) {
+			paramsToShare.setShareType(Platform.SHARE_WEBPAGE);
 		}
 	}
 

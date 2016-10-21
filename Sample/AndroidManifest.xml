@@ -1,8 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.sharesdk.demo"
-    android:versionCode="67"
-    android:versionName="2.7.7" >
+    android:versionCode="66"
+    android:versionName="2.7.8" >
     
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+	
 	<uses-permission android:name="android.permission.GET_TASKS" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -10,12 +13,11 @@
 	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
-	<uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+	<uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>l
 	<uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-	<!-- 蓝牙分享所需的权限 -->
+	<!-- 蓝牙分享所需的权限
 	<uses-permission android:name="android.permission.BLUETOOTH" />
-	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-  
+    -->
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -39,14 +41,13 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustPan|stateHidden"
             android:screenOrientation="sensor">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>        
-            
-            <!--
-               KakaoTalk ,分享应用的时候需要添加这个intent-filter,用于点击应用按钮跳转到APP
+           
+	            <intent-filter>
+	                <action android:name="android.intent.action.MAIN" />	
+	                <category android:name="android.intent.category.LAUNCHER" />
+	            </intent-filter>        
+           <!--  
+               	KakaoTalk ,分享应用的时候需要添加这个intent-filter,用于点击应用按钮跳转到APP
                	其中android:scheme="kakaoc53410d71a7d6b96671aac1bd13a1982"是由"kakao"+APPKey      
             -->                                           
             <intent-filter>
@@ -62,12 +63,28 @@
 			    <category android:name="android.intent.category.DEFAULT" />
 			    <category android:name="com.facebook.orca.category.PLATFORM_THREAD_20150314" />
 			</intent-filter>
+        </activity>  
+        
+        <activity 
+            android:name="TestStartActivity">
+            <!-- 
+            <intent-filter>
+	        	<action android:name="android.intent.action.MAIN" />	
+	            <category android:name="android.intent.category.LAUNCHER" />
+	        </intent-filter>   
+	        --> 
         </activity>
+        <activity 
+            android:name="TestSecondActivity"
+            android:process=":test"
+            />
+        
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:windowSoftInputMode="stateHidden|adjustResize">
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:multiprocess="true">
             <!-- 
             	AuthorizeAdapter表示一个继承自cn.sharesdk.framework.authorize.AuthorizeAdapter
             	的类，这个类可以监听到页面的生命周期，也可以获取授权页面的各种UI控件。 
@@ -112,7 +129,7 @@
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>			
         </activity>
-                              
+        
         <!-- 微信分享回调 -->
         <activity
             android:name=".wxapi.WXEntryActivity"

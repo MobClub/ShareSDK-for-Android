@@ -82,6 +82,7 @@
   	<string name="qq_share_from_qqlogin">QQ/QZone登录发微博</string>
   	<string name="qq_share_from_tlogin">腾讯微博登录发微博</string>
   	<string name="share_to_alipay">支付宝朋友</string>
+  	<string name="share_to_alipay_moment">支付宝生活圈</string>
   	
   	<string name="qrcode_type_url">短链模式</string>
   	<string name="qrcode_type_uri">自定义模式</string>

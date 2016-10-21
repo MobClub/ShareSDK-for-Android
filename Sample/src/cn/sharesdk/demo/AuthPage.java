@@ -11,6 +11,7 @@ package cn.sharesdk.demo;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.app.AlertDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
@@ -116,28 +117,35 @@ public class AuthPage extends SlidingMenuPage implements
 	public boolean handleMessage(Message msg) {
 		Platform plat = (Platform) msg.obj;
 		String text = MainActivity.actionToString(msg.arg2);
+		boolean isCallBackMsg = false;
 		switch (msg.arg1) {
 			case 1: {
 				// 成功
 				text = plat.getName() + " completed at " + text;
+				isCallBackMsg=true;
 				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
 			}
 			break;
 			case 2: {
 				// 失败
 				text = plat.getName() + " caught error at " + text;
+				isCallBackMsg=true;
 				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
-				return false;
 			}
+			break;
 			case 3: {
 				// 取消
 				text = plat.getName() + " canceled at " + text;
+				isCallBackMsg=true;
 				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
-				return false;
 			}
+			break;
 		}
 
 		adapter.notifyDataSetChanged();
+		if(isCallBackMsg){
+			new AlertDialog.Builder(getContext()).setMessage(text).create().show();
+		}
 		return false;
 	}
 

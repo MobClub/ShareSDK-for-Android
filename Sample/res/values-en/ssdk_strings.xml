@@ -64,7 +64,8 @@
     <string name="ssdk_laiwang">Laiwang</string>
     <string name="ssdk_laiwangmoments">Laiwang Moments</string>
     <string name="ssdk_alipay">Alipay</string>
-        <string name="ssdk_plurk">Plurk</string>
+    <string name="ssdk_alipaymoments">Alipay Moments</string>
+    <string name="ssdk_plurk">Plurk</string>
 
 	<string name="ssdk_share_to_qzone">Share To QZone</string>
 	<string name="ssdk_share_to_qq">Share To QQ</string>

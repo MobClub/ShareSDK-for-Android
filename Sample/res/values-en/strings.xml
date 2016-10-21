@@ -88,6 +88,7 @@
     <string name="more">More</string>
     <string name="video_upload">Share Video</string>
   	<string name="share_to_alipay">Alipay Friends</string>
+  	<string name="share_to_alipay_moment">Alipay Moments</string>
   	
   	<string name="qrcode_type_url">Http Url</string>
   	<string name="qrcode_type_uri">Raw Content</string>

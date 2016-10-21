@@ -230,7 +230,7 @@ public class OnekeyShare {
 		HashMap<String, Object> shareParamsMap = new HashMap<String, Object>();
 		shareParamsMap.putAll(params);
 
-		ShareSDK.initSDK(context);
+		ShareSDK.initSDK(context.getApplicationContext());
 
 		// 打开分享菜单的统计
 		ShareSDK.logDemoEvent(1, null);
@@ -253,7 +253,7 @@ public class OnekeyShare {
 			themeImpl.disableSSO();
 		}
 
-		themeImpl.show(context);
+		themeImpl.show(context.getApplicationContext());
 	}
 
 }

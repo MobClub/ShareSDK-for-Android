@@ -10,6 +10,8 @@ package cn.sharesdk.demo;
 
 import java.util.HashMap;
 
+import cn.sharesdk.alipay.friends.Alipay;
+import cn.sharesdk.alipay.moments.AlipayMoments;
 import cn.sharesdk.demo.widget.SlidingMenu;
 import cn.sharesdk.framework.Platform;
 
@@ -49,20 +51,15 @@ public class AlipayPage extends SlidingMenuPage implements
 				(CheckedTextView) pageView.findViewById(R.id.ctvStWm),
 				(CheckedTextView) pageView.findViewById(R.id.ctvStWf)
 		};
-		for (View v : ctvPlats) {
-			v.setVisibility(View.GONE);
-		}
+		ctvPlats[0].setText(R.string.share_to_alipay);
+		ctvPlats[1].setText(R.string.share_to_alipay_moment);
+		ctvPlats[2].setVisibility(View.GONE);
 
-		ctvPlats = new CheckedTextView[] {
-				(CheckedTextView) pageView.findViewById(R.id.ctvStWc),
-				(CheckedTextView) pageView.findViewById(R.id.ctvStWm),
-				(CheckedTextView) pageView.findViewById(R.id.ctvStWf)
-		};
-		for (int i = 0; i < ctvPlats.length; i++) {
-			ctvPlats[i].setVisibility(View.GONE);
+		ctvPlats[0].setChecked(true);
+		// 设置点击事件
+		for (int i = 0; i < 2; i++) {
+			ctvPlats[i].setOnClickListener(this);
 		}
-
-		//设置点击事件
 		ViewGroup vp = (ViewGroup) ctvPlats[0].getParent().getParent();
 		vp.setLayoutAnimation(InLayoutAnim.getAnimationController());
 		for (int i = 0, size = vp.getChildCount(); i < size; i++) {
@@ -99,7 +96,70 @@ public class AlipayPage extends SlidingMenuPage implements
 			return;
 		}
 
-		Platform plat = ShareSDK.getPlatform("Alipay");
+		if (v instanceof CheckedTextView) {
+			for (CheckedTextView ctv : ctvPlats) {
+				ctv.setChecked(ctv.equals(v));
+			}
+
+			int[] visIds = null;
+			int[] invIds = null;
+			if (v.equals(ctvPlats[0])) {
+				visIds = new int[] {
+						R.id.btnUpdate,
+						R.id.btnUpload,
+						R.id.btnUploadBm,
+						R.id.btnUploadUrl,
+						R.id.btnWebpage,
+						R.id.btnWebpageBm,
+						R.id.btnWebpageUrl
+				};
+				invIds = new int[] {
+						R.id.btnMusic,
+						R.id.btnVideo,
+						R.id.btnEmoji,
+						R.id.btnEmojiUrl,
+						R.id.btnEmojiBitmap,
+						R.id.btnApp,
+						R.id.btnAppExt,
+						R.id.btnFile
+				};
+			} else if (v.equals(ctvPlats[1])) {
+				visIds = new int[] {
+						R.id.btnWebpage,
+						R.id.btnWebpageBm,
+						R.id.btnWebpageUrl
+				};
+				invIds = new int[] {
+						R.id.btnUpdate,
+						R.id.btnUpload,
+						R.id.btnUploadBm,
+						R.id.btnUploadUrl,
+						R.id.btnMusic,
+						R.id.btnVideo,
+						R.id.btnEmoji,
+						R.id.btnEmojiUrl,
+						R.id.btnEmojiBitmap,
+						R.id.btnApp,
+						R.id.btnAppExt,
+						R.id.btnFile
+				};
+			}
+
+			for (int id : visIds) {
+				findViewById(id).setVisibility(View.VISIBLE);
+			}
+			for (int id : invIds) {
+				findViewById(id).setVisibility(View.GONE);
+			}
+			return;
+		}
+
+		Platform plat = null;
+		if (ctvPlats[0].isChecked()) {
+			plat = ShareSDK.getPlatform(Alipay.NAME);
+		} else if (ctvPlats[1].isChecked()) {
+			plat = ShareSDK.getPlatform(AlipayMoments.NAME);
+		}
 		if(!plat.isClientValid()){
 			Toast.makeText(getContext(), R.string.ssdk_alipay_client_inavailable, Toast.LENGTH_LONG).show();
 			return;

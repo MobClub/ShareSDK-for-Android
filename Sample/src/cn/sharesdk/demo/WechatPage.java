@@ -300,8 +300,10 @@ public class WechatPage extends SlidingMenuPage implements
 		switch (msg.arg1) {
 			case 1: {
 				// 成功
-				Platform plat = (Platform) msg.obj;
-				text = plat.getName() + " completed at " + text;
+				int resId = com.mob.tools.utils.R.getStringRes(getContext(), "ssdk_oks_share_completed");
+				if (resId > 0) {
+					text = getContext().getString(resId);
+				}
 			}
 			break;
 			case 2: {
@@ -319,8 +321,10 @@ public class WechatPage extends SlidingMenuPage implements
 			break;
 			case 3: {
 				// 取消
-				Platform plat = (Platform) msg.obj;
-				text = plat.getName() + " canceled at " + text;
+				int resId = com.mob.tools.utils.R.getStringRes(getContext(), "ssdk_oks_share_canceled");
+				if (resId > 0) {
+					text = getContext().getString(resId);
+				}
 			}
 			break;
 		}

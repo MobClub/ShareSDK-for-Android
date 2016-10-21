@@ -10,15 +10,6 @@ package cn.sharesdk.demo;
 
 import java.util.HashMap;
 
-import cn.sharesdk.demo.widget.SlidingMenu;
-import cn.sharesdk.framework.Platform;
-
-import com.mob.tools.utils.UIHandler;
-
-import cn.sharesdk.framework.Platform.ShareParams;
-import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.framework.TitleLayout;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Message;
@@ -28,6 +19,14 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.CheckedTextView;
 import android.widget.Toast;
+import cn.sharesdk.demo.widget.SlidingMenu;
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.Platform.ShareParams;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.framework.TitleLayout;
+
+import com.mob.tools.utils.UIHandler;
 
 /** 易信api的演示页面，展示了“易信好友”和“易信朋友圈”的接口 */
 public class YixinPage extends SlidingMenuPage implements
@@ -278,8 +277,10 @@ public class YixinPage extends SlidingMenuPage implements
 		switch (msg.arg1) {
 			case 1: {
 				// 成功
-				Platform plat = (Platform) msg.obj;
-				text = plat.getName() + " completed at " + text;
+				int resId = com.mob.tools.utils.R.getStringRes(getContext(), "ssdk_oks_share_completed");
+				if (resId > 0) {
+					text = getContext().getString(resId);
+				}
 			}
 			break;
 			case 2: {
@@ -295,8 +296,10 @@ public class YixinPage extends SlidingMenuPage implements
 			break;
 			case 3: {
 				// 取消
-				Platform plat = (Platform) msg.obj;
-				text = plat.getName() + " canceled at " + text;
+				int resId = com.mob.tools.utils.R.getStringRes(getContext(), "ssdk_oks_share_canceled");
+				if (resId > 0) {
+					text = getContext().getString(resId);
+				}
 			}
 			break;
 		}

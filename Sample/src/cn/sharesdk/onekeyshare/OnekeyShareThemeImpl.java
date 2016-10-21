@@ -114,7 +114,8 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 				|| "Bluetooth".equals(name) || "WhatsApp".equals(name)
 				|| "BaiduTieba".equals(name) || "Laiwang".equals(name)
 				|| "LaiwangMoments".equals(name) || "Alipay".equals(name)
-				|| "FacebookMessenger".equals(name) || "GooglePlus".equals(name)
+				|| "AlipayMoments".equals(name)|| "FacebookMessenger".equals(name)
+				|| "GooglePlus".equals(name)
 				) {
 			return true;
 		} else if ("Evernote".equals(name)) {
@@ -175,7 +176,7 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 	final boolean formateShareData(Platform plat) {
 		String name = plat.getName();
 
-		boolean isAlipay = "Alipay".equals(name);
+		boolean isAlipay = "Alipay".equals(name) || "AlipayMoments".equals(name);
 		if (isAlipay && !plat.isClientValid()) {
 			toast("ssdk_alipay_client_inavailable");
 			return false;

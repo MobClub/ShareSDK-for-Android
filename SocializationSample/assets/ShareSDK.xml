@@ -24,8 +24,6 @@
     	
     	各个平台注册应用信息的地址如下：
 			新浪微博        http://open.weibo.com
-			腾讯微博        http://dev.t.qq.com
-			QQ空间          http://connect.qq.com/intro/login/
 			微信好友        http://open.weixin.qq.com
 			Facebook       https://developers.facebook.com
 			Twitter        https://dev.twitter.com
@@ -50,8 +48,6 @@
 			明道	           http://open.mingdao.com/
 			Line           http://media.line.me/zh-hant/
 			Pocket         http://getpocket.com/developer/apps/new
-			KakaoTalk      https://developers.kakao.com/
-			KakaoStory     https://developers.kakao.com/
     -->
     
     <ShareSDK 
@@ -64,7 +60,7 @@
         AppKey="568898243"
         AppSecret="38a4f8204cc784f81f9f0daaf31e02e3"
         RedirectUrl="http://www.sharesdk.cn"
-        ShareByAppClient="true"
+        ShareByAppClient="false"
         Enable="true" />
 
     <TencentWeibo
@@ -74,11 +70,14 @@
         AppSecret="ae36f4ee3946e1cbb98d6965b0b2ff5c"
         RedirectUri="http://sharesdk.cn"
         Enable="true" />
+
+    <!-- ShareByAppClient标识是否使用微博客户端分享，默认是false -->
     <QZone
         Id="3"
         SortId="3"
         AppId="100371282"
         AppKey="aed9b0303e3ed1e27bae87c33761161d"
+        ShareByAppClient="false"
         Enable="true" />
     
     <!-- 
@@ -98,7 +97,7 @@
         SortId="4"
         AppId="wx4868b35061f87885"
         AppSecret="64020361b8ec4c99936c0e3999a9f249"
-        BypassApproval="false"
+        BypassApproval="true"
         Enable="true" />
     
     <WechatMoments
@@ -106,7 +105,7 @@
         SortId="5"
         AppId="wx4868b35061f87885"
         AppSecret="64020361b8ec4c99936c0e3999a9f249"
-        BypassApproval="false"
+        BypassApproval="true"
         Enable="true" />
         
 	<WechatFavorite
@@ -136,11 +135,11 @@
     <Twitter
         Id="9"
         SortId="9"
-        ConsumerKey="LRBM0H75rWrU9gNHvlEAA2aOy"
-        ConsumerSecret="gbeWsZvA9ELJSdoBzJ5oLKX0TU09UOwrzdGfo9Tg7DjyGuMe8G"
-        CallbackUrl="http://mob.com"
+        ConsumerKey="mnTGqtXk0TYMXYTN7qUxg"
+        ConsumerSecret="ROkFqr8c3m1HXqS3rm3TJ0WkAJuwBOSaWhPbZ9Ojuc"
+        CallbackUrl="http://www.sharesdk.cn"
         Enable="true" />
-    
+
     <Renren
         Id="10"
         SortId="10"
@@ -166,13 +165,13 @@
         Id="13" 
         SortId="13"
         Enable="true" />
-    
+   
     <Douban
         Id="16"
         SortId="16"
-        ApiKey="031a96a3aa8b28af094fc3eaffa17a0d"
-        Secret="2e675e730571b75d"
-        RedirectUri="http://mob.com"
+        ApiKey="02e2cbe5ca06de5908a863b15e149b0b"
+        Secret="9f1e7b4f71304f2f"
+        RedirectUri="http://www.sharesdk.cn"
         Enable="true" />
     
     <YouDao
@@ -182,6 +181,14 @@
         ConsumerKey="dcde25dca105bcc36884ed4534dab940"
         ConsumerSecret="d98217b4020e7f1874263795f44838fe"
         RedirectUri="http://www.sharesdk.cn/"
+        Enable="true" />
+        
+	<SohuSuishenkan
+        Id="18"
+        SortId="18"
+        AppKey="e16680a815134504b746c86e08a19db0"
+        AppSecret="b8eec53707c3976efc91614dd16ef81c"
+        RedirectUri="http://sharesdk.cn"
         Enable="true" />
         
     <!-- 
@@ -200,7 +207,7 @@
         HostType="sandbox"
     	ConsumerKey="sharesdk-7807"
 		ConsumerSecret="d05bf86993836004"
-		ShareByAppClient="true"
+		ShareByAppClient="false"
 		Enable="true" />
     
     <LinkedIn
@@ -249,9 +256,8 @@
 	<Dropbox
         Id="26"
         SortId="26"
-        AppKey="i5vw2mex1zcgjcj" 
-		AppSecret="3i9xifsgb4omr0s"
-		RedirectUri="https://www.sharesdk.cn"
+        AppKey="7janx53ilz11gbs"
+		AppSecret="c1hpx5fz6tzkm32"
         Enable="true" />
         
     <VKontakte 
@@ -310,13 +316,11 @@
 	<KakaoTalk
 	    Id="33"
         SortId="33"
-        AppKey="48d3f524e4a636b08d81b3ceb50f1003"
         Enable="true" />
 	
 	<KakaoStory
 	    Id="34"
         SortId="34"
-        AppKey="48d3f524e4a636b08d81b3ceb50f1003"
         Enable="true" />
 
     <WhatsApp
@@ -345,7 +349,9 @@
     <FacebookMessenger
         Id="39"
         SortId="39"
-        AppId="107704292745179"
+        ConsumerKey="107704292745179"
+        ConsumerSecret="38053202e1a5fe26c80c753071f0b573"
+        RedirectUrl="http://mob.com"
         Enable="true" />
     
      <Alipay
