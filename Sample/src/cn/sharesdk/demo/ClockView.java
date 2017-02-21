@@ -20,7 +20,6 @@ import android.graphics.Shader;
 import android.graphics.SweepGradient;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,7 +28,7 @@ import android.view.animation.LinearInterpolator;
 
 public class ClockView extends View {
 	private static final String TAG = ClockView.class.getSimpleName();
-	private static boolean DEBUG = true;
+	private static final boolean DEBUG = true;
 
 	/**背景颜色*/
 	private int colorBg = 0xff237ead;
@@ -126,6 +125,7 @@ public class ClockView extends View {
 
 	private int width;
 	private int height;
+	private BroadcastReceiver receiver;
 
 	public ClockView(Context context, int width, int height) {
 		super(context);
@@ -142,9 +142,6 @@ public class ClockView extends View {
 	@Override
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();
-		if (DEBUG) {
-			Log.d(TAG, "onAttachedToWindow");
-		}
 //		startNewSecondAnim();
 
 		// register broadcast receiver
@@ -153,15 +150,13 @@ public class ClockView extends View {
 		intentFilter.addAction(Intent.ACTION_TIME_CHANGED);
 		intentFilter.addAction(Intent.ACTION_SCREEN_ON);
 		intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
+		receiver = new TimeTickerReceiver();
 		getContext().registerReceiver(receiver, intentFilter);
 	}
 
 	@Override
 	protected void onDetachedFromWindow() {
 		super.onDetachedFromWindow();
-		if (DEBUG) {
-			Log.d(TAG, "onDetachedFromWindow");
-		}
 		getContext().unregisterReceiver(receiver);
 		cancelSecondAnimIfNeed();
 	}
@@ -579,9 +574,6 @@ public class ClockView extends View {
 	}
 
 	private void startNewSecondAnim() {
-		if (DEBUG) {
-			Log.d(TAG, "startNewSecondAnim");
-		}
 		cancelSecondAnimIfNeed();
 		updateTimePointer();
 
@@ -636,9 +628,6 @@ public class ClockView extends View {
 	private void cancelSecondAnimIfNeed() {
 		if (secondAnim != null && (secondAnim.isStarted() || secondAnim.isRunning())) {
 			secondAnim.cancel();
-			if (DEBUG) {
-				Log.d(TAG, "cancelSecondAnimIfNeed");
-			}
 		}
 	}
 
@@ -692,7 +681,8 @@ public class ClockView extends View {
 		return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, getResources().getDisplayMetrics());
 	}
 
-	private BroadcastReceiver receiver = new BroadcastReceiver() {
+	private class TimeTickerReceiver extends BroadcastReceiver {
+
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			if (intent == null) {
@@ -702,9 +692,6 @@ public class ClockView extends View {
 			if (TextUtils.isEmpty(action)) {
 				return;
 			}
-			if (DEBUG) {
-				Log.d(TAG, String.format("action -> %s", action));
-			}
 			if (action.equals(Intent.ACTION_TIME_TICK)) {
 				updateTimePointer();
 			} else if (action.equals(Intent.ACTION_SCREEN_ON)) {
@@ -713,5 +700,7 @@ public class ClockView extends View {
 				cancelSecondAnimIfNeed();
 			}
 		}
+
 	};
+
 }

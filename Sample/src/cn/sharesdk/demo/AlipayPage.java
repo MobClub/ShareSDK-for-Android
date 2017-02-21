@@ -89,8 +89,7 @@ public class AlipayPage extends SlidingMenuPage implements
 		if (v.equals(llTitle.getBtnBack())) {
 			if (isMenuShown()) {
 				hideMenu();
-			}
-			else {
+			} else {
 				showMenu();
 			}
 			return;
@@ -178,39 +177,33 @@ public class AlipayPage extends SlidingMenuPage implements
 		switch (v.getId()) {
 			case R.id.btnUpload: {
 				sp.setShareType(Platform.SHARE_IMAGE);
-				sp.setImagePath(MainActivity.TEST_IMAGE);
-			}
-			break;
+				sp.setImagePath(MainActivity.testImage);
+			} break;
 			case R.id.btnUploadBm: {
 				sp.setShareType(Platform.SHARE_IMAGE);
 				Bitmap imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
 				sp.setImageData(imageData);
-			}
-			break;
+			} break;
 			case R.id.btnUploadUrl: {
 				sp.setShareType(Platform.SHARE_IMAGE);
-				sp.setImageUrl(MainActivity.TEST_IMAGE_URL);
-			}
-			break;
+				sp.setImageUrl(MainActivity.testImageUrl);
+			} break;
 			case R.id.btnWebpage: {
 				sp.setShareType(Platform.SHARE_WEBPAGE);
 				sp.setUrl("http://www.mob.com");
-				sp.setImagePath(MainActivity.TEST_IMAGE);
-			}
-			break;
+				sp.setImagePath(MainActivity.testImage);
+			} break;
 			case R.id.btnWebpageBm: {
 				sp.setShareType(Platform.SHARE_WEBPAGE);
 				sp.setUrl("http://www.mob.com");
 				Bitmap imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
 				sp.setImageData(imageData);
-			}
-			break;
+			} break;
 			case R.id.btnWebpageUrl: {
 				sp.setShareType(Platform.SHARE_WEBPAGE);
 				sp.setUrl("http://www.mob.com");
-				sp.setImageUrl(MainActivity.TEST_IMAGE_URL);
-			}
-			break;
+				sp.setImageUrl(MainActivity.testImageUrl);
+			} break;
 		}
 		return sp;
 	}
@@ -249,8 +242,7 @@ public class AlipayPage extends SlidingMenuPage implements
 				// 成功
 				Platform plat = (Platform) msg.obj;
 				text = plat.getName() + " completed at " + text;
-			}
-			break;
+			} break;
 			case 2: {
 				// 失败
 				if ("AlipayClientNotExistException".equals(msg.obj.getClass().getSimpleName())) {
@@ -260,14 +252,12 @@ public class AlipayPage extends SlidingMenuPage implements
 				} else {
 					text = getContext().getString(R.string.ssdk_oks_share_failed);
 				}
-			}
-			break;
+			} break;
 			case 3: {
 				// 取消
 				Platform plat = (Platform) msg.obj;
 				text = plat.getName() + " canceled at " + text;
-			}
-			break;
+			} break;
 		}
 
 		Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();

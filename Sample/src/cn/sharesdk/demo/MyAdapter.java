@@ -9,6 +9,9 @@
 package cn.sharesdk.demo;
 
 import java.util.HashMap;
+
+import com.mob.tools.utils.ResHelper;
+
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -80,11 +83,11 @@ public class MyAdapter extends AuthorizeAdapter implements OnClickListener,
 			t.printStackTrace();
 		}
 		ctvFollow.setChecked(true);
-		int dp_10 = com.mob.tools.utils.R.dipToPx(getActivity(), 10);
-		ctvFollow.setCompoundDrawablePadding(dp_10);
+		int dp10 = ResHelper.dipToPx(getActivity(), 10);
+		ctvFollow.setCompoundDrawablePadding(dp10);
 		ctvFollow.setCompoundDrawablesWithIntrinsicBounds(R.drawable.auth_cb, 0, 0, 0);
 		ctvFollow.setGravity(Gravity.CENTER_VERTICAL);
-		ctvFollow.setPadding(dp_10, dp_10, dp_10, dp_10);
+		ctvFollow.setPadding(dp10, dp10, dp10, dp10);
 		ctvFollow.setText(R.string.sm_item_fl_weibo);
 		if (platName.equals("TencentWeibo")) {
 			ctvFollow.setText(R.string.sm_item_fl_tc);
@@ -124,8 +127,7 @@ public class MyAdapter extends AuthorizeAdapter implements OnClickListener,
 			if (backListener != null) {
 				backListener.onError(plat, action, t);
 			}
-		}
-		else {
+		} else {
 			// 关注时发生错误
 			plat.setPlatformActionListener(backListener);
 			if (backListener != null) {
@@ -142,16 +144,14 @@ public class MyAdapter extends AuthorizeAdapter implements OnClickListener,
 			if (backListener != null) {
 				backListener.onComplete(plat, Platform.ACTION_AUTHORIZING, null);
 			}
-		}
-		else if (ctvFollow.isChecked()) {
+		} else if (ctvFollow.isChecked()) {
 			// 授权成功，执行关注
 			String account = MainAdapter.SDK_SINAWEIBO_UID;
 			if ("TencentWeibo".equals(plat.getName())) {
 				account = MainAdapter.SDK_TENCENTWEIBO_UID;
 			}
 			plat.followFriend(account);
-		}
-		else {
+		} else {
 			// 如果没有标记为“授权并关注”则直接返回
 			plat.setPlatformActionListener(backListener);
 			if (backListener != null) {
@@ -168,8 +168,7 @@ public class MyAdapter extends AuthorizeAdapter implements OnClickListener,
 			if (backListener != null) {
 				backListener.onCancel(plat, action);
 			}
-		}
-		else {
+		} else {
 			// 当作授权以后不做任何事情
 			if (backListener != null) {
 				backListener.onComplete(plat, Platform.ACTION_AUTHORIZING, null);
@@ -187,8 +186,7 @@ public class MyAdapter extends AuthorizeAdapter implements OnClickListener,
 		if (ctvFollow != null) {
 			if (oldh - h > 100) {
 				ctvFollow.setVisibility(View.GONE);
-			}
-			else {
+			} else {
 				ctvFollow.setVisibility(View.VISIBLE);
 			}
 		}

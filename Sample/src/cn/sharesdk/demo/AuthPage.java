@@ -34,6 +34,7 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
 
+import com.mob.tools.utils.ResHelper;
 import com.mob.tools.utils.UIHandler;
 
 /**
@@ -74,8 +75,7 @@ public class AuthPage extends SlidingMenuPage implements
 		if (v.equals(llTitle.getBtnBack())) {
 			if (isMenuShown()) {
 				hideMenu();
-			}
-			else {
+			} else {
 				showMenu();
 			}
 		}
@@ -124,22 +124,19 @@ public class AuthPage extends SlidingMenuPage implements
 				text = plat.getName() + " completed at " + text;
 				isCallBackMsg=true;
 				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
-			}
-			break;
+			} break;
 			case 2: {
 				// 失败
 				text = plat.getName() + " caught error at " + text;
 				isCallBackMsg=true;
 				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
-			}
-			break;
+			} break;
 			case 3: {
 				// 取消
 				text = plat.getName() + " canceled at " + text;
 				isCallBackMsg=true;
 				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
-			}
-			break;
+			} break;
 		}
 
 		adapter.notifyDataSetChanged();
@@ -192,26 +189,23 @@ public class AuthPage extends SlidingMenuPage implements
 
 			int count = getCount();
 			View llItem = convertView.findViewById(R.id.llItem);
-			int dp_10 = com.mob.tools.utils.R.dipToPx(parent.getContext(), 10);
+			int dp10 = ResHelper.dipToPx(parent.getContext(), 10);
 			if (count == 1) {
 				llItem.setBackgroundResource(R.drawable.list_item_single_normal);
 				llItem.setPadding(0, 0, 0, 0);
-				convertView.setPadding(dp_10, dp_10, dp_10, dp_10);
-			}
-			else if (position == 0) {
+				convertView.setPadding(dp10, dp10, dp10, dp10);
+			} else if (position == 0) {
 				llItem.setBackgroundResource(R.drawable.list_item_first_normal);
 				llItem.setPadding(0, 0, 0, 0);
-				convertView.setPadding(dp_10, dp_10, dp_10, 0);
-			}
-			else if (position == count - 1) {
+				convertView.setPadding(dp10, dp10, dp10, 0);
+			} else if (position == count - 1) {
 				llItem.setBackgroundResource(R.drawable.list_item_last_normal);
 				llItem.setPadding(0, 0, 0, 0);
-				convertView.setPadding(dp_10, 0, dp_10, dp_10);
-			}
-			else {
+				convertView.setPadding(dp10, 0, dp10, dp10);
+			} else {
 				llItem.setBackgroundResource(R.drawable.list_item_middle_normal);
 				llItem.setPadding(0, 0, 0, 0);
-				convertView.setPadding(dp_10, 0, dp_10, 0);
+				convertView.setPadding(dp10, 0, dp10, 0);
 			}
 
 			Platform plat = getItem(position);
@@ -245,7 +239,7 @@ public class AuthPage extends SlidingMenuPage implements
 			}
 
 			String resName = "ssdk_oks_classic_" + plat.getName();
-			int resId = com.mob.tools.utils.R.getBitmapRes(page.getContext(), resName.toLowerCase());
+			int resId = ResHelper.getBitmapRes(page.getContext(), resName.toLowerCase());
 			return BitmapFactory.decodeResource(page.getResources(), resId);
 		}
 
@@ -259,7 +253,7 @@ public class AuthPage extends SlidingMenuPage implements
 				return "";
 			}
 
-			int resId = com.mob.tools.utils.R.getStringRes(page.getContext(), "ssdk_" + plat.getName());
+			int resId = ResHelper.getStringRes(page.getContext(), "ssdk_" + plat.getName());
 			return page.getContext().getString(resId);
 		}
 

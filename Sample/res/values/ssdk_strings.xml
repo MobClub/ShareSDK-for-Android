@@ -66,7 +66,9 @@
     <string name="ssdk_alipay">支付宝好友</string>
     <string name="ssdk_alipaymoments">支付宝生活圈</string>
     <string name="ssdk_plurk">Plurk</string>
-
+	<string name="ssdk_youtube">Youtube</string>
+    <string name="ssdk_dingding">钉钉</string>
+	<string name="ssdk_meipai">美拍</string>
 	<string name="ssdk_share_to_qzone">分享到QQ空间</string>
 	<string name="ssdk_share_to_qq">分享到QQ</string>
 	<string name="ssdk_share_to_facebook">分享到Facebook</string>
@@ -75,4 +77,9 @@
 	<string name="ssdk_share_to_googleplus">分享到Google+</string>
 	<string name="ssdk_share_to_qzone_default">来自%s的分享</string>
 	<string name="ssdk_use_login_button">请改用“登录”按钮</string>
+	<string name="ssdk_share_to_youtube">分享到Youtube</string>
+	
+	<string name="ssdk_gender_male">男</string>
+	<string name="ssdk_gender_female">女</string>
+	<string name="ssdk_symbol_ellipsis">...</string>
 </resources>

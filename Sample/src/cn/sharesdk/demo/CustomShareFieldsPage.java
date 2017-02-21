@@ -45,18 +45,18 @@ public class CustomShareFieldsPage extends SlidingMenuPage implements View.OnCli
 			,"venueName"
 			,"venueDescription"
 	};
-	private final static HashMap<String, String> storeMap = new HashMap<String, String>(KEYS.length);
+	private  static HashMap<String, String> storeMap = new HashMap<String, String>(KEYS.length);
 	private final CustomFieldsAdapter adapter;
 
 	public static String getString(String key, String def) {
-		if(storeMap.containsKey(key))
+		if (storeMap.containsKey(key)) {
 			return storeMap.get(key);
+		}
 		return def;
 	}
 
 	public static boolean getBoolean(String key, boolean def) {
-		if(storeMap.containsKey(key))
-		{
+		if (storeMap.containsKey(key)) {
 			String val = storeMap.get(key).trim();
 			return "1".equals(val) || "yes".equals(val) || "true".equals(val);
 		}
@@ -92,8 +92,7 @@ public class CustomShareFieldsPage extends SlidingMenuPage implements View.OnCli
 		if (v.equals(llTitle.getBtnBack())) {
 			if (isMenuShown()) {
 				hideMenu();
-			}
-			else {
+			} else {
 				showMenu();
 			}
 		}
@@ -162,7 +161,7 @@ public class CustomShareFieldsPage extends SlidingMenuPage implements View.OnCli
 				valueTextView = (TextView) convertView.findViewById(R.id.valueTextView);
 				convertView.setTag(R.id.keyTextView, keyTextView);
 				convertView.setTag(R.id.valueTextView, valueTextView);
-			}else{
+			} else{
 				keyTextView = (TextView) convertView.getTag(R.id.keyTextView);
 				valueTextView = (TextView) convertView.getTag(R.id.valueTextView);
 			}
