@@ -66,6 +66,9 @@
     <string name="ssdk_alipay">Alipay</string>
     <string name="ssdk_alipaymoments">Alipay Moments</string>
     <string name="ssdk_plurk">Plurk</string>
+    <string name="ssdk_dingding">Dingding</string>
+	<string name="ssdk_meipai">Meipai</string>
+	<string name="ssdk_youtube">Youtube</string>
 
 	<string name="ssdk_share_to_qzone">Share To QZone</string>
 	<string name="ssdk_share_to_qq">Share To QQ</string>

@@ -75,8 +75,7 @@ public class CustomerPage extends SlidingMenuPage implements
 		if (v.equals(llTitle.getBtnBack())) {
 			if (isMenuShown()) {
 				hideMenu();
-			}
-			else {
+			} else {
 				showMenu();
 			}
 			return;
@@ -126,7 +125,7 @@ public class CustomerPage extends SlidingMenuPage implements
 		HashMap<String, Object> values = new HashMap<String, Object>();
 		values.put("description", "ShareSDK customer protocol test");
 		HashMap<String, String> filePathes = new HashMap<String, String>();
-		filePathes.put("file", MainActivity.TEST_IMAGE);
+		filePathes.put("file", MainActivity.testImage);
 		renren.customerProtocol(url, method, customerAction, values, filePathes);
 
 		// 分享网络图片
@@ -272,24 +271,21 @@ public class CustomerPage extends SlidingMenuPage implements
 				String title = llTitle.getTvTitle().getText().toString();
 				page.setData(title, (HashMap<String, Object>) msg.obj);
 				page.show(getContext(), null);
-			}
-			break;
+			} break;
 			case 2: {
 				// 失败
 				Platform plat = (Platform) msg.obj;
 				String text = actionToString(msg.arg2);
 				text = plat.getName() + " caught error at " + text;
 				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
-			}
-			break;
+			} break;
 			case 3: {
 				// 取消
 				Platform plat = (Platform) msg.obj;
 				String text = actionToString(msg.arg2);
 				text = plat.getName() + " canceled at " + text;
 				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
-			}
-			break;
+			} break;
 		}
 
 		return false;

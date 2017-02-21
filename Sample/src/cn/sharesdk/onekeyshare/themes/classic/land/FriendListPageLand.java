@@ -8,10 +8,10 @@
 
 package cn.sharesdk.onekeyshare.themes.classic.land;
 
-import com.mob.tools.utils.R;
-
 import cn.sharesdk.onekeyshare.OnekeyShareThemeImpl;
 import cn.sharesdk.onekeyshare.themes.classic.FriendListPage;
+
+import com.mob.tools.utils.ResHelper;
 
 /** 横屏的好友列表 */
 public class FriendListPageLand extends FriendListPage {
@@ -23,7 +23,7 @@ public class FriendListPageLand extends FriendListPage {
 	}
 
 	protected float getRatio() {
-		float screenWidth = R.getScreenWidth(activity);
+		float screenWidth = ResHelper.getScreenWidth(activity);
 		return screenWidth / DESIGN_SCREEN_WIDTH;
 	}
 

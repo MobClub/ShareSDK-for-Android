@@ -27,8 +27,8 @@ public class ShareContentCustomizeDemo implements ShareContentCustomizeCallback 
 			return;
 		}
 		int id = ShareSDK.platformNameToId(platform.getName());
-		if (MainActivity.TEST_TEXT != null && MainActivity.TEST_TEXT.containsKey(id)) {
-			String text = MainActivity.TEST_TEXT.get(id);
+		if (MainActivity.testText != null && MainActivity.testText.containsKey(id)) {
+			String text = MainActivity.testText.get(id);
 			paramsToShare.setText(text);
 		} else if ("Twitter".equals(platform.getName())) {
 			// 改写twitter分享内容中的text字段，否则会超长，

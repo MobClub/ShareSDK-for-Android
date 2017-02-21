@@ -12,12 +12,13 @@ public class DemoUtils {
 				|| "WechatFavorite".equals(platform) || "ShortMessage".equals(platform)
 				|| "Email".equals(platform)
 				|| "Pinterest".equals(platform) || "Yixin".equals(platform)
-				|| "YixinMoments".equals(platform) || "Line".equals(platform)
+				|| "YixinMoments".equals(platform)
 				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform)
 				|| "Pocket".equals(platform) || "BaiduTieba".equals(platform)
 				|| "Laiwang".equals(platform) || "LaiwangMoments".equals(platform)
 				|| "Alipay".equals(platform) || "AlipayMoments".endsWith(platform)
-				|| "FacebookMessenger".equals(platform));
+				|| "FacebookMessenger".equals(platform) || "Dingding".equals(platform)
+				|| "Youtube".equals(platform) || "Meipai".equals(platform));
 	}
 
 	public static boolean canAuthorize(String platform) {
@@ -25,11 +26,13 @@ public class DemoUtils {
 				|| "WechatFavorite".equals(platform) || "ShortMessage".equals(platform)
 				|| "Email".equals(platform)
 				|| "Pinterest".equals(platform) || "Yixin".equals(platform)
-				|| "YixinMoments".equals(platform) || "Line".equals(platform)
+				|| "YixinMoments".equals(platform)
 				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform)
 				|| "BaiduTieba".equals(platform) || "Laiwang".equals(platform)
 				|| "LaiwangMoments".equals(platform) || "Alipay".equals(platform)
-				|| "AlipayMoments".equals(platform) || "FacebookMessenger".equals(platform));
+				|| "AlipayMoments".equals(platform) || "FacebookMessenger".equals(platform)
+				|| "Dingding".equals(platform) || "Youtube".equals(platform)
+				|| "Meipai".equals(platform));
 	}
 
 	public static boolean isUseClientToShare(String platform) {
@@ -44,7 +47,9 @@ public class DemoUtils {
 				|| "Bluetooth".equals(platform) || "WhatsApp".equals(platform)
 				|| "BaiduTieba".equals(platform) || "Laiwang".equals(platform)
 				|| "LaiwangMoments".equals(platform) || "Alipay".equals(platform)
-				|| "AlipayMoments".equals(platform) || "FacebookMessenger".equals(platform)) {
+				|| "AlipayMoments".equals(platform) || "FacebookMessenger".equals(platform)
+				|| "Dingding".equals(platform) || "Youtube".equals(platform)
+				|| "Meipai".equals(platform)) {
 			return true;
 		} else if ("Evernote".equals(platform)) {
 			Platform plat = ShareSDK.getPlatform(platform);

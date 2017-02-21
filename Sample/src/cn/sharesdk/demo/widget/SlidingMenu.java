@@ -83,13 +83,11 @@ public class SlidingMenu extends RelativeLayout {
 				switch (event.getAction()) {
 					case MotionEvent.ACTION_DOWN: {
 						v.setBackgroundResource(config.itemDownBack);
-					}
-					break;
+					} break;
 					case MotionEvent.ACTION_CANCEL:
 					case MotionEvent.ACTION_UP: {
 						v.setBackgroundResource(config.itemDownRelease);
-					}
-					break;
+					} break;
 				}
 				return false;
 			}
@@ -348,8 +346,7 @@ public class SlidingMenu extends RelativeLayout {
 	public void switchMenu() {
 		if (menuShown) {
 			hideMenu();
-		}
-		else {
+		} else {
 			showMenu();
 		}
 	}

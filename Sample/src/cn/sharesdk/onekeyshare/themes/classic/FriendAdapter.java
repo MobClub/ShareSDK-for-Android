@@ -163,7 +163,7 @@ public class FriendAdapter extends PullToRequestListAdapter implements PlatformA
 				if (!uidMap.containsKey(uid)) {
 					Following following = new Following();
 					following.uid = uid;
-					following.atName = "["+uid+"]";
+					following.atName = "[" + uid + "]";
 					following.screenName = String.valueOf(d.get("name"));
 					@SuppressWarnings("unchecked")
 					HashMap<String, Object> picture = (HashMap<String, Object>) d.get("picture");

@@ -359,4 +359,29 @@
         SortId="52"  
         AppId="2015072400185895"
         Enable="true"/>
+     
+     <Dingding
+        Id="52"
+        SortId="52"
+        AppId="dingoanxyrpiscaovl4qlw"
+        BypassApproval="false"
+        Enable="true"/>
+    
+    <Youtube
+        id="53"
+        SortId="53"
+        ClientID="370141748022-bicrnsjfiije93bvdt63dh3728m4shas.apps.googleusercontent.com"
+        AppSecret="AIzaSyAO06g-0TDpHcsXXO918a7QE3Zdct2bB5E"
+        RedirectUrl="http://localhost"
+        ShareByAppClient = "true"
+        Enable="true" />
+
+    <Meipai
+        id="54"
+        SortId="54"
+        ClientID="1089867596"
+        AppSecret="y9ym6rrjjijtkt23qtsc"
+        ShareByAppClient = "true"
+        Enable="true"/>
+     
 </DevInfor>

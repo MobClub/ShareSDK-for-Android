@@ -32,13 +32,11 @@ public class BodyContainer extends HorizontalScrollView {
 						return true;
 					}
 				}
-			}
-			break;
+			} break;
 			case MotionEvent.ACTION_UP:
 			case MotionEvent.ACTION_CANCEL: {
 				downX = Integer.MAX_VALUE;
-			}
-			break;
+			} break;
 			case MotionEvent.ACTION_MOVE: {
 				if (!menu.isMenuShown()) {
 					if (downX > menu.getShowMenuWidth()) {
@@ -46,8 +44,7 @@ public class BodyContainer extends HorizontalScrollView {
 						return false;
 					}
 				}
-			}
-			break;
+			} break;
 		}
 
 		return super.onInterceptTouchEvent(ev);

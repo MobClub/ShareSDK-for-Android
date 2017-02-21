@@ -28,6 +28,7 @@ import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
 
 import com.mob.tools.FakeActivity;
+import com.mob.tools.utils.ResHelper;
 import com.mob.tools.utils.UIHandler;
 
 /**
@@ -111,8 +112,7 @@ public class GetInforPage extends FakeActivity implements Callback,
 				String title = llTitle.getTvTitle().getText().toString();
 				page.setData(title, (HashMap<String, Object>) msg.obj);
 				page.show(activity, null);
-			}
-			break;
+			} break;
 			default: {
 				Platform plat = (Platform) msg.obj;
 				String text = MainActivity.actionToString(msg.arg2);
@@ -120,23 +120,19 @@ public class GetInforPage extends FakeActivity implements Callback,
 					case 1: {
 						// 成功
 						text = plat.getName() + " completed at " + text;
-					}
-					break;
+					} break;
 					case 2: {
 						// 失败
 						text = plat.getName() + " caught error at " + text;
-					}
-					break;
+					} break;
 					case 3: {
 						// 取消
 						text = plat.getName() + " canceled at " + text;
-					}
-					break;
+					} break;
 				}
 
 				Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
-			}
-			break;
+			} break;
 		}
 		return false;
 	}
@@ -218,7 +214,7 @@ public class GetInforPage extends FakeActivity implements Callback,
 				return "";
 			}
 
-			int resId = com.mob.tools.utils.R.getStringRes(page.activity, "ssdk_" + plat.getName());
+			int resId = ResHelper.getStringRes(page.activity, "ssdk_" + plat.getName());
 			return page.activity.getString(resId);
 		}
 

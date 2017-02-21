@@ -27,6 +27,7 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
 
+import com.mob.tools.utils.ResHelper;
 import com.mob.tools.utils.UIHandler;
 
 /** 微信api的演示页面，展示了“微信好友”、“微信朋友圈”和“微信收藏夹”的接口 */
@@ -72,8 +73,7 @@ public class WechatPage extends SlidingMenuPage implements
 		if (v.equals(llTitle.getBtnBack())) {
 			if (isMenuShown()) {
 				hideMenu();
-			}
-			else {
+			} else {
 				showMenu();
 			}
 			return;
@@ -177,92 +177,79 @@ public class WechatPage extends SlidingMenuPage implements
 		switch (v.getId()) {
 			case R.id.btnUpload: {
 				sp.setShareType(Platform.SHARE_IMAGE);
-				sp.setImagePath(MainActivity.TEST_IMAGE);
-			}
-			break;
+				sp.setImagePath(MainActivity.testImage);
+			} break;
 			case R.id.btnUploadBm: {
 				sp.setShareType(Platform.SHARE_IMAGE);
 				Bitmap imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
 				sp.setImageData(imageData);
-			}
-			break;
+			} break;
 			case R.id.btnUploadUrl: {
 				sp.setShareType(Platform.SHARE_IMAGE);
 				sp.setImageUrl("http://www.wyl.cc/wp-content/uploads/2014/02/10060381306b675f5c5.jpg");
-			}
-			break;
+			} break;
 			case R.id.btnEmoji: {
 				sp.setShareType(Platform.SHARE_EMOJI);
-				sp.setImagePath(MainActivity.TEST_IMAGE);
-			}
-			break;
+				sp.setImagePath(MainActivity.testImage);
+			} break;
 			case R.id.btnEmojiUrl: {
 				sp.setShareType(Platform.SHARE_EMOJI);
 				String imageUrl = "http://f1.sharesdk.cn/imgs/2013/10/17/okvCkwz_144x114.gif";
 				sp.setImageUrl(imageUrl);
-			}
-			break;
+			} break;
 			case R.id.btnEmojiBitmap: {
 				sp.setShareType(Platform.SHARE_EMOJI);
 				Bitmap imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
 				sp.setImageData(imageData);
-			}
-			break;
+			} break;
 			case R.id.btnMusic: {
 				sp.setShareType(Platform.SHARE_MUSIC);
 				String musicUrl = "http://media.ringring.vn/ringtone/realtone/0/0/161/165346.mp3";
 				sp.setMusicUrl(musicUrl);
 				sp.setUrl("http://www.mob.com");
-				sp.setImagePath(MainActivity.TEST_IMAGE);
-			}
-			break;
+				sp.setImagePath(MainActivity.testImage);
+			} break;
 			case R.id.btnVideo: {
 				sp.setShareType(Platform.SHARE_VIDEO);
 				sp.setUrl("http://www.mob.com");
-				sp.setImagePath(MainActivity.TEST_IMAGE);
-			}
-			break;
+				sp.setImagePath(MainActivity.testImage);
+			} break;
 			case R.id.btnWebpage: {
 				sp.setShareType(Platform.SHARE_WEBPAGE);
 				sp.setUrl("http://www.mob.com");
-				sp.setImagePath(MainActivity.TEST_IMAGE);
-			}
-			break;
+				sp.setImagePath(MainActivity.testImage);
+			} break;
 			case R.id.btnWebpageBm: {
 				sp.setShareType(Platform.SHARE_WEBPAGE);
 				sp.setUrl("http://www.mob.com");
 				Bitmap imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
 				sp.setImageData(imageData);
-			}
-			break;
+			} break;
 			case R.id.btnWebpageUrl: {
 				sp.setShareType(Platform.SHARE_WEBPAGE);
 				sp.setUrl("http://www.mob.com");
-				sp.setImageUrl(MainActivity.TEST_IMAGE_URL);
-			}
-			break;
+				sp.setImageUrl(MainActivity.testImageUrl);
+			} break;
 			case R.id.btnApp: {
 				sp.setShareType(Platform.SHARE_APPS);
 				// 待分享app的本地地址
-				sp.setFilePath(MainActivity.TEST_IMAGE);
+				sp.setFilePath(MainActivity.testImage);
 				String extInfo = "ShareSDK received an app message from wechat client";
 				sp.setExtInfo(extInfo);
-				sp.setImagePath(MainActivity.TEST_IMAGE);
-			}
-			break;
+				sp.setImagePath(MainActivity.testImage);
+			} break;
 			case R.id.btnAppExt: {
 				sp.setShareType(Platform.SHARE_APPS);
 				// 供微信回调的第三方信息（或者自定义脚本）
 				String extInfo = "ShareSDK received an app message from wechat client";
 				sp.setExtInfo(extInfo);
-				sp.setImagePath(MainActivity.TEST_IMAGE);
-			}
-			break;
+				sp.setImagePath(MainActivity.testImage);
+			} break;
 			case R.id.btnFile: {
 				sp.setShareType(Platform.SHARE_FILE);
 				// 待分享文件的本地地址
-				sp.setFilePath(MainActivity.TEST_IMAGE);
-				sp.setImagePath(MainActivity.TEST_IMAGE);
+				sp.setFilePath(MainActivity.testImage);
+				sp.setImagePath(MainActivity.testImage);
 			}
 		}
 		return sp;
@@ -300,33 +287,28 @@ public class WechatPage extends SlidingMenuPage implements
 		switch (msg.arg1) {
 			case 1: {
 				// 成功
-				int resId = com.mob.tools.utils.R.getStringRes(getContext(), "ssdk_oks_share_completed");
+				int resId = ResHelper.getStringRes(getContext(), "ssdk_oks_share_completed");
 				if (resId > 0) {
 					text = getContext().getString(resId);
 				}
-			}
-			break;
+			} break;
 			case 2: {
 				// 失败
 				if ("WechatClientNotExistException".equals(msg.obj.getClass().getSimpleName())) {
 					text = getContext().getString(R.string.ssdk_wechat_client_inavailable);
-				}
-				else if ("WechatTimelineNotSupportedException".equals(msg.obj.getClass().getSimpleName())) {
+				} else if ("WechatTimelineNotSupportedException".equals(msg.obj.getClass().getSimpleName())) {
 					text = getContext().getString(R.string.ssdk_wechat_client_inavailable);
-				}
-				else {
+				} else {
 					text = getContext().getString(R.string.ssdk_oks_share_failed);
 				}
-			}
-			break;
+			} break;
 			case 3: {
 				// 取消
-				int resId = com.mob.tools.utils.R.getStringRes(getContext(), "ssdk_oks_share_canceled");
+				int resId = ResHelper.getStringRes(getContext(), "ssdk_oks_share_canceled");
 				if (resId > 0) {
 					text = getContext().getString(resId);
 				}
-			}
-			break;
+			} break;
 		}
 
 		Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();

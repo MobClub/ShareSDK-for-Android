@@ -26,6 +26,7 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
 
+import com.mob.tools.utils.ResHelper;
 import com.mob.tools.utils.UIHandler;
 
 /** 易信api的演示页面，展示了“易信好友”和“易信朋友圈”的接口 */
@@ -90,8 +91,7 @@ public class YixinPage extends SlidingMenuPage implements
 		if (v.equals(llTitle.getBtnBack())) {
 			if (isMenuShown()) {
 				hideMenu();
-			}
-			else {
+			} else {
 				showMenu();
 			}
 			return;
@@ -194,53 +194,45 @@ public class YixinPage extends SlidingMenuPage implements
 		switch (v.getId()) {
 			case R.id.btnUpload: {
 				sp.setShareType(Platform.SHARE_IMAGE);
-				sp.setImagePath(MainActivity.TEST_IMAGE);
-			}
-			break;
+				sp.setImagePath(MainActivity.testImage);
+			} break;
 			case R.id.btnUploadBm: {
 				sp.setShareType(Platform.SHARE_IMAGE);
 				Bitmap imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
 				sp.setImageData(imageData);
-			}
-			break;
+			} break;
 			case R.id.btnUploadUrl: {
 				sp.setShareType(Platform.SHARE_IMAGE);
-				sp.setImageUrl(MainActivity.TEST_IMAGE_URL);
-			}
-			break;
+				sp.setImageUrl(MainActivity.testImageUrl);
+			} break;
 			case R.id.btnMusic: {
 				sp.setShareType(Platform.SHARE_MUSIC);
 				String musicUrl = "http://ubuntuone.com/45XSEOwdODtXSH0WYGAcR7";
 				sp.setMusicUrl(musicUrl);
 				sp.setUrl("http://www.mob.com");
-				sp.setImagePath(MainActivity.TEST_IMAGE);
-			}
-			break;
+				sp.setImagePath(MainActivity.testImage);
+			} break;
 			case R.id.btnVideo: {
 				sp.setShareType(Platform.SHARE_VIDEO);
 				sp.setUrl("http://www.mob.com");
-				sp.setImagePath(MainActivity.TEST_IMAGE);
-			}
-			break;
+				sp.setImagePath(MainActivity.testImage);
+			} break;
 			case R.id.btnWebpage: {
 				sp.setShareType(Platform.SHARE_WEBPAGE);
 				sp.setUrl("http://www.mob.com");
-				sp.setImagePath(MainActivity.TEST_IMAGE);
-			}
-			break;
+				sp.setImagePath(MainActivity.testImage);
+			} break;
 			case R.id.btnWebpageBm: {
 				sp.setShareType(Platform.SHARE_WEBPAGE);
 				sp.setUrl("http://www.mob.com");
 				Bitmap imageData = BitmapFactory.decodeResource(v.getResources(), R.drawable.ic_launcher);
 				sp.setImageData(imageData);
-			}
-			break;
+			} break;
 			case R.id.btnWebpageUrl: {
 				sp.setShareType(Platform.SHARE_WEBPAGE);
 				sp.setUrl("http://www.mob.com");
-				sp.setImageUrl(MainActivity.TEST_IMAGE_URL);
-			}
-			break;
+				sp.setImageUrl(MainActivity.testImageUrl);
+			} break;
 		}
 		return sp;
 	}
@@ -277,12 +269,11 @@ public class YixinPage extends SlidingMenuPage implements
 		switch (msg.arg1) {
 			case 1: {
 				// 成功
-				int resId = com.mob.tools.utils.R.getStringRes(getContext(), "ssdk_oks_share_completed");
+				int resId = ResHelper.getStringRes(getContext(), "ssdk_oks_share_completed");
 				if (resId > 0) {
 					text = getContext().getString(resId);
 				}
-			}
-			break;
+			} break;
 			case 2: {
 				// 失败
 				if ("YixinClientNotExistException".equals(msg.obj.getClass().getSimpleName())) {
@@ -292,16 +283,14 @@ public class YixinPage extends SlidingMenuPage implements
 				} else {
 					text = getContext().getString(R.string.ssdk_oks_share_failed);
 				}
-			}
-			break;
+			} break;
 			case 3: {
 				// 取消
-				int resId = com.mob.tools.utils.R.getStringRes(getContext(), "ssdk_oks_share_canceled");
+				int resId = ResHelper.getStringRes(getContext(), "ssdk_oks_share_canceled");
 				if (resId > 0) {
 					text = getContext().getString(resId);
 				}
-			}
-			break;
+			} break;
 		}
 
 		Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();

@@ -18,6 +18,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler.Callback;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,6 +33,7 @@ import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
+import com.mob.tools.utils.ResHelper;
 import com.mob.tools.utils.UIHandler;
 
 /**
@@ -48,6 +50,7 @@ import com.mob.tools.utils.UIHandler;
 public class DemoPage extends SlidingMenuPage implements
 		OnClickListener, PlatformActionListener {
 	private TitleLayout llTitle;
+	private String platformName;
 
 	public DemoPage(final SlidingMenu menu) {
 		super(menu);
@@ -124,8 +127,7 @@ public class DemoPage extends SlidingMenuPage implements
 			int res = lineCount == 0 ? R.id.btnLeft : R.id.btnRight;
 			Button btn = (Button) line.findViewById(res);
 			btn.setSingleLine();
-			int platNameRes = com.mob.tools.utils.R.getStringRes(
-					getContext(), "ssdk_" +name.toLowerCase());
+			int platNameRes = ResHelper.getStringRes(getContext(), "ssdk_" + name.toLowerCase());
 			if (platNameRes > 0) {
 				String platName = getContext().getString(platNameRes);
 				String text = getContext().getString(R.string.share_to_format, platName);
@@ -157,18 +159,27 @@ public class DemoPage extends SlidingMenuPage implements
 	 * 3、在配置文件中配置，本例子里面的assets/ShareSDK.conf,
 	 */
 	private void showShare(boolean silent, String platform, boolean captureView) {
+		showShare(silent,platform,captureView,null);
+	}
+	private void showShare(boolean silent, String platform, boolean captureView,String filePath) {
 		Context context = getContext();
 		final OnekeyShare oks = new OnekeyShare();
 
 		oks.setAddress("12345678901");
+		if(!TextUtils.isEmpty(filePath)){
+			oks.setFilePath(filePath);
+		}else{
+			oks.setFilePath(CustomShareFieldsPage.getString("filePath", MainActivity.testVideo));
+		}
 		oks.setTitle(CustomShareFieldsPage.getString("title", context.getString(R.string.evenote_title)));
 		oks.setTitleUrl(CustomShareFieldsPage.getString("titleUrl", "http://mob.com"));
+		oks.setUrl(CustomShareFieldsPage.getString("url", "http://mob.com"));
 		oks.setMusicUrl("http://play.baidu.com/?__m=mboxCtrl.playSong&__a=7320512&__o=song/7320512||playBtn&fr=altg_new3||www.baidu.com#");
 		String customText = CustomShareFieldsPage.getString( "text", null);
 		if (customText != null) {
 			oks.setText(customText);
-		} else if (MainActivity.TEST_TEXT != null && MainActivity.TEST_TEXT.containsKey(0)) {
-			oks.setText(MainActivity.TEST_TEXT.get(0));
+		} else if (MainActivity.testText != null && MainActivity.testText.containsKey(0)) {
+			oks.setText(MainActivity.testText.get(0));
 		} else {
 			oks.setText(context.getString(R.string.share_content));
 		}
@@ -176,13 +187,11 @@ public class DemoPage extends SlidingMenuPage implements
 		if (captureView) {
 			oks.setViewToShare(getPage());
 		} else {
-			oks.setImagePath(CustomShareFieldsPage.getString("imagePath", MainActivity.TEST_IMAGE));
-			oks.setImageUrl(CustomShareFieldsPage.getString("imageUrl", MainActivity.TEST_IMAGE_URL));
-		//	oks.setImageArray(new String[]{MainActivity.TEST_IMAGE, MainActivity.TEST_IMAGE_URL});
+			oks.setImagePath(CustomShareFieldsPage.getString("imagePath", MainActivity.testImage));
+			oks.setImageUrl(CustomShareFieldsPage.getString("imageUrl", MainActivity.testImageUrl));
+			//	oks.setImageArray(new String[]{MainActivity.TEST_IMAGE, MainActivity.TEST_IMAGE_URL});
 		}
 
-		oks.setUrl(CustomShareFieldsPage.getString("url", "http://mob.com"));
-		oks.setFilePath(CustomShareFieldsPage.getString("filePath", MainActivity.TEST_IMAGE));
 		oks.setComment(CustomShareFieldsPage.getString("comment", context.getString(R.string.ssdk_oks_share)));
 		oks.setSite(CustomShareFieldsPage.getString("site", context.getString(R.string.app_name)));
 		oks.setSiteUrl(CustomShareFieldsPage.getString("siteUrl", "http://mob.com"));
@@ -202,13 +211,13 @@ public class DemoPage extends SlidingMenuPage implements
 
 		// 在自动授权时可以禁用SSO方式
 		//if(!CustomShareFieldsPage.getBoolean("enableSSO", true))
-			oks.disableSSOWhenAuthorize();
+		oks.disableSSOWhenAuthorize();
 
 		// 去除注释，则快捷分享的操作结果将通过OneKeyShareCallback回调
 		//oks.setCallback(new OneKeyShareCallback());
 
-			//内部测试人员，需要在Sample demo中添加对话框的回调提示,方便测试看结果
-			oks.setCallback(this);
+		//内部测试人员，需要在Sample demo中添加对话框的回调提示,方便测试看结果
+		oks.setCallback(this);
 
 		// 去自定义不同平台的字段内容
 		oks.setShareContentCustomizeCallback(new ShareContentCustomizeDemo());
@@ -236,8 +245,7 @@ public class DemoPage extends SlidingMenuPage implements
 		if (v.equals(llTitle.getBtnBack())) {
 			if (isMenuShown()) {
 				hideMenu();
-			}
-			else {
+			} else {
 				showMenu();
 			}
 			return;
@@ -247,13 +255,11 @@ public class DemoPage extends SlidingMenuPage implements
 			case R.id.btnShareAllGui: {
 				// 图文分享
 				showShare(false, null, false);
-			}
-			break;
+			} break;
 			case R.id.btnShareAll: {
 				// 直接分享
 				showShare(true, null, false);
-			}
-			break;
+			} break;
 			case R.id.btnShareView: {
 				// 摇一摇截图分享
 //				Shake2Share ss = new Shake2Share();
@@ -263,42 +269,36 @@ public class DemoPage extends SlidingMenuPage implements
 //					}
 //				});
 //				ss.show(getContext(), null);
-			}
-			break;
+			} break;
 			case R.id.btnFlSw: {
 				// 关注新浪微博
 				Platform plat = ShareSDK.getPlatform("SinaWeibo");
 				plat.setPlatformActionListener(this);
 				plat.followFriend(MainAdapter.SDK_SINAWEIBO_UID);
-			}
-			break;
+			} break;
 			case R.id.btnFlTc: {
 				// 关注腾讯微博
 				Platform plat = ShareSDK.getPlatform("TencentWeibo");
 				plat.setPlatformActionListener(this);
 				plat.followFriend(MainAdapter.SDK_TENCENTWEIBO_UID);
-			}
-			break;
+			} break;
 			case R.id.btnGetToken: {
 				// 获取token
 				GetTokenPage page = new GetTokenPage();
 				page.show(getContext(), null);
-			}
-			break;
+			} break;
 			case R.id.btnGetInfor: {
 				// 获取自己的资料
 				GetInforPage page = new GetInforPage();
 				page.setType(0);
 				page.show(getContext(), null);
-			}
-			break;
+			} break;
 			case R.id.btnGetUserInfor: {
 				// 获取指定帐号的资料
 				GetInforPage page = new GetInforPage();
 				page.setType(1);
 				page.show(getContext(), null);
-			}
-			break;
+			} break;
 			default: {
 				// 分享到具体的平台
 				Object tag = v.getTag();
@@ -310,12 +310,10 @@ public class DemoPage extends SlidingMenuPage implements
 								.setMessage(R.string.qq_share_way)
 								.setPositiveButton(R.string.qq_share_from_qqlogin, new DialogInterface.OnClickListener() {
 									public void onClick(DialogInterface dialog, int which) {
-										try
-										{
+										try {
 											getContext().getPackageManager().getPackageInfo("com.qzone", 0);
 											showShare(false, "QZone", false);
-										} catch (PackageManager.NameNotFoundException e)
-										{
+										} catch (PackageManager.NameNotFoundException e) {
 											showShare(false, "QQ", false);
 										}
 									}
@@ -327,19 +325,74 @@ public class DemoPage extends SlidingMenuPage implements
 								})
 								.setIcon(android.R.drawable.ic_dialog_alert)
 								.show();
-					}else{
+					}
+//					else if("Meipai".equals(platformName)){
+//						this.platformName = platformName;
+//						showDialog(platformName);
+//					}else if("Youtube".equals(platformName)){
+//						this.platformName = platformName;
+//						showDialog(platformName);
+//					}
+					else {
 						showShare(false, platformName, false);
 					}
 
 				}
-			}
-			break;
+			} break;
 		}
 	}
+//	private MainActivity getActivity(){
+//
+//		Activity activity = (Activity) getContext();
+//		if(activity instanceof MainActivity){
+//			((MainActivity) getContext()).setMediaSelected(meidaSouces);
+//			return (MainActivity) activity;
+//		}
+//		return null;
+//	}
+//	private void startImageIntent(){
+//		getActivity().startSelectImages();
+//	}
+//	private void startVideoIntent(String platformName){
+//		getActivity().startSelectVideo(platformName);
+//	}
+//	private void showDialog(final String platformName){
+//		new AlertDialog.Builder(getContext())
+//				.setMessage(R.string.share_selected)
+//				.setPositiveButton(R.string.image_share, new DialogInterface.OnClickListener() {
+//					public void onClick(DialogInterface dialog, int which) {
+//							startImageIntent();
+//					}
+//				})
+//				.setNegativeButton(R.string.video_share, new DialogInterface.OnClickListener() {
+//					public void onClick(DialogInterface dialog, int which) {
+//						startVideoIntent(platformName);
+//					}
+//				})
+//				.setIcon(android.R.drawable.ic_dialog_alert)
+//				.show();
+//	}
+//	MainActivity.iSelectMeidaSouces meidaSouces = new MainActivity.iSelectMeidaSouces(){
+//		@Override
+//		public void onResult(int type, Uri uri) {
+//			String path = uri.toString();
+//			int objectType = type;
+//			if(!TextUtils.isEmpty(platformName)){
+//				showShare(false, platformName, false,path);
+//			}
+//		}
+//
+//		@Override
+//		public void onResult(int type, String filePath) {
+//			String path = filePath;
+//			int objectType = type;
+//			if(!TextUtils.isEmpty(platformName)){
+//				showShare(false, platformName, false,filePath);
+//			}
+//		}
+//	};
 
-	public void onComplete(Platform plat, int action,
-			HashMap<String, Object> res) {
-
+	public void onComplete(Platform plat, int action, HashMap<String, Object> res) {
 		Message msg = new Message();
 		msg.arg1 = 1;
 		msg.arg2 = action;
@@ -374,20 +427,17 @@ public class DemoPage extends SlidingMenuPage implements
 				// 成功
 				text = plat.getName() + " completed at " + text;
 				isCallBackMsg=true;
-			}
-			break;
+			} break;
 			case 2: {
 				// 失败
 				text = plat.getName() + " caught error at " + text;
 				isCallBackMsg=true;
-			}
-			break;
+			} break;
 			case 3: {
 				// 取消
 				text = plat.getName() + " canceled at " + text;
 				isCallBackMsg=true;
-			}
-			break;
+			} break;
 		}
 
 		Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();

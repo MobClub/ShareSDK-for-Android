@@ -28,6 +28,7 @@ import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.TitleLayout;
 
 import com.mob.tools.FakeActivity;
+import com.mob.tools.utils.ResHelper;
 import com.mob.tools.utils.UIHandler;
 
 /** 演示授权并获取获取AccessToken */
@@ -90,18 +91,15 @@ public class GetTokenPage extends FakeActivity implements Callback,
 			case 1: {
 				// 成功
 				text = plat.getName() + " get token: " + plat.getDb().getToken();
-			}
-			break;
+			} break;
 			case 2: {
 				// 失败
 				text = plat.getName() + " caught error";
-			}
-			break;
+			} break;
 			case 3: {
 				// 取消
 				text = plat.getName() + " authorization canceled";
-			}
-			break;
+			} break;
 		}
 
 		Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
@@ -168,7 +166,7 @@ public class GetTokenPage extends FakeActivity implements Callback,
 				return "";
 			}
 
-			int resId = com.mob.tools.utils.R.getStringRes(page.activity, "ssdk_" + plat.getName());
+			int resId = ResHelper.getStringRes(page.activity, "ssdk_" + plat.getName());
 			return page.activity.getString(resId);
 		}
 

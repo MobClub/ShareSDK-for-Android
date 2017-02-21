@@ -162,9 +162,9 @@ public class MainAdapter extends MenuAdapter
 
 		TextView tvTitle = new TextView(menu.getContext());
 		tvTitle.setBackgroundResource(R.drawable.sidebar_titlt_back);
-		int dp_13 = dipToPx(menu.getContext(), 13);
-		int dp_5 = dipToPx(menu.getContext(), 3);
-		tvTitle.setPadding(dp_13, dp_5, dp_13, dp_5);
+		int dp13 = dipToPx(menu.getContext(), 13);
+		int dp5 = dipToPx(menu.getContext(), 3);
+		tvTitle.setPadding(dp13, dp5, dp13, dp5);
 		tvTitle.setText(text);
 		tvTitle.setGravity(Gravity.CENTER_VERTICAL);
 		tvTitle.setTextColor(0xff999999);
@@ -184,12 +184,11 @@ public class MainAdapter extends MenuAdapter
 		tvItem.setText(String.valueOf(item.body));
 		tvItem.setCompoundDrawablesWithIntrinsicBounds(
 				0, 0, R.drawable.pointer, 0);
-		int dp_13 = dipToPx(menu.getContext(), 13);
-		tvItem.setCompoundDrawablePadding(dp_13);
-		tvItem.setPadding(dp_13, 0, dp_13, 0);
-		int dp_52 = dipToPx(menu.getContext(), 52);
-		tvItem.setLayoutParams(new LinearLayout.LayoutParams(
-				LayoutParams.MATCH_PARENT, dp_52));
+		int dp13 = dipToPx(menu.getContext(), 13);
+		tvItem.setCompoundDrawablePadding(dp13);
+		tvItem.setPadding(dp13, 0, dp13, 0);
+		int dp52 = dipToPx(menu.getContext(), 52);
+		tvItem.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, dp52));
 		return tvItem;
 	}
 
@@ -214,63 +213,51 @@ public class MainAdapter extends MenuAdapter
 				switch(item.id) {
 					case ITEM_DEMO: {
 						page = new DemoPage(menu);
-					}
-					break;
+					} break;
 					case ITEM_AUTH: {
 						page = new AuthPage(menu);
-					}
-					break;
+					} break;
 					case ITEM_WECHAT: {
 						page = new WechatPage(menu);
-					}
-					break;
+					} break;
 					case ITEM_YIXIN: {
 						page = new YixinPage(menu);
-					}
-					break;
+					} break;
 					case ITEM_ALIPAY: {
 						page = new AlipayPage(menu);
-					}
-					break;
+					} break;
 					case ITEM_CUSTOMER: {
 						page = new CustomerPage(menu);
-					}
-					break;
+					} break;
 					case ITEM_CUSTOM_FIELDS: {
 						page = new CustomShareFieldsPage(menu);
-					}
-					break;
+					} break;
 				}
 				if (page != null) {
 					menu.setBodyView(page.getPage());
 				}
-			}
-			break;
+			} break;
 			case GROUP_MORE: {
 				switch(item.id) {
 					case ITEM_FOLLOW_SINAWEIBO: {
 						Platform plat = ShareSDK.getPlatform("SinaWeibo");
 						plat.setPlatformActionListener(this);
 						plat.followFriend(SDK_SINAWEIBO_UID);
-					}
-					break;
+					} break;
 					case ITEM_FOLLOW_TECENTWEIBO: {
 						Platform plat = ShareSDK.getPlatform("TencentWeibo");
 						plat.setPlatformActionListener(this);
 						plat.followFriend(SDK_TENCENTWEIBO_UID);
-					}
-					break;
+					} break;
 					case ITEM_VISIT_WEBSITE: {
 						Intent i = new Intent(Intent.ACTION_VIEW);
 						i.setData(Uri.parse(WEBSITE_ADDR));
 						menu.getContext().startActivity(i);
-					}
-					break;
+					} break;
 					case ITEM_ABOUT: {
 						String msg = getAppName() + " " + getAppVersion();
 						Toast.makeText(menu.getContext(), msg, Toast.LENGTH_SHORT).show();
-					}
-					break;
+					} break;
 				}
 				return true;
 			}
@@ -295,9 +282,9 @@ public class MainAdapter extends MenuAdapter
 	private String getAppVersion() {
 		try {
 			PackageManager pm = menu.getContext().getPackageManager();
-	        PackageInfo pi = pm.getPackageInfo(menu.getContext().getPackageName(), 0);
-	        return pi.versionName;
-		} catch(Throwable t) {
+			PackageInfo pi = pm.getPackageInfo(menu.getContext().getPackageName(), 0);
+			return pi.versionName;
+		} catch (Throwable t) {
 			t.printStackTrace();
 		}
 		return null;
@@ -337,18 +324,15 @@ public class MainAdapter extends MenuAdapter
 			case 1: {
 				// 成功
 				text = palt.getName() + " completed at " + text;
-			}
-			break;
+			} break;
 			case 2: {
 				// 失败
 				text = palt.getName() + " caught error at " + text;
-			}
-			break;
+			} break;
 			case 3: {
 				// 取消
 				text = palt.getName() + " canceled at " + text;
-			}
-			break;
+			} break;
 		}
 
 		Toast.makeText(menu.getContext(), text, Toast.LENGTH_SHORT).show();

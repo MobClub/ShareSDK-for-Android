@@ -79,14 +79,11 @@ public class JsonPage extends FakeActivity implements OnClickListener, Callback 
 			Object value = entry.getValue();
 			if (value instanceof HashMap<?, ?>) {
 				sb.append(format(mySepStr, (HashMap<String, Object>)value));
-			}
-			else if (value instanceof ArrayList<?>) {
+			} else if (value instanceof ArrayList<?>) {
 				sb.append(format(mySepStr, (ArrayList<Object>)value));
-			}
-			else if (value instanceof String) {
+			} else if (value instanceof String) {
 				sb.append('\"').append(value).append('\"');
-			}
-			else {
+			} else {
 				sb.append(value);
 			}
 			i++;
@@ -108,14 +105,11 @@ public class JsonPage extends FakeActivity implements OnClickListener, Callback 
 			sb.append(mySepStr);
 			if (value instanceof HashMap<?, ?>) {
 				sb.append(format(mySepStr, (HashMap<String, Object>)value));
-			}
-			else if (value instanceof ArrayList<?>) {
+			} else if (value instanceof ArrayList<?>) {
 				sb.append(format(mySepStr, (ArrayList<Object>)value));
-			}
-			else if (value instanceof String) {
+			} else if (value instanceof String) {
 				sb.append('\"').append(value).append('\"');
-			}
-			else {
+			} else {
 				sb.append(value);
 			}
 			i++;

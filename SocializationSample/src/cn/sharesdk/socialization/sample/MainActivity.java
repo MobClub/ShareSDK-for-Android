@@ -8,7 +8,6 @@
 
 package cn.sharesdk.socialization.sample;
 
-import static com.mob.tools.utils.R.getStringRes;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -33,6 +32,7 @@ import cn.sharesdk.socialization.Socialization;
 import cn.sharesdk.socialization.component.ReplyTooFrequentlyException;
 import cn.sharesdk.socialization.component.TopicTitle;
 
+import com.mob.tools.utils.ResHelper;
 import com.mob.tools.utils.UIHandler;
 
 /** 评论和赞功能的演示页面 */
@@ -71,7 +71,7 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 
 			@Override
 			public void onSuccess(Comment comment) {
-				int resId = getStringRes(context, "ssdk_socialization_reply_succeeded");
+				int resId = ResHelper.getStringRes(context, "ssdk_socialization_reply_succeeded");
 				if (resId > 0) {
 					Toast.makeText(context, resId, Toast.LENGTH_SHORT).show();
 				}
@@ -85,7 +85,7 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 			@Override
 			public void onError(Throwable throwable) {
 				if (throwable instanceof ReplyTooFrequentlyException) {
-					int resId = getStringRes(context, "ssdk_socialization_replay_too_frequently");
+					int resId = ResHelper.getStringRes(context, "ssdk_socialization_replay_too_frequently");
 					if (resId > 0) {
 						Toast.makeText(context, resId, Toast.LENGTH_SHORT).show();
 					}
@@ -118,43 +118,38 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 
 	public boolean handleMessage(Message msg) {
 		switch (msg.what) {
-		case INIT_SDK:
-			topicId = getString(R.string.comment_like_id);
-			topicTitle = getString(R.string.comment_like_title);
-			topicPublishTime = getString(R.string.comment_like_publich_time);
-			topicAuthor = getString(R.string.comment_like_author);
+			case INIT_SDK: {
+				topicId = getString(R.string.comment_like_id);
+				topicTitle = getString(R.string.comment_like_title);
+				topicPublishTime = getString(R.string.comment_like_publich_time);
+				topicAuthor = getString(R.string.comment_like_author);
 
-			TopicTitle tt = (TopicTitle) findViewById(R.id.llTopicTitle);
-			String topicTitle = getString(R.string.comment_like_title);
-			tt.setTitle(topicTitle);
-			tt.setPublishTime(getString(R.string.comment_like_publich_time));
-			tt.setAuthor(getString(R.string.comment_like_author));
+				TopicTitle tt = (TopicTitle) findViewById(R.id.llTopicTitle);
+				String topicTitle = getString(R.string.comment_like_title);
+				tt.setTitle(topicTitle);
+				tt.setPublishTime(getString(R.string.comment_like_publich_time));
+				tt.setAuthor(getString(R.string.comment_like_author));
 
-			Socialization service = ShareSDK.getService(Socialization.class);
-			service.setCustomPlatform(new MyPlatform(this));
-			initOnekeyShare();
-			initQuickCommentBar();
-			break;
-		case AFTER_LIKE:
-			if(msg.arg1 == 1){
-				//success
-				int resId = getStringRes(context, "like_success");
-				if (resId > 0) {
-					Toast.makeText(context, resId, Toast.LENGTH_SHORT).show();
+				Socialization service = ShareSDK.getService(Socialization.class);
+				service.setCustomPlatform(new MyPlatform(this));
+				initOnekeyShare();
+				initQuickCommentBar();
+			} break;
+			case AFTER_LIKE: {
+				if(msg.arg1 == 1){
+					//success
+					int resId = ResHelper.getStringRes(context, "like_success");
+					if (resId > 0) {
+						Toast.makeText(context, resId, Toast.LENGTH_SHORT).show();
+					}
+				} else {
+					//fail
+					int resId = ResHelper.getStringRes(context, "like_fail");
+					if (resId > 0) {
+						Toast.makeText(context, resId, Toast.LENGTH_SHORT).show();
+					}
 				}
-			}else {
-				//fail
-				int resId = getStringRes(context, "like_fail");
-				if (resId > 0) {
-					Toast.makeText(context, resId, Toast.LENGTH_SHORT).show();
-				}
-			}
-			break;
-		case 3:
-			break;
-		default:
-			break;
-
+			} break;
 		}
 
 		return false;
@@ -219,7 +214,7 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 			public boolean onFilter(String comment) {
 				if (comment != null) {
 					String pureComment = comment.trim();
-					String wordText = com.mob.tools.utils.R.toWordText(pureComment, 140);
+					String wordText = ResHelper.toWordText(pureComment, 140);
 					if (wordText.length() != pureComment.length()) {
 						return true;
 					}

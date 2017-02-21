@@ -46,7 +46,7 @@
 			VKontakte      http://vk.com/dev
 			易信好友        http://open.yixin.im/
 			明道	           http://open.mingdao.com/
-			Line           http://media.line.me/zh-hant/
+			Line           http://media.line.me/zh-hant/  https://developers.line.me
 			Pocket         http://getpocket.com/developer/apps/new
 			KakaoTalk      https://developers.kakao.com/
 			KakaoStory     https://developers.kakao.com/
@@ -131,7 +131,8 @@
         ConsumerKey="107704292745179"
         ConsumerSecret="38053202e1a5fe26c80c753071f0b573"
         RedirectUrl="http://mob.com"
-        Enable="true" />
+		ShareByAppClient="true"
+		Enable="true" />
 
     <Twitter
         Id="9"
@@ -308,6 +309,8 @@
 	<Line
 	    Id="32"
         SortId="32"
+        ChannelID = "1477692153"
+        ChannelSecret ="f30c036370f2e04ade71c52eef73a9af"
         Enable="true" />
 	
 	<KakaoTalk
@@ -362,5 +365,28 @@
         SortId="51"  
         AppId="2015072400185895"
         Enable="true"/>
-
+     
+     <Dingding
+        Id="52"
+        SortId="52"
+        AppId="dingoanxyrpiscaovl4qlw"
+        BypassApproval="false"
+        Enable="true"/>
+	
+	<Meipai
+		id="54"
+		SortId="54"
+		ClientID="1089867596"
+		AppSecret="y9ym6rrjjijtkt23qtsc"
+		ShareByAppClient = "true"
+		Enable="true"/>
+	
+	<Youtube
+		id="53"
+		SortId="53"
+		ClientID="370141748022-bicrnsjfiije93bvdt63dh3728m4shas.apps.googleusercontent.com"
+		AppSecret="AIzaSyAO06g-0TDpHcsXXO918a7QE3Zdct2bB5E"
+		RedirectUrl="http://localhost"
+		ShareByAppClient = "true"
+		Enable="true" />
 </DevInfor>

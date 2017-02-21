@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ShareSDK</string>
+    <string name="app_name">mobTest</string><!--ShareSDK-->
     
     <string name="more">更多</string>
     <string name="sm_item_demo">接口</string>
@@ -90,4 +90,11 @@
   	<string name="qrcode_hint">请输入二维码的内容</string>
   	
 	<string name="ssdk_laiwangcustomize">自定义平台-来往</string>
+	
+	<string name="sample_content_not_empty">内容不能为空</string>
+	<string name="sample_url_incorrect">链接应以 http:// 或者 https:// 开头</string>
+	<string name="sample_drawing">正在绘制，请稍等</string>
+	<string name="image_share">分享图片</string>
+	<string name="video_share">分享视频</string>
+	<string name="share_selected">选择分享类型</string>
 </resources>
