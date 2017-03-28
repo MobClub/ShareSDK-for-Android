@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">mobTest</string><!--ShareSDK-->
+    <string name="app_name">ShareSDK</string><!--ShareSDK-->
     
     <string name="more">更多</string>
     <string name="sm_item_demo">接口</string>
