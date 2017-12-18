@@ -175,7 +175,7 @@ MobSDK {
                 enable true
             }
 
-            Linkedin {
+            LinkedIn {
                 id 20
                 sortId 20
                 appKey "ejo5ibkye3vo"
@@ -194,7 +194,7 @@ MobSDK {
                 enable true
             }
 
-            Foursquare {
+            FourSquare {
                 id 22
                 sortId 22
                 appId "G0ZI20FM30SJAJTX2RIBGD05QV1NE2KVIM2SPXML2XUJNXEU"
