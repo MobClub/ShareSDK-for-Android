@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:id="@+id/llItem"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/list_item_middle_normal" >
+
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="centerInside" />
+
+        <CheckedTextView
+            android:id="@+id/ctvName"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:drawablePadding="10dp"
+            android:drawableRight="@drawable/cb_drw"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="@string/not_yet_authorized"
+            android:textColor="#ff000000"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+</RelativeLayout>

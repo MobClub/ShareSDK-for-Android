@@ -1,0 +1,99 @@
+<!--
+  ~ Copyright (c) Mob.COM $year.14-10-28 下午2:03
+  ~
+  ~ @author Milk <jecelyin@gmail.com>
+  -->
+
+<resources>
+    <string name="app_name">ShareSDK</string>
+
+    <string name="sm_item_demo">API</string>
+    <string name="sm_item_auth">Authorize</string>
+    <string name="sm_item_wechat">Wechat</string>
+    <string name="sm_item_yixin">Yixin</string>
+    <string name="sm_item_alipay">Alipay</string>
+    <string name="sm_item_customer">Custom API</string>
+    <string name="sm_item_custom_fields">Custom share fields</string>
+    <string name="sm_item_fl_weibo">Follow Sina Weibo</string>
+    <string name="sm_item_fl_tc">Follow Tencent Weibo</string>
+    <string name="sm_item_share_view">Shake to share</string>
+    <string name="sm_item_visit_website">Visit the official site</string>
+    <string name="sm_item_about">Demo  Ver. %s</string>
+    <string name="plz_choose_wechat">Please select Wechat client to complete the operation</string>
+    <string name="get_token_format">Get %s AccessToken</string>
+    <string name="get_user_info_format">Get %s Authorized user info</string>
+    <string name="get_other_info_format">Get %s other user info</string>
+    <string name="share_to_format">Share to %s</string>
+    
+    <string name="demo_share_all_gui">Share all (Popup Edit Page)</string>
+    <string name="demo_share_all">Share all (Silent Share)</string>
+    <string name="demo_get_access_token">Get AccessToken</string>
+	<string name="demo_get_my_info">Get Authorized User Info</string>
+    <string name="demo_get_other_info">Get other user info</string>
+
+    <string name="get_tencent_friends_list">Get Tencent Weibo followers</string>
+	<string name="customer_douban">Search for users</string>
+	<string name="customer_facebook">Get notification list</string>
+	<string name="customer_nemb">Get Recommended Topics</string>
+	<string name="customer_renren">Upload photos to the user\'s photo albums</string>
+	<string name="customer_sina">Get weibo home list</string>
+	<string name="customer_qzone">Publish to QZone</string>
+	<string name="customer_tencent">Get followers</string>
+	<string name="customer_twitter">Get home list</string>
+	<string name="customer_kaixin">People You May Know</string>
+	<string name="customer_sohu">Get friends</string>
+	<string name="customer_youdao">Get notebook list</string>
+	<string name="customer_suishenkan">Get the Sohu Kan bookmark list</string>
+	<string name="customer_tumblr">Get Post list of Tumblr users</string>
+	
+	<string name="not_yet_authorized">Not Authorized</string>
+	<string name="share_content">ShareSDK for Android not only integration social platforms, like Facebook, Twitter, Google+. But also Our strong professional backend support can easy to know the Users,Information Flow,Backflow, Backflow rate, Share Rate,etc. See more detail on website http://mob.com @ShareSDK</string>
+	<string name="share_content_short">ShareSDK for Android not only integration social platforms, like Facebook, Twitter, Google+. But also Our strong professional backend support can easy to know the Users,Information Flow,Backflow, Backflow rate, Share Rate,etc. See more detail on website http://mob.com @ShareSDK</string>
+	<string name="evenote_title">ShareSDK is a magical SDK</string>
+	
+	<string name="update">Share Text</string>
+	<string name="image_upload">Share Image (Local)</string>
+	<string name="image_upload_bitmap">Share Image (Bitmap Object)</string>
+	<string name="image_upload_url">Share Image (Internet Image)</string>
+	<string name="emoji_upload">Share Emoticon (Local Image)</string>
+	<string name="emoji_upload_url">Share Emoticon (Internet Image)</string>
+	<string name="emoji_upload_bm">Share Emoticon (Bitmap Object)</string>
+	<string name="music_upload">Share Music</string>
+    <string name="webpage_upload">Share Web (Local Image)</string>
+	<string name="webpage_upload_bitmap">Share Web (Bitmap Ojbect)</string>
+	<string name="webpage_upload_url">Share Web (Internet Image)</string>
+	<string name="app_upload">Share App (With File)</string>
+	<string name="app_upload_extinfo">Share App (With Script)</string>
+	<string name="file_upload">Share File</string>
+	<string name="share_miniprogram">Share miniProgram</string>
+	<string name="share_to_wechat">Wechat Friends</string>
+	<string name="share_to_moment">Wechat Moments</string>
+	<string name="share_to_favorite">Wechat Favorite</string>
+	<string name="wechat_demo_title">Wechat share demo title</string>
+	<string name="qzone_add_blog_sample"><h1>QQ Connect</h1></string>
+	<string name="wechat_client_is_not_installed_correctly">Wechat client is not installed, or the version is too old</string>
+	<string name="wechat_client_not_support_following_operation">Wechat client does not support third-party applications to follow</string>
+	<string name="share_to_yixin">Yixin Friends</string>
+	<string name="share_to_yixin_moment">Yixin Moments</string>
+	<string name="share_to_yixin_favorite">Yixin Favorite</string>
+	<string name="yixin_demo_title">Yixin share demo title</string>
+	<string name="receive_rewards">Congratulations, you get %s gold!</string>
+	<string name="buy_success">Buy Success</string>
+	<string name="buy_failed">Buy Failed</string>
+	<string name="qzone_customer_share_style">custom QZone share style</string>
+  	<string name="qq_share_way">Please Select Share way</string>
+  	<string name="qq_share_from_qqlogin">QQ/QZone login to post Weibo</string>
+ 	<string name="qq_share_from_tlogin">Tencent Weibo login to post Weibo</string>
+    <string name="get_sina_friends_list">Get Sina Weibo followers</string>
+    <string name="more">More</string>
+    <string name="video_upload">Share Video</string>
+  	<string name="share_to_alipay">Alipay Friends</string>
+  	<string name="share_to_alipay_moment">Alipay Moments</string>
+  	
+  	<string name="qrcode_type_url">Http Url</string>
+  	<string name="qrcode_type_uri">Raw Content</string>
+  	<string name="qrcode_generate">Generate Code</string>
+  	<string name="qrcode_hint">input QR Code content</string>
+  	
+	<string name="ssdk_laiwangcustomize">Customize-Laiwang</string>
+</resources>

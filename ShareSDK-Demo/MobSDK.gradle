@@ -1,0 +1,397 @@
+apply plugin: 'com.mob.sdk'
+
+MobSDK {
+    appKey "moba6b6c6d6"
+    appSecret "b89d2427a3bc7ad1aea1e1e8c1d36bf3"
+
+    ShareSDK {
+//        version "3.1.2"  //不写的话则默认最新版本
+//        gui ture
+        //平台配置信息
+        devInfo {
+            SinaWeibo {
+                id 1
+                sortId 1
+                appKey "568898243"
+                appSecret "38a4f8204cc784f81f9f0daaf31e02e3"
+                callbackUri "http://www.sharesdk.cn"
+                shareByAppClient true
+                enable true
+            }
+
+            TencentWeibo {
+                id 2
+                sortId 2
+                appKey "801307650"
+                appSecret "ae36f4ee3946e1cbb98d6965b0b2ff5c"
+                callbackUri "http://sharesdk.cn"
+                enable true
+            }
+
+            QZone {
+                id 3
+                sortId 3
+                appId "100371282"
+                appKey "aed9b0303e3ed1e27bae87c33761161d"
+                shareByAppClient true
+                bypassApproval false
+                enable true
+            }
+
+
+                  /* Wechat微信和WechatMoments微信朋友圈的appid是一样的；
+
+            注意：开发者不能用我们这两个平台的appid,否则分享不了
+            微信测试的时候，微信测试需要先签名打包出apk,
+            sample测试微信，要先签名打包，keystore在sample项目中，密码123456
+
+            BypassApproval是绕过审核的标记，设置为true后AppId将被忽略，故不经过
+            审核的应用也可以执行分享，但是仅限于分享文字和图片，不能分享其他类型，
+            默认值为false。此外，微信收藏不支持此字段。wx4868b35061f87885
+            <!--要分享微信小应用程序时用userName,path-->*/
+            Wechat {
+                id 4
+                sortId 4
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+                userName "gh_afb25ac019c9"
+                path "pages/index/index.html?id=1"
+                bypassApproval false
+                enable true
+            }
+
+            WechatMoments {
+                id 5
+                sortId 5
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+                bypassApproval false
+                enable true
+            }
+
+            WechatFavorite {
+                id 6
+                sortId 6
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+                bypassApproval false
+                enable true
+            }
+
+            QQ {
+                id 7
+                sortId 7
+                appId "100371282"
+                appKey "aed9b0303e3ed1e27bae87c33761161d"
+                shareByAppClient true
+                bypassApproval false
+                enable true
+            }
+
+            Facebook {
+                id 8
+                sortId 8
+                appKey "1412473428822331"
+                appSecret "a42f4f3f867dc947b9ed6020c2e93558"
+                callbackUri "https://mob.com"
+                shareByAppClient true
+                enable true
+            }
+
+            Twitter {
+                id 9
+                sortId 9
+                appKey "LRBM0H75rWrU9gNHvlEAA2aOy"
+                appSecret "gbeWsZvA9ELJSdoBzJ5oLKX0TU09UOwrzdGfo9Tg7DjyGuMe8G"
+                callbackUri "http://mob.com"
+                enable true
+            }
+
+            Renren {
+                id 10
+                sortId 10
+                appId "226427"
+                appKey "fc5b8aed373c4c27a05b712acba0f8c3"
+                appSecret "f29df781abdd4f49beca5a2194676ca4"
+                enable true
+            }
+
+            KaiXin {
+                id 11
+                sortId 11
+                appKey "358443394194887cee81ff5890870c7c"
+                appSecret "da32179d859c016169f66d90b6db2a23"
+                callbackUri "http://www.sharesdk.cn"
+                enable true
+            }
+
+            Email {
+                id 12
+                sortId 12
+                enable true
+            }
+
+            ShortMessage {
+                id 13
+                sortId 13
+                enable true
+            }
+
+            Douban {
+                id 16
+                sortId 16
+                appKey "031a96a3aa8b28af094fc3eaffa17a0d"
+                appSecret "2e675e730571b75d"
+                callbackUri "http://mob.com"
+                enable true
+            }
+
+            YouDao {
+                id 17
+                sortId 17
+                hostType "product"
+                appKey "dcde25dca105bcc36884ed4534dab940"
+                appSecret "d98217b4020e7f1874263795f44838fe"
+                callbackUri "http://www.sharesdk.cn/"
+                enable true
+            }
+
+
+            /*在中国大陆，印象笔记有两个服务器，一个是沙箱（sandbox），一个是生产服务器（china）。
+            一般你注册应用，它会先让你使用sandbox，当你完成测试以后，可以到
+            http://dev.yinxiang.com/support/上激活你的ConsumerKey，激活成功后，修改HostType
+            为china就好了。至于如果您申请的是国际版的印象笔记（Evernote），则其生产服务器类型为
+            “product”。
+
+            如果目标设备上已经安装了印象笔记客户端，ShareSDK允许应用调用本地API来完成分享，但
+            是需要将应用信息中的“ShareByAppClient”设置为true，此字段默认值为false。*/
+            Evernote {
+                id 19
+                sortId 19
+                hostType "sandbox"
+                appKey "sharesdk-7807"
+                appSecret "d05bf86993836004"
+                shareByAppClient true
+                enable true
+            }
+
+            Linkedin {
+                id 20
+                sortId 20
+                appKey "ejo5ibkye3vo"
+                appSecret "cC7B2jpxITqPLZ5M"
+                callbackUri "http://sharesdk.cn"
+                shareByAppClient true
+                enable true
+            }
+
+            GooglePlus {
+                id 21
+                sortId 21
+                appId "236300675100-am5pm8km7md1memjevq8rl9pg5c4s4b8.apps.googleusercontent.com"
+                callbackUri "http://localhost"
+                shareByAppClient true
+                enable true
+            }
+
+            Foursquare {
+                id 22
+                sortId 22
+                appId "G0ZI20FM30SJAJTX2RIBGD05QV1NE2KVIM2SPXML2XUJNXEU"
+                appSecret "3XHQNSMMHIFBYOLWEPONNV4DOTCDBQH0AEMVGCBG0MZ32XNU"
+                callbackUri "http://www.sharesdk.cn"
+                enable true
+            }
+
+            Pinterest {
+                id 23
+                sortId 23
+                appId "1432928"
+                enable true
+            }
+
+            Flickr {
+                id 24
+                sortId 24
+                appKey "33d833ee6b6fca49943363282dd313dd"
+                appSecret "3a2c5b42a8fbb8bb"
+                callbackUri "http://www.sharesdk.cn"
+                enable true
+            }
+
+            Tumblr {
+                id 25
+                sortId 25
+                appKey "2QUXqO9fcgGdtGG1FcvML6ZunIQzAEL8xY6hIaxdJnDti2DYwM"
+                appSecret "3Rt0sPFj7u2g39mEVB3IBpOzKnM3JnTtxX2bao2JKk4VV1gtNo"
+                callbackUri  "http://www.sharesdk.cn"
+                enable true
+            }
+
+            Dropbox {
+                id 26
+                sortId 26
+                appKey "i5vw2mex1zcgjcj"
+                appSecret "3i9xifsgb4omr0s"
+                callbackUri "https://www.sharesdk.cn"
+                enable true
+            }
+
+            VKontakte {
+                id 27
+                sortId 27
+                appId "3921561"
+                enable true
+            }
+
+
+            Instagram {
+                id 28
+                sortId 28
+                appId "ff68e3216b4f4f989121aa1c2962d058"
+                appSecret "1b2e82f110264869b3505c3fe34e31a1"
+                callbackUri "http://sharesdk.cn"
+                enable true
+            }
+
+
+            /*Yixin易信和YixinMoments易信朋友圈的appid是一样的；
+
+            注意：开发者不能用我们这两个平台的appid,否则分享不了
+
+            易信测试的时候需要先签名打包出apk,
+            sample测试易信，要先签名打包，keystore在sample项目中，密码123456
+
+            BypassApproval是绕过审核的标记，设置为true后AppId将被忽略，故不经过
+            审核的应用也可以执行分享，但是仅限于分享文字或图片，不能分享其他类型，
+            默认值为false。*/
+            Yixin {
+                id 29
+                sortId 29
+                appId "yx0d9a9f9088ea44d78680f3274da1765f"
+                bypassApproval false
+                enable true
+            }
+
+            YixinMoments{
+                id 30
+                sortId 30
+                appId "yx0d9a9f9088ea44d78680f3274da1765f"
+                bypassApproval false
+                enable true
+            }
+
+            Mingdao {
+                id 31
+                sortId 31
+                appKey "EEEE9578D1D431D3215D8C21BF5357E3"
+                appSecret "5EDE59F37B3EFA8F65EEFB9976A4E933"
+                callbackUri "http://sharesdk.cn"
+                enable true
+            }
+
+            Line {
+                id 32
+                sortId 32
+                appId "1477692153"
+                appSecret "f30c036370f2e04ade71c52eef73a9af"
+                enable true
+            }
+
+            KakaoTalk {
+                id 33
+                sortId 33
+                appKey "48d3f524e4a636b08d81b3ceb50f1003"
+                enable true
+            }
+
+            KakaoStory {
+                id 34
+                sortId 34
+                appKey "48d3f524e4a636b08d81b3ceb50f1003"
+                enable true
+            }
+
+            WhatsApp {
+                id 35
+                sortId 35
+                enable true
+            }
+
+
+            Pocket {
+                id 37
+                sortId 37
+                appKey "32741-389c565043c49947ba7edf05"
+                enable true
+            }
+
+            Instapaper {
+                id 38
+                sortId 38
+                appKey "4rDJORmcOcSAZL1YpqGHRI605xUvrLbOhkJ07yO0wWrYrc61FA"
+                appSecret "GNr1GespOQbrm8nvd7rlUsyRQsIo3boIbMguAl9gfpdL0aKZWe"
+                enable true
+            }
+
+            FacebookMessenger {
+                id 39
+                sortId 39
+                appId "107704292745179"
+                enable true
+            }
+
+
+            Alipay {
+                id 50
+                sortId 50
+                appId "2015072400185895"
+                enable true
+            }
+
+            AlipayMoments {
+                id 51
+                sortId 51
+                appId "2015072400185895"
+                enable true
+            }
+
+            Dingding {
+                id 52
+                sortId 52
+                appId "dingoanxyrpiscaovl4qlw"
+                bypassApproval false
+                enable true
+            }
+
+            Youtube {
+                id 53
+                sortId 53
+                appId "370141748022-bicrnsjfiije93bvdt63dh3728m4shas.apps.googleusercontent.com"
+                appSecret "AIzaSyAO06g-0TDpHcsXXO918a7QE3Zdct2bB5E"
+                callbackUri "http://localhost"
+                shareByAppClient true
+                enable true
+            }
+
+            Meipai {
+                id 54
+                sortId 54
+                appId "1089867596"
+                appSecret "y9ym6rrjjijtkt23qtsc"
+                shareByAppClient true
+                enable true
+            }
+
+            Meipai {
+                id 54
+                sortId 54
+                appId "1089867596"
+                appSecret "y9ym6rrjjijtkt23qtsc"
+                shareByAppClient true
+                enable true
+            }
+        }
+    }
+
+}
