@@ -7,7 +7,6 @@
     <string name="sm_item_wechat">微信</string>
     <string name="sm_item_yixin">易信</string>
     <string name="sm_item_alipay">支付宝</string>
-    <string name="sm_item_qrcode">二维码</string>
     <string name="sm_item_customer">自定义接口</string>
     <string name="sm_item_custom_fields">自定义分享内容</string>
     <string name="sm_item_fl_weibo">关注新浪微博</string>
@@ -63,6 +62,7 @@
 	<string name="app_upload">应用分享（携带文件）</string>
 	<string name="app_upload_extinfo">应用分享（携带脚本）</string>
 	<string name="file_upload">文件分享</string>
+	<string name="share_miniprogram">分享小应用程序</string>
 	<string name="share_to_wechat">微信好友</string>
 	<string name="share_to_moment">微信朋友圈</string>
 	<string name="share_to_favorite">微信收藏</string>

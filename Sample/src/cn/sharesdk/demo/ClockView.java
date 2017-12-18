@@ -29,7 +29,7 @@ import android.view.animation.LinearInterpolator;
 public class ClockView extends View {
 	private static final String TAG = ClockView.class.getSimpleName();
 	private static final boolean DEBUG = true;
-
+	
 	/**背景颜色*/
 	private int colorBg = 0xff237ead;
 	private int colorBgRing = 0x80ffffff;
@@ -122,11 +122,11 @@ public class ClockView extends View {
 	private Shader sweepGradient;
 
 	private Camera camera = new Camera();
-
+	
 	private int width;
 	private int height;
 	private BroadcastReceiver receiver;
-
+	
 	public ClockView(Context context, int width, int height) {
 		super(context);
 		this.width = width;
@@ -680,7 +680,7 @@ public class ClockView extends View {
 	public float sp2px(float spValue) {
 		return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, getResources().getDisplayMetrics());
 	}
-
+	
 	private class TimeTickerReceiver extends BroadcastReceiver {
 
 		@Override

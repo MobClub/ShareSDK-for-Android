@@ -7,7 +7,7 @@ import android.view.animation.LayoutAnimationController;
 import android.view.animation.TranslateAnimation;
 
 public class InLayoutAnim {
-
+	
 	public static LayoutAnimationController getAnimationController() {
 		int duration = 300;
 		AnimationSet set = new AnimationSet(true);
@@ -17,9 +17,9 @@ public class InLayoutAnim {
 		set.addAnimation(animation);
 
 		animation = new TranslateAnimation(
-				Animation.RELATIVE_TO_SELF, 1.0f,
-				Animation.RELATIVE_TO_SELF, 0.0f,
-				Animation.RELATIVE_TO_SELF, 0.0f,
+				Animation.RELATIVE_TO_SELF, 1.0f, 
+				Animation.RELATIVE_TO_SELF, 0.0f, 
+				Animation.RELATIVE_TO_SELF, 0.0f, 
 				Animation.RELATIVE_TO_SELF, 0.0f);
 		animation.setDuration(duration);
 		set.addAnimation(animation);
@@ -28,5 +28,5 @@ public class InLayoutAnim {
 		controller.setOrder(LayoutAnimationController.ORDER_NORMAL);
 		return controller;
 	}
-
+	
 }

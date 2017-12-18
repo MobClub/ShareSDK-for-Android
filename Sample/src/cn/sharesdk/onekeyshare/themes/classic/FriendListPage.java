@@ -1,10 +1,21 @@
+//#if def{lang} == cn
 /*
  * 官网地站:http://www.mob.com
  * 技术支持QQ: 4006852216
  * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
- *
+ * 
  * Copyright (c) 2013年 mob.com. All rights reserved.
  */
+//#elif def{lang} == en
+/*
+ * Offical Website:http://www.mob.com
+ * Support QQ: 4006852216
+ * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. 
+ * If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 
+ * Copyright (c) 2013 mob.com. All rights reserved.
+ */
+//#endif
 
 package cn.sharesdk.onekeyshare.themes.classic;
 
@@ -31,10 +42,14 @@ import cn.sharesdk.onekeyshare.themes.classic.FriendAdapter.Following;
 import com.mob.tools.gui.PullToRequestView;
 import com.mob.tools.utils.ResHelper;
 
+//#if def{lang} == cn
 /** 编辑界面，@好友时，弹出的好友列表 */
+//#elif def{lang} == en
+/** the page of friends list */
+//#endif
 public abstract class FriendListPage extends OnekeySharePage implements OnClickListener, OnItemClickListener {
 	private static final int DESIGN_LEFT_PADDING = 40;
-
+	
 	private Platform platform;
 	private LinearLayout llPage;
 	private RelativeLayout rlTitle;
@@ -42,9 +57,13 @@ public abstract class FriendListPage extends OnekeySharePage implements OnClickL
 	private TextView tvConfirm;
 	private FriendAdapter adapter;
 	private int lastPosition = -1;
+	//#if def{lang} == cn
 	/** 展示好友列表时，已选择要‘@’的好友个数 */
+	//#elif def{lang} == en
+	/** the count of checked friends in friend list */
+	//#endif
 	private int checkNum = 0;
-
+	
 	public FriendListPage(OnekeyShareThemeImpl impl) {
 		super(impl);
 	}
@@ -52,14 +71,14 @@ public abstract class FriendListPage extends OnekeySharePage implements OnClickL
 	public void setPlatform(Platform platform) {
 		this.platform = platform;
 	}
-
+	
 	public void onCreate() {
 		activity.getWindow().setBackgroundDrawable(new ColorDrawable(0xfff3f3f3));
-
+		
 		llPage = new LinearLayout(activity);
 		llPage.setOrientation(LinearLayout.VERTICAL);
 		activity.setContentView(llPage);
-
+		
 		rlTitle = new RelativeLayout(activity);
 		float ratio = getRatio();
 		int titleHeight = (int) (getDesignTitleHeight() * ratio);
@@ -67,13 +86,13 @@ public abstract class FriendListPage extends OnekeySharePage implements OnClickL
 				LayoutParams.MATCH_PARENT, titleHeight);
 		llPage.addView(rlTitle, lp);
 		initTitle(rlTitle, ratio);
-
+		
 		View line = new View(activity);
 		LinearLayout.LayoutParams lpline = new LinearLayout.LayoutParams(
 				LayoutParams.MATCH_PARENT, (int) (ratio < 1 ? 1 : ratio));
 		line.setBackgroundColor(0xffdad9d9);
 		llPage.addView(line, lpline);
-
+		
 		FrameLayout flPage = new FrameLayout(getContext());
 		LinearLayout.LayoutParams lpFl = new LinearLayout.LayoutParams(
 				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
@@ -81,27 +100,35 @@ public abstract class FriendListPage extends OnekeySharePage implements OnClickL
 		flPage.setLayoutParams(lpFl);
 		llPage.addView(flPage);
 
+		//#if def{lang} == cn
 		// 关注（或朋友）列表
+		//#elif def{lang} == en
+		// the list of friends or followings
+		//#endif
 		PullToRequestView followList = new PullToRequestView(getContext());
 		FrameLayout.LayoutParams lpLv = new FrameLayout.LayoutParams(
 				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		followList.setLayoutParams(lpLv);
 		flPage.addView(followList);
-
+		
 		adapter = new FriendAdapter(this, followList);
 		adapter.setPlatform(platform);
 		adapter.setRatio(ratio);
 		adapter.setOnItemClickListener(this);
 		followList.setAdapter(adapter);
 
+		//#if def{lang} == cn
 		// 请求数据
+		//#elif def{lang} == en
+		// request data
+		//#endif
 		followList.performPullingDown(true);
 	}
-
+	
 	protected abstract float getRatio();
-
+	
 	protected abstract int getDesignTitleHeight();
-
+	
 	private void initTitle(RelativeLayout rlTitle, float ratio) {
 		tvCancel = new TextView(activity);
 		tvCancel.setTextColor(0xff3b3b3b);
@@ -116,7 +143,7 @@ public abstract class FriendListPage extends OnekeySharePage implements OnClickL
 		RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
 		rlTitle.addView(tvCancel, lp);
 		tvCancel.setOnClickListener(this);
-
+				
 		TextView tvTitle = new TextView(activity);
 		tvTitle.setTextColor(0xff3b3b3b);
 		tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
@@ -154,7 +181,7 @@ public abstract class FriendListPage extends OnekeySharePage implements OnClickL
 					selected.add(adapter.getItem(i).atName);
 				}
 			}
-
+			
 			HashMap<String, Object> res = new HashMap<String, Object>();
 			res.put("selected", selected);
 			res.put("platform", platform);
@@ -162,7 +189,7 @@ public abstract class FriendListPage extends OnekeySharePage implements OnClickL
 			finish();
 		}
 	}
-
+	
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		if ("FacebookMessenger".equals(platform.getName())) {
 			if(lastPosition >= 0) {
@@ -173,17 +200,17 @@ public abstract class FriendListPage extends OnekeySharePage implements OnClickL
 		}
 		Following following = adapter.getItem(position);
 		following.checked = !following.checked;
-
+		
 		if(following.checked) {
 			checkNum++;
 		} else {
 			checkNum--;
 		}
-
+		
 		updateConfirmView();
 		adapter.notifyDataSetChanged();
 	}
-
+	
 	private void updateConfirmView() {
 		int resId = ResHelper.getStringRes(activity, "ssdk_oks_confirm");
 		String confirm = "Confirm";
@@ -196,5 +223,5 @@ public abstract class FriendListPage extends OnekeySharePage implements OnClickL
 			tvConfirm.setText(confirm + "(" + checkNum + ")");
 		}
 	}
-
+	
 }

@@ -1,10 +1,21 @@
+//#if def{lang} == cn
 /*
  * 官网地站:http://www.mob.com
  * 技术支持QQ: 4006852216
  * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
- *
+ * 
  * Copyright (c) 2013年 mob.com. All rights reserved.
  */
+//#elif def{lang} == en
+/*
+ * Offical Website:http://www.mob.com
+ * Support QQ: 4006852216
+ * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. 
+ * If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 
+ * Copyright (c) 2013 mob.com. All rights reserved.
+ */
+//#endif
 
 package cn.sharesdk.onekeyshare.themes.classic.land;
 
@@ -16,24 +27,28 @@ import cn.sharesdk.onekeyshare.themes.classic.PlatformPageAdapter;
 
 import com.mob.tools.utils.ResHelper;
 
+//#if def{lang} == cn
 /** 横屏的九宫格页面适配器 */
+//#elif def{lang} == en
+/** the landscape of gridview's adapter */
+//#endif
 public class PlatformPageAdapterLand extends PlatformPageAdapter {
 	private static final int DESIGN_SCREEN_WIDTH_L = 1280;
 	private static final int DESIGN_CELL_WIDTH_L = 160;
 	private static final int DESIGN_SEP_LINE_WIDTH = 1;
 	private static final int DESIGN_LOGO_HEIGHT = 76;
 	private static final int DESIGN_PADDING_TOP = 20;
-
+	
 	public PlatformPageAdapterLand(PlatformPage page, ArrayList<Object> cells) {
 		super(page, cells);
 	}
-
+	
 	protected void calculateSize(Context context, ArrayList<Object> plats) {
 		int screenWidth = ResHelper.getScreenWidth(context);
 		float ratio = ((float) screenWidth) / DESIGN_SCREEN_WIDTH_L;
 		int cellWidth = (int) (DESIGN_CELL_WIDTH_L * ratio);
 		lineSize = screenWidth / cellWidth;
-
+		
 		sepLineWidth = (int) (DESIGN_SEP_LINE_WIDTH * ratio);
 		sepLineWidth = sepLineWidth < 1 ? 1 : sepLineWidth;
 		logoHeight = (int) (DESIGN_LOGO_HEIGHT * ratio);
@@ -58,11 +73,11 @@ public class PlatformPageAdapterLand extends PlatformPageAdapter {
 			}
 			cells = new Object[pageCount][lineSize];
 		}
-
+		
 		for (int i = 0; i < count; i++) {
 			int p = i / lineSize;
 			cells[p][i - lineSize * p] = plats.get(i);
 		}
 	}
-
+	
 }

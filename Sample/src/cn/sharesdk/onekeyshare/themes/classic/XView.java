@@ -1,10 +1,21 @@
+//#if def{lang} == cn
 /*
  * 官网地站:http://www.mob.com
  * 技术支持QQ: 4006852216
  * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
- *
+ * 
  * Copyright (c) 2013年 mob.com. All rights reserved.
  */
+//#elif def{lang} == en
+/*
+ * Offical Website:http://www.mob.com
+ * Support QQ: 4006852216
+ * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. 
+ * If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 
+ * Copyright (c) 2013 mob.com. All rights reserved.
+ */
+//#endif
 
 package cn.sharesdk.onekeyshare.themes.classic;
 
@@ -13,14 +24,18 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
 
+//#if def{lang} == cn
 /** 编辑页面中删除图片“X”按钮 */
+//#elif def{lang} == en
+/** the “X” button for removing image in share content editor page */
+//#endif
 public class XView extends View {
 	private float ratio;
 
 	public XView(Context context) {
 		super(context);
 	}
-
+	
 	public void setRatio(float ratio) {
 		this.ratio = ratio;
 	}
@@ -28,12 +43,12 @@ public class XView extends View {
 	protected void onDraw(Canvas canvas) {
 		int width = getWidth() / 2;
 		int height = getHeight() / 2;
-
+		
 		Paint paint = new Paint();
 		paint.setAntiAlias(true);
 		paint.setColor(0xffa0a0a0);
 		canvas.drawRect(width, 0, getWidth(), height, paint);
-
+		
 		paint = new Paint();
 		paint.setAntiAlias(true);
 		paint.setStrokeWidth(3f * ratio);
@@ -42,5 +57,5 @@ public class XView extends View {
 		canvas.drawLine(width + left, left, getWidth() - left, width - left, paint);
 		canvas.drawLine(width + left, width - left, getWidth() - left, left, paint);
 	}
-
+	
 }

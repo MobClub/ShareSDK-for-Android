@@ -12,7 +12,6 @@
     <string name="sm_item_wechat">Wechat</string>
     <string name="sm_item_yixin">Yixin</string>
     <string name="sm_item_alipay">Alipay</string>
-    <string name="sm_item_qrcode">QR Code</string>
     <string name="sm_item_customer">Custom API</string>
     <string name="sm_item_custom_fields">Custom share fields</string>
     <string name="sm_item_fl_weibo">Follow Sina Weibo</string>
@@ -66,6 +65,7 @@
 	<string name="app_upload">Share App (With File)</string>
 	<string name="app_upload_extinfo">Share App (With Script)</string>
 	<string name="file_upload">Share File</string>
+	<string name="share_miniprogram">Share miniProgram</string>
 	<string name="share_to_wechat">Wechat Friends</string>
 	<string name="share_to_moment">Wechat Moments</string>
 	<string name="share_to_favorite">Wechat Favorite</string>

@@ -1,10 +1,21 @@
+//#if def{lang} == cn
 /*
  * 官网地站:http://www.mob.com
  * 技术支持QQ: 4006852216
  * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
- *
+ * 
  * Copyright (c) 2013年 mob.com. All rights reserved.
  */
+//#elif def{lang} == en
+/*
+ * Offical Website:http://www.mob.com
+ * Support QQ: 4006852216
+ * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. 
+ * If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 
+ * Copyright (c) 2013 mob.com. All rights reserved.
+ */
+//#endif
 
 package cn.sharesdk.onekeyshare.themes.classic;
 
@@ -22,19 +33,31 @@ import com.mob.tools.gui.AsyncImageView;
 import com.mob.tools.gui.BitmapProcessor;
 import com.mob.tools.utils.ResHelper;
 
+//#if def{lang} == cn
 /** 好友列表的item */
+//#elif def{lang} == en
+/** the item of friends list */
+//#endif
 public class FriendListItem extends LinearLayout {
 	private static final int DESIGN_AVATAR_WIDTH = 64;
 	private static final int DESIGN_AVATAR_PADDING = 24;
 	private static final int DESIGN_ITEM_HEIGHT = 96;
 	private static final int DESIGN_ITEM_PADDING = 20;
-
+	
 	private ImageView ivCheck;
 	private AsyncImageView aivIcon;
 	private TextView tvName;
+	//#if def{lang} == cn
 	/** 好友列表中，被选中的checkbox图标 */
+	//#elif def{lang} == en
+	/** the check bitmap of checkbox  */
+	//#endif
 	private Bitmap bmChd;
+	//#if def{lang} == cn
 	/** 好友列表中，没选中的checkbox图标 */
+	//#elif def{lang} == en
+	/** the uncheck bitmap of checkbox */
+	//#endif
 	private Bitmap bmUnch;
 
 	public FriendListItem(Context context, float ratio) {
@@ -43,13 +66,13 @@ public class FriendListItem extends LinearLayout {
 		setPadding(itemPadding, 0, itemPadding, 0);
 		setMinimumHeight((int) (ratio * DESIGN_ITEM_HEIGHT));
 		setBackgroundColor(0xffffffff);
-
+		
 		ivCheck = new ImageView(context);
 		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
 				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 		lp.gravity = Gravity.CENTER_VERTICAL;
 		addView(ivCheck, lp);
-
+		
 		aivIcon = new AsyncImageView(context);
 		int avatarWidth = (int) (ratio * DESIGN_AVATAR_WIDTH);
 		lp = new LinearLayout.LayoutParams(avatarWidth, avatarWidth);
@@ -66,7 +89,7 @@ public class FriendListItem extends LinearLayout {
 		lp.gravity = Gravity.CENTER_VERTICAL;
 		lp.weight = 1;
 		addView(tvName, lp);
-
+		
 		int resId = ResHelper.getBitmapRes(context, "ssdk_oks_classic_check_checked");
 		if (resId > 0) {
 			bmChd = BitmapFactory.decodeResource(context.getResources(), resId);
@@ -76,7 +99,7 @@ public class FriendListItem extends LinearLayout {
 			bmUnch = BitmapFactory.decodeResource(context.getResources(), resId);
 		}
 	}
-
+	
 	public void update(Following following, boolean fling) {
 		tvName.setText(following.screenName);
 		ivCheck.setImageBitmap(following.checked ? bmChd : bmUnch);

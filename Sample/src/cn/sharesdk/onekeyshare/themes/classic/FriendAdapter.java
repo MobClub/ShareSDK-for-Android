@@ -1,10 +1,21 @@
+//#if def{lang} == cn
 /*
  * 官网地站:http://www.mob.com
  * 技术支持QQ: 4006852216
  * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
- *
+ * 
  * Copyright (c) 2013年 mob.com. All rights reserved.
  */
+//#elif def{lang} == en
+/*
+ * Offical Website:http://www.mob.com
+ * Support QQ: 4006852216
+ * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. 
+ * If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 
+ * Copyright (c) 2013 mob.com. All rights reserved.
+ */
+//#endif
 
 package cn.sharesdk.onekeyshare.themes.classic;
 
@@ -25,33 +36,61 @@ import com.mob.tools.gui.PullToRequestListAdapter;
 import com.mob.tools.gui.PullToRequestView;
 import com.mob.tools.utils.UIHandler;
 
+//#if def{lang} == cn
 /** 好友列表的适配器 */
+//#elif def{lang} == en
+/** the adapter of friends list */
+//#endif
 public class FriendAdapter extends PullToRequestListAdapter implements PlatformActionListener {
 	private FriendListPage activity;
 	private boolean hasNext;
 	private Platform platform;
+	//#if def{lang} == cn
 	/** 请求好友列表时，每页15个 */
-	private final int pageCount = 15;
+	//#elif def{lang} == en
+	/** the number of request friends */
+	//#endif
+	private final int pageCount = 15; 
+	//#if def{lang} == cn
 	/** 当前的好友列表是第几页 */
+	//#elif def{lang} == en
+	/** the current pages of request friends */
+	//#endif
 	private int curPage;
+	//#if def{lang} == cn
 	/** 好友列表数据 */
+	//#elif def{lang} == en
+	/** the data of friend list */
+	//#endif
 	private ArrayList<Following> follows;
+	//#if def{lang} == cn
 	/** 判断当前的好友列表数据与请求的新数据是否有重复 */
+	//#elif def{lang} == en
+	/** delete the repeat data from follows using this param*/
+	//#endif
 	private HashMap<String, Boolean> map;
+	//#if def{lang} == cn
 	/** 好友列表的头部View */
+	//#elif def{lang} == en
+	/** the header view of friends list page*/
+	//#endif
 	private PRTHeader llHeader;
+	//#if def{lang} == cn
 	/** 根据设计，按照比例来布局，以此来适配所有手机 */
+	//#elif def{lang} == en
+	/** the ratio of design-size and phone-screen*/
+	//#endif
 	private float ratio;
 
 	public FriendAdapter(FriendListPage activity, PullToRequestView view) {
 		super(view);
 		this.activity = activity;
-
+		
 		curPage = -1;
 		hasNext = true;
 		map = new HashMap<String, Boolean>();
 		follows = new ArrayList<Following>();
-
+		
 		getListView().setDivider(new ColorDrawable(0xffeaeaea));
 	}
 
@@ -59,11 +98,11 @@ public class FriendAdapter extends PullToRequestListAdapter implements PlatformA
 		this.ratio = ratio;
 		getListView().setDividerHeight((int) (ratio < 1 ? 1 : ratio));
 	}
-
+	
 	public void setOnItemClickListener(OnItemClickListener listener) {
 		getListView().setOnItemClickListener(listener);
 	}
-
+	
 	public void setPlatform(Platform platform) {
 		this.platform = platform;
 		platform.setPlatformActionListener(this);
@@ -72,9 +111,9 @@ public class FriendAdapter extends PullToRequestListAdapter implements PlatformA
 	private void next() {
 		if (hasNext) {
 			platform.listFriend(pageCount, curPage + 1, null);
-		}
+		} 
 	}
-
+	
 	public void onComplete(Platform plat, int action, HashMap<String, Object> res) {
 		final FollowersResult followersResult = parseFollowers(platform.getName(), res, map);
 		if (followersResult == null) {
@@ -86,7 +125,7 @@ public class FriendAdapter extends PullToRequestListAdapter implements PlatformA
 			});
 			return;
 		}
-
+		
 		hasNext = followersResult.hasNextPage;
 		if (followersResult.list != null && followersResult.list.size() > 0) {
 			curPage++;
@@ -196,18 +235,18 @@ public class FriendAdapter extends PullToRequestListAdapter implements PlatformA
 					data.add(following);
 				}
 			}
-		}
+		} 
 
 		FollowersResult ret = new FollowersResult();
 		ret.list = data;
 		ret.hasNextPage = hasNext;
 		return ret;
 	}
-
+	
 	public void onError(Platform plat, int action, Throwable t) {
 		t.printStackTrace();
 	}
-
+	
 	public void onCancel(Platform plat, int action) {
 		UIHandler.sendEmptyMessage(0, new Callback() {
 			public boolean handleMessage(Message msg) {
@@ -247,7 +286,7 @@ public class FriendAdapter extends PullToRequestListAdapter implements PlatformA
 		map.clear();
 		next();
 	}
-
+	
 	public void onReversed() {
 		llHeader.reverse();
 	}

@@ -1,10 +1,21 @@
+//#if def{lang} == cn
 /*
  * 官网地站:http://www.mob.com
  * 技术支持QQ: 4006852216
  * 官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
- *
+ * 
  * Copyright (c) 2013年 mob.com. All rights reserved.
  */
+//#elif def{lang} == en
+/*
+ * Offical Website:http://www.mob.com
+ * Support QQ: 4006852216
+ * Offical Wechat Account:ShareSDK   (We will inform you our updated news at the first time by Wechat, if we release a new version. 
+ * If you get any problem, you can also contact us with Wechat, we will reply you within 24 hours.)
+ * 
+ * Copyright (c) 2013 mob.com. All rights reserved.
+ */
+//#endif
 
 package cn.sharesdk.demo;
 
@@ -25,35 +36,83 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+//#if def{lang} == cn
 /** 自定义接口的演示页面 */
+//#elif def{lang} == en
+/** examples of custom interfaces */
+//#endif
 public class CustomerPage extends SlidingMenuPage implements
 		OnClickListener, PlatformActionListener {
+	//#if def{lang} == cn
 	/** 豆瓣自定义事件代码 */
+	//#elif def{lang} == en
+	/** action code of Douban */
+	//#endif
 	private static final short ACTION_DOUBAN = 1;
+	//#if def{lang} == cn
 	/** Facebook自定义事件代码 */
+	//#elif def{lang} == en
+	/** action code of Facebook */
+	//#endif
 	private static final short ACTION_FACEBOOK = 2;
 
+	//#if def{lang} == cn
 	/** 人人网自定义事件代码 */
+	//#elif def{lang} == en
+	/** action code of Renren */
+	//#endif
 	private static final short ACTION_RENREN = 4;
+	//#if def{lang} == cn
 	/** 新浪微博自定义事件代码 */
+	//#elif def{lang} == en
+	/** action code of SinaWeibo */
+	//#endif
 	private static final short ACTION_SINAWEIBO = 5;
+	//#if def{lang} == cn
 	/** QQ空间自定义事件代码 */
+	//#elif def{lang} == en
+	/** action code of Qzone */
+	//#endif
 	private static final short ACTION_QZONE = 6;
+	//#if def{lang} == cn
 	/** 腾讯微博自定义事件代码 */
+	//#elif def{lang} == en
+	/** action code of TencentWeibo */
+	//#endif
 	private static final short ACTION_TENCENTWEIBO = 7;
+	//#if def{lang} == cn
 	/** twitter自定义事件代码 */
+	//#elif def{lang} == en
+	/** action code of Twitter */
+	//#endif
 	private static final short ACTION_TWITTER = 8;
+	//#if def{lang} == cn
 	/** 开心网自定义事件代码 */
+	//#elif def{lang} == en
+	/** action code of Kaixin */
+	//#endif
 	private static final short ACTION_KAIXIN = 9;
 
+	//#if def{lang} == cn
 	/** 有道云笔记自定义事件代码 */
+	//#elif def{lang} == en
+	/** action code of Youdao */
+	//#endif
 	private static final short ACTION_YOUDAONOTE = 11;
+	//#if def{lang} == cn
 	/** 搜狐随身看自定义事件代码 */
+	//#elif def{lang} == en
+	/** action code of SohuSuishenkan */
+	//#endif
 	private static final short ACTION_SOHUSUISHENKAN = 12;
+	//#if def{lang} == cn
 	/** tumblr自定义事件代码 */
+	//#elif def{lang} == en
+	/** action code of tumblr */
+	//#endif
 	private static final short ACTION_TUMBLR = 13;
 	private TitleLayout llTitle;
-
+	
 	public CustomerPage(SlidingMenu menu) {
 		super(menu);
 		View pageView = getPage();
@@ -66,11 +125,11 @@ public class CustomerPage extends SlidingMenuPage implements
 			llList.getChildAt(i).setOnClickListener(this);
 		}
 	}
-
+	
 	protected View initPage() {
 		return LayoutInflater.from(getContext()).inflate(R.layout.page_customer, null);
 	}
-
+	
 	public void onClick(View v) {
 		if (v.equals(llTitle.getBtnBack())) {
 			if (isMenuShown()) {
@@ -80,7 +139,7 @@ public class CustomerPage extends SlidingMenuPage implements
 			}
 			return;
 		}
-
+		
 		switch(v.getId()) {
 			case R.id.btnDb: doubanEvent(); break;
 			case R.id.btnFb: facebookEvent(); break;
@@ -105,7 +164,7 @@ public class CustomerPage extends SlidingMenuPage implements
 		values.put("q", "ahbei");
 		douban.customerProtocol(url, method, customerAction, values, null);
 	}
-
+	
 	private void facebookEvent() {
 		Platform facebook = ShareSDK.getPlatform("Facebook");
 		facebook.setPlatformActionListener(this);
@@ -114,9 +173,13 @@ public class CustomerPage extends SlidingMenuPage implements
 		short customerAction = ACTION_FACEBOOK;
 		facebook.customerProtocol(url, method, customerAction, null, null);
 	}
-
+	
 	private void renren() {
+		//#if def{lang} == cn
 		// 分享本地图片
+		//#elif def{lang} == en
+		// share local image
+		//#endif
 		Platform renren = ShareSDK.getPlatform("Renren");
 		renren.setPlatformActionListener(this);
 		String url = "https://api.renren.com/v2/photo/upload";
@@ -127,8 +190,12 @@ public class CustomerPage extends SlidingMenuPage implements
 		HashMap<String, String> filePathes = new HashMap<String, String>();
 		filePathes.put("file", MainActivity.testImage);
 		renren.customerProtocol(url, method, customerAction, values, filePathes);
-
+		
+		//#if def{lang} == cn
 		// 分享网络图片
+		//#elif def{lang} == en
+		// share online image
+		//#endif
 //		Platform renren = ShareSDK.getPlatform("Renren");
 //		renren.setPlatformActionListener(this);
 //		String url = "https://api.renren.com/v2/share/url/put";
@@ -139,7 +206,7 @@ public class CustomerPage extends SlidingMenuPage implements
 //		values.put("url", MainActivity.TEXT_IMAGE_URL);
 //		renren.customerProtocol(url, method, customerAction, values, null);
 	}
-
+	
 	private void sinaWeibo() {
 //		Platform weibo = ShareSDK.getPlatform("SinaWeibo");
 //		weibo.SSOSetting(true);
@@ -154,7 +221,7 @@ public class CustomerPage extends SlidingMenuPage implements
 //		values.put("type", 1);
 //		values.put("data", String.valueOf(System.currentTimeMillis()));
 //		weibo.customerProtocol(url, method, customerAction, values, null);
-
+		
 		Platform weibo = ShareSDK.getPlatform("SinaWeibo");
 		weibo.setPlatformActionListener(this);
 		String url = "https://api.weibo.com/2/statuses/friends_timeline.json";
@@ -165,7 +232,7 @@ public class CustomerPage extends SlidingMenuPage implements
 		values.put("page", 1);
 		weibo.customerProtocol(url, method, customerAction, values, null);
 	}
-
+	
 	private void qzone() {
 		Platform qzone = ShareSDK.getPlatform("QZone");
 		qzone.setPlatformActionListener(this);
@@ -177,7 +244,7 @@ public class CustomerPage extends SlidingMenuPage implements
 		values.put("content", getContext().getString(R.string.qzone_add_blog_sample));
 		qzone.customerProtocol(url, method, customerAction, values, null);
 	}
-
+	
 	private void tencentWeibo() {
 		Platform weibo = ShareSDK.getPlatform("TencentWeibo");
 		weibo.setPlatformActionListener(this);
@@ -190,7 +257,7 @@ public class CustomerPage extends SlidingMenuPage implements
 		values.put("mode", 0);
 		weibo.customerProtocol(url, method, customerAction, values, null);
 	}
-
+	
 	private void twitter() {
 		Platform twitter = ShareSDK.getPlatform("Twitter");
 		twitter.setPlatformActionListener(this);
@@ -201,7 +268,7 @@ public class CustomerPage extends SlidingMenuPage implements
 		values.put("count", 20);
 		twitter.customerProtocol(url, method, customerAction, values, null);
 	}
-
+	
 	private void kaixin() {
 		Platform kaixin = ShareSDK.getPlatform("KaiXin");
 		kaixin.setPlatformActionListener(this);
@@ -212,7 +279,7 @@ public class CustomerPage extends SlidingMenuPage implements
 		values.put("num", 20);
 		kaixin.customerProtocol(url, method, customerAction, values, null);
 	}
-
+	
 	private void youdaoNote() {
 		Platform youdao = ShareSDK.getPlatform("YouDao");
 		youdao.setPlatformActionListener(this);
@@ -221,7 +288,7 @@ public class CustomerPage extends SlidingMenuPage implements
 		short customerAction = ACTION_YOUDAONOTE;
 		youdao.customerProtocol(url, method, customerAction, null, null);
 	}
-
+	
 	private void tumblr() {
 		Platform tumblr = ShareSDK.getPlatform("Tumblr");
 		tumblr.setPlatformActionListener(this);
@@ -234,7 +301,7 @@ public class CustomerPage extends SlidingMenuPage implements
 		values.put("limit", 20);
 		tumblr.customerProtocol(url, method, customerAction, values, null);
 	}
-
+	
 	public void onComplete(Platform plat, int action, HashMap<String, Object> res) {
 		Message msg = new Message();
 		msg.arg1 = 1;
@@ -242,7 +309,7 @@ public class CustomerPage extends SlidingMenuPage implements
 		msg.obj = res;
 		UIHandler.sendMessage(msg, this);
 	}
-
+	
 	public void onCancel(Platform plat, int action) {
 		Message msg = new Message();
 		msg.arg1 = 3;
@@ -250,10 +317,10 @@ public class CustomerPage extends SlidingMenuPage implements
 		msg.obj = plat;
 		UIHandler.sendMessage(msg, this);
 	}
-
+	
 	public void onError(Platform plat, int action, Throwable t) {
 		t.printStackTrace();
-
+		
 		Message msg = new Message();
 		msg.arg1 = 2;
 		msg.arg2 = action;
@@ -261,37 +328,57 @@ public class CustomerPage extends SlidingMenuPage implements
 		UIHandler.sendMessage(msg, this);
 	}
 
+	//#if def{lang} == cn
 	/** 处理操作结果 */
+	//#elif def{lang} == en
+	/** handling custom actions */
+	//#endif
 	@SuppressWarnings("unchecked")
 	public boolean handleMessage(Message msg) {
 		switch (msg.arg1) {
 			case 1: {
+				//#if def{lang} == cn
 				// 成功
+				//#elif def{lang} == en
+				// success
+				//#endif
 				JsonPage page = new JsonPage();
 				String title = llTitle.getTvTitle().getText().toString();
 				page.setData(title, (HashMap<String, Object>) msg.obj);
 				page.show(getContext(), null);
 			} break;
 			case 2: {
+				//#if def{lang} == cn
 				// 失败
+				//#elif def{lang} == en
+				// failed
+				//#endif
 				Platform plat = (Platform) msg.obj;
 				String text = actionToString(msg.arg2);
 				text = plat.getName() + " caught error at " + text;
 				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
 			} break;
 			case 3: {
+				//#if def{lang} == cn
 				// 取消
+				//#elif def{lang} == en
+				// canceled
+				//#endif
 				Platform plat = (Platform) msg.obj;
 				String text = actionToString(msg.arg2);
 				text = plat.getName() + " canceled at " + text;
 				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
 			} break;
 		}
-
+		
 		return false;
 	}
-
+	
+	//#if def{lang} == cn
 	/** 将action转换为String */
+	//#elif def{lang} == en
+	/** converts ShareSDK actions into string */
+	//#endif
 	private String actionToString(int action) {
 		switch (action) {
 			case Platform.ACTION_AUTHORIZING: return "ACTION_AUTHORIZING";
@@ -320,5 +407,5 @@ public class CustomerPage extends SlidingMenuPage implements
 			}
 		}
 	}
-
+	
 }

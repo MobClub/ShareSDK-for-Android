@@ -13,20 +13,20 @@ public class BodyContainer extends HorizontalScrollView {
 	private SlidingMenu menu;
 	private int maxVelocity;
 	private VelocityTracker tracker;
-
+	
 	public BodyContainer(SlidingMenu menu) {
 		super(menu.getContext());
 		this.menu = menu;
 		ViewConfiguration conf = ViewConfiguration.get(menu.getContext());
 		maxVelocity = conf.getScaledMaximumFlingVelocity();
 	}
-
+	
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
 		switch (ev.getAction()) {
 			case MotionEvent.ACTION_DOWN: {
 				downX = ev.getX();
 				if (menu.isMenuShown()) {
-					if (downX > menu.getMenuWidth()
+					if (downX > menu.getMenuWidth() 
 							&& ev.getY() > menu.getMenuConfig().titleHeight) {
 						super.onInterceptTouchEvent(ev);
 						return true;
@@ -46,30 +46,30 @@ public class BodyContainer extends HorizontalScrollView {
 				}
 			} break;
 		}
-
+		
 		return super.onInterceptTouchEvent(ev);
 	}
-
+	
 	public boolean onTouchEvent(MotionEvent ev) {
 		if (tracker == null) {
 			tracker = VelocityTracker.obtain();
 		}
 		tracker.addMovement(ev);
-
+		
 		switch (ev.getAction()) {
 			case MotionEvent.ACTION_UP:
 			case MotionEvent.ACTION_CANCEL: {
 				if (menu.isMenuShown() && downX < menu.getMenuWidth()) {
 					return false;
 				}
-
+				
 				downX = Integer.MAX_VALUE;
 				tracker.computeCurrentVelocity(1000, maxVelocity);
 				float velX = tracker.getXVelocity();
 				tracker.recycle();
 				tracker = null;
 				int scrX = getScrollX();
-
+				
 				if (velX - MIN_FLING_VEL > 0) {
 					menu.showMenu();
 				} else if (velX + MIN_FLING_VEL < 0) {
@@ -82,7 +82,7 @@ public class BodyContainer extends HorizontalScrollView {
 				return true;
 			}
 		}
-
+		
 		if (menu.isMenuShown() && downX < menu.getMenuWidth()) {
 			return false;
 		}
