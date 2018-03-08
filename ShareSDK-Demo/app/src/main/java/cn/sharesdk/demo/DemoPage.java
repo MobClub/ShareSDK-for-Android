@@ -286,7 +286,7 @@ public class DemoPage extends SlidingMenuPage implements
 		String label = getResources().getString(R.string.app_name);
 		OnClickListener listener = new OnClickListener() {
 			public void onClick(View v) {
-				String text = "Customer Logo -- ShareSDK " + ShareSDK.getSDKVersionName();
+				String text = "Customer Logo -- ShareSDK " + ShareSDK.SDK_VERSION_NAME;
 				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
 			}
 		};
