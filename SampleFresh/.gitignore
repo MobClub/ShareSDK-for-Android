@@ -2,6 +2,10 @@
 *.apk
 *.ap_
 
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+
 # Files for the ART/Dalvik VM
 *.dex
 
