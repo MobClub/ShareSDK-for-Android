@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:paddingTop="@dimen/main_activity_top_margin_img_txt">
+
+    <ImageView
+        android:id="@+id/mSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/select_share"
+        android:adjustViewBounds="true"
+        android:scaleType="center"
+        android:focusable="true"
+        android:clickable="true"/>
+    <ImageView
+        android:id="@+id/mShot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/shot_share"
+        android:adjustViewBounds="true"
+        android:scaleType="center"/>/>
+    <ImageView
+        android:id="@+id/mShark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/shark_share"
+        android:adjustViewBounds="true"
+        android:scaleType="center"/>/>
+
+</LinearLayout>

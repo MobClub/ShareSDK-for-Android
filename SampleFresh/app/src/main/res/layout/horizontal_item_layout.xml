@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/itemLayout"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+    android:paddingTop = "@dimen/main_activity_top_margin_width"
+    android:paddingLeft = "@dimen/main_activity_top_margin_width"
+    android:paddingRight = "@dimen/main_activity_top_margin_width"
+    android:paddingBottom = "@dimen/main_activity_bottom_margin_width">
+    <TextView
+        android:id="@+id/titleName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/main_activity_top_margin_color_size"/>
+    <ImageView
+        android:id="@+id/titleImg"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="@dimen/main_activity_top_margin_img_txt"
+        android:background="@color/main_activity_top_img_bg"/>
+
+</LinearLayout>

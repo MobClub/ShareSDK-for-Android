@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SampleFresh</string>
+    <string name="share_content">ShareSDK for Android not only integration social platforms, like Facebook, Twitter, Google+. But also Our strong professional backend support can easy to know the Users,Information Flow,Backflow, Backflow rate, Share Rate,etc. See more detail on website http://mob.com @ShareSDK</string>
+    <string name="share_content_short">ShareSDK for Android not only integration social platforms, like Facebook, Twitter, Google+. But also Our strong professional backend support can easy to know the Users,Information Flow,Backflow, Backflow rate, Share Rate,etc. See more detail on website http://mob.com @ShareSDK</string>
+
+    <string name="evenote_title">ShareSDK is a magical SDK</string>
+   <!-- <string name="ssdk_oks_share">Share</string> -->
+    <string name="share_to_format">Share to %s</string>
+    <string name="item_title_txt_catagory_yanshi">Share Demo</string>
+    <string name="item_title_txt_catagory_inland">Platform Inland</string>
+    <string name="item_title_txt_catagory_internal">Platform Internation</string>
+    <string name="item_title_txt_catagory_system">Platform System</string>
+    <string name="share_platform_name">Share to </string>
+
+    <string name="home_page_show_share_txt">Share</string>
+    <string name="home_page_show_author_txt">Authorization</string>
+    <string name="home_page_show_userinfo_txt">UserInfo</string>
+    <string name="sensor_shark_off_show_txt">Shake your phone</string>
+
+
+    <!--授权-->
+    <string name="authorization_txt">Authorize</string>
+    <string name="authorization_txt_delete"> del Authorize</string>
+    <string name="userinfo_show_copy">Copy</string>
+
+    <!--用户信息-->
+    <string name="userinfo_txt">Get Message</string>
+    <string name="userinfo_show">Checked</string>
+
+
+    <string name="share_friend_txt_title">share friends</string>
+    <string name="share_feedback_txt_title">Feedback</string>
+    <!--title-->
+    <string name="share_title_share_txt">Share</string>
+    <string name="share_title_authorizon_txt">Auth</string>
+    <string name="share_title_userinfo_txt">User</string>
+
+    <string name="copy_pasted_on">Copy finish，Please go!</string>
+    <string name="shot_screen_share_title">Share for shot</string>
+
+    <!--分享类型-->
+    <string name="platform_share_text">Share Text</string>
+    <string name="platform_share_image">Share Image</string>
+    <string name="platform_share_webpage">Share WebPager</string>
+    <string name="platform_share_music">Share Music</string>
+    <string name="platform_share_video">Share Video</string>
+    <string name="platform_share_app">Share App</string>
+    <string name="platform_share_file">Share File</string>
+    <string name="platform_share_emoji">Share Emjoi</string>
+    <string name="platform_share_mini_app">Share MiniProgram</string>
+
+</resources>

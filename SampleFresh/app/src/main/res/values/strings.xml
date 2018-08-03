@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">SampleFresh</string>
+
+    <!--title-->
+    <string name="share_title_share_txt">分享</string>
+    <string name="share_title_authorizon_txt">授权</string>
+    <string name="share_title_userinfo_txt">用户信息</string>
+
+    <string name="copy_pasted_on">已经拷贝，请粘贴</string>
+    <string name="shot_screen_share_title">截屏分享</string>
+
+    <string name="share_content">ShareSDK for Android不仅集成简单、支持如QQ好友、微信、新浪微博、腾讯微博等所有社交平台，而且还有强大的统计分析管理后台，实时了解用户、信息流、回流率、传播效应等数据，详情见官网 http://mob.com @Mob移动开发者服务平台</string>
+    <string name="share_content_short">ShareSDK不仅集成简单、支持如微信、新浪微博、腾讯微博等平台，还有强大的统计分析管理后台，实时了解用户、信息流、回流率、传播效应等数据，详情见官网 http://mob.com @Mob移动开发者服务平台</string>
+    <string name="evenote_title">ShareSDK是一个神奇的SDK</string>
+
+    <!--<string name="ssdk_oks_share">分享</string> -->
+    <string name="share_to_format">分享到%s</string>
+    <string name="item_title_txt_catagory_yanshi">分享演示</string>
+    <string name="item_title_txt_catagory_inland">国内平台</string>
+    <string name="item_title_txt_catagory_internal">国际平台</string>
+    <string name="item_title_txt_catagory_system">系统平台</string>
+    <string name="sensor_shark_off_show_txt">摇动一下你的手机</string>
+    <string name="share_platform_name">分享到</string>
+
+    <!--授权-->
+    <string name="authorization_txt">授权</string>
+    <string name="authorization_txt_delete">删除授权</string>
+    <string name="userinfo_show_copy">复制</string>
+
+    <!--用户信息-->
+    <string name="userinfo_txt">获取信息</string>
+    <string name="userinfo_show">查&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;看</string>
+
+    <string name="home_page_show_share_txt">分享</string>
+    <string name="home_page_show_author_txt">授权</string>
+    <string name="home_page_show_userinfo_txt">用户信息</string>
+
+    <string name="share_friend_txt_title">好友分享</string>
+    <string name="share_feedback_txt_title">问题反馈</string>
+    
+    <!--分享类型-->
+    <string name="platform_share_text">分享文本</string>
+    <string name="platform_share_image">分享图片</string>
+    <string name="platform_share_webpage">分享链接</string>
+    <string name="platform_share_music">分享音乐</string>
+    <string name="platform_share_video">分享视频</string>
+    <string name="platform_share_app">分享应用</string>
+    <string name="platform_share_file">分享文件</string>
+    <string name="platform_share_emoji">分享表情</string>
+    <string name="platform_share_mini_app">分享微信小程序</string>
+
+
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+    android:background="@color/main_fragment_share_bg"
+    android:padding="@dimen/main_activity_bottom_margin_width">
+    <TextView
+        android:id="@+id/titleTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/main_activity_top_margin_color_size"
+        android:textColor="@color/name_fragment_share_txt_bg"/>
+
+</LinearLayout>

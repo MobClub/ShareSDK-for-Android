@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+    android:paddingLeft="@dimen/list_item_padding_left"
+    android:paddingRight="@dimen/list_item_padding_right">
+
+    <ImageView
+        android:id="@+id/platIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/platName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/platIcon"
+        android:layout_marginLeft= "@dimen/list_item_padding_left"
+        android:textColor="@color/name_fragment_share_txt_bg"
+        android:textSize="@dimen/main_activity_top_margin_color_size"/>
+
+    <TextView
+        android:id="@+id/platStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:paddingTop="@dimen/main_activity_bottom_margin_width"
+        android:paddingBottom="@dimen/main_activity_bottom_margin_width"
+        android:paddingLeft="@dimen/main_activity_top_margin_width"
+        android:paddingRight="@dimen/main_activity_top_margin_width"
+        android:textSize="@dimen/main_activity_top_margin_color_author"
+        android:focusable="true"
+        android:clickable="true"
+        android:textColor="@color/authorization_status_txt_color"
+        android:background="@drawable/show_sure_author_userinfo_bg"/>
+
+</RelativeLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true">
+    <TextView
+        android:id="@+id/sharkOff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/list_shark_sensor_padding"
+        android:textColor="@color/white"
+        android:drawablePadding="@dimen/main_activity_bottom_margin_width"
+        android:drawableTop="@drawable/shark_sensor_layout"
+        android:alpha="0.8"
+        android:text="@string/sensor_shark_off_show_txt"
+        android:background="@drawable/shark_of_bg_selector"/>
+
+</LinearLayout>

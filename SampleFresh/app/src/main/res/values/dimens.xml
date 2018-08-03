@@ -1,0 +1,19 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--margin-->
+    <dimen name="main_activity_top_margin_width">16dp</dimen>
+    <dimen name="main_activity_top_margin_img_txt">10dp</dimen>
+    <dimen name="main_activity_bottom_margin_width">6dp</dimen>
+    <dimen name="list_item_padding_left">14dp</dimen>
+    <dimen name="list_item_padding_right">12dp</dimen>
+    <dimen name="list_shark_sensor_padding">20dp</dimen>
+    <!--color-->
+    <dimen name="main_activity_top_margin_color_size">16sp</dimen>
+    <dimen name="main_activity_top_margin_color_author">14sp</dimen>
+
+    <dimen name="main_radius_margin">20dp</dimen>
+
+</resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:alpha="0.8"
+    android:background="@drawable/share_bg_cor"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <android.support.v4.widget.ContentLoadingProgressBar
+            android:id="@+id/startShow"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:id="@+id/thumb"
+            android:layout_width="108dp"
+            android:layout_height="118dp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/shareFriends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="14dp"
+        android:drawableLeft="@mipmap/share_icon"
+        android:drawablePadding="10dp"
+        android:text="@string/share_friend_txt_title" />
+</LinearLayout>
