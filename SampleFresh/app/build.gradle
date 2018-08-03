@@ -1,0 +1,82 @@
+apply plugin: 'com.android.application'
+apply from: '../MobSDK.gradle'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    signingConfigs {
+        config {
+            keyAlias 'demokey.keystore'
+            keyPassword '123456'
+            storeFile file('../demokey.keystore')
+            storePassword '123456'
+        }
+        release {
+            keyAlias 'demokey.keystore'
+            keyPassword '123456'
+            storeFile file('../demokey.keystore')
+            storePassword '123456'
+        }
+        debug {
+            keyAlias 'demokey.keystore'
+            keyPassword '123456'
+            storeFile file('../demokey.keystore')
+            storePassword '123456'
+        }
+    }
+    defaultConfig {
+        applicationId "cn.sharesdk.demo"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 78
+        versionName "3.1.2"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+	
+	sourceSets {
+		main {
+			jniLibs.srcDirs = ['libs']
+		}
+	}
+	lintOptions {
+        abortOnError false
+        disable 'InconsistentArrays','DefaultLocale','OldTargetApi','GradleOverrides','MissingTranslation','UnusedResources','GoogleAppIndexingWarning'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:24.2.1'
+//    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:recyclerview-v7:25.2.0'
+    compile 'com.google.code.gson:gson:2.8.0'
+}
+
+
+configurations.all {
+//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Wechat-Core'
+//    exclude group: 'com.mob', module: 'MobTools'
+//    exclude group: 'com.mob', module: 'MobGUI'
+//    exclude group: 'com.mob', module: 'MobCommons'
+//    exclude group: 'com.mob', module: 'MobPush'
+//    exclude group: 'com.mob', module: 'SDKWrapper'
+}
