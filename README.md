@@ -48,7 +48,7 @@ Here is the example of “assets/ShareSDK.xml” way:
 
 ```` xml
 <ShareSDK
-   AppKey="add appkey you got from SahreSDK here" />
+   AppKey="add appkey you got from ShareSDK here" />
 
 <Facebook
     Id="int field, custom value for developer to recognize this platform"
