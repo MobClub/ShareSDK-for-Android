@@ -3,9 +3,11 @@
 buildscript {
     repositories {
         jcenter()
-        maven {
+        /*maven {
 			url "http://mvn.mob.com/android"
-        }
+            //url "http://10.18.97.47:8080/jenkins/job/iMaven/ws/android/"
+        }*/
+        google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.1'
@@ -13,11 +15,20 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
+
+    configurations.all {
+        resolutionStrategy.cacheDynamicVersionsFor 1, 'seconds'
+    }
 }
 
 allprojects {
     repositories {
         jcenter()
+        /*maven {
+            url "http://mvn.mob.com/android"
+            //url "http://10.18.97.47:8080/jenkins/job/iMaven/ws/android/"
+        }*/
+        google()
     }
 }
 
@@ -44,3 +55,4 @@ String findBuildTools() {
     }
     return null
 }
+

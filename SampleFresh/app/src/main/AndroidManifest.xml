@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="cn.sharesdk.demo">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="cn.sharesdk.demo">
 
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="16" />
 
     <supports-screens
         android:anyDensity="true"
@@ -11,9 +14,10 @@
         android:resizeable="true"
         android:smallScreens="true" />
 
-    <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="16" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -24,15 +28,16 @@
         tools:replace="android:name">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".activitys.SharePlatformTypeActivity"></activity>
-        <activity android:name=".activitys.ShowUserInfoActivity"></activity>
-
+        <activity android:name=".activitys.SharePlatformTypeActivity" />
+        <activity android:name=".activitys.ShowUserInfoActivity" />
+        <activity android:name=".ui.SdkTagsMainActivity" />
+        <activity android:name=".ui.TagsItemActivity" />
+        <activity android:name=".ui.TagsItemInfoActivity"></activity>
     </application>
 
 </manifest>

@@ -17,10 +17,44 @@
     <string name="share_to_format">分享到%s</string>
     <string name="item_title_txt_catagory_yanshi">分享演示</string>
     <string name="item_title_txt_catagory_inland">国内平台</string>
+    <string name="item_sdk_plus_tags">标签演示</string>
+    <string name="item_sdk_plus_tags_items">个性标签演示</string>
     <string name="item_title_txt_catagory_internal">国际平台</string>
     <string name="item_title_txt_catagory_system">系统平台</string>
     <string name="sensor_shark_off_show_txt">摇动一下你的手机</string>
     <string name="share_platform_name">分享到</string>
+
+    <!-- SDK TAGS -->
+    <string name="tab_menu_alert">首页</string>
+    <string name="tab_menu_setting">个人中心</string>
+    <string name="tags_shop">购物</string>
+    <string name="tags_video">视频</string>
+    <string name="tags_game">游戏</string>
+    <string name="tags_title">服装鞋包</string>
+    <string name="tags_content">热卖时尚，带你狂欢</string>
+    <string name="tags_sort">综合排序</string>
+    <string name="tags_price">价格排序</string>
+    <string name="tags_classify">分类查看</string>
+    <string name="tags_nick_name">用户昵称</string>
+
+    <string name="tags_like_type_shop">商品列表</string>
+    <string name="tags_subhead_shop">服装鞋包</string>
+    <string name="tags_describe_shop">热卖时尚，袋你狂欢</string>
+
+    <string name="tags_like_type_video">视频列表</string>
+    <string name="tags_subhead_video">吃货瞬间</string>
+    <string name="tags_describe_video">总有一个节目让你舔屏</string>
+
+    <string name="tags_like_type_game">游戏列表</string>
+    <string name="tags_subhead_game">极品飞车</string>
+    <string name="tags_describe_game">手机上的速度狂飙</string>
+
+    <string name="tags_age">18岁</string>
+    <string name="tags_edu">研究生</string>
+    <string name="tags_like_buy">母婴产品</string>
+    <string name="tags_like_movie">影视达人</string>
+    <string name="tags_like_game">体育竞速</string>
+    <string name="tags_unknown">未知</string>
 
     <!--授权-->
     <string name="authorization_txt">授权</string>
@@ -37,7 +71,7 @@
 
     <string name="share_friend_txt_title">好友分享</string>
     <string name="share_feedback_txt_title">问题反馈</string>
-    
+
     <!--分享类型-->
     <string name="platform_share_text">分享文本</string>
     <string name="platform_share_image">分享图片</string>
@@ -48,6 +82,10 @@
     <string name="platform_share_file">分享文件</string>
     <string name="platform_share_emoji">分享表情</string>
     <string name="platform_share_mini_app">分享微信小程序</string>
+    <string name="title_activity_tags_item">TagsItemActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

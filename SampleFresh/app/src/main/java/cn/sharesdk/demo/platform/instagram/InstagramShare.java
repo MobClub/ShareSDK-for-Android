@@ -20,6 +20,17 @@ public class InstagramShare {
 		this.platformActionListener = mListener;
 		DemoUtils.isValidClient("com.instagram.android");
 	}
+
+	public void shareText() {
+		Platform qqq = ShareSDK.getPlatform(Instagram.NAME);
+		Platform.ShareParams sp = new Platform.ShareParams();
+		sp.setTitle("title");
+		sp.setText("text");
+		sp.setShareType(Platform.INSTAGRAM_FRIEND);
+		qqq.setPlatformActionListener(null);
+		qqq.share(sp);
+	}
+
 	public void shareTextImage(){
 		Platform platform = ShareSDK.getPlatform(Instagram.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();

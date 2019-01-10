@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gridview_divder">
+
+        <ImageView
+            android:id="@+id/item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_15"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:layout_marginBottom="@dimen/margin_15"
+            android:layout_marginRight="@dimen/margin_15"
+            android:layout_centerHorizontal="true"
+            />
+
+        <TextView
+            android:id="@+id/item_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_15"
+            android:layout_below="@+id/item"
+            android:textColor="@android:color/darker_gray"
+            android:text="潮流搭配"/>
+
+        <TextView
+            android:id="@+id/item_tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/item_tv_title"
+            android:layout_marginTop="@dimen/margin_15"
+            android:layout_marginBottom="@dimen/margin_3"
+            android:textColor="@android:color/darker_gray"
+            android:text="惊艳这个秋冬"/>
+    </RelativeLayout>
+
+</LinearLayout>

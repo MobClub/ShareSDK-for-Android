@@ -56,6 +56,8 @@ public class PlatformShareConstant {
 	public static Integer[] youtube;
 	public static Integer[] meipai;
 	public static Integer[] telegram;
+	public static Integer[] reddit;
+	public static Integer[] douyin;
 	
 	private PlatformShareConstant(){
 		sinaWeibo = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_VIDEO};
@@ -84,7 +86,7 @@ public class PlatformShareConstant {
 		tumblr = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
 		dropbox = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_FILE, Platform.SHARE_VIDEO};
 		vkontakte = new Integer[]{Platform.SHARE_IMAGE};
-		instagram = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};
+		instagram = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_VIDEO, Platform.SHARE_TEXT};
 		yixin = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_MUSIC,Platform.SHARE_VIDEO,Platform.SHARE_WEBPAGE};
 		yixinMoments = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_MUSIC,Platform.SHARE_VIDEO,Platform.SHARE_WEBPAGE};
 		mingdao = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
@@ -102,6 +104,8 @@ public class PlatformShareConstant {
 		youtube = new Integer[]{Platform.SHARE_VIDEO};
 		meipai = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};
 		telegram = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_IMAGE};
+		reddit = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE};
+		douyin = new Integer[]{Platform.SHARE_VIDEO};
 	}
 	public synchronized static PlatformShareConstant getInstance(){
 		if(instance == null){

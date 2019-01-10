@@ -1,13 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/main_fragment_share_bg" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_fragment_share_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sdk_plus_item_height"
+        android:layout_marginLeft="@dimen/main_activity_bottom_margin_width"
+        android:text="@string/item_sdk_plus_tags"
+        android:textColor="@color/name_fragment_share_txt_bg"
+        android:textSize="@dimen/sdk_plus_16"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:id="@+id/btn_tags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/image_tags"
+            android:layout_width="@dimen/margin_45"
+            android:layout_height="@dimen/margin_45"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:background="@mipmap/ic_launcher"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tags_btn"
+            android:layout_toRightOf="@+id/image_tags"
+            android:layout_marginLeft= "@dimen/list_item_padding_left"
+            android:text="@string/item_sdk_plus_tags_items"
+            android:textColor="@color/name_fragment_share_txt_bg"
+            android:textSize="@dimen/main_activity_top_margin_color_size" />
+    </RelativeLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mUserInfo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
     </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

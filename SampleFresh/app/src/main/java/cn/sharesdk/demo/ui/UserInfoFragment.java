@@ -8,15 +8,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
-
 import com.mob.tools.utils.UIHandler;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import cn.sharesdk.demo.R;
 import cn.sharesdk.demo.activitys.ShowUserInfoActivity;
 import cn.sharesdk.demo.adapter.UserInfoAdapter;
@@ -28,12 +28,14 @@ import cn.sharesdk.demo.platform.PlatformAuthorizeUserInfoManager;
 import cn.sharesdk.demo.utils.StrUtils;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
 
 /**
  * Created by yjin on 2017/5/9.
  */
 
-public class UserInfoFragment extends BaseFragment implements UserInfoAdapter.UserInfoOnItemClickListener,Handler.Callback{
+public class UserInfoFragment extends BaseFragment implements UserInfoAdapter.UserInfoOnItemClickListener,Handler.Callback,
+								View.OnClickListener{
 	private View view;
 	private RecyclerView userInfo;
 	private List<PlatformEntity> lists;
@@ -41,6 +43,7 @@ public class UserInfoFragment extends BaseFragment implements UserInfoAdapter.Us
 	private Platform plat;
 	private UserInfoFragment userInfoFragment;
 	private PlatformAuthorizeUserInfoManager platAuth;
+	private RelativeLayout btnTags;
 
 	public void initView(View view){
 		userInfo = (RecyclerView)view.findViewById(R.id.mUserInfo);
@@ -51,6 +54,8 @@ public class UserInfoFragment extends BaseFragment implements UserInfoAdapter.Us
 		userInfo.setAdapter(adapter);
 		adapter.setAuthorizationOnItemClickListener(this);
 		userInfo.setItemAnimator(new DefaultItemAnimator());
+		btnTags = (RelativeLayout)view.findViewById(R.id.btn_tags);
+		btnTags.setOnClickListener(this);
 	}
 
 	public void initData(){
@@ -62,6 +67,7 @@ public class UserInfoFragment extends BaseFragment implements UserInfoAdapter.Us
 		lists.add(ShareInEntityManager.createNormalInternational(getContext()));
 		lists.addAll(PlatformMananger.getInstance(getContext()).getNormalListUserInfo());
 		userInfoFragment = this;
+
 	}
 
 	@Override
@@ -71,6 +77,8 @@ public class UserInfoFragment extends BaseFragment implements UserInfoAdapter.Us
 
 	@Override
 	public void OnItemClickListener(View view, int position) {
+		ShareSDK.setEnableAuthTag(true);
+
 		PlatformEntity formEntity = lists.get(position);
 		if(formEntity != null){
 			plat = formEntity.getmPlatform();
@@ -82,6 +90,7 @@ public class UserInfoFragment extends BaseFragment implements UserInfoAdapter.Us
 					msg.what = 1;
 					msg.arg2 = i;
 					msg.obj = hashMap;
+					hashMap.put("userTags", plat.getDb().get("userTags")); //SDK+ tags
 					UIHandler.sendMessage(msg, UserInfoFragment.this);
 				}
 
@@ -123,6 +132,8 @@ public class UserInfoFragment extends BaseFragment implements UserInfoAdapter.Us
 		adapter.notifyItemChanged(adapter.getOnClickCurrentPostion());
 		adapter.notifyItemRangeChanged(0, lists.size() - 1);
 		adapter.notifyDataSetChanged();
+
+		hashMap.put("userTags", plat.getDb().get("userTags")); //SDK+ tags
 		String userInfo = StrUtils.format("", hashMap);
 		if(!TextUtils.isEmpty(userInfo)){
 			Intent intent = new Intent(getActivity(), ShowUserInfoActivity.class);
@@ -157,5 +168,19 @@ public class UserInfoFragment extends BaseFragment implements UserInfoAdapter.Us
 			} break;
 		}
 		return false;
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+			case R.id.btn_tags: {
+				Intent intent = new Intent();
+				intent.setClass(getActivity(), SdkTagsMainActivity.class);
+				startActivity(intent);
+			} break;
+			default: {
+
+			} break;
+		}
 	}
 }

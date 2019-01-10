@@ -22,6 +22,8 @@ public class RenrenShare {
 	public void shareText(){
 		Platform platform = ShareSDK.getPlatform(Renren.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
+		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
+		shareParams.setTitleUrl(ResourcesManager.getInstace(MobSDK.getContext()).getTitleUrl());
 		shareParams.setComment(ResourcesManager.getInstace(MobSDK.getContext()).getComment());
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		platform.setPlatformActionListener(platformActionListener);

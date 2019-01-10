@@ -5,6 +5,7 @@ MobSDK {
     appSecret "b89d2427a3bc7ad1aea1e1e8c1d36bf3"
 
     ShareSDK {
+
         //平台配置信息
         devInfo {
             SinaWeibo {
@@ -104,6 +105,7 @@ MobSDK {
                 appKey "viOnkeLpHBKs6KXV7MPpeGyzE"
                 appSecret "NJEglQUy2rqZ9Io9FcAU9p17omFqbORknUpRrCDOK46aAbIiey"
                 callbackUri "http://mob.com"
+                shareByAppClient true
                 enable true
             }
 
@@ -341,6 +343,14 @@ MobSDK {
                 enable true
             }
 
+            Telegram {
+                id 47
+                sortId 47
+                AppKey="782826033"
+                RedirectUrl="http://www.mob.com"
+                Enable="true"
+            }
+
 
             Alipay {
                 id 50
@@ -382,11 +392,45 @@ MobSDK {
                 shareByAppClient true
                 enable true
             }
+
             Cmcc {
                 id 55
                 sortId 55
                 appId "300011860247"
                 appKey "2D464D8BFCE73A44B4F9DF95A2FDBE1C"
+            }
+
+            Reddit {
+                Id="56"
+                SortId="56"
+                AppKey="MExDxPuTCtFiRw"
+                RedirectUrl="http://www.sharesdk.cn"
+            }
+
+            Telecom {
+                id 57
+                sortId 57
+                appKey "8148612606"
+                appSecret "mCltrhUqwshFa86egDTs0491ibaAulKA"
+                callbackUri "http://www.sharesdk.cn"
+                enable true
+            }
+
+
+            /* app_secret的值为Account Kit 应用密匙 ，不是客户端口令 */
+            Accountkit {
+                id 58
+                sortId 58
+                appKey "579465512480462"
+                appSecret "8a6383652dd9f23fb0994f03d350d0ca"
+                callbackUri "http://www.sharesdk.cn/"
+                enable true
+            }
+
+            Douyin {
+                id 59
+                sortId 59
+                enable true
             }
         }
     }

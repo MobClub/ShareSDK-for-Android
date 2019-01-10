@@ -14,4 +14,20 @@
 
     <color name="authorization_status_txt_color">#FFC794</color>
     <color name="userinfo_status_txt_bg">#00B2FF</color>
+
+    <!-- SDK+ TAGS -->
+    <color name="bg_black">#000000</color>
+    <color name="bg_white">#FFFFFF</color>
+    <color name="bg_topbar">#FCFCFC</color>
+    <color name="bg_gray">#00F1F1F1</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="gray_black">#2B2B2B</color>
+
+
+    <color name="text_gray">#8D7A71</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_yellow">#FFC800</color>
+    <color name="text_topbar">#694E42</color>
+    <color name="div_white">#E5E5E5</color>
+
 </resources>

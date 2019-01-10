@@ -11,6 +11,7 @@ import cn.sharesdk.demo.entity.ResourcesManager;
 import cn.sharesdk.demo.platform.alipay.friends.AlipayShare;
 import cn.sharesdk.demo.platform.dingding.friends.DingdingShare;
 import cn.sharesdk.demo.platform.douban.DoubanShare;
+import cn.sharesdk.demo.platform.douyin.DouyinShare;
 import cn.sharesdk.demo.platform.dropbox.DropboxShare;
 import cn.sharesdk.demo.platform.evernote.EvernoteShare;
 import cn.sharesdk.demo.platform.facebook.FacebookShare;
@@ -28,11 +29,13 @@ import cn.sharesdk.demo.platform.linkedin.LinkedinShare;
 import cn.sharesdk.demo.platform.meipai.MeipaiShare;
 import cn.sharesdk.demo.platform.mingdao.MingdaoShare;
 import cn.sharesdk.demo.platform.pinterest.PinterestShare;
+import cn.sharesdk.demo.platform.reddit.RedditShare;
 import cn.sharesdk.demo.platform.renren.RenrenShare;
 import cn.sharesdk.demo.platform.sina.WeiboShare;
 import cn.sharesdk.demo.platform.system.email.EmailShare;
 import cn.sharesdk.demo.platform.system.text.ShortMessageShare;
 //import cn.sharesdk.demo.platform.telegram.TelegramShare;
+import cn.sharesdk.demo.platform.telegram.TelegramShare;
 import cn.sharesdk.demo.platform.tencent.qq.QQShare;
 import cn.sharesdk.demo.platform.tencent.qzone.QQZoneShare;
 import cn.sharesdk.demo.platform.tumblr.TumblrShare;
@@ -48,6 +51,7 @@ import cn.sharesdk.demo.platform.youdao.YouDaoShare;
 import cn.sharesdk.demo.platform.youtub.YoutubeShare;
 import cn.sharesdk.dingding.friends.Dingding;
 import cn.sharesdk.douban.Douban;
+import cn.sharesdk.douyin.Douyin;
 import cn.sharesdk.dropbox.Dropbox;
 import cn.sharesdk.evernote.Evernote;
 import cn.sharesdk.facebook.Facebook;
@@ -68,12 +72,12 @@ import cn.sharesdk.linkedin.LinkedIn;
 import cn.sharesdk.meipai.Meipai;
 import cn.sharesdk.mingdao.Mingdao;
 import cn.sharesdk.pinterest.Pinterest;
+import cn.sharesdk.reddit.Reddit;
 import cn.sharesdk.renren.Renren;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.system.email.Email;
 import cn.sharesdk.system.text.ShortMessage;
-//import cn.sharesdk.telegram.Telegram;
-//import cn.sharesdk.telegram.Telegram;
+import cn.sharesdk.telegram.Telegram;
 import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
@@ -167,6 +171,9 @@ public class PlatformShareManager {
 		} else if (name.equals(WhatsApp.NAME)) {
 			WhatsAppShare whatsAppShare = new WhatsAppShare(platformActionListener);
 			whatsAppShare.shareText();
+		} else if (name.equals(Instagram.NAME)) {
+			InstagramShare instagramShare = new InstagramShare(platformActionListener);
+			instagramShare.shareText();
 		} else if (name.equals(YouDao.NAME)) {
 			YouDaoShare whatsAppShare = new YouDaoShare(platformActionListener);
 			whatsAppShare.shareText();
@@ -179,11 +186,13 @@ public class PlatformShareManager {
 		} else if (name.equals(ShortMessage.NAME)) {
 			ShortMessageShare yixinShare = new ShortMessageShare(platformActionListener);
 			yixinShare.shareText();
+		} else if (name.equals(Reddit.NAME)) {
+			RedditShare redditShare = new RedditShare(platformActionListener);
+			redditShare.shareText();
+		} else if (name.equals(Telegram.NAME)) {
+			TelegramShare telegramShare = new TelegramShare(platformActionListener);
+			telegramShare.shareText();
 		}
-//		else if (name.equals(Telegram.NAME)) {
-//			TelegramShare telegramShare = new TelegramShare(platformActionListener);
-//			telegramShare.shareText();
-//		}
 		 else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
@@ -301,12 +310,13 @@ public class PlatformShareManager {
 		} else if (name.equals(Pinterest.NAME)) {
 			PinterestShare wechatShare = new PinterestShare(platformActionListener);
 			wechatShare.shareImage();
-		}
-//		else if (name.equals(Telegram.NAME)) {
-//			TelegramShare telegramShare = new TelegramShare(platformActionListener);
-//			telegramShare.shareImage();
-//		}
-		 else {
+		} else if (name.equals(Telegram.NAME)) {
+			TelegramShare telegramShare = new TelegramShare(platformActionListener);
+			telegramShare.shareImage();
+		} else if (name.equals(Douyin.NAME)) {
+			DouyinShare douyinShare = new DouyinShare(platformActionListener);
+			douyinShare.shareVideo();
+		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
 			shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
@@ -351,6 +361,9 @@ public class PlatformShareManager {
 		} else if (name.equals(YixinMoments.NAME)) {
 			YixinMomentsShare wechatShare = new YixinMomentsShare(platformActionListener);
 			wechatShare.shareWebPager();
+		} else if (name.equals(Reddit.NAME)) {
+			RedditShare redditShare = new RedditShare(platformActionListener);
+			redditShare.shareUrl();
 		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();

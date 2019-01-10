@@ -26,6 +26,9 @@ public class MeipaiShare {
 		Platform platform = ShareSDK.getPlatform(Meipai.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
+		shareParams.setImageArray(ResourcesManager.getInstace(MobSDK.getContext()).randomPic());
+		shareParams.setShareType(Platform.SHARE_IMAGE);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
 	}
@@ -43,6 +46,9 @@ public class MeipaiShare {
 		Platform platform = ShareSDK.getPlatform(Meipai.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
+		shareParams.setImageArray(ResourcesManager.getInstace(MobSDK.getContext()).randomPic());
+		shareParams.setShareType(Platform.SHARE_IMAGE);
 		platform.setPlatformActionListener(mListener);
 		platform.share(shareParams);
 	}

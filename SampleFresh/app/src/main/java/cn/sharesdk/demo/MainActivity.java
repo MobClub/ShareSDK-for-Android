@@ -1,7 +1,11 @@
 package cn.sharesdk.demo;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,6 +73,21 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 		viewPager.setAdapter(pagerAdapter);
 		viewPager.setOnPageChangeListener(this);
 		viewPager.setOffscreenPageLimit(3);
+		getPermission(this);
+	}
+
+	private static final int REQUEST_EXTERNAL_STORAGE = 1;
+	private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE,
+			Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+	public static void getPermission(Activity activity) {
+		int permission = ActivityCompat.checkSelfPermission(activity,
+				Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+		if (permission != PackageManager.PERMISSION_GRANTED) {
+			ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE,
+					REQUEST_EXTERNAL_STORAGE);
+		}
 	}
 
 	private void addScrollView(String[] titles) {

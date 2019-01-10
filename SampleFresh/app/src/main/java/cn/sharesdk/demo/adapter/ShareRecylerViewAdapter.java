@@ -25,7 +25,7 @@ import cn.sharesdk.demo.entity.ShareListItemInEntity;
 import cn.sharesdk.demo.entity.SharePlatformType;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.ShareContentCustomizeCallback;
 
 /**
  * Created by yjin on 2017/5/11.
@@ -154,6 +154,17 @@ public class ShareRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 		oks.setSilent(true);
 		oks.setLatitude(23.169f);
 		oks.setLongitude(112.908f);
+
+		oks.setFilePath(ResourcesManager.testVideo);
+		oks.setShareContentCustomizeCallback(new ShareContentCustomizeCallback() {
+			@Override
+			public void onShare(Platform platform, Platform.ShareParams shareParams) {
+				if(platform.getName().equals("Douyin")){
+					shareParams.setShareType(Platform.SHARE_VIDEO);
+				}
+			}
+		});
+
 		oks.setCallback(new PlatformActionListener() {
 			@Override
 			public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {

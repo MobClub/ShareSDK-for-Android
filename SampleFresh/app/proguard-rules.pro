@@ -21,6 +21,11 @@
 -keep class **.R{*;}
 -keep class com.mob.**{*;}
 -keep class m.framework.**{*;}
+
+#fastjson
+-dontwarn com.alibaba.fastjson.**
+-keep class com.alibaba.fastjson.** { *; }
+
 -dontwarn cn.sharesdk.**
 -dontwarn com.sina.**
 -dontwarn com.mob.**
