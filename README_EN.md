@@ -1,6 +1,6 @@
 # ShareSDK for Android
 
-文档语言 : 中文 | English
+文档语言 : [中文](https://github.com/MobClub/ShareSDK-for-Android/blob/master/README.md) | English
 
 - ShareSDK is the most popular social SDK for apps and mobile games in global world ! We've already support over 100,000 clients unitl now.
 ShareSDK could easily support 40+ social platforms in the world for third-party log in, sharing, and operating with friends list. Only few hours, this small package will make your app fully socialized! 
