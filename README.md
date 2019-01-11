@@ -1,6 +1,6 @@
 # ShareSDK for Android
 
-文档语言 : 中文 | English
+文档语言 : 中文 | [English](https://github.com/MobClub/ShareSDK-for-Android/blob/master/README_EN.md)
 
 - ShareSDK是全球最流行的应用和手机游戏社交SDK !到目前为止，我们已经支持了10多万个客户。
 ShareSDK可以轻松支持世界上40多个社交平台的第三方登录、分享和与好友列表操作。短短几个小时，这个小程序包将使您的应用程序完全社会化!
