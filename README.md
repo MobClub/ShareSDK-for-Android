@@ -47,7 +47,7 @@ ShareSDK鼓励您通过引用ShareSDK的项目来集成它，因为这样会简�
 有三种方法可以将应用程序信息添加到ShareSDK中:在ShareSDK的应用程序控制台注册**，配置“assets/ShareSDK”。文件，或由ShareSDK修改。setPlatformDevInfo(String, HashMap<String, Object>)方法
 下面是“assets/ShareSDK”的示例:
 
-```` xml
+xml
 <ShareSDK
    AppKey="add appkey you got from ShareSDK here" />
 
@@ -57,7 +57,7 @@ ShareSDK鼓励您通过引用ShareSDK的项目来集成它，因为这样会简�
     ConsumerKey="从Facebook获得的Key"
     ConsumerSecret="你从Facebook获得的密钥"
     Enable="Boolean字段，false表示从注册平台中删除平台" />
-```
+
 
 所有应用程序信息都在“assets/ShareSDK”中注册。ShareSDK示例项目的xml。
 
@@ -65,7 +65,7 @@ ShareSDK鼓励您通过引用ShareSDK的项目来集成它，因为这样会简�
 
 在AndroidMenifest.xml中添加以下权限:
 
-```` xml
+xml
 <uses-permission android:name="android.permission.GET_TASKS" />
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -75,7 +75,7 @@ ShareSDK鼓励您通过引用ShareSDK的项目来集成它，因为这样会简�
 <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
 <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-```
+
 如果希望使用KakaoTalk共享msg，应该在launchActivity中添加intent过滤器。
 <!--
 	If you share msg in KakaoTalk, your share-params of executeUrl should set the value "kakaoTalkTest://starActivity"
@@ -89,54 +89,51 @@ ShareSDK鼓励您通过引用ShareSDK的项目来集成它，因为这样会简�
         <category android:name="android.intent.category.BROWSABLE" />
         <category android:name="android.intent.category.DEFAULT" />
     </intent-filter>
-```
 		
 ShareSDK的gui的单一Activity:
 
-```` xml
+xml
 <activity
    android:name="cn.sharesdk.framework.ShareSDKUIShell"
    android:theme="@android:style/Theme.Translucent.NoTitleBar"
    android:configChanges="keyboardHidden|orientation|screenSize"
    android:screenOrientation="portrait"
    android:windowSoftInputMode="stateHidden|adjustResize" />
-```
+
 
 如果你集成了微信，添加这个回调Activity:
 
-```` xml
+xml
 <activity
    android:name=".wxapi.WXEntryActivity"
    android:theme="@android:style/Theme.Translucent.NoTitleBar"
    android:configChanges="keyboardHidden|orientation|screenSize"
    android:exported="true"
    android:screenOrientation="portrait" />
-```
 
 如果你集成Yixin，添加这个回调Activity:
 
-```` xml
+xml
 <activity
    android:name=".yxapi.YXEntryActivity"
    android:theme="@android:style/Theme.Translucent.NoTitleBar"
    android:configChanges="keyboardHidden|orientation|screenSize"
    android:exported="true"
    android:screenOrientation="portrait" />
-```
 
 第五步:添加代码
 
 在**入口activity**的**onCreate**方法中添加如下行:
 
-````java
+java
 ShareSDK.initSDK(this);
-```
+
 
 并在**上次Activity**的**onDestroy**方法中添加如下行:
 
-````java
+java
 ShareSDK.stopSDK(this);
-```
+
 
 # 截图
 ![logo grid view of onekeyshare](http://a3.qpic.cn/psb?/V14GftmO22fJgW/1cUPaAxmqxnyzWXbeWEWkOVNFcxv7laksaKs*d7Aq4c!/b/dAsAAAAAAAAA&bo=UQFXAgAAAAAFACY!&rf=viewer_4)
