@@ -46,7 +46,7 @@ ShareSDK鼓励您通过引用ShareSDK的项目来集成它，因为这样会简�
 
 有三种方法可以将应用程序信息添加到ShareSDK中:在ShareSDK的应用程序控制台注册**，配置“assets/ShareSDK”。文件，或由ShareSDK修改。setPlatformDevInfo(String, HashMap<String, Object>)方法
 下面是“assets/ShareSDK”的示例:
-
+```
 <ShareSDK
    AppKey="add appkey you got from ShareSDK here" />
 
@@ -126,7 +126,7 @@ ShareSDK.initSDK(this);
 并在**上次Activity**的**onDestroy**方法中添加如下行:
 
 ShareSDK.stopSDK(this);
-
+```
 
 # 截图
 ![logo grid view of onekeyshare](http://a3.qpic.cn/psb?/V14GftmO22fJgW/1cUPaAxmqxnyzWXbeWEWkOVNFcxv7laksaKs*d7Aq4c!/b/dAsAAAAAAAAA&bo=UQFXAgAAAAAFACY!&rf=viewer_4)
