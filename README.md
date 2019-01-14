@@ -47,7 +47,6 @@ ShareSDK鼓励您通过引用ShareSDK的项目来集成它，因为这样会简�
 有三种方法可以将应用程序信息添加到ShareSDK中:在ShareSDK的应用程序控制台注册**，配置“assets/ShareSDK”。文件，或由ShareSDK修改。setPlatformDevInfo(String, HashMap<String, Object>)方法
 下面是“assets/ShareSDK”的示例:
 
-xml
 <ShareSDK
    AppKey="add appkey you got from ShareSDK here" />
 
@@ -65,7 +64,6 @@ xml
 
 在AndroidMenifest.xml中添加以下权限:
 
-xml
 <uses-permission android:name="android.permission.GET_TASKS" />
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -92,7 +90,6 @@ xml
 		
 ShareSDK的gui的单一Activity:
 
-xml
 <activity
    android:name="cn.sharesdk.framework.ShareSDKUIShell"
    android:theme="@android:style/Theme.Translucent.NoTitleBar"
@@ -103,7 +100,6 @@ xml
 
 如果你集成了微信，添加这个回调Activity:
 
-xml
 <activity
    android:name=".wxapi.WXEntryActivity"
    android:theme="@android:style/Theme.Translucent.NoTitleBar"
@@ -113,7 +109,6 @@ xml
 
 如果你集成Yixin，添加这个回调Activity:
 
-xml
 <activity
    android:name=".yxapi.YXEntryActivity"
    android:theme="@android:style/Theme.Translucent.NoTitleBar"
@@ -125,13 +120,11 @@ xml
 
 在**入口activity**的**onCreate**方法中添加如下行:
 
-java
 ShareSDK.initSDK(this);
 
 
 并在**上次Activity**的**onDestroy**方法中添加如下行:
 
-java
 ShareSDK.stopSDK(this);
 
 
