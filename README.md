@@ -2,13 +2,13 @@
 
 文档语言 : 中文 | [English](https://github.com/MobClub/ShareSDK-for-Android/blob/master/README_EN.md)
 
-- ShareSDK是全球最流行的应用和手机游戏社交SDK !到目前为止，我们已经支持了10多万个客户。
-ShareSDK可以轻松支持世界上40多个社交平台的第三方登录、分享和与好友列表操作。短短几个小时，这个小程序包将使您的应用程序完全社会化!
-想在中国社交平台上发布你的应用吗?这可能是你最好的选择!
+注：使用ShareSDK Gradle集成方式，不需要在AndroidMainfest.xml下面配置任何权限和Activity
+
+注意：需要先申请Mob的appkey与appsecret请点击[这里查看具体申请步骤](http://bbs.mob.com/forum.php?mod=viewthread&tid=8212&extra=page%3D1)
 
 - website -- http://www.mob.com
-- wiki -- http://wiki.mob.com/Android_%E5%BF%AB%E9%80%9F%E9%9B%86%E6%88%90%E6%8C%87%E5%8D%97
-- bbs -- http://bbs.mob.com/forum-36-1.html
+- wiki -- http://wiki.mob.com/sdk-share-android-3-0-0/
+- bbs -- http://bbs.mob.com/forum.php
 
 # 第一步:下载SDK
 
