@@ -1,4 +1,4 @@
-#ShareSDK 集成文档
+# ShareSDK 集成文档
 注：使用ShareSDK Gradle集成方式，不需要在AndroidMainfest.xml下面配置任何权限和Activity
 
 注意：需要先申请Mob的appkey与appsecret,[请点击这里查看申请步骤](http://bbs.mob.com/forum.php?mod=viewthread&tid=8212&extra=page%3D1)
@@ -14,7 +14,7 @@ ShareSDK可以轻松支持世界上40多个社交平台的第三方登录、分�
 - bbs --   http://bbs.mob.com/forum.php
 
 
-#一、配置gradle
+# 一、配置gradle
 1、打开项目根目录的build.gradle，在buildscrip–>dependencies 模块下面添加  classpath ‘com.mob.sdk:MobSDK:2018.0319.1724’，如下所示；
 
     buildscript {
@@ -92,7 +92,7 @@ Onekeyshare是ShareSDK的GUI界面，如果不需要，则需要添加”gui fal
 		android:name = ".MyApplication"
 		tools:replace="android:name">
 
-#二、配置字段说明
+# 二、配置字段说明
 
 配置支持的平台全部属性字段有以下这些（注：区分大小写）
 
@@ -116,7 +116,7 @@ Onekeyshare是ShareSDK的GUI界面，如果不需要，则需要添加”gui fal
 
 配置完以上信息后同步（sync）一下代码就可以调用相关的接口了
 
-#三、添加代码
+# 三、添加代码
 1、初始化MobSDK
 
 如果您没有在AndroidManifest中设置appliaction的类名，MobSDK会将这个设置为com.mob.MobApplication，但如果您设置了，请在您自己的Application类中调用：
@@ -148,7 +148,7 @@ Onekeyshare是ShareSDK的GUI界面，如果不需要，则需要添加”gui fal
 	}
 	}
 
-#四、混淆设置
+# 四、混淆设置
 ShareSDK已经做了混淆处理，再次混淆会导致不可预期的错误，请在您的混淆脚本中添加如下的配置，跳过对ShareSDK的混淆操作：
 
     -keep class cn.sharesdk.**{*;}
@@ -162,7 +162,7 @@ ShareSDK已经做了混淆处理，再次混淆会导致不可预期的错误，
 	-dontwarn com.mob.**
 	-dontwarn **.R$*
 
-#五、可用的社交平台
+# 五、可用的社交平台
 
 任何配置在devInfo下的社交平台都是可用的，他们包括：
 
@@ -172,7 +172,7 @@ ShareSDK已经做了混淆处理，再次混淆会导致不可预期的错误，
 |其它主流平台	|TencentWeibo（腾讯微博）、QZone（QQ空间）、Renren（人人网）、Twitter、Douban（豆瓣）、Tumblr、GooglePlus（Google+）、Pinterest、Line、Instagram、Alipay（支付宝好友）、AlipayMoments（支付宝朋友动态）、Youtube、Meipai（美拍）|
 |其它平台	|WechatFavorite（微信收藏）、KaiXin（开心网）、Email（电子邮件）、ShortMessage（短信）、YouDao（有道云笔记）、Evernote（印象笔记）、LinkedIn（领英）、FourSquare、Flickr、Dropbox、VKontakte、Yixin（易信）、YixinMoments（易信朋友圈）、Mingdao（明道）、KakaoTalk、KakaoStory、WhatsApp、Pocket、Instapaper、Dingding（钉钉）、Telegram|
 
-#六、注意事项
+# 六、注意事项
 1. ShareSDK默认会添加OnekeyShare库，如果您不需要这个库，可以在ShareSDK下设置“gui false”来关闭OnekeyShare
 2. MobSDK默认为ShareSDK提供最新版本的集成，如果您想锁定某个版本，可以在ShareSDK下设置“version “某个版本””来固定使用这个版本
 3. 如果使用MobSDK的模块会被其它模块依赖，请确保依赖它的模块也引入MobSDK插件
