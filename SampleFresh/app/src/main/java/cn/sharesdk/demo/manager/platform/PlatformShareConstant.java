@@ -31,7 +31,6 @@ public class PlatformShareConstant {
 	public static Integer[] youDao;
 	public static Integer[] evernote;
 	public static Integer[] linkedIn;
-	public static Integer[] googlePlus;
 	public static Integer[] fourSquare;
 	public static Integer[] pinterest;
 	public static Integer[] flickr;
@@ -60,7 +59,7 @@ public class PlatformShareConstant {
 	public static Integer[] douyin;
 	
 	private PlatformShareConstant(){
-		sinaWeibo = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_VIDEO};
+		sinaWeibo = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_VIDEO, Platform.SHARE_LINKCARD};
 		tencentWeibo = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
 		qzone = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT,Platform.SHARE_WEBPAGE, Platform.SHARE_VIDEO};
 		wechat = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_FILE, Platform.SHARE_WEBPAGE, Platform.SHARE_MUSIC, 
@@ -69,7 +68,7 @@ public class PlatformShareConstant {
 		wechatFavorite = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_FILE, Platform.SHARE_WEBPAGE, 
 				Platform.SHARE_MUSIC, Platform.SHARE_VIDEO};
 		qq = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_WEBPAGE, Platform.SHARE_MUSIC};
-		facebook = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_WEBPAGE, Platform.SHARE_VIDEO, Platform.SHARE_APPS};
+		facebook = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_WEBPAGE, Platform.SHARE_VIDEO};
 		twitter = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_VIDEO};
 		renren = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
 		kaiXin = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
@@ -79,7 +78,6 @@ public class PlatformShareConstant {
 		youDao = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_IMAGE};
 		evernote = new Integer[]{Platform.SHARE_IMAGE,Platform.SHARE_TEXT, Platform.SHARE_VIDEO};
 		linkedIn = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT	};
-		googlePlus = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_VIDEO};
 		fourSquare = new Integer[]{Platform.SHARE_IMAGE};
 		pinterest = new Integer[]{Platform.SHARE_IMAGE};
 		flickr = new Integer[]{Platform.SHARE_IMAGE};

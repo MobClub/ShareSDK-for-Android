@@ -113,7 +113,7 @@ public class PlatformMananger {
 						systemListNormal.add(normalEntity);
 					}
 				} else {
-					if (!name.equals("Accountkit")){
+					if ((!name.equals("Accountkit")) && (!name.equals("GooglePlus"))){
 						lists.add(entity);
 					}
 					if (AuthorizationUserInfoUtils.canAuthorize(name)) {

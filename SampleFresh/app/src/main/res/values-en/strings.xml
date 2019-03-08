@@ -49,5 +49,6 @@
     <string name="platform_share_file">Share File</string>
     <string name="platform_share_emoji">Share Emjoi</string>
     <string name="platform_share_mini_app">Share MiniProgram</string>
+    <string name="platform_share_linkcard">Share LinkCard</string>
 
 </resources>

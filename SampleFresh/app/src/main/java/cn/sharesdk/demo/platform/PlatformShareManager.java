@@ -18,7 +18,6 @@ import cn.sharesdk.demo.platform.facebook.FacebookShare;
 import cn.sharesdk.demo.platform.facebookmessenger.FacebookMessengerShare;
 import cn.sharesdk.demo.platform.flickr.FlickerShare;
 import cn.sharesdk.demo.platform.foursquare.FourSquareShare;
-import cn.sharesdk.demo.platform.google.GooglePlusShare;
 import cn.sharesdk.demo.platform.instagram.InstagramShare;
 import cn.sharesdk.demo.platform.instapaper.InstapaperShare;
 import cn.sharesdk.demo.platform.kaixin.KaiXinShare;
@@ -61,7 +60,6 @@ import cn.sharesdk.foursquare.FourSquare;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.google.GooglePlus;
 import cn.sharesdk.instagram.Instagram;
 import cn.sharesdk.instapaper.Instapaper;
 import cn.sharesdk.kaixin.KaiXin;
@@ -117,9 +115,6 @@ public class PlatformShareManager {
 		} else if (name.equals(Evernote.NAME)) {
 			EvernoteShare evernoteShare = new EvernoteShare(platformActionListener);
 			evernoteShare.shareText();
-		} else if (name.equals(GooglePlus.NAME)) {
-			GooglePlusShare googlePlusShare = new GooglePlusShare(platformActionListener);
-			googlePlusShare.shareText();
 		} else if (name.equals(Instapaper.NAME)) {
 			InstapaperShare instapaperShare = new InstapaperShare(platformActionListener);
 			instapaperShare.shareTextUrl();
@@ -238,9 +233,6 @@ public class PlatformShareManager {
 		} else if (name.equals(FourSquare.NAME)) {
 			FourSquareShare fourSquareShare = new FourSquareShare(platformActionListener);
 			fourSquareShare.shareImage();
-		} else if (name.equals(GooglePlus.NAME)) {
-			GooglePlusShare googlePlusShare = new GooglePlusShare(platformActionListener);
-			googlePlusShare.shareImage();
 		} else if (name.equals(Instagram.NAME)) {
 			InstagramShare instagramShare = new InstagramShare(platformActionListener);
 			instagramShare.shareTextImage();
@@ -390,9 +382,6 @@ public class PlatformShareManager {
 		} else if (name.equals(Facebook.NAME)) {
 			FacebookShare facebookShare = new FacebookShare(platformActionListener);
 			facebookShare.shareVideo();
-		} else if (name.equals(GooglePlus.NAME)) {
-			GooglePlusShare googlePlusShare = new GooglePlusShare(platformActionListener);
-			googlePlusShare.shareVideo();
 		} else if (name.equals(Instagram.NAME)) {
 			InstagramShare instagramShare = new InstagramShare(platformActionListener);
 			instagramShare.shareVideo();
@@ -510,9 +499,15 @@ public class PlatformShareManager {
 		if (name.equals(Wechat.NAME)) {
 			WechatShare wechatShare = new WechatShare(platformActionListener);
 			//wechatShare.shareApps();
-		} else if(name.equals(Facebook.NAME)){
-			FacebookShare facebookShare = new FacebookShare(platformActionListener);
-			facebookShare.shareApps();
 		}
 	}
+
+	public void shareLinkCard(String name) {
+		if (name.equals(SinaWeibo.NAME)) {
+			WeiboShare sinaWeibo = new WeiboShare(platformActionListener);
+			sinaWeibo.shareLinkCard();
+		}
+	}
+
+
 }

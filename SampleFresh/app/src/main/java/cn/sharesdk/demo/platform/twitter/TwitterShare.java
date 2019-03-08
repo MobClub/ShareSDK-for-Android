@@ -31,9 +31,10 @@ public class TwitterShare {
 		Platform platform = ShareSDK.getPlatform(Twitter.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
-		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
-		shareParams.setImageArray(ResourcesManager.getInstace(MobSDK.getContext()).randomPic());
+		//shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+		//shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
+		//shareParams.setImageArray(ResourcesManager.getInstace(MobSDK.getContext()).randomPic());
+		shareParams.setImageUrl("https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
 	}

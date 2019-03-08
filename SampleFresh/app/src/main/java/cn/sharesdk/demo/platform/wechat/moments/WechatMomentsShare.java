@@ -36,7 +36,7 @@ public class WechatMomentsShare {
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
+		shareParams.setImageUrl("https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
 		shareParams.setImageData(ResourcesManager.getInstace(MobSDK.getContext()).getImageBmp());
 		shareParams.setImageArray(ResourcesManager.getInstace(MobSDK.getContext()).randomPic());
 		shareParams.setShareType(Platform.SHARE_IMAGE);
@@ -50,7 +50,7 @@ public class WechatMomentsShare {
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
+		shareParams.setImageUrl("https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
 		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
 		shareParams.setMusicUrl(ResourcesManager.getInstace(MobSDK.getContext()).getMusicUrl());
 		shareParams.setShareType(Platform.SHARE_MUSIC);
@@ -64,6 +64,7 @@ public class WechatMomentsShare {
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
+		shareParams.setImageUrl("https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
 		shareParams.setShareType(Platform.SHARE_VIDEO);
 		platform.setPlatformActionListener(platformActionListener);

@@ -58,6 +58,10 @@ public class ShareTypeManager {
 			case Platform.SHARE_MUSIC: {
 				shareMusic();
 			} break;
+
+			case Platform.SHARE_LINKCARD: {
+				shareLinkCard();
+			} break;
 		}
 	}
 
@@ -111,6 +115,12 @@ public class ShareTypeManager {
 		PlatformShareManager platformShareManager = new PlatformShareManager();
 		platformShareManager.setPlatformActionListener(myPlatformActionListener);
 		platformShareManager.shareMusic(platform.getName());
+	}
+
+	public void shareLinkCard() {
+		PlatformShareManager platformShareManager = new PlatformShareManager();
+		platformShareManager.setPlatformActionListener(myPlatformActionListener);
+		platformShareManager.shareLinkCard(platform.getName());
 	}
 
 	class MyPlatformActionListener implements PlatformActionListener {

@@ -3,7 +3,6 @@ package cn.sharesdk.demo.platform.facebook;
 import com.mob.MobSDK;
 
 import cn.sharesdk.demo.entity.ResourcesManager;
-import cn.sharesdk.demo.utils.DemoUtils;
 import cn.sharesdk.facebook.Facebook;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
@@ -25,9 +24,7 @@ public class FacebookShare {
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-//		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
-//		shareParams.setImageArray(ResourcesManager.getInstace(MobSDK.getContext()).randomPic());
-		shareParams.setShareType(Platform.SHARE_IMAGE);
+		shareParams.setImageUrl("https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
 	}

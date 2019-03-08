@@ -2,6 +2,9 @@ package cn.sharesdk.demo.platform.sina;
 
 import com.mob.MobSDK;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import cn.sharesdk.demo.entity.ResourcesManager;
 import cn.sharesdk.demo.utils.DemoUtils;
 import cn.sharesdk.framework.Platform;
@@ -84,4 +87,31 @@ public class WeiboShare {
 		platform.setPlatformActionListener(mListener);
 		platform.share(shareParams);
 	}
+
+	/**
+	 * 新浪linkcard分享
+	 **/
+	public void shareLinkCard() {
+		JSONObject jsonObject = new JSONObject();
+		try {
+			jsonObject.put("url", "http://thyrsi.com/t6/672/1550816513x2890202977.jpg");
+			jsonObject.put("width", 120);
+			jsonObject.put("height", 120);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		Platform platform = ShareSDK.getPlatform(SinaWeibo.NAME);
+		Platform.ShareParams sp = new Platform.ShareParams();
+		sp.setText("MobSDK 只为最优质的服务");
+		sp.setLcCreateAt("2019-01-24");
+		sp.setLcDisplayName("Mob-全球领先的第三方服务商");
+		sp.setLcImage(jsonObject);
+		sp.setLcSummary("不止是SDK");
+		sp.setLcUrl("http://www.mob.com/");
+		sp.setLcObjectType("webpage");
+		platform.setPlatformActionListener(platformActionListener);
+		platform.share(sp);
+	}
+
 }

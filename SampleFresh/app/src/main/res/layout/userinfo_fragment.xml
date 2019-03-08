@@ -11,14 +11,12 @@
         android:layout_marginLeft="@dimen/main_activity_bottom_margin_width"
         android:text="@string/item_sdk_plus_tags"
         android:textColor="@color/name_fragment_share_txt_bg"
-        android:textSize="@dimen/sdk_plus_16"
-        android:visibility="gone"/>
+        android:textSize="@dimen/sdk_plus_16" />
 
     <RelativeLayout
         android:id="@+id/btn_tags"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/image_tags"

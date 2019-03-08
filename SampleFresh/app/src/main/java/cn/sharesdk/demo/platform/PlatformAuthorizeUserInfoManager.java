@@ -268,7 +268,7 @@ public class PlatformAuthorizeUserInfoManager {
 				platform.removeAccount(true);
 				return;
 			}
-			platform.SSOSetting(true);
+			//platform.SSOSetting(true);
 			platform.authorize();
 		}
 	}

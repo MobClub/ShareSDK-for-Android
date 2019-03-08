@@ -38,6 +38,9 @@ public class PlatformUITypeManager {
 			case Platform.SHARE_MUSIC: {
 				return R.mipmap.share_url_music;
 			}
+			case Platform.SHARE_LINKCARD: {
+				return R.mipmap.share_url_music;
+			}
 			default: {
 				return R.mipmap.share_webpage;
 			}
@@ -72,6 +75,9 @@ public class PlatformUITypeManager {
 			}
 			case Platform.SHARE_MUSIC: {
 				return R.string.platform_share_music;
+			}
+			case Platform.SHARE_LINKCARD: {
+				return R.string.platform_share_linkcard;
 			}
 			default: {
 				return R.string.platform_share_webpage;

@@ -82,6 +82,7 @@
     <string name="platform_share_file">分享文件</string>
     <string name="platform_share_emoji">分享表情</string>
     <string name="platform_share_mini_app">分享微信小程序</string>
+    <string name="platform_share_linkcard">分享LinkCard</string>
     <string name="title_activity_tags_item">TagsItemActivity</string>
 
     <!-- TODO: Remove or change this placeholder text -->

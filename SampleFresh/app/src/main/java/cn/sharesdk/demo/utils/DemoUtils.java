@@ -43,7 +43,7 @@ public class DemoUtils {
 	public static boolean isUseClientToShare(String platform) {
 		if ("Wechat".equals(platform) || "WechatMoments".equals(platform)
 				|| "WechatFavorite".equals(platform) || "ShortMessage".equals(platform)
-				|| "email".equals(platform) || "googlePlus".equals(platform)
+				|| "email".equals(platform)
 				|| "QQ".equals(platform) || "pinterest".equals(platform)
 				|| "Instagram".equals(platform) || "Yixin".equals(platform)
 				|| "YixinMoments".equals(platform) || "qzone".equals(platform)
