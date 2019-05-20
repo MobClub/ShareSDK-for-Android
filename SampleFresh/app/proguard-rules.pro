@@ -30,3 +30,5 @@
 -dontwarn com.sina.**
 -dontwarn com.mob.**
 -dontwarn **.R$*
+
+-keep class com.bytedance.**{*;}
