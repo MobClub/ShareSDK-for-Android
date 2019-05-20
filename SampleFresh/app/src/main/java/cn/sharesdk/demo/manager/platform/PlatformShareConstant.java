@@ -59,6 +59,7 @@ public class PlatformShareConstant {
 	public static Integer[] douyin;
 	
 	private PlatformShareConstant(){
+		douyin = new Integer[]{Platform.SHARE_VIDEO, Platform.SHARE_IMAGE};
 		sinaWeibo = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_VIDEO, Platform.SHARE_LINKCARD};
 		tencentWeibo = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
 		qzone = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT,Platform.SHARE_WEBPAGE, Platform.SHARE_VIDEO};
@@ -77,7 +78,7 @@ public class PlatformShareConstant {
 		douban = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
 		youDao = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_IMAGE};
 		evernote = new Integer[]{Platform.SHARE_IMAGE,Platform.SHARE_TEXT, Platform.SHARE_VIDEO};
-		linkedIn = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT	};
+		linkedIn = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE};
 		fourSquare = new Integer[]{Platform.SHARE_IMAGE};
 		pinterest = new Integer[]{Platform.SHARE_IMAGE};
 		flickr = new Integer[]{Platform.SHARE_IMAGE};
@@ -103,7 +104,6 @@ public class PlatformShareConstant {
 		meipai = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};
 		telegram = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_IMAGE};
 		reddit = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE};
-		douyin = new Integer[]{Platform.SHARE_VIDEO};
 	}
 	public synchronized static PlatformShareConstant getInstance(){
 		if(instance == null){

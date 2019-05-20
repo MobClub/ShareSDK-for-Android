@@ -4,10 +4,29 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
     android:background="@color/main_fragment_share_bg">
+	<TextView
+		android:id="@+id/announcement"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:paddingLeft="5dp"
+		android:paddingTop="5dp"
+		android:paddingBottom="5dp"
+		android:drawableLeft="@drawable/tongzhi"
+		android:drawablePadding="5dp"
+		android:text="@string/item_txt_announcement"
+		android:textSize="14sp"
+		android:textColor="@color/text_orange"
+		android:background="@color/bg_announcement"
+		android:ellipsize="marquee"
+		android:focusable="true"
+		android:focusableInTouchMode="true"
+		android:marqueeRepeatLimit="marquee_forever"
+		android:singleLine="true"/>
    <android.support.v7.widget.RecyclerView
        android:id="@+id/mListView"
        android:layout_width="match_parent"
-       android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+       android:layout_height="match_parent"
+	   android:layout_below="@+id/announcement"></android.support.v7.widget.RecyclerView>
 
    <LinearLayout
        android:id="@+id/shareLayout"

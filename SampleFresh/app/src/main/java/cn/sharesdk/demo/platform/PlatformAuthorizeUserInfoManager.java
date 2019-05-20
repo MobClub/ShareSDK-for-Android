@@ -49,6 +49,8 @@ import cn.sharesdk.yixin.moments.YixinMoments;
 import cn.sharesdk.youdao.YouDao;
 import cn.sharesdk.youtube.Youtube;
 
+import static cn.sharesdk.demo.utils.CommomDialog.dialog;
+
 /**
  * Created by yjin on 2017/6/21.
  */
@@ -276,6 +278,22 @@ public class PlatformAuthorizeUserInfoManager {
 	/**
 	 * 授权的代码
 	 */
+	public void doAuthorize(Platform platform, Activity activity) {
+		if (platform != null) {
+			platform.setPlatformActionListener(myPlatformActionListener);
+			if (platform.isAuthValid()) {
+				platform.removeAccount(true);
+				return;
+			}
+			ShareSDK.setActivity(activity);
+			//platform.SSOSetting(true);
+			platform.authorize();
+		}
+	}
+
+	/**
+	 * 授权的代码
+	 */
 	public void doAuthorize(Platform platform, PlatformActionListener listener) {
 		if (platform != null) {
 			platform.setPlatformActionListener(listener);
@@ -341,7 +359,12 @@ public class PlatformAuthorizeUserInfoManager {
 			activity.runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					Toast.makeText(MobSDK.getContext(), "Authorize Complete.", Toast.LENGTH_SHORT).show();
+					if (activity != null) {
+						dialog(activity, "Authorize Complete");
+					} else {
+						Toast.makeText(MobSDK.getContext(), "Authorize Complete", Toast.LENGTH_SHORT).show();
+					}
+
 					if(platform.getName().equals("ShortMessage") && hashMap != null) {
 						Toast.makeText(MobSDK.getContext(), "ShoreMessage Login Info:" + hashMap.toString(), Toast.LENGTH_LONG).show();
 					}
@@ -355,14 +378,24 @@ public class PlatformAuthorizeUserInfoManager {
 			activity.runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					Toast.makeText(MobSDK.getContext(), "Authorize Failure", Toast.LENGTH_SHORT).show();
+					if (activity != null) {
+						dialog(activity, "Authorize Failure");
+					} else {
+						Toast.makeText(MobSDK.getContext(), "Authorize Failure", Toast.LENGTH_SHORT).show();
+					}
 				}
 			});
 		}
 
 		@Override
 		public void onCancel(Platform platform, int i) {
-			Toast.makeText(MobSDK.getContext(), "Cancel Authorize", Toast.LENGTH_SHORT).show();
+			if (activity != null) {
+				dialog(activity, "Cancel Authorize");
+			} else {
+				Toast.makeText(MobSDK.getContext(), "Cancel Authorize", Toast.LENGTH_SHORT).show();
+			}
 		}
+
 	}
+
 }

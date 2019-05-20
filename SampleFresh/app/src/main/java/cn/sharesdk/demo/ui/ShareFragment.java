@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -48,8 +49,16 @@ public class ShareFragment extends BaseFragment implements CallBackShotImageView
 	private ContentLoadingProgressBar progress;
 	private TextView shareImage;
 	private LinearLayout sernorLayout;
+	private TextView announcementTv;
 
 	public void initView(View view) {
+		announcementTv = (TextView) view.findViewById(R.id.announcement);
+		announcementTv.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				goToAnnouncement();
+			}
+		});
 		thumbLayout = (ThumbnailLayout) view.findViewById(R.id.thumbLayout);
 		thumbLayout.setAutoHide(true);//设置自动消失。
 		iconImg = (ImageView) view.findViewById(R.id.thumb);
@@ -86,6 +95,7 @@ public class ShareFragment extends BaseFragment implements CallBackShotImageView
 			}
 		});
 		adapter.setOnShotListener(this);
+		adapter.setActivity(getActivity());
 		listView.setAdapter(adapter);
 		listView.setItemAnimator(new DefaultItemAnimator());
 	}
@@ -208,5 +218,9 @@ public class ShareFragment extends BaseFragment implements CallBackShotImageView
 			thumbLayout.setVisibility(View.VISIBLE);
 			sernorLayout.setVisibility(View.GONE);
 		}
+	}
+
+	private void goToAnnouncement() {
+		getContext().startActivity(new Intent(getContext(), AnnouncementActivity.class));
 	}
 }

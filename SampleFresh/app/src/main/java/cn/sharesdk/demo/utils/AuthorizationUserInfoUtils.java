@@ -16,7 +16,7 @@ public class AuthorizationUserInfoUtils {
 				|| "Laiwang".equals(platform) || "LaiwangMoments".equals(platform)
 				|| "Alipay".equals(platform) || "AlipayMoments".endsWith(platform)
 				|| "FacebookMessenger".equals(platform) || "Dingding".equals(platform)
-				|| "Youtube".equals(platform) || "Meipai".equals(platform) || "Douyin".equals(platform));
+				|| "Youtube".equals(platform) || "Meipai".equals(platform) );
 	}
 
 	public static boolean canAuthorize(String platform) {
@@ -28,6 +28,6 @@ public class AuthorizationUserInfoUtils {
 				|| "LaiwangMoments".equals(platform) || "Alipay".equals(platform)
 				|| "AlipayMoments".equals(platform) || "FacebookMessenger".equals(platform)
 				|| "Dingding".equals(platform) || "Youtube".equals(platform)
-				|| "Meipai".equals(platform) || "Douyin".equals(platform));
+				|| "Meipai".equals(platform) );
 	}
 }

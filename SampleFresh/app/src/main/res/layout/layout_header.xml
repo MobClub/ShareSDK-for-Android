@@ -18,5 +18,13 @@
         android:textColor="@color/name_fragment_share_txt_bg"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"/>
+	<ImageView
+		android:id="@+id/rightIv"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:background="@drawable/linkcard_share"
+		android:layout_alignParentRight="true"
+		android:layout_centerVertical="true"
+		android:visibility="gone"/>
 
 </RelativeLayout>

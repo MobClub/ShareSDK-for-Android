@@ -3,10 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="cn.sharesdk.demo">
 
-    <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="16" />
-
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -20,12 +16,15 @@
 
     <application
         android:name=".App"
-        android:allowBackup="true"
+        android:allowBackup="false"
+        android:debuggable="false"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
-        tools:replace="android:name">
+        tools:replace="android:name"
+        tools:ignore="HardcodedDebugMode">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,6 +37,7 @@
         <activity android:name=".ui.SdkTagsMainActivity" />
         <activity android:name=".ui.TagsItemActivity" />
         <activity android:name=".ui.TagsItemInfoActivity"></activity>
+		<activity android:name=".ui.AnnouncementActivity"/>
     </application>
 
 </manifest>

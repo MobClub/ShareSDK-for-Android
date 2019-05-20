@@ -4,6 +4,8 @@ package cn.sharesdk.demo.platform;
  * Created by yjin on 2017/6/19.
  */
 
+import android.app.Activity;
+
 import com.mob.MobSDK;
 
 import cn.sharesdk.alipay.friends.Alipay;
@@ -199,7 +201,7 @@ public class PlatformShareManager {
 		}
 	}
 
-	public void shareImage(String name) {
+	public void shareImage(String name, Activity activity) {
 		if (name.equals(Alipay.NAME)) {
 			AlipayShare alipay = new AlipayShare(platformActionListener);
 			alipay.shareImage();
@@ -248,10 +250,10 @@ public class PlatformShareManager {
 		} else if (name.equals(Line.NAME)) {
 			LineShare lineShare = new LineShare(platformActionListener);
 			lineShare.shareImage();
-		} else if (name.equals(LinkedIn.NAME)) {
+		}/* else if (name.equals(LinkedIn.NAME)) {
 			LinkedinShare linkedinShare = new LinkedinShare(platformActionListener);
 			linkedinShare.shareImage();
-		} else if (name.equals(Meipai.NAME)) {
+		}*/ else if (name.equals(Meipai.NAME)) {
 			MeipaiShare meipaiShare = new MeipaiShare(platformActionListener);
 			meipaiShare.shareImage();
 		} else if (name.equals(Mingdao.NAME)) {
@@ -307,7 +309,7 @@ public class PlatformShareManager {
 			telegramShare.shareImage();
 		} else if (name.equals(Douyin.NAME)) {
 			DouyinShare douyinShare = new DouyinShare(platformActionListener);
-			douyinShare.shareVideo();
+			douyinShare.shareImage(activity);
 		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
@@ -356,7 +358,11 @@ public class PlatformShareManager {
 		} else if (name.equals(Reddit.NAME)) {
 			RedditShare redditShare = new RedditShare(platformActionListener);
 			redditShare.shareUrl();
-		} else {
+		} else if (name.equals(LinkedIn.NAME)) {
+			LinkedinShare linkedinShare = new LinkedinShare(platformActionListener);
+			linkedinShare.shareWebPage();
+		}
+		else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
 			shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
@@ -369,7 +375,7 @@ public class PlatformShareManager {
 		}
 	}
 
-	public void shareVideo(String name) {
+	public void shareVideo(String name, Activity activity) {
 		if(name.equals(SinaWeibo.NAME)){
 			WeiboShare weiboShare = new WeiboShare(platformActionListener);
 			weiboShare.shareVideo();
@@ -424,6 +430,9 @@ public class PlatformShareManager {
 		} else if (name.equals(Youtube.NAME)) {
 			YoutubeShare youtubeShare = new YoutubeShare(platformActionListener);
 			youtubeShare.shareVideo();
+		} else if (name.equals(Douyin.NAME)) {
+			DouyinShare douyinShare = new DouyinShare(platformActionListener);
+			douyinShare.shareVideo(activity);
 		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();

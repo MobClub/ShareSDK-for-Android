@@ -17,6 +17,7 @@
     <string name="home_page_show_author_txt">Authorization</string>
     <string name="home_page_show_userinfo_txt">UserInfo</string>
     <string name="sensor_shark_off_show_txt">Shake your phone</string>
+	<string name="item_txt_announcement">Good news: Linkcard released! If you miss it, you will miss the whole world...</string>
 
 
     <!--授权-->

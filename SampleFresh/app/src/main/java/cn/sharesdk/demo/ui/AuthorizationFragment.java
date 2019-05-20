@@ -22,6 +22,8 @@ import cn.sharesdk.demo.platform.PlatformAuthorizeUserInfoManager;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 
+import static cn.sharesdk.demo.utils.CommomDialog.dialog;
+
 /**
  * Created by yjin on 2017/5/9.
  */
@@ -86,7 +88,7 @@ public class AuthorizationFragment extends BaseFragment implements Authorization
 		if (platAuth == null) {
 			platAuth = new PlatformAuthorizeUserInfoManager(getActivity());
 		}
-		platAuth.doAuthorize(plat);
+		platAuth.doAuthorize(plat, getActivity());
 	}
 
 	@Override
@@ -101,7 +103,12 @@ public class AuthorizationFragment extends BaseFragment implements Authorization
 		}
 		String msg = ResourcesManager.actionToString(i);
 		String text = plat.getName() + " completed at " + msg;
-		Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+
+		if (getActivity() != null) {
+			dialog(getActivity(), text);
+		} else {
+			Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+		}
 		adapter.notifyItemChanged(curentPostion);
 		adapter.notifyDataSetChanged();
 	}
@@ -110,13 +117,22 @@ public class AuthorizationFragment extends BaseFragment implements Authorization
 	public void onError(Platform platform, int i, Throwable throwable) {
 		String msg = ResourcesManager.actionToString(i);
 		String text = plat.getName() + " caught error at " + msg;
-		Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+		if (getActivity() != null) {
+			dialog(getActivity(), text);
+		} else {
+			Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+		}
+
 	}
 
 	@Override
 	public void onCancel(Platform platform, int i) {
 		String msg = ResourcesManager.actionToString(i);
 		String text = plat.getName() + " canceled at " + msg;
-		Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+		if (getActivity() != null) {
+			dialog(getActivity(), text);
+		} else {
+			Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+		}
 	}
 }

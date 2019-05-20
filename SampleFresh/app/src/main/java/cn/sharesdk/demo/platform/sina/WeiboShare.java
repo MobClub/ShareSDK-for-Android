@@ -89,12 +89,12 @@ public class WeiboShare {
 	}
 
 	/**
-	 * ĞÂÀËlinkcard·ÖÏí
+	 * æ–°æµªlinkcardåˆ†äº«
 	 **/
 	public void shareLinkCard() {
 		JSONObject jsonObject = new JSONObject();
 		try {
-			jsonObject.put("url", "http://thyrsi.com/t6/672/1550816513x2890202977.jpg");
+			jsonObject.put("url", "https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
 			jsonObject.put("width", 120);
 			jsonObject.put("height", 120);
 		} catch (JSONException e) {
@@ -103,11 +103,11 @@ public class WeiboShare {
 
 		Platform platform = ShareSDK.getPlatform(SinaWeibo.NAME);
 		Platform.ShareParams sp = new Platform.ShareParams();
-		sp.setText("MobSDK Ö»Îª×îÓÅÖÊµÄ·şÎñ");
+		sp.setText("MobSDK åªä¸ºæœ€ä¼˜è´¨çš„æœåŠ¡");
 		sp.setLcCreateAt("2019-01-24");
-		sp.setLcDisplayName("Mob-È«ÇòÁìÏÈµÄµÚÈı·½·şÎñÉÌ");
+		sp.setLcDisplayName("Mob-å…¨çƒé¢†å…ˆçš„ç¬¬ä¸‰æ–¹æœåŠ¡å•†");
 		sp.setLcImage(jsonObject);
-		sp.setLcSummary("²»Ö¹ÊÇSDK");
+		sp.setLcSummary("ä¸æ­¢æ˜¯SDK");
 		sp.setLcUrl("http://www.mob.com/");
 		sp.setLcObjectType("webpage");
 		platform.setPlatformActionListener(platformActionListener);

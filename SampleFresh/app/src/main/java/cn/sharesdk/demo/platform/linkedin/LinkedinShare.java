@@ -28,7 +28,19 @@ public class LinkedinShare {
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
 	}
-	public void shareImage(){
+
+	public void shareWebPage() {
+		Platform platform = ShareSDK.getPlatform(LinkedIn.NAME);
+		Platform.ShareParams shareParams = new Platform.ShareParams();
+		shareParams.setTitle("asd title can not repeat");
+		shareParams.setText("assf text str can not repeat");
+		shareParams.setLinkedinDescription("asdg web descri can not repeat ");
+		shareParams.setUrl("http://mobdata.mob.com/");
+		platform.setPlatformActionListener(platformActionListener);
+		platform.share(shareParams);
+	}
+
+	/*public void shareImage(){
 		Platform platform = ShareSDK.getPlatform(LinkedIn.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
@@ -36,6 +48,6 @@ public class LinkedinShare {
 		shareParams.setShareType(Platform.SHARE_IMAGE);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
-	}
+	}*/
 
 }

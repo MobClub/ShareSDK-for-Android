@@ -45,6 +45,8 @@ public class FacebookShare {
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
 		shareParams.setShareType(Platform.SHARE_WEBPAGE);
+		shareParams.setQuote("测试引文分享");
+		shareParams.setHashtag("测试话题分享");
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
 	}

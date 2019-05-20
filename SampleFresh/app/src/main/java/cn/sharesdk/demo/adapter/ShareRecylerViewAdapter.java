@@ -1,5 +1,6 @@
 package cn.sharesdk.demo.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.mob.MobSDK;
 
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +41,15 @@ public class ShareRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 	private ListOnItemListener onItemListener;
 	private ShotOnClickListener onShotListener;
 	private Handler handler;
+	private Activity activity;
+
+	public Activity getActivity() {
+		return activity;
+	}
+
+	public void setActivity(Activity activity) {
+		this.activity = activity;
+	}
 
 	public void setOnItemListener(ListOnItemListener onItemListener){
 		this.onItemListener = onItemListener;
@@ -138,6 +150,9 @@ public class ShareRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 		oks.setTitleUrl(manager.getTitleUrl());
 		oks.setUrl(manager.getUrl());
 		oks.setMusicUrl(manager.getMusicUrl());
+		//oks.setImagePath("/storage/emulated/0/DCIM/Camera/IMG_20190327_183621.png");
+		oks.setFilePath(ResourcesManager.getInstace(MobSDK.getContext()).getFilePath());
+		oks.setActivity(getActivity());
 		String customText = manager.getText();
 		if (customText != null) {
 			oks.setText(customText);
@@ -155,7 +170,7 @@ public class ShareRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 		oks.setLatitude(23.169f);
 		oks.setLongitude(112.908f);
 
-		oks.setFilePath(ResourcesManager.testVideo);
+		//oks.setFilePath(ResourcesManager.testVideo);
 		oks.setShareContentCustomizeCallback(new ShareContentCustomizeCallback() {
 			@Override
 			public void onShare(Platform platform, Platform.ShareParams shareParams) {

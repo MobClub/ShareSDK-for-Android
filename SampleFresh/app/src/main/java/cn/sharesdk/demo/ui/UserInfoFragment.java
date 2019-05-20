@@ -30,6 +30,8 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 
+import static cn.sharesdk.demo.utils.CommomDialog.dialog;
+
 /**
  * Created by yjin on 2017/5/9.
  */
@@ -128,7 +130,11 @@ public class UserInfoFragment extends BaseFragment implements UserInfoAdapter.Us
 	public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap){
 		String msg = ResourcesManager.actionToString(i);
 		String text = plat.getName() + " completed at " + msg;
-		Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+		if (getActivity() != null) {
+			dialog(getActivity(), text);
+		} else {
+			Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+		}
 		adapter.notifyItemChanged(adapter.getOnClickCurrentPostion());
 		adapter.notifyItemRangeChanged(0, lists.size() - 1);
 		adapter.notifyDataSetChanged();
@@ -145,13 +151,22 @@ public class UserInfoFragment extends BaseFragment implements UserInfoAdapter.Us
 	public void onError(Platform platform, int i, Throwable throwable){
 		String msg = ResourcesManager.actionToString(i);
 		String text = plat.getName() + " caught error at " + msg;
-		Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+		if (getActivity() != null) {
+			dialog(getActivity(), text);
+		} else {
+			Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	public void onCancel(Platform platform, int i){
 		String msg = ResourcesManager.actionToString(i);
 		String text = plat.getName() + " canceled at " + msg;
-		Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+		if (getActivity() != null) {
+			dialog(getActivity(), text);
+		} else {
+			Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+		}
+
 	}
 
 	@Override
