@@ -37,7 +37,7 @@ public class QQShare {
 		Platform platform = ShareSDK.getPlatform(QQ.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
+		shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
 		shareParams.setImageArray(ResourcesManager.getInstace(MobSDK.getContext()).randomPic());
 		platform.setPlatformActionListener(platformActionListener);
 		shareParams.setShareType(Platform.SHARE_IMAGE);

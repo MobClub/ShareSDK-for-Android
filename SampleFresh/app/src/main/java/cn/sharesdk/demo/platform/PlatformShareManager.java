@@ -35,7 +35,6 @@ import cn.sharesdk.demo.platform.renren.RenrenShare;
 import cn.sharesdk.demo.platform.sina.WeiboShare;
 import cn.sharesdk.demo.platform.system.email.EmailShare;
 import cn.sharesdk.demo.platform.system.text.ShortMessageShare;
-//import cn.sharesdk.demo.platform.telegram.TelegramShare;
 import cn.sharesdk.demo.platform.telegram.TelegramShare;
 import cn.sharesdk.demo.platform.tencent.qq.QQShare;
 import cn.sharesdk.demo.platform.tencent.qzone.QQZoneShare;
@@ -310,6 +309,9 @@ public class PlatformShareManager {
 		} else if (name.equals(Douyin.NAME)) {
 			DouyinShare douyinShare = new DouyinShare(platformActionListener);
 			douyinShare.shareImage(activity);
+		} else if (name.equals(YixinMoments.NAME)) {
+			YixinMomentsShare wechatShare = new YixinMomentsShare(platformActionListener);
+			wechatShare.shareImage();
 		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();

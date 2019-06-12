@@ -1,6 +1,7 @@
 apply plugin: 'com.mob.sdk'
 
 MobSDK {
+
     appKey "moba6b6c6d6"
     appSecret "b89d2427a3bc7ad1aea1e1e8c1d36bf3"
 
@@ -10,13 +11,14 @@ MobSDK {
         devInfo {
             SinaWeibo {
                 id 1
-                sortId 1
+                sortId 59
                 appKey "568898243"
                 appSecret "38a4f8204cc784f81f9f0daaf31e02e3"
                 callbackUri "http://www.sharesdk.cn"
                 shareByAppClient true
                 enable true
             }
+
 
             TencentWeibo {
                 id 2
@@ -26,6 +28,7 @@ MobSDK {
                 callbackUri "http://sharesdk.cn"
                 enable true
             }
+
 
             QZone {
                 id 3
@@ -61,6 +64,7 @@ MobSDK {
                 enable true
             }
 
+
             WechatMoments {
                 id 5
                 sortId 5
@@ -69,6 +73,7 @@ MobSDK {
                 bypassApproval false
                 enable true
             }
+
 
             WechatFavorite {
                 id 6
@@ -295,8 +300,10 @@ MobSDK {
             Line {
                 id 32
                 sortId 32
-                appId "1477692153"
-                appSecret "f30c036370f2e04ade71c52eef73a9af"
+                appId "1639219273"
+                appSecret "58faad55ffce8bf8f63b59fe6fb702ae"
+                callbackUri "https://www.mob.com/"
+                callbackscheme "lineauth"
                 enable true
             }
 
@@ -346,9 +353,9 @@ MobSDK {
             Telegram {
                 id 47
                 sortId 47
-                AppKey="782826033"
-                RedirectUrl="http://www.mob.com"
-                Enable="true"
+                appKey "782826033"
+                callbackUri "http://www.mob.com"
+                enable true
             }
 
 
@@ -401,10 +408,10 @@ MobSDK {
             }
 
             Reddit {
-                Id="56"
-                SortId="56"
-                AppKey="MExDxPuTCtFiRw"
-                RedirectUrl="http://www.sharesdk.cn"
+                id 56
+                sortId 56
+                appKey "MExDxPuTCtFiRw"
+                callbackUri "http://www.sharesdk.cn"
             }
 
             Telecom {
@@ -429,7 +436,9 @@ MobSDK {
 
             Douyin {
                 id 59
-                sortId 59
+                sortId 1
+                appKey "aw9ivykfjvi4hpwo"
+                appSecret "42b4caa6bda60bd49f05f06d0a4956e1"
                 enable true
             }
         }
