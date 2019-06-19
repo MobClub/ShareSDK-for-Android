@@ -26,15 +26,15 @@
     </style>
 
     <style name="mydialog" parent="@android:style/Theme.Dialog">
-        <!-- ?????activity?? -->
+        <!-- 是否浮现在activity之上 -->
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
-        <!-- ???????? -->
+        <!-- 背景颜色及透明度 -->
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
-        <!-- ???? -->
+        <!-- 是否模糊 -->
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
