@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">SampleFresh</string>
+    <string name="app_name">ShareSDK</string>
+    <string name="moblink_share">分享</string>
+    <string name="moblink_back">返回</string>
+
 
     <!--title-->
     <string name="share_title_share_txt">分享</string>
@@ -23,7 +26,8 @@
     <string name="item_title_txt_catagory_system">系统平台</string>
     <string name="sensor_shark_off_show_txt">摇动一下你的手机</string>
     <string name="share_platform_name">分享到</string>
-	<string name="item_txt_announcement">好消息：Linkcard 重磅上线！错过它，就错过了全世界...</string>
+    <string name="item_txt_announcement">好消息：Linkcard 重磅上线！错过它，就错过了全世界...</string>
+    <string name="item_txt_link_announcement">好消息：Share+Link 重磅上线！一键实现分享闭环！错过它，就错过了全世界~</string>
 
     <!-- SDK TAGS -->
     <string name="tab_menu_alert">首页</string>
@@ -89,30 +93,30 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-	<string name="announce_linkcard">LinkCard</string>
-	<string name="announce_release">重磅上线！</string>
-	<string name="announce_do_not_miss">错过它，就错过了全世界</string>
-	<string name="announce_content_1">LinkCard 是 ShareSDK 与新浪微博深度合作的产品</string>
-	<string name="announce_content_2">功能。通过LinkCard，分享在新浪微博的链接会以包</string>
-	<string name="announce_content_3">含分享内容元素的</string>
-	<string name="announce_content_4">卡片形式</string>
-	<string name="announce_content_5">展现</string>
-	<string name="announce_title_normal_link">普通链接</string>
-	<string name="announce_content_6">普通的链接在新浪微博中分享，</string>
-	<string name="announce_content_7">则只有一个文字链接展示</string>
-	<string name="announce_content_8">无展示元素，可信度低，点击率低</string>
-	<string name="announce_content_9">LinkCard 通过图片增加对于用户的视觉冲击。直截</string>
-	<string name="announce_content_10">了当得将信息传达，较于文字更具有新鲜感可以</string>
-	<string name="announce_content_11">满足不同场景</string>
-	<string name="announce_content_12">下的用户视觉需求</string>
-	<string name="announce_content_13">接入LinkCard功能后在新浪微博分享的</string>
-	<string name="announce_content_14">链接将以卡片形式展示</string>
-	<string name="announce_benefit_1">明确</string>
-	<string name="announce_benefit_2">提升点击率</string>
-	<string name="announce_benefit_3">展现内容丰富</string>
-	<string name="announce_try_it">赶紧戳下面按钮，试试看~</string>
-	<string name="announce_txt_normal">普通分享</string>
-	<string name="announce_txt_linkcard">LinkCard分享</string>
+    <string name="announce_linkcard">LinkCard</string>
+    <string name="announce_release">重磅上线！</string>
+    <string name="announce_do_not_miss">错过它，就错过了全世界</string>
+    <string name="announce_content_1">LinkCard 是 ShareSDK 与新浪微博深度合作的产品</string>
+    <string name="announce_content_2">功能。通过LinkCard，分享在新浪微博的链接会以包</string>
+    <string name="announce_content_3">含分享内容元素的</string>
+    <string name="announce_content_4">卡片形式</string>
+    <string name="announce_content_5">展现</string>
+    <string name="announce_title_normal_link">普通链接</string>
+    <string name="announce_content_6">普通的链接在新浪微博中分享，</string>
+    <string name="announce_content_7">则只有一个文字链接展示</string>
+    <string name="announce_content_8">无展示元素，可信度低，点击率低</string>
+    <string name="announce_content_9">LinkCard 通过图片增加对于用户的视觉冲击。直截</string>
+    <string name="announce_content_10">了当得将信息传达，较于文字更具有新鲜感可以</string>
+    <string name="announce_content_11">满足不同场景</string>
+    <string name="announce_content_12">下的用户视觉需求</string>
+    <string name="announce_content_13">接入LinkCard功能后在新浪微博分享的</string>
+    <string name="announce_content_14">链接将以卡片形式展示</string>
+    <string name="announce_benefit_1">明确</string>
+    <string name="announce_benefit_2">提升点击率</string>
+    <string name="announce_benefit_3">展现内容丰富</string>
+    <string name="announce_try_it">赶紧戳下面按钮，试试看~</string>
+    <string name="announce_txt_normal">普通分享</string>
+    <string name="announce_txt_linkcard">LinkCard分享</string>
 
     <!-- 弹出框提示按钮 -->
     <string name="title_content">提示</string>

@@ -8,6 +8,8 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.wechat.friends.Wechat;
 
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
+
 /**
  * Created by yjin on 2017/6/22.
  */
@@ -74,7 +76,7 @@ private PlatformActionListener platformActionListener;
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
+		shareParams.setUrl(LINK_URL);
 		shareParams.setImageUrl("https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
 		shareParams.setShareType(Platform.SHARE_WEBPAGE);
 		platform.setPlatformActionListener(platformActionListener);

@@ -2,6 +2,7 @@ package cn.sharesdk.demo.manager.share;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.mob.MobSDK;
@@ -54,7 +55,7 @@ public class ShareTypeManager {
             }
             break;
             case Platform.SHARE_FILE: {
-                shareFiles();
+                shareFiles(activity);
             }
             break;
             case Platform.SHARE_EMOJI: {
@@ -66,7 +67,7 @@ public class ShareTypeManager {
             }
             break;
             case Platform.SHARE_WEBPAGE: {
-                shareWebPage();
+                shareWebPage(activity);
             }
             break;
             case Platform.SHARE_MUSIC: {
@@ -105,10 +106,10 @@ public class ShareTypeManager {
         platformShareManager.shareApp(platform.getName());
     }
 
-    public void shareFiles() {
+    public void shareFiles(Activity activity) {
         PlatformShareManager platformShareManager = new PlatformShareManager();
         platformShareManager.setPlatformActionListener(myPlatformActionListener);
-        platformShareManager.shareFile(platform.getName());
+        platformShareManager.shareFile(platform.getName(), activity);
     }
 
     public void shareEmoji() {
@@ -121,10 +122,10 @@ public class ShareTypeManager {
         wechatShare.shareMiniProgram();
     }
 
-    public void shareWebPage() {
+    public void shareWebPage(Activity activity) {
         PlatformShareManager platformShareManager = new PlatformShareManager();
         platformShareManager.setPlatformActionListener(myPlatformActionListener);
-        platformShareManager.shareWebPager(platform.getName());
+        platformShareManager.shareWebPager(platform.getName(), activity);
     }
 
     public void shareMusic() {
@@ -142,45 +143,60 @@ public class ShareTypeManager {
 
     class MyPlatformActionListener implements PlatformActionListener {
         @Override
-        public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+        public void onComplete(final Platform platform, int i, HashMap<String, Object> hashMap) {
             context.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if (contextThis != null) {
-                        dialog(contextThis, "Share Complete");
-                    } else {
-                        Toast.makeText(MobSDK.getContext(), "Share Complete", Toast.LENGTH_SHORT).show();
+                    try {
+                        //if (platform.getName().equals("Douyin")) {
+                            //Toast.makeText(MobSDK.getContext(), "Share Complete", Toast.LENGTH_LONG).show();
+                        //} else if (contextThis != null) {
+                            //dialog(contextThis, "Share Complete");
+                        //} else {
+                            Toast.makeText(MobSDK.getContext(), "Share Complete", Toast.LENGTH_LONG).show();
+                        //}
+                    } catch (Throwable t) {
+                        Log.e("QQQ", " ShareTypeManager  onComplete===> " + t);
                     }
-
                 }
             });
         }
 
         @Override
-        public void onError(Platform platform, int i, Throwable throwable) {
+        public void onError(final Platform platform, int i, Throwable throwable) {
             throwable.printStackTrace();
             final String error = throwable.toString();
             context.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if (contextThis != null) {
-                        dialog(contextThis, "Share Failure" + error);
-                    } else {
-                        Toast.makeText(MobSDK.getContext(), "Share Failure" + error, Toast.LENGTH_SHORT).show();
+                    try {
+                        //if (platform.getName().equals("Douyin")) {
+                            //Toast.makeText(MobSDK.getContext(), "Share Failure" + error, Toast.LENGTH_LONG).show();
+                        //} else if (contextThis != null) {
+                            //dialog(contextThis, "Share Failure" + error);
+                        //} else {
+                            Toast.makeText(MobSDK.getContext(), "Share Failure" + error, Toast.LENGTH_LONG).show();
+                        //}
+                    } catch (Throwable t) {
+                        Log.e("QQQ", " ShareTypeManager  onError===> " + t);
                     }
-
                 }
             });
         }
 
         @Override
         public void onCancel(Platform platform, int i) {
-            if (contextThis != null) {
-                dialog(contextThis, "Cancel Share");
-            } else {
-                Toast.makeText(MobSDK.getContext(), "Cancel Share", Toast.LENGTH_SHORT).show();
+            try {
+                //if (platform.getName().equals("Douyin")) {
+                    //Toast.makeText(MobSDK.getContext(), "Cancel Share", Toast.LENGTH_LONG).show();
+                //} else if (contextThis != null) {
+                    //dialog(contextThis, "Cancel Share");
+                //} else {
+                    Toast.makeText(MobSDK.getContext(), "Cancel Share", Toast.LENGTH_LONG).show();
+                //}
+            } catch (Throwable t) {
+                Log.e("QQQ", " ShareTypeManager  onCancel===> " + t);
             }
-
         }
     }
 

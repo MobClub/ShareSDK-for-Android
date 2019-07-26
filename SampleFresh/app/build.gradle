@@ -36,12 +36,14 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
+            debuggable true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
 
         debug {
+            debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
@@ -71,7 +73,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation 'com.android.support:appcompat-v7:25.4.0'
-    implementation 'com.android.support:appcompat-v7:25.4.0'
     implementation 'com.google.code.gson:gson:2.8.0'
+    implementation 'com.shizhefei:LargeImageView:1.0.9'
 
 }

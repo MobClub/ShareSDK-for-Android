@@ -14,14 +14,10 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.mob.MobSDK;
-
 import cn.sharesdk.demo.utils.ScreenShotListenManager;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import cn.sharesdk.demo.adapter.PagerAdapter;
 import cn.sharesdk.demo.entity.BaseEntity;
 import cn.sharesdk.demo.entity.PlatformMananger;
@@ -37,7 +33,7 @@ import cn.sharesdk.demo.ui.CallBackShotImageView;
 import cn.sharesdk.demo.ui.ShareFragment;
 import cn.sharesdk.demo.ui.UserInfoFragment;
 
-public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
+public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener{
 	private HorizontalScrollView horizontalScrollView;
 	private ViewGroup container;
 	private ViewPager viewPager;
@@ -146,6 +142,25 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 		shakeListener = new ShakeListener(this);
 		shakeListener.setOnShakeListener(new UOnShakeListener());
 	}
+
+/*	*//**
+	 * link场景还原的监听处理
+	 * **//*
+	@Override
+	public Class<? extends Activity> willRestoreScene(Scene scene) {
+		Log.e("QQQ", " willRestoreScene ");
+		return ShareMobLinkActivity.class;
+	}
+
+	@Override
+	public void completeRestore(Scene scene) {
+		Log.e("QQQ", " completeRestore ");
+	}
+
+	@Override
+	public void notFoundScene(Scene scene) {
+		Log.e("QQQ", " notFoundScene ");
+	}*/
 
 	private class UOnShakeListener implements ShakeListener.OnShakeListener {
 		@Override

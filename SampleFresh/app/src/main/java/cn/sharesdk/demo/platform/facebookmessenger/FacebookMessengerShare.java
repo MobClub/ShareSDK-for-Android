@@ -9,6 +9,9 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_TEXT;
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
+
 /**
  * Created by yjin on 2017/6/22.
  */
@@ -24,10 +27,10 @@ public class FacebookMessengerShare {
 	public void shareWebPage(){
 		Platform platform = ShareSDK.getPlatform(FacebookMessenger.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
-		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
+		shareParams.setText(LINK_TEXT);
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
-		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
+		shareParams.setUrl(LINK_URL);
 		shareParams.setShareType(Platform.SHARE_WEBPAGE);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);

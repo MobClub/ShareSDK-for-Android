@@ -8,6 +8,8 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.linkedin.LinkedIn;
 
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
+
 /**
  * Created by yjin on 2017/6/22.
  */
@@ -35,7 +37,7 @@ public class LinkedinShare {
 		shareParams.setTitle("asd title can not repeat");
 		shareParams.setText("assf text str can not repeat");
 		shareParams.setLinkedinDescription("asdg web descri can not repeat ");
-		shareParams.setUrl("http://mobdata.mob.com/");
+		shareParams.setUrl(LINK_URL);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
 	}

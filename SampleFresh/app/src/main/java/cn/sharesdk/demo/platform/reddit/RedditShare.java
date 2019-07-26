@@ -5,6 +5,9 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.reddit.Reddit;
 
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_TEXT;
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
+
 /**
  * Created by xiangli on 2018/9/13.
  */
@@ -32,9 +35,9 @@ public class RedditShare {
         Platform reddit = ShareSDK.getPlatform(Reddit.NAME);
         Platform.ShareParams sp = new Platform.ShareParams();
         sp.setTitle("URL shareText please ignore,If excuse , say sorry for you ===> 2018.09.14.1228");
-        sp.setText("How to test my code, I only test my code, please ignore this  ====> 2018.09.14.1228");
+        sp.setText(LINK_TEXT);
         sp.setSubreddit("dotnet");
-        sp.setUrl("https://baike.baidu.com/item/SD%E5%8D%A1/122767?fr=aladdin");
+        sp.setUrl(LINK_URL);
         reddit.share(sp);
     }
 

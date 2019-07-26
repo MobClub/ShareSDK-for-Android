@@ -32,11 +32,16 @@ import cn.sharesdk.demo.manager.platform.PlatformShareConstant;
 import cn.sharesdk.demo.manager.share.ShareTypeManager;
 import cn.sharesdk.demo.manager.ui.SharePlatformPresenter;
 import cn.sharesdk.demo.platform.douyin.DouyinShare;
+import cn.sharesdk.demo.platform.wework.WeworkShare;
 import cn.sharesdk.demo.ui.BaseActivity;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 
+import static cn.sharesdk.demo.platform.douyin.DouyinShare.DOUYIN_VIDEO;
 import static cn.sharesdk.demo.platform.douyin.DouyinShare.PHOTO_REQUEST_GALLERY;
+import static cn.sharesdk.demo.platform.wework.WeworkShare.WEWORK_SHARE_FILE;
+import static cn.sharesdk.demo.platform.wework.WeworkShare.WEWORK_SHARE_IMAGE;
+import static cn.sharesdk.demo.platform.wework.WeworkShare.WEWORK_SHARE_VIDEO;
 import static cn.sharesdk.demo.utils.CommomDialog.dialog;
 
 /**
@@ -151,44 +156,106 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 					startShareImage(UriUtil.convertUriToPath(this,uri));
 					Log.e("QQQ", " 列表的路径： " + UriUtil.convertUriToPath(this,uri));
 					break;
+				case DOUYIN_VIDEO:
+					Uri douyinVideo = data.getData();
+					startShareVideo(UriUtil.convertUriToPath(this, douyinVideo));
+					break;
+				case WEWORK_SHARE_IMAGE:
+					Uri weworkImage = data.getData();
+					WewrokShareImage(UriUtil.convertUriToPath(this, weworkImage));
+					break;
+				case WEWORK_SHARE_VIDEO:
+					Uri weworkVideo = data.getData();
+					WeworkShareVideo(UriUtil.convertUriToPath(this, weworkVideo));
+					break;
+				case WEWORK_SHARE_FILE:
+					Uri weworkFile = data.getData();
+					WewrokShareFile(UriUtil.convertUriToPath(this, weworkFile));
+					break;
 			}
 		}
 	}
 
+	/**
+	 * 抖音本地图片分享
+	 * **/
 	private void startShareImage(String imagePath) {
 		myPlatformActionListener = new MyPlatformActionListener();
 		DouyinShare douyinShare = new DouyinShare(myPlatformActionListener);
 		douyinShare.shareImagePath(this, imagePath);
 	}
 
+	/**
+	 * 抖音本地视频分享
+	 * **/
+	private void startShareVideo(String videoPath) {
+		myPlatformActionListener = new MyPlatformActionListener();
+		DouyinShare douyinShare = new DouyinShare(myPlatformActionListener);
+		douyinShare.shareVideo(this, videoPath);
+	}
+
+	/**
+	 * 企业微信视频分享
+	 * */
+	private void WeworkShareVideo(String path) {
+		myPlatformActionListener = new SharePlatformTypeActivity.MyPlatformActionListener();
+		WeworkShare weworkShare = new WeworkShare(myPlatformActionListener);
+		weworkShare.shareVideo(path);
+	}
+
+	/**
+	 * 企业微信文件分享
+	 * **/
+	 private void WewrokShareFile(String path) {
+        myPlatformActionListener = new SharePlatformTypeActivity.MyPlatformActionListener();
+        WeworkShare weworkShare = new WeworkShare(myPlatformActionListener);
+        weworkShare.shareFile(path);
+    }
+
+    /**
+	 * 企业微信图片分享
+	 * **/
+	private void WewrokShareImage(String path) {
+		myPlatformActionListener = new SharePlatformTypeActivity.MyPlatformActionListener();
+		WeworkShare wewrokShare = new WeworkShare(myPlatformActionListener);
+		wewrokShare.shareImage(path);
+	}
+
 	class MyPlatformActionListener implements PlatformActionListener {
 		@Override
-		public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+		public void onComplete(final Platform platform, int i, HashMap<String, Object> hashMap) {
 			runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					if (context != null) {
-						dialog(context, "Share Complete");
-					} else {
-						Toast.makeText(MobSDK.getContext(), "Share Complete", Toast.LENGTH_SHORT).show();
+					try {
+						//if (platform.getName().equals("Douyin")) {
+							//Toast.makeText(context, "onComplete",  Toast.LENGTH_LONG).show();
+						//} else if (context != null) {
+							//dialog(context, "Share Complete");
+						//} else {
+							Toast.makeText(MobSDK.getContext(), "Share Complete", Toast.LENGTH_SHORT).show();
+						//}
+					} catch (Throwable t) {
+						Log.e("QQQ", " onComplete " + t);
 					}
-
 				}
 			});
 		}
 
 		@Override
-		public void onError(Platform platform, int i, Throwable throwable) {
-			throwable.printStackTrace();
-			final String error = throwable.toString();
+		public void onError(final Platform platform, int i, final Throwable t) {
+			t.printStackTrace();
+			final String error = t.toString();
 			runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					if (context != null) {
-						dialog(MobSDK.getContext(), "Share Failure" + error);
-					} else {
-						Toast.makeText(MobSDK.getContext(), "Share Failure" + error, Toast.LENGTH_SHORT).show();
-					}
+					//if (platform.getName().equals("Douyin")) {
+						//Toast.makeText(MobSDK.getContext(), "Share Failure" + error, Toast.LENGTH_LONG).show();
+					//} else if (context != null) {
+						//dialog(MobSDK.getContext(), "Share Failure" + error);
+					//} else {
+						Toast.makeText(MobSDK.getContext(), "Share Failure" + error, Toast.LENGTH_LONG).show();
+					//}
 
 				}
 			});
@@ -196,17 +263,18 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 
 		@Override
 		public void onCancel(Platform platform, int i) {
-			if (context != null) {
-				dialog(MobSDK.getContext(), "Cancel Share");
-			} else {
-				Toast.makeText(MobSDK.getContext(), "Cancel Share", Toast.LENGTH_SHORT).show();
+			try {
+				//if (platform.getName().equals("Douyin")) {
+					//Toast.makeText(MobSDK.getContext(), "Cancel Share", Toast.LENGTH_LONG).show();
+				//} else if (context != null) {
+					//dialog(MobSDK.getContext(), "Cancel Share");
+				//} else {
+					Toast.makeText(MobSDK.getContext(), "Cancel Share", Toast.LENGTH_LONG).show();
+				//}
+			} catch (Throwable t) {
+				Log.e("QQQ", " onCancel " + t);
 			}
-
 		}
 	}
-
-
-
-
 
 }

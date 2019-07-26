@@ -10,8 +10,6 @@ import com.mob.tools.utils.BitmapHelper;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.util.Arrays;
 import java.util.HashMap;
 
 import cn.sharesdk.demo.R;
@@ -216,9 +214,12 @@ public class ResourcesManager {
 			public void run() {
 				String[] urls = randomPic();
 				testImageUrl = urls[1];
-				imageUrl = urls[1];
+				//imageUrl = urls[1];
+				imageUrl = "https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg";
 				try {
-					testImage = BitmapHelper.downloadBitmap(MobSDK.getContext(), urls[1]);
+					//testImage = BitmapHelper.downloadBitmap(MobSDK.getContext(), urls[3]);
+					testImage = BitmapHelper.downloadBitmap(MobSDK.getContext(),
+							"https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
 					imageBmp = BitmapHelper.getBitmap(testImage);
 					imagePath = testImage;
 				} catch (Throwable t) {

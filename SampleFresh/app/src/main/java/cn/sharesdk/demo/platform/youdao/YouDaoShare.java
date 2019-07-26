@@ -8,6 +8,9 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.youdao.YouDao;
 
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_TEXT;
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
+
 /**
  * Created by yjin on 2017/6/22.
  */
@@ -22,9 +25,9 @@ public class YouDaoShare {
 	public void shareText(){
 		Platform platform = ShareSDK.getPlatform(YouDao.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
-		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
+		shareParams.setText(LINK_TEXT);
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
+		shareParams.setUrl(LINK_URL);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
 	}

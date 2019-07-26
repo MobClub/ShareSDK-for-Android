@@ -22,6 +22,9 @@
 -keep class com.mob.**{*;}
 -keep class m.framework.**{*;}
 
+-keep class com.mob.**{*;}
+-dontwarn com.mob.**
+
 #fastjson
 -dontwarn com.alibaba.fastjson.**
 -keep class com.alibaba.fastjson.** { *; }
@@ -32,3 +35,5 @@
 -dontwarn **.R$*
 
 -keep class com.bytedance.**{*;}
+-keep class com.tencent.wework.api.** {*;}
+

@@ -57,6 +57,7 @@ public class PlatformShareConstant {
 	public static Integer[] telegram;
 	public static Integer[] reddit;
 	public static Integer[] douyin;
+	public static Integer[] wework;
 	
 	private PlatformShareConstant(){
 		douyin = new Integer[]{Platform.SHARE_VIDEO, Platform.SHARE_IMAGE};
@@ -104,6 +105,8 @@ public class PlatformShareConstant {
 		meipai = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};
 		telegram = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_IMAGE};
 		reddit = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE};
+		wework = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_IMAGE, Platform.SHARE_FILE,
+								Platform.SHARE_VIDEO, Platform.SHARE_WEBPAGE};
 	}
 	public synchronized static PlatformShareConstant getInstance(){
 		if(instance == null){

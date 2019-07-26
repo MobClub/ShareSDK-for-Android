@@ -11,7 +11,6 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.tencent.qzone.QZone;
 
 /**
  * Created by yjin on 2017/6/22.
@@ -28,9 +27,6 @@ public class WeiboShare {
 		Platform platform = ShareSDK.getPlatform(SinaWeibo.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
-		if(!DemoUtils.isValidClientSina("com.sina.weibo")){
-			shareParams.setUrl("http://www.mob.com");
-		}
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
 	}
@@ -38,13 +34,8 @@ public class WeiboShare {
 	public void shareImage(){
 		Platform platform = ShareSDK.getPlatform(SinaWeibo.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
-		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-		shareParams.setImageArray(ResourcesManager.getInstace(MobSDK.getContext()).randomPic());
-		if(!DemoUtils.isValidClientSina("com.sina.weibo")){
-			shareParams.setUrl("http://www.mob.com");
-		}
 		shareParams.setShareType(Platform.SHARE_IMAGE);
 		shareParams.setLongitude(ResourcesManager.longitude);
 		shareParams.setLatitude(ResourcesManager.latitude);

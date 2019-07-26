@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name=".App"
@@ -20,23 +21,68 @@
         android:debuggable="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
-        tools:replace="android:name"
-        tools:ignore="HardcodedDebugMode">
-        <activity android:name=".MainActivity">
+        tools:ignore="HardcodedDebugMode"
+        tools:replace="android:name">
+        <activity android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="douyin.callback.action" />
             </intent-filter>
         </activity>
         <activity android:name=".activitys.SharePlatformTypeActivity" />
         <activity android:name=".activitys.ShowUserInfoActivity" />
         <activity android:name=".ui.SdkTagsMainActivity" />
         <activity android:name=".ui.TagsItemActivity" />
-        <activity android:name=".ui.TagsItemInfoActivity"></activity>
-		<activity android:name=".ui.AnnouncementActivity"/>
+        <activity android:name=".ui.TagsItemInfoActivity" />
+        <activity android:name=".ui.AnnouncementActivity" />
+        <activity android:name="cn.sharesdk.demo.ShareMobLinkActivity"></activity>
+
+        <!--<activity
+            android:name="com.mob.moblink.MobLinkActivity"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                &lt;!&ndash;android:host="cn.sharesdk.demo"&ndash;&gt;
+                &lt;!&ndash;android:scheme="moba0b0c0d0" />&ndash;&gt;
+                <data
+                    android:scheme="ssdkmoba0b0c0d0"
+                    android:host="cn.sharesdk.loop"/>
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="ahmn.t4m.cn"
+                    android:scheme="http" />
+                <data
+                    android:host="ahmn.t4m.cn"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
+
+        &lt;!&ndash; test &ndash;&gt;
+        <activity
+            android:name="cn.sharesdk.framework.moblink.RestoreTempActivity"
+            android:exported="true"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:launchMode="singleTop"/>-->
+
     </application>
 
 </manifest>

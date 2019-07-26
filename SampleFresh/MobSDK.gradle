@@ -2,10 +2,20 @@ apply plugin: 'com.mob.sdk'
 
 MobSDK {
 
-    appKey "moba6b6c6d6"
-    appSecret "b89d2427a3bc7ad1aea1e1e8c1d36bf3"
+    appKey "moba0b0c0d0"
+    appSecret "5713f0d88511f9f4cf100cade0610a34"
+
+
+   /* MobLink {
+        uriScheme "moba0b0c0d0://cn.sharesdk.demo"
+        appLinkHost "ahmn.t4m.cn"
+    }*/
+
+    //https true
 
     ShareSDK {
+
+        loopShare true
 
         //平台配置信息
         devInfo {
@@ -89,7 +99,7 @@ MobSDK {
                 sortId 7
                 appId "100371282"
                 appKey "aed9b0303e3ed1e27bae87c33761161d"
-                shareByAppClient true
+                shareByAppClient false
                 bypassApproval false
                 enable true
             }
@@ -441,6 +451,16 @@ MobSDK {
                 appSecret "42b4caa6bda60bd49f05f06d0a4956e1"
                 enable true
             }
+
+            Wework {
+                id 60
+                sortId 60
+                appKey "wwa21eaecf93f0e3ba"
+                appSecret "dW7e27P7Hc8NiYdRxnbTeOLgfI1ugR72e-PM8uusq2s"
+                agentId "1000012"
+                schema "wwautha21eaecf93f0e3ba000012"
+            }
+
         }
     }
 }

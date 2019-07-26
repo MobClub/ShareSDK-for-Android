@@ -8,11 +8,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.mob.MobSDK;
 import com.mob.tools.utils.UIHandler;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -123,17 +123,22 @@ public class UserInfoFragment extends BaseFragment implements UserInfoAdapter.Us
 			if(platAuth == null){
 				platAuth = new PlatformAuthorizeUserInfoManager(getActivity());
 			}
-			platAuth.doUserInfo(plat);
+			platAuth.doUserInfo(plat, getActivity());
 		}
 	}
 
 	public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap){
 		String msg = ResourcesManager.actionToString(i);
 		String text = plat.getName() + " completed at " + msg;
-		if (getActivity() != null) {
+		try {
 			dialog(getActivity(), text);
-		} else {
-			Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (getContext() != null) {
+				Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+			} else if (MobSDK.getContext() != null) {
+				Toast.makeText(MobSDK.getContext(), text, Toast.LENGTH_SHORT).show();
+			}
 		}
 		adapter.notifyItemChanged(adapter.getOnClickCurrentPostion());
 		adapter.notifyItemRangeChanged(0, lists.size() - 1);
@@ -141,29 +146,43 @@ public class UserInfoFragment extends BaseFragment implements UserInfoAdapter.Us
 
 		hashMap.put("userTags", plat.getDb().get("userTags")); //SDK+ tags
 		String userInfo = StrUtils.format("", hashMap);
-		if(!TextUtils.isEmpty(userInfo)){
-			Intent intent = new Intent(getActivity(), ShowUserInfoActivity.class);
-			intent.putExtra("userInfo",userInfo);
-			startActivity(intent);
+		try {
+			if(!TextUtils.isEmpty(userInfo)){
+				if (getActivity() != null) {
+					Intent intent = new Intent(getActivity(), ShowUserInfoActivity.class);
+					intent.putExtra("userInfo",userInfo);
+					startActivity(intent);
+				} else if (MobSDK.getContext() != null) {
+					Intent intent = new Intent(MobSDK.getContext(), ShowUserInfoActivity.class);
+					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					intent.putExtra("userInfo",userInfo);
+					MobSDK.getContext().startActivity(intent);
+				}
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
 	public void onError(Platform platform, int i, Throwable throwable){
 		String msg = ResourcesManager.actionToString(i);
 		String text = plat.getName() + " caught error at " + msg;
-		if (getActivity() != null) {
+		try {
 			dialog(getActivity(), text);
-		} else {
-			Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+		} catch (Exception e) {
+			e.printStackTrace();
+			Toast.makeText(MobSDK.getContext(), text, Toast.LENGTH_SHORT).show();
 		}
 	}
 
 	public void onCancel(Platform platform, int i){
 		String msg = ResourcesManager.actionToString(i);
 		String text = plat.getName() + " canceled at " + msg;
-		if (getActivity() != null) {
+		try {
 			dialog(getActivity(), text);
-		} else {
+		} catch (Exception e) {
+			e.printStackTrace();
 			Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
 		}
 

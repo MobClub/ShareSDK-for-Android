@@ -8,6 +8,9 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_TEXT;
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
+
 /**
  * Created by yjin on 2017/6/22.
  */
@@ -43,9 +46,9 @@ public class FacebookShare {
 	public void shareWebPage(){
 		Platform platform = ShareSDK.getPlatform(Facebook.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
-		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
+		shareParams.setUrl(LINK_URL);
 		shareParams.setShareType(Platform.SHARE_WEBPAGE);
-		shareParams.setQuote("测试引文分享");
+		shareParams.setQuote(LINK_TEXT);
 		shareParams.setHashtag("测试话题分享");
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);

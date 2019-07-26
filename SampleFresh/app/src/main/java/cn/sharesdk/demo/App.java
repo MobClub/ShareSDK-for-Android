@@ -9,6 +9,7 @@ import java.util.List;
 import cn.sharesdk.demo.entity.ResourcesManager;
 import cn.sharesdk.demo.ui.BaseActivity;
 import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.ShareSDK;
 
 /**
  * Created by yjin on 2017/5/15.

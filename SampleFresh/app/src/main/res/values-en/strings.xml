@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SampleFresh</string>
+    <string name="app_name">ShareSDK</string>
     <string name="share_content">ShareSDK for Android not only integration social platforms, like Facebook, Twitter, Google+. But also Our strong professional backend support can easy to know the Users,Information Flow,Backflow, Backflow rate, Share Rate,etc. See more detail on website http://mob.com @ShareSDK</string>
     <string name="share_content_short">ShareSDK for Android not only integration social platforms, like Facebook, Twitter, Google+. But also Our strong professional backend support can easy to know the Users,Information Flow,Backflow, Backflow rate, Share Rate,etc. See more detail on website http://mob.com @ShareSDK</string>
 
@@ -18,7 +18,7 @@
     <string name="home_page_show_userinfo_txt">UserInfo</string>
     <string name="sensor_shark_off_show_txt">Shake your phone</string>
 	<string name="item_txt_announcement">Good news: Linkcard released! If you miss it, you will miss the whole world...</string>
-
+    <string name="item_txt_link_announcement">Good news: Share+Link is online!One key to achieve sharing closed loop!Miss it, miss the world ~</string>
 
     <!--授权-->
     <string name="authorization_txt">Authorize</string>

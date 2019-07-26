@@ -4,6 +4,9 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
     android:background="@color/main_fragment_share_bg">
+
+	<!--android:text="@string/item_txt_announcement"-->
+
 	<TextView
 		android:id="@+id/announcement"
 		android:layout_width="match_parent"
@@ -13,7 +16,7 @@
 		android:paddingBottom="5dp"
 		android:drawableLeft="@drawable/tongzhi"
 		android:drawablePadding="5dp"
-		android:text="@string/item_txt_announcement"
+		android:text="@string/item_txt_link_announcement"
 		android:textSize="14sp"
 		android:textColor="@color/text_orange"
 		android:background="@color/bg_announcement"

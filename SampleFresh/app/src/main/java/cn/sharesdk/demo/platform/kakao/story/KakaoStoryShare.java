@@ -9,6 +9,9 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.kakao.story.KakaoStory;
 
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_TEXT;
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
+
 /**
  * Created by yjin on 2017/6/22.
  */
@@ -24,10 +27,10 @@ public class KakaoStoryShare {
 	public void shareText(){
 		Platform platform = ShareSDK.getPlatform(KakaoStory.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
-		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
+		shareParams.setText(LINK_TEXT);
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		shareParams.setSite(ResourcesManager.getInstace(MobSDK.getContext()).getSite());
-		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
+		shareParams.setUrl(LINK_URL);
 		shareParams.setComment(ResourcesManager.getInstace(MobSDK.getContext()).getComment());
 		shareParams.setComment(ResourcesManager.getInstace(MobSDK.getContext()).getComment());
 		platform.setPlatformActionListener(platformActionListener);

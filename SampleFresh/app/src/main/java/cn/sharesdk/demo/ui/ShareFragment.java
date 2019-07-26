@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,6 +23,7 @@ import java.util.List;
 import cn.sharesdk.demo.App;
 import cn.sharesdk.demo.MainActivity;
 import cn.sharesdk.demo.R;
+import cn.sharesdk.demo.ShareMobLinkActivity;
 import cn.sharesdk.demo.activitys.SharePlatformTypeActivity;
 import cn.sharesdk.demo.adapter.ShareRecylerViewAdapter;
 import cn.sharesdk.demo.entity.PlatformMananger;
@@ -221,6 +221,9 @@ public class ShareFragment extends BaseFragment implements CallBackShotImageView
 	}
 
 	private void goToAnnouncement() {
-		getContext().startActivity(new Intent(getContext(), AnnouncementActivity.class));
+		/** linkcard的宣传 **/
+		//getContext().startActivity(new Intent(getContext(), AnnouncementActivity.class));
+		/** link + share 的宣传 **/
+		getContext().startActivity(new Intent(getContext(), ShareMobLinkActivity.class));
 	}
 }

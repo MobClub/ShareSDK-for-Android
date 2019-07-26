@@ -39,7 +39,8 @@ public class PlatformMananger {
 	public static final String SDK_SINAWEIBO_UID = "3189087725";
 	public static final String SDK_TENCENTWEIBO_UID = "shareSDK";
 	public static String[] china = {"SinaWeibo", "TencentWeibo", "QZone", "Wechat", "WechatMoments", "WechatFavorite"
-			, "QQ", "Renren", "KaiXin", "Douban", "YouDao", "Yixin", "YixinMoments", "Mingdao", "Alipay", "AlipayMoments", "Dingding", "Meipai","Cmcc","Telecom", "Douyin"};
+			, "QQ", "Renren", "KaiXin", "Douban", "YouDao", "Yixin", "YixinMoments", "Mingdao",
+			"Alipay", "AlipayMoments", "Dingding", "Meipai","Cmcc","Telecom", "Douyin", "Wework"};
 	public static String[] system = {"Email", "ShortMessage", "Bluetooth"};
 
 	private PlatformMananger(Context context) {

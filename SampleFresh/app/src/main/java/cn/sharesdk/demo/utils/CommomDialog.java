@@ -1,12 +1,17 @@
 package cn.sharesdk.demo.utils;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.mob.MobSDK;
 
 import cn.sharesdk.demo.R;
 
@@ -121,16 +126,37 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
     }
 
     public static void dialog(Context context, String contentStr) {
-        CommomDialog dialog = new CommomDialog(context, R.style.mydialog, contentStr,
-                new CommomDialog.OnCloseListener() {
-                    @Override
-                    public void onClick(Dialog dialog, boolean confirm) {
-                        if (confirm) {
-                            dialog.dismiss();
-                        }
-                    }
-                });
-        dialog.setTitle("Tips").show();
+        try {
+            if (!((Activity)context).isFinishing()){
+                CommomDialog dialog = new CommomDialog(context, R.style.mydialog, contentStr,
+                        new CommomDialog.OnCloseListener() {
+                            @Override
+                            public void onClick(Dialog dialog, boolean confirm) {
+                                if (confirm) {
+                                    dialog.dismiss();
+                                }
+                            }
+                        });
+                dialog.setTitle("Tips").show();
+            } else if(MobSDK.getContext() != null) {
+                CommomDialog dialog = new CommomDialog(MobSDK.getContext(), R.style.mydialog, contentStr,
+                        new CommomDialog.OnCloseListener() {
+                            @Override
+                            public void onClick(Dialog dialog, boolean confirm) {
+                                if (confirm) {
+                                    dialog.dismiss();
+                                }
+                            }
+                        });
+                dialog.setTitle("Tips").show();
+            } else {
+                Toast.makeText(context, contentStr,  Toast.LENGTH_LONG).show();
+            }
+        } catch (Throwable t) {
+            Toast.makeText(context, contentStr,  Toast.LENGTH_LONG).show();
+            Log.e("QQQ", " Don't worry about just the pop-up hanging ===> " + t);
+        }
+
     }
 
 

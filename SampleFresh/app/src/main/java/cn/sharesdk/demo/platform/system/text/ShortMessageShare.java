@@ -1,5 +1,7 @@
 package cn.sharesdk.demo.platform.system.text;
 
+import android.os.Build;
+
 import com.mob.MobSDK;
 
 import cn.sharesdk.demo.entity.ResourcesManager;
@@ -7,6 +9,8 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.system.text.ShortMessage;
+
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
 
 /**
  * Created by yjin on 2017/6/22.
@@ -22,7 +26,12 @@ public class ShortMessageShare {
 	public void shareText(){
 		Platform platform = ShareSDK.getPlatform(ShortMessage.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
-		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			shareParams.setText("http://ahmn.t4m.cn/ziqMNf " +"Share+Link 重磅上线！一键实现分享闭环！错过它，就错过了全世界~  ahmn.t4m.cn/ziqMNf 点击立即使用");
+//			shareParams.setText(LINK_URL);
+		} else {
+			shareParams.setText(LINK_URL);
+		}
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);

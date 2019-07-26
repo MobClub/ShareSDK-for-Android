@@ -305,8 +305,9 @@ public class PlatformAuthorizeUserInfoManager {
 	/**
 	 * 用户信息的代码
 	 */
-	public void doUserInfo(Platform platform) {
+	public void doUserInfo(Platform platform, Activity activity) {
 		if (platform != null) {
+			ShareSDK.setActivity(activity);
 			platform.showUser(null);
 		}
 	}
@@ -359,10 +360,12 @@ public class PlatformAuthorizeUserInfoManager {
 			activity.runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					if (activity != null) {
-						dialog(activity, "Authorize Complete");
-					} else {
-						Toast.makeText(MobSDK.getContext(), "Authorize Complete", Toast.LENGTH_SHORT).show();
+					try {
+						//dialog(activity, "Authorize Complete");
+						Toast.makeText(MobSDK.getContext(), "Authorize Complete", Toast.LENGTH_LONG).show();
+					} catch (Exception e) {
+						e.printStackTrace();
+						Toast.makeText(MobSDK.getContext(), "Authorize Complete", Toast.LENGTH_LONG).show();
 					}
 
 					if(platform.getName().equals("ShortMessage") && hashMap != null) {
@@ -378,10 +381,12 @@ public class PlatformAuthorizeUserInfoManager {
 			activity.runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					if (activity != null) {
-						dialog(activity, "Authorize Failure");
-					} else {
-						Toast.makeText(MobSDK.getContext(), "Authorize Failure", Toast.LENGTH_SHORT).show();
+					try {
+						//dialog(activity, "Authorize Failure");
+						Toast.makeText(MobSDK.getContext(), "Authorize Failure", Toast.LENGTH_LONG).show();
+					} catch (Exception e){
+						e.printStackTrace();
+						Toast.makeText(MobSDK.getContext(), "Authorize Failure", Toast.LENGTH_LONG).show();
 					}
 				}
 			});
@@ -389,10 +394,12 @@ public class PlatformAuthorizeUserInfoManager {
 
 		@Override
 		public void onCancel(Platform platform, int i) {
-			if (activity != null) {
-				dialog(activity, "Cancel Authorize");
-			} else {
-				Toast.makeText(MobSDK.getContext(), "Cancel Authorize", Toast.LENGTH_SHORT).show();
+			try {
+				//dialog(activity, "Cancel Authorize");
+				Toast.makeText(MobSDK.getContext(), "Cancel Authorize", Toast.LENGTH_LONG).show();
+			} catch (Exception e) {
+				e.printStackTrace();
+				Toast.makeText(MobSDK.getContext(), "Cancel Authorize", Toast.LENGTH_LONG).show();
 			}
 		}
 

@@ -9,6 +9,9 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.tencent.qq.QQ;
 
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_TEXT;
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
+
 /**
  * Created by yjin on 2017/6/22.
  */
@@ -25,9 +28,9 @@ public class QQShare {
 	public void shareWebPager(){
 		Platform platform = ShareSDK.getPlatform(QQ.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
-		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
+		shareParams.setText(LINK_TEXT);
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-		shareParams.setTitleUrl(ResourcesManager.getInstace(MobSDK.getContext()).getTitleUrl());
+		shareParams.setTitleUrl(LINK_URL);
 		shareParams.setShareType(Platform.SHARE_WEBPAGE);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
@@ -37,8 +40,8 @@ public class QQShare {
 		Platform platform = ShareSDK.getPlatform(QQ.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-		shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
-		shareParams.setImageArray(ResourcesManager.getInstace(MobSDK.getContext()).randomPic());
+		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
+		//shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
 		platform.setPlatformActionListener(platformActionListener);
 		shareParams.setShareType(Platform.SHARE_IMAGE);
 		platform.share(shareParams);

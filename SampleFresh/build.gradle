@@ -19,6 +19,7 @@ buildscript {
 
     configurations.all {
         resolutionStrategy.cacheDynamicVersionsFor 1, 'seconds'
+        exclude group: 'com.mob', module: 'MobLink-3.0.2'
     }
 }
 

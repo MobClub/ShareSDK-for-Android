@@ -9,6 +9,8 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.wechat.moments.WechatMoments;
 
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
+
 /**
  * Created by yjin on 2017/6/22.
  */
@@ -36,9 +38,8 @@ public class WechatMomentsShare {
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-		shareParams.setImageUrl("https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
+		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
 		shareParams.setImageData(ResourcesManager.getInstace(MobSDK.getContext()).getImageBmp());
-		shareParams.setImageArray(ResourcesManager.getInstace(MobSDK.getContext()).randomPic());
 		shareParams.setShareType(Platform.SHARE_IMAGE);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
@@ -77,7 +78,7 @@ public class WechatMomentsShare {
 		shareParams.setFilePath(ResourcesManager.getInstace(MobSDK.getContext()).getFilePath());
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-		shareParams.setUrl("http://bb.snss9.com/d5A5PFvgCk");//ResourcesManager.getInstace(MobSDK.getContext()).getUrl()
+		shareParams.setUrl(LINK_URL);//ResourcesManager.getInstace(MobSDK.getContext()).getUrl()
 		shareParams.setImageData(ResourcesManager.getInstace(MobSDK.getContext()).getImageBmp());
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
 		shareParams.setShareType(Platform.SHARE_WEBPAGE);

@@ -9,6 +9,9 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.telegram.Telegram;
 
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_TEXT;
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
+
 
 public class TelegramShare {
 	private PlatformActionListener platformActionListener;
@@ -20,9 +23,9 @@ public class TelegramShare {
 	public void shareText(){
 		Platform platform = ShareSDK.getPlatform(Telegram.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
-		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
+		shareParams.setText(LINK_TEXT);
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
+		shareParams.setUrl(LINK_URL);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
 	}

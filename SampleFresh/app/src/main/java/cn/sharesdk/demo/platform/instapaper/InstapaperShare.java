@@ -8,6 +8,9 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.instapaper.Instapaper;
 
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_TEXT;
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
+
 /**
  * Created by yjin on 2017/6/22.
  */
@@ -21,8 +24,8 @@ public class InstapaperShare {
 	public void shareTextUrl(){
 		Platform platform = ShareSDK.getPlatform(Instapaper.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
-		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
-		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
+		shareParams.setText(LINK_TEXT);
+		shareParams.setUrl(LINK_URL);
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);

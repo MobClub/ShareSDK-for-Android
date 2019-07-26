@@ -44,6 +44,7 @@ import cn.sharesdk.demo.platform.vkontakte.VKontakteShare;
 import cn.sharesdk.demo.platform.wechat.favorite.WechatFavoriteShare;
 import cn.sharesdk.demo.platform.wechat.friends.WechatShare;
 import cn.sharesdk.demo.platform.wechat.moments.WechatMomentsShare;
+import cn.sharesdk.demo.platform.wework.WeworkShare;
 import cn.sharesdk.demo.platform.whatsapp.WhatsAppShare;
 import cn.sharesdk.demo.platform.yixin.friends.YixinShare;
 import cn.sharesdk.demo.platform.yixin.moments.YixinMomentsShare;
@@ -86,6 +87,7 @@ import cn.sharesdk.vkontakte.VKontakte;
 import cn.sharesdk.wechat.favorite.WechatFavorite;
 import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
+import cn.sharesdk.wework.Wework;
 import cn.sharesdk.whatsapp.WhatsApp;
 import cn.sharesdk.yixin.friends.Yixin;
 import cn.sharesdk.yixin.moments.YixinMoments;
@@ -188,8 +190,10 @@ public class PlatformShareManager {
 		} else if (name.equals(Telegram.NAME)) {
 			TelegramShare telegramShare = new TelegramShare(platformActionListener);
 			telegramShare.shareText();
-		}
-		 else {
+		} else if (name.equals(Wework.NAME)) {
+			WeworkShare weworkShare = new WeworkShare(platformActionListener);
+			weworkShare.shareText();
+		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
 			shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
@@ -312,6 +316,9 @@ public class PlatformShareManager {
 		} else if (name.equals(YixinMoments.NAME)) {
 			YixinMomentsShare wechatShare = new YixinMomentsShare(platformActionListener);
 			wechatShare.shareImage();
+		} else if (name.equals(Wework.NAME)) {
+			WeworkShare weworkShare = new WeworkShare(platformActionListener);
+			weworkShare.shareImage(activity);
 		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
@@ -326,7 +333,7 @@ public class PlatformShareManager {
 		}
 	}
 
-	public void shareWebPager(String name) {
+	public void shareWebPager(String name, Activity activity) {
 		if (name.equals(Alipay.NAME)) {
 			AlipayShare alipay = new AlipayShare(platformActionListener);
 			alipay.shareWebPage();
@@ -351,6 +358,9 @@ public class PlatformShareManager {
 		} else if (name.equals(WechatMoments.NAME)) {
 			WechatMomentsShare wechatShare = new WechatMomentsShare(platformActionListener);
 			wechatShare.shareWebpager();
+		} else if (name.equals(WechatFavorite.NAME)) {
+			WechatFavoriteShare wechatFavoriteShare = new WechatFavoriteShare(platformActionListener);
+			wechatFavoriteShare.shareWebpager();
 		} else if (name.equals(Yixin.NAME)) {
 			YixinShare wechatShare = new YixinShare(platformActionListener);
 			wechatShare.shareWebPager();
@@ -363,8 +373,10 @@ public class PlatformShareManager {
 		} else if (name.equals(LinkedIn.NAME)) {
 			LinkedinShare linkedinShare = new LinkedinShare(platformActionListener);
 			linkedinShare.shareWebPage();
-		}
-		else {
+		} else if (name.equals(Wework.NAME)) {
+			WeworkShare weworkShare = new WeworkShare(platformActionListener);
+			weworkShare.shareWebPage();
+		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
 			shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
@@ -435,6 +447,9 @@ public class PlatformShareManager {
 		} else if (name.equals(Douyin.NAME)) {
 			DouyinShare douyinShare = new DouyinShare(platformActionListener);
 			douyinShare.shareVideo(activity);
+		} else if (name.equals(Wework.NAME)) {
+			WeworkShare weworkShare = new WeworkShare(platformActionListener);
+			weworkShare.shareVideo(activity);
 		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
@@ -447,7 +462,7 @@ public class PlatformShareManager {
 		}
 	}
 
-	public void shareFile(String name) {
+	public void shareFile(String name, Activity activity) {
 		if (name.equals(Dropbox.NAME)) {
 			DropboxShare dropboxShare = new DropboxShare(platformActionListener);
 			dropboxShare.shareFile();
@@ -460,6 +475,9 @@ public class PlatformShareManager {
 		} else if (name.equals(WechatFavorite.NAME)) {
 			WechatFavoriteShare wechatFavoriteShare = new WechatFavoriteShare(platformActionListener);
 			wechatFavoriteShare.shareFile();
+		} else if (name.equals(Wework.NAME)) {
+			WeworkShare weworkShare = new WeworkShare(platformActionListener);
+			weworkShare.shareFile(activity);
 		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();

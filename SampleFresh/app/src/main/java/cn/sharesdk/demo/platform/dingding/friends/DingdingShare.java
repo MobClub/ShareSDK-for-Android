@@ -9,6 +9,8 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 
+import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
+
 /**
  * Created by yjin on 2017/6/22.
  */
@@ -51,7 +53,7 @@ public class DingdingShare {
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
+		shareParams.setUrl(LINK_URL);
 		shareParams.setShareType(Platform.SHARE_WEBPAGE);
 		shareParams.setScence(0);
 		platform.setPlatformActionListener(platformActionListener);
