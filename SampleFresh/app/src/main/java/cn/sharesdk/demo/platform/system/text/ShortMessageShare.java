@@ -27,7 +27,7 @@ public class ShortMessageShare {
 		Platform platform = ShareSDK.getPlatform(ShortMessage.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-			shareParams.setText("http://ahmn.t4m.cn/ziqMNf " +"Share+Link 重磅上线！一键实现分享闭环！错过它，就错过了全世界~  ahmn.t4m.cn/ziqMNf 点击立即使用");
+			shareParams.setText("http://ahmn.t4m.cn/ziqMNf " +"loopShare 重磅上线！一键实现分享闭环！错过它，就错过了全世界~  ahmn.t4m.cn/ziqMNf 点击立即使用");
 //			shareParams.setText(LINK_URL);
 		} else {
 			shareParams.setText(LINK_URL);

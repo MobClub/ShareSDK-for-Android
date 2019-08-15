@@ -26,11 +26,13 @@ android {
     }
     defaultConfig {
         applicationId "cn.sharesdk.demo"
-        minSdkVersion 19
+        //applicationId 'com.tencent.sample'
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 78
-        versionName "3.4.1"
+        versionName "3.6.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //multiDexEnabled true 分包
     }
 
 
@@ -39,14 +41,16 @@ android {
             debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            //signingConfig signingConfigs.release
+            signingConfig signingConfigs.debug
         }
 
         debug {
             debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            //signingConfig signingConfigs.release
+            signingConfig signingConfigs.debug
         }
     }
 
@@ -60,6 +64,88 @@ android {
         disable 'InconsistentArrays', 'DefaultLocale', 'OldTargetApi', 'GradleOverrides', 'MissingTranslation', 'UnusedResources', 'GoogleAppIndexingWarning'
     }
 
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+    //测试QQ小程序专用
+    /*signingConfigs {
+        debug {
+            storeFile file('debug.keystore')
+        }
+        release {
+            storeFile file('debug.keystore')
+        }
+    }*/
+
+}
+
+configurations.all {
+
+    /*exclude group: 'com.mob', module: 'MobTools'
+    exclude group: 'com.mob', module: 'MobGUI'
+    exclude group: 'com.mob', module: 'MobCommons'
+//  exclude group: 'com.mob', module: 'SDKWrapper'
+
+    exclude group: 'cn.sharesdk', module: 'ShareSDK'
+    exclude group: 'cn.sharesdk', module: 'OneKeyShare'
+
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Accountkit'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Alipay'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Alipay-Core'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Alipay-Moments'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Cmcc'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Dingding'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Douban'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Douyin'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Douyin-Core'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Dropbox'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Email'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Evernote'
+
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Facebook'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-FacebookMessenger'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Flickr'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Foursquare'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-GooglePlus'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Instagram'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Instapaper'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-KaiXin'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Kakao-Core'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-KakaoStory'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-KakaoTalk'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Line'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Linkedin'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Meipai'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Mingdao'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Pinterest'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Pocket'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-QQ'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-QZone'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Reddit'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Renren'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-ShortMessage'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-SinaWeibo'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Telecom'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Telegram'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-TencentWeibo'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Tumblr'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Twitter'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-VKontakte'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Wechat'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Wechat-Core'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Wechat-Favorite'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Wechat-Moments'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-WhatsApp'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Yixin'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Yixin-Core'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Yixin-Moments'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-YouDao'
+   exclude group: 'cn.sharesdk', module: 'ShareSDK-Youtube'
+   exclude group: 'cn.sharesdk', module: ' ShareSDK-Cmcc'*/
 }
 
 dependencies {
@@ -76,4 +162,61 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.0'
     implementation 'com.shizhefei:LargeImageView:1.0.9'
 
+
+    //implementation(name: 'MobLink-3.0.2', ext: 'aar')
+
+    /* implementation(name: 'ShareSDK-3.6.0', ext: 'aar')
+    implementation(name: 'OneKeyShare-3.6.0', ext: 'aar')
+
+                                compile files('libs/ShareSDK-Accountkit-3.6.0.jar')
+                                compile files('libs/ShareSDK-Alipay-3.6.0.jar')
+                                compile files('libs/ShareSDK-Alipay-Core-3.6.0.jar')
+                                compile files('libs/ShareSDK-Alipay-Moments-3.6.0.jar')
+                                compile files('libs/ShareSDK-Cmcc-3.6.0.jar')
+                                compile files('libs/ShareSDK-Dingding-3.6.0.jar')
+                                compile files('libs/ShareSDK-Douban-3.6.0.jar')
+                                compile files('libs/ShareSDK-Douyin-3.6.0.jar')
+                                compile files('libs/ShareSDK-Douyin-Core-3.6.0.jar')
+                                compile files('libs/ShareSDK-Dropbox-3.6.0.jar')
+                                compile files('libs/ShareSDK-Email-3.6.0.jar')
+                                compile files('libs/ShareSDK-Evernote-3.6.0.jar')
+                                compile files('libs/ShareSDK-Facebook-3.6.0.jar')
+                                compile files('libs/ShareSDK-FacebookMessenger-3.6.0.jar')
+                                compile files('libs/ShareSDK-Flickr-3.6.0.jar')
+                                compile files('libs/ShareSDK-Foursquare-3.6.0.jar')
+                                compile files('libs/ShareSDK-GooglePlus-3.6.0.jar')
+                                compile files('libs/ShareSDK-Instagram-3.6.0.jar')
+                                compile files('libs/ShareSDK-Instapaper-3.6.0.jar')
+                                compile files('libs/ShareSDK-KaiXin-3.6.0.jar')
+                                compile files('libs/ShareSDK-Kakao-Core-3.6.0.jar')
+                                compile files('libs/ShareSDK-KakaoStory-3.6.0.jar')
+                                compile files('libs/ShareSDK-KakaoTalk-3.6.0.jar')
+                                compile files('libs/ShareSDK-Line-3.6.0.jar')
+                                compile files('libs/ShareSDK-Linkedin-3.6.0.jar')
+                                compile files('libs/ShareSDK-Meipai-3.6.0.jar')
+                                compile files('libs/ShareSDK-Mingdao-3.6.0.jar')
+                                compile files('libs/ShareSDK-Pinterest-3.6.0.jar')
+                                compile files('libs/ShareSDK-Pocket-3.6.0.jar')
+                                compile files('libs/ShareSDK-QQ-3.6.0.jar')
+                                compile files('libs/ShareSDK-QZone-3.6.0.jar')
+                                compile files('libs/ShareSDK-Reddit-3.6.0.jar')
+                                compile files('libs/ShareSDK-Renren-3.6.0.jar')
+                                compile files('libs/ShareSDK-ShortMessage-3.6.0.jar')
+                                compile files('libs/ShareSDK-SinaWeibo-3.6.0.jar')
+                                compile files('libs/ShareSDK-Telecom-3.6.0.jar')
+                                compile files('libs/ShareSDK-Telegram-3.6.0.jar')
+                                compile files('libs/ShareSDK-TencentWeibo-3.6.0.jar')
+                                compile files('libs/ShareSDK-Tumblr-3.6.0.jar')
+                                compile files('libs/ShareSDK-Twitter-3.6.0.jar')
+                                compile files('libs/ShareSDK-VKontakte-3.6.0.jar')
+                                compile files('libs/ShareSDK-Wechat-3.6.0.jar')
+                                compile files('libs/ShareSDK-Wechat-Core-3.6.0.jar')
+                                compile files('libs/ShareSDK-Wechat-Favorite-3.6.0.jar')
+                                compile files('libs/ShareSDK-Wechat-Moments-3.6.0.jar')
+                                compile files('libs/ShareSDK-WhatsApp-3.6.0.jar')
+                                compile files('libs/ShareSDK-Yixin-3.6.0.jar')
+                                compile files('libs/ShareSDK-Yixin-Core-3.6.0.jar')
+                                compile files('libs/ShareSDK-Yixin-Moments-3.6.0.jar')
+                                compile files('libs/ShareSDK-YouDao-3.6.0.jar')*/
 }
+

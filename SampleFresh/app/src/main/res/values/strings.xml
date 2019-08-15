@@ -26,8 +26,8 @@
     <string name="item_title_txt_catagory_system">系统平台</string>
     <string name="sensor_shark_off_show_txt">摇动一下你的手机</string>
     <string name="share_platform_name">分享到</string>
-    <string name="item_txt_announcement">好消息：Linkcard 重磅上线！错过它，就错过了全世界...</string>
-    <string name="item_txt_link_announcement">好消息：Share+Link 重磅上线！一键实现分享闭环！错过它，就错过了全世界~</string>
+    <string name="item_txt_announcement">好消息：loopShare 重磅上线！错过它，就错过了全世界...</string>
+    <string name="item_txt_link_announcement">好消息：loopShare 重磅上线！一键实现分享闭环！错过它，就错过了全世界~</string>
 
     <!-- SDK TAGS -->
     <string name="tab_menu_alert">首页</string>
@@ -88,6 +88,7 @@
     <string name="platform_share_emoji">分享表情</string>
     <string name="platform_share_mini_app">分享微信小程序</string>
     <string name="platform_share_linkcard">分享LinkCard</string>
+    <string name="platform_share_qqmini">分享QQ小程序</string>
     <string name="title_activity_tags_item">TagsItemActivity</string>
 
     <!-- TODO: Remove or change this placeholder text -->

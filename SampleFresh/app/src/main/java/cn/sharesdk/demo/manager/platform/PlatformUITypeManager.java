@@ -79,6 +79,9 @@ public class PlatformUITypeManager {
 			case Platform.SHARE_LINKCARD: {
 				return R.string.platform_share_linkcard;
 			}
+			case Platform.QQ_MINI_PROGRAM: {
+				return R.string.platform_share_qqmini;
+			}
 			default: {
 				return R.string.platform_share_webpage;
 			}

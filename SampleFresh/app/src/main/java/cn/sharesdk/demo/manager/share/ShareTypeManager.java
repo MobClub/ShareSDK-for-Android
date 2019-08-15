@@ -40,45 +40,41 @@ public class ShareTypeManager {
         switch (platform) {
             case Platform.SHARE_TEXT: {
                 shareText();
-            }
-            break;
+            } break;
             case Platform.SHARE_VIDEO: {
                 shareVideo(activity);
-            }
-            break;
+            } break;
             case Platform.SHARE_IMAGE: {
                 shareImage(activity);
-            }
-            break;
+            } break;
             case Platform.SHARE_APPS: {
                 shareApp();
-            }
-            break;
+            } break;
             case Platform.SHARE_FILE: {
                 shareFiles(activity);
-            }
-            break;
+            } break;
             case Platform.SHARE_EMOJI: {
                 shareEmoji();
-            }
-            break;
+            } break;
             case Platform.SHARE_WXMINIPROGRAM: {
                 shareMiniProgram();
-            }
-            break;
+            } break;
             case Platform.SHARE_WEBPAGE: {
                 shareWebPage(activity);
-            }
-            break;
+            } break;
             case Platform.SHARE_MUSIC: {
                 shareMusic();
-            }
-            break;
+            } break;
 
             case Platform.SHARE_LINKCARD: {
                 shareLinkCard();
-            }
-            break;
+            } break;
+
+            case Platform.QQ_MINI_PROGRAM: {
+                shareQQMiniProgram(activity);
+            } break;
+
+
         }
     }
 
@@ -138,6 +134,15 @@ public class ShareTypeManager {
         PlatformShareManager platformShareManager = new PlatformShareManager();
         platformShareManager.setPlatformActionListener(myPlatformActionListener);
         platformShareManager.shareLinkCard(platform.getName());
+    }
+
+    /**
+     * share QQ mini program
+     * **/
+    public void shareQQMiniProgram(Activity activity) {
+        PlatformShareManager platformShareManager = new PlatformShareManager();
+        platformShareManager.setPlatformActionListener(myPlatformActionListener);
+        platformShareManager.shareQQMiniProgram(platform.getName(), activity);
     }
 
 

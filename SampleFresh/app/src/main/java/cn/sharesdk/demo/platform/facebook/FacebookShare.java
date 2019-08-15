@@ -1,5 +1,7 @@
 package cn.sharesdk.demo.platform.facebook;
 
+import android.util.Log;
+
 import com.mob.MobSDK;
 
 import cn.sharesdk.demo.entity.ResourcesManager;
@@ -27,6 +29,7 @@ public class FacebookShare {
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+		Log.e("XXX", "PATH===> " + ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
 		shareParams.setImageUrl("https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);

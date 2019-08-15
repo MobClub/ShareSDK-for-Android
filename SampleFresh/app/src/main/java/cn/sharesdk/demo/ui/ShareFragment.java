@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -98,6 +99,8 @@ public class ShareFragment extends BaseFragment implements CallBackShotImageView
 		adapter.setActivity(getActivity());
 		listView.setAdapter(adapter);
 		listView.setItemAnimator(new DefaultItemAnimator());
+
+		Log.e(MainActivity.TAG, "ShareFragment  initView()");
 	}
 
 	public void initData() {
@@ -117,6 +120,8 @@ public class ShareFragment extends BaseFragment implements CallBackShotImageView
 		lists.addAll(PlatformMananger.getInstance(getContext()).getList());
 		lists.add(ShareInEntityManager.createSystem(getContext()));
 		lists.addAll(PlatformMananger.getInstance(getContext()).getSystemList());
+
+		Log.e(MainActivity.TAG, "ShareFragment  initData()");
 	}
 
 	private void screenshot() {
@@ -138,12 +143,14 @@ public class ShareFragment extends BaseFragment implements CallBackShotImageView
 				os.close();
 				setImageView(filePath, bmp);
 			} catch (Exception e) {
+
 			}
 		}
 	}
 
 	@Override
 	public int getLayoutId() {
+		Log.e(MainActivity.TAG, "ShareFragment  getLayoutId()");
 		return R.layout.share_framgnent;
 	}
 
@@ -179,6 +186,7 @@ public class ShareFragment extends BaseFragment implements CallBackShotImageView
 	@Override
 	public void onRefresh(String url) {
 		setImageView(url, null);
+		Log.e(MainActivity.TAG, "ShareFragment  onRefresh()");
 	}
 
 	@Override
@@ -217,6 +225,8 @@ public class ShareFragment extends BaseFragment implements CallBackShotImageView
 			screenshot();
 			thumbLayout.setVisibility(View.VISIBLE);
 			sernorLayout.setVisibility(View.GONE);
+
+			Log.e(MainActivity.TAG, "ShareFragment  onShark()");
 		}
 	}
 

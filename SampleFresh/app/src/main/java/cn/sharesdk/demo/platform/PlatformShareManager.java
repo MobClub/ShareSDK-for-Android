@@ -538,5 +538,16 @@ public class PlatformShareManager {
 		}
 	}
 
+	public void shareQQMiniProgram(String name, Activity activity) {
+		if (name.equals(QQ.NAME)) {
+			QQShare qqShare = new QQShare(platformActionListener);
+			qqShare.shareQQMiniProgram();
+		}
+		if (name.equals(QZone.NAME)) {
+			QQZoneShare qqZoneShare = new QQZoneShare(platformActionListener);
+			qqZoneShare.shareQQMiniProgram(activity);
+		}
+	}
+
 
 }

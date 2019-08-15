@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import cn.sharesdk.demo.App;
+import cn.sharesdk.demo.MainActivity;
 import cn.sharesdk.demo.R;
 import cn.sharesdk.demo.UriUtil;
 import cn.sharesdk.demo.adapter.SharePlatformAdapter;
@@ -64,6 +66,7 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 
 	@Override
 	public int getLayoutId() {
+		Log.e(MainActivity.TAG, " SharePlatformTypeActivity getLayoutId()");
 		return R.layout.share_platform_type_activity;
 	}
 
@@ -84,6 +87,7 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 		adapter.setOnClickItemListener(this);
 		recyclerView.setAdapter(adapter);
 		context = this;
+		Log.e(MainActivity.TAG, " SharePlatformTypeActivity initView()");
 	}
 
 	@Override
@@ -107,25 +111,27 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 				}
 			}
 		}
+		Log.e(MainActivity.TAG, " SharePlatformTypeActivity initData()");
 	}
 
 	protected BasePresenter createPresenter() {
+		Log.e(MainActivity.TAG, " SharePlatformTypeActivity createPresenter()");
 		return new SharePlatformPresenter();
 	}
 
 	@Override
 	public void showLoad() {
-
+		Log.e(MainActivity.TAG, " SharePlatformTypeActivity showLoad()");
 	}
 
 	@Override
 	public void cancelLoad() {
-
+		Log.e(MainActivity.TAG, " SharePlatformTypeActivity cancelLoad()");
 	}
 
 	@Override
 	public void refreshResult(BaseEntity baseEntity) {
-
+		Log.e(MainActivity.TAG, " SharePlatformTypeActivity refreshResult()");
 	}
 
 	@Override
@@ -133,12 +139,15 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 		if (v.getId() == R.id.mReback) {
 			finish();
 		}
+		Log.e(MainActivity.TAG, " SharePlatformTypeActivity onClick()");
 	}
 
 	@Override
 	public void onItemClick(int platformCode) {
 		Platform platform = App.getInstance().getPlatformList().get(0);
 		if (platform != null) {
+			Log.e(MainActivity.TAG, " SharePlatformTypeActivity onItemClick()");
+
 			ShareTypeManager shareManager = new ShareTypeManager(this, platform);
 			shareManager.shareShow(platformCode, this);
 		}
@@ -277,4 +286,45 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 		}
 	}
 
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		Log.e(MainActivity.TAG, " SharePlatformTypeActivity onCreate()");
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		Log.e(MainActivity.TAG, " SharePlatformTypeActivity onStart()");
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Log.e(MainActivity.TAG, " SharePlatformTypeActivity onResume()");
+	}
+
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+		Log.e(MainActivity.TAG, " SharePlatformTypeActivity onRestart()");
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		Log.e(MainActivity.TAG, " SharePlatformTypeActivity onPause()");
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		Log.e(MainActivity.TAG, " SharePlatformTypeActivity onStop()");
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		Log.e(MainActivity.TAG, " SharePlatformTypeActivity onDestroy()");
+	}
 }

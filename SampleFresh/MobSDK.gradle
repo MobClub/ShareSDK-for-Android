@@ -50,6 +50,16 @@ MobSDK {
                 enable true
             }
 
+            //分享QQ小程序专用
+            /*QZone {
+                id 3
+                sortId 3
+                appId "222222"
+                appKey "aed9b0303e3ed1e27bae87c33761161d"
+                shareByAppClient true
+                bypassApproval false
+                enable true
+            }*/
 
                   /* Wechat微信和WechatMoments微信朋友圈的appid是一样的；
 
@@ -103,6 +113,17 @@ MobSDK {
                 bypassApproval false
                 enable true
             }
+
+            //分享小程序专用
+            /*QQ {
+                id 7
+                sortId 7
+                appId "222222"
+                appKey "aed9b0303e3ed1e27bae87c33761161d"
+                shareByAppClient false
+                bypassApproval false
+                enable true
+            }*/
 
             Facebook {
                 id 8

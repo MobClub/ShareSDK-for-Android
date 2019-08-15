@@ -1,6 +1,11 @@
 package cn.sharesdk.demo.platform.tencent.qzone;
 
+import android.app.Activity;
+import android.util.Log;
+
 import com.mob.MobSDK;
+
+import java.util.HashMap;
 
 import cn.sharesdk.demo.entity.ResourcesManager;
 import cn.sharesdk.demo.utils.DemoUtils;
@@ -111,6 +116,22 @@ public class QQZoneShare {
 		shareParams.setFilePath(ResourcesManager.getInstace(MobSDK.getContext()).getFilePath());
 		shareParams.setShareType(Platform.SHARE_VIDEO);
 		platform.setPlatformActionListener(mListener);
+		platform.share(shareParams);
+	}
+
+	public void shareQQMiniProgram(Activity activity) {
+		Platform platform = ShareSDK.getPlatform(QZone.NAME);
+		Platform.ShareParams shareParams = new Platform.ShareParams();
+		shareParams.setText("QQ小程序");
+		shareParams.setTitle("QQ互联");
+		shareParams.setTitleUrl("http://www.qq.com/");
+		shareParams.setImageUrl("http://www.3wyu.com/wp-content/uploads/6e0eaf15gy1fvr5tnm2dfj20f108gtad.jpg");
+		shareParams.setShareType(Platform.QQ_MINI_PROGRAM);
+		shareParams.setQQMiniProgramAppid("1108318575");
+		shareParams.setQQMiniProgramPath("page/share/index.html?share_name=QQ%E9%9F%B3%E4%B9%90&share_key=5aIqFGg&from=disk");
+		shareParams.setQQMiniProgramType("");
+		ShareSDK.setActivity(activity);
+		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
 	}
 

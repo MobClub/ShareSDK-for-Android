@@ -2,11 +2,11 @@
 
 buildscript {
     repositories {
-        jcenter()
         maven {
-			url "http://mvn.mob.com/android"
-            //url "http://10.18.97.47:8080/jenkins/job/iMaven/ws/android/"
+            //url "http://mvn.mob.com/android"
+            url "http://10.18.97.47:8080/jenkins/job/iMaven/ws/android/"
         }
+        jcenter()
         maven { url "https://maven.google.com" }
         google()
     }
@@ -19,19 +19,23 @@ buildscript {
 
     configurations.all {
         resolutionStrategy.cacheDynamicVersionsFor 1, 'seconds'
-        exclude group: 'com.mob', module: 'MobLink-3.0.2'
+        //exclude group: 'com.mob', module: 'MobLink-3.0.2'
     }
 }
 
 allprojects {
     repositories {
-        jcenter()
         maven {
-            url "http://mvn.mob.com/android"
-            //url "http://10.18.97.47:8080/jenkins/job/iMaven/ws/android/"
+            //url "http://mvn.mob.com/android"
+            url "http://10.18.97.47:8080/jenkins/job/iMaven/ws/android/"
         }
+        jcenter()
         maven { url "https://maven.google.com" }
         google()
+    }
+    configurations.all {
+        resolutionStrategy.cacheDynamicVersionsFor 1, 'seconds'
+        //exclude group: 'com.mob', module: 'MobLink-3.0.2'
     }
 }
 

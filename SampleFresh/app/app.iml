@@ -91,7 +91,6 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javaPrecompile" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/lint" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/prebuild" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
@@ -109,100 +108,100 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 28 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Reddit:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Douyin-Core:3.6.4@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="com.android.support.test:exposed-instrumentation-api-publish-0.5" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-KaiXin:3.6.4@jar" level="project" />
     <orderEntry type="library" name="com.google.code.gson:gson:2.8.0@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-VKontakte:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Email:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="com.mob:MobGUI:2019.0709.1621@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Douban:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Facebook:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Youtube:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Instapaper:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Wechat-Core:3.6.4@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="com.squareup:javawriter:2.1.1@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-ShortMessage:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Cmcc:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Wechat-Core:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Pocket:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Line:3.6.2@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Renren:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-YouDao:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Flickr:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="com.mob:MobCommons:2019.0726.1941@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Tumblr:3.6.4@jar" level="project" />
     <orderEntry type="library" name="com.github.bumptech.glide:gifdecoder:4.0.0-RC1@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-WhatsApp:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-SinaWeibo:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-KakaoStory:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-GooglePlus:3.6.2@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-VKontakte:3.6.4@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-fragment-25.4.0" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Foursquare:3.6.2@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="com.google.code.findbugs:jsr305:2.0.1@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Linkedin:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Alipay-Core:3.6.4@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="org.hamcrest:hamcrest-core:1.3@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Meipai:3.6.2@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="com.android.support.test.espresso:espresso-core-2.2.2" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Mingdao:3.6.4@jar" level="project" />
     <orderEntry type="library" name="com.android.support:animated-vector-drawable-25.4.0" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Douban:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Facebook:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Youtube:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Wechat:3.6.2@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-QQ-Core:3.6.4@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="com.android.support.test:rules-0.5" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Douyin-Core:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="com.mob:MobLink-3.3.0" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Wework-Core:3.6.4@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="org.hamcrest:hamcrest-integration:1.3@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-3.6.2" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Flickr:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Alipay:3.6.2@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-3.6.4" level="project" />
     <orderEntry type="library" name="com.android.support:appcompat-v7-25.4.0" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Kakao-Core:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Alipay-Moments:3.6.2@jar" level="project" />
+    <orderEntry type="library" name="com.mob:MobGUI:2019.0306.1850@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Instagram:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Cmcc:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Twitter:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Dingding:3.6.4@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="com.android.support.test.espresso:espresso-idling-resource-2.2.2" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-YouDao:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-KakaoTalk:3.6.2@jar" level="project" />
     <orderEntry type="library" name="com.github.bumptech.glide:glide:4.0.0-RC1@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Pocket:3.6.4@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="javax.annotation:javax.annotation-api:1.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Douyin:3.6.2@jar" level="project" />
     <orderEntry type="library" name="com.alibaba:fastjson:1.2.54@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Dropbox:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Yixin:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Wework-Core:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Accountkit:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Evernote:3.6.2@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Pinterest:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Wechat-Moments:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Douyin:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Telecom:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Alipay:3.6.4@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="junit:junit:4.12@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Instagram:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Wework:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Linkedin:3.6.2@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Meipai:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-QQ:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Yixin-Core:3.6.4@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="javax.inject:javax.inject:1@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-core-ui-25.4.0" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Wechat:3.6.4@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-compat-25.4.0" level="project" />
-    <orderEntry type="library" name="com.mob:MobCommons:2019.0725.2126@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Twitter:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Yixin-Core:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Yixin-Moments:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:OneKeyShare-3.6.2" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Telegram:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-KakaoTalk:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Evernote:3.6.4@jar" level="project" />
     <orderEntry type="library" name="com.github.bumptech.glide:annotations:4.0.0-RC1@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Mingdao:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Dingding:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Wechat-Favorite:3.6.2@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:OneKeyShare-3.6.4" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Accountkit:3.6.4@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-annotations:25.4.0@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-core-utils-25.4.0" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Pinterest:3.6.2@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Alipay-Moments:3.6.4@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-v4-25.4.0" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Wechat-Moments:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Alipay-Core:3.6.2@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-media-compat-25.4.0" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Dropbox:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Yixin:3.6.4@jar" level="project" />
     <orderEntry type="library" name="com.android.support.constraint:constraint-layout-1.1.3" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-QQ:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Instapaper:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-KaiXin:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-QZone:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Telecom:3.6.2@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Email:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-TencentWeibo:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-SinaWeibo:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-KakaoStory:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-FacebookMessenger:3.6.4@jar" level="project" />
     <orderEntry type="library" name="com.mob:MobTools:2019.0709.1621@jar" level="project" />
     <orderEntry type="library" name="com.android.support:design-25.4.0" level="project" />
     <orderEntry type="library" name="com.android.support:transition-25.4.0" level="project" />
     <orderEntry type="library" name="com.shizhefei:LargeImageView-1.0.9" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Kakao-Core:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Wework:3.6.4@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="org.hamcrest:hamcrest-library:1.3@jar" level="project" />
     <orderEntry type="library" name="com.mob:SDKWrapper:2018.0801.1824@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Reddit:3.6.2@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-ShortMessage:3.6.4@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="com.android.support.test:runner-0.5" level="project" />
     <orderEntry type="library" name="com.android.support.constraint:constraint-layout-solver:1.1.3@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Tumblr:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-FacebookMessenger:3.6.2@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-WhatsApp:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Line:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-QZone:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Foursquare:3.6.4@jar" level="project" />
     <orderEntry type="library" name="com.github.bumptech.glide:disklrucache:4.0.0-RC1@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Renren:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Telegram:3.6.2@jar" level="project" />
-    <orderEntry type="library" name="cn.sharesdk:ShareSDK-TencentWeibo:3.6.2@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-GooglePlus:3.6.4@jar" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Yixin-Moments:3.6.4@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-vector-drawable-25.4.0" level="project" />
+    <orderEntry type="library" name="cn.sharesdk:ShareSDK-Wechat-Favorite:3.6.4@jar" level="project" />
     <orderEntry type="library" name="com.android.support:recyclerview-v7-25.4.0" level="project" />
   </component>
 </module>

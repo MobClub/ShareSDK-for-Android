@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 	private String[] titles = {MobSDK.getContext().getString(R.string.share_title_share_txt),
 			MobSDK.getContext().getString(R.string.share_title_authorizon_txt),
 			MobSDK.getContext().getString(R.string.share_title_userinfo_txt)};
+	public static final String TAG = "ShareSDK";
 
 	public int getLayoutId() {
 		return R.layout.activity_main;
@@ -70,6 +72,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 		viewPager.setOnPageChangeListener(this);
 		viewPager.setOffscreenPageLimit(3);
 		getPermission(this);
+		Log.e(TAG, " initView() ");
+
 	}
 
 	private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -125,6 +129,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		initScreenShotListener();
+		Log.e(TAG, " onCreate() ");
 	}
 
 	@Override
@@ -141,26 +146,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 		fragmentList.add(userInfoFragment);
 		shakeListener = new ShakeListener(this);
 		shakeListener.setOnShakeListener(new UOnShakeListener());
+		Log.e(TAG, " initData() ");
 	}
-
-/*	*//**
-	 * link场景还原的监听处理
-	 * **//*
-	@Override
-	public Class<? extends Activity> willRestoreScene(Scene scene) {
-		Log.e("QQQ", " willRestoreScene ");
-		return ShareMobLinkActivity.class;
-	}
-
-	@Override
-	public void completeRestore(Scene scene) {
-		Log.e("QQQ", " completeRestore ");
-	}
-
-	@Override
-	public void notFoundScene(Scene scene) {
-		Log.e("QQQ", " notFoundScene ");
-	}*/
 
 	private class UOnShakeListener implements ShakeListener.OnShakeListener {
 		@Override
@@ -180,6 +167,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 	public void initResources() {
 		resourceManager();
 		platformManager();
+		Log.e(TAG, " initResources() ");
 	}
 
 	private void resourceManager() {
@@ -197,22 +185,22 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
 	@Override
 	public void showLoad() {
-
+		Log.e(TAG, " showLoad() ");
 	}
 
 	@Override
 	public void cancelLoad() {
-
+		Log.e(TAG, " cancelLoad() ");
 	}
 
 	@Override
 	public void refreshResult(BaseEntity baseEntity) {
-
+		Log.e(TAG, " refreshResult() ");
 	}
 
 	@Override
 	public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+		Log.e(TAG, " onPageScrolled() ");
 	}
 
 	@Override
@@ -242,19 +230,39 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
 	@Override
 	public void onPageScrollStateChanged(int state) {
-
+		Log.e(TAG, " onPageScrollStateChanged() ");
 	}
 
 	@Override
 	protected void onStart() {
 		super.onStart();
 		manager.startListen();
+		Log.e(TAG, " onStart() ");
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Log.e(TAG, " onStart() ");
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		Log.e(TAG, " onStart() ");
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		Log.e(TAG, " onStart() ");
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		manager.stopListen();
+		Log.e(TAG, " onDestroy() ");
 	}
 
 	private void initScreenShotListener() {
