@@ -3,8 +3,7 @@
 buildscript {
     repositories {
         maven {
-            //url "http://mvn.mob.com/android"
-            url "http://10.18.97.47:8080/jenkins/job/iMaven/ws/android/"
+            url "http://mvn.mob.com/android"
         }
         jcenter()
         maven { url "https://maven.google.com" }
@@ -27,7 +26,6 @@ allprojects {
     repositories {
         maven {
             //url "http://mvn.mob.com/android"
-            url "http://10.18.97.47:8080/jenkins/job/iMaven/ws/android/"
         }
         jcenter()
         maven { url "https://maven.google.com" }
