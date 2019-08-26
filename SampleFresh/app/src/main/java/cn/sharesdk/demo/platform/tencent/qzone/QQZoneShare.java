@@ -1,11 +1,8 @@
 package cn.sharesdk.demo.platform.tencent.qzone;
 
 import android.app.Activity;
-import android.util.Log;
 
 import com.mob.MobSDK;
-
-import java.util.HashMap;
 
 import cn.sharesdk.demo.entity.ResourcesManager;
 import cn.sharesdk.demo.utils.DemoUtils;
@@ -33,9 +30,11 @@ public class QQZoneShare {
 	public void shareText(){
 		Platform platform = ShareSDK.getPlatform(QZone.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
-		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
-		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
+		shareParams.setText("Share SDK QQ空间文字分享");
+		/*shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		shareParams.setTitleUrl(ResourcesManager.getInstace(MobSDK.getContext()).getTitleUrl());
+		shareParams.setSite(ResourcesManager.getInstace(MobSDK.getContext()).getText());
+		shareParams.setSiteUrl(ResourcesManager.getInstace(MobSDK.getContext()).getTitleUrl());*/
 		platform.setPlatformActionListener(platformActionListener);
 		shareParams.setShareType(Platform.SHARE_TEXT);
 		platform.share(shareParams);
