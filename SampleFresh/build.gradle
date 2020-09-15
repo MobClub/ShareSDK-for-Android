@@ -26,14 +26,15 @@ mavenUrl = "http://mvn.mob.com/android"
 if (hasProperty("mavenUrl")) {
     mavenUrl = getProperty("mavenUrl")
 }
+println "mavenUrl: ${mavenUrl}"
 allprojects {
     repositories {
-        maven {
-            url mavenUrl
-        }
         jcenter()
         maven { url "https://maven.google.com" }
         google()
+        maven {
+            url mavenUrl
+        }
     }
     configurations.all {
         resolutionStrategy.cacheDynamicVersionsFor 1, 'seconds'
