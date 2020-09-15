@@ -22,10 +22,14 @@ buildscript {
     }
 }
 
+mavenUrl = "http://mvn.mob.com/android"
+if (hasProperty("mavenUrl")) {
+    mavenUrl = getProperty("mavenUrl")
+}
 allprojects {
     repositories {
         maven {
-            url "http://mvn.mob.com/android"
+            url mavenUrl
         }
         jcenter()
         maven { url "https://maven.google.com" }
