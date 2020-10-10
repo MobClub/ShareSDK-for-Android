@@ -9,6 +9,7 @@ try {
     }
 } catch(Throwable t) {}
 
+
 MobSDK {
 
     appKey "moba0b0c0d0"
