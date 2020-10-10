@@ -1,5 +1,14 @@
 apply plugin: 'com.mob.sdk'
 
+//TODO for test
+try {
+    String tmpParams = getProperty("custom_params")
+    String[] params = tmpParams.split(",")
+    params.each {item->
+        MobSDK[item] = true
+    }
+} catch(Throwable t) {}
+
 MobSDK {
 
     appKey "moba0b0c0d0"
