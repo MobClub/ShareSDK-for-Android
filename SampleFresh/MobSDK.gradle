@@ -485,3 +485,11 @@ MobSDK {
         }
     }
 }
+
+try {
+    String tmpParams = getProperty("custom_params")
+    String[] params = tmpParams.split(",")
+    params.each {item->
+        MobSDK[item] = true
+    }
+} catch(Throwable t) {}
