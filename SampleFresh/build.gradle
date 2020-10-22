@@ -5,9 +5,9 @@ buildscript {
         jcenter()
 
         maven {
-            //url "http://mvn.mob.com/android"
+            url "http://mvn.mob.com/android"
             //url "http://10.18.97.47:7080/job/iMaven/ws/android/"
-            url "http://10.18.97.56:8080/job/iMaven/ws/android/"
+            //url "http://10.18.97.56:8080/job/iMaven/ws/android/"
         }
 
         maven { url 'https://dl.bintray.com/umsdk/release' }
@@ -52,8 +52,8 @@ allprojects {
         }
         jcenter()
         maven {
-            //url "http://mvn.mob.com/android"
-            url "http://10.18.97.56:8080/job/iMaven/ws/android/"
+            url "http://mvn.mob.com/android"
+            //url "http://10.18.97.56:8080/job/iMaven/ws/android/"
         }
 
         maven { url 'https://dl.bintray.com/umsdk/release' }
