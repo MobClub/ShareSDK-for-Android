@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_50">
+
+        <ImageView
+            android:id="@+id/head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/tags_head" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/head"
+            android:layout_marginTop="@dimen/sdk_plus_18"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/nick_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/margin_15"
+                android:text="@string/tags_nick_name"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/sdk_plus_18" />
+
+            <ImageView
+                android:id="@+id/tags_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/nick_name"
+                android:background="@drawable/gender_woman" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txt_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_35"
+        android:layout_marginLeft="@dimen/margin_25"
+        android:layout_marginRight="@dimen/margin_25"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/sdk_plus_18"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:id="@+id/people_por"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+
+            android:background="@drawable/female" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/margin_80"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@+id/people_por"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tags_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_25"
+                android:textColor="@color/gray_black"
+                android:textSize="@dimen/sdk_plus_18"
+                android:text="@string/tags_age"/>
+
+            <TextView
+                android:id="@+id/tags_edu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_25"
+                android:textColor="@color/gray_black"
+                android:textSize="@dimen/sdk_plus_18"
+                android:text="@string/tags_edu"/>
+
+            <TextView
+                android:id="@+id/tv_like_buy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_25"
+                android:textColor="@color/gray_black"
+                android:textSize="@dimen/sdk_plus_18"
+                android:text="@string/tags_like_buy"/>
+
+            <TextView
+                android:id="@+id/tv_like_moive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_25"
+                android:textColor="@color/gray_black"
+                android:textSize="@dimen/sdk_plus_18"
+                android:text="@string/tags_like_movie"/>
+
+            <TextView
+                android:id="@+id/tv_like_game"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_25"
+                android:textColor="@color/gray_black"
+                android:textSize="@dimen/sdk_plus_18"
+                android:text="@string/tags_like_game"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

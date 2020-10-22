@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    tools:context="cn.sharesdk.demo.ui.SdkTagsMainActivity">
+
+    <RelativeLayout
+        android:id="@+id/ly_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_height"
+        android:background="@color/gray_black">
+
+        <TextView
+            android:id="@+id/txt_topbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="登录"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sdk_plus_24" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:layout_alignParentBottom="true"
+            android:background="@color/div_white" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin_50"
+            android:text="用户使用第三方登录"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sdk_plus_18" />
+
+        <RelativeLayout
+            android:id="@+id/login_wechat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_50"
+            android:layout_marginRight="@dimen/margin_50"
+            android:layout_marginTop="@dimen/margin_50"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/long_recent_btn">
+
+            <ImageView
+                android:id="@+id/image_sina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/wechat" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="微信账号登录"
+                android:textColor="@color/bg_black"
+                android:textSize="@dimen/sdk_plus_18" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/login_sina"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_50"
+            android:layout_marginRight="@dimen/margin_50"
+            android:layout_marginTop="@dimen/margin_50"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/long_recent_btn">
+
+            <ImageView
+                android:id="@+id/imag_wechat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/sinaweibo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="微博账号登录"
+                android:textColor="@color/bg_black"
+                android:textSize="@dimen/sdk_plus_18" />
+
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/login_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="测试按钮"
+            android:visibility="gone" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rectangle_rounded"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center_horizontal"
+        android:padding="24dp"
+        android:text="title"
+        android:textColor="@color/bg_black"
+        android:textSize="@dimen/sdk_plus_18"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="50dp"
+        android:paddingLeft="90dp"
+        android:paddingRight="90dp"
+        android:paddingTop="40dp"
+        android:gravity="center"
+        android:lineSpacingExtra="3dp"
+        android:text="@string/title_content"
+        android:textColor="@color/bg_black"
+        android:textSize="@dimen/sdk_plus_18" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:background="@color/name_fragment_share_txt_bg"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:padding="@dimen/margin_10"
+            android:text="@string/dialog_cancel"
+            android:textColor="@color/bg_black"
+            android:textSize="@dimen/sdk_plus_18" />
+
+        <View
+            android:layout_width="0.6dp"
+            android:layout_height="match_parent"
+            android:background="@color/name_fragment_share_txt_bg"/>
+
+        <TextView
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:padding="@dimen/margin_10"
+            android:text="@string/dialog_confirm"
+            android:textColor="@color/bg_black"
+            android:textSize="@dimen/sdk_plus_18" />
+
+    </LinearLayout>
+
+</LinearLayout>

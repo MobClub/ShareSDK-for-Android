@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="snap_connect_scopes">
+        <item>https://auth.snapchat.com/oauth2/api/user.bitmoji.avatar</item>
+    </string-array>
+</resources>

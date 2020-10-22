@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_white"
+    android:orientation="vertical">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        
+        <Button
+            android:id="@+id/tags_shop"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginTop="@dimen/btn_margin_top"
+            android:layout_marginLeft="@dimen/btn_margin_left_right"
+            android:layout_marginRight="@dimen/btn_margin_left_right"
+            android:textSize="@dimen/sdk_plus_24"
+            android:textColor="@android:color/black"
+            android:text="@string/tags_shop"
+            android:background="@drawable/shape_button"
+           />
+
+        <Button
+            android:id="@+id/tags_video"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_below="@+id/tags_shop"
+            android:layout_marginLeft="@dimen/btn_margin_left_right"
+            android:layout_marginRight="@dimen/btn_margin_left_right"
+            android:layout_marginTop="@dimen/btn_margin"
+            android:textSize="@dimen/sdk_plus_24"
+            android:textColor="@android:color/black"
+            android:text="@string/tags_video"
+            android:background="@drawable/shape_button"/>
+
+        <Button
+            android:id="@+id/tags_game"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginLeft="@dimen/btn_margin_left_right"
+            android:layout_marginRight="@dimen/btn_margin_left_right"
+            android:layout_marginTop="@dimen/btn_margin"
+            android:layout_below="@+id/tags_video"
+            android:textSize="@dimen/sdk_plus_24"
+            android:textColor="@android:color/black"
+            android:text="@string/tags_game"
+            android:background="@drawable/shape_button"/>
+
+</RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,154 @@
+<resources>
+    <string name="app_name">ShareSDK</string>
+    <string name="moblink_share">分享</string>
+    <string name="moblink_back">返回</string>
+    <string name="custom_link_share">自定义分享</string>
+
+    <!--title-->
+    <string name="share_title_share_txt">分享</string>
+    <string name="share_title_authorizon_txt">授权</string>
+    <string name="share_title_userinfo_txt">用户信息</string>
+
+    <string name="copy_pasted_on">已经拷贝，请粘贴</string>
+    <string name="shot_screen_share_title">截屏分享</string>
+
+    <string name="share_content">ShareSDK for Android不仅集成简单、支持如QQ好友、微信、新浪微博、腾讯微博等所有社交平台，而且还有强大的统计分析管理后台，实时了解用户、信息流、回流率、传播效应等数据，详情见官网 http://mob.com @Mob移动开发者服务平台</string>
+    <string name="share_content_short">ShareSDK不仅集成简单、支持如微信、新浪微博、腾讯微博等平台，还有强大的统计分析管理后台，实时了解用户、信息流、回流率、传播效应等数据，详情见官网 http://mob.com @Mob移动开发者服务平台</string>
+    <string name="evenote_title">ShareSDK是一个神奇的SDK</string>
+
+    <!--<string name="ssdk_oks_share">分享</string> -->
+    <string name="share_to_format">分享到%s</string>
+    <string name="item_title_txt_catagory_yanshi">分享演示</string>
+    <string name="item_title_txt_catagory_inland">国内平台</string>
+    <string name="item_sdk_plus_tags">标签演示</string>
+    <string name="item_sdk_plus_tags_items">个性标签演示</string>
+    <string name="item_title_txt_catagory_internal">国际平台</string>
+    <string name="item_title_txt_catagory_system">系统平台</string>
+    <string name="sensor_shark_off_show_txt">摇动一下你的手机</string>
+    <string name="share_platform_name">分享到</string>
+    <string name="item_txt_announcement">好消息：loopShare 重磅上线！错过它，就错过了全世界...</string>
+    <string name="item_txt_link_announcement">好消息：loopShare 重磅上线！一键实现分享闭环！错过它，就错过了全世界~</string>
+
+    <!-- SDK TAGS -->
+    <string name="tab_menu_alert">首页</string>
+    <string name="tab_menu_setting">个人中心</string>
+    <string name="tags_shop">购物</string>
+    <string name="tags_video">视频</string>
+    <string name="tags_game">游戏</string>
+    <string name="tags_title">服装鞋包</string>
+    <string name="tags_content">热卖时尚，带你狂欢</string>
+    <string name="tags_sort">综合排序</string>
+    <string name="tags_price">价格排序</string>
+    <string name="tags_classify">分类查看</string>
+    <string name="tags_nick_name">用户昵称</string>
+
+    <string name="tags_like_type_shop">商品列表</string>
+    <string name="tags_subhead_shop">服装鞋包</string>
+    <string name="tags_describe_shop">热卖时尚，袋你狂欢</string>
+
+    <string name="tags_like_type_video">视频列表</string>
+    <string name="tags_subhead_video">吃货瞬间</string>
+    <string name="tags_describe_video">总有一个节目让你舔屏</string>
+
+    <string name="tags_like_type_game">游戏列表</string>
+    <string name="tags_subhead_game">极品飞车</string>
+    <string name="tags_describe_game">手机上的速度狂飙</string>
+
+    <string name="tags_age">18岁</string>
+    <string name="tags_edu">研究生</string>
+    <string name="tags_like_buy">母婴产品</string>
+    <string name="tags_like_movie">影视达人</string>
+    <string name="tags_like_game">体育竞速</string>
+    <string name="tags_unknown">未知</string>
+
+    <!--授权-->
+    <string name="authorization_txt">授权</string>
+    <string name="authorization_txt_delete">删除授权</string>
+    <string name="userinfo_show_copy">复制</string>
+
+    <!--用户信息-->
+    <string name="userinfo_txt">获取信息</string>
+    <string name="userinfo_show">查&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;看</string>
+
+    <string name="home_page_show_share_txt">分享</string>
+    <string name="home_page_show_author_txt">授权</string>
+    <string name="home_page_show_userinfo_txt">用户信息</string>
+
+    <string name="share_friend_txt_title">好友分享</string>
+    <string name="share_feedback_txt_title">问题反馈</string>
+
+    <!--分享类型-->
+    <string name="platform_share_text">分享文本</string>
+    <string name="platform_share_image">分享图片</string>
+    <string name="platform_share_webpage">分享链接</string>
+    <string name="platform_share_music">分享音乐</string>
+    <string name="platform_share_video">分享视频</string>
+    <string name="platform_share_app">分享应用</string>
+    <string name="platform_share_file">分享文件</string>
+    <string name="platform_share_emoji">分享表情</string>
+    <string name="platform_share_mini_app">分享微信小程序</string>
+    <string name="platform_share_linkcard">分享LinkCard</string>
+    <string name="platform_share_qqmini">分享QQ小程序</string>
+    <string name="title_activity_tags_item">TagsItemActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="announce_linkcard">LinkCard</string>
+    <string name="announce_release">重磅上线！</string>
+    <string name="announce_do_not_miss">错过它，就错过了全世界</string>
+    <string name="announce_content_1">LinkCard 是 ShareSDK 与新浪微博深度合作的产品</string>
+    <string name="announce_content_2">功能。通过LinkCard，分享在新浪微博的链接会以包</string>
+    <string name="announce_content_3">含分享内容元素的</string>
+    <string name="announce_content_4">卡片形式</string>
+    <string name="announce_content_5">展现</string>
+    <string name="announce_title_normal_link">普通链接</string>
+    <string name="announce_content_6">普通的链接在新浪微博中分享，</string>
+    <string name="announce_content_7">则只有一个文字链接展示</string>
+    <string name="announce_content_8">无展示元素，可信度低，点击率低</string>
+    <string name="announce_content_9">LinkCard 通过图片增加对于用户的视觉冲击。直截</string>
+    <string name="announce_content_10">了当得将信息传达，较于文字更具有新鲜感可以</string>
+    <string name="announce_content_11">满足不同场景</string>
+    <string name="announce_content_12">下的用户视觉需求</string>
+    <string name="announce_content_13">接入LinkCard功能后在新浪微博分享的</string>
+    <string name="announce_content_14">链接将以卡片形式展示</string>
+    <string name="announce_benefit_1">明确</string>
+    <string name="announce_benefit_2">提升点击率</string>
+    <string name="announce_benefit_3">展现内容丰富</string>
+    <string name="announce_try_it">赶紧戳下面按钮，试试看~</string>
+    <string name="announce_txt_normal">普通分享</string>
+    <string name="announce_txt_linkcard">LinkCard分享</string>
+
+    <string name="passwrod_share_text">口令分享</string>
+    <string name="passwrod_share_video">视频二维码</string>
+
+    <!-- 弹出框提示按钮 -->
+    <string name="title_content">提示</string>
+    <string name="title_result">结果</string>
+    <string name="dialog_confirm">确定</string>
+    <string name="dialog_cancel">取消</string>
+    <string name="dialog_ok">同意</string>
+
+    <!-- 隐私协议 -->
+    <string name="privacy_title">ShareSDK Demo隐私条款</string>
+    <string name="privacy_date_start">最近更新日期：2019年12月13日</string>
+    <string name="privacy_date_end">版本生效日期：2019年12月20日</string>
+    <string name="privacy_content">\u3000\u3000欢迎您使用MobTech提供的演示DEMO，ShareSDK为开发者提供的社交分享SDK，支持微信、抖音、QQ、微博、Facebook、Twitter等全球40+主流社交平台账号内的一键分享、第三方登录授权以及闭环分享服务，不仅极大地方便了您的终端用户的服务体验，更为您实时了解终端用户的分享数、回流数、意向分享等数据进行了统计分析。为了对您的闭环分享功能进行来源追溯并帮助您更精细化运营，我们将依据MobTech的《隐私政策》来帮助你了解我们需要收集哪些数据</string>
+    <string name="privacy_details">详情见</string>
+
+    <string name="mobcommon_authorize_dialog_accept">Accept</string>
+    <string name="mobcommon_authorize_dialog_content"><![CDATA[In order to provide you with Mobservice, please check our service policy. For details, please click <a href="http://www.mob.com/policy/en">http://www.mob.com/policy/en</a>. If you agree with our service policy, please click "accept", if you do not agree with our service policy, please click "reject"]]></string>
+    <string name="mobcommon_authorize_dialog_reject">Reject</string>
+    <string name="mobcommon_authorize_dialog_title">Terms of Use</string>
+    <string name="mobdemo_authorize_dialog_content"><![CDATA[为了给您提供Mobservice相关产品服务，请您详细查看我们的隐私政策，详见<a href="http://www.mob.com/about/policy">http://www.mob.com/about/policy</a>。如您同意我们的隐私政策，请点击“接受”，如您不同意我们的隐私政策，请点击“拒绝”。]]></string>
+    <string name="mobdemo_authorize_dialog_title">服务授权</string>
+
+    <string name="password_show">复制本段内容，“想你所想，高端品牌适合高端的你”，去粘贴给好友，打开ShareSDK查看详情
+#22QV7f#</string>
+    <string name="password_show_video">国家卫健委：昨日新增确诊病例5例，其中本土2例在北京</string>
+    <string name="check_details">同意</string>
+    <string name="skip">这不是我复制的口令，跳过</string>
+
+    <string name="check_video_details">查看详情</string>
+
+</resources>
