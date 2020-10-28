@@ -1,13 +1,13 @@
 package cn.sharesdk.demo.ui;
 
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import java.util.Map;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 import cn.sharesdk.demo.R;
 
 public class TagsItemActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener,

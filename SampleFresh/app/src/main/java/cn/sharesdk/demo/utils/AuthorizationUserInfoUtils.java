@@ -15,8 +15,8 @@ public class AuthorizationUserInfoUtils {
 				|| "Pocket".equals(platform) || "BaiduTieba".equals(platform)
 				|| "Laiwang".equals(platform) || "LaiwangMoments".equals(platform)
 				|| "Alipay".equals(platform) || "AlipayMoments".endsWith(platform)
-				|| "FacebookMessenger".equals(platform) || "Dingding".equals(platform)
-				|| "Youtube".equals(platform) || "Meipai".equals(platform) );
+				|| "FacebookMessenger".equals(platform) || "Youtube".equals(platform)
+				|| "Meipai".equals(platform) || "Tiktok".equals(platform));
 	}
 
 	public static boolean canAuthorize(String platform) {
@@ -27,7 +27,6 @@ public class AuthorizationUserInfoUtils {
 				|| "BaiduTieba".equals(platform) || "Laiwang".equals(platform)
 				|| "LaiwangMoments".equals(platform) || "Alipay".equals(platform)
 				|| "AlipayMoments".equals(platform) || "FacebookMessenger".equals(platform)
-				|| "Dingding".equals(platform) || "Youtube".equals(platform)
-				|| "Meipai".equals(platform) );
+				|| "Youtube".equals(platform) || "Meipai".equals(platform) || "Tiktok".equals(platform));
 	}
 }

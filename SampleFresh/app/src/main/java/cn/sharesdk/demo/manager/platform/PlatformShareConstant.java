@@ -58,20 +58,27 @@ public class PlatformShareConstant {
 	public static Integer[] reddit;
 	public static Integer[] douyin;
 	public static Integer[] wework;
-	
+	public static Integer[] oasis;
+	public static Integer[] snapchat;
+	public static Integer[] watermelonvideo;
+	public static Integer[] littleredbook;
+	public static Integer[] kuaishou;
+	public static Integer[] tiktok;
+
+
 	private PlatformShareConstant(){
 		douyin = new Integer[]{Platform.SHARE_VIDEO, Platform.SHARE_IMAGE};
 		sinaWeibo = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_VIDEO, Platform.SHARE_LINKCARD};
 		tencentWeibo = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
 		qzone = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT,Platform.SHARE_WEBPAGE, Platform.SHARE_VIDEO};
-		wechat = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_FILE, Platform.SHARE_WEBPAGE, Platform.SHARE_MUSIC, 
+		wechat = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE, Platform.SHARE_MUSIC,
 				Platform.SHARE_VIDEO, Platform.SHARE_EMOJI, Platform.SHARE_WXMINIPROGRAM};
 		wechatMoments = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE, Platform.SHARE_MUSIC, Platform.SHARE_VIDEO};
-		wechatFavorite = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_FILE, Platform.SHARE_WEBPAGE, 
+		wechatFavorite = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE,
 				Platform.SHARE_MUSIC, Platform.SHARE_VIDEO};
 		qq = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_WEBPAGE, Platform.SHARE_MUSIC};
 		facebook = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_WEBPAGE, Platform.SHARE_VIDEO};
-		twitter = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_VIDEO};
+		twitter = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
 		renren = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
 		kaiXin = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
 		email = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_VIDEO};
@@ -91,12 +98,12 @@ public class PlatformShareConstant {
 		yixinMoments = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_MUSIC,Platform.SHARE_VIDEO,Platform.SHARE_WEBPAGE};
 		mingdao = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
 		line = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT	};
-		kakaoTalk = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
+		kakaoTalk = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_VIDEO, Platform.SHARE_WEBPAGE};
 		kakaoStory = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_VIDEO};
 		whatsApp = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_VIDEO};
 		bluetooth = new Integer[]{Platform.SHARE_FILE};
 		pocket = new Integer[]{Platform.SHARE_WEBPAGE};
-		instapaper = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE	};
+		instapaper = new Integer[]{ Platform.SHARE_WEBPAGE	};
 		facebookMessenger = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_WEBPAGE};
 		alipay = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE};
 		alipayMoments = new Integer[]{Platform.SHARE_WEBPAGE};
@@ -107,6 +114,12 @@ public class PlatformShareConstant {
 		reddit = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE};
 		wework = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_IMAGE, Platform.SHARE_FILE,
 								Platform.SHARE_VIDEO, Platform.SHARE_WEBPAGE};
+		oasis = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};
+		snapchat = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};
+		watermelonvideo = new Integer[]{Platform.SHARE_VIDEO};
+		littleredbook = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};
+		kuaishou = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};
+		tiktok = new Integer[]{Platform.SHARE_VIDEO};
 	}
 	public synchronized static PlatformShareConstant getInstance(){
 		if(instance == null){

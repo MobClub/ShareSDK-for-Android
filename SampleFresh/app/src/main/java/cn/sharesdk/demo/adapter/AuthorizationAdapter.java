@@ -1,8 +1,8 @@
 package cn.sharesdk.demo.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import androidx.recyclerview.widget.RecyclerView;
 import cn.sharesdk.demo.R;
 import cn.sharesdk.demo.entity.PlatformEntity;
 import cn.sharesdk.demo.entity.SharePlatformType;
@@ -73,6 +74,30 @@ public class AuthorizationAdapter extends RecyclerView.Adapter<RecyclerView.View
 			} else {
 				if (lists.get(position).getmPlatform().isAuthValid()) {
 					shareViewAuthNormal.authorization.setText(context.getString(R.string.authorization_txt_delete));
+
+				} else if (lists.get(position).getmPlatform().getName().equals("Dingding")) { //钉钉平台没有token，特殊处理下
+					try {
+						String tempCode = lists.get(position).getmPlatform().getDb().get("tmp_auth_code");
+						if (tempCode != null && tempCode.length() > 0) {
+							shareViewAuthNormal.authorization.setText(context.getString(R.string.authorization_txt_delete));
+						} else {
+							shareViewAuthNormal.authorization.setText(context.getString(R.string.authorization_txt));
+						}
+					} catch (Throwable t) {
+						Log.e("QQQ", " AuthorizationAdapter t: " + t);
+					}
+
+				} else if (lists.get(position).getmPlatform().getName().equals("Snapchat")) {
+					try {
+						int lengthInt = lists.get(position).getmPlatform().getDb().exportData().length();
+						if (lengthInt > 2) {
+							shareViewAuthNormal.authorization.setText(context.getString(R.string.authorization_txt_delete));
+						} else {
+							shareViewAuthNormal.authorization.setText(context.getString(R.string.authorization_txt));
+						}
+					} catch (Throwable t) {
+						Log.e("QQQ", " AuthorizationAdapter t: " + t);
+					}
 				} else {
 					shareViewAuthNormal.authorization.setText(context.getString(R.string.authorization_txt));
 				}

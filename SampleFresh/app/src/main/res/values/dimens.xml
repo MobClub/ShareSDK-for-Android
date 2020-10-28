@@ -15,6 +15,8 @@
     <dimen name="main_activity_top_margin_color_author">14sp</dimen>
 
     <dimen name="main_radius_margin">20dp</dimen>
+    <dimen name="sdk_plus_12">12sp</dimen>
+    <dimen name="sdk_plus_14">14sp</dimen>
     <dimen name="sdk_plus_16">16sp</dimen>
     <dimen name="sdk_plus_18">18sp</dimen>
     <dimen name="sdk_plus_24">24sp</dimen>
@@ -26,15 +28,28 @@
     <dimen name="btn_margin_left_right">30dp</dimen>
     <dimen name="top_height">60dp</dimen>
 
+    <dimen name="margin_0_1">0.1dp</dimen>
+    <dimen name="margin_76">76dp</dimen>
     <dimen name="margin_80">80dp</dimen>
     <dimen name="margin_50">50dp</dimen>
+    <dimen name="margin_40">40dp</dimen>
     <dimen name="margin_45">45dp</dimen>
     <dimen name="margin_35">35dp</dimen>
     <dimen name="margin_25">25dp</dimen>
+    <dimen name="margin_28">28dp</dimen>
     <dimen name="margin_15">15dp</dimen>
     <dimen name="margin_10">10dp</dimen>
     <dimen name="margin_8">8dp</dimen>
     <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_6">6dp</dimen>
+    <dimen name="margin_4">4dp</dimen>
     <dimen name="margin_3">3dp</dimen>
+    <dimen name="margin_2">2dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_115">115dp</dimen>
+    <dimen name="margin_120">120dp</dimen>
+    <dimen name="margin_128">128dp</dimen>
+    <dimen name="margin_385">385dp</dimen>
+
 
 </resources>

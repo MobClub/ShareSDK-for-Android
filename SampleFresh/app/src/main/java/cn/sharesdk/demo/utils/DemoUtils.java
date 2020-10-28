@@ -82,7 +82,7 @@ public class DemoUtils {
 					akp, PackageManager.GET_RESOLVED_FILTER);
 			return true;
 		} catch (Throwable t) {
-			Toast.makeText(MobSDK.getContext(), "client is not install or version low", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(MobSDK.getContext(), "client is not install or version low", Toast.LENGTH_SHORT).show();
 		}
 		return false;
 	}
@@ -114,7 +114,7 @@ public class DemoUtils {
 			}
 		}
 		if (pi == null) {
-			Toast.makeText(MobSDK.getContext(), "client is not install or version low", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(MobSDK.getContext(), "client is not install or version low", Toast.LENGTH_SHORT).show();
 		}
 
 	}

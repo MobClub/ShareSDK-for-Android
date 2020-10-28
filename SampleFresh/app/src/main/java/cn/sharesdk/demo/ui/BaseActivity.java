@@ -1,8 +1,8 @@
 package cn.sharesdk.demo.ui;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
 import cn.sharesdk.demo.App;
 import cn.sharesdk.demo.manager.BasePresenter;
 import cn.sharesdk.demo.manager.ViewHandlerCall;

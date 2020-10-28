@@ -37,6 +37,19 @@
             android:text="@string/moblink_share"
             android:background="@null"/>
 
+        <Button
+            android:id="@+id/btn_custome_showlink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:layout_marginTop="@dimen/margin_35"
+            android:layout_marginRight="@dimen/margin_8"
+            android:textColor="@color/bg_black"
+            android:textSize="@dimen/sdk_plus_16"
+            android:text="@string/custom_link_share"
+            android:background="@null"/>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">

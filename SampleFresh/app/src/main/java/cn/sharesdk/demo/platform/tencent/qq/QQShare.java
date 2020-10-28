@@ -1,5 +1,7 @@
 package cn.sharesdk.demo.platform.tencent.qq;
 
+import android.util.Log;
+
 import com.mob.MobSDK;
 
 import cn.sharesdk.demo.entity.ResourcesManager;
@@ -39,9 +41,9 @@ public class QQShare {
     public void shareImage() {
         Platform platform = ShareSDK.getPlatform(QQ.NAME);
         Platform.ShareParams shareParams = new Platform.ShareParams();
-        shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-        shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
-        //shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
+        //shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+        //Log.d("ShareSDK", " ImagePath " + ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+        shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
         platform.setPlatformActionListener(platformActionListener);
         shareParams.setShareType(Platform.SHARE_IMAGE);
         platform.share(shareParams);
@@ -61,26 +63,6 @@ public class QQShare {
         platform.share(shareParams);
     }
 
-    public void shareWebPager(PlatformActionListener mListener) {
-        Platform platform = ShareSDK.getPlatform(QQ.NAME);
-        Platform.ShareParams shareParams = new Platform.ShareParams();
-        shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
-        shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-        shareParams.setTitleUrl(ResourcesManager.getInstace(MobSDK.getContext()).getTitleUrl());
-        shareParams.setShareType(Platform.SHARE_WEBPAGE);
-        platform.setPlatformActionListener(mListener);
-        platform.share(shareParams);
-    }
-
-    public void shareImage(PlatformActionListener mListener) {
-        Platform platform = ShareSDK.getPlatform(QQ.NAME);
-        Platform.ShareParams shareParams = new Platform.ShareParams();
-        shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-        shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
-        shareParams.setShareType(Platform.SHARE_IMAGE);
-        platform.setPlatformActionListener(mListener);
-        platform.share(shareParams);
-    }
 
     public void shareMusic(PlatformActionListener mListener) {
         Platform platform = ShareSDK.getPlatform(QQ.NAME);

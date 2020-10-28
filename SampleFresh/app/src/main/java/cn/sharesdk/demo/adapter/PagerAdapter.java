@@ -1,11 +1,11 @@
 package cn.sharesdk.demo.adapter;
 
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.ViewGroup;
 
 import java.util.List;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import cn.sharesdk.demo.ui.BaseFragment;
 
 /**

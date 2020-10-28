@@ -1,7 +1,7 @@
 package cn.sharesdk.demo.ui;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
 import cn.sharesdk.demo.R;
 import cn.sharesdk.demo.adapter.TagsGridViewAdapter;
 

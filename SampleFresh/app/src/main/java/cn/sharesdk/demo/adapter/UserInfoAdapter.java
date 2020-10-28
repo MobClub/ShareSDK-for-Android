@@ -2,8 +2,8 @@ package cn.sharesdk.demo.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import androidx.recyclerview.widget.RecyclerView;
 import cn.sharesdk.demo.R;
 import cn.sharesdk.demo.entity.PlatformEntity;
 import cn.sharesdk.demo.entity.SharePlatformType;
@@ -79,6 +80,28 @@ public class UserInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 				shareViewAuthNormal.authorization.setText(context.getString(R.string.userinfo_txt));
 				shareViewAuthNormal.authorization.setBackgroundResource(R.drawable.show_sure_author_userinfo_bg);
 				shareViewAuthNormal.authorization.setTextColor(Color.parseColor("#FFC794"));
+			} else if (platform.getName().equals("Dingding")) {
+				String tempCode = lists.get(position).getmPlatform().getDb().get("tmp_auth_code");
+				if (tempCode != null && tempCode.length() > 0) {
+					shareViewAuthNormal.authorization.setText(context.getString(R.string.userinfo_show));
+					shareViewAuthNormal.authorization.setBackgroundResource(R.drawable.show_userinfo_bg_);
+					shareViewAuthNormal.authorization.setTextColor(Color.WHITE);
+				} else {
+					shareViewAuthNormal.authorization.setText(context.getString(R.string.userinfo_txt));
+					shareViewAuthNormal.authorization.setBackgroundResource(R.drawable.show_sure_author_userinfo_bg);
+					shareViewAuthNormal.authorization.setTextColor(Color.parseColor("#FFC794"));
+				}
+			} else if (platform.getName().equals("Snapchat")) {
+				int lengthInt = lists.get(position).getmPlatform().getDb().exportData().length();
+				if (lengthInt > 2) {
+					shareViewAuthNormal.authorization.setText(context.getString(R.string.userinfo_show));
+					shareViewAuthNormal.authorization.setBackgroundResource(R.drawable.show_userinfo_bg_);
+					shareViewAuthNormal.authorization.setTextColor(Color.WHITE);
+				} else {
+					shareViewAuthNormal.authorization.setText(context.getString(R.string.userinfo_txt));
+					shareViewAuthNormal.authorization.setBackgroundResource(R.drawable.show_sure_author_userinfo_bg);
+					shareViewAuthNormal.authorization.setTextColor(Color.parseColor("#FFC794"));
+				}
 			} else {
 				if (platform.isAuthValid()) {
 					shareViewAuthNormal.authorization.setText(context.getString(R.string.userinfo_show));

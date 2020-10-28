@@ -1,15 +1,16 @@
 package cn.sharesdk.demo.ui;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 /**
  * Created by xiangli on 2018/12/21.
  */
 
-public class TagsFragmentPagerAdapter extends FragmentPagerAdapter{
+public class TagsFragmentPagerAdapter extends FragmentPagerAdapter {
     private final int PAGER_COUNT = 2;
     private TagsHomeFragment homeFragment = null;
     private TagsMyFragment myFragment = null;

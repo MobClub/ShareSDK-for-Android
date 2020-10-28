@@ -3,7 +3,8 @@ package cn.sharesdk.demo.platform.wework;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
+
+import androidx.appcompat.app.AlertDialog;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
@@ -112,26 +113,44 @@ public class WeworkShare {
 
     private void openSystemGallery(final Activity activity, final int shareType) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setMessage("请根据分享的类型选择对应的分享内容")
-                .setNegativeButton("图片", new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(Intent.ACTION_PICK);
-                        intent.setType("image/*");
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                        activity.startActivityForResult(intent, shareType);
-                    }
-                });
-        builder.setMessage("请根据分享的类型选择对应的分享内容")
-                .setPositiveButton("视频", new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(Intent.ACTION_PICK);
-                        intent.setType("video/*");
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                        activity.startActivityForResult(intent, shareType);
-                    }
-                });
+        if (shareType == WEWORK_SHARE_IMAGE) {
+            builder.setMessage("请根据分享的类型选择对应的分享内容")
+                    .setNegativeButton("图片", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(Intent.ACTION_PICK);
+                            intent.setType("image/*");
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                            activity.startActivityForResult(intent, shareType);
+                        }
+                    });
+        }
+        if (shareType == WEWORK_SHARE_VIDEO) {
+            builder.setMessage("请根据分享的类型选择对应的分享内容")
+                    .setPositiveButton("视频", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(Intent.ACTION_PICK);
+                            intent.setType("video/*");
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                            activity.startActivityForResult(intent, shareType);
+                        }
+                    });
+        }
+
+        if (shareType == WEWORK_SHARE_FILE) {
+            builder.setMessage("请根据分享的类型选择对应的分享内容")
+                    .setNegativeButton("图片文件", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(Intent.ACTION_PICK);
+                            intent.setType("image/*");
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                            activity.startActivityForResult(intent, shareType);
+                        }
+                    });
+        }
+
         AlertDialog dialog = builder.create();
         dialog.show();
     }

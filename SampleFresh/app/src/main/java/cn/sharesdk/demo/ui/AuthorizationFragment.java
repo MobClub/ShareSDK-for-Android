@@ -1,9 +1,6 @@
 package cn.sharesdk.demo.ui;
 
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +9,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.OrientationHelper;
+import androidx.recyclerview.widget.RecyclerView;
 import cn.sharesdk.demo.R;
 import cn.sharesdk.demo.adapter.AuthorizationAdapter;
 import cn.sharesdk.demo.entity.PlatformEntity;
@@ -41,7 +42,7 @@ public class AuthorizationFragment extends BaseFragment implements Authorization
 	public void initView(View view) {
 		recyclerView = (RecyclerView) view.findViewById(R.id.mAuthorization);
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-		linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
+		linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
 		recyclerView.setLayoutManager(linearLayoutManager);
 		adapter = new AuthorizationAdapter(getContext(), lists);
 		recyclerView.setAdapter(adapter);
@@ -75,6 +76,23 @@ public class AuthorizationFragment extends BaseFragment implements Authorization
 		}
 		if (entity != null) {
 			plat = entity.getmPlatform();
+		}
+
+		if (plat.getName().equals("Dingding")) {
+			String tempCode = lists.get(position).getmPlatform().getDb().get("tmp_auth_code");
+			if (tempCode != null && tempCode.length() > 0) {
+				plat.removeAccount(true);
+				textView.setText(getActivity().getString(R.string.authorization_txt));
+				return;
+			}
+		}
+		if (plat.getName().equals("Snapchat")) {
+			int lengthInt = lists.get(position).getmPlatform().getDb().exportData().length();
+			if (lengthInt > 2) {
+				plat.removeAccount(true);
+				textView.setText(getActivity().getString(R.string.authorization_txt));
+				return;
+			}
 		}
 
 		if (plat.isAuthValid()) {
@@ -117,6 +135,7 @@ public class AuthorizationFragment extends BaseFragment implements Authorization
 	public void onError(Platform platform, int i, Throwable throwable) {
 		String msg = ResourcesManager.actionToString(i);
 		String text = plat.getName() + " caught error at " + msg;
+		Log.e("qqq", "onError text===> ");
 		if (getActivity() != null) {
 			dialog(getActivity(), text);
 		} else {

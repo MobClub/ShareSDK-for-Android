@@ -3,7 +3,7 @@
               android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@color/pic_bg"
     android:gravity="center_horizontal"
     android:paddingTop="@dimen/main_activity_top_margin_img_txt">
 
@@ -15,20 +15,87 @@
         android:adjustViewBounds="true"
         android:scaleType="center"
         android:focusable="true"
-        android:clickable="true"/>
+        android:clickable="true" />
+
     <ImageView
         android:id="@+id/mShot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@mipmap/shot_share"
         android:adjustViewBounds="true"
-        android:scaleType="center"/>/>
-    <ImageView
-        android:id="@+id/mShark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/shark_share"
-        android:adjustViewBounds="true"
-        android:scaleType="center"/>/>
+        android:scaleType="center"
+        android:visibility="gone" />
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/mShark"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:background="@mipmap/shark_share"-->
+    <!--        android:adjustViewBounds="true"-->
+    <!--        android:scaleType="center" />-->
+
+    <!-- 视频口令分享 -->
+    <RelativeLayout
+        android:id="@+id/layout_mVideoShare"
+        android:layout_width="@dimen/margin_115"
+        android:layout_height="@dimen/margin_76"
+        android:layout_marginTop="@dimen/margin_6"
+        android:layout_marginRight="@dimen/margin_8"
+        android:background="@drawable/share_video_bg">
+
+        <ImageView
+            android:id="@+id/mVideoShare"
+            android:layout_width="@dimen/margin_35"
+            android:layout_height="@dimen/margin_35"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:background="@mipmap/zxnr"
+            android:scaleType="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mVideoShare"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="bottom"
+            android:paddingBottom="@dimen/margin_5"
+            android:text="@string/passwrod_share_video"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sdk_plus_12" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/layout_passwordshare"
+        android:layout_width="@dimen/margin_115"
+        android:layout_height="@dimen/margin_76"
+        android:layout_marginTop="@dimen/margin_6"
+        android:background="@drawable/share_separately_bg">
+
+        <ImageView
+            android:id="@+id/passwordShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:background="@mipmap/password_share"
+            android:scaleType="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:paddingBottom="@dimen/margin_5"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/passwordShare"
+            android:text="@string/passwrod_share_text"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sdk_plus_12" />
+    </RelativeLayout>
+
 
 </LinearLayout>

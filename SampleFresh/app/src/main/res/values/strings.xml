@@ -2,7 +2,7 @@
     <string name="app_name">ShareSDK</string>
     <string name="moblink_share">分享</string>
     <string name="moblink_back">返回</string>
-
+    <string name="custom_link_share">自定义分享</string>
 
     <!--title-->
     <string name="share_title_share_txt">分享</string>
@@ -119,9 +119,36 @@
     <string name="announce_txt_normal">普通分享</string>
     <string name="announce_txt_linkcard">LinkCard分享</string>
 
+    <string name="passwrod_share_text">口令分享</string>
+    <string name="passwrod_share_video">视频二维码</string>
+
     <!-- 弹出框提示按钮 -->
     <string name="title_content">提示</string>
     <string name="title_result">结果</string>
     <string name="dialog_confirm">确定</string>
     <string name="dialog_cancel">取消</string>
+    <string name="dialog_ok">同意</string>
+
+    <!-- 隐私协议 -->
+    <string name="privacy_title">ShareSDK Demo隐私条款</string>
+    <string name="privacy_date_start">最近更新日期：2019年12月13日</string>
+    <string name="privacy_date_end">版本生效日期：2019年12月20日</string>
+    <string name="privacy_content">\u3000\u3000欢迎您使用MobTech提供的演示DEMO，ShareSDK为开发者提供的社交分享SDK，支持微信、抖音、QQ、微博、Facebook、Twitter等全球40+主流社交平台账号内的一键分享、第三方登录授权以及闭环分享服务，不仅极大地方便了您的终端用户的服务体验，更为您实时了解终端用户的分享数、回流数、意向分享等数据进行了统计分析。为了对您的闭环分享功能进行来源追溯并帮助您更精细化运营，我们将依据MobTech的《隐私政策》来帮助你了解我们需要收集哪些数据</string>
+    <string name="privacy_details">详情见</string>
+
+    <string name="mobcommon_authorize_dialog_accept">Accept</string>
+    <string name="mobcommon_authorize_dialog_content"><![CDATA[In order to provide you with Mobservice, please check our service policy. For details, please click <a href="http://www.mob.com/policy/en">http://www.mob.com/policy/en</a>. If you agree with our service policy, please click "accept", if you do not agree with our service policy, please click "reject"]]></string>
+    <string name="mobcommon_authorize_dialog_reject">Reject</string>
+    <string name="mobcommon_authorize_dialog_title">Terms of Use</string>
+    <string name="mobdemo_authorize_dialog_content"><![CDATA[为了给您提供Mobservice相关产品服务，请您详细查看我们的隐私政策，详见<a href="http://www.mob.com/about/policy">http://www.mob.com/about/policy</a>。如您同意我们的隐私政策，请点击“接受”，如您不同意我们的隐私政策，请点击“拒绝”。]]></string>
+    <string name="mobdemo_authorize_dialog_title">服务授权</string>
+
+    <string name="password_show">复制本段内容，“想你所想，高端品牌适合高端的你”，去粘贴给好友，打开ShareSDK查看详情
+#22QV7f#</string>
+    <string name="password_show_video">国家卫健委：昨日新增确诊病例5例，其中本土2例在北京</string>
+    <string name="check_details">同意</string>
+    <string name="skip">这不是我复制的口令，跳过</string>
+
+    <string name="check_video_details">查看详情</string>
+
 </resources>

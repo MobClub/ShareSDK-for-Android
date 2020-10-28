@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +12,7 @@ import android.widget.Toast;
 
 import com.mob.MobSDK;
 
+import androidx.annotation.NonNull;
 import cn.sharesdk.demo.R;
 
 /**

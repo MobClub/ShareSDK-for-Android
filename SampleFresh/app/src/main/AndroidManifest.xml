@@ -15,6 +15,50 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <uses-permission
+        android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission
+        android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission
+        android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission
+        android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission
+        android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission
+        android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission
+        android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission
+        android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission
+        android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission
+        android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name= "android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+
+    <uses-sdk
+        tools:overrideLibrary="com.arthenica.mobileffmpeg"/>
+
     <application
         android:name=".App"
         android:allowBackup="false"
@@ -25,15 +69,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:ignore="HardcodedDebugMode"
-        tools:replace="android:name">
+        tools:replace="android:name"
+        >
+
+
+<!--        <activity-->
+<!--            android:name="cn.sharesdk.demo.wxapi.WXEntryActivity"-->
+<!--            android:configChanges="keyboardHidden|orientation|screenSize"-->
+<!--            android:exported="true"-->
+<!--            android:launchMode="singleTask"-->
+<!--            android:taskAffinity="cn.sharesdk.demo"-->
+<!--            android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
+
+
+        <!-- 抖音老的授权方式 -->
+        <!--<action android:name="douyin.callback.action" />-->
+
         <activity android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="douyin.callback.action" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
 
                 <category android:name="android.intent.category.DEFAULT" />
-                <action android:name="douyin.callback.action" />
             </intent-filter>
         </activity>
         <activity android:name=".activitys.SharePlatformTypeActivity" />
@@ -44,44 +105,62 @@
         <activity android:name=".ui.AnnouncementActivity" />
         <activity android:name="cn.sharesdk.demo.ShareMobLinkActivity"></activity>
 
-        <!--<activity
-            android:name="com.mob.moblink.MobLinkActivity"
-            android:launchMode="singleTask"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
+        <activity android:name="cn.sharesdk.demo.utils.PrivacyDialog"
+            android:theme="@style/dialogstyle"/>
+
+        <activity android:name="cn.sharesdk.PassWordShow"
+            android:theme="@style/dialogstyle"/>
+
+        <activity android:name="cn.sharesdk.demo.ui.VideoPassWordShow"
+            android:theme="@style/dialogstyle"/>
+
+
+        <activity android:name="cn.sharesdk.demo.ui.LoadingActivity"
+            android:theme="@style/dialogstyle"/>
+
+
+        <!-- ========================   snapchat ============================= -->
+        <meta-data
+            android:name="com.snapchat.kit.sdk.scopes"
+            android:resource="@array/snap_connect_scopes" />
+
+        <meta-data
+            android:name="com.snapchat.kit.sdk.clientId"
+            android:value="dc8e6068-0578-41b8-8392-4da009519725" />
+
+
+        <meta-data
+            android:name="com.snapchat.kit.sdk.redirectUrl"
+            android:value="ssdkmoba0b0c0d0snap://mob" />
+        <meta-data
+            android:name="com.snapchat.kit.sdk.scopes"
+            android:resource="@array/snap_connect_scopes" /> <!-- This should be a string array of scopes !-->
+
+        <activity
+            android:name="com.snapchat.kit.sdk.SnapKitActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                &lt;!&ndash;android:host="cn.sharesdk.demo"&ndash;&gt;
-                &lt;!&ndash;android:scheme="moba0b0c0d0" />&ndash;&gt;
-                <data
-                    android:scheme="ssdkmoba0b0c0d0"
-                    android:host="cn.sharesdk.loop"/>
-            </intent-filter>
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="ahmn.t4m.cn"
-                    android:scheme="http" />
-                <data
-                    android:host="ahmn.t4m.cn"
-                    android:scheme="https" />
+                <data android:scheme="ssdkmoba0b0c0d0snap" />
             </intent-filter>
         </activity>
 
-        &lt;!&ndash; test &ndash;&gt;
-        <activity
-            android:name="cn.sharesdk.framework.moblink.RestoreTempActivity"
-            android:exported="true"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            android:launchMode="singleTop"/>-->
+        <provider
+            android:authorities="${applicationId}.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"
+                />
+        </provider>
+        <!-- ========================   snapchat ============================= -->
+
 
     </application>
 

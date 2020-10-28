@@ -3,11 +3,8 @@ package cn.sharesdk.demo.ui;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -17,6 +14,11 @@ import com.mob.tools.utils.UIHandler;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.OrientationHelper;
+import androidx.recyclerview.widget.RecyclerView;
 import cn.sharesdk.demo.R;
 import cn.sharesdk.demo.activitys.ShowUserInfoActivity;
 import cn.sharesdk.demo.adapter.UserInfoAdapter;
@@ -50,7 +52,7 @@ public class UserInfoFragment extends BaseFragment implements UserInfoAdapter.Us
 	public void initView(View view){
 		userInfo = (RecyclerView)view.findViewById(R.id.mUserInfo);
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-		linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
+		linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
 		userInfo.setLayoutManager(linearLayoutManager);
 		adapter = new UserInfoAdapter(getContext(),lists);
 		userInfo.setAdapter(adapter);
@@ -123,6 +125,7 @@ public class UserInfoFragment extends BaseFragment implements UserInfoAdapter.Us
 			if(platAuth == null){
 				platAuth = new PlatformAuthorizeUserInfoManager(getActivity());
 			}
+			Log.e("QQQ", "执行了授权 ");
 			platAuth.doUserInfo(plat, getActivity());
 		}
 	}

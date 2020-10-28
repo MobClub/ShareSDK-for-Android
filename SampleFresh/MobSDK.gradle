@@ -4,18 +4,17 @@ MobSDK {
 
     appKey "moba0b0c0d0"
     appSecret "5713f0d88511f9f4cf100cade0610a34"
+    //appKey shareappkey
+    //appSecret shareappsecret
 
-
-   /* MobLink {
-        uriScheme "moba0b0c0d0://cn.sharesdk.demo"
-        appLinkHost "ahmn.t4m.cn"
-    }*/
-
-    //https true
+    //fp true
 
     ShareSDK {
 
         loopShare true
+        //zxing true
+        ffmpeg true
+
 
         //平台配置信息
         devInfo {
@@ -50,27 +49,17 @@ MobSDK {
                 enable true
             }
 
-            //分享QQ小程序专用
-            /*QZone {
-                id 3
-                sortId 3
-                appId "222222"
-                appKey "aed9b0303e3ed1e27bae87c33761161d"
-                shareByAppClient true
-                bypassApproval false
-                enable true
-            }*/
 
-                  /* Wechat微信和WechatMoments微信朋友圈的appid是一样的；
+            /* Wechat微信和WechatMoments微信朋友圈的appid是一样的；
 
-            注意：开发者不能用我们这两个平台的appid,否则分享不了
-            微信测试的时候，微信测试需要先签名打包出apk,
-            sample测试微信，要先签名打包，keystore在sample项目中，密码123456
+      注意：开发者不能用我们这两个平台的appid,否则分享不了
+      微信测试的时候，微信测试需要先签名打包出apk,
+      sample测试微信，要先签名打包，keystore在sample项目中，密码123456
 
-            BypassApproval是绕过审核的标记，设置为true后AppId将被忽略，故不经过
-            审核的应用也可以执行分享，但是仅限于分享文字和图片，不能分享其他类型，
-            默认值为false。此外，微信收藏不支持此字段。wx4868b35061f87885
-            <!--要分享微信小应用程序时用userName,path-->*/
+      BypassApproval是绕过审核的标记，设置为true后AppId将被忽略，故不经过
+      审核的应用也可以执行分享，但是仅限于分享文字和图片，不能分享其他类型，
+      默认值为false。此外，微信收藏不支持此字段。wx4868b35061f87885
+      <!--要分享微信小应用程序时用userName,path-->*/
             Wechat {
                 id 4
                 sortId 4
@@ -109,28 +98,30 @@ MobSDK {
                 sortId 7
                 appId "100371282"
                 appKey "aed9b0303e3ed1e27bae87c33761161d"
-                shareByAppClient false
+                shareByAppClient true
                 bypassApproval false
                 enable true
             }
 
-            //分享小程序专用
-            /*QQ {
-                id 7
-                sortId 7
-                appId "222222"
-                appKey "aed9b0303e3ed1e27bae87c33761161d"
-                shareByAppClient false
-                bypassApproval false
-                enable true
-            }*/
+            /*callbackUri "https://mob.com"*/
+//            Facebook {
+//                id 8
+//                sortId 8
+//                appKey "1412473428822331"
+//                appSecret "a42f4f3f867dc947b9ed6020c2e93558"
+//                callbackUri "https://www.baidu.com"
+//                shareByAppClient true
+//                enable true
+//            }
 
             Facebook {
                 id 8
                 sortId 8
                 appKey "1412473428822331"
                 appSecret "a42f4f3f867dc947b9ed6020c2e93558"
-                callbackUri "https://mob.com"
+                callbackUri "https://www.baidu.com"
+                officialVersion "default"
+                faceBookLoginProtocolScheme "fb1412473428822331"
                 shareByAppClient true
                 enable true
             }
@@ -142,6 +133,7 @@ MobSDK {
                 appSecret "NJEglQUy2rqZ9Io9FcAU9p17omFqbORknUpRrCDOK46aAbIiey"
                 callbackUri "http://mob.com"
                 shareByAppClient true
+                bypassApproval true
                 enable true
             }
 
@@ -228,6 +220,7 @@ MobSDK {
                 sortId 21
                 appId "236300675100-am5pm8km7md1memjevq8rl9pg5c4s4b8.apps.googleusercontent.com"
                 callbackUri "http://localhost"
+                officialVersion "default"
                 shareByAppClient true
                 enable true
             }
@@ -248,21 +241,32 @@ MobSDK {
                 enable true
             }
 
+//            Flickr {
+//                id 24
+//                sortId 24
+//                appKey "33d833ee6b6fca49943363282dd313dd"
+//                appSecret "3a2c5b42a8fbb8bb"
+//                callbackUri "http://www.sharesdk.cn"
+//                enable true
+//            }
+
+            /*  <!-- Flickr账号文档上的key --> */
             Flickr {
                 id 24
                 sortId 24
-                appKey "33d833ee6b6fca49943363282dd313dd"
-                appSecret "3a2c5b42a8fbb8bb"
-                callbackUri "http://www.sharesdk.cn"
+                appKey "25b37df6cbce215c2c75441308a83236"
+                appSecret "d54c35f5c2caa1f0"
+                callbackUri "http://m.mob.com/"
                 enable true
             }
+
 
             Tumblr {
                 id 25
                 sortId 25
                 appKey "2QUXqO9fcgGdtGG1FcvML6ZunIQzAEL8xY6hIaxdJnDti2DYwM"
                 appSecret "3Rt0sPFj7u2g39mEVB3IBpOzKnM3JnTtxX2bao2JKk4VV1gtNo"
-                callbackUri  "http://www.sharesdk.cn"
+                callbackUri "http://www.sharesdk.cn"
                 enable true
             }
 
@@ -311,7 +315,7 @@ MobSDK {
                 enable true
             }
 
-            YixinMoments{
+            YixinMoments {
                 id 30
                 sortId 30
                 appId "yx0d9a9f9088ea44d78680f3274da1765f"
@@ -342,6 +346,7 @@ MobSDK {
                 id 33
                 sortId 33
                 appKey "48d3f524e4a636b08d81b3ceb50f1003"
+                shareByAppClient true
                 enable true
             }
 
@@ -403,7 +408,7 @@ MobSDK {
                 appId "2015072400185895"
                 enable true
             }
-
+              //老的钉钉分享的APPKEY
             Dingding {
                 id 52
                 sortId 52
@@ -411,6 +416,17 @@ MobSDK {
                 bypassApproval false
                 enable true
             }
+
+            //钉钉授权的appkey
+//            Dingding {
+//                id 52
+//                sortId 52
+//                appId "dingoai5kl4gh0e7lvrdk1"
+//                appSecret "7Cbf-b8zeqxj3hs0WqEgsv_Y7eQ80ubm8qPmW694MMMybjJJqrUsADoICm8W3sbN"
+//                callbackUri "https://www.mob.com/sharesdk/dingding"
+//                bypassApproval false
+//                enable true
+//            }
 
             Youtube {
                 id 53
@@ -431,12 +447,6 @@ MobSDK {
                 enable true
             }
 
-            Cmcc {
-                id 55
-                sortId 55
-                appId "300011860247"
-                appKey "2D464D8BFCE73A44B4F9DF95A2FDBE1C"
-            }
 
             Reddit {
                 id 56
@@ -470,6 +480,7 @@ MobSDK {
                 sortId 1
                 appKey "aw9ivykfjvi4hpwo"
                 appSecret "42b4caa6bda60bd49f05f06d0a4956e1"
+                callbackAct "cn.sharesdk.demo.MainActivity"
                 enable true
             }
 
@@ -482,6 +493,63 @@ MobSDK {
                 schema "wwautha21eaecf93f0e3ba000012"
             }
 
+            HWAccount {
+                id 63
+                sortId 63
+                appId "101353159"
+                enable true
+            }
+
+            Oasis {
+                id 64
+                sortId 64
+                appKey "568898243"
+                appSecret "38a4f8204cc784f81f9f0daaf31e02e3"
+                callbackUri "http://www.sharesdk.cn"
+                shareByAppClient true
+                enable true
+            }
+
+            XMAccount {
+                id 65
+                sortId 65
+                appId "2882303761518333605"
+                callbackUri "http://www.mob.com"
+                enable true
+            }
+
+            SnapChat {
+                id 66
+                sortId 66
+                enabel true
+            }
+
+            Littleredbook {
+                id 67
+                sortId
+            }
+
+            Kuaishou {
+                id 68
+                appId "ks697776468193437829"
+                appSecret "1dYU_9dTnMFKcm-BFARJkw"
+                bypassApproval true
+                sortId 68
+                enable true
+            }
+
+            Watermelonvideo {
+                id 69
+                sortId 69
+                enable true
+            }
+
+            Tiktok {
+                id = 70
+                sortId = 70
+                appKey = "awsxdh3k1fiojgnu"
+                enable = true
+            }
         }
     }
 }

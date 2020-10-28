@@ -2,15 +2,36 @@
 
 buildscript {
     repositories {
+        jcenter()
+
         maven {
             url "http://mvn.mob.com/android"
+            //url "http://10.18.97.47:7080/job/iMaven/ws/android/"
+            //url "http://10.18.97.56:8080/job/iMaven/ws/android/"
         }
-        jcenter()
-        maven { url "https://maven.google.com" }
+
+        maven { url 'https://dl.bintray.com/umsdk/release' }
+
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
+
+
+        //maven { url "https://maven.google.com" }
         google()
+
+        //====================== snapchat ======================
+        maven {
+            url "https://storage.googleapis.com/snap-kit-build/maven"
+        }
+        //====================== snapchat ======================
+
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.0'
+        classpath 'com.android.tools.build:gradle:3.5.0'
+        //classpath 'com.mob.sdk:MobSDK-Impl:2020.0527.1432'
+        //classpath 'com.mob.sdk:MobSDK-Impl:2020.0813.1153'
         classpath 'com.mob.sdk:MobSDK:+'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -19,17 +40,34 @@ buildscript {
     configurations.all {
         resolutionStrategy.cacheDynamicVersionsFor 1, 'seconds'
         //exclude group: 'com.mob', module: 'MobLink-3.0.2'
+        //resolutionStrategy.force 'com.mob:MobCommons:2020.0915.1032'
     }
 }
 
 allprojects {
     repositories {
         maven {
-            url "http://mvn.mob.com/android"
+            name 'Google'
+            url "https://maven.google.com"
         }
         jcenter()
-        maven { url "https://maven.google.com" }
+        maven {
+            url "http://mvn.mob.com/android"
+            //url "http://10.18.97.56:8080/job/iMaven/ws/android/"
+        }
+
+        maven { url 'https://dl.bintray.com/umsdk/release' }
+
+
         google()
+
+
+        //====================== snapchat ======================
+        maven {
+            url "https://storage.googleapis.com/snap-kit-build/maven"
+        }
+        //====================== snapchat ======================
+
     }
     configurations.all {
         resolutionStrategy.cacheDynamicVersionsFor 1, 'seconds'

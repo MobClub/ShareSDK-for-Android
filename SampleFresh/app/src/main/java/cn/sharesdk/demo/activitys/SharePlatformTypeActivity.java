@@ -5,9 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +19,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.OrientationHelper;
+import androidx.recyclerview.widget.RecyclerView;
 import cn.sharesdk.demo.App;
 import cn.sharesdk.demo.MainActivity;
 import cn.sharesdk.demo.R;
@@ -29,22 +29,53 @@ import cn.sharesdk.demo.UriUtil;
 import cn.sharesdk.demo.adapter.SharePlatformAdapter;
 import cn.sharesdk.demo.entity.BaseEntity;
 import cn.sharesdk.demo.entity.ShareListItemInEntity;
+import cn.sharesdk.demo.platform.facebook.FacebookShare;
+import cn.sharesdk.demo.platform.littleredbook.LittleredbookShare;
 import cn.sharesdk.demo.manager.BasePresenter;
 import cn.sharesdk.demo.manager.platform.PlatformShareConstant;
 import cn.sharesdk.demo.manager.share.ShareTypeManager;
 import cn.sharesdk.demo.manager.ui.SharePlatformPresenter;
 import cn.sharesdk.demo.platform.douyin.DouyinShare;
+import cn.sharesdk.demo.platform.instagram.InstagramShare;
+import cn.sharesdk.demo.platform.kuaishou.KuaishouShare;
+import cn.sharesdk.demo.platform.meipai.MeipaiShare;
+import cn.sharesdk.demo.platform.oasis.OasisShare;
+import cn.sharesdk.demo.platform.snapchat.SnapChatShare;
+import cn.sharesdk.demo.platform.tencent.qzone.QQZoneShare;
+import cn.sharesdk.demo.platform.tiktok.TiktokShare;
+import cn.sharesdk.demo.platform.watermelonvideo.WatermelonvideoShare;
+import cn.sharesdk.demo.platform.wechat.favorite.WechatFavoriteShare;
 import cn.sharesdk.demo.platform.wework.WeworkShare;
+import cn.sharesdk.demo.platform.whatsapp.WhatsAppShare;
 import cn.sharesdk.demo.ui.BaseActivity;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 
+import static cn.sharesdk.demo.platform.facebook.FacebookShare.FACEBOOK_VIDEO;
+import static cn.sharesdk.demo.platform.littleredbook.LittleredbookShare.LITTLEREDBOOK_IMAGE;
+import static cn.sharesdk.demo.platform.littleredbook.LittleredbookShare.LITTLEREDBOOK_VIDEO;
 import static cn.sharesdk.demo.platform.douyin.DouyinShare.DOUYIN_VIDEO;
 import static cn.sharesdk.demo.platform.douyin.DouyinShare.PHOTO_REQUEST_GALLERY;
+import static cn.sharesdk.demo.platform.instagram.InstagramShare.INS_PHOTO;
+import static cn.sharesdk.demo.platform.kuaishou.KuaishouShare.KUAISHOU_IMAGE;
+import static cn.sharesdk.demo.platform.kuaishou.KuaishouShare.KUAISHOU_VIDEO;
+import static cn.sharesdk.demo.platform.meipai.MeipaiShare.MEIPAI_IMAGE;
+import static cn.sharesdk.demo.platform.meipai.MeipaiShare.MEIPAI_VIDEO;
+import static cn.sharesdk.demo.platform.snapchat.SnapChatShare.SNAP_IMAGE;
+import static cn.sharesdk.demo.platform.snapchat.SnapChatShare.SNAP_VIDEO;
+import static cn.sharesdk.demo.platform.tencent.qzone.QQZoneShare.QZONE_VIDEO;
+import static cn.sharesdk.demo.platform.tiktok.TiktokShare.KT_IMAGE;
+import static cn.sharesdk.demo.platform.tiktok.TiktokShare.KT_VIDEO;
+import static cn.sharesdk.demo.platform.watermelonvideo.WatermelonvideoShare.WATERM_VIDEO;
+import static cn.sharesdk.demo.platform.wechat.favorite.WechatFavoriteShare.WECHAT_FAV_FILE;
 import static cn.sharesdk.demo.platform.wework.WeworkShare.WEWORK_SHARE_FILE;
 import static cn.sharesdk.demo.platform.wework.WeworkShare.WEWORK_SHARE_IMAGE;
 import static cn.sharesdk.demo.platform.wework.WeworkShare.WEWORK_SHARE_VIDEO;
-import static cn.sharesdk.demo.utils.CommomDialog.dialog;
+import static cn.sharesdk.demo.platform.oasis.OasisShare.OASIS_PHOTO_REQUEST_GALLERY;
+import static cn.sharesdk.demo.platform.oasis.OasisShare.OASIS_SHARE_VIDEO;
+import static cn.sharesdk.demo.platform.oasis.OasisShare.OASIS_PHOTO_REQUEST_GALLERY_NET;
+import static cn.sharesdk.demo.platform.whatsapp.WhatsAppShare.PHOTO_WHATS_APP;
+import static cn.sharesdk.demo.platform.whatsapp.WhatsAppShare.VIDEO_WHATS_APP;
 
 /**
  * Created by yjin on 2017/5/17.
@@ -162,12 +193,32 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 			switch (requestCode) {
 				case PHOTO_REQUEST_GALLERY:
 					Uri uri = data.getData();
-					startShareImage(UriUtil.convertUriToPath(this,uri));
-					Log.e("QQQ", " 列表的路径： " + UriUtil.convertUriToPath(this,uri));
+					startShareImage(UriUtil.convertUriToPath(this, uri));
+					Log.e("QQQ", " 列表的路径： " + UriUtil.convertUriToPath(this, uri));
 					break;
 				case DOUYIN_VIDEO:
 					Uri douyinVideo = data.getData();
 					startShareVideo(UriUtil.convertUriToPath(this, douyinVideo));
+					break;
+				case KT_IMAGE:
+					Uri tiktokImage = data.getData();
+					tiktokShareImage(UriUtil.convertUriToPath(this, tiktokImage));
+					break;
+				case KT_VIDEO:
+					Uri tiktokVideo = data.getData();
+					tiktokShareVideo(UriUtil.convertUriToPath(this, tiktokVideo));
+					break;
+				case PHOTO_WHATS_APP:
+					Uri whatsappImage = data.getData();
+					whatsappShareImage(UriUtil.convertUriToPath(this, whatsappImage));
+					break;
+				case VIDEO_WHATS_APP:
+					Uri whatsappVideo = data.getData();
+					whatsappShareVideo(UriUtil.convertUriToPath(this, whatsappVideo));
+					break;
+				case FACEBOOK_VIDEO:
+					Uri fbVideoUri = data.getData();
+					startShareVideo(fbVideoUri);
 					break;
 				case WEWORK_SHARE_IMAGE:
 					Uri weworkImage = data.getData();
@@ -181,8 +232,127 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 					Uri weworkFile = data.getData();
 					WewrokShareFile(UriUtil.convertUriToPath(this, weworkFile));
 					break;
+				case INS_PHOTO:
+					Uri insImage = data.getData();
+					startShareInsImage(UriUtil.convertUriToPath(this, insImage));
+					break;
+                case OASIS_PHOTO_REQUEST_GALLERY:  //Oasis
+                    Uri oasisImage = data.getData();
+                    startShareOasisUri(oasisImage);
+                    break;
+                case OASIS_SHARE_VIDEO:
+                    Uri oasisVideo = data.getData();
+                    startShareMedio(oasisVideo);
+                    break;
+                case OASIS_PHOTO_REQUEST_GALLERY_NET:
+                    Uri oasisImgNet = data.getData();
+                    startShareOasisUri(UriUtil.convertUriToPath(this, oasisImgNet));
+                    break;
+				case QZONE_VIDEO:
+					Uri qzoneVideo = data.getData();
+					QzoneShareVideo(UriUtil.convertUriToPath(this, qzoneVideo));
+					break;
+                case WECHAT_FAV_FILE:
+                    Uri wechatfavFile = data.getData();
+                    WechatFavShareFile(UriUtil.convertUriToPath(this, wechatfavFile));
+                    break;
+				case SNAP_IMAGE:
+					shareSnapchatImage(data);
+					break;
+				case SNAP_VIDEO:
+					shareSnapchatVideo(data);
+					break;
+				case KUAISHOU_IMAGE:
+					Uri kuaishouImage = data.getData();
+					kuaishouShareImage(UriUtil.convertUriToPath(this, kuaishouImage));
+					break;
+				case KUAISHOU_VIDEO:
+					Uri kuaishouVideo = data.getData();
+					kuaishouShareVideo(kuaishouVideo);
+					break;
+
+				case LITTLEREDBOOK_IMAGE:
+					Uri littleredbookImage = data.getData();
+					xiaohongshuShareImage(UriUtil.convertUriToPath(this, littleredbookImage));
+					break;
+				case LITTLEREDBOOK_VIDEO:
+					Uri littleredbookVideo = data.getData();
+					xiaohongshuShareVideo(littleredbookVideo);
+					break;
+
+				case WATERM_VIDEO:
+					Uri watermVideo = data.getData();
+					watermShareVideo(watermVideo);
+					break;
+
+				case MEIPAI_IMAGE:
+					Uri meipaiImage = data.getData();
+					meipaiShareImage(UriUtil.convertUriToPath(this, meipaiImage));
+					break;
+				case MEIPAI_VIDEO:
+					Uri meipaiVideo = data.getData();
+					meipaiShareVideo(UriUtil.convertUriToPath(this, meipaiVideo));
+					break;
 			}
 		}
+	}
+
+    /**
+     * oasis视频分享
+     */
+    private void startShareMedio(Uri path){
+        myPlatformActionListener = new MyPlatformActionListener();
+        OasisShare oasisShare = new OasisShare(myPlatformActionListener);
+        oasisShare.shareVideo(path);
+    }
+
+    /**
+     * oasis图片uri分享
+     */
+    private void startShareOasisUri(Uri uri){
+        List<Uri> uriList = new ArrayList<>();
+        uriList.add(uri);
+        myPlatformActionListener = new MyPlatformActionListener();
+        OasisShare oasisShare = new OasisShare(myPlatformActionListener);
+        oasisShare.shareListUri(uriList);
+    }
+
+    /**
+     * oasis图片path分享
+     */
+    private void startShareOasisUri(String path){
+        List<String> pathList = new ArrayList<>();
+        pathList.add(path);
+        myPlatformActionListener = new MyPlatformActionListener();
+        OasisShare oasisShare = new OasisShare(myPlatformActionListener);
+        oasisShare.shareListPath(pathList);
+    }
+
+	/**
+	 * ins 图片分享
+	 * **/
+	private void startShareInsImage(String imagePath) {
+		myPlatformActionListener = new MyPlatformActionListener();
+		InstagramShare instagramShare = new InstagramShare(myPlatformActionListener);
+		instagramShare.shareInsImage(imagePath);
+	}
+
+	/**
+	 * snapchat本地图片分享
+	 * **/
+	private void shareSnapchatImage(Intent data) {
+		myPlatformActionListener = new MyPlatformActionListener();
+		SnapChatShare snapChatShare = new SnapChatShare(myPlatformActionListener);
+		snapChatShare.shareSnapchatImageIntent(this, data);
+	}
+
+	/**
+	 * snapchat本地视频分享
+	 * **/
+	private void shareSnapchatVideo(Intent data) {
+		myPlatformActionListener = new MyPlatformActionListener();
+		SnapChatShare snapChatShare = new SnapChatShare(myPlatformActionListener);
+		snapChatShare.shareSnapchatVideo(this, data);
 	}
 
 	/**
@@ -196,12 +366,139 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 
 	/**
 	 * 抖音本地视频分享
-	 * **/
+	 **/
 	private void startShareVideo(String videoPath) {
 		myPlatformActionListener = new MyPlatformActionListener();
 		DouyinShare douyinShare = new DouyinShare(myPlatformActionListener);
 		douyinShare.shareVideo(this, videoPath);
 	}
+
+	/**
+	 * tiktok本地图片分享
+	 * **/
+	private void tiktokShareImage(String imagePath) {
+		myPlatformActionListener = new MyPlatformActionListener();
+		TiktokShare tiktokShare = new TiktokShare(myPlatformActionListener);
+		tiktokShare.shareImagePath(this, imagePath);
+	}
+
+	/**
+	 * tiktok本地视频分享
+	 * **/
+	private void tiktokShareVideo(String videoPath) {
+		myPlatformActionListener = new MyPlatformActionListener();
+		TiktokShare tiktokShare = new TiktokShare(myPlatformActionListener);
+		tiktokShare.shareVideo(this, videoPath);
+	}
+
+	/**
+	 * whatsapp 分享本地图片
+	 **/
+	private void whatsappShareImage(String imagePath) {
+		myPlatformActionListener = new MyPlatformActionListener();
+		WhatsAppShare whatsAppShare = new WhatsAppShare(myPlatformActionListener);
+		whatsAppShare.shareImage(imagePath);
+	}
+
+	/**
+	 * whatsapp 分享本地视频
+	 **/
+	private void whatsappShareVideo(String videoPath) {
+		myPlatformActionListener = new MyPlatformActionListener();
+		WhatsAppShare whatsAppShare = new WhatsAppShare(myPlatformActionListener);
+		whatsAppShare.shareVideo(videoPath);
+	}
+
+
+	/**
+	 * Facebook 本地视频分享
+	 **/
+	private void startShareVideo(Uri videoUri) {
+		myPlatformActionListener = new MyPlatformActionListener();
+		FacebookShare facebookShare = new FacebookShare(myPlatformActionListener);
+		facebookShare.shareFacebookVideo(videoUri);
+	}
+
+	/**
+	 * 西瓜视频本地视频分享
+	 * **/
+	private void watermShareVideo(Uri videoUri) {
+		myPlatformActionListener = new MyPlatformActionListener();
+		WatermelonvideoShare watermelonvideoShare = new WatermelonvideoShare(myPlatformActionListener);
+		watermelonvideoShare.shareVideo(this, videoUri);
+	}
+
+	/**
+	 * 小红书本地图片分享
+	 * **/
+	private void xiaohongshuShareImage(String imagePath) {
+		myPlatformActionListener = new MyPlatformActionListener();
+		LittleredbookShare littleredbookShare = new LittleredbookShare(myPlatformActionListener);
+		littleredbookShare.shareImagePath(this, imagePath);
+	}
+
+	/**
+	 * 小红书本地视频分享
+	 * **/
+	private void xiaohongshuShareVideo(Uri videoUri) {
+		myPlatformActionListener = new MyPlatformActionListener();
+		LittleredbookShare littleredbookShare = new LittleredbookShare(myPlatformActionListener);
+		littleredbookShare.shareVideo(this, videoUri);
+	}
+
+	/**
+	 * 美拍图片分享
+	 * **/
+	private void meipaiShareImage(String imagePath) {
+		myPlatformActionListener = new MyPlatformActionListener();
+		MeipaiShare meipaiShare = new MeipaiShare(myPlatformActionListener);
+		meipaiShare.shareImagePath(this, imagePath);
+	}
+
+	/**
+	 * 美拍分享视频
+	 * **/
+	private void meipaiShareVideo(String videoPath) {
+		myPlatformActionListener = new MyPlatformActionListener();
+		MeipaiShare meipaiShare = new MeipaiShare(myPlatformActionListener);
+		meipaiShare.shareVideo(this, videoPath);
+	}
+
+	/**
+	 * 快手本地图片分享
+	 * **/
+	private void kuaishouShareImage(String imagePath) {
+		myPlatformActionListener = new MyPlatformActionListener();
+		KuaishouShare kuaishouShare = new KuaishouShare(myPlatformActionListener);
+		kuaishouShare.shareImagePath(this, imagePath);
+	}
+
+	/**
+	 * 快手本地视频分享
+	 * **/
+	private void kuaishouShareVideo(Uri videoUri) {
+		myPlatformActionListener = new MyPlatformActionListener();
+		KuaishouShare kuaishouShare = new KuaishouShare(myPlatformActionListener);
+		kuaishouShare.shareVideo(this, videoUri);
+	}
+
+	/**
+	 * QZONE本地视频分享
+	 * **/
+	public void QzoneShareVideo(String videoPath) {
+		myPlatformActionListener = new MyPlatformActionListener();
+		QQZoneShare qzoneShare = new QQZoneShare(myPlatformActionListener);
+		qzoneShare.shareVideo(videoPath);
+	}
+
+    /**
+     * 微信收藏文件分享
+     * **/
+    public void WechatFavShareFile(String videoPath) {
+        myPlatformActionListener = new MyPlatformActionListener();
+        WechatFavoriteShare wechatFavoriteShare = new WechatFavoriteShare(myPlatformActionListener);
+        wechatFavoriteShare.shareFile(videoPath);
+    }
 
 	/**
 	 * 企业微信视频分享

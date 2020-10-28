@@ -2,13 +2,15 @@ package cn.sharesdk.demo.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +24,15 @@ import com.mob.MobSDK;
 import java.util.HashMap;
 import java.util.List;
 
+import androidx.recyclerview.widget.RecyclerView;
 import cn.sharesdk.demo.R;
 import cn.sharesdk.demo.entity.ResourcesManager;
 import cn.sharesdk.demo.entity.ShareListItemInEntity;
 import cn.sharesdk.demo.entity.SharePlatformType;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.framework.loopshare.LoopSharePasswordListener;
 import cn.sharesdk.onekeyshare.ShareContentCustomizeCallback;
 
 /**
@@ -112,10 +117,51 @@ public class ShareRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 					onShotListener.onClick();
 				}
 			});
-			shareViewHolder.sharkSelected.setOnClickListener(new View.OnClickListener() {
+			shareViewHolder.mVideoshareSelected.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					onShotListener.onSharkClick();
+				}
+			});
+			//口令分享
+			shareViewHolder.passwrodShare.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					HashMap<String, Object> map = new HashMap<String, Object>();
+					map.put("key1", "value1");
+					map.put("key2", "value2");
+					map.put("key3", "value3");
+					map.put("key4", "value4");
+
+					HashMap<String, Object> paramsMap = new HashMap<String, Object>();
+					paramsMap.put("params", map);
+
+					String paramasStr = "复制本段内容，“想你所想，高端品牌适合高端的你”，去粘贴给好友，打开ShareSDK查看详情";
+					ShareSDK.preparePassWord(paramsMap, paramasStr, new LoopSharePasswordListener() {
+						@Override
+						public void onResult(Object var1) {
+							Log.d("SharSDK", "onResult " + var1);
+							//Toast toast = Toast.makeText(context, String.valueOf(var1), Toast.LENGTH_LONG);
+							//toast.setGravity(Gravity.CENTER, 0, 0);
+							//toast.show();
+
+							Intent intent = new Intent();
+							intent.setAction(Intent.ACTION_SEND);
+							intent.setType("text/plain");
+							intent.putExtra(Intent.EXTRA_TEXT, String.valueOf(var1));
+							intent = Intent.createChooser(intent, String.valueOf(var1));
+							intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+							MobSDK.getContext().startActivity(intent);
+						}
+
+						@Override
+						public void onError(Throwable var1) {
+							Log.d("SharSDK", "onError " + var1);
+							Toast toast = Toast.makeText(context, String.valueOf(var1), Toast.LENGTH_LONG);
+							toast.setGravity(Gravity.CENTER, 0, 0);
+							toast.show();
+						}
+					});
 				}
 			});
 		}
@@ -235,14 +281,18 @@ public class ShareRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 	class ShareViewHolder extends RecyclerView.ViewHolder {
 		public ImageView shareSelected;
 		public ImageView shotSelected;
-		public ImageView sharkSelected;
+		public RelativeLayout mVideoshareSelected;
+		public RelativeLayout passwrodShare;
+
 		public ShareViewHolder(View itemView) {
 			super(itemView);
-			shareSelected =(ImageView) itemView.findViewById(R.id.mSelected);
+			shareSelected = (ImageView) itemView.findViewById(R.id.mSelected);
 			shotSelected = (ImageView) itemView.findViewById(R.id.mShot);
-			sharkSelected = (ImageView) itemView.findViewById(R.id.mShark);
+			mVideoshareSelected = itemView.findViewById(R.id.layout_mVideoShare);
+			passwrodShare = (RelativeLayout) itemView.findViewById(R.id.layout_passwordshare);
 		}
 	}
+
 	class ShareViewHolderTitle extends RecyclerView.ViewHolder {
 		public TextView textView;
 		public ShareViewHolderTitle(View itemView) {

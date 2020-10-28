@@ -9,8 +9,11 @@ import android.app.Activity;
 import com.mob.MobSDK;
 
 import cn.sharesdk.alipay.friends.Alipay;
+import cn.sharesdk.alipay.moments.AlipayMoments;
 import cn.sharesdk.demo.entity.ResourcesManager;
+import cn.sharesdk.demo.platform.littleredbook.LittleredbookShare;
 import cn.sharesdk.demo.platform.alipay.friends.AlipayShare;
+import cn.sharesdk.demo.platform.alipay.moments.AlipayMomentsShare;
 import cn.sharesdk.demo.platform.dingding.friends.DingdingShare;
 import cn.sharesdk.demo.platform.douban.DoubanShare;
 import cn.sharesdk.demo.platform.douyin.DouyinShare;
@@ -25,22 +28,27 @@ import cn.sharesdk.demo.platform.instapaper.InstapaperShare;
 import cn.sharesdk.demo.platform.kaixin.KaiXinShare;
 import cn.sharesdk.demo.platform.kakao.story.KakaoStoryShare;
 import cn.sharesdk.demo.platform.kakao.talk.KakaoTalkShare;
+import cn.sharesdk.demo.platform.kuaishou.KuaishouShare;
 import cn.sharesdk.demo.platform.line.LineShare;
 import cn.sharesdk.demo.platform.linkedin.LinkedinShare;
 import cn.sharesdk.demo.platform.meipai.MeipaiShare;
 import cn.sharesdk.demo.platform.mingdao.MingdaoShare;
+import cn.sharesdk.demo.platform.oasis.OasisShare;
 import cn.sharesdk.demo.platform.pinterest.PinterestShare;
 import cn.sharesdk.demo.platform.reddit.RedditShare;
 import cn.sharesdk.demo.platform.renren.RenrenShare;
 import cn.sharesdk.demo.platform.sina.WeiboShare;
+import cn.sharesdk.demo.platform.snapchat.SnapChatShare;
 import cn.sharesdk.demo.platform.system.email.EmailShare;
 import cn.sharesdk.demo.platform.system.text.ShortMessageShare;
 import cn.sharesdk.demo.platform.telegram.TelegramShare;
 import cn.sharesdk.demo.platform.tencent.qq.QQShare;
 import cn.sharesdk.demo.platform.tencent.qzone.QQZoneShare;
+import cn.sharesdk.demo.platform.tiktok.TiktokShare;
 import cn.sharesdk.demo.platform.tumblr.TumblrShare;
 import cn.sharesdk.demo.platform.twitter.TwitterShare;
 import cn.sharesdk.demo.platform.vkontakte.VKontakteShare;
+import cn.sharesdk.demo.platform.watermelonvideo.WatermelonvideoShare;
 import cn.sharesdk.demo.platform.wechat.favorite.WechatFavoriteShare;
 import cn.sharesdk.demo.platform.wechat.friends.WechatShare;
 import cn.sharesdk.demo.platform.wechat.moments.WechatMomentsShare;
@@ -67,23 +75,29 @@ import cn.sharesdk.instapaper.Instapaper;
 import cn.sharesdk.kaixin.KaiXin;
 import cn.sharesdk.kakao.story.KakaoStory;
 import cn.sharesdk.kakao.talk.KakaoTalk;
+import cn.sharesdk.kuaishou.Kuaishou;
 import cn.sharesdk.line.Line;
 import cn.sharesdk.linkedin.LinkedIn;
+import cn.sharesdk.littleredbook.Littleredbook;
 import cn.sharesdk.meipai.Meipai;
 import cn.sharesdk.mingdao.Mingdao;
+import cn.sharesdk.oasis.Oasis;
 import cn.sharesdk.pinterest.Pinterest;
 import cn.sharesdk.reddit.Reddit;
 import cn.sharesdk.renren.Renren;
 import cn.sharesdk.sina.weibo.SinaWeibo;
+import cn.sharesdk.snapchat.Snapchat;
 import cn.sharesdk.system.email.Email;
 import cn.sharesdk.system.text.ShortMessage;
 import cn.sharesdk.telegram.Telegram;
 import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
+import cn.sharesdk.tiktok.Tiktok;
 import cn.sharesdk.tumblr.Tumblr;
 import cn.sharesdk.twitter.Twitter;
 import cn.sharesdk.vkontakte.VKontakte;
+import cn.sharesdk.watermelonvideo.Watermelonvideo;
 import cn.sharesdk.wechat.favorite.WechatFavorite;
 import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
@@ -118,9 +132,6 @@ public class PlatformShareManager {
 		} else if (name.equals(Evernote.NAME)) {
 			EvernoteShare evernoteShare = new EvernoteShare(platformActionListener);
 			evernoteShare.shareText();
-		} else if (name.equals(Instapaper.NAME)) {
-			InstapaperShare instapaperShare = new InstapaperShare(platformActionListener);
-			instapaperShare.shareTextUrl();
 		} else if (name.equals(KaiXin.NAME)) {
 			KaiXinShare kaiXinShare = new KaiXinShare(platformActionListener);
 			kaiXinShare.shareText();
@@ -240,7 +251,7 @@ public class PlatformShareManager {
 			fourSquareShare.shareImage();
 		} else if (name.equals(Instagram.NAME)) {
 			InstagramShare instagramShare = new InstagramShare(platformActionListener);
-			instagramShare.shareTextImage();
+			instagramShare.shareTextImage(activity);
 		} else if (name.equals(KaiXin.NAME)) {
 			KaiXinShare kaiXinShare = new KaiXinShare(platformActionListener);
 			kaiXinShare.shareImage();
@@ -249,16 +260,13 @@ public class PlatformShareManager {
 			kakaoStoryShare.shareImage();
 		} else if (name.equals(KakaoTalk.NAME)) {
 			KakaoTalkShare kakaoStoryShare = new KakaoTalkShare(platformActionListener);
-			kakaoStoryShare.shareImage();
+			kakaoStoryShare.kakaoCustomShare();
 		} else if (name.equals(Line.NAME)) {
 			LineShare lineShare = new LineShare(platformActionListener);
 			lineShare.shareImage();
-		}/* else if (name.equals(LinkedIn.NAME)) {
-			LinkedinShare linkedinShare = new LinkedinShare(platformActionListener);
-			linkedinShare.shareImage();
-		}*/ else if (name.equals(Meipai.NAME)) {
+		} else if (name.equals(Meipai.NAME)) {
 			MeipaiShare meipaiShare = new MeipaiShare(platformActionListener);
-			meipaiShare.shareImage();
+			meipaiShare.shareImage(activity);
 		} else if (name.equals(Mingdao.NAME)) {
 			MingdaoShare mingdaoShare = new MingdaoShare(platformActionListener);
 			mingdaoShare.shareImage();
@@ -291,7 +299,7 @@ public class PlatformShareManager {
 			wechatMomentsShare.shareImage();
 		} else if (name.equals(WhatsApp.NAME)) {
 			WhatsAppShare whatsAppShare = new WhatsAppShare(platformActionListener);
-			whatsAppShare.shareImage();
+			whatsAppShare.shareImage(activity);
 		} else if (name.equals(Yixin.NAME)) {
 			YixinShare yixinShare = new YixinShare(platformActionListener);
 			yixinShare.shareImage();
@@ -313,12 +321,27 @@ public class PlatformShareManager {
 		} else if (name.equals(Douyin.NAME)) {
 			DouyinShare douyinShare = new DouyinShare(platformActionListener);
 			douyinShare.shareImage(activity);
+		}  else if (name.equals(Tiktok.NAME)) {
+			TiktokShare tiktokShare = new TiktokShare(platformActionListener);
+			tiktokShare.shareImage(activity);
 		} else if (name.equals(YixinMoments.NAME)) {
 			YixinMomentsShare wechatShare = new YixinMomentsShare(platformActionListener);
 			wechatShare.shareImage();
 		} else if (name.equals(Wework.NAME)) {
 			WeworkShare weworkShare = new WeworkShare(platformActionListener);
 			weworkShare.shareImage(activity);
+		} else if(name.equals(Oasis.NAME)){
+		    OasisShare oasisShare = new OasisShare(platformActionListener);
+		    oasisShare.showDialogSelectImg(activity);
+        } else if (name.equals(Snapchat.NAME)) {
+			SnapChatShare snapChatShare = new SnapChatShare(platformActionListener);
+			snapChatShare.shareSnapImageOpen(activity);
+		} else if (name.equals(Kuaishou.NAME)) {
+			KuaishouShare kuaishouShare = new KuaishouShare(platformActionListener);
+			kuaishouShare.shareImage(activity);
+		} else if (name.equals(Littleredbook.NAME)) {
+			LittleredbookShare littleredbookShare = new LittleredbookShare(platformActionListener);
+			littleredbookShare.shareImage(activity);
 		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
@@ -337,6 +360,9 @@ public class PlatformShareManager {
 		if (name.equals(Alipay.NAME)) {
 			AlipayShare alipay = new AlipayShare(platformActionListener);
 			alipay.shareWebPage();
+		} else if (name.equals(AlipayMoments.NAME)) {
+			AlipayMomentsShare alipayMomentsShare = new AlipayMomentsShare(platformActionListener);
+			alipayMomentsShare.shareWebPage();
 		} else if (name.equals(Dingding.NAME)) {
 			DingdingShare dingdingShare = new DingdingShare(platformActionListener);
 			dingdingShare.shareWebPage();
@@ -349,6 +375,9 @@ public class PlatformShareManager {
 		} else if (name.equals(QZone.NAME)) {
 			QQZoneShare mingdaoShare = new QQZoneShare(platformActionListener);
 			mingdaoShare.shareWebPager();
+		} else if (name.equals(Instapaper.NAME)) {
+			InstapaperShare instapaperShare = new InstapaperShare(platformActionListener);
+			instapaperShare.shareTextUrl();
 		} else if (name.equals(FacebookMessenger.NAME)) {
 			FacebookMessengerShare facebookMessengerShare = new FacebookMessengerShare(platformActionListener);
 			facebookMessengerShare.shareWebPage();
@@ -373,6 +402,9 @@ public class PlatformShareManager {
 		} else if (name.equals(LinkedIn.NAME)) {
 			LinkedinShare linkedinShare = new LinkedinShare(platformActionListener);
 			linkedinShare.shareWebPage();
+		} else if (name.equals(KakaoTalk.NAME)) {
+			KakaoTalkShare kakaoStoryShare = new KakaoTalkShare(platformActionListener);
+			kakaoStoryShare.shareUrl();
 		} else if (name.equals(Wework.NAME)) {
 			WeworkShare weworkShare = new WeworkShare(platformActionListener);
 			weworkShare.shareWebPage();
@@ -399,9 +431,9 @@ public class PlatformShareManager {
 		} else if (name.equals(Evernote.NAME)) {
 			EvernoteShare evernoteShare = new EvernoteShare(platformActionListener);
 			evernoteShare.shareVideo();
-		} else if (name.equals(Facebook.NAME)) {
+		} else if (name.equals(Facebook.NAME)) { //============== Facebook
 			FacebookShare facebookShare = new FacebookShare(platformActionListener);
-			facebookShare.shareVideo();
+			facebookShare.shareVideo(activity);
 		} else if (name.equals(Instagram.NAME)) {
 			InstagramShare instagramShare = new InstagramShare(platformActionListener);
 			instagramShare.shareVideo();
@@ -410,7 +442,7 @@ public class PlatformShareManager {
 			kakaoStoryShare.shareVideo();
 		} else if (name.equals(Meipai.NAME)) {
 			MeipaiShare meipaiShare = new MeipaiShare(platformActionListener);
-			meipaiShare.shareVideo();
+			meipaiShare.shareVideo(activity);
 		} else if (name.equals(Email.NAME)) {
 			EmailShare emailShare = new EmailShare(platformActionListener);
 			emailShare.shareVideo();
@@ -419,7 +451,7 @@ public class PlatformShareManager {
 			shortMessageShare.shareVideo();
 		} else if (name.equals(QZone.NAME)) {
 			QQZoneShare qqZoneShare = new QQZoneShare(platformActionListener);
-			qqZoneShare.shareVideo();
+			qqZoneShare.shareVideo(activity);
 		} else if (name.equals(Twitter.NAME)) {
 			TwitterShare twitterShare = new TwitterShare(platformActionListener);
 			twitterShare.shareVideo();
@@ -434,7 +466,7 @@ public class PlatformShareManager {
 			wechatMomentsShare.shareVideo();
 		} else if (name.equals(WhatsApp.NAME)) {
 			WhatsAppShare whatsAppShare = new WhatsAppShare(platformActionListener);
-			whatsAppShare.shareVideo();
+			whatsAppShare.shareVideo(activity);
 		} else if (name.equals(Yixin.NAME)) {
 			YixinShare yixinShare = new YixinShare(platformActionListener);
 			yixinShare.shareVideo();
@@ -447,9 +479,30 @@ public class PlatformShareManager {
 		} else if (name.equals(Douyin.NAME)) {
 			DouyinShare douyinShare = new DouyinShare(platformActionListener);
 			douyinShare.shareVideo(activity);
+		} else if (name.equals(Tiktok.NAME)) {
+			TiktokShare tiktokShare = new TiktokShare(platformActionListener);
+			tiktokShare.shareVideo(activity);
 		} else if (name.equals(Wework.NAME)) {
 			WeworkShare weworkShare = new WeworkShare(platformActionListener);
 			weworkShare.shareVideo(activity);
+		} else if(name.equals(Oasis.NAME)){
+		    OasisShare oasisShare = new OasisShare(platformActionListener);
+		    oasisShare.shareVideo(activity);
+        } else if (name.equals(Snapchat.NAME)) {
+			SnapChatShare snapChatShare = new SnapChatShare(platformActionListener);
+			snapChatShare.shareSnapVideoOpen(activity);
+		} else if (name.equals(Kuaishou.NAME)) {
+			KuaishouShare kuaishouShare = new KuaishouShare(platformActionListener);
+			kuaishouShare.shareVideo(activity);
+		} else if (name.equals(Littleredbook.NAME)) {
+			LittleredbookShare littleredbookShare = new LittleredbookShare(platformActionListener);
+			littleredbookShare.shareVideo(activity);
+		} else if (name.equals(KakaoTalk.NAME)) {
+			KakaoTalkShare kakaoStoryShare = new KakaoTalkShare(platformActionListener);
+			kakaoStoryShare.kakaoCommerceShare();
+		} else if (name.equals(Watermelonvideo.NAME)) {
+			WatermelonvideoShare watermelonvideoShare = new WatermelonvideoShare(platformActionListener);
+			watermelonvideoShare.shareVideo(activity);
 		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
@@ -468,16 +521,19 @@ public class PlatformShareManager {
 			dropboxShare.shareFile();
 		} else if (name.equals(QZone.NAME)) {
 			QQZoneShare qqZoneShare = new QQZoneShare(platformActionListener);
-			qqZoneShare.shareVideo();
+			qqZoneShare.shareVideo(activity);
 		} else if (name.equals(Wechat.NAME)) {
 			WechatShare wechatShare = new WechatShare(platformActionListener);
 			wechatShare.shareFile();
 		} else if (name.equals(WechatFavorite.NAME)) {
 			WechatFavoriteShare wechatFavoriteShare = new WechatFavoriteShare(platformActionListener);
-			wechatFavoriteShare.shareFile();
+			wechatFavoriteShare.shareFile(activity);
 		} else if (name.equals(Wework.NAME)) {
 			WeworkShare weworkShare = new WeworkShare(platformActionListener);
 			weworkShare.shareFile(activity);
+		} else if (name.equals(KakaoTalk.NAME)) {
+			KakaoTalkShare kakaoStoryShare = new KakaoTalkShare(platformActionListener);
+			kakaoStoryShare.kakaoFeedShare();
 		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();

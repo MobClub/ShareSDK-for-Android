@@ -37,9 +37,11 @@ public class WechatMomentsShare {
 		Platform platform = ShareSDK.getPlatform(WechatMoments.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
-		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
-		shareParams.setImageData(ResourcesManager.getInstace(MobSDK.getContext()).getImageBmp());
+		if (ResourcesManager.getInstace(MobSDK.getContext()).getImagePath() == null) {
+			shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
+		} else {
+			shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+		}
 		shareParams.setShareType(Platform.SHARE_IMAGE);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
@@ -50,8 +52,11 @@ public class WechatMomentsShare {
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-		shareParams.setImageUrl("https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
+		if (ResourcesManager.getInstace(MobSDK.getContext()).getImagePath() == null) {
+			shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
+		} else {
+			shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+		}
 		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
 		shareParams.setMusicUrl(ResourcesManager.getInstace(MobSDK.getContext()).getMusicUrl());
 		shareParams.setShareType(Platform.SHARE_MUSIC);
@@ -64,8 +69,12 @@ public class WechatMomentsShare {
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
-		shareParams.setImageUrl("https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
+		shareParams.setUrl("http://www.mob.com/video/ShareSDK.mp4");
+		if (ResourcesManager.getInstace(MobSDK.getContext()).getImagePath() == null) {
+			shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
+		} else {
+			shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+		}
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
 		shareParams.setShareType(Platform.SHARE_VIDEO);
 		platform.setPlatformActionListener(platformActionListener);
@@ -100,9 +109,11 @@ public class WechatMomentsShare {
 		Platform platform = ShareSDK.getPlatform(WechatMoments.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
-		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
-		shareParams.setImageData(ResourcesManager.getInstace(MobSDK.getContext()).getImageBmp());
+		if (ResourcesManager.getInstace(MobSDK.getContext()).getImagePath() == null) {
+			shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
+		} else {
+			shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+		}
 		shareParams.setShareType(Platform.SHARE_IMAGE);
 		platform.setPlatformActionListener(mListener);
 		platform.share(shareParams);
@@ -128,7 +139,7 @@ public class WechatMomentsShare {
 		shareParams.setFilePath(ResourcesManager.getInstace(MobSDK.getContext()).getFilePath());
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
+		shareParams.setUrl("http://www.mob.com/video/ShareSDK.mp4");
 		shareParams.setShareType(Platform.SHARE_VIDEO);
 		platform.setPlatformActionListener(mListener);
 		platform.share(shareParams);

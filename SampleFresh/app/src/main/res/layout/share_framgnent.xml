@@ -25,11 +25,11 @@
 		android:focusableInTouchMode="true"
 		android:marqueeRepeatLimit="marquee_forever"
 		android:singleLine="true"/>
-   <android.support.v7.widget.RecyclerView
+   <androidx.recyclerview.widget.RecyclerView
        android:id="@+id/mListView"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-	   android:layout_below="@+id/announcement"></android.support.v7.widget.RecyclerView>
+	   android:layout_below="@+id/announcement"></androidx.recyclerview.widget.RecyclerView>
 
    <LinearLayout
        android:id="@+id/shareLayout"

@@ -3,6 +3,7 @@ package cn.sharesdk.demo.entity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.mob.MobSDK;
 import com.mob.tools.network.NetworkHelper;
@@ -12,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.HashMap;
 
+import cn.sharesdk.demo.MainActivity;
 import cn.sharesdk.demo.R;
 import cn.sharesdk.framework.Platform;
 
@@ -61,6 +63,8 @@ public class ResourcesManager {
 	public static final String EXT_INFO = "extInfo";
 	public static final String ADDRESS = "address";
 	private String venueDescription;
+	public static final String IMAGE_TEST_URL = "http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg";
+	public static final String IMAGE_TEST_URL_TWO = "https://cdn.pixabay.com/photo/2019/08/08/11/33/stingray-4392776_960_720.jpg";
 
 	public static ResourcesManager getInstace(Context context){
 		synchronized (ResourcesManager.class){
@@ -110,7 +114,7 @@ public class ResourcesManager {
 
 	public String getMusicUrl() {
 		if(TextUtils.isEmpty(musicUrl)){
-			return "http://play.baidu.com/?__m=mboxCtrl.playSong&__a=7320512&__o=song/7320512||playBtn&fr=altg_new3||www.baidu.com#";
+			return "http://staff2.ustc.edu.cn/~wdw/softdown/index.asp/0042515_05.ANDY.mp3";
 		}
 		return musicUrl;
 	}
@@ -215,16 +219,20 @@ public class ResourcesManager {
 				String[] urls = randomPic();
 				testImageUrl = urls[1];
 				//imageUrl = urls[1];
-				imageUrl = "https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg";
+				imageUrl = "http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg";
 				try {
 					//testImage = BitmapHelper.downloadBitmap(MobSDK.getContext(), urls[3]);
 					testImage = BitmapHelper.downloadBitmap(MobSDK.getContext(),
-							"https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
+							"http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
 					imageBmp = BitmapHelper.getBitmap(testImage);
 					imagePath = testImage;
 				} catch (Throwable t) {
-					t.printStackTrace();
 					testImage = null;
+					try {
+						testImage = BitmapHelper.downloadBitmap(MobSDK.getContext(), "http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
+					} catch (Throwable throwable) {
+						Log.e("QQQ", "初始化第二次下载图片失败" );
+					}
 				}
 				initTestText();
 				String videoUrl = "http://f1.webshare.mob.com/dvideo/demovideos.mp4";

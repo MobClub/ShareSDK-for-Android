@@ -1,5 +1,7 @@
 package cn.sharesdk.demo.platform.wechat.friends;
 
+import android.util.Log;
+
 import com.mob.MobSDK;
 import cn.sharesdk.demo.entity.ResourcesManager;
 import cn.sharesdk.demo.utils.DemoUtils;
@@ -9,6 +11,7 @@ import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.wechat.friends.Wechat;
 
 import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
+import static cn.sharesdk.demo.entity.ResourcesManager.IMAGE_TEST_URL;
 
 /**
  * Created by yjin on 2017/6/22.
@@ -38,7 +41,9 @@ private PlatformActionListener platformActionListener;
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
-		shareParams.setImageUrl("https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
+		shareParams.setImageUrl(IMAGE_TEST_URL);
+		//shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+		//Log.e("WWW", "imagePath ===> " + ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
 		shareParams.setShareType(Platform.SHARE_IMAGE);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
@@ -50,10 +55,9 @@ private PlatformActionListener platformActionListener;
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-		shareParams.setImageUrl("https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
-		String musicUrl = "http://music.baidu.com/song/546920050?pst=sug";
-		shareParams.setMusicUrl(musicUrl);
-		shareParams.setUrl(musicUrl);
+		shareParams.setImageUrl(IMAGE_TEST_URL);
+		shareParams.setMusicUrl(ResourcesManager.getInstace(MobSDK.getContext()).getMusicUrl());
+		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getMusicUrl());
 		shareParams.setShareType(Platform.SHARE_MUSIC);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
@@ -64,8 +68,8 @@ private PlatformActionListener platformActionListener;
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
-		shareParams.setImageUrl("https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
+		shareParams.setUrl("http://www.mob.com/video/ShareSDK.mp4");
+		shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
 		shareParams.setShareType(Platform.SHARE_VIDEO);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
@@ -77,7 +81,7 @@ private PlatformActionListener platformActionListener;
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		shareParams.setUrl(LINK_URL);
-		shareParams.setImageUrl("https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
+		shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
 		shareParams.setShareType(Platform.SHARE_WEBPAGE);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
@@ -96,11 +100,14 @@ private PlatformActionListener platformActionListener;
 //		platform.share(shareParams);
 //	}
 
+	/**
+	 * 不展示分享文件，因为微信有可能废弃这个API
+	 * **/
 	public void shareFile(){
 		Platform platform = ShareSDK.getPlatform(Wechat.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
-		shareParams.setFilePath(ResourcesManager.getInstace(MobSDK.getContext()).getFilePath());
-		shareParams.setImageUrl("https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
+		shareParams.setFilePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+		shareParams.setImageUrl(IMAGE_TEST_URL);
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		shareParams.setShareType(Platform.SHARE_FILE);
@@ -111,7 +118,7 @@ private PlatformActionListener platformActionListener;
 	public void shareEmoji(){
 		Platform platform = ShareSDK.getPlatform(Wechat.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
-		shareParams.setImageUrl("https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
+		shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
 		shareParams.setShareType(Platform.SHARE_EMOJI);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
@@ -125,7 +132,7 @@ private PlatformActionListener platformActionListener;
 		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
 		shareParams.setImageData(ResourcesManager.getInstace(MobSDK.getContext()).getImageBmp());
-		shareParams.setImageUrl("https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
+		shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
 		shareParams.setShareType(Platform.SHARE_WXMINIPROGRAM);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
@@ -172,8 +179,12 @@ private PlatformActionListener platformActionListener;
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
-		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+		shareParams.setUrl("http://www.mob.com/video/ShareSDK.mp4");
+		if (ResourcesManager.getInstace(MobSDK.getContext()).getImagePath() == null) {
+			shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
+		} else {
+			shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+		}
 		shareParams.setScence(0);
 		shareParams.setShareType(Platform.SHARE_VIDEO);
 		platform.setPlatformActionListener(mListener);

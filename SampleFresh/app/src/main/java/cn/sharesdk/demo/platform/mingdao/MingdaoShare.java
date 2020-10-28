@@ -26,7 +26,7 @@ public class MingdaoShare {
 		Platform platform = ShareSDK.getPlatform(Mingdao.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setUrl(LINK_URL);
-		shareParams.setText(LINK_TEXT);
+		shareParams.setText("shareText text text text hahahah");
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
 	}
@@ -34,10 +34,9 @@ public class MingdaoShare {
 	public void shareImage(){
 		Platform platform = ShareSDK.getPlatform(Mingdao.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
+		shareParams.setText("shareText only test no mult and more");
 		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
 		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
-		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
 	}

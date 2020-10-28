@@ -32,4 +32,16 @@
 	<color name="text_orange">#F56803</color>
 	<color name="bg_announcement">#FEF5EC</color>
 
+    <!-- privacy -->
+    <color name="black">#FF000000</color>
+    <color name="grey">#4D000000</color>
+    <color name="orange">#FFFF7800</color>
+    <color name="light_grey">#FFECECEC</color>
+
+    <color name="pic_bg">#F7F8F9</color>
+    <color name="pic_font">#1E2937</color>
+
+    <color name="light_grey_bg">#ECECEC</color>
+
+
 </resources>

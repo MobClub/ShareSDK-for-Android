@@ -2,7 +2,6 @@ package cn.sharesdk.demo;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -11,10 +10,13 @@ import android.widget.Toast;
 import com.mob.MobSDK;
 import com.shizhefei.view.largeimage.LargeImageView;
 
+import java.util.HashMap;
+
 import cn.sharesdk.demo.entity.ResourcesManager;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.tencent.qq.QQ;
+import cn.sharesdk.wechat.friends.Wechat;
 
 public class ShareMobLinkActivity extends Activity implements View.OnClickListener{
 
@@ -25,6 +27,7 @@ public class ShareMobLinkActivity extends Activity implements View.OnClickListen
     private LargeImageView imageShow;
     private Button btnShowlink;
     private Button btn_back;
+    private Button btnCustomShowlink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,9 @@ public class ShareMobLinkActivity extends Activity implements View.OnClickListen
 
         btn_back = (Button) findViewById(R.id.btn_back);
         btn_back.setOnClickListener(this);
+
+        btnCustomShowlink = findViewById(R.id.btn_custome_showlink);
+        btnCustomShowlink.setOnClickListener(this);
     }
 
 
@@ -70,12 +76,47 @@ public class ShareMobLinkActivity extends Activity implements View.OnClickListen
             {
                 finish();
             } break;
+            case R.id.btn_custome_showlink:
+            {
+                shareCustomUrl();
+            } break;
             default:
                 break;
         }
     }
 
-    public void shareWebPager(){
+    /**
+     * 自定义场景还原参数分享
+     * **/
+    private void shareCustomUrl() {
+        Platform platform = ShareSDK.getPlatform(Wechat.NAME);
+        boolean clientBool = platform.isClientValid();
+        if (clientBool) {
+            Platform.ShareParams shareParams = new  Platform.ShareParams();
+            shareParams.setText(LINK_TEXT);
+            shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
+            //shareParams.setTitleUrl(LINK_URL);
+            shareParams.setUrl("http://j.mob.com/secure/Tempo.jspa/my-work/week?type=LIST");
+            HashMap<String, Object> mobIdMap = new HashMap<String, Object>();
+            mobIdMap.put("path", "pathTest");
+
+            HashMap<String, Object> paramasTest = new HashMap<String, Object>();
+            paramasTest.put("key1", "value1");
+            paramasTest.put("key2", "value2");
+            paramasTest.put("key3", "value3");
+            paramasTest.put("key4", "value4");
+            mobIdMap.put("params", paramasTest);
+
+            shareParams.setLoopshareCustomParams(mobIdMap);
+
+            shareParams.setShareType(Platform.SHARE_WEBPAGE);
+            platform.share(shareParams);
+        } else {
+            Toast.makeText(MobSDK.getContext(), "请先安装QQ客户端", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void shareWebPager(){
         Platform platform = ShareSDK.getPlatform(QQ.NAME);
         boolean clientBool = platform.isClientValid();
         if (clientBool) {

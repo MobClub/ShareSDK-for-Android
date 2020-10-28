@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/margin_28"
+    android:background="@drawable/privacy_dialog_rectangle">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_20"
+        android:text="@string/privacy_title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sdk_plus_16"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_data_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_20"
+        android:text="@string/privacy_date_start"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/sdk_plus_12"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_data_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_data_start"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_5"
+        android:text="@string/privacy_date_end"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/sdk_plus_12"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_385"
+        android:layout_below="@+id/tv_data_end"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_marginRight="@dimen/margin_20">
+
+<!--
+        android:text="@string/privacy_content"
+-->
+        <TextView
+            android:id="@+id/show_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:singleLine="false"
+            android:autoLink="web"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sdk_plus_12"
+             />
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_40"
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_marginBottom="@dimen/margin_15"
+        android:layout_below="@+id/scrollview">
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="@dimen/margin_128"
+            android:layout_height="@dimen/margin_40"
+            android:layout_toLeftOf="@+id/image_line"
+            android:layout_marginRight="@dimen/margin_8"
+            android:background="@drawable/privacy_button_cancel"
+            android:text="@string/dialog_cancel"
+            android:textSize="@dimen/sdk_plus_14" />
+
+        <ImageView
+            android:id="@+id/image_line"
+            android:layout_width="@dimen/margin_0_1"
+            android:layout_height="@dimen/margin_0_1"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="@dimen/margin_128"
+            android:layout_height="@dimen/margin_40"
+            android:layout_toRightOf="@+id/image_line"
+            android:layout_marginLeft="@dimen/margin_8"
+            android:background="@drawable/privacy_button_ok"
+            android:text="@string/dialog_ok"
+            android:textSize="@dimen/sdk_plus_14" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

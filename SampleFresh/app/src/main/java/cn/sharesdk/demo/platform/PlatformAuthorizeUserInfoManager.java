@@ -1,6 +1,7 @@
 package cn.sharesdk.demo.platform;
 
 import android.app.Activity;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.mob.MobSDK;
@@ -309,6 +310,7 @@ public class PlatformAuthorizeUserInfoManager {
 		if (platform != null) {
 			ShareSDK.setActivity(activity);
 			platform.showUser(null);
+			Log.e("qqq", "doUserInfo() ");
 		}
 	}
 
@@ -376,17 +378,17 @@ public class PlatformAuthorizeUserInfoManager {
 		}
 
 		@Override
-		public void onError(Platform platform, int i, Throwable throwable) {
+		public void onError(Platform platform, int i, final Throwable throwable) {
 			throwable.printStackTrace();
 			activity.runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
 					try {
 						//dialog(activity, "Authorize Failure");
-						Toast.makeText(MobSDK.getContext(), "Authorize Failure", Toast.LENGTH_LONG).show();
+						Toast.makeText(MobSDK.getContext(), "Authorize Failure" + throwable.getMessage() , Toast.LENGTH_LONG).show();
 					} catch (Exception e){
 						e.printStackTrace();
-						Toast.makeText(MobSDK.getContext(), "Authorize Failure", Toast.LENGTH_LONG).show();
+						Toast.makeText(MobSDK.getContext(), "Authorize Failure" + throwable.getMessage(), Toast.LENGTH_LONG).show();
 					}
 				}
 			});

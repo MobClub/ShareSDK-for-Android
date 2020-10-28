@@ -24,21 +24,14 @@ public class InstapaperShare {
 	public void shareTextUrl(){
 		Platform platform = ShareSDK.getPlatform(Instapaper.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
-		shareParams.setText(LINK_TEXT);
-		shareParams.setUrl(LINK_URL);
+		shareParams.setTitle("test title");
+		shareParams.setText("test text");
+		shareParams.setUrl("www.cctv.com");
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
 	}
 
-	public void shareTextUrl(PlatformActionListener mListener){
-		Platform platform = ShareSDK.getPlatform(Instapaper.NAME);
-		Platform.ShareParams shareParams = new  Platform.ShareParams();
-		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
-		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
-		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-		platform.setPlatformActionListener(mListener);
-		platform.share(shareParams);
-	}
+
 
 }

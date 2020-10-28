@@ -1,7 +1,6 @@
 package cn.sharesdk.demo.ui;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.fragment.app.Fragment;
 import cn.sharesdk.demo.R;
 
 /**
@@ -78,9 +78,9 @@ public class TagsMyFragment extends Fragment {
             String avatar_hd = (String) serializableHashMap.getMap().get("avatar_hd");
             if ((!TextUtils.isEmpty(headPor)) && (head != null)) {
                 //peoplePor.set
-                Glide.with(this).load(headPor).into(head);
+                Glide.with(getActivity()).load(headPor).into(head);
             } else if (!(TextUtils.isEmpty(avatar_hd)) && (head != null)) {
-                Glide.with(this).load(avatar_hd).into(head);
+                Glide.with(getActivity()).load(avatar_hd).into(head);
             }
 
             //nickName

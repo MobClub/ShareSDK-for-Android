@@ -3,6 +3,7 @@ package cn.sharesdk.demo.entity;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import com.mob.tools.utils.ResHelper;
 import com.mob.tools.utils.UIHandler;
@@ -40,7 +41,8 @@ public class PlatformMananger {
 	public static final String SDK_TENCENTWEIBO_UID = "shareSDK";
 	public static String[] china = {"SinaWeibo", "TencentWeibo", "QZone", "Wechat", "WechatMoments", "WechatFavorite"
 			, "QQ", "Renren", "KaiXin", "Douban", "YouDao", "Yixin", "YixinMoments", "Mingdao",
-			"Alipay", "AlipayMoments", "Dingding", "Meipai","Cmcc","Telecom", "Douyin", "Wework"};
+			"Alipay", "AlipayMoments", "Dingding", "Meipai","Cmcc","Telecom", "Douyin", "Wework",
+			"HWAccount", "Oasis", "XMAccount", "Kuaishou", "Littleredbook", "Watermelonvideo"};
 	public static String[] system = {"Email", "ShortMessage", "Bluetooth"};
 
 	private PlatformMananger(Context context) {
@@ -49,12 +51,15 @@ public class PlatformMananger {
 		if (list != null) {
 			Message msg = new Message();
 			msg.obj = list;
-			UIHandler.sendMessage(msg, new Handler.Callback() {
-				public boolean handleMessage(Message msg) {
-					afterPlatformsGot((Platform[]) msg.obj);
-					return false;
-				}
-			});
+
+			afterPlatformsGot((Platform[]) msg.obj);
+
+//			UIHandler.sendMessage(msg, new Handler.Callback() {
+//				public boolean handleMessage(Message msg) {
+//					afterPlatformsGot((Platform[]) msg.obj);
+//					return false;
+//				}
+//			});
 		}
 	}
 
@@ -63,6 +68,7 @@ public class PlatformMananger {
 		PlatformEntity normalEntity = null;
 		for (Platform platform : platforms) {
 			String name = platform.getName();
+
 			//客户端分享的情况
 //			if (DemoUtils.isUseClientToShare(name)) {
 //				continue;

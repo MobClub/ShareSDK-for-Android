@@ -25,7 +25,7 @@ public class AlipayMomentsShare {
 	public void shareWebPage() {
 		Platform platform = ShareSDK.getPlatform(Alipay.NAME);
 		Platform.ShareParams shareParams = new Platform.ShareParams();
-		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
+		shareParams.setText("test only Test test hahahahah");
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());

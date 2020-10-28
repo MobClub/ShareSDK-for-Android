@@ -23,10 +23,10 @@ public class RedditShare {
     public void shareText(){
         Platform reddit = ShareSDK.getPlatform(Reddit.NAME);
         Platform.ShareParams sp = new Platform.ShareParams();
-        sp.setTitle("If excuse , say sorry for you,Test shareText please ignore, ===> 2018-09-14-1430");
-        sp.setText("I only test my code, please ignore this  ====> 2018.09.13.1904");
+        sp.setTitle("haha bu gao su ni , Title, please igonre, thank you................ 2020-03-23-1632");
+        sp.setText("that's is ok all everything, thank you............... 2020-03-23-1632");
         sp.setSubreddit("AndroidWear");
-        //sp.setUrl("https://weibo.com/ajaxlogin.php?framelogin=1&callback=parent.sinaSSOController.feedBackUrlCallBack");
+        reddit.setPlatformActionListener(platformActionListener);
         reddit.share(sp);
     }
 
@@ -34,10 +34,11 @@ public class RedditShare {
     public void shareUrl(){
         Platform reddit = ShareSDK.getPlatform(Reddit.NAME);
         Platform.ShareParams sp = new Platform.ShareParams();
-        sp.setTitle("URL shareText please ignore,If excuse , say sorry for you ===> 2018.09.14.1228");
-        sp.setText(LINK_TEXT);
-        sp.setSubreddit("dotnet");
-        sp.setUrl(LINK_URL);
+        sp.setTitle("ok all but i am bu hao le ");
+        sp.setText("shi jie hai hao ma ");
+        sp.setSubreddit("Coronavirus");
+        sp.setUrl("https://s.weibo.com/weibo?q=%23%E6%84%8F%E5%A4%A7%E5%88%A9%E8%BF%918000%E5%90%8D%E5%8C%BB%E7%94%9F%E7%94%B3%E8%AF%B7%E6%88%98%E7%96%AB%23");
+        reddit.setPlatformActionListener(platformActionListener);
         reddit.share(sp);
     }
 

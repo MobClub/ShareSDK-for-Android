@@ -1,12 +1,11 @@
 package cn.sharesdk.demo;
 
-import android.Manifest;
-import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +15,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.mob.MobSDK;
+
+import androidx.annotation.Nullable;
+import androidx.viewpager.widget.ViewPager;
+import cn.sharesdk.PassWordShow;
+import cn.sharesdk.demo.ui.VideoPassWordShow;
+import cn.sharesdk.demo.utils.PrivacyDialog;
 import cn.sharesdk.demo.utils.ScreenShotListenManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +38,9 @@ import cn.sharesdk.demo.ui.BaseFragment;
 import cn.sharesdk.demo.ui.CallBackShotImageView;
 import cn.sharesdk.demo.ui.ShareFragment;
 import cn.sharesdk.demo.ui.UserInfoFragment;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.framework.loopshare.LoopSharePasswordListener;
+import cn.sharesdk.framework.loopshare.watermark.ReadQrImageListener;
 
 public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener{
 	private HorizontalScrollView horizontalScrollView;
@@ -55,9 +63,13 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 			MobSDK.getContext().getString(R.string.share_title_userinfo_txt)};
 	public static final String TAG = "ShareSDK";
 
+	private static final int PRIVACY_CODE = 0x11;
+
 	public int getLayoutId() {
 		return R.layout.activity_main;
 	}
+
+	private static final String[] temp = {""};
 
 	@Override
 	public void initView() {
@@ -71,22 +83,107 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 		viewPager.setAdapter(pagerAdapter);
 		viewPager.setOnPageChangeListener(this);
 		viewPager.setOffscreenPageLimit(3);
-		getPermission(this);
 		Log.e(TAG, " initView() ");
 
+
+		Intent intent = new Intent();
+		intent.setClass(this, PrivacyDialog.class);
+		startActivityForResult(intent, PRIVACY_CODE);
 	}
 
-	private static final int REQUEST_EXTERNAL_STORAGE = 1;
-	private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE,
-			Manifest.permission.WRITE_EXTERNAL_STORAGE};
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == PRIVACY_CODE) {
+			checkPermissions();
+		}
+	}
 
-	public static void getPermission(Activity activity) {
-		int permission = ActivityCompat.checkSelfPermission(activity,
-				Manifest.permission.WRITE_EXTERNAL_STORAGE);
+	/**
+	 * 识别相册第一张二维码的图片
+	 * **/
+	private void paraseQRImage() {
 
-		if (permission != PackageManager.PERMISSION_GRANTED) {
-			ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE,
-					REQUEST_EXTERNAL_STORAGE);
+		ShareSDK.getFirstQrImage(this, new ReadQrImageListener() {
+
+			@Override
+			public void onSucessed(String s) {
+				if (temp[0].equals("")) {
+					Intent intent = new Intent();
+					intent.setClass(MobSDK.getContext(), VideoPassWordShow.class);
+					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					startActivity(intent);
+					temp[0] = s;
+					Log.d("ShareSDK", "onSucessed 视频二维码解析正常，跳转 " + s);
+				} else if (!temp[0].equals("")) {
+					if (!temp[0].equals(s)) {
+						Intent intent = new Intent();
+						intent.setClass(MobSDK.getContext(), VideoPassWordShow.class);
+						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						startActivity(intent);
+						temp[0] = s;
+						Log.d("ShareSDK", "onSucessed 视频二维码解析正常，跳转 " + s);
+					}
+				}
+
+			}
+
+			@Override
+			public void onFailed(Throwable throwable) {
+				Log.d("ShareSDK", "onFailed 视频二维码解析失败 " + throwable);
+			}
+		});
+	}
+
+	/**
+	 * 读取剪切板的淘口令并且解析
+	 * **/
+	private void parasQuickPassWord() {
+		ShareSDK.readPassWord(true, new LoopSharePasswordListener() {
+			@Override
+			public void onResult(Object var1) {
+				Log.d("ShareSDK", " onResult " + var1);
+				if (var1 != null) {
+					try {
+						Intent intent = new Intent();
+						intent.setClass(MobSDK.getContext(), PassWordShow.class);
+						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						startActivity(intent);
+						Log.d("ShareSDK", " 执行跳转的逻辑 ");
+					} catch (Throwable t) {
+						Log.d("ShareSDK", " 跳转失败 " + t);
+					}
+				}
+			}
+
+			@Override
+			public void onError(Throwable var1) {
+				Log.d("ShareSDK", " onError " + var1);
+			}
+		});
+	}
+
+	/* 检查使用权限 */
+	protected void checkPermissions() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			try {
+				PackageManager pm = getPackageManager();
+				PackageInfo pi = pm.getPackageInfo(getPackageName(), PackageManager.GET_PERMISSIONS);
+				ArrayList<String> list = new ArrayList<String>();
+				for (String p : pi.requestedPermissions) {
+					if (checkSelfPermission(p) != PackageManager.PERMISSION_GRANTED) {
+						list.add(p);
+					}
+				}
+				if (list.size() > 0) {
+					String[] permissions = list.toArray(new String[list.size()]);
+					if (permissions != null) {
+						requestPermissions(permissions, 1);
+					}
+				}
+			} catch (Throwable t) {
+				t.printStackTrace();
+			}
 		}
 	}
 
@@ -131,6 +228,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 		initScreenShotListener();
 		Log.e(TAG, " onCreate() ");
 	}
+
 
 	@Override
 	public void initData() {
@@ -243,6 +341,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 	@Override
 	protected void onResume() {
 		super.onResume();
+		parasQuickPassWord();
+		paraseQRImage();
 		Log.e(TAG, " onStart() ");
 	}
 

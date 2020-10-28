@@ -1,5 +1,7 @@
 package cn.sharesdk.demo.platform.sina;
 
+import android.text.TextUtils;
+
 import com.mob.MobSDK;
 
 import org.json.JSONException;
@@ -33,14 +35,26 @@ public class WeiboShare {
 
 	public void shareImage(){
 		Platform platform = ShareSDK.getPlatform(SinaWeibo.NAME);
-		Platform.ShareParams shareParams = new  Platform.ShareParams();
-		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
-		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-		shareParams.setShareType(Platform.SHARE_IMAGE);
-		shareParams.setLongitude(ResourcesManager.longitude);
-		shareParams.setLatitude(ResourcesManager.latitude);
-		platform.setPlatformActionListener(platformActionListener);
-		platform.share(shareParams);
+		if (platform.isClientValid()) {
+			Platform.ShareParams shareParams = new  Platform.ShareParams();
+			if (ResourcesManager.getInstace(MobSDK.getContext()).getImagePath() == null) {
+				shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
+			} else {
+				shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+			}
+			shareParams.setShareType(Platform.SHARE_IMAGE);
+			shareParams.setLongitude(ResourcesManager.longitude);
+			shareParams.setLatitude(ResourcesManager.latitude);
+			platform.setPlatformActionListener(platformActionListener);
+			platform.share(shareParams);
+		} else {
+			Platform.ShareParams shareParams = new  Platform.ShareParams();
+			shareParams.setText("sina image and text share   http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
+			//shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
+			shareParams.setShareType(Platform.SHARE_IMAGE);
+			platform.setPlatformActionListener(platformActionListener);
+			platform.share(shareParams);
+		}
 	}
 
 	public void shareVideo(){
@@ -85,7 +99,7 @@ public class WeiboShare {
 	public void shareLinkCard() {
 		JSONObject jsonObject = new JSONObject();
 		try {
-			jsonObject.put("url", "https://t3.ftcdn.net/jpg/02/01/25/00/240_F_201250053_xMFe9Hax6w01gOiinRLEPX0Wt1zGCzYz.jpg");
+			jsonObject.put("url", "http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
 			jsonObject.put("width", 120);
 			jsonObject.put("height", 120);
 		} catch (JSONException e) {
