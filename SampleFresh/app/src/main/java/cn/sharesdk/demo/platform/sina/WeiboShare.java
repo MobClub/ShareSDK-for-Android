@@ -42,6 +42,7 @@ public class WeiboShare {
 			} else {
 				shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
 			}
+			shareParams.setText("sina 分享 title");
 			shareParams.setShareType(Platform.SHARE_IMAGE);
 			shareParams.setLongitude(ResourcesManager.longitude);
 			shareParams.setLatitude(ResourcesManager.latitude);
