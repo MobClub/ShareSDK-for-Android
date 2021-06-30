@@ -241,6 +241,7 @@ public class ResourcesManager {
 					filePath = testVideo;
 				} catch (Throwable e) {
 					e.printStackTrace();
+					filePath="/sdcard/test.mp4";
 				}
 			}
 		}.start();
