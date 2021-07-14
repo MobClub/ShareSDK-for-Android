@@ -74,7 +74,7 @@ public class YixinShare {
 		shareParams.setTitle("title");
 		shareParams.setImageUrl(IMAGE_TEST_URL);
 		shareParams.setMusicUrl("https://y.qq.com/n/yqq/song/807557_num.html?ADTAG=h5_playsong&no_redirect=1");
-		shareParams.setUrl("http://f1.webshare.mob.com/dvideo/demovideos.mp4");
+		shareParams.setUrl("http://www.mob.com/video/ShareSDK.mp4");
 		shareParams.setShareType(Platform.SHARE_VIDEO);
 		shareParams.setScence(0);
 		platform.setPlatformActionListener(platformActionListener);

@@ -47,6 +47,15 @@ public class KakaoStoryShare {
 		shareParams.setShareType(Platform.SHARE_IMAGE);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
+//		shareImageLocal();
+	}
+	public void shareImageLocal(){
+		Platform platform = ShareSDK.getPlatform(KakaoStory.NAME);
+		Platform.ShareParams shareParams = new  Platform.ShareParams();
+		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+		shareParams.setShareType(Platform.SHARE_IMAGE);
+		platform.setPlatformActionListener(platformActionListener);
+		platform.share(shareParams);
 	}
 
 	public void shareVideo(){

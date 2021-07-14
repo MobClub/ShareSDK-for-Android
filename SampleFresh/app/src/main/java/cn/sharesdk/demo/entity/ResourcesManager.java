@@ -2,6 +2,7 @@ package cn.sharesdk.demo.entity;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -235,13 +236,13 @@ public class ResourcesManager {
 					}
 				}
 				initTestText();
-				String videoUrl = "http://f1.webshare.mob.com/dvideo/demovideos.mp4";
+				String videoUrl = "http://www.mob.com/video/ShareSDK.mp4";
 				try {
 					testVideo = new NetworkHelper().downloadCache(MobSDK.getContext(), videoUrl, "videos", true, null);
 					filePath = testVideo;
 				} catch (Throwable e) {
 					e.printStackTrace();
-					filePath="/sdcard/test.mp4";
+					filePath=MobSDK.getContext().getExternalFilesDir(Environment.DIRECTORY_MOVIES).getAbsolutePath() + "/Mob/test.mp4";
 				}
 			}
 		}.start();

@@ -408,6 +408,9 @@ public class PlatformShareManager {
 		} else if (name.equals(Wework.NAME)) {
 			WeworkShare weworkShare = new WeworkShare(platformActionListener);
 			weworkShare.shareWebPage();
+		}else if (name.equals(Kuaishou.NAME)) {
+			KuaishouShare share = new KuaishouShare(platformActionListener);
+			share.shareWebPage(activity);
 		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
