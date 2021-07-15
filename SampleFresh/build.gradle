@@ -1,13 +1,22 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    String urlStr = "http://mvn.mob.com/android"
+    if (hasProperty("mavenUrl")) {
+        urlStr = getProperty("mavenUrl")
+    }
+    println "mavenUrl: ${urlStr}, ${hasProperty("mavenUrl")}"
+    ext {
+        mavenUrl = urlStr
+    }
+
     repositories {
         jcenter()
 
         maven {
             //url "http://mvn.mob.com/android"
             //url "http://10.18.97.47:7080/job/iMaven/ws/android/"
-            url "http://10.18.97.56:8080/job/iMaven/ws/android/"
+            url = mavenUrl
         }
 
 
@@ -44,11 +53,6 @@ buildscript {
     }
 }
 
-String mavenUrl = "http://mvn.mob.com/android"
-if (hasProperty("mavenUrl")) {
-    mavenUrl = getProperty("mavenUrl")
-}
-println "mavenUrl: ${mavenUrl}, ${hasProperty("mavenUrl")}"
 allprojects {
     repositories {
         maven {
@@ -58,7 +62,7 @@ allprojects {
         jcenter()
         maven {
             //url "http://mvn.mob.com/android"
-            url "http://10.18.97.56:8080/job/iMaven/ws/android/"
+            url mavenUrl
         }
 
 
