@@ -1,11 +1,10 @@
 apply plugin: 'com.mob.sdk'
 
-//TODO for test
 try {
     String tmpParams = getProperty("custom_params")
     String[] params = tmpParams.split(",")
     params.each {item->
-        MobSDK[item] = true
+        MobSDK.spEdition(item)
     }
 } catch(Throwable t) {}
 
@@ -24,7 +23,6 @@ MobSDK {
         loopShare true
         //zxing true
         ffmpeg true
-
 
         //平台配置信息
         devInfo {
@@ -563,11 +561,3 @@ MobSDK {
         }
     }
 }
-
-try {
-    String tmpParams = getProperty("custom_params")
-    String[] params = tmpParams.split(",")
-    params.each {item->
-        MobSDK[item] = true
-    }
-} catch(Throwable t) {}
