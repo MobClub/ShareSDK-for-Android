@@ -1,13 +1,5 @@
 apply plugin: 'com.android.application'
 apply from: '../MobSDK.gradle'
-try {
-    String tmpParams = getProperty("custom_params")
-    String[] params = tmpParams.split(",")
-    params.each {item->
-        MobSDK.spEdition(item)
-    }
-} catch(Throwable t) {}
-
 android {
     compileSdkVersion 29
     buildToolsVersion '29.0.2'
