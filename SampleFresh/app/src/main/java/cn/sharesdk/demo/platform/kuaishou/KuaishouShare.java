@@ -99,7 +99,7 @@ public class KuaishouShare {
 		if (null == platform || null == activity) {
 			return;
 		}
-		ThreadPoolUtils.executorService.execute(new Runnable() {
+		ThreadPoolUtils.execute(new Runnable() {
 			@Override
 			public void run() {
 				Platform.ShareParams shareParams = new  Platform.ShareParams();
