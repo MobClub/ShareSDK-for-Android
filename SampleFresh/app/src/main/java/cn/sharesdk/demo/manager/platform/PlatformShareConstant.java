@@ -104,7 +104,7 @@ public class PlatformShareConstant {
 		bluetooth = new Integer[]{Platform.SHARE_FILE};
 		pocket = new Integer[]{Platform.SHARE_WEBPAGE};
 		instapaper = new Integer[]{ Platform.SHARE_WEBPAGE	};
-		facebookMessenger = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_WEBPAGE};
+		facebookMessenger = new Integer[]{Platform.SHARE_TEXT,Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};
 		alipay = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE};
 		alipayMoments = new Integer[]{Platform.SHARE_WEBPAGE};
 		dingding = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE};

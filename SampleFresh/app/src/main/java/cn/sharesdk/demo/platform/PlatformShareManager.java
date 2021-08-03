@@ -204,6 +204,9 @@ public class PlatformShareManager {
 		} else if (name.equals(Wework.NAME)) {
 			WeworkShare weworkShare = new WeworkShare(platformActionListener);
 			weworkShare.shareText();
+		} else if (name.equals(FacebookMessenger.NAME)) {
+			FacebookMessengerShare share = new FacebookMessengerShare(platformActionListener);
+			share.shareText();
 		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
@@ -506,7 +509,10 @@ public class PlatformShareManager {
 		} else if (name.equals(Watermelonvideo.NAME)) {
 			WatermelonvideoShare watermelonvideoShare = new WatermelonvideoShare(platformActionListener);
 			watermelonvideoShare.shareVideo(activity);
-		} else {
+		} else if (name.equals(FacebookMessenger.NAME)) {
+			FacebookMessengerShare share = new FacebookMessengerShare(platformActionListener);
+			share.shareVideo();
+		}else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
 			shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());

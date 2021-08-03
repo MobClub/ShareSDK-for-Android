@@ -392,6 +392,7 @@ MobSDK {
                 sortId 39
                 appId "107704292745179"
                 enable true
+                bypassApproval true
             }
 
             Telegram {
