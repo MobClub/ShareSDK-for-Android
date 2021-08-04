@@ -89,7 +89,6 @@
     <string name="platform_share_mini_app">分享微信小程序</string>
     <string name="platform_share_linkcard">分享LinkCard</string>
     <string name="platform_share_qqmini">分享QQ小程序</string>
-    <string name="platform_share_zfb">分享支付宝红包</string>
     <string name="title_activity_tags_item">TagsItemActivity</string>
 
     <!-- TODO: Remove or change this placeholder text -->

@@ -34,7 +34,7 @@
 <WhatsApp Id="35" SortId="35" Enable="true" />
 <KakaoTalk Id="33" SortId="33" AppKey="48d3f524e4a636b08d81b3ceb50f1003" ShareByAppClient="true" Enable="true" />
 <KakaoStory Id="34" SortId="34" AppKey="48d3f524e4a636b08d81b3ceb50f1003" Enable="true" />
-<FacebookMessenger Id="39" SortId="39" AppId="107704292745179" Enable="true" />
+<FacebookMessenger Id="39" SortId="39" AppId="107704292745179" Enable="true" BypassApproval="true" />
 <Alipay Id="50" SortId="50" AppId="2015072400185895" Enable="true" />
 <AlipayMoments Id="51" SortId="51" AppId="2015072400185895" Enable="true" />
 <Dingding Id="52" SortId="52" AppId="dingrb8uc7lkuwbvbpfp" BypassApproval="false" Enable="true" AppSecret="FF3al9fkIWTZ6HYnrbMSdsh69HB2X7LP9f6wmciB__s_tj4UAsdbd2IImIpBlppn" RedirectUrl="https://mob.com/" />

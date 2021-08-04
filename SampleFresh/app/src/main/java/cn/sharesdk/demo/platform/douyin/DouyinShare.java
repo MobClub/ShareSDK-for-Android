@@ -32,11 +32,11 @@ public class DouyinShare {
         openSystemGallery(activity, DOUYIN_VIDEO);
     }
 
-    public void shareVideo(Activity activity, List<String> videoPath) {
+    public void shareVideo(Activity activity, String videoPath) {
         Platform platform = ShareSDK.getPlatform(Douyin.NAME);
         Platform.ShareParams shareParams = new Platform.ShareParams();
 //        shareParams.setFilePath(videoPath);
-        shareParams.setVideoPathArray(videoPath.toArray(new String[videoPath.size()]));
+        shareParams.setVideoPathArray(new String[]{videoPath});
         shareParams.setShareType(Platform.SHARE_VIDEO);
         shareParams.setActivity(activity);
         shareParams.setHashtags(new String[]{"yyh","yyh2"});
@@ -48,11 +48,11 @@ public class DouyinShare {
         openSystemGallery(activity);
     }
 
-    public void shareImagePath(Activity activity, List<String> imagePath) {
+    public void shareImagePath(Activity activity, String imagePath) {
         Platform douyin = ShareSDK.getPlatform(Douyin.NAME);
         Platform.ShareParams sp = new Platform.ShareParams();
 //        sp.setImagePath(imagePath);
-        sp.setImageArray(imagePath.toArray(new String[imagePath.size()]));
+        sp.setImageArray(new String[]{imagePath});
         sp.setShareType(Platform.SHARE_IMAGE);
         sp.setActivity(activity);
         sp.setHashtags(new String[]{});
@@ -68,7 +68,6 @@ public class DouyinShare {
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("video/*");
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
                 activity.startActivityForResult(intent, shareType);
             }
@@ -84,7 +83,6 @@ public class DouyinShare {
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
                 //startActivityForResult(intent, PHOTO_REQUEST_GALLERY);
                 activity.startActivityForResult(intent, PHOTO_REQUEST_GALLERY);

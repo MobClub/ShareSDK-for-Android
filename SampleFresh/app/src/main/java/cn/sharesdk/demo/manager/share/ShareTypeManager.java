@@ -73,17 +73,8 @@ public class ShareTypeManager {
             case Platform.QQ_MINI_PROGRAM: {
                 shareQQMiniProgram(activity);
             } break;
-            case Platform.SHARE_ZHIFUBAO:{
-                shareZFB();
-            }
 
         }
-    }
-
-    private void shareZFB() {
-        PlatformShareManager platformShareManager = new PlatformShareManager();
-        platformShareManager.setPlatformActionListener(myPlatformActionListener);
-        platformShareManager.shareZFB(platform.getName());
     }
 
     public void shareText() {

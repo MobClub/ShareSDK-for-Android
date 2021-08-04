@@ -204,6 +204,9 @@ public class PlatformShareManager {
 		} else if (name.equals(Wework.NAME)) {
 			WeworkShare weworkShare = new WeworkShare(platformActionListener);
 			weworkShare.shareText();
+		} else if (name.equals(FacebookMessenger.NAME)) {
+			FacebookMessengerShare share = new FacebookMessengerShare(platformActionListener);
+			share.shareText();
 		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
@@ -408,6 +411,9 @@ public class PlatformShareManager {
 		} else if (name.equals(Wework.NAME)) {
 			WeworkShare weworkShare = new WeworkShare(platformActionListener);
 			weworkShare.shareWebPage();
+		}else if (name.equals(Kuaishou.NAME)) {
+			KuaishouShare share = new KuaishouShare(platformActionListener);
+			share.shareWebPage(activity);
 		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
@@ -503,7 +509,10 @@ public class PlatformShareManager {
 		} else if (name.equals(Watermelonvideo.NAME)) {
 			WatermelonvideoShare watermelonvideoShare = new WatermelonvideoShare(platformActionListener);
 			watermelonvideoShare.shareVideo(activity);
-		} else {
+		} else if (name.equals(FacebookMessenger.NAME)) {
+			FacebookMessengerShare share = new FacebookMessengerShare(platformActionListener);
+			share.shareVideo();
+		}else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
 			shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
@@ -594,12 +603,6 @@ public class PlatformShareManager {
 		}
 	}
 
-	public void shareZFB(String name) {
-		if (name.equals(Dingding.NAME)) {
-			DingdingShare dingdingShare = new DingdingShare(platformActionListener);
-			dingdingShare.shareZFB();
-		}
-	}
 
 	public void shareQQMiniProgram(String name, Activity activity) {
 		if (name.equals(QQ.NAME)) {

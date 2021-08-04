@@ -107,7 +107,7 @@ public class PlatformShareConstant {
 		facebookMessenger = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_WEBPAGE};
 		alipay = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE};
 		alipayMoments = new Integer[]{Platform.SHARE_WEBPAGE};
-		dingding = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE, Platform.SHARE_ZHIFUBAO};
+		dingding = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE};
 		youtube = new Integer[]{Platform.SHARE_VIDEO};
 		meipai = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};
 		telegram = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_IMAGE};

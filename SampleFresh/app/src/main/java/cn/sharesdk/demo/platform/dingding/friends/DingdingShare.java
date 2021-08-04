@@ -60,17 +60,6 @@ public class DingdingShare {
 		platform.share(shareParams);
 	}
 
-	public void shareZFB(){
-		Platform platform = ShareSDK.getPlatform(Dingding.NAME);
-		Platform.ShareParams shareParams = new  Platform.ShareParams();
-		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
-		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
-		shareParams.setShareType(Platform.SHARE_ZHIFUBAO);
-		shareParams.setScence(0);
-		platform.setPlatformActionListener(platformActionListener);
-		platform.share(shareParams);
-	}
 
 	public void shareText(PlatformActionListener mListener){
 		Platform platform = ShareSDK.getPlatform(Dingding.NAME);
@@ -104,18 +93,6 @@ public class DingdingShare {
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
 		shareParams.setShareType(Platform.SHARE_WEBPAGE);
-		shareParams.setScence(0);
-		platform.setPlatformActionListener(mListener);
-		platform.share(shareParams);
-	}
-
-	public void shareZFB(PlatformActionListener mListener){
-		Platform platform = ShareSDK.getPlatform(Dingding.NAME);
-		Platform.ShareParams shareParams = new  Platform.ShareParams();
-		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
-		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
-		shareParams.setShareType(Platform.SHARE_ZHIFUBAO);
 		shareParams.setScence(0);
 		platform.setPlatformActionListener(mListener);
 		platform.share(shareParams);

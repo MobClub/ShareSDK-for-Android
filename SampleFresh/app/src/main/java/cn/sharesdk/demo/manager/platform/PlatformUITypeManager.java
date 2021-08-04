@@ -85,9 +85,6 @@ public class PlatformUITypeManager {
 			case Platform.QQ_MINI_PROGRAM: {
 				return R.string.platform_share_qqmini;
 			}
-			case Platform.SHARE_ZHIFUBAO: {
-				return R.string.platform_share_zfb;
-			}
 			default: {
 				return R.string.platform_share_webpage;
 			}

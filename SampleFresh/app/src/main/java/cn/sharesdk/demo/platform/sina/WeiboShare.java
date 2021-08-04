@@ -62,8 +62,7 @@ public class WeiboShare {
 		Platform platform = ShareSDK.getPlatform(SinaWeibo.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setFilePath(ResourcesManager.getInstace(MobSDK.getContext()).getFilePath());
-		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
-		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
+		shareParams.setText("share");
 		shareParams.setShareType(Platform.SHARE_VIDEO);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);

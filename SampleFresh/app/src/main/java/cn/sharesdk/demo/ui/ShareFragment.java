@@ -127,7 +127,7 @@ public class ShareFragment extends BaseFragment implements CallBackShotImageView
 		Thread thread = new Thread() {
 			@Override
 			public void run() {
-				String videoUrl = "http://f1.webshare.mob.com/dvideo/demovideos.mp4";
+				String videoUrl = "http://www.mob.com/video/ShareSDK.mp4";
 				try {
 					testVideo = new NetworkHelper().downloadCache(getContext(), videoUrl, "videos", true, null);
 					Log.e("ShareSDK", "======> " + testVideo);
