@@ -235,7 +235,7 @@ public class ResourcesManager {
 					}
 				}
 				initTestText();
-				String videoUrl = "http://f1.webshare.mob.com/dvideo/demovideos.mp4";
+				String videoUrl = "https://www.mob.com/video/ShareSDK.mp4";
 				try {
 					testVideo = new NetworkHelper().downloadCache(MobSDK.getContext(), videoUrl, "videos", true, null);
 					filePath = testVideo;

@@ -5,6 +5,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 
 import androidx.appcompat.app.AlertDialog;
+
+import java.util.List;
+
 import cn.sharesdk.douyin.Douyin;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
@@ -29,12 +32,14 @@ public class DouyinShare {
         openSystemGallery(activity, DOUYIN_VIDEO);
     }
 
-    public void shareVideo(Activity activity, String videoPath) {
+    public void shareVideo(Activity activity, List<String> videoPath) {
         Platform platform = ShareSDK.getPlatform(Douyin.NAME);
         Platform.ShareParams shareParams = new Platform.ShareParams();
-        shareParams.setFilePath(videoPath);
+//        shareParams.setFilePath(videoPath);
+        shareParams.setVideoPathArray(videoPath.toArray(new String[videoPath.size()]));
         shareParams.setShareType(Platform.SHARE_VIDEO);
         shareParams.setActivity(activity);
+        shareParams.setHashtags(new String[]{"yyh","yyh2"});
         platform.setPlatformActionListener(platformActionListener);
         platform.share(shareParams);
     }
@@ -43,15 +48,18 @@ public class DouyinShare {
         openSystemGallery(activity);
     }
 
-    public void shareImagePath(Activity activity, String imagePath) {
+    public void shareImagePath(Activity activity, List<String> imagePath) {
         Platform douyin = ShareSDK.getPlatform(Douyin.NAME);
         Platform.ShareParams sp = new Platform.ShareParams();
-        sp.setImagePath(imagePath);
+//        sp.setImagePath(imagePath);
+        sp.setImageArray(imagePath.toArray(new String[imagePath.size()]));
         sp.setShareType(Platform.SHARE_IMAGE);
         sp.setActivity(activity);
+        sp.setHashtags(new String[]{});
         douyin.setPlatformActionListener(platformActionListener);
         douyin.share(sp);
     }
+
 
     private void openSystemGallery(final Activity activity, final int shareType) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -60,6 +68,7 @@ public class DouyinShare {
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("video/*");
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
                 activity.startActivityForResult(intent, shareType);
             }
@@ -75,6 +84,7 @@ public class DouyinShare {
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
                 //startActivityForResult(intent, PHOTO_REQUEST_GALLERY);
                 activity.startActivityForResult(intent, PHOTO_REQUEST_GALLERY);

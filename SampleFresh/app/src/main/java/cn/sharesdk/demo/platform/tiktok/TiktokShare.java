@@ -77,7 +77,7 @@ public class TiktokShare {
 				//intent.setDataAndType(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, "video/*");
 				//intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 				Intent intent = new Intent();
-				intent.setType("image/*");
+				intent.setType("video/*");
 				intent.setAction(Intent.ACTION_GET_CONTENT);
 				activity.startActivityForResult(intent, KT_VIDEO);
 			}

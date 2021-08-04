@@ -1,6 +1,7 @@
 package cn.sharesdk.demo.activitys;
 
 import android.app.Activity;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -192,13 +193,36 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 		if (resultCode == Activity.RESULT_OK) {
 			switch (requestCode) {
 				case PHOTO_REQUEST_GALLERY:
-					Uri uri = data.getData();
-					startShareImage(UriUtil.convertUriToPath(this, uri));
-					Log.e("QQQ", " 列表的路径： " + UriUtil.convertUriToPath(this, uri));
+//					Uri uri = data.getData();
+//					startShareImage(UriUtil.convertUriToPath(this, uri));
+					List<String> imgList = new ArrayList<>();
+					ClipData clipData = data.getClipData();
+					if (clipData != null)
+					{
+						for (int i=0;i<clipData.getItemCount();i++)
+						{
+							ClipData.Item itemAt = clipData.getItemAt(i);
+							Uri uri = itemAt.getUri();
+							imgList.add(UriUtil.convertUriToPath(this, uri));
+						}
+					}
+					startShareImage(imgList);
+//					Log.e("QQQ", " 列表的路径： " + UriUtil.convertUriToPath(this, uri));
 					break;
 				case DOUYIN_VIDEO:
-					Uri douyinVideo = data.getData();
-					startShareVideo(UriUtil.convertUriToPath(this, douyinVideo));
+//					Uri douyinVideo = data.getData();
+//					startShareVideo(UriUtil.convertUriToPath(this, douyinVideo));
+					List<String> videoList = new ArrayList<>();
+					ClipData videoclipData = data.getClipData();
+					if (videoclipData != null)
+					{
+						for (int i = 0; i < videoclipData.getItemCount(); i++) {
+							ClipData.Item itemAt = videoclipData.getItemAt(i);
+							Uri uri = itemAt.getUri();
+							videoList.add(UriUtil.convertUriToPath(this, uri));
+						}
+					}
+					startShareVideo(videoList);
 					break;
 				case KT_IMAGE:
 					Uri tiktokImage = data.getData();
@@ -358,19 +382,19 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 	/**
 	 * 抖音本地图片分享
 	 * **/
-	private void startShareImage(String imagePath) {
+	private void startShareImage(List<String> imgList) {
 		myPlatformActionListener = new MyPlatformActionListener();
 		DouyinShare douyinShare = new DouyinShare(myPlatformActionListener);
-		douyinShare.shareImagePath(this, imagePath);
+		douyinShare.shareImagePath(this, imgList);
 	}
 
 	/**
 	 * 抖音本地视频分享
 	 **/
-	private void startShareVideo(String videoPath) {
+	private void startShareVideo(List<String> videoList) {
 		myPlatformActionListener = new MyPlatformActionListener();
 		DouyinShare douyinShare = new DouyinShare(myPlatformActionListener);
-		douyinShare.shareVideo(this, videoPath);
+		douyinShare.shareVideo(this, videoList);
 	}
 
 	/**

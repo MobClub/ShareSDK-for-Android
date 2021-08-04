@@ -41,6 +41,9 @@ public class PlatformUITypeManager {
 			case Platform.SHARE_LINKCARD: {
 				return R.mipmap.share_url_music;
 			}
+			case Platform.SHARE_ZHIFUBAO: {
+				return R.mipmap.share_webpage;
+			}
 			default: {
 				return R.mipmap.share_webpage;
 			}
@@ -81,6 +84,9 @@ public class PlatformUITypeManager {
 			}
 			case Platform.QQ_MINI_PROGRAM: {
 				return R.string.platform_share_qqmini;
+			}
+			case Platform.SHARE_ZHIFUBAO: {
+				return R.string.platform_share_zfb;
 			}
 			default: {
 				return R.string.platform_share_webpage;

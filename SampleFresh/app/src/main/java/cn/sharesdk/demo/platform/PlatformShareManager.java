@@ -594,6 +594,13 @@ public class PlatformShareManager {
 		}
 	}
 
+	public void shareZFB(String name) {
+		if (name.equals(Dingding.NAME)) {
+			DingdingShare dingdingShare = new DingdingShare(platformActionListener);
+			dingdingShare.shareZFB();
+		}
+	}
+
 	public void shareQQMiniProgram(String name, Activity activity) {
 		if (name.equals(QQ.NAME)) {
 			QQShare qqShare = new QQShare(platformActionListener);
