@@ -236,7 +236,8 @@ public class ResourcesManager {
 					}
 				}
 				initTestText();
-				String videoUrl = "http://www.mob.com/video/ShareSDK.mp4";
+//				String videoUrl = "http://www.mob.com/video/ShareSDK.mp4";
+				String videoUrl = "https://highlight-video.cdn.bcebos.com//video//6s//393e812e-b9e6-11eb-858e-7cd30ac11c56.mp4";
 				try {
 					testVideo = new NetworkHelper().downloadCache(MobSDK.getContext(), videoUrl, "videos", true, null);
 					filePath = testVideo;
@@ -244,6 +245,7 @@ public class ResourcesManager {
 					e.printStackTrace();
 					filePath=MobSDK.getContext().getExternalFilesDir(Environment.DIRECTORY_MOVIES).getAbsolutePath() + "/Mob/test.mp4";
 				}
+				Log.e("mob","test video path="+filePath);
 			}
 		}.start();
 	}
@@ -275,41 +277,45 @@ public class ResourcesManager {
 	}
 
 	public static String[] randomPic() {
-		String url = "http://git.oschina.net/alexyu.yxj/MyTmpFiles/raw/master/kmk_pic_fld/";
-		String urlSmall = "http://git.oschina.net/alexyu.yxj/MyTmpFiles/raw/master/kmk_pic_fld/small/";
-		String[] pics = new String[]{
-				"120.JPG",
-				"127.JPG",
-				"130.JPG",
-				"18.JPG",
-				"184.JPG",
-				"22.JPG",
-				"236.JPG",
-				"237.JPG",
-				"254.JPG",
-				"255.JPG",
-				"263.JPG",
-				"265.JPG",
-				"273.JPG",
-				"37.JPG",
-				"39.JPG",
-				"IMG_2219.JPG",
-				"IMG_2270.JPG",
-				"IMG_2271.JPG",
-				"IMG_2275.JPG",
-				"107.JPG"
-		};
-		int index = 0;
+//		String url = "http://git.oschina.net/alexyu.yxj/MyTmpFiles/raw/master/kmk_pic_fld/";
+//		String urlSmall = "http://git.oschina.net/alexyu.yxj/MyTmpFiles/raw/master/kmk_pic_fld/small/";
+//		String[] pics = new String[]{
+//				"120.JPG",
+//				"127.JPG",
+//				"130.JPG",
+//				"18.JPG",
+//				"184.JPG",
+//				"22.JPG",
+//				"236.JPG",
+//				"237.JPG",
+//				"254.JPG",
+//				"255.JPG",
+//				"263.JPG",
+//				"265.JPG",
+//				"273.JPG",
+//				"37.JPG",
+//				"39.JPG",
+//				"IMG_2219.JPG",
+//				"IMG_2270.JPG",
+//				"IMG_2271.JPG",
+//				"IMG_2275.JPG",
+//				"107.JPG"
+//		};
+//		int index = 0;
+//		return new String[]{
+//				url + pics[index],
+//				urlSmall + pics[index],
+//				url + pics[index + 1],
+//				urlSmall + pics[index + 1],
+//				url + pics[index + 2],
+//				urlSmall + pics[index + 2],
+//				url + pics[index + 3],
+//				urlSmall + pics[index + 3],
+//				url + pics[index + 4]
+//		};
 		return new String[]{
-				url + pics[index],
-				urlSmall + pics[index],
-				url + pics[index + 1],
-				urlSmall + pics[index + 1],
-				url + pics[index + 2],
-				urlSmall + pics[index + 2],
-				url + pics[index + 3],
-				urlSmall + pics[index + 3],
-				url + pics[index + 4]
+				"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcambrian-images.cdn.bcebos.com%2Fb5e7f938e8233fdbe343817b5a2610bb_1513843872877.jpeg&refer=http%3A%2F%2Fcambrian-images.cdn.bcebos.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1630639818&t=12be34d92fd0ed700702d6001755bf7d",
+				"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwx3.sinaimg.cn%2Flarge%2F00248yFrly4grmk1mrdepj605k05kt8m02.jpg&refer=http%3A%2F%2Fwx3.sinaimg.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1630639818&t=8377fdaf8fc4bf0b83b133d4b28f0085"
 		};
 	}
 
@@ -317,6 +323,7 @@ public class ResourcesManager {
 		if(TextUtils.isEmpty(filePath)){
 			download();
 		}
+		Log.e("mob","test video path="+filePath);
 		return filePath;
 	}
 
