@@ -542,7 +542,7 @@ MobSDK {
                 id 68
                 appId "ks697776468193437829"
                 appSecret "1dYU_9dTnMFKcm-BFARJkw"
-                bypassApproval true
+                bypassApproval false
                 sortId 68
                 enable true
             }
