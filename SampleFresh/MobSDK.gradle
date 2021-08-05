@@ -1,10 +1,11 @@
 apply plugin: 'com.mob.sdk'
 
+//TODO for test
 try {
     String tmpParams = getProperty("custom_params")
     String[] params = tmpParams.split(",")
     params.each {item->
-        MobSDK.spEdition(item)
+        MobSDK[item] = true
     }
 } catch(Throwable t) {}
 
@@ -23,6 +24,7 @@ MobSDK {
         loopShare true
         //zxing true
         ffmpeg true
+
 
         //平台配置信息
         devInfo {
@@ -392,14 +394,13 @@ MobSDK {
                 sortId 39
                 appId "107704292745179"
                 enable true
-                bypassApproval true
             }
 
             Telegram {
                 id 47
                 sortId 47
-                appKey "782826033"
-                callbackUri "http://www.mob.com"
+                appKey "1931329062"
+                callbackUri "https://www.mob.com"
                 enable true
             }
 
@@ -421,9 +422,11 @@ MobSDK {
             Dingding {
                 id 52
                 sortId 52
-                appId "dingoanxyrpiscaovl4qlw"
+                appId "dingrb8uc7lkuwbvbpfp"
                 bypassApproval false
                 enable true
+                callbackUri "https://mob.com/"
+                appSecret "FF3al9fkIWTZ6HYnrbMSdsh69HB2X7LP9f6wmciB__s_tj4UAsdbd2IImIpBlppn"
             }
 
             //钉钉授权的appkey
@@ -496,10 +499,10 @@ MobSDK {
             Wework {
                 id 60
                 sortId 60
-                appKey "wwa21eaecf93f0e3ba"
-                appSecret "dW7e27P7Hc8NiYdRxnbTeOLgfI1ugR72e-PM8uusq2s"
-                agentId "1000012"
-                schema "wwautha21eaecf93f0e3ba000012"
+                appKey "wwdc4a362d31d88beb"
+                appSecret "vhwRyxZRvXhIOCIjC6fZayRk1xwlGaPmGnBQdhrWoNc"
+                agentId "1000002"
+                schema "wwauthdc4a362d31d88beb000002"
             }
 
             HWAccount {
@@ -562,3 +565,11 @@ MobSDK {
         }
     }
 }
+
+try {
+    String tmpParams = getProperty("custom_params")
+    String[] params = tmpParams.split(",")
+    params.each {item->
+        MobSDK[item] = true
+    }
+} catch(Throwable t) {}

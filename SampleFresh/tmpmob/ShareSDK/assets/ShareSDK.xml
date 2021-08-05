@@ -34,19 +34,19 @@
 <WhatsApp Id="35" SortId="35" Enable="true" />
 <KakaoTalk Id="33" SortId="33" AppKey="48d3f524e4a636b08d81b3ceb50f1003" ShareByAppClient="true" Enable="true" />
 <KakaoStory Id="34" SortId="34" AppKey="48d3f524e4a636b08d81b3ceb50f1003" Enable="true" />
-<FacebookMessenger Id="39" SortId="39" AppId="107704292745179" Enable="true" />
+<FacebookMessenger Id="39" SortId="39" AppId="107704292745179" Enable="true" BypassApproval="true" />
 <Alipay Id="50" SortId="50" AppId="2015072400185895" Enable="true" />
 <AlipayMoments Id="51" SortId="51" AppId="2015072400185895" Enable="true" />
-<Dingding Id="52" SortId="52" AppId="dingoanxyrpiscaovl4qlw" BypassApproval="false" Enable="true" />
+<Dingding Id="52" SortId="52" AppId="dingrb8uc7lkuwbvbpfp" BypassApproval="false" Enable="true" AppSecret="FF3al9fkIWTZ6HYnrbMSdsh69HB2X7LP9f6wmciB__s_tj4UAsdbd2IImIpBlppn" RedirectUrl="https://mob.com/" />
 <Youtube Id="53" SortId="53" AppSecret="AIzaSyAO06g-0TDpHcsXXO918a7QE3Zdct2bB5E" ShareByAppClient="true" Enable="true" ClientID="370141748022-bicrnsjfiije93bvdt63dh3728m4shas.apps.googleusercontent.com" RedirectUrl="http://localhost" />
 <Meipai Id="54" SortId="54" AppSecret="y9ym6rrjjijtkt23qtsc" ShareByAppClient="true" Enable="true" ClientID="1089867596" />
-<Telegram Id="47" SortId="47" AppKey="782826033" Enable="true" RedirectUrl="http://www.mob.com" />
+<Telegram Id="47" SortId="47" AppKey="1931329062" Enable="true" RedirectUrl="https://www.mob.com" />
 <Cmcc Enable="false" />
 <Reddit Id="56" SortId="56" AppKey="MExDxPuTCtFiRw" RedirectUrl="http://www.sharesdk.cn" />
 <Telecom Id="57" SortId="57" AppKey="8148612606" AppSecret="mCltrhUqwshFa86egDTs0491ibaAulKA" Enable="true" RedirectUrl="http://www.sharesdk.cn" />
 <Accountkit Id="58" SortId="58" AppKey="579465512480462" AppSecret="8a6383652dd9f23fb0994f03d350d0ca" Enable="true" RedirectUrl="http://www.sharesdk.cn/" />
 <Douyin Id="59" SortId="1" AppKey="aw9ivykfjvi4hpwo" AppSecret="42b4caa6bda60bd49f05f06d0a4956e1" Enable="true" />
-<Wework Id="60" SortId="60" AppKey="wwa21eaecf93f0e3ba" AppSecret="dW7e27P7Hc8NiYdRxnbTeOLgfI1ugR72e-PM8uusq2s" AgentId="1000012" Schema="wwautha21eaecf93f0e3ba000012" />
+<Wework Id="60" SortId="60" AppKey="wwdc4a362d31d88beb" AppSecret="vhwRyxZRvXhIOCIjC6fZayRk1xwlGaPmGnBQdhrWoNc" AgentId="1000002" Schema="wwauthdc4a362d31d88beb000002" />
 <HWAccount Id="63" SortId="63" AppId="101353159" Enable="true" />
 <Oasis Id="64" SortId="64" AppKey="568898243" AppSecret="38a4f8204cc784f81f9f0daaf31e02e3" CallbackUri="http://www.sharesdk.cn" ShareByAppClient="true" Enable="true" />
 <XMAccount Id="65" SortId="65" AppId="2882303761518333605" Enable="true" RedirectUrl="http://www.mob.com" />
@@ -54,5 +54,5 @@
 <Kuaishou Id="68" AppId="ks697776468193437829" AppSecret="1dYU_9dTnMFKcm-BFARJkw" BypassApproval="true" SortId="68" Enable="true" />
 <Littleredbook Id="67" />
 <Watermelonvideo Id="69" SortId="69" Enable="true" />
-<Tiktok Id="70" SortId="70" AppKey="awsxdh3k1fiojgnu" Enable="true" />
+<Tiktok Id="70" SortId="70" AppKey="aw9g7ac2m73tiif8" Enable="true" />
 </DevInfor>

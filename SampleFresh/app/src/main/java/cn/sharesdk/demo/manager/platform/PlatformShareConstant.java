@@ -104,7 +104,7 @@ public class PlatformShareConstant {
 		bluetooth = new Integer[]{Platform.SHARE_FILE};
 		pocket = new Integer[]{Platform.SHARE_WEBPAGE};
 		instapaper = new Integer[]{ Platform.SHARE_WEBPAGE	};
-		facebookMessenger = new Integer[]{Platform.SHARE_TEXT,Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};
+		facebookMessenger = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_WEBPAGE};
 		alipay = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE};
 		alipayMoments = new Integer[]{Platform.SHARE_WEBPAGE};
 		dingding = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE};
@@ -118,8 +118,8 @@ public class PlatformShareConstant {
 		snapchat = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};
 		watermelonvideo = new Integer[]{Platform.SHARE_VIDEO};
 		littleredbook = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};
-		kuaishou = new Integer[]{Platform.SHARE_WEBPAGE, Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};
-		tiktok = new Integer[]{Platform.SHARE_VIDEO};
+		kuaishou = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};
+		tiktok = new Integer[]{Platform.SHARE_VIDEO,Platform.SHARE_IMAGE};
 	}
 	public synchronized static PlatformShareConstant getInstance(){
 		if(instance == null){

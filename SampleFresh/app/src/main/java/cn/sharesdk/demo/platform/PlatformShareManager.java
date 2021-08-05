@@ -603,6 +603,7 @@ public class PlatformShareManager {
 		}
 	}
 
+
 	public void shareQQMiniProgram(String name, Activity activity) {
 		if (name.equals(QQ.NAME)) {
 			QQShare qqShare = new QQShare(platformActionListener);

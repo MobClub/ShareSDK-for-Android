@@ -74,7 +74,6 @@ public class ShareTypeManager {
                 shareQQMiniProgram(activity);
             } break;
 
-
         }
     }
 
