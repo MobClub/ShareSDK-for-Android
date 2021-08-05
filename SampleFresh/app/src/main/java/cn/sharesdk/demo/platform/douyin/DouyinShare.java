@@ -32,11 +32,11 @@ public class DouyinShare {
         openSystemGallery(activity, DOUYIN_VIDEO);
     }
 
-    public void shareVideo(Activity activity, String videoPath) {
+    public void shareVideo(Activity activity, String[] videoPath) {
         Platform platform = ShareSDK.getPlatform(Douyin.NAME);
         Platform.ShareParams shareParams = new Platform.ShareParams();
 //        shareParams.setFilePath(videoPath);
-        shareParams.setVideoPathArray(new String[]{videoPath});
+        shareParams.setVideoPathArray(videoPath);
         shareParams.setShareType(Platform.SHARE_VIDEO);
         shareParams.setActivity(activity);
         shareParams.setHashtags(new String[]{"yyh","yyh2"});
