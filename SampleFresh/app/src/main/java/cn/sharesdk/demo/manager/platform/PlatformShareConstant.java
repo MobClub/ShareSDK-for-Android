@@ -118,7 +118,7 @@ public class PlatformShareConstant {
 		snapchat = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};
 		watermelonvideo = new Integer[]{Platform.SHARE_VIDEO};
 		littleredbook = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};
-		kuaishou = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};
+		kuaishou = new Integer[]{Platform.SHARE_WEBPAGE,Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};
 		tiktok = new Integer[]{Platform.SHARE_VIDEO,Platform.SHARE_IMAGE};
 	}
 	public synchronized static PlatformShareConstant getInstance(){
