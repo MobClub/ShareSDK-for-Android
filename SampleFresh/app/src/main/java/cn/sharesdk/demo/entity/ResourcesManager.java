@@ -40,6 +40,7 @@ public class ResourcesManager {
 	private String titleUrl;
 	private String url;
 	private String musicUrl;
+	private String musicPath;
 	private String text;
 	private String imagePath ;
 	private String imageUrl ;
@@ -66,8 +67,8 @@ public class ResourcesManager {
 	private String venueDescription;
 	public static final String IMAGE_TEST_URL = "http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg";
 	public static final String IMAGE_TEST_URL_TWO = "https://cdn.pixabay.com/photo/2019/08/08/11/33/stingray-4392776_960_720.jpg";
-	private static final String PIC1="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcambrian-images.cdn.bcebos.com%2Fb5e7f938e8233fdbe343817b5a2610bb_1513843872877.jpeg&refer=http%3A%2F%2Fcambrian-images.cdn.bcebos.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1630639818&t=12be34d92fd0ed700702d6001755bf7d";
-	private static final String PIC2="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwx3.sinaimg.cn%2Flarge%2F00248yFrly4grmk1mrdepj605k05kt8m02.jpg&refer=http%3A%2F%2Fwx3.sinaimg.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1630639818&t=8377fdaf8fc4bf0b83b133d4b28f0085";
+	public static final String PIC1="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcambrian-images.cdn.bcebos.com%2Fb5e7f938e8233fdbe343817b5a2610bb_1513843872877.jpeg";
+	public static final String PIC2="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwx3.sinaimg.cn%2Flarge%2F00248yFrly4grmk1mrdepj605k05kt8m02.jpg";
 	public static ResourcesManager getInstace(Context context){
 		synchronized (ResourcesManager.class){
 			if(instance == null){
@@ -116,7 +117,7 @@ public class ResourcesManager {
 
 	public String getMusicUrl() {
 		if(TextUtils.isEmpty(musicUrl)){
-			return "http://staff2.ustc.edu.cn/~wdw/softdown/index.asp/0042515_05.ANDY.mp3";
+			return "https://mp3.9ku.com/hot/2010/09-30/398811.mp3";
 		}
 		return musicUrl;
 	}
@@ -246,6 +247,13 @@ public class ResourcesManager {
 					e.printStackTrace();
 					filePath=MobSDK.getContext().getExternalFilesDir(Environment.DIRECTORY_MOVIES).getAbsolutePath() + "/Mob/test.mp4";
 				}
+				try {
+					musicPath = new NetworkHelper().downloadCache(MobSDK.getContext(), getMusicUrl(), "music", true, null);
+					Log.e("mob","musicPath="+musicPath);
+				} catch (Throwable throwable) {
+					Log.e("mob","download Music e="+throwable.getMessage());
+					throwable.printStackTrace();
+				}
 				Log.e("mob","test video path="+filePath);
 			}
 		}.start();
@@ -364,6 +372,13 @@ public class ResourcesManager {
 
 	public Bitmap getImageBmp() {
 		return imageBmp;
+	}
+
+	public String getMusicPath() {
+		if(TextUtils.isEmpty(musicPath)){
+			download();
+		}
+		return musicPath;
 	}
 
 	public void setImageBmp(Bitmap imageBmp) {
