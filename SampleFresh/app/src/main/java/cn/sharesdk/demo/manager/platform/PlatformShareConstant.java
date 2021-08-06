@@ -90,7 +90,7 @@ public class PlatformShareConstant {
 		fourSquare = new Integer[]{Platform.SHARE_IMAGE};
 		pinterest = new Integer[]{Platform.SHARE_IMAGE};
 		flickr = new Integer[]{Platform.SHARE_IMAGE};
-		tumblr = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
+		tumblr = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE , Platform.SHARE_MUSIC ,Platform.SHARE_VIDEO};
 		dropbox = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_FILE, Platform.SHARE_VIDEO};
 		vkontakte = new Integer[]{Platform.SHARE_IMAGE};
 		instagram = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_VIDEO, Platform.SHARE_TEXT};
