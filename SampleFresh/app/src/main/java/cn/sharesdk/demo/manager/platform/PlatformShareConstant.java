@@ -111,7 +111,7 @@ public class PlatformShareConstant {
 		youtube = new Integer[]{Platform.SHARE_VIDEO};
 		meipai = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};
 		telegram = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_IMAGE};
-		reddit = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE};
+		reddit = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE, Platform.SHARE_IMAGE};
 		wework = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_IMAGE, Platform.SHARE_FILE,
 								Platform.SHARE_VIDEO, Platform.SHARE_WEBPAGE};
 		oasis = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_VIDEO};

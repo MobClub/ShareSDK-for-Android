@@ -51,7 +51,7 @@
 <Oasis Id="64" SortId="64" AppKey="568898243" AppSecret="38a4f8204cc784f81f9f0daaf31e02e3" CallbackUri="http://www.sharesdk.cn" ShareByAppClient="true" Enable="true" />
 <XMAccount Id="65" SortId="65" AppId="2882303761518333605" Enable="true" RedirectUrl="http://www.mob.com" />
 <SnapChat Id="66" SortId="66" enabel="true" />
-<Kuaishou Id="68" AppId="ks697776468193437829" AppSecret="1dYU_9dTnMFKcm-BFARJkw" BypassApproval="true" SortId="68" Enable="true" />
+<Kuaishou Id="68" AppId="ks697776468193437829" AppSecret="1dYU_9dTnMFKcm-BFARJkw" BypassApproval="false" SortId="68" Enable="true" />
 <Littleredbook Id="67" />
 <Watermelonvideo Id="69" SortId="69" Enable="true" />
 <Tiktok Id="70" SortId="70" AppKey="aw9g7ac2m73tiif8" Enable="true" />

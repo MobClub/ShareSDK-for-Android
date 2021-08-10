@@ -345,7 +345,10 @@ public class PlatformShareManager {
 		} else if (name.equals(Littleredbook.NAME)) {
 			LittleredbookShare littleredbookShare = new LittleredbookShare(platformActionListener);
 			littleredbookShare.shareImage(activity);
-		} else {
+		} else if (name.equals(Reddit.NAME)) {
+			RedditShare share = new RedditShare(platformActionListener);
+			share.shareImage();
+		}else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
 			shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());

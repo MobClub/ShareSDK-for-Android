@@ -1,5 +1,9 @@
 package cn.sharesdk.demo.platform.reddit;
 
+import android.widget.Toast;
+
+import java.util.HashMap;
+
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
@@ -41,5 +45,16 @@ public class RedditShare {
         reddit.setPlatformActionListener(platformActionListener);
         reddit.share(sp);
     }
-
+    public void shareImage() {
+        Platform platform = ShareSDK.getPlatform(Reddit.NAME);
+        Platform.ShareParams shareParams = new Platform.ShareParams();
+        shareParams.setSubreddit("aaa");
+        shareParams.setTitle("分享链接");
+        shareParams.setText("分享内容");
+        String PIC1="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcambrian-images.cdn.bcebos.com%2Fb5e7f938e8233fdbe343817b5a2610bb_1513843872877.jpeg";
+        shareParams.setImageUrl(PIC1);
+        shareParams.setShareType(Platform.SHARE_IMAGE);
+        platform.setPlatformActionListener(platformActionListener);
+        platform.share(shareParams);
+    }
 }
