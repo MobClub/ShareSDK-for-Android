@@ -86,13 +86,13 @@ public class PlatformShareConstant {
 		douban = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
 		youDao = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_IMAGE};
 		evernote = new Integer[]{Platform.SHARE_IMAGE,Platform.SHARE_TEXT, Platform.SHARE_VIDEO};
-		linkedIn = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE};
+		linkedIn = new Integer[]{Platform.SHARE_TEXT, Platform.SHARE_IMAGE,Platform.SHARE_WEBPAGE};
 		fourSquare = new Integer[]{Platform.SHARE_IMAGE};
 		pinterest = new Integer[]{Platform.SHARE_IMAGE};
 		flickr = new Integer[]{Platform.SHARE_IMAGE};
 		tumblr = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
 		dropbox = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_FILE, Platform.SHARE_VIDEO};
-		vkontakte = new Integer[]{Platform.SHARE_IMAGE};
+		vkontakte = new Integer[]{Platform.SHARE_TEXT,Platform.SHARE_IMAGE,Platform.SHARE_WEBPAGE};
 		instagram = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_VIDEO, Platform.SHARE_TEXT};
 		yixin = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_MUSIC,Platform.SHARE_VIDEO,Platform.SHARE_WEBPAGE};
 		yixinMoments = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_MUSIC,Platform.SHARE_VIDEO,Platform.SHARE_WEBPAGE};
@@ -100,7 +100,7 @@ public class PlatformShareConstant {
 		line = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT	};
 		kakaoTalk = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_VIDEO, Platform.SHARE_WEBPAGE};
 		kakaoStory = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_VIDEO};
-		whatsApp = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_VIDEO};
+		whatsApp = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_VIDEO,};
 		bluetooth = new Integer[]{Platform.SHARE_FILE};
 		pocket = new Integer[]{Platform.SHARE_WEBPAGE};
 		instapaper = new Integer[]{ Platform.SHARE_WEBPAGE	};

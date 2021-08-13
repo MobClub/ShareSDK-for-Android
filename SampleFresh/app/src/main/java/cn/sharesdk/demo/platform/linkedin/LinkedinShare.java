@@ -1,5 +1,7 @@
 package cn.sharesdk.demo.platform.linkedin;
 
+import android.app.Activity;
+
 import com.mob.MobSDK;
 
 import cn.sharesdk.demo.entity.ResourcesManager;
@@ -42,7 +44,7 @@ public class LinkedinShare {
 		platform.share(shareParams);
 	}
 
-	/*public void shareImage(){
+	public void shareImage(){
 		Platform platform = ShareSDK.getPlatform(LinkedIn.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
@@ -50,6 +52,6 @@ public class LinkedinShare {
 		shareParams.setShareType(Platform.SHARE_IMAGE);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
-	}*/
+	}
 
 }

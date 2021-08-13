@@ -207,7 +207,10 @@ public class PlatformShareManager {
 		} else if (name.equals(FacebookMessenger.NAME)) {
 			FacebookMessengerShare share = new FacebookMessengerShare(platformActionListener);
 			share.shareText();
-		} else {
+		}else if (name.equals(VKontakte.NAME)) {
+			VKontakteShare vKontakteShare = new VKontakteShare(platformActionListener);
+			vKontakteShare.shareText();
+		}else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
 			shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
@@ -314,7 +317,7 @@ public class PlatformShareManager {
 			yixinShare.shareImage();
 		} else if (name.equals(VKontakte.NAME)) {
 			VKontakteShare vKontakteShare = new VKontakteShare(platformActionListener);
-			vKontakteShare.shareMessage();
+			vKontakteShare.shareImage();
 		} else if (name.equals(Pinterest.NAME)) {
 			PinterestShare wechatShare = new PinterestShare(platformActionListener);
 			wechatShare.shareImage();
@@ -345,6 +348,9 @@ public class PlatformShareManager {
 		} else if (name.equals(Littleredbook.NAME)) {
 			LittleredbookShare littleredbookShare = new LittleredbookShare(platformActionListener);
 			littleredbookShare.shareImage(activity);
+		}else if (name.equals(LinkedIn.NAME)) {
+			LinkedinShare linkedinShare = new LinkedinShare(platformActionListener);
+			linkedinShare.shareImage();
 		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
@@ -414,6 +420,9 @@ public class PlatformShareManager {
 		}else if (name.equals(Kuaishou.NAME)) {
 			KuaishouShare share = new KuaishouShare(platformActionListener);
 			share.shareWebPage(activity);
+		}else if (name.equals(VKontakte.NAME)) {
+			VKontakteShare vKontakteShare = new VKontakteShare(platformActionListener);
+			vKontakteShare.shareWebPager();
 		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();

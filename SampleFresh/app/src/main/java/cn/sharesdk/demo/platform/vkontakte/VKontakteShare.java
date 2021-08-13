@@ -19,13 +19,13 @@ public class VKontakteShare {
 		this.platformActionListener = mListener;
 	}
 
-	public void shareMessage(){
+	public void shareText(){
 		Platform platform = ShareSDK.getPlatform(VKontakte.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
-		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
-		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
+//		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+//		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
+//		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
 	}
@@ -42,6 +42,28 @@ public class VKontakteShare {
 		shareParams.setLongitude(ResourcesManager.longitude);
 		shareParams.setGroupId(" ");
 		platform.setPlatformActionListener(mListener);
+		platform.share(shareParams);
+	}
+
+	public void shareImage(){
+		Platform platform = ShareSDK.getPlatform(VKontakte.NAME);
+		Platform.ShareParams shareParams = new  Platform.ShareParams();
+//		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
+		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
+//		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
+		platform.setPlatformActionListener(platformActionListener);
+		platform.share(shareParams);
+	}
+
+	public void shareWebPager(){
+		Platform platform = ShareSDK.getPlatform(VKontakte.NAME);
+		Platform.ShareParams shareParams = new  Platform.ShareParams();
+		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
+		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
+		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
+		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
 	}
 }

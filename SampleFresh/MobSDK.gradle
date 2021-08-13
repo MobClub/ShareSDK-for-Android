@@ -218,10 +218,10 @@ MobSDK {
             LinkedIn {
                 id 20
                 sortId 20
-                appKey "ejo5ibkye3vo"
-                appSecret "cC7B2jpxITqPLZ5M"
-                callbackUri "http://sharesdk.cn"
-                shareByAppClient true
+                appKey "75x5xdhllzno44"
+                appSecret "uiS3nlE7XBGmTL3P"
+                callbackUri "https://www.mob.com/"
+                shareByAppClient false
                 enable true
             }
 
@@ -292,7 +292,7 @@ MobSDK {
             VKontakte {
                 id 27
                 sortId 27
-                appId "3921561"
+                appId "5312801"
                 enable true
             }
 
@@ -400,8 +400,8 @@ MobSDK {
             Telegram {
                 id 47
                 sortId 47
-                appKey "1931329062"
-                callbackUri "https://www.mob.com"
+                appKey "547043436"
+                callbackUri "https://core.telegram.org"
                 enable true
             }
 
