@@ -32,7 +32,7 @@ public class QQShare {
         Platform.ShareParams shareParams = new Platform.ShareParams();
         shareParams.setText(LINK_TEXT);
         shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-        shareParams.setTitleUrl(LINK_URL);
+        shareParams.setTitleUrl("http://download.sdk.mob.com/2021/01/25/16/16115618066761.02.html");
         shareParams.setShareType(Platform.SHARE_WEBPAGE);
         platform.setPlatformActionListener(platformActionListener);
         platform.share(shareParams);

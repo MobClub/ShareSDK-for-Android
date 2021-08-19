@@ -351,7 +351,10 @@ public class PlatformShareManager {
 		}else if (name.equals(LinkedIn.NAME)) {
 			LinkedinShare linkedinShare = new LinkedinShare(platformActionListener);
 			linkedinShare.shareImage();
-		} else {
+		}  else if (name.equals(Reddit.NAME)) {
+			RedditShare share = new RedditShare(platformActionListener);
+			share.shareImage();
+		}else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
 			shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
