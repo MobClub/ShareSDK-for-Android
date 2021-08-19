@@ -6,6 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.provider.MediaStore;
 
+import com.mob.MobSDK;
+
+import cn.sharesdk.demo.entity.ResourcesManager;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
