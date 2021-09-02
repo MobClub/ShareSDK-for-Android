@@ -131,8 +131,8 @@
 
     <!-- 隐私协议 -->
     <string name="privacy_title">ShareSDK Demo隐私条款</string>
-    <string name="privacy_date_start">最近更新日期：2019年12月13日</string>
-    <string name="privacy_date_end">版本生效日期：2019年12月20日</string>
+    <string name="privacy_date_start">最近更新日期：2021年3月3日</string>
+    <string name="privacy_date_end">版本生效日期：2021年3月10日</string>
     <string name="privacy_content">\u3000\u3000欢迎您使用MobTech提供的演示DEMO，ShareSDK为开发者提供的社交分享SDK，支持微信、抖音、QQ、微博、Facebook、Twitter等全球40+主流社交平台账号内的一键分享、第三方登录授权以及闭环分享服务，不仅极大地方便了您的终端用户的服务体验，更为您实时了解终端用户的分享数、回流数、意向分享等数据进行了统计分析。为了对您的闭环分享功能进行来源追溯并帮助您更精细化运营，我们将依据MobTech的《隐私政策》来帮助你了解我们需要收集哪些数据</string>
     <string name="privacy_details">详情见</string>
 
