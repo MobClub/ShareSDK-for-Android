@@ -5,6 +5,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 
 import androidx.appcompat.app.AlertDialog;
+
+import java.util.List;
+
 import cn.sharesdk.douyin.Douyin;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
@@ -29,12 +32,14 @@ public class DouyinShare {
         openSystemGallery(activity, DOUYIN_VIDEO);
     }
 
-    public void shareVideo(Activity activity, String videoPath) {
+    public void shareVideo(Activity activity, String[] videoPath) {
         Platform platform = ShareSDK.getPlatform(Douyin.NAME);
         Platform.ShareParams shareParams = new Platform.ShareParams();
-        shareParams.setFilePath(videoPath);
+//        shareParams.setFilePath(videoPath);
+        shareParams.setVideoPathArray(videoPath);
         shareParams.setShareType(Platform.SHARE_VIDEO);
         shareParams.setActivity(activity);
+        shareParams.setHashtags(new String[]{"yyh","yyh2"});
         platform.setPlatformActionListener(platformActionListener);
         platform.share(shareParams);
     }
@@ -46,12 +51,15 @@ public class DouyinShare {
     public void shareImagePath(Activity activity, String imagePath) {
         Platform douyin = ShareSDK.getPlatform(Douyin.NAME);
         Platform.ShareParams sp = new Platform.ShareParams();
-        sp.setImagePath(imagePath);
+//        sp.setImagePath(imagePath);
+        sp.setImageArray(new String[]{imagePath});
         sp.setShareType(Platform.SHARE_IMAGE);
         sp.setActivity(activity);
+        sp.setHashtags(new String[]{});
         douyin.setPlatformActionListener(platformActionListener);
         douyin.share(sp);
     }
+
 
     private void openSystemGallery(final Activity activity, final int shareType) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);

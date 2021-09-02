@@ -42,6 +42,8 @@
     <color name="pic_font">#1E2937</color>
 
     <color name="light_grey_bg">#ECECEC</color>
+    <color name="button_send_background_color">#0084ff</color>
+    <color name="button_background_color">#1877F2</color>
 
 
 </resources>

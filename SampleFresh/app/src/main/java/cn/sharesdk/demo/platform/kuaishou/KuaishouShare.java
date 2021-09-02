@@ -3,14 +3,19 @@ package cn.sharesdk.demo.platform.kuaishou;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 
+import androidx.appcompat.app.AlertDialog;
+
 import com.mob.MobSDK;
 
-import androidx.appcompat.app.AlertDialog;
+import cn.sharesdk.demo.R;
 import cn.sharesdk.demo.UriUtil;
 import cn.sharesdk.demo.entity.ResourcesManager;
+import cn.sharesdk.demo.utils.ThreadPoolUtils;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
@@ -89,4 +94,29 @@ public class KuaishouShare {
 		douyin.share(sp);
 	}
 
+	public void shareWebPage(final Activity activity) {
+		final Platform platform = ShareSDK.getPlatform(Kuaishou.NAME);
+		if (null == platform || null == activity) {
+			return;
+		}
+		ThreadPoolUtils.execute(new Runnable() {
+			@Override
+			public void run() {
+				Platform.ShareParams shareParams = new  Platform.ShareParams();
+				shareParams.setText("text");//length<=1024
+				shareParams.setTitle("title");//length<=512
+				shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
+				try {
+					Bitmap bitmap = BitmapFactory.decodeResource(activity.getResources(), R.mipmap.ic_launcher);
+					shareParams.setImageData(bitmap);//length<=65536
+				} catch (Throwable throwable) {
+					throwable.printStackTrace();
+				}
+				shareParams.setActivity(activity);
+				shareParams.setShareType(Platform.SHARE_WEBPAGE);
+				platform.setPlatformActionListener(platformActionListener);
+				platform.share(shareParams);
+			}
+		});
+	}
 }

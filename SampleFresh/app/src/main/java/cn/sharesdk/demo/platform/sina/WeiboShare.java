@@ -42,6 +42,7 @@ public class WeiboShare {
 			} else {
 				shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
 			}
+			shareParams.setText("sina 分享 title");
 			shareParams.setShareType(Platform.SHARE_IMAGE);
 			shareParams.setLongitude(ResourcesManager.longitude);
 			shareParams.setLatitude(ResourcesManager.latitude);
@@ -61,8 +62,7 @@ public class WeiboShare {
 		Platform platform = ShareSDK.getPlatform(SinaWeibo.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setFilePath(ResourcesManager.getInstace(MobSDK.getContext()).getFilePath());
-		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
-		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
+		shareParams.setText("share");
 		shareParams.setShareType(Platform.SHARE_VIDEO);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);

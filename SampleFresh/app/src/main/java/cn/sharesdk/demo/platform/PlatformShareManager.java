@@ -204,7 +204,13 @@ public class PlatformShareManager {
 		} else if (name.equals(Wework.NAME)) {
 			WeworkShare weworkShare = new WeworkShare(platformActionListener);
 			weworkShare.shareText();
-		} else {
+		} else if (name.equals(FacebookMessenger.NAME)) {
+			FacebookMessengerShare share = new FacebookMessengerShare(platformActionListener);
+			share.shareText();
+		}else if (name.equals(VKontakte.NAME)) {
+			VKontakteShare vKontakteShare = new VKontakteShare(platformActionListener);
+			vKontakteShare.shareText();
+		}else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
 			shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
@@ -311,7 +317,7 @@ public class PlatformShareManager {
 			yixinShare.shareImage();
 		} else if (name.equals(VKontakte.NAME)) {
 			VKontakteShare vKontakteShare = new VKontakteShare(platformActionListener);
-			vKontakteShare.shareMessage();
+			vKontakteShare.shareImage();
 		} else if (name.equals(Pinterest.NAME)) {
 			PinterestShare wechatShare = new PinterestShare(platformActionListener);
 			wechatShare.shareImage();
@@ -342,7 +348,13 @@ public class PlatformShareManager {
 		} else if (name.equals(Littleredbook.NAME)) {
 			LittleredbookShare littleredbookShare = new LittleredbookShare(platformActionListener);
 			littleredbookShare.shareImage(activity);
-		} else {
+		}else if (name.equals(LinkedIn.NAME)) {
+			LinkedinShare linkedinShare = new LinkedinShare(platformActionListener);
+			linkedinShare.shareImage();
+		}  else if (name.equals(Reddit.NAME)) {
+			RedditShare share = new RedditShare(platformActionListener);
+			share.shareImage();
+		}else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
 			shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
@@ -408,6 +420,12 @@ public class PlatformShareManager {
 		} else if (name.equals(Wework.NAME)) {
 			WeworkShare weworkShare = new WeworkShare(platformActionListener);
 			weworkShare.shareWebPage();
+		}else if (name.equals(Kuaishou.NAME)) {
+			KuaishouShare share = new KuaishouShare(platformActionListener);
+			share.shareWebPage(activity);
+		}else if (name.equals(VKontakte.NAME)) {
+			VKontakteShare vKontakteShare = new VKontakteShare(platformActionListener);
+			vKontakteShare.shareWebPager();
 		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
@@ -503,7 +521,10 @@ public class PlatformShareManager {
 		} else if (name.equals(Watermelonvideo.NAME)) {
 			WatermelonvideoShare watermelonvideoShare = new WatermelonvideoShare(platformActionListener);
 			watermelonvideoShare.shareVideo(activity);
-		} else {
+		} else if (name.equals(FacebookMessenger.NAME)) {
+			FacebookMessengerShare share = new FacebookMessengerShare(platformActionListener);
+			share.shareVideo();
+		}else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
 			shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
@@ -593,6 +614,7 @@ public class PlatformShareManager {
 			sinaWeibo.shareLinkCard();
 		}
 	}
+
 
 	public void shareQQMiniProgram(String name, Activity activity) {
 		if (name.equals(QQ.NAME)) {

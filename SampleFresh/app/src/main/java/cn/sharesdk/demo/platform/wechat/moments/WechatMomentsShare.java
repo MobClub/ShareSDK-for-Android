@@ -57,8 +57,8 @@ public class WechatMomentsShare {
 		} else {
 			shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
 		}
-		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
-		shareParams.setMusicUrl(ResourcesManager.getInstace(MobSDK.getContext()).getMusicUrl());
+		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getMusicUrl());
+//		shareParams.setMusicUrl(ResourcesManager.getInstace(MobSDK.getContext()).getMusicUrl());
 		shareParams.setShareType(Platform.SHARE_MUSIC);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);

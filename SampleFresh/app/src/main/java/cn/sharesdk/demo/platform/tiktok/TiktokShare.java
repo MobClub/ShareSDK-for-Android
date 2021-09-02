@@ -6,6 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.provider.MediaStore;
 
+import com.mob.MobSDK;
+
+import cn.sharesdk.demo.entity.ResourcesManager;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
@@ -26,11 +29,11 @@ public class TiktokShare {
 		openAlbumVideo(activity);
 	}
 
-	public void shareVideo(Activity activity, String videoPath) {
+	public void shareVideo(Activity activity, String[] videoPath) {
 		Platform platform = ShareSDK.getPlatform(Tiktok.NAME);
 		Platform.ShareParams shareParams = new Platform.ShareParams();
-		shareParams.setFilePath(videoPath);
-		shareParams.setActivity(activity);
+		shareParams.setVideoPathArray(videoPath);
+		shareParams.setHashtags(new String[]{"a","b"});
 		shareParams.setShareType(Platform.SHARE_VIDEO);
 		shareParams.setActivity(activity);
 		platform.setPlatformActionListener(platformActionListener);
@@ -40,10 +43,11 @@ public class TiktokShare {
 		openAlbumImage(activity);
 	}
 
-	public void shareImagePath(Activity activity, String imagePath) {
+	public void shareImagePath(Activity activity, String[] imagePath) {
 		Platform tiktok = ShareSDK.getPlatform(Tiktok.NAME);
 		Platform.ShareParams sp = new Platform.ShareParams();
-		sp.setImagePath(imagePath);
+		sp.setImageArray(imagePath);
+		sp.setHashtags(new String[]{"a","b"});
 		sp.setShareType(Platform.SHARE_IMAGE);
 		sp.setActivity(activity);
 		tiktok.setPlatformActionListener(platformActionListener);
@@ -76,9 +80,10 @@ public class TiktokShare {
 				//Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
 				//intent.setDataAndType(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, "video/*");
 				//intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-				Intent intent = new Intent();
-				intent.setType("image/*");
-				intent.setAction(Intent.ACTION_GET_CONTENT);
+				Intent intent = new Intent(Intent.ACTION_PICK);
+				intent.setType("video/*");
+//				intent.setAction(Intent.ACTION_GET_CONTENT);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 				activity.startActivityForResult(intent, KT_VIDEO);
 			}
 		}).show();

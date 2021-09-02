@@ -127,7 +127,7 @@ public class ShareFragment extends BaseFragment implements CallBackShotImageView
 		Thread thread = new Thread() {
 			@Override
 			public void run() {
-				String videoUrl = "http://f1.webshare.mob.com/dvideo/demovideos.mp4";
+				String videoUrl = "http://www.mob.com/video/ShareSDK.mp4";
 				try {
 					testVideo = new NetworkHelper().downloadCache(getContext(), videoUrl, "videos", true, null);
 					Log.e("ShareSDK", "======> " + testVideo);
@@ -279,8 +279,8 @@ public class ShareFragment extends BaseFragment implements CallBackShotImageView
 					}
 
 					@Override
-					public void onFailed(String msg) {
-						Log.e("ShareSDK", " onFailed " + msg);
+					public void onFailed(String s, int i) {
+						Log.e("ShareSDK", " onFailed " + s);
 					}
 				});
 	}
@@ -288,73 +288,35 @@ public class ShareFragment extends BaseFragment implements CallBackShotImageView
 	@Override
 	public void onSharkClick() {
 		Log.e("ShareSDK", " 摇一摇分享执行了 ");
-//		Platform platform = ShareSDK.getPlatform(Wechat.NAME);
-//		if (platform == null) {
-//			Toast.makeText(getActivity(), "没同意隐私，不给用", Toast.LENGTH_LONG).show();
-//			return;
-//		}
-//		Platform.ShareParams sp = new Platform.ShareParams();
-//		sp.setText("Test shareStr");
-//		sp.setShareType(Platform.SHARE_TEXT);
-//		platform.setPlatformActionListener(new PlatformActionListener() {
-//			@Override
-//			public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-//				Log.e("ShareSDK", "onComplete() ");
-//				Toast.makeText(getActivity(), "onComplete", Toast.LENGTH_LONG).show();
-//			}
-//
-//			@Override
-//			public void onError(Platform platform, int i, Throwable throwable) {
-//				Log.e("ShareSDK", "onError() " + throwable);
-//				Toast.makeText(getActivity(), "onError", Toast.LENGTH_LONG).show();
-//			}
-//
-//			@Override
-//			public void onCancel(Platform platform, int i) {
-//				Log.e("ShareSDK", "onCancel() ");
-//				Toast.makeText(getActivity(), "onCancel", Toast.LENGTH_LONG).show();
-//			}
-//		});
-//		platform.share(sp);
-
 		if (!TextUtils.isEmpty(testVideo)) {
-//			Intent intent = new Intent();
-//			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//			intent.setClass(getActivity(), LoadingActivity.class);
-//			startActivity(intent);
+			ShareSDK.makeVideoWaterMark("二维码内容", "测试标题", "测试内容",
+	 				testVideo, new WaterMarkListener() {
 
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("key1", "value1");
-			map.put("key2", "value2");
-			map.put("key3", "value3");
-			map.put("key4", "value4");
+						@Override
+						public void onStart() {
+							Log.e("ShareSDK", "onStart");
+						}
 
-			HashMap<String, Object> paramsMap = new HashMap<String, Object>();
-			paramsMap.put("params", map);
+						@Override
+						public void onProgress(int i) {
+							Log.e("ShareSDK", "onProgress: " + i);
+						}
 
-			String paramasStr = "想你所想，高端品牌适合高端的你";
+						@Override
+						public void onCancel() {
+							Log.e("ShareSDK", "onCancel");
+						}
 
-			ShareSDK.preparePassWord(paramsMap, paramasStr, new LoopSharePasswordListener() {
-				@Override
-				public void onResult(Object var1) {
-					Log.d("ShareSDK", "onResult 二维码的mobId原始数据为: " + var1);
-					String originalContent = String.valueOf(var1);
-					String strAfter = originalContent.substring(originalContent.indexOf("#"));
-					String regEx = "#";
-					Pattern p = Pattern.compile(regEx);
-					Matcher m = p.matcher(strAfter);
-					String result = m.replaceAll("");
-					String resultOk = result.replace("[/cp]", "");
+						@Override
+						public void onEnd(int i) {
+							Log.e("ShareSDK", "onEnd: " + i);
+						}
 
-					Log.d("ShareSDK", "存储到二维码里边的mobId: " + resultOk);
-					makeVideo(testVideo,resultOk);
-				}
-
-				@Override
-				public void onError(Throwable var1) {
-					Log.d("ShareSDK", "onError " + var1);
-				}
-			});
+						@Override
+						public void onFailed(String s, int i) {
+							Log.e("ShareSDK", "onFailed: " + s + " i: " + i);
+						}
+					});
 
 		} else {
 			Toast.makeText(getContext(), "视频没有下载完成，请重启应用重新下载", Toast.LENGTH_LONG).show();

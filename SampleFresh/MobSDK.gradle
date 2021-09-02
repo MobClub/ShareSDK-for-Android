@@ -1,5 +1,15 @@
 apply plugin: 'com.mob.sdk'
 
+//TODO for test
+try {
+    String tmpParams = getProperty("custom_params")
+    String[] params = tmpParams.split(",")
+    params.each {item->
+        MobSDK[item] = true
+    }
+} catch(Throwable t) {}
+
+
 MobSDK {
 
     appKey "moba0b0c0d0"
@@ -208,10 +218,10 @@ MobSDK {
             LinkedIn {
                 id 20
                 sortId 20
-                appKey "ejo5ibkye3vo"
-                appSecret "cC7B2jpxITqPLZ5M"
-                callbackUri "http://sharesdk.cn"
-                shareByAppClient true
+                appKey "75x5xdhllzno44"
+                appSecret "uiS3nlE7XBGmTL3P"
+                callbackUri "https://www.mob.com/"
+                shareByAppClient false
                 enable true
             }
 
@@ -282,7 +292,7 @@ MobSDK {
             VKontakte {
                 id 27
                 sortId 27
-                appId "3921561"
+                appId "5312801"
                 enable true
             }
 
@@ -384,13 +394,14 @@ MobSDK {
                 sortId 39
                 appId "107704292745179"
                 enable true
+                bypassApproval true
             }
 
             Telegram {
                 id 47
                 sortId 47
-                appKey "782826033"
-                callbackUri "http://www.mob.com"
+                appKey "547043436"
+                callbackUri "https://core.telegram.org"
                 enable true
             }
 
@@ -412,9 +423,11 @@ MobSDK {
             Dingding {
                 id 52
                 sortId 52
-                appId "dingoanxyrpiscaovl4qlw"
+                appId "dingrb8uc7lkuwbvbpfp"
                 bypassApproval false
                 enable true
+                callbackUri "https://mob.com/"
+                appSecret "FF3al9fkIWTZ6HYnrbMSdsh69HB2X7LP9f6wmciB__s_tj4UAsdbd2IImIpBlppn"
             }
 
             //钉钉授权的appkey
@@ -487,10 +500,10 @@ MobSDK {
             Wework {
                 id 60
                 sortId 60
-                appKey "wwa21eaecf93f0e3ba"
-                appSecret "dW7e27P7Hc8NiYdRxnbTeOLgfI1ugR72e-PM8uusq2s"
-                agentId "1000012"
-                schema "wwautha21eaecf93f0e3ba000012"
+                appKey "wwdc4a362d31d88beb"
+                appSecret "vhwRyxZRvXhIOCIjC6fZayRk1xwlGaPmGnBQdhrWoNc"
+                agentId "1000002"
+                schema "wwauthdc4a362d31d88beb000002"
             }
 
             HWAccount {
@@ -533,7 +546,7 @@ MobSDK {
                 id 68
                 appId "ks697776468193437829"
                 appSecret "1dYU_9dTnMFKcm-BFARJkw"
-                bypassApproval true
+                bypassApproval false
                 sortId 68
                 enable true
             }
@@ -547,9 +560,17 @@ MobSDK {
             Tiktok {
                 id = 70
                 sortId = 70
-                appKey = "awsxdh3k1fiojgnu"
+                appKey = "aw9g7ac2m73tiif8"
                 enable = true
             }
         }
     }
 }
+
+try {
+    String tmpParams = getProperty("custom_params")
+    String[] params = tmpParams.split(",")
+    params.each {item->
+        MobSDK[item] = true
+    }
+} catch(Throwable t) {}

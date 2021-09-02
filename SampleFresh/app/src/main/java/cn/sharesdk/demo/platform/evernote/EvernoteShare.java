@@ -22,14 +22,12 @@ public class EvernoteShare {
 	}
 
 	public void shareVideo() {
-		if (DemoUtils.isValidClient("com.evernote")) {
 			Platform platform = ShareSDK.getPlatform(Evernote.NAME);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
 			shareParams.setFilePath(ResourcesManager.getInstace(MobSDK.getContext()).getFilePath());
 			shareParams.setShareType(Platform.SHARE_VIDEO);
 			platform.setPlatformActionListener(platformActionListener);
 			platform.share(shareParams);
-		}
 	}
 
 	public void shareText() {
@@ -43,7 +41,6 @@ public class EvernoteShare {
 	}
 
 	public void shareImage() {
-		if (DemoUtils.isValidClient("com.evernote")) {
 			Platform platform = ShareSDK.getPlatform(Evernote.NAME);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
 			shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
@@ -53,7 +50,6 @@ public class EvernoteShare {
 			shareParams.setShareType(Platform.SHARE_IMAGE);
 			platform.setPlatformActionListener(platformActionListener);
 			platform.share(shareParams);
-		}
 	}
 
 	public void shareVideo(PlatformActionListener mListener) {

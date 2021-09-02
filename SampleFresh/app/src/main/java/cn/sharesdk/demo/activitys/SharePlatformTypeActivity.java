@@ -1,6 +1,8 @@
 package cn.sharesdk.demo.activitys;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -101,6 +103,7 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 		return R.layout.share_platform_type_activity;
 	}
 
+	@SuppressLint("WrongConstant")
 	@Override
 	public void initView() {
 		recyclerView = (RecyclerView) this.findViewById(R.id.mSharePlatform);
@@ -358,10 +361,10 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 	/**
 	 * 抖音本地图片分享
 	 * **/
-	private void startShareImage(String imagePath) {
+	private void startShareImage(String imgPath) {
 		myPlatformActionListener = new MyPlatformActionListener();
 		DouyinShare douyinShare = new DouyinShare(myPlatformActionListener);
-		douyinShare.shareImagePath(this, imagePath);
+		douyinShare.shareImagePath(this, imgPath);
 	}
 
 	/**
@@ -370,7 +373,7 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 	private void startShareVideo(String videoPath) {
 		myPlatformActionListener = new MyPlatformActionListener();
 		DouyinShare douyinShare = new DouyinShare(myPlatformActionListener);
-		douyinShare.shareVideo(this, videoPath);
+		douyinShare.shareVideo(this, new String[]{videoPath});
 	}
 
 	/**
@@ -379,7 +382,7 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 	private void tiktokShareImage(String imagePath) {
 		myPlatformActionListener = new MyPlatformActionListener();
 		TiktokShare tiktokShare = new TiktokShare(myPlatformActionListener);
-		tiktokShare.shareImagePath(this, imagePath);
+		tiktokShare.shareImagePath(this, new String[]{imagePath});
 	}
 
 	/**
@@ -388,7 +391,7 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 	private void tiktokShareVideo(String videoPath) {
 		myPlatformActionListener = new MyPlatformActionListener();
 		TiktokShare tiktokShare = new TiktokShare(myPlatformActionListener);
-		tiktokShare.shareVideo(this, videoPath);
+		tiktokShare.shareVideo(this, new String[]{videoPath});
 	}
 
 	/**
