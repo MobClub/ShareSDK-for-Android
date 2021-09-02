@@ -8,15 +8,12 @@ buildscript {
     println "mavenUrl: ${urlStr}, ${hasProperty("mavenUrl")}"
     ext {
         mavenUrl = urlStr
-//        mavenUrl = "http://10.89.104.129:8080/job/iMaven/ws/android/"
     }
 
     repositories {
         jcenter()
 
         maven {
-            //url "http://mvn.mob.com/android"
-//            url "http://10.18.97.47:7080/job/iMaven/ws/android/"
             url = mavenUrl
         }
 
