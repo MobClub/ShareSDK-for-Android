@@ -11,9 +11,6 @@ import cn.sharesdk.framework.ShareSDK;
 
 import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
 
-/**
- * Created by yjin on 2017/6/22.
- */
 
 public class DingdingShare {
 	private PlatformActionListener platformActionListener;
