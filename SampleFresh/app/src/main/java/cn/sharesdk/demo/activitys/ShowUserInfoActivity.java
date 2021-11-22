@@ -16,9 +16,6 @@ import cn.sharesdk.demo.manager.BasePresenter;
 import cn.sharesdk.demo.manager.ui.ShowUserInfoPresenter;
 import cn.sharesdk.demo.ui.BaseActivity;
 
-/**
- * Created by yjin on 2017/5/19.
- */
 
 public class ShowUserInfoActivity extends BaseActivity implements View.OnClickListener {
 	private TextView showTxt;
@@ -34,8 +31,8 @@ public class ShowUserInfoActivity extends BaseActivity implements View.OnClickLi
 
 	@Override
 	public void initView() {
-		showTxt = (TextView) this.findViewById(R.id.showUserInfo);
-		copyTxt = (TextView) this.findViewById(R.id.userCopy);
+		showTxt = this.findViewById(R.id.showUserInfo);
+		copyTxt = this.findViewById(R.id.userCopy);
 		copyTxt.setOnClickListener(this);
 		showTxt.setText(userMsg);
 		if (TextUtils.isEmpty(userMsg)) {
