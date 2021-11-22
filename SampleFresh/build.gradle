@@ -25,7 +25,6 @@ buildscript {
         }
 
 
-        //maven { url "https://maven.google.com" }
         google()
 
         //====================== snapchat ======================
@@ -37,8 +36,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.3'
-        //classpath 'com.mob.sdk:MobSDK-Impl:2020.0527.1432'
-        //classpath 'com.mob.sdk:MobSDK-Impl:2020.0813.1153'
         classpath 'com.mob.sdk:MobSDK:+'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -46,7 +43,6 @@ buildscript {
 
     configurations.all {
         resolutionStrategy.cacheDynamicVersionsFor 1, 'seconds'
-        //exclude group: 'com.mob', module: 'MobLink-3.0.2'
         //resolutionStrategy.force 'com.mob:MobCommons:2020.0915.1032'
     }
 }
@@ -59,7 +55,6 @@ allprojects {
         }
         jcenter()
         maven {
-//            url "http://mvn.mob.com/android"
             url mavenUrl
         }
 
@@ -76,7 +71,6 @@ allprojects {
     }
     configurations.all {
         resolutionStrategy.cacheDynamicVersionsFor 1, 'seconds'
-        //exclude group: 'com.mob', module: 'MobLink-3.0.2'
     }
 }
 
