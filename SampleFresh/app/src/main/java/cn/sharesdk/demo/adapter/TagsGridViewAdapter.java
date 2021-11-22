@@ -14,9 +14,6 @@ import java.util.List;
 
 import cn.sharesdk.demo.R;
 
-/**
- * Created by xiangli on 2018/12/24.
- */
 
 public class TagsGridViewAdapter extends BaseAdapter{
     private Context context;
@@ -101,9 +98,9 @@ public class TagsGridViewAdapter extends BaseAdapter{
         if (convertView == null) {
             viewHolder = new ViewHolder();
             convertView = layoutInflater.inflate(R.layout.grid_item, null);
-            viewHolder.imageView = (ImageView) convertView.findViewById(R.id.item);
-            viewHolder.item_tv_title = (TextView) convertView.findViewById(R.id.item_tv_title);
-            viewHolder.item_tv_content = (TextView) convertView.findViewById(R.id.item_tv_content);
+            viewHolder.imageView = convertView.findViewById(R.id.item);
+            viewHolder.item_tv_title = convertView.findViewById(R.id.item_tv_title);
+            viewHolder.item_tv_content = convertView.findViewById(R.id.item_tv_content);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
