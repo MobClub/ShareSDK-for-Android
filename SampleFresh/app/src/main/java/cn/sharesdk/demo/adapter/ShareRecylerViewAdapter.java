@@ -281,7 +281,6 @@ public class ShareRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 			shotSelected = itemView.findViewById(R.id.mShot);
 			mVideoshareSelected = itemView.findViewById(R.id.layout_mVideoShare);
 			passwrodShare = itemView.findViewById(R.id.layout_passwordshare);
-			customParameters = itemView.findViewById(R.id.layout_Custom_parameters);
 		}
 	}
 
