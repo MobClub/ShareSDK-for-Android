@@ -8,9 +8,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import cn.sharesdk.demo.ui.BaseFragment;
 
-/**
- * Created by yjin on 2017/5/10.
- */
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
 	private String[] titles;
