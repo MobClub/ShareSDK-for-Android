@@ -26,18 +26,12 @@
         android:scaleType="center"
         android:visibility="gone" />
 
-    <!--    <ImageView-->
-    <!--        android:id="@+id/mShark"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:background="@mipmap/shark_share"-->
-    <!--        android:adjustViewBounds="true"-->
-    <!--        android:scaleType="center" />-->
 
     <!-- 视频口令分享 -->
     <RelativeLayout
         android:id="@+id/layout_mVideoShare"
-        android:layout_width="@dimen/margin_115"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="@dimen/margin_76"
         android:layout_marginTop="@dimen/margin_6"
         android:layout_marginRight="@dimen/margin_8"
