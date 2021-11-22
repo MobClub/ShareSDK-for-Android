@@ -1,8 +1,5 @@
 package cn.sharesdk.demo.utils;
 
-/**
- * Created by yjin on 2017/5/22.
- */
 
 public class AuthorizationUserInfoUtils {
 

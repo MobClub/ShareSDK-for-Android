@@ -54,7 +54,8 @@ public class PrivacyDialog extends Activity implements View.OnClickListener {
     private void queryPrivacy() {
 
         // 异步方法
-        MobSDK.getPrivacyPolicyAsync(MobSDK.POLICY_TYPE_URL, new PrivacyPolicy.OnPolicyListener() {
+        MobSDK.getPrivacyPolicyAsync(MobSDK.POLICY_TYPE_URL, new PrivacyPolicy.OnPolicyListener()
+        {
             @Override
             public void onComplete(PrivacyPolicy data) {
                 if (data != null) {

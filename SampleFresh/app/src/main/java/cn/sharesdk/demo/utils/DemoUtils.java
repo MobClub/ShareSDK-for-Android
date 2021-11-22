@@ -1,10 +1,10 @@
 package cn.sharesdk.demo.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.widget.Toast;
 
 import com.mob.MobSDK;
 
@@ -75,6 +75,7 @@ public class DemoUtils {
 		return false;
 	}
 
+	@SuppressLint("WrongConstant")
 	public static boolean isValidClient(String akp) {
 		PackageInfo pi;
 		try {
@@ -82,11 +83,11 @@ public class DemoUtils {
 					akp, PackageManager.GET_RESOLVED_FILTER);
 			return true;
 		} catch (Throwable t) {
-			//Toast.makeText(MobSDK.getContext(), "client is not install or version low", Toast.LENGTH_SHORT).show();
 		}
 		return false;
 	}
 
+	@SuppressLint("WrongConstant")
 	public static boolean isValidClientSina(String akp) {
 		PackageInfo pi;
 		try {
@@ -98,6 +99,7 @@ public class DemoUtils {
 		return false;
 	}
 
+	@SuppressLint("WrongConstant")
 	public static void isValidClient(String[] akp) {
 		int length = akp.length;
 		PackageInfo pi = null;
@@ -114,7 +116,6 @@ public class DemoUtils {
 			}
 		}
 		if (pi == null) {
-			//Toast.makeText(MobSDK.getContext(), "client is not install or version low", Toast.LENGTH_SHORT).show();
 		}
 
 	}

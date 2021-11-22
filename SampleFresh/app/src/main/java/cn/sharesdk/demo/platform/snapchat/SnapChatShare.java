@@ -88,7 +88,6 @@ public class SnapChatShare {
         shareParams.setFileImage(mSnapFile);
         shareParams.setFileSticker(mStickerFile);
         shareParams.setText("hahahahTestonly");
-        shareParams.setUrl("https://www.baidu.com");
         shareParams.setShareType(Platform.SHARE_IMAGE);
         platform.setPlatformActionListener(new PlatformActionListener() {
             @Override
@@ -139,7 +138,6 @@ public class SnapChatShare {
         shareParams.setFileVideo(mSnapFile);
         shareParams.setFileSticker(mStickerFile);
         shareParams.setText("hahahahTestonly");
-        shareParams.setUrl("https://www.baidu.com");
         shareParams.setShareType(Platform.SHARE_VIDEO);
         platform.setPlatformActionListener(new PlatformActionListener() {
             @Override

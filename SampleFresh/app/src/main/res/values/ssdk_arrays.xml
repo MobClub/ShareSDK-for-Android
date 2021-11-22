@@ -2,5 +2,6 @@
 <resources>
     <string-array name="snap_connect_scopes">
         <item>https://auth.snapchat.com/oauth2/api/user.bitmoji.avatar</item>
+        <item>https://auth.snapchat.com/oauth2/api/user.display_name</item>
     </string-array>
 </resources>
