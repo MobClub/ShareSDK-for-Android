@@ -5,9 +5,7 @@ import java.lang.ref.WeakReference;
 
 import cn.sharesdk.demo.entity.OutBaseEntity;
 
-/**
- * Created by yjin on 2017/5/10.
- */
+
 
 /**
  *

@@ -5,9 +5,6 @@ import cn.sharesdk.demo.entity.OutBaseEntity;
 import cn.sharesdk.demo.manager.BasePresenter;
 import cn.sharesdk.demo.ui.BaseActivity;
 
-/**
- * Created by yjin on 2017/5/10.
- */
 
 public class MainPresenter extends BasePresenter<BaseActivity> {
 
