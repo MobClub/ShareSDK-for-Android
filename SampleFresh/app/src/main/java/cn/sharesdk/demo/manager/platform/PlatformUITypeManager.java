@@ -3,9 +3,6 @@ package cn.sharesdk.demo.manager.platform;
 import cn.sharesdk.demo.R;
 import cn.sharesdk.framework.Platform;
 
-/**
- * Created by yjin on 2017/5/17.
- */
 
 /**
  * 类型资源管理类，资源图片跟分享类型的映射。
@@ -43,6 +40,9 @@ public class PlatformUITypeManager {
 			}
 			case Platform.SHARE_ZHIFUBAO: {
 				return R.mipmap.share_webpage;
+			}
+			case Platform.OPEN_WXMINIPROGRAM: {
+				return R.mipmap.share_mini_program;
 			}
 			default: {
 				return R.mipmap.share_webpage;
@@ -84,6 +84,9 @@ public class PlatformUITypeManager {
 			}
 			case Platform.QQ_MINI_PROGRAM: {
 				return R.string.platform_share_qqmini;
+			}
+			case Platform.OPEN_WXMINIPROGRAM: {
+				return R.string.platform_open_wxmini_app;
 			}
 			default: {
 				return R.string.platform_share_webpage;

@@ -5,10 +5,6 @@ import java.lang.reflect.Field;
 import cn.sharesdk.framework.Platform;
 
 /**
- * Created by yjin on 2017/5/17.
- */
-
-/**
  * 各个平台具体可以实现的分享类型的定义类。
  */
 public class PlatformShareConstant {
@@ -72,10 +68,10 @@ public class PlatformShareConstant {
 		tencentWeibo = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
 		qzone = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT,Platform.SHARE_WEBPAGE, Platform.SHARE_VIDEO};
 		wechat = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE, Platform.SHARE_MUSIC,
-				Platform.SHARE_VIDEO, Platform.SHARE_EMOJI, Platform.SHARE_WXMINIPROGRAM};
+				Platform.SHARE_VIDEO, Platform.SHARE_FILE,Platform.SHARE_WXMINIPROGRAM,Platform.OPEN_WXMINIPROGRAM};
 		wechatMoments = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE, Platform.SHARE_MUSIC, Platform.SHARE_VIDEO};
 		wechatFavorite = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE,
-				Platform.SHARE_MUSIC, Platform.SHARE_VIDEO};
+				Platform.SHARE_MUSIC,Platform.SHARE_FILE, Platform.SHARE_VIDEO};
 		qq = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_WEBPAGE, Platform.SHARE_MUSIC};
 		facebook = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_WEBPAGE, Platform.SHARE_VIDEO};
 		twitter = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
