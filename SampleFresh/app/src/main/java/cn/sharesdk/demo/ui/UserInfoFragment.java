@@ -34,9 +34,7 @@ import cn.sharesdk.framework.ShareSDK;
 
 import static cn.sharesdk.demo.utils.CommomDialog.dialog;
 
-/**
- * Created by yjin on 2017/5/9.
- */
+
 
 public class UserInfoFragment extends BaseFragment implements UserInfoAdapter.UserInfoOnItemClickListener,Handler.Callback,
 								View.OnClickListener{

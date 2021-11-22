@@ -74,19 +74,13 @@ public class TagsItemInfoActivity extends AppCompatActivity implements AdapterVi
     }
 
     private void initView() {
-        mGridView = (GridView) findViewById(R.id.gv_test);
-        txtTopbar = (TextView) findViewById(R.id.txt_topbar);
-        subhead = (TextView) findViewById(R.id.subhead);
-        describe = (TextView) findViewById(R.id.describe);
+        mGridView = findViewById(R.id.gv_test);
+        txtTopbar = findViewById(R.id.txt_topbar);
+        subhead = findViewById(R.id.subhead);
+        describe = findViewById(R.id.describe);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        /*if (position == parent.getChildCount() - 1) {
-            mDatas.add(R.drawable.ic_launcher_round);
-            adapter = new TagsGridViewAdapter(this, tags_id);
-            mGridView.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
-        }*/
     }
 }

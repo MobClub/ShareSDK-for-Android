@@ -21,9 +21,7 @@ import java.util.Map;
 import androidx.fragment.app.Fragment;
 import cn.sharesdk.demo.R;
 
-/**
- * Created by xiangli on 2018/12/21.
- */
+
 
 public class TagsMyFragment extends Fragment {
     private ImageView head;        //user avatar
@@ -41,7 +39,6 @@ public class TagsMyFragment extends Fragment {
     private Map<String, Object> type;
 
     public TagsMyFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -54,15 +51,15 @@ public class TagsMyFragment extends Fragment {
 
 
     private void initView(View view) {
-        head = (ImageView) view.findViewById(R.id.head);
-        nickName = (TextView) view.findViewById(R.id.nick_name);
-        tagsGender = (ImageView) view.findViewById(R.id.tags_gender);
-        peoplePor = (ImageView) view.findViewById(R.id.people_por);
-        age = (TextView) view.findViewById(R.id.tags_age);
-        edu = (TextView) view.findViewById(R.id.tags_edu);
-        likeBuy = (TextView) view.findViewById(R.id.tv_like_buy);
-        likeMoive = (TextView) view.findViewById(R.id.tv_like_moive);
-        likeGame = (TextView) view.findViewById(R.id.tv_like_game);
+        head = view.findViewById(R.id.head);
+        nickName = view.findViewById(R.id.nick_name);
+        tagsGender = view.findViewById(R.id.tags_gender);
+        peoplePor = view.findViewById(R.id.people_por);
+        age = view.findViewById(R.id.tags_age);
+        edu = view.findViewById(R.id.tags_edu);
+        likeBuy = view.findViewById(R.id.tv_like_buy);
+        likeMoive = view.findViewById(R.id.tv_like_moive);
+        likeGame = view.findViewById(R.id.tv_like_game);
         tags_id = new ArrayList<String>();
         initData();
         readData();
@@ -121,7 +118,6 @@ public class TagsMyFragment extends Fragment {
                 }
             }
         } catch (Exception e) {
-            //Log.e("TagsMyFragment ", " " + e.getMessage());
         }
 
 
@@ -142,19 +138,6 @@ public class TagsMyFragment extends Fragment {
         } catch (NullPointerException t) {
             Log.e("TagsMyFragment", " server is not response " + t.getMessage());
         }
-       /* try {
-            tags_id.clear();
-            for (int i = 0; i < jsonArray.size(); i++) {
-                JSONObject object = (JSONObject) jsonArray.get(i);
-                for (String key : dataMap.keySet()) {
-                    if (key.equals(object.get("id"))) {
-                        tags_id.add(key);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            Log.e("WWW", e.getMessage());
-        }*/
     }
 
     private void compare(JSONObject obj) {

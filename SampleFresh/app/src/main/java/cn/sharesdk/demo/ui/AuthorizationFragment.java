@@ -25,9 +25,6 @@ import cn.sharesdk.framework.PlatformActionListener;
 
 import static cn.sharesdk.demo.utils.CommomDialog.dialog;
 
-/**
- * Created by yjin on 2017/5/9.
- */
 
 public class AuthorizationFragment extends BaseFragment implements AuthorizationAdapter.AuthorizationOnItemClickListener, PlatformActionListener {
 	private View view;
@@ -40,7 +37,7 @@ public class AuthorizationFragment extends BaseFragment implements Authorization
 	private PlatformAuthorizeUserInfoManager platAuth;
 
 	public void initView(View view) {
-		recyclerView = (RecyclerView) view.findViewById(R.id.mAuthorization);
+		recyclerView = view.findViewById(R.id.mAuthorization);
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 		linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
 		recyclerView.setLayoutManager(linearLayoutManager);
@@ -100,9 +97,6 @@ public class AuthorizationFragment extends BaseFragment implements Authorization
 			textView.setText(getActivity().getString(R.string.authorization_txt));
 			return;
 		}
-		//这里开启一下SSO，防止OneKeyShare分享时调用了oks.disableSSOWhenAuthorize();把SSO关闭了
-		//plat.SSOSetting(false);
-		//plat.setPlatformActionListener(this);
 		if (platAuth == null) {
 			platAuth = new PlatformAuthorizeUserInfoManager(getActivity());
 		}

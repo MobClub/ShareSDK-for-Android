@@ -33,12 +33,12 @@ public class SdkTagsMainActivity extends Activity implements View.OnClickListene
     }
 
     private void initView() {
-        loginWechat = (RelativeLayout) findViewById(R.id.login_wechat);
-        loginSina = (RelativeLayout) findViewById(R.id.login_sina);
+        loginWechat = findViewById(R.id.login_wechat);
+        loginSina = findViewById(R.id.login_sina);
         loginWechat.setOnClickListener(this);
         loginSina.setOnClickListener(this);
 
-        login_test = (Button) findViewById(R.id.login_test);
+        login_test = findViewById(R.id.login_test);
         login_test.setOnClickListener(this);
     }
 
@@ -65,7 +65,6 @@ public class SdkTagsMainActivity extends Activity implements View.OnClickListene
         ShareSDK.setEnableAuthTag(true);
         Platform plat = ShareSDK.getPlatform("SinaWeibo");
         plat.removeAccount(true);
-        //plat.SSOSetting(false);
         plat.setPlatformActionListener(this);
         if (plat.isClientValid()) {
 
@@ -73,15 +72,13 @@ public class SdkTagsMainActivity extends Activity implements View.OnClickListene
         if (plat.isAuthValid()) {
 
         }
-        //plat.authorize();	//要功能，不要数据
-        plat.showUser(null);    //要数据不要功能，主要体现在不会重复出现授权界面
+        plat.showUser(null);
     }
 
     private void WeChat() {
         Platform plat = ShareSDK.getPlatform(Wechat.NAME);
         ShareSDK.setEnableAuthTag(true);
         plat.removeAccount(true);
-        //plat.SSOSetting(false);
         plat.setPlatformActionListener(this);
         if (plat.isClientValid()) {
 
@@ -89,8 +86,7 @@ public class SdkTagsMainActivity extends Activity implements View.OnClickListene
         if (plat.isAuthValid()) {
 
         }
-        //plat.authorize();	//要功能，不要数据
-        plat.showUser(null);    //要数据不要功能，主要体现在不会重复出现授权界面
+        plat.showUser(null);
     }
 
     @Override

@@ -11,9 +11,6 @@ import android.widget.TextView;
 import cn.sharesdk.demo.R;
 
 
-/**
- * Created by yjin on 2017/2/10.
- */
 
 public class ThumbnailLayout extends LinearLayout {
 	private TextView shareTxt;
