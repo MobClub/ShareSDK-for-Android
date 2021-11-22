@@ -5,11 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.mob.MobSDK;
-
-import java.util.HashMap;
 import java.util.List;
 
 import androidx.appcompat.app.AlertDialog;
@@ -18,9 +14,7 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.oasis.Oasis;
 
-/**
- * 新浪绿洲
- */
+
 public class OasisShare {
 
     public static final int OASIS_PHOTO_REQUEST_GALLERY = 13;
@@ -77,7 +71,6 @@ public class OasisShare {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                //startActivityForResult(intent, PHOTO_REQUEST_GALLERY);
                 activity.startActivityForResult(intent, OASIS_PHOTO_REQUEST_GALLERY);
             }
         });
@@ -94,7 +87,6 @@ public class OasisShare {
                         Intent intent = new Intent(Intent.ACTION_PICK);
                         intent.setType("image/*");
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                        //startActivityForResult(intent, PHOTO_REQUEST_GALLERY);
                         activity.startActivityForResult(intent, OASIS_PHOTO_REQUEST_GALLERY_NET);
                     }
                 })
@@ -104,7 +96,6 @@ public class OasisShare {
                         Intent intent = new Intent(Intent.ACTION_PICK);
                         intent.setType("image/*");
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                        //startActivityForResult(intent, PHOTO_REQUEST_GALLERY);
                         activity.startActivityForResult(intent, OASIS_PHOTO_REQUEST_GALLERY);
                     }
                 });

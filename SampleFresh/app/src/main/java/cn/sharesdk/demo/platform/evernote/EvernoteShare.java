@@ -9,9 +9,6 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 
-/**
- * Created by yjin on 2017/6/22.
- */
 
 public class EvernoteShare {
 
@@ -24,6 +21,7 @@ public class EvernoteShare {
 	public void shareVideo() {
 			Platform platform = ShareSDK.getPlatform(Evernote.NAME);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
+		    shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 			shareParams.setFilePath(ResourcesManager.getInstace(MobSDK.getContext()).getFilePath());
 			shareParams.setShareType(Platform.SHARE_VIDEO);
 			platform.setPlatformActionListener(platformActionListener);

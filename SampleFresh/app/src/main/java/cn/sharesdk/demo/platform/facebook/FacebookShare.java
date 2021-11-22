@@ -3,8 +3,6 @@ package cn.sharesdk.demo.platform.facebook;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -14,19 +12,15 @@ import com.mob.MobSDK;
 import com.mob.tools.utils.BitmapHelper;
 
 import androidx.appcompat.app.AlertDialog;
-import cn.sharesdk.demo.R;
-import cn.sharesdk.demo.entity.ResourcesManager;
+
+import cn.sharesdk.demo.UriUtil;
 import cn.sharesdk.facebook.Facebook;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 
 import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_TEXT;
-import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
 
-/**
- * Created by yjin on 2017/6/22.
- */
 
 public class FacebookShare {
 	public static final int FACEBOOK_VIDEO = 0X0520;

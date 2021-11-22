@@ -13,9 +13,6 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 
-/**
- * Created by xiangli on 2018/12/27.
- */
 
 public class DouyinShare {
 
@@ -35,11 +32,10 @@ public class DouyinShare {
     public void shareVideo(Activity activity, String[] videoPath) {
         Platform platform = ShareSDK.getPlatform(Douyin.NAME);
         Platform.ShareParams shareParams = new Platform.ShareParams();
-//        shareParams.setFilePath(videoPath);
         shareParams.setVideoPathArray(videoPath);
         shareParams.setShareType(Platform.SHARE_VIDEO);
         shareParams.setActivity(activity);
-        shareParams.setHashtags(new String[]{"yyh","yyh2"});
+        shareParams.setHashtags(new String[]{"1","2"});
         platform.setPlatformActionListener(platformActionListener);
         platform.share(shareParams);
     }
@@ -51,7 +47,6 @@ public class DouyinShare {
     public void shareImagePath(Activity activity, String imagePath) {
         Platform douyin = ShareSDK.getPlatform(Douyin.NAME);
         Platform.ShareParams sp = new Platform.ShareParams();
-//        sp.setImagePath(imagePath);
         sp.setImageArray(new String[]{imagePath});
         sp.setShareType(Platform.SHARE_IMAGE);
         sp.setActivity(activity);
@@ -84,7 +79,6 @@ public class DouyinShare {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                //startActivityForResult(intent, PHOTO_REQUEST_GALLERY);
                 activity.startActivityForResult(intent, PHOTO_REQUEST_GALLERY);
             }
         });

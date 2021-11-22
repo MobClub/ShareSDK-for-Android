@@ -1,20 +1,11 @@
 package cn.sharesdk.demo.platform.reddit;
 
-import android.widget.Toast;
-
-import java.util.HashMap;
-
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.reddit.Reddit;
 
-import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_TEXT;
-import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
 
-/**
- * Created by xiangli on 2018/9/13.
- */
 
 public class RedditShare {
     private PlatformActionListener platformActionListener;
