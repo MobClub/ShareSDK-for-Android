@@ -4,9 +4,6 @@ import java.io.Serializable;
 
 import cn.sharesdk.framework.Platform;
 
-/**
- * Created by yjin on 2017/5/11.
- */
 
 public class ShareListItemInEntity  implements Serializable{
 	private String name;

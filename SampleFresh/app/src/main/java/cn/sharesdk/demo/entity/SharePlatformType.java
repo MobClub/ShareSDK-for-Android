@@ -1,8 +1,5 @@
 package cn.sharesdk.demo.entity;
 
-/**
- * Created by yjin on 2017/5/11.
- */
 
 public interface SharePlatformType {
 	public final static int DIRECT_SHARE_PLAT = 1;

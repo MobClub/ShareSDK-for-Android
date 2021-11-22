@@ -1,8 +1,5 @@
 package cn.sharesdk.demo.entity;
 
-/**
- * Created by yjin on 2017/5/17.
- */
 
 /**
  * 分享实体类，完成分享内容。
