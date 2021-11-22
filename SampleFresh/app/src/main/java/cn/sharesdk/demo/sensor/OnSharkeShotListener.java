@@ -1,8 +1,5 @@
 package cn.sharesdk.demo.sensor;
 
-/**
- * Created by yjin on 2017/5/17.
- */
 
 /**
  * 摇一摇接口类
