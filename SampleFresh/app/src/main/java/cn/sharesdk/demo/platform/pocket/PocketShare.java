@@ -8,9 +8,7 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.pocket.Pocket;
 
-/**
- * Created by yjin on 2017/6/22.
- */
+
 
 public class PocketShare {
 	private PlatformActionListener platformActionListener;

@@ -8,9 +8,7 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.system.email.Email;
 
-/**
- * Created by yjin on 2017/6/22.
- */
+
 
 public class EmailShare {
 	private PlatformActionListener platformActionListener;

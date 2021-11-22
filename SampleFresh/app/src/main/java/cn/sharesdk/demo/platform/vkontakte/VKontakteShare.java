@@ -8,9 +8,6 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.vkontakte.VKontakte;
 
-/**
- * Created by yjin on 2017/6/22.
- */
 
 public class VKontakteShare {
 	private PlatformActionListener platformActionListener;
@@ -23,9 +20,6 @@ public class VKontakteShare {
 		Platform platform = ShareSDK.getPlatform(VKontakte.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
-//		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-//		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
-//		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
 	}
@@ -48,10 +42,8 @@ public class VKontakteShare {
 	public void shareImage(){
 		Platform platform = ShareSDK.getPlatform(VKontakte.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
-//		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
 		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
-//		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
 	}

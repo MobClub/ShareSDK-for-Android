@@ -17,9 +17,6 @@ import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.littleredbook.Littleredbook;
 import cn.sharesdk.meipai.Meipai;
 
-/**
- * Created by yjin on 2017/6/22.
- */
 
 public class MeipaiShare {
 

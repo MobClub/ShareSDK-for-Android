@@ -14,9 +14,7 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 
-/**
- * Created by yjin on 2017/6/22.
- */
+
 
 public class WeiboShare {
 	private PlatformActionListener platformActionListener;
@@ -51,7 +49,6 @@ public class WeiboShare {
 		} else {
 			Platform.ShareParams shareParams = new  Platform.ShareParams();
 			shareParams.setText("sina image and text share   http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
-			//shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
 			shareParams.setShareType(Platform.SHARE_IMAGE);
 			platform.setPlatformActionListener(platformActionListener);
 			platform.share(shareParams);

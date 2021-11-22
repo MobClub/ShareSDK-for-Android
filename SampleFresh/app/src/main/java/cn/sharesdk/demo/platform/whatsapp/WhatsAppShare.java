@@ -14,9 +14,6 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.whatsapp.WhatsApp;
 
-/**
- * Created by yjin on 2017/6/22.
- */
 
 public class WhatsAppShare {
 	public static final int PHOTO_WHATS_APP = 1033;
@@ -51,7 +48,6 @@ public class WhatsAppShare {
 				Intent intent = new Intent(Intent.ACTION_PICK);
 				intent.setType("image/*");
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-				//startActivityForResult(intent, PHOTO_REQUEST_GALLERY);
 				activity.startActivityForResult(intent, PHOTO_WHATS_APP);
 			}
 		});

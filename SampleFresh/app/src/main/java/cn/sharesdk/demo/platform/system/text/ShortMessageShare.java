@@ -12,9 +12,7 @@ import cn.sharesdk.system.text.ShortMessage;
 
 import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
 
-/**
- * Created by yjin on 2017/6/22.
- */
+
 
 public class ShortMessageShare {
 	private PlatformActionListener platformActionListener;

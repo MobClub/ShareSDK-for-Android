@@ -11,9 +11,6 @@ import cn.sharesdk.youdao.YouDao;
 import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_TEXT;
 import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
 
-/**
- * Created by yjin on 2017/6/22.
- */
 
 public class YouDaoShare {
 	private PlatformActionListener platformActionListener;

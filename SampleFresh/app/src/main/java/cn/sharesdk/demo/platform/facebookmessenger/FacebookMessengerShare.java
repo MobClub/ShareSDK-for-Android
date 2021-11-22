@@ -17,9 +17,6 @@ import cn.sharesdk.system.text.ShortMessage;
 import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_TEXT;
 import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
 
-/**
- * Created by yjin on 2017/6/22.
- */
 
 public class FacebookMessengerShare {
 	private PlatformActionListener platformActionListener;
@@ -46,7 +43,6 @@ public class FacebookMessengerShare {
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
-//		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
 		shareParams.setImageArray(ResourcesManager.getInstace(MobSDK.getContext()).randomPic());
 		shareParams.setShareType(Platform.SHARE_IMAGE);
 		platform.setPlatformActionListener(platformActionListener);

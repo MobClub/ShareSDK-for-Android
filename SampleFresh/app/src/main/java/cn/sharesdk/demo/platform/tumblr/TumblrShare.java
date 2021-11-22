@@ -15,9 +15,7 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.tumblr.Tumblr;
 
-/**
- * Created by yjin on 2017/6/22.
- */
+
 
 public class TumblrShare {
 	private PlatformActionListener platformActionListener;
@@ -109,7 +107,6 @@ public class TumblrShare {
 		Platform.ShareParams shareParams = new Platform.ShareParams();
 		shareParams.setTitle("我喜欢的视频");
 		shareParams.setUrl("https://www.youtube.com/watch?v=T6AsbTCejmg");
-//		shareParams.setFilePath(ResourcesManager.getInstace(MobSDK.getContext()).getFilePath());
 		shareParams.setShareType(Platform.SHARE_VIDEO);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);

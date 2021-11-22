@@ -36,7 +36,6 @@ public class TelegramShare {
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-		//shareParams.setImageArray(ResourcesManager.getInstace(MobSDK.getContext()).randomPic());
 		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);

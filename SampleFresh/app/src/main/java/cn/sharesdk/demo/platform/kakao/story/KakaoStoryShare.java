@@ -12,9 +12,6 @@ import cn.sharesdk.kakao.story.KakaoStory;
 import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_TEXT;
 import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
 
-/**
- * Created by yjin on 2017/6/22.
- */
 
 public class KakaoStoryShare {
 	private PlatformActionListener platformActionListener;
@@ -47,8 +44,8 @@ public class KakaoStoryShare {
 		shareParams.setShareType(Platform.SHARE_IMAGE);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
-//		shareImageLocal();
 	}
+
 	public void shareImageLocal(){
 		Platform platform = ShareSDK.getPlatform(KakaoStory.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();

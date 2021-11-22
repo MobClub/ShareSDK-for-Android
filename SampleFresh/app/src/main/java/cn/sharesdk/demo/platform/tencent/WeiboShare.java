@@ -9,9 +9,7 @@ import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
 
-/**
- * Created by yjin on 2017/6/22.
- */
+
 
 public class WeiboShare {
 	private PlatformActionListener platformActionListener;

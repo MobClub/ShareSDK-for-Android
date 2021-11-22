@@ -13,9 +13,6 @@ import cn.sharesdk.wechat.friends.Wechat;
 import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
 import static cn.sharesdk.demo.entity.ResourcesManager.IMAGE_TEST_URL;
 
-/**
- * Created by yjin on 2017/6/22.
- */
 
 public class WechatShare {
 
@@ -42,8 +39,6 @@ private PlatformActionListener platformActionListener;
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setImageUrl(IMAGE_TEST_URL);
-		//shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-		//Log.e("WWW", "imagePath ===> " + ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
 		shareParams.setShareType(Platform.SHARE_IMAGE);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
@@ -56,7 +51,6 @@ private PlatformActionListener platformActionListener;
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
 		shareParams.setImageUrl(IMAGE_TEST_URL);
-//		shareParams.setMusicUrl(ResourcesManager.getInstace(MobSDK.getContext()).getMusicUrl());
 		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getMusicUrl());
 		shareParams.setShareType(Platform.SHARE_MUSIC);
 		platform.setPlatformActionListener(platformActionListener);
@@ -87,27 +81,10 @@ private PlatformActionListener platformActionListener;
 		platform.share(shareParams);
 	}
 
-//	public void shareApps(){
-//		Platform platform = ShareSDK.getPlatform(Wechat.NAME);
-//		Platform.ShareParams shareParams = new  Platform.ShareParams();
-//		shareParams.setFilePath(ResourcesManager.getInstace(MobSDK.getContext()).getFilePath());
-//		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
-//		shareParams.setShareType(Platform.SHARE_APPS);
-//		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-//		shareParams.setExtInfo(ResourcesManager.EXT_INFO);
-//		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-//		platform.setPlatformActionListener(platformActionListener);
-//		platform.share(shareParams);
-//	}
-
-	/**
-	 * 不展示分享文件，因为微信有可能废弃这个API
-	 * **/
 	public void shareFile(){
 		Platform platform = ShareSDK.getPlatform(Wechat.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setFilePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-		shareParams.setImageUrl(IMAGE_TEST_URL);
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		shareParams.setShareType(Platform.SHARE_FILE);
@@ -134,6 +111,14 @@ private PlatformActionListener platformActionListener;
 		shareParams.setImageData(ResourcesManager.getInstace(MobSDK.getContext()).getImageBmp());
 		shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
 		shareParams.setShareType(Platform.SHARE_WXMINIPROGRAM);
+		platform.setPlatformActionListener(platformActionListener);
+		platform.share(shareParams);
+	}
+
+	public void openMiniProgram(){
+		Platform platform = ShareSDK.getPlatform(Wechat.NAME);
+		Platform.ShareParams shareParams = new  Platform.ShareParams();
+		shareParams.setShareType(Platform.OPEN_WXMINIPROGRAM);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
 	}
@@ -205,18 +190,6 @@ private PlatformActionListener platformActionListener;
 		platform.share(shareParams);
 	}
 
-//	public void shareApps(PlatformActionListener mListener){
-//		Platform platform = ShareSDK.getPlatform(Wechat.NAME);
-//		Platform.ShareParams shareParams = new  Platform.ShareParams();
-//		shareParams.setFilePath(ResourcesManager.getInstace(MobSDK.getContext()).getFilePath());
-//		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
-//		shareParams.setShareType(Platform.SHARE_APPS);
-//		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-//		shareParams.setExtInfo(ResourcesManager.EXT_INFO);
-//		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-//		platform.setPlatformActionListener(mListener);
-//		platform.share(shareParams);
-//	}
 
 	public void shareFile(PlatformActionListener mListener){
 		Platform platform = ShareSDK.getPlatform(Wechat.NAME);

@@ -15,9 +15,6 @@ import cn.sharesdk.twitter.Twitter;
 import static cn.sharesdk.demo.entity.ResourcesManager.IMAGE_TEST_URL;
 import static cn.sharesdk.demo.entity.ResourcesManager.IMAGE_TEST_URL_TWO;
 
-/**
- * Created by yjin on 2017/6/22.
- */
 
 public class TwitterShare {
     private PlatformActionListener platformActionListener;
@@ -47,8 +44,6 @@ public class TwitterShare {
         if (install) {
             Platform.ShareParams shareParams = new Platform.ShareParams();
             shareParams.setText("only test good shareImage");
-            //shareParams.setImageArray(ResourcesManager.getInstace(MobSDK.getContext()).randomPic());
-            //shareParams.setImageUrl(IMAGE_TEST_URL);
             String[] arr = new String[]{IMAGE_TEST_URL, IMAGE_TEST_URL_TWO};
             shareParams.setImageArray(arr);
             platform.setPlatformActionListener(platformActionListener);
@@ -84,7 +79,6 @@ public class TwitterShare {
         boolean install = platform.isClientValid();
         if (install) {
             Platform.ShareParams shareParams = new Platform.ShareParams();
-            //shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
             shareParams.setText("only test good shareText shareText");
             platform.setPlatformActionListener(mListener);
             platform.share(shareParams);
@@ -98,7 +92,6 @@ public class TwitterShare {
         boolean install = platform.isClientValid();
         if (install) {
             Platform.ShareParams shareParams = new Platform.ShareParams();
-            //shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
             shareParams.setText("only test good shareImage shareImage");
             shareParams.setImageArray(ResourcesManager.getInstace(MobSDK.getContext()).randomPic());
             shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
@@ -109,15 +102,5 @@ public class TwitterShare {
             Toast.makeText(MobSDK.getContext(), toast, Toast.LENGTH_LONG).show();
         }
     }
-
-//	public void shareVideo(PlatformActionListener mListener){
-//		Platform platform = ShareSDK.getPlatform(Twitter.NAME);
-//		Platform.ShareParams shareParams = new  Platform.ShareParams();
-//		shareParams.setFilePath(ResourcesManager.getInstace(MobSDK.getContext()).getFilePath());
-//		shareParams.setShareType(Platform.SHARE_VIDEO);
-//		platform.setPlatformActionListener(mListener);
-//		platform.share(shareParams);
-//	}
-
 
 }

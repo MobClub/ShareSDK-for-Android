@@ -52,9 +52,7 @@ import cn.sharesdk.youtube.Youtube;
 
 import static cn.sharesdk.demo.utils.CommomDialog.dialog;
 
-/**
- * Created by yjin on 2017/6/21.
- */
+
 
 public class PlatformAuthorizeUserInfoManager {
 	private Activity activity;
@@ -96,8 +94,6 @@ public class PlatformAuthorizeUserInfoManager {
 	}
 
 	public void qqShareAuthorize() {
-//		Platform qqShare = ShareSDK.getPlatform(QQ.NAME);
-//		doAuthorize(qqShare);
 	}
 
 	public void facebookAuthorize() {
@@ -271,7 +267,6 @@ public class PlatformAuthorizeUserInfoManager {
 				platform.removeAccount(true);
 				return;
 			}
-			//platform.SSOSetting(true);
 			platform.authorize();
 		}
 	}
@@ -287,7 +282,6 @@ public class PlatformAuthorizeUserInfoManager {
 				return;
 			}
 			ShareSDK.setActivity(activity);
-			//platform.SSOSetting(true);
 			platform.authorize();
 		}
 	}
@@ -363,7 +357,6 @@ public class PlatformAuthorizeUserInfoManager {
 				@Override
 				public void run() {
 					try {
-						//dialog(activity, "Authorize Complete");
 						Toast.makeText(MobSDK.getContext(), "Authorize Complete", Toast.LENGTH_LONG).show();
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -384,7 +377,6 @@ public class PlatformAuthorizeUserInfoManager {
 				@Override
 				public void run() {
 					try {
-						//dialog(activity, "Authorize Failure");
 						Toast.makeText(MobSDK.getContext(), "Authorize Failure" + throwable.getMessage() , Toast.LENGTH_LONG).show();
 					} catch (Exception e){
 						e.printStackTrace();
@@ -397,7 +389,6 @@ public class PlatformAuthorizeUserInfoManager {
 		@Override
 		public void onCancel(Platform platform, int i) {
 			try {
-				//dialog(activity, "Cancel Authorize");
 				Toast.makeText(MobSDK.getContext(), "Cancel Authorize", Toast.LENGTH_LONG).show();
 			} catch (Exception e) {
 				e.printStackTrace();
