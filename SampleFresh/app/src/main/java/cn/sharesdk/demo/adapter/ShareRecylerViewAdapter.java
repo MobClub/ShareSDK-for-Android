@@ -25,8 +25,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
-import cn.sharesdk.demo.R;
 import cn.sharesdk.demo.entity.ResourcesManager;
+import cn.sharesdk.demo.R;
 import cn.sharesdk.demo.entity.ShareListItemInEntity;
 import cn.sharesdk.demo.entity.SharePlatformType;
 import cn.sharesdk.framework.Platform;
@@ -35,9 +35,6 @@ import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.loopshare.LoopSharePasswordListener;
 import cn.sharesdk.onekeyshare.ShareContentCustomizeCallback;
 
-/**
- * Created by yjin on 2017/5/11.
- */
 
 public class ShareRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Handler.Callback{
 	private List<ShareListItemInEntity> listEntity;
@@ -141,10 +138,6 @@ public class ShareRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 						@Override
 						public void onResult(Object var1) {
 							Log.d("SharSDK", "onResult " + var1);
-							//Toast toast = Toast.makeText(context, String.valueOf(var1), Toast.LENGTH_LONG);
-							//toast.setGravity(Gravity.CENTER, 0, 0);
-							//toast.show();
-
 							Intent intent = new Intent();
 							intent.setAction(Intent.ACTION_SEND);
 							intent.setType("text/plain");
@@ -196,7 +189,6 @@ public class ShareRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 		oks.setTitleUrl(manager.getTitleUrl());
 		oks.setUrl(manager.getUrl());
 		oks.setMusicUrl(manager.getMusicUrl());
-		//oks.setImagePath("/storage/emulated/0/DCIM/Camera/IMG_20190327_183621.png");
 		oks.setFilePath(ResourcesManager.getInstace(MobSDK.getContext()).getFilePath());
 		oks.setActivity(getActivity());
 		String customText = manager.getText();
@@ -215,8 +207,6 @@ public class ShareRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 		oks.setSilent(true);
 		oks.setLatitude(23.169f);
 		oks.setLongitude(112.908f);
-
-		//oks.setFilePath(ResourcesManager.testVideo);
 		oks.setShareContentCustomizeCallback(new ShareContentCustomizeCallback() {
 			@Override
 			public void onShare(Platform platform, Platform.ShareParams shareParams) {
@@ -283,13 +273,15 @@ public class ShareRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 		public ImageView shotSelected;
 		public RelativeLayout mVideoshareSelected;
 		public RelativeLayout passwrodShare;
+		public RelativeLayout customParameters;
 
 		public ShareViewHolder(View itemView) {
 			super(itemView);
-			shareSelected = (ImageView) itemView.findViewById(R.id.mSelected);
-			shotSelected = (ImageView) itemView.findViewById(R.id.mShot);
+			shareSelected = itemView.findViewById(R.id.mSelected);
+			shotSelected = itemView.findViewById(R.id.mShot);
 			mVideoshareSelected = itemView.findViewById(R.id.layout_mVideoShare);
-			passwrodShare = (RelativeLayout) itemView.findViewById(R.id.layout_passwordshare);
+			passwrodShare = itemView.findViewById(R.id.layout_passwordshare);
+			customParameters = itemView.findViewById(R.id.layout_Custom_parameters);
 		}
 	}
 
@@ -311,9 +303,9 @@ public class ShareRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 		public RelativeLayout layout;
 		public ShareViewHolderContext(View itemView) {
 			super(itemView);
-			icon = (ImageView)itemView.findViewById(R.id.mIcon);
-			name = (TextView)itemView.findViewById(R.id.mTitle);
-			layout = (RelativeLayout) itemView.findViewById(R.id.onMainLayout);
+			icon = itemView.findViewById(R.id.mIcon);
+			name = itemView.findViewById(R.id.mTitle);
+			layout = itemView.findViewById(R.id.onMainLayout);
 		}
 
 		public void setData(int postion){
