@@ -2,7 +2,6 @@ package cn.sharesdk.demo.activitys;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -79,9 +78,6 @@ import static cn.sharesdk.demo.platform.oasis.OasisShare.OASIS_PHOTO_REQUEST_GAL
 import static cn.sharesdk.demo.platform.whatsapp.WhatsAppShare.PHOTO_WHATS_APP;
 import static cn.sharesdk.demo.platform.whatsapp.WhatsAppShare.VIDEO_WHATS_APP;
 
-/**
- * Created by yjin on 2017/5/17.
- */
 
 /**
  * 具体类型分享界面
@@ -537,13 +533,7 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 				@Override
 				public void run() {
 					try {
-						//if (platform.getName().equals("Douyin")) {
-							//Toast.makeText(context, "onComplete",  Toast.LENGTH_LONG).show();
-						//} else if (context != null) {
-							//dialog(context, "Share Complete");
-						//} else {
-							Toast.makeText(MobSDK.getContext(), "Share Complete", Toast.LENGTH_SHORT).show();
-						//}
+						Toast.makeText(MobSDK.getContext(), "Share Complete", Toast.LENGTH_SHORT).show();
 					} catch (Throwable t) {
 						Log.e("QQQ", " onComplete " + t);
 					}
@@ -558,14 +548,7 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 			runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					//if (platform.getName().equals("Douyin")) {
-						//Toast.makeText(MobSDK.getContext(), "Share Failure" + error, Toast.LENGTH_LONG).show();
-					//} else if (context != null) {
-						//dialog(MobSDK.getContext(), "Share Failure" + error);
-					//} else {
-						Toast.makeText(MobSDK.getContext(), "Share Failure" + error, Toast.LENGTH_LONG).show();
-					//}
-
+					Toast.makeText(MobSDK.getContext(), "Share Failure" + error, Toast.LENGTH_LONG).show();
 				}
 			});
 		}
@@ -573,13 +556,7 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 		@Override
 		public void onCancel(Platform platform, int i) {
 			try {
-				//if (platform.getName().equals("Douyin")) {
-					//Toast.makeText(MobSDK.getContext(), "Cancel Share", Toast.LENGTH_LONG).show();
-				//} else if (context != null) {
-					//dialog(MobSDK.getContext(), "Cancel Share");
-				//} else {
-					Toast.makeText(MobSDK.getContext(), "Cancel Share", Toast.LENGTH_LONG).show();
-				//}
+				Toast.makeText(MobSDK.getContext(), "Cancel Share", Toast.LENGTH_LONG).show();
 			} catch (Throwable t) {
 				Log.e("QQQ", " onCancel " + t);
 			}
