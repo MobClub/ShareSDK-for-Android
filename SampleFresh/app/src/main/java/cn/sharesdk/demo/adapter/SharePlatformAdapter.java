@@ -14,9 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import cn.sharesdk.demo.R;
 import cn.sharesdk.demo.manager.platform.PlatformUITypeManager;
 
-/**
- * Created by yjin on 2017/5/17.
- */
 
 public class SharePlatformAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 	private List<Integer> platForms;
@@ -71,9 +68,9 @@ public class SharePlatformAdapter extends RecyclerView.Adapter<RecyclerView.View
 
 		public PlatFormViewHolder(View itemView) {
 			super(itemView);
-			platformIcon = (ImageView)itemView.findViewById(R.id.mSelectedPlatform);
-			platformName = (TextView)itemView.findViewById(R.id.mplatformName);
-			platformBtn = (RelativeLayout) itemView.findViewById(R.id.shareBtn);
+			platformIcon = itemView.findViewById(R.id.mSelectedPlatform);
+			platformName = itemView.findViewById(R.id.mplatformName);
+			platformBtn = itemView.findViewById(R.id.shareBtn);
 		}
 	}
 
