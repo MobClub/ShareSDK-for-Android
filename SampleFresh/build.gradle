@@ -15,10 +15,6 @@ buildscript {
         maven {
             url = mavenUrl
         }
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
         google()
         //====================== snapchat ======================
         maven {
@@ -35,16 +31,11 @@ buildscript {
 
     configurations.all {
         resolutionStrategy.cacheDynamicVersionsFor 1, 'seconds'
-        //resolutionStrategy.force 'com.mob:MobCommons:2020.0915.1032'
     }
 }
 
 allprojects {
     repositories {
-        maven {
-            name 'Google'
-            url "https://maven.google.com"
-        }
         jcenter()
         maven {
             url = mavenUrl
