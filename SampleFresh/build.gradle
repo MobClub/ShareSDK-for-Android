@@ -2,37 +2,29 @@
 
 buildscript {
     String urlStr = "http://mvn.mob.com/android"
-    if (hasProperty("mavenUrl")) {
-        urlStr = getProperty("mavenUrl")
+    if (rootProject.hasProperty("mavenUrl")) {
+        urlStr = rootProject.getProperty("mavenUrl")
     }
-    println "mavenUrl: ${urlStr}, ${hasProperty("mavenUrl")}"
+    println "mavenUrl: ${urlStr}, ${rootProject.hasProperty("mavenUrl")}"
     ext {
         mavenUrl = urlStr
     }
 
     repositories {
         jcenter()
-
         maven {
             url = mavenUrl
         }
-
-
-
         maven {
             url 'https://maven.google.com/'
             name 'Google'
         }
-
-
         google()
-
         //====================== snapchat ======================
         maven {
             url "https://storage.googleapis.com/snap-kit-build/maven"
         }
         //====================== snapchat ======================
-
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.3'
@@ -55,19 +47,14 @@ allprojects {
         }
         jcenter()
         maven {
-            url mavenUrl
+            url = mavenUrl
         }
-
-
         google()
-
-
         //====================== snapchat ======================
         maven {
             url "https://storage.googleapis.com/snap-kit-build/maven"
         }
         //====================== snapchat ======================
-
     }
     configurations.all {
         resolutionStrategy.cacheDynamicVersionsFor 1, 'seconds'
