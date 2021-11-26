@@ -203,6 +203,9 @@ public class PlatformShareManager {
 		} else if (name.equals(Wework.NAME)) {
 			WeworkShare weworkShare = new WeworkShare(platformActionListener);
 			weworkShare.shareText();
+		} else if (name.equals(Facebook.NAME)) {
+			FacebookShare share = new FacebookShare(platformActionListener);
+			share.shareText();
 		} else if (name.equals(FacebookMessenger.NAME)) {
 			FacebookMessengerShare share = new FacebookMessengerShare(platformActionListener);
 			share.shareText();

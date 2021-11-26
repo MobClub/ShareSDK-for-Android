@@ -130,4 +130,13 @@ public class FacebookShare {
 		}
 	}
 
+	public void shareText(){
+		Platform platform = ShareSDK.getPlatform(Facebook.NAME);
+		Platform.ShareParams shareParams = new Platform.ShareParams();
+		shareParams.setText("test text");
+		shareParams.setShareType(Platform.SHARE_TEXT);
+		platform.setPlatformActionListener(platformActionListener);
+		platform.share(shareParams);
+	}
+
 }
