@@ -1,5 +1,6 @@
 package cn.sharesdk.demo.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -92,6 +93,7 @@ public class TagsGridViewAdapter extends BaseAdapter{
         idTags.put("848", new String[]{"球球大作战","最受欢迎的竞技游戏"});
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = null;

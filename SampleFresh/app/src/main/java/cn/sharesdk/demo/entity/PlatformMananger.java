@@ -1,12 +1,9 @@
 package cn.sharesdk.demo.entity;
 
 import android.content.Context;
-import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 
 import com.mob.tools.utils.ResHelper;
-import com.mob.tools.utils.UIHandler;
 
 import java.util.ArrayList;
 import java.util.Arrays;

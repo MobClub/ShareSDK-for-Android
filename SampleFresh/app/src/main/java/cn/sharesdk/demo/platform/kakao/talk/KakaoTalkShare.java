@@ -85,7 +85,7 @@ public class KakaoTalkShare {
 	 *  customTemplate
 	 * **/
 	public void kakaoCustomShare() {
-		HashMap<String, String> templateArgs = new HashMap<String, String>();
+		HashMap<String, String> templateArgs = new HashMap<>();
 		templateArgs.put("${title}", "프로방스 자동차 여행");
 		templateArgs.put("${description}", "매년 7~8월에 프로방스 발랑솔을 중심으로 라벤더가 만개한다. " +
 				"이 길을 라벤더로드라고 하며 라벤더와 해바라기 밭이 가득찬 풍경을 어디서나 볼 수 있다.");

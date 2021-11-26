@@ -2,7 +2,6 @@ package cn.sharesdk.demo.activitys;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -84,14 +83,10 @@ import static cn.sharesdk.demo.platform.whatsapp.WhatsAppShare.VIDEO_WHATS_APP;
  */
 
 public class SharePlatformTypeActivity extends BaseActivity implements View.OnClickListener, SharePlatformAdapter.OnClickItemListener {
-	private ImageView callBack;
-	private TextView shareTitle;
 	private ShareListItemInEntity entity;
-	private RecyclerView recyclerView;
 	private SharePlatformAdapter adapter;
 	private List<Integer> lists;
 	private String name;
-	private Context context;
 
 	@Override
 	public int getLayoutId() {
@@ -99,14 +94,13 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 		return R.layout.share_platform_type_activity;
 	}
 
-	@SuppressLint("WrongConstant")
+	@SuppressLint({"WrongConstant", "SetTextI18n"})
 	@Override
 	public void initView() {
-		recyclerView = (RecyclerView) this.findViewById(R.id.mSharePlatform);
-		callBack = (ImageView) this.findViewById(R.id.mReback);
+		RecyclerView recyclerView = this.findViewById(R.id.mSharePlatform);
+		ImageView callBack = this.findViewById(R.id.mReback);
 		callBack.setOnClickListener(this);
-		shareTitle = (TextView) this.findViewById(R.id.mTitle);
-		recyclerView = (RecyclerView) this.findViewById(R.id.mSharePlatform);
+		TextView shareTitle = this.findViewById(R.id.mTitle);
 		if (entity != null) {
 			shareTitle.setText(getString(R.string.share_platform_name) + entity.getName());
 		}
@@ -116,10 +110,10 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 		adapter = new SharePlatformAdapter(lists, this);
 		adapter.setOnClickItemListener(this);
 		recyclerView.setAdapter(adapter);
-		context = this;
 		Log.e(MainActivity.TAG, " SharePlatformTypeActivity initView()");
 	}
 
+	@SuppressLint("NotifyDataSetChanged")
 	@Override
 	public void initData() {
 		if (lists == null) {
@@ -451,7 +445,7 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 	private void meipaiShareImage(String imagePath) {
 		myPlatformActionListener = new MyPlatformActionListener();
 		MeipaiShare meipaiShare = new MeipaiShare(myPlatformActionListener);
-		meipaiShare.shareImagePath(this, imagePath);
+		meipaiShare.shareImagePath(imagePath);
 	}
 
 	/**
@@ -460,7 +454,7 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 	private void meipaiShareVideo(String videoPath) {
 		myPlatformActionListener = new MyPlatformActionListener();
 		MeipaiShare meipaiShare = new MeipaiShare(myPlatformActionListener);
-		meipaiShare.shareVideo(this, videoPath);
+		meipaiShare.shareVideo(videoPath);
 	}
 
 	/**

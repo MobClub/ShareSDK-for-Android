@@ -256,7 +256,7 @@ public class PlatformShareManager {
 			fourSquareShare.shareImage();
 		} else if (name.equals(Instagram.NAME)) {
 			InstagramShare instagramShare = new InstagramShare(platformActionListener);
-			instagramShare.shareTextImage(activity);
+			instagramShare.shareTextImage();
 		} else if (name.equals(KaiXin.NAME)) {
 			KaiXinShare kaiXinShare = new KaiXinShare(platformActionListener);
 			kaiXinShare.shareImage();

@@ -14,7 +14,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.HashMap;
 
-import cn.sharesdk.demo.MainActivity;
 import cn.sharesdk.demo.R;
 import cn.sharesdk.framework.Platform;
 
@@ -56,8 +55,6 @@ public class ResourcesManager {
 	public static float latitude = 23.169f;
 	public static float longitude = 112.908f;
 	public static final String VENUE_DESCRIPTION = "This is a beautiful place!";
-	public String venueId = null;
-	public String checkId = null;
 	public static final String EXT_INFO = "extInfo";
 	public static final String ADDRESS = "address";
 	private String venueDescription;
@@ -278,11 +275,8 @@ public class ResourcesManager {
 		}
 	}
 
-	public static String[] randomPic() {
-		return new String[]{
-				PIC1,
-				PIC2
-		};
+	public String[] randomPic() {
+		return new String[]{ PIC1, PIC2 };
 	}
 
 	public String getFilePath() {

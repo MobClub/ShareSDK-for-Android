@@ -1,7 +1,5 @@
 package cn.sharesdk.demo.platform.linkedin;
 
-import android.app.Activity;
-
 import com.mob.MobSDK;
 
 import cn.sharesdk.demo.entity.ResourcesManager;

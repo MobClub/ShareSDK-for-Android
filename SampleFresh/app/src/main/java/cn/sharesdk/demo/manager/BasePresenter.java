@@ -15,7 +15,7 @@ public abstract class BasePresenter<T> {
 	protected Reference<T> viewRefer;
 
 	public void attachView(T view){
-		viewRefer = new WeakReference<T>(view);
+		viewRefer = new WeakReference<>(view);
 	}
 
 	public T getView(){

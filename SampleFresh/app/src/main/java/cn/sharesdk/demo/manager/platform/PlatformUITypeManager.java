@@ -29,20 +29,13 @@ public class PlatformUITypeManager {
 			case Platform.SHARE_EMOJI: {
 				return R.mipmap.share_icon;
 			}
-			case Platform.SHARE_WXMINIPROGRAM: {
-				return R.mipmap.share_mini_program;
-			}
-			case Platform.SHARE_MUSIC: {
-				return R.mipmap.share_url_music;
-			}
-			case Platform.SHARE_LINKCARD: {
-				return R.mipmap.share_url_music;
-			}
-			case Platform.SHARE_ZHIFUBAO: {
-				return R.mipmap.share_webpage;
-			}
+			case Platform.SHARE_WXMINIPROGRAM:
 			case Platform.OPEN_WXMINIPROGRAM: {
 				return R.mipmap.share_mini_program;
+			}
+			case Platform.SHARE_MUSIC:
+			case Platform.SHARE_LINKCARD: {
+				return R.mipmap.share_url_music;
 			}
 			default: {
 				return R.mipmap.share_webpage;
@@ -72,9 +65,6 @@ public class PlatformUITypeManager {
 			}
 			case Platform.SHARE_WXMINIPROGRAM: {
 				return R.string.platform_share_mini_app;
-			}
-			case Platform.SHARE_WEBPAGE: {
-				return R.string.platform_share_webpage;
 			}
 			case Platform.SHARE_MUSIC: {
 				return R.string.platform_share_music;

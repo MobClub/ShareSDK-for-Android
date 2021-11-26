@@ -1,5 +1,7 @@
 package cn.sharesdk.demo.manager.platform;
 
+import android.util.Log;
+
 import java.lang.reflect.Field;
 
 import cn.sharesdk.framework.Platform;
@@ -137,17 +139,16 @@ public class PlatformShareConstant {
 		Class cls = platformShare.getClass();
 		Field[] fields = cls.getFields();
 		try {
-			for (int i = 0; i < fields.length; i++) {
-				if (fields[i].getName().toUpperCase().equals(name.toUpperCase())) {
-					Object obj = fields[i].get(platformShare);
-					if (obj != null && obj instanceof Integer[]) {
-						Integer[] lists = (Integer[]) obj;
-						return lists;
+			for (Field field : fields) {
+				if (field.getName().toUpperCase().equals(name.toUpperCase())) {
+					Object obj = field.get(platformShare);
+					if (obj instanceof Integer[]) {
+						return (Integer[]) obj;
 					}
 				}
 			}
-		} catch (Exception e) {
-
+		} catch (Throwable e) {
+			Log.e("PlatformShareConstant","byNamePlatforms fail");
 		}
 		return new Integer[]{};
 	}

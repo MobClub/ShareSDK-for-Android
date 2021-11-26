@@ -49,7 +49,7 @@ public class MeipaiShare {
 		dialog.show();
 	}
 
-	public void shareVideo(Activity activity, String videoPath) {
+	public void shareVideo(String videoPath) {
 		Platform platform = ShareSDK.getPlatform(Meipai.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setFilePath(videoPath);
@@ -77,7 +77,7 @@ public class MeipaiShare {
 		dialog.show();
 	}
 
-	public void shareImagePath(Activity activity, String imagePath) {
+	public void shareImagePath(String imagePath) {
 		Platform platform = ShareSDK.getPlatform(Meipai.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setImagePath(imagePath);

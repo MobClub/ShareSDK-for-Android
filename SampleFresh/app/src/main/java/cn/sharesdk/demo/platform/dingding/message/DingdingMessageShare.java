@@ -11,6 +11,7 @@ import cn.sharesdk.framework.ShareSDK;
 
 
 public class DingdingMessageShare {
+
 	private PlatformActionListener platformActionListener;
 
 	public DingdingMessageShare(PlatformActionListener mListener){

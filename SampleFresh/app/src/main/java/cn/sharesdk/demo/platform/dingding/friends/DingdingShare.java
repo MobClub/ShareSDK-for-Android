@@ -13,6 +13,7 @@ import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
 
 
 public class DingdingShare {
+
 	private PlatformActionListener platformActionListener;
 
 	public DingdingShare(PlatformActionListener mListener){

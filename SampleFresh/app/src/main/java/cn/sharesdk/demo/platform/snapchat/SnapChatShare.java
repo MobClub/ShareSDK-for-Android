@@ -159,9 +159,9 @@ public class SnapChatShare {
     }
 
 
-    private boolean saveContentLocally(Activity activity, Intent intent, File snapFile) {
+    private void saveContentLocally(Activity activity, Intent intent, File snapFile) {
         if (intent == null || intent.getData() == null) {
-            return false;
+            return;
         }
         InputStream inputStream;
 
@@ -169,19 +169,17 @@ public class SnapChatShare {
             inputStream = activity.getContentResolver().openInputStream(intent.getData());
         } catch (FileNotFoundException e) {
             Toast.makeText(activity, "Could not open file", Toast.LENGTH_SHORT).show();
-            return false;
+            return;
         }
         if (inputStream == null) {
             Toast.makeText(MobSDK.getContext(), "File does not exist", Toast.LENGTH_SHORT).show();
-            return false;
+            return;
         }
         try {
             copyFile(inputStream, snapFile);
         } catch (IOException e) {
             Toast.makeText(MobSDK.getContext(), "Failed save file locally", Toast.LENGTH_SHORT).show();
-            return false;
         }
-        return true;
     }
 
     private static void copyFile(InputStream inputStream, File file) throws IOException {

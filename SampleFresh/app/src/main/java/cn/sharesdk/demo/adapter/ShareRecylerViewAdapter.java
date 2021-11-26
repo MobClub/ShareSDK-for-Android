@@ -24,6 +24,7 @@ import com.mob.MobSDK;
 import java.util.HashMap;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import cn.sharesdk.demo.entity.ResourcesManager;
 import cn.sharesdk.demo.R;
@@ -80,7 +81,7 @@ public class ShareRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 	}
 
 	@Override
-	public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+	public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 		final View view;
 		if (viewType == SharePlatformType.DIRECT_SHARE_PLAT) {
 			view = inflater.inflate(R.layout.layout_share_yanshi_item,parent,false);
@@ -194,9 +195,8 @@ public class ShareRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 		String customText = manager.getText();
 		if (customText != null) {
 			oks.setText(customText);
-		} else if (manager.getText() != null && manager.getText().contains("0")) {
-			oks.setText(manager.getText());
 		} else {
+			manager.getText();
 			oks.setText(context.getString(R.string.share_content));
 		}
 		oks.setComment(manager.getComment());

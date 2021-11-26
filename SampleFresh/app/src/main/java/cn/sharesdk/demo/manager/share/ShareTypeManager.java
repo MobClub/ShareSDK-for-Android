@@ -15,8 +15,6 @@ import cn.sharesdk.demo.platform.wechat.friends.WechatShare;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 
-import static cn.sharesdk.demo.utils.CommomDialog.dialog;
-
 /**
  * 分享的操作类，各个平台的分享代码写在这里。
  * 这里可以直接拷贝代码，粘贴到合适的位置。

@@ -18,8 +18,6 @@ import cn.sharesdk.demo.ui.BaseActivity;
 
 
 public class ShowUserInfoActivity extends BaseActivity implements View.OnClickListener {
-	private TextView showTxt;
-	private TextView copyTxt;
 	private String userMsg;
 	private ClipboardManager clipBoard;
 	private android.text.ClipboardManager preClipBoard;
@@ -31,8 +29,8 @@ public class ShowUserInfoActivity extends BaseActivity implements View.OnClickLi
 
 	@Override
 	public void initView() {
-		showTxt = this.findViewById(R.id.showUserInfo);
-		copyTxt = this.findViewById(R.id.userCopy);
+		TextView showTxt = this.findViewById(R.id.showUserInfo);
+		TextView copyTxt = this.findViewById(R.id.userCopy);
 		copyTxt.setOnClickListener(this);
 		showTxt.setText(userMsg);
 		if (TextUtils.isEmpty(userMsg)) {

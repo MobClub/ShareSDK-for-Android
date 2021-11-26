@@ -38,7 +38,7 @@ public class InstagramShare {
 		qqq.share(sp);
 	}
 
-	public void shareTextImage(Activity activity){
+	public void shareTextImage(){
 		Platform platform = ShareSDK.getPlatform(Instagram.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText("Ins share test");
