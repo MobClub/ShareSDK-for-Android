@@ -92,7 +92,7 @@ public class ShareMobLinkActivity extends Activity implements View.OnClickListen
             Platform.ShareParams shareParams = new  Platform.ShareParams();
             shareParams.setText(LINK_TEXT);
             shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-            shareParams.setUrl("http://test-applink-sharelist.mob.com/link/indexAnd.html");
+            shareParams.setUrl("https://f.moblink.mob.com/share/link/indexAnd.html");
             HashMap<String, Object> mobIdMap = new HashMap<String, Object>();
             mobIdMap.put("path", "pathTest");
 
@@ -119,7 +119,7 @@ public class ShareMobLinkActivity extends Activity implements View.OnClickListen
             Platform.ShareParams shareParams = new  Platform.ShareParams();
             shareParams.setText(LINK_TEXT);
             shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-            shareParams.setTitleUrl("http://test-applink-sharelist.mob.com/link/indexAnd.html");
+            shareParams.setTitleUrl("https://f.moblink.mob.com/share/link/indexAnd.html");
             shareParams.setShareType(Platform.SHARE_WEBPAGE);
             platform.share(shareParams);
         } else {
