@@ -98,6 +98,9 @@ public class FacebookShare {
 			Platform platform = ShareSDK.getPlatform(Facebook.NAME);
 			if (platform.isClientValid()) {
 				Platform.ShareParams shareParams = new Platform.ShareParams();
+				//拆包使用FilePath
+//				shareParams.setFilePath(UriUtil.convertUriToPath(MobSDK.getContext(), videoUri));
+//				//原生使用videoUri
 				shareParams.setVideoUri(videoUri);
 				shareParams.setHashtag("Test share HashTag for video");
 				shareParams.setShareType(Platform.SHARE_VIDEO);
