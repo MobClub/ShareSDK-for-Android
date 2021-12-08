@@ -89,22 +89,7 @@ public class SnapChatShare {
         shareParams.setFileSticker(mStickerFile);
         shareParams.setText("hahahahTestonly");
         shareParams.setShareType(Platform.SHARE_IMAGE);
-        platform.setPlatformActionListener(new PlatformActionListener() {
-            @Override
-            public void onComplete(Platform platform, int action, HashMap<String, Object> res) {
-                Log.e("QQQ", " onComplete " + res);
-            }
-
-            @Override
-            public void onError(Platform platform, int action, Throwable t) {
-                Log.e("QQQ", " onError " + t);
-            }
-
-            @Override
-            public void onCancel(Platform platform, int action) {
-                Log.e("QQQ", " onCancel ");
-            }
-        });
+        platform.setPlatformActionListener(platformActionListener);
         platform.share(shareParams);
 
     }
@@ -139,22 +124,7 @@ public class SnapChatShare {
         shareParams.setFileSticker(mStickerFile);
         shareParams.setText("hahahahTestonly");
         shareParams.setShareType(Platform.SHARE_VIDEO);
-        platform.setPlatformActionListener(new PlatformActionListener() {
-            @Override
-            public void onComplete(Platform platform, int action, HashMap<String, Object> res) {
-                Log.e("QQQ", " onComplete " + res);
-            }
-
-            @Override
-            public void onError(Platform platform, int action, Throwable t) {
-                Log.e("QQQ", " onError " + t);
-            }
-
-            @Override
-            public void onCancel(Platform platform, int action) {
-                Log.e("QQQ", " onCancel ");
-            }
-        });
+        platform.setPlatformActionListener(platformActionListener);
         platform.share(shareParams);
     }
 
