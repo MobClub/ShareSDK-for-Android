@@ -74,7 +74,7 @@ public class PlatformShareConstant {
 		wechatMoments = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE, Platform.SHARE_MUSIC, Platform.SHARE_VIDEO};
 		wechatFavorite = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE,
 				Platform.SHARE_MUSIC,Platform.SHARE_FILE, Platform.SHARE_VIDEO};
-		qq = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_WEBPAGE, Platform.SHARE_MUSIC};
+		qq = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_WEBPAGE, Platform.SHARE_MUSIC,Platform.QQ_MINI_PROGRAM};
 		facebook = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_WEBPAGE, Platform.SHARE_VIDEO,Platform.SHARE_TEXT};
 		twitter = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
 		renren = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};

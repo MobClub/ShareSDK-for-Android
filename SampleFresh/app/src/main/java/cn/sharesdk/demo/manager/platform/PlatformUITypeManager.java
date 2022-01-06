@@ -29,6 +29,7 @@ public class PlatformUITypeManager {
 			case Platform.SHARE_EMOJI: {
 				return R.mipmap.share_icon;
 			}
+			case Platform.QQ_MINI_PROGRAM:
 			case Platform.SHARE_WXMINIPROGRAM:
 			case Platform.OPEN_WXMINIPROGRAM: {
 				return R.mipmap.share_mini_program;
