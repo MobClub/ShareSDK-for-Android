@@ -141,6 +141,16 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        <!--        打开微信小程序-->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:exported="true"
+            android:taskAffinity="cn.sharesdk.demo"
+            android:launchMode="singleTask">
+        </activity>
+
     </application>
 
 </manifest>
