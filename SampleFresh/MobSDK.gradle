@@ -67,8 +67,8 @@ MobSDK {
                 sortId 4
                 appId "wx4868b35061f87885"
                 appSecret "64020361b8ec4c99936c0e3999a9f249"
-                userName "gh_afb25ac019c9"
-                path "pages/index/index.html?id=1"
+                userName "gh_52568203455c"
+                path "pages/index/index"
                 withShareTicket true
                 miniprogramType 0
                 bypassApproval false
