@@ -6,8 +6,11 @@ import android.content.Intent;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.mob.MobSDK;
+
 import java.util.List;
 
+import cn.sharesdk.demo.entity.ResourcesManager;
 import cn.sharesdk.douyin.Douyin;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
@@ -87,4 +90,15 @@ public class DouyinShare {
     }
 
 
+    public void shareMixFile(Activity activity) {
+        Platform douyin = ShareSDK.getPlatform(Douyin.NAME);
+        Platform.ShareParams sp = new Platform.ShareParams();
+        ResourcesManager instace = ResourcesManager.getInstace(MobSDK.getContext());
+        sp.setDYMixFileArray(new String[]{instace.getImagePath(),instace.getFilePath()});
+        sp.setActivity(activity);
+        sp.setHashtags(new String[]{"qqq","111"});
+        sp.setShareType(Platform.DY_MIXFILE);
+        douyin.setPlatformActionListener(platformActionListener);
+        douyin.share(sp);
+    }
 }

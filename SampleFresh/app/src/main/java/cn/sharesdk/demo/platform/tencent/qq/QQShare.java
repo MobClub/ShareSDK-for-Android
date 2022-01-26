@@ -86,4 +86,14 @@ public class QQShare {
     }
 
 
+    public void openQQMiniProgram() {
+        Platform platform = ShareSDK.getPlatform(QQ.NAME);
+        Platform.ShareParams shareParams = new Platform.ShareParams();
+        shareParams.setQQMiniProgramAppid("1108108864");
+        shareParams.setQQMiniProgramPath("pages/tabBar/index/index");
+        shareParams.setQQMiniProgramType("release");
+        shareParams.setShareType(Platform.OPEN_QQMINIPROGRAM);
+        platform.setPlatformActionListener(platformActionListener);
+        platform.share(shareParams);
+    }
 }
