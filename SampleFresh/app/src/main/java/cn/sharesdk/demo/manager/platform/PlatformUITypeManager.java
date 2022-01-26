@@ -17,6 +17,7 @@ public class PlatformUITypeManager {
 			case Platform.SHARE_TEXT: {
 				return R.mipmap.share_text;
 			}
+			case Platform.DY_MIXFILE:
 			case Platform.SHARE_IMAGE: {
 				return R.mipmap.share_multimages;
 			}
@@ -30,6 +31,7 @@ public class PlatformUITypeManager {
 				return R.mipmap.share_icon;
 			}
 			case Platform.QQ_MINI_PROGRAM:
+			case Platform.OPEN_QQMINIPROGRAM:
 			case Platform.SHARE_WXMINIPROGRAM:
 			case Platform.OPEN_WXMINIPROGRAM: {
 				return R.mipmap.share_mini_program;
@@ -78,6 +80,12 @@ public class PlatformUITypeManager {
 			}
 			case Platform.OPEN_WXMINIPROGRAM: {
 				return R.string.platform_open_wxmini_app;
+			}
+			case Platform.OPEN_QQMINIPROGRAM:{
+				return R.string.platform_open_qqmini;
+			}
+			case Platform.DY_MIXFILE:{
+				return R.string.platform_share_dymixfile;
 			}
 			default: {
 				return R.string.platform_share_webpage;

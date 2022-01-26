@@ -639,4 +639,15 @@ public class PlatformShareManager {
 	}
 
 
+	public void shareDYMixFile(String name, Activity activity) {
+		DouyinShare douyinShare = new DouyinShare(platformActionListener);
+		douyinShare.shareMixFile(activity);
+	}
+
+	public void openQQMiniProgram(String name) {
+		if (name.equals(QQ.NAME)) {
+			QQShare qqShare = new QQShare(platformActionListener);
+			qqShare.openQQMiniProgram();
+		}
+	}
 }

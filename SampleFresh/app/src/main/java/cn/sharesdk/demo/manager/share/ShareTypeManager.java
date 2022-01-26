@@ -70,10 +70,28 @@ public class ShareTypeManager {
             case Platform.QQ_MINI_PROGRAM: {
                 shareQQMiniProgram(activity);
             } break;
-            case Platform.OPEN_WXMINIPROGRAM:{
-                openMiniProgram();
+            case Platform.OPEN_QQMINIPROGRAM:{
+                openQQMiniProgram();
             }break;
+            case Platform.DY_MIXFILE:{
+                shareDYMixFile(activity);
+            }break;
+            case Platform.OPEN_WXMINIPROGRAM:{
+                openWXMiniProgram();
+            }
         }
+    }
+
+    private void shareDYMixFile(Activity activity) {
+        PlatformShareManager platformShareManager = new PlatformShareManager();
+        platformShareManager.setPlatformActionListener(myPlatformActionListener);
+        platformShareManager.shareDYMixFile(platform.getName(),activity);
+    }
+
+    private void openQQMiniProgram() {
+        PlatformShareManager platformShareManager = new PlatformShareManager();
+        platformShareManager.setPlatformActionListener(myPlatformActionListener);
+        platformShareManager.openQQMiniProgram(platform.getName());
     }
 
     public void shareText() {
@@ -116,7 +134,7 @@ public class ShareTypeManager {
         wechatShare.shareMiniProgram();
     }
 
-    public void openMiniProgram() {
+    public void openWXMiniProgram() {
         WechatShare wechatShare = new WechatShare(myPlatformActionListener);
         wechatShare.openMiniProgram();
     }
