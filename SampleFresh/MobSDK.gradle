@@ -273,9 +273,9 @@ MobSDK {
             Instagram {
                 id 28
                 sortId 28
-                appId "ff68e3216b4f4f989121aa1c2962d058"
-                appSecret "1b2e82f110264869b3505c3fe34e31a1"
-                callbackUri "http://sharesdk.cn"
+                appId "1145188725813939"
+                appSecret "256191f3abb381a9d481f6f9bbaef179"
+                callbackUri "https://www.mob.com/"
                 enable true
             }
 
