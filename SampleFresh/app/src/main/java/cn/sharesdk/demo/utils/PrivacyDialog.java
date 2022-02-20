@@ -81,10 +81,12 @@ public class PrivacyDialog extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ok: {
+                setResult(1);
                 submitPrivacyGrantResult(true);
                 finish();
             } break;
             case R.id.cancel: {
+                setResult(0);
                 submitPrivacyGrantResult(false);
                 finish();
             } break;
