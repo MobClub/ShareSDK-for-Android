@@ -96,7 +96,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == PRIVACY_CODE) {
 			if (resultCode == 1){
-				checkPermissions();
+//				checkPermissions();
 			}else if (resultCode == 0){
 				finish();
 			}

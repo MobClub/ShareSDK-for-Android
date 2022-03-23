@@ -10,51 +10,13 @@
         android:resizeable="true"
         android:smallScreens="true" />
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
     <uses-permission
         android:name="android.permission.INTERNET" />
-    <uses-permission
-        android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission
-        android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission
-        android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--读取外部存储需要-->
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission
-        android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission
-        android:name="android.permission.RECEIVE_SMS" />
-    <uses-permission
-        android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission
-        android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission
-        android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission
-        android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission
-        android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission
-        android:name="android.permission.INTERNET" />
-    <uses-permission
-        android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission
-        android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name= "android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED"/>
 
     <application
         android:name=".App"
