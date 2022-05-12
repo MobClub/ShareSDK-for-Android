@@ -26,6 +26,7 @@ public class App extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		MobSDK.submitPolicyGrantResult(true,null);
 		//loopshare init and set Listener
 		ShareSDK.prepareLoopShare(new LoopShareResultListener() {
 			@Override
