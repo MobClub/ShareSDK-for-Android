@@ -524,6 +524,7 @@ MobSDK {
                 id = 70
                 sortId = 70
                 appKey = "aw9g7ac2m73tiif8"
+                appSecret "8ecc1433b25147aa4c3b176cc8a7382b"
                 enable = true
             }
         }
