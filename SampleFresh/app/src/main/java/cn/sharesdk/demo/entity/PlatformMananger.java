@@ -1,12 +1,9 @@
 package cn.sharesdk.demo.entity;
 
 import android.content.Context;
-import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 
 import com.mob.tools.utils.ResHelper;
-import com.mob.tools.utils.UIHandler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,9 +16,6 @@ import cn.sharesdk.framework.CustomPlatform;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
 
-/**
- * Created by yjin on 2017/5/15.
- */
 
 public class PlatformMananger {
 	private List<ShareListItemInEntity> lists = new ArrayList<>();
@@ -53,13 +47,6 @@ public class PlatformMananger {
 			msg.obj = list;
 
 			afterPlatformsGot((Platform[]) msg.obj);
-
-//			UIHandler.sendMessage(msg, new Handler.Callback() {
-//				public boolean handleMessage(Message msg) {
-//					afterPlatformsGot((Platform[]) msg.obj);
-//					return false;
-//				}
-//			});
 		}
 	}
 
@@ -70,17 +57,10 @@ public class PlatformMananger {
 			String name = platform.getName();
 
 			//客户端分享的情况
-//			if (DemoUtils.isUseClientToShare(name)) {
-//				continue;
-//			}
 			if (platform instanceof CustomPlatform) {
 				continue;
 			}
-			//#if def{lang} == cn
 			// 处理左边按钮和右边按钮
-			//#elif def{lang} == en
-			// initiate buttons
-			//#endif
 			entity = new ShareListItemInEntity();
 			entity.setPlatform(platform);
 			normalEntity = new PlatformEntity();

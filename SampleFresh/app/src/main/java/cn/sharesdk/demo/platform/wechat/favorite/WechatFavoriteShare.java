@@ -15,9 +15,6 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.wechat.favorite.WechatFavorite;
 
-/**
- * Created by yjin on 2017/6/22.
- */
 
 public class WechatFavoriteShare {
 	private PlatformActionListener platformActionListener;
@@ -63,7 +60,6 @@ public class WechatFavoriteShare {
 			shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
 		}
 		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getMusicUrl());
-//		shareParams.setMusicUrl(ResourcesManager.getInstace(MobSDK.getContext()).getMusicUrl());
 		shareParams.setShareType(Platform.SHARE_MUSIC);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
@@ -77,7 +73,7 @@ public class WechatFavoriteShare {
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-		shareParams.setUrl("http://www.mob.com/video/ShareSDK.mp4");
+		shareParams.setUrl("https://cdn-static-oss.mob.com/video/ShareSDK.mp4");
 		if (ResourcesManager.getInstace(MobSDK.getContext()).getImagePath() == null) {
 			shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
 		} else {
@@ -128,7 +124,6 @@ public class WechatFavoriteShare {
 				Intent intent = new Intent(Intent.ACTION_PICK);
 				intent.setType("image/*");
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-				//startActivityForResult(intent, PHOTO_REQUEST_GALLERY);
 				activity.startActivityForResult(intent, shareType);
 			}
 		});

@@ -8,11 +8,7 @@ import cn.sharesdk.demo.manager.BasePresenter;
 import cn.sharesdk.demo.manager.ViewHandlerCall;
 
 /**
- * Created by yjin on 2017/5/9.
- */
-
-/**
- * 基类，抽象的救赎
+ * 基类
  */
 public abstract class BaseActivity extends AppCompatActivity implements ViewHandlerCall {
 	protected BasePresenter presenter;

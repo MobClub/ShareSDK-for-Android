@@ -38,13 +38,13 @@ public class TagsItemActivity extends AppCompatActivity implements RadioGroup.On
 
 
     private void bindViews() {
-        txt_topbar = (TextView) findViewById(R.id.txt_topbar);
-        rg_tab_bar = (RadioGroup) findViewById(R.id.rg_tab_bar);
-        rb_channel = (RadioButton) findViewById(R.id.rb_channel);
-        rb_setting = (RadioButton) findViewById(R.id.rb_setting);
+        txt_topbar = findViewById(R.id.txt_topbar);
+        rg_tab_bar = findViewById(R.id.rg_tab_bar);
+        rb_channel = findViewById(R.id.rb_channel);
+        rb_setting = findViewById(R.id.rb_setting);
         rg_tab_bar.setOnCheckedChangeListener(this);
 
-        vpager = (ViewPager) findViewById(R.id.vpager);
+        vpager = findViewById(R.id.vpager);
         vpager.setAdapter(mAdapter);
         vpager.setCurrentItem(0);
         vpager.addOnPageChangeListener(this);

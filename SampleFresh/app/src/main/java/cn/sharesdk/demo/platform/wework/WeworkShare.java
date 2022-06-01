@@ -10,9 +10,6 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.wework.Wework;
 
-/**
- * Created by xiangli on 2019/7/16.
- */
 
 public class WeworkShare {
 

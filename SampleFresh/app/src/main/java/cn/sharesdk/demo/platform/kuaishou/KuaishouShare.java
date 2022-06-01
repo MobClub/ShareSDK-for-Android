@@ -54,7 +54,6 @@ public class KuaishouShare {
 	public void shareVideo(Activity activity, Uri uri) {
 		Platform platform = ShareSDK.getPlatform(Kuaishou.NAME);
 		Platform.ShareParams shareParams = new Platform.ShareParams();
-		//shareParams.setVideoUri(uri);
 		shareParams.setFilePath(UriUtil.convertUriToPath(MobSDK.getContext(), uri));
 		shareParams.setShareType(Platform.SHARE_VIDEO);
 		shareParams.setActivity(activity);

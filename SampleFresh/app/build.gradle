@@ -2,8 +2,8 @@ apply plugin: 'com.android.application'
 apply from: '../MobSDK.gradle'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion '29.0.2'
+    compileSdkVersion 31
+    buildToolsVersion '30.0.0'
 
     signingConfigs {
         config {
@@ -27,21 +27,17 @@ android {
     }
     defaultConfig {
         applicationId "cn.sharesdk.demo"
-        //applicationId 'com.tencent.sample'
-        //applicationId 'com.bytedance.sdk.share.demo'
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 31
         versionCode 80
-        versionName "3.9.2"
+        versionName "3.9.9"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        //multiDexEnabled true 分包
     }
     buildTypes {
         release {
             debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            //signingConfig signingConfigs.release
             signingConfig signingConfigs.debug
         }
 
@@ -49,7 +45,6 @@ android {
             debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            //signingConfig signingConfigs.release
             signingConfig signingConfigs.debug
         }
     }
@@ -67,23 +62,10 @@ android {
             dirs 'libs'
         }
     }
-    //测试QQ小程序专用
-    /*signingConfigs {
-        debug {
-            storeFile file('debug.keystore')
-        }
-        release {
-            storeFile file('debug.keystore')
-        }
-    }*/
+
     productFlavors {
 
     }
-
-//    packagingOptions {
-//
-//        exclude '/res/drawable-xhdpi-v4/ssdk_country_back_arrow.png'
-//    }
 
 }
 
@@ -91,96 +73,14 @@ android {
 
 
 configurations.all {
-//    exclude group: 'com.mob', module: 'MobTools'
-//    exclude group: 'com.mob', module: 'MobGUI'
-//    exclude group: 'com.mob', module: 'MobCommons'
-////  exclude group: 'com.mob', module: 'SDKWrapper'
-//
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK'
-//    exclude group: 'cn.sharesdk', module: 'OneKeyShare'
-//
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Accountkit'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Alipay'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Alipay-Core'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Alipay-Moments'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Cmcc'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Dingding'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Douban'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Douyin'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Douyin-Core'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Dropbox'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Email'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Evernote'
-//
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Facebook'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-FacebookMessenger'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Flickr'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Foursquare'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-GooglePlus'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Instagram'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Instapaper'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-KaiXin'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Kakao-Core'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-KakaoStory'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-KakaoTalk'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Line'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Linkedin'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Meipai'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Mingdao'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Pinterest'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Pocket'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-QQ'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-QQ-Core'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-QZone'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Reddit'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Renren'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-ShortMessage'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-SinaWeibo'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Telecom'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Telegram'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-TencentWeibo'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Tumblr'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Twitter'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-VKontakte'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Wechat'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Wechat-Core'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Wechat-Favorite'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Wechat-Moments'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-WhatsApp'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Yixin'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Yixin-Core'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Yixin-Moments'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-YouDao'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Youtube'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Cmcc'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Wework'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Wework-Core'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-LoopShare'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-XMAccount-Core'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-KakaoTalkUntil'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-KakaoTalkNetwork'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-KakaoTalkMessage'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-KakaoTalkLink'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-HWAccount'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-KakaoTalkCommon'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-HWAccount-Core'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-SnapChat'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Oasis'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Kuaishou'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Littleredbook'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-Watermelonvideo'
-//    exclude group: 'cn.sharesdk', module: 'ShareSDK-XMAccount'
 
-    //resolutionStrategy.force 'com.mob:MobCommons:2020.0914.1657'
 }
 
 dependencies {
     implementation 'com.alibaba:fastjson:1.2.54'
     implementation 'com.github.bumptech.glide:glide:4.0.0-RC1'
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:support-v4:28.0.0'
-    //implementation 'com.android.support.constraint:constraint-password_show:1.1.3'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -188,10 +88,6 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.0.0'
     implementation 'com.google.code.gson:gson:2.8.0'
     implementation 'com.shizhefei:LargeImageView:1.0.9'
-    //implementation 'com.facebook.android:facebook-share:[5,6)'
-    //implementation(name: 'MobLink-3.0.2', ext: 'aar')
-    //implementation(name: 'ShareSDK-3.7.9', ext: 'aar')
-    //implementation(name: 'OneKeyShare-3.7.9', ext: 'aar')
 
     //snapchat
     implementation([
@@ -201,7 +97,5 @@ dependencies {
     ])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'org.greenrobot:eventbus:3.1.1'
-    //bugly
-    //implementation 'com.tencent.bugly:crashreport:latest.release'
 }
 

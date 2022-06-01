@@ -4,9 +4,6 @@ import android.content.Context;
 
 import cn.sharesdk.demo.R;
 
-/**
- * Created by yjin on 2017/5/16.
- */
 
 public class ShareInEntityManager {
 

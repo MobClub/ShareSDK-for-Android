@@ -5,9 +5,7 @@ import java.lang.ref.WeakReference;
 
 import cn.sharesdk.demo.entity.OutBaseEntity;
 
-/**
- * Created by yjin on 2017/5/10.
- */
+
 
 /**
  *
@@ -17,7 +15,7 @@ public abstract class BasePresenter<T> {
 	protected Reference<T> viewRefer;
 
 	public void attachView(T view){
-		viewRefer = new WeakReference<T>(view);
+		viewRefer = new WeakReference<>(view);
 	}
 
 	public T getView(){

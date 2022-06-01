@@ -14,17 +14,9 @@ MobSDK {
 
     appKey "moba0b0c0d0"
     appSecret "5713f0d88511f9f4cf100cade0610a34"
-    //appKey shareappkey
-    //appSecret shareappsecret
-
-    //fp true
 
     ShareSDK {
-
         loopShare true
-        //zxing true
-        ffmpeg true
-
 
         //平台配置信息
         devInfo {
@@ -75,8 +67,8 @@ MobSDK {
                 sortId 4
                 appId "wx4868b35061f87885"
                 appSecret "64020361b8ec4c99936c0e3999a9f249"
-                userName "gh_afb25ac019c9"
-                path "pages/index/index.html?id=1"
+                userName "gh_52568203455c"
+                path "pages/index/index"
                 withShareTicket true
                 miniprogramType 0
                 bypassApproval false
@@ -113,25 +105,16 @@ MobSDK {
                 enable true
             }
 
-            /*callbackUri "https://mob.com"*/
-//            Facebook {
-//                id 8
-//                sortId 8
-//                appKey "1412473428822331"
-//                appSecret "a42f4f3f867dc947b9ed6020c2e93558"
-//                callbackUri "https://www.baidu.com"
-//                shareByAppClient true
-//                enable true
-//            }
 
             Facebook {
                 id 8
                 sortId 8
-                appKey "1412473428822331"
-                appSecret "a42f4f3f867dc947b9ed6020c2e93558"
+                appKey "511964850136811"
+                appSecret "e16751673390039c15a78e2f8a41c234"
                 callbackUri "https://www.baidu.com"
                 officialVersion "default"
                 faceBookLoginProtocolScheme "fb1412473428822331"
+                faceBookAppType "game"
                 shareByAppClient true
                 enable true
             }
@@ -208,9 +191,9 @@ MobSDK {
             Evernote {
                 id 19
                 sortId 19
-                hostType "sandbox"
-                appKey "sharesdk-7807"
-                appSecret "d05bf86993836004"
+                hostType "product"
+                appKey "942136852"
+                appSecret "48da074af467b41b"
                 shareByAppClient true
                 enable true
             }
@@ -250,22 +233,12 @@ MobSDK {
                 appId "1432928"
                 enable true
             }
-
-//            Flickr {
-//                id 24
-//                sortId 24
-//                appKey "33d833ee6b6fca49943363282dd313dd"
-//                appSecret "3a2c5b42a8fbb8bb"
-//                callbackUri "http://www.sharesdk.cn"
-//                enable true
-//            }
-
-            /*  <!-- Flickr账号文档上的key --> */
+            
             Flickr {
                 id 24
                 sortId 24
-                appKey "25b37df6cbce215c2c75441308a83236"
-                appSecret "d54c35f5c2caa1f0"
+                appKey "f30bd86e4c60789e0363475ff3037447"
+                appSecret "616c626f41bc9b5e"
                 callbackUri "http://m.mob.com/"
                 enable true
             }
@@ -300,9 +273,9 @@ MobSDK {
             Instagram {
                 id 28
                 sortId 28
-                appId "ff68e3216b4f4f989121aa1c2962d058"
-                appSecret "1b2e82f110264869b3505c3fe34e31a1"
-                callbackUri "http://sharesdk.cn"
+                appId "1145188725813939"
+                appSecret "256191f3abb381a9d481f6f9bbaef179"
+                callbackUri "https://www.mob.com/"
                 enable true
             }
 
@@ -419,7 +392,7 @@ MobSDK {
                 appId "2015072400185895"
                 enable true
             }
-              //老的钉钉分享的APPKEY
+
             Dingding {
                 id 52
                 sortId 52
@@ -430,16 +403,6 @@ MobSDK {
                 appSecret "FF3al9fkIWTZ6HYnrbMSdsh69HB2X7LP9f6wmciB__s_tj4UAsdbd2IImIpBlppn"
             }
 
-            //钉钉授权的appkey
-//            Dingding {
-//                id 52
-//                sortId 52
-//                appId "dingoai5kl4gh0e7lvrdk1"
-//                appSecret "7Cbf-b8zeqxj3hs0WqEgsv_Y7eQ80ubm8qPmW694MMMybjJJqrUsADoICm8W3sbN"
-//                callbackUri "https://www.mob.com/sharesdk/dingding"
-//                bypassApproval false
-//                enable true
-//            }
 
             Youtube {
                 id 53
@@ -561,6 +524,7 @@ MobSDK {
                 id = 70
                 sortId = 70
                 appKey = "aw9g7ac2m73tiif8"
+                appSecret "8ecc1433b25147aa4c3b176cc8a7382b"
                 enable = true
             }
         }

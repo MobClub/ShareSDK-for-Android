@@ -1,5 +1,6 @@
 package cn.sharesdk.demo.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
@@ -11,14 +12,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import cn.sharesdk.demo.R;
 import cn.sharesdk.demo.entity.PlatformEntity;
 import cn.sharesdk.demo.entity.SharePlatformType;
 
-/**
- * Created by yjin on 2017/5/11.
- */
 
 public class AuthorizationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -38,8 +37,9 @@ public class AuthorizationAdapter extends RecyclerView.Adapter<RecyclerView.View
 		this.authorizationOnItemClickListener = authorizationOnItemClickListener;
 	}
 
+	@NonNull
 	@Override
-	public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+	public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 		View view;
 		if (viewType == SharePlatformType.TITLE_SHARE_PLAT) {
 			view = inflater.inflate(R.layout.share_title_content, parent, false);
@@ -61,7 +61,7 @@ public class AuthorizationAdapter extends RecyclerView.Adapter<RecyclerView.View
 	}
 
 	@Override
-	public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+	public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 		PlatformEntity entity = lists.get(position);
 		if (holder instanceof ShareViewHolderTitleNormal) {
 			ShareViewHolderTitleNormal holderTitleNormal = (ShareViewHolderTitleNormal) holder;
@@ -75,7 +75,8 @@ public class AuthorizationAdapter extends RecyclerView.Adapter<RecyclerView.View
 				if (lists.get(position).getmPlatform().isAuthValid()) {
 					shareViewAuthNormal.authorization.setText(context.getString(R.string.authorization_txt_delete));
 
-				} else if (lists.get(position).getmPlatform().getName().equals("Dingding")) { //钉钉平台没有token，特殊处理下
+				} else if (lists.get(position).getmPlatform().getName().equals("Dingding")) {
+					//钉钉平台没有token，特殊处理下
 					try {
 						String tempCode = lists.get(position).getmPlatform().getDb().get("tmp_auth_code");
 						if (tempCode != null && tempCode.length() > 0) {
@@ -134,7 +135,7 @@ public class AuthorizationAdapter extends RecyclerView.Adapter<RecyclerView.View
 
 		public ShareViewHolderTitleNormal(View itemView) {
 			super(itemView);
-			textView = (TextView) itemView.findViewById(R.id.titleTxt);
+			textView = itemView.findViewById(R.id.titleTxt);
 		}
 	}
 
@@ -145,9 +146,9 @@ public class AuthorizationAdapter extends RecyclerView.Adapter<RecyclerView.View
 
 		public ShareViewAuthorizationNormal(View itemView) {
 			super(itemView);
-			textView = (TextView) itemView.findViewById(R.id.platName);
-			platIcon = (ImageView) itemView.findViewById(R.id.platIcon);
-			authorization = (TextView) itemView.findViewById(R.id.platStatus);
+			textView = itemView.findViewById(R.id.platName);
+			platIcon = itemView.findViewById(R.id.platIcon);
+			authorization = itemView.findViewById(R.id.platStatus);
 		}
 	}
 

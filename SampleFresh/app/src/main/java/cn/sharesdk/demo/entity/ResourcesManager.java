@@ -14,13 +14,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.HashMap;
 
-import cn.sharesdk.demo.MainActivity;
 import cn.sharesdk.demo.R;
 import cn.sharesdk.framework.Platform;
-
-/**
- * Created by yjin on 2017/5/12.
- */
 
 /**
  * 参数设置类
@@ -60,8 +55,6 @@ public class ResourcesManager {
 	public static float latitude = 23.169f;
 	public static float longitude = 112.908f;
 	public static final String VENUE_DESCRIPTION = "This is a beautiful place!";
-	public String venueId = null;
-	public String checkId = null;
 	public static final String EXT_INFO = "extInfo";
 	public static final String ADDRESS = "address";
 	private String venueDescription;
@@ -221,10 +214,8 @@ public class ResourcesManager {
 			public void run() {
 				String[] urls = randomPic();
 				testImageUrl = urls[1];
-				//imageUrl = urls[1];
 				imageUrl = "http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg";
 				try {
-					//testImage = BitmapHelper.downloadBitmap(MobSDK.getContext(), urls[3]);
 					testImage = BitmapHelper.downloadBitmap(MobSDK.getContext(),
 							PIC1);
 					imageBmp = BitmapHelper.getBitmap(testImage);
@@ -238,7 +229,6 @@ public class ResourcesManager {
 					}
 				}
 				initTestText();
-				//				String videoUrl = "http://www.mob.com/video/ShareSDK.mp4";
 				String videoUrl = "https://highlight-video.cdn.bcebos.com//video//6s//393e812e-b9e6-11eb-858e-7cd30ac11c56.mp4";
 				try {
 					testVideo = new NetworkHelper().downloadCache(MobSDK.getContext(), videoUrl, "videos", true, null);
@@ -285,47 +275,8 @@ public class ResourcesManager {
 		}
 	}
 
-	public static String[] randomPic() {
-//		String url = "http://git.oschina.net/alexyu.yxj/MyTmpFiles/raw/master/kmk_pic_fld/";
-//		String urlSmall = "http://git.oschina.net/alexyu.yxj/MyTmpFiles/raw/master/kmk_pic_fld/small/";
-//		String[] pics = new String[]{
-//				"120.JPG",
-//				"127.JPG",
-//				"130.JPG",
-//				"18.JPG",
-//				"184.JPG",
-//				"22.JPG",
-//				"236.JPG",
-//				"237.JPG",
-//				"254.JPG",
-//				"255.JPG",
-//				"263.JPG",
-//				"265.JPG",
-//				"273.JPG",
-//				"37.JPG",
-//				"39.JPG",
-//				"IMG_2219.JPG",
-//				"IMG_2270.JPG",
-//				"IMG_2271.JPG",
-//				"IMG_2275.JPG",
-//				"107.JPG"
-//		};
-//		int index = 0;
-//		return new String[]{
-//				url + pics[index],
-//				urlSmall + pics[index],
-//				url + pics[index + 1],
-//				urlSmall + pics[index + 1],
-//				url + pics[index + 2],
-//				urlSmall + pics[index + 2],
-//				url + pics[index + 3],
-//				urlSmall + pics[index + 3],
-//				url + pics[index + 4]
-//		};
-		return new String[]{
-				PIC1,
-				PIC2
-		};
+	public String[] randomPic() {
+		return new String[]{ PIC1, PIC2 };
 	}
 
 	public String getFilePath() {
@@ -340,7 +291,6 @@ public class ResourcesManager {
 		this.filePath = filePath;
 	}
 
-	//#endif
 	public static String actionToString(int action) {
 		switch (action) {
 			case Platform.ACTION_AUTHORIZING: {

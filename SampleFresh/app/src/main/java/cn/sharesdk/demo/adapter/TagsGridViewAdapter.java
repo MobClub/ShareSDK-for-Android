@@ -1,5 +1,6 @@
 package cn.sharesdk.demo.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,9 +15,6 @@ import java.util.List;
 
 import cn.sharesdk.demo.R;
 
-/**
- * Created by xiangli on 2018/12/24.
- */
 
 public class TagsGridViewAdapter extends BaseAdapter{
     private Context context;
@@ -95,15 +93,16 @@ public class TagsGridViewAdapter extends BaseAdapter{
         idTags.put("848", new String[]{"球球大作战","最受欢迎的竞技游戏"});
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = null;
         if (convertView == null) {
             viewHolder = new ViewHolder();
             convertView = layoutInflater.inflate(R.layout.grid_item, null);
-            viewHolder.imageView = (ImageView) convertView.findViewById(R.id.item);
-            viewHolder.item_tv_title = (TextView) convertView.findViewById(R.id.item_tv_title);
-            viewHolder.item_tv_content = (TextView) convertView.findViewById(R.id.item_tv_content);
+            viewHolder.imageView = convertView.findViewById(R.id.item);
+            viewHolder.item_tv_title = convertView.findViewById(R.id.item_tv_title);
+            viewHolder.item_tv_content = convertView.findViewById(R.id.item_tv_content);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();

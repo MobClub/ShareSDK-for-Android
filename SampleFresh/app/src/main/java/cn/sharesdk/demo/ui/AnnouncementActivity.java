@@ -42,14 +42,14 @@ public class AnnouncementActivity extends BaseActivity implements View.OnClickLi
 
 	@Override
 	public void initView() {
-		callBack = (ImageView) this.findViewById(R.id.mReback);
+		callBack = this.findViewById(R.id.mReback);
 		callBack.setOnClickListener(this);
-		rightIv = (ImageView) this.findViewById(R.id.rightIv);
+		rightIv = this.findViewById(R.id.rightIv);
 		rightIv.setOnClickListener(this);
 		rightIv.setVisibility(View.VISIBLE);
-		btnNormal = (TextView) findViewById(R.id.btn_normal);
+		btnNormal = findViewById(R.id.btn_normal);
 		btnNormal.setOnClickListener(this);
-		btnLinkCard = (TextView) findViewById(R.id.btn_linkcard);
+		btnLinkCard = findViewById(R.id.btn_linkcard);
 		btnLinkCard.setOnClickListener(this);
 		context = this;
 	}
@@ -123,36 +123,7 @@ public class AnnouncementActivity extends BaseActivity implements View.OnClickLi
 	 */
 	private void onOneKeyShare(){
 		final cn.sharesdk.onekeyshare.OnekeyShare oks = new cn.sharesdk.onekeyshare.OnekeyShare();
-//		oks.setAddress("12345678901");
-//		ResourcesManager manager = ResourcesManager.getInstace(this);
-//		if(!TextUtils.isEmpty(manager.getFilePath())){
-//			oks.setFilePath(manager.getFilePath());
-//		} else{
-//			oks.setFilePath(manager.getFilePath());
-//		}
-//		oks.setTitle(manager.getTitle());
-//		oks.setTitleUrl(manager.getTitleUrl());
-//		oks.setUrl(manager.getUrl());
-//		oks.setMusicUrl(manager.getMusicUrl());
-//		oks.setFilePath(ResourcesManager.getInstace(MobSDK.getContext()).getFilePath());
 		oks.setActivity(this);
-//		String customText = manager.getText();
-//		if (customText != null) {
-//			oks.setText(customText);
-//		} else if (manager.getText() != null && manager.getText().contains("0")) {
-//			oks.setText(manager.getText());
-//		} else {
-//			oks.setText(this.getString(R.string.share_content));
-//		}
-//		oks.setComment(manager.getComment());
-//		oks.setSite(manager.getSite());
-//		oks.setSiteUrl(manager.getSiteUrl());
-//		oks.setVenueName(manager.getVenueName());
-//		oks.setVenueDescription(manager.getVenueDescription());
-//		oks.setSilent(true);
-//		oks.setLatitude(23.169f);
-//		oks.setLongitude(112.908f);
-
 		Bitmap img = BitmapFactory.decodeResource(this.getResources(), R.drawable.linkcard);
 		String path = null;
 		try {
@@ -161,9 +132,6 @@ public class AnnouncementActivity extends BaseActivity implements View.OnClickLi
 		} catch (Throwable throwable) {
 			throwable.printStackTrace();
 		}
-//		oks.setImageData(img);
-
-		//oks.setFilePath(ResourcesManager.testVideo);
 		final String finalPath = path;
 		oks.setShareContentCustomizeCallback(new ShareContentCustomizeCallback() {
 			@Override

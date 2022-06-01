@@ -52,6 +52,9 @@
     <string name="platform_share_mini_app">Share MiniProgram</string>
     <string name="platform_share_linkcard">Share LinkCard</string>
     <string name="platform_share_qqmini">Share QQ MiniProgram</string>
+    <string name="platform_open_qqmini">Opne QQ MiniProgram</string>
+    <string name="platform_open_wxmini_app">Open Wechat MiniProgram</string>
+    <string name="platform_share_dymixfile">Share DY Image And Video</string>
 
     <string name="privacy_details">For details</string>
 </resources>

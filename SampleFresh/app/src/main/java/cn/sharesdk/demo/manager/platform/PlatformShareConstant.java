@@ -1,12 +1,10 @@
 package cn.sharesdk.demo.manager.platform;
 
+import android.util.Log;
+
 import java.lang.reflect.Field;
 
 import cn.sharesdk.framework.Platform;
-
-/**
- * Created by yjin on 2017/5/17.
- */
 
 /**
  * 各个平台具体可以实现的分享类型的定义类。
@@ -67,17 +65,17 @@ public class PlatformShareConstant {
 
 
 	private PlatformShareConstant(){
-		douyin = new Integer[]{Platform.SHARE_VIDEO, Platform.SHARE_IMAGE};
+		douyin = new Integer[]{Platform.SHARE_VIDEO, Platform.SHARE_IMAGE, Platform.DY_MIXFILE};
 		sinaWeibo = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_VIDEO, Platform.SHARE_LINKCARD};
 		tencentWeibo = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
 		qzone = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT,Platform.SHARE_WEBPAGE, Platform.SHARE_VIDEO};
 		wechat = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE, Platform.SHARE_MUSIC,
-				Platform.SHARE_VIDEO, Platform.SHARE_EMOJI, Platform.SHARE_WXMINIPROGRAM};
+				Platform.SHARE_VIDEO, Platform.SHARE_FILE,Platform.SHARE_WXMINIPROGRAM,Platform.OPEN_WXMINIPROGRAM};
 		wechatMoments = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE, Platform.SHARE_MUSIC, Platform.SHARE_VIDEO};
 		wechatFavorite = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_WEBPAGE,
-				Platform.SHARE_MUSIC, Platform.SHARE_VIDEO};
-		qq = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_WEBPAGE, Platform.SHARE_MUSIC};
-		facebook = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_WEBPAGE, Platform.SHARE_VIDEO};
+				Platform.SHARE_MUSIC,Platform.SHARE_FILE, Platform.SHARE_VIDEO};
+		qq = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_WEBPAGE, Platform.SHARE_MUSIC,Platform.QQ_MINI_PROGRAM,Platform.OPEN_QQMINIPROGRAM};
+		facebook = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_WEBPAGE, Platform.SHARE_VIDEO,Platform.SHARE_TEXT};
 		twitter = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
 		renren = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
 		kaiXin = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
@@ -141,17 +139,16 @@ public class PlatformShareConstant {
 		Class cls = platformShare.getClass();
 		Field[] fields = cls.getFields();
 		try {
-			for (int i = 0; i < fields.length; i++) {
-				if (fields[i].getName().toUpperCase().equals(name.toUpperCase())) {
-					Object obj = fields[i].get(platformShare);
-					if (obj != null && obj instanceof Integer[]) {
-						Integer[] lists = (Integer[]) obj;
-						return lists;
+			for (Field field : fields) {
+				if (field.getName().toUpperCase().equals(name.toUpperCase())) {
+					Object obj = field.get(platformShare);
+					if (obj instanceof Integer[]) {
+						return (Integer[]) obj;
 					}
 				}
 			}
-		} catch (Exception e) {
-
+		} catch (Throwable e) {
+			Log.e("PlatformShareConstant","byNamePlatforms fail");
 		}
 		return new Integer[]{};
 	}

@@ -19,16 +19,12 @@ import java.util.Map;
 import androidx.fragment.app.Fragment;
 import cn.sharesdk.demo.R;
 
-/**
- * Created by xiangli on 2018/12/21.
- */
 
 public class TagsHomeFragment extends Fragment implements View.OnClickListener {
     private Map<String, Object> data;
     private List<String> tags_id;
 
     public TagsHomeFragment() {
-        // Required empty public constructor
     }
 
     private Button tagsShop;

@@ -73,9 +73,9 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
 	@Override
 	public void initView() {
-		horizontalScrollView = (HorizontalScrollView) this.findViewById(R.id.mHorizontal);
-		container = (LinearLayout) this.findViewById(R.id.mContainer);
-		viewPager = (ViewPager) this.findViewById(R.id.mViewPager);
+		horizontalScrollView = this.findViewById(R.id.mHorizontal);
+		container = this.findViewById(R.id.mContainer);
+		viewPager = this.findViewById(R.id.mViewPager);
 		addScrollView(titles);
 		pagerAdapter = new PagerAdapter(getSupportFragmentManager());
 		pagerAdapter.setTitles(titles);
@@ -95,7 +95,11 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 	protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == PRIVACY_CODE) {
-			checkPermissions();
+			if (resultCode == 1){
+//				checkPermissions();
+			}else if (resultCode == 0){
+				finish();
+			}
 		}
 	}
 
@@ -195,9 +199,9 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 		for (int i = 0; i < count; i++) {
 			final String title = titles[i];
 			final View view = layoutInflater.inflate(R.layout.horizontal_item_layout, null);
-			final LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.itemLayout);
-			final TextView titeTxt = (TextView) view.findViewById(R.id.titleName);
-			final ImageView titleImg = (ImageView) view.findViewById(R.id.titleImg);
+			final LinearLayout linearLayout = view.findViewById(R.id.itemLayout);
+			final TextView titeTxt = view.findViewById(R.id.titleName);
+			final ImageView titleImg = view.findViewById(R.id.titleImg);
 			titeTxt.setText(title);
 			if (curClassIndex == i) {
 				titeTxt.setTextColor(Color.parseColor(COLOR_SELECTED));

@@ -1,7 +1,5 @@
 package cn.sharesdk.demo.platform.tencent.qq;
 
-import android.util.Log;
-
 import com.mob.MobSDK;
 
 import cn.sharesdk.demo.entity.ResourcesManager;
@@ -12,11 +10,7 @@ import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.tencent.qq.QQ;
 
 import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_TEXT;
-import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
 
-/**
- * Created by yjin on 2017/6/22.
- */
 
 public class QQShare {
     private PlatformActionListener platformActionListener;
@@ -41,8 +35,6 @@ public class QQShare {
     public void shareImage() {
         Platform platform = ShareSDK.getPlatform(QQ.NAME);
         Platform.ShareParams shareParams = new Platform.ShareParams();
-        //shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-        //Log.d("ShareSDK", " ImagePath " + ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
         shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
         platform.setPlatformActionListener(platformActionListener);
         shareParams.setShareType(Platform.SHARE_IMAGE);
@@ -54,7 +46,7 @@ public class QQShare {
         Platform.ShareParams shareParams = new Platform.ShareParams();
         shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
         shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-        shareParams.setTitleUrl(ResourcesManager.getInstace(MobSDK.getContext()).getTitleUrl());
+        shareParams.setTitleUrl("https://mp3.9ku.com/hot/2010/09-30/398811.mp3");
         shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
         shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
         shareParams.setMusicUrl(ResourcesManager.getInstace(MobSDK.getContext()).getMusicUrl());
@@ -94,4 +86,14 @@ public class QQShare {
     }
 
 
+    public void openQQMiniProgram() {
+        Platform platform = ShareSDK.getPlatform(QQ.NAME);
+        Platform.ShareParams shareParams = new Platform.ShareParams();
+        shareParams.setQQMiniProgramAppid("1108108864");
+        shareParams.setQQMiniProgramPath("pages/tabBar/index/index");
+        shareParams.setQQMiniProgramType("release");
+        shareParams.setShareType(Platform.OPEN_QQMINIPROGRAM);
+        platform.setPlatformActionListener(platformActionListener);
+        platform.share(shareParams);
+    }
 }

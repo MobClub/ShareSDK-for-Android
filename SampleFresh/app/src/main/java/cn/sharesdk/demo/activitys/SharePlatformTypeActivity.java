@@ -1,10 +1,13 @@
 package cn.sharesdk.demo.activitys;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ClipData;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -21,6 +24,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -96,6 +102,8 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 	private List<Integer> lists;
 	private String name;
 	private Context context;
+	int CHECKPERMISSION ;
+	String[] permissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
 	@Override
 	public int getLayoutId() {
@@ -177,14 +185,47 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 	}
 
 	@Override
-	public void onItemClick(int platformCode) {
+	public void onItemClick(final int platformCode) {
 		Platform platform = App.getInstance().getPlatformList().get(0);
 		if (platform != null) {
 			Log.e(MainActivity.TAG, " SharePlatformTypeActivity onItemClick()");
 
-			ShareTypeManager shareManager = new ShareTypeManager(this, platform);
-			shareManager.shareShow(platformCode, this);
+			if (!checkPermissions()){
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setTitle("Demo申请权限")
+						.setMessage("申请文件存储权限\n仅用于读取外部路径下的图片与视频等文件用于分享")
+						.setPositiveButton("去允许", new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								CHECKPERMISSION = platformCode;
+								ActivityCompat.requestPermissions(SharePlatformTypeActivity.this, permissions,platformCode);
+							}
+						})
+						.setNegativeButton("拒绝", new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								dialog.dismiss();
+								Toast.makeText(SharePlatformTypeActivity.this,"拒绝了申请权限",Toast.LENGTH_SHORT).show();
+							}
+						});
+				AlertDialog alertDialog = builder.create();
+				alertDialog.show();
+			}else {
+				ShareTypeManager shareManager = new ShareTypeManager(SharePlatformTypeActivity.this, platform);
+				shareManager.shareShow(platformCode, SharePlatformTypeActivity.this);
+			}
 		}
+	}
+
+	/* 检查使用权限 */
+	private boolean checkPermissions() {
+		boolean havePermission = true;
+		for (String permission : permissions) {
+			if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED){
+				havePermission = false;
+			}
+		}
+		return havePermission;
 	}
 
 	private MyPlatformActionListener myPlatformActionListener = null;
@@ -296,6 +337,20 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 					Uri meipaiVideo = data.getData();
 					meipaiShareVideo(UriUtil.convertUriToPath(this, meipaiVideo));
 					break;
+			}
+		}
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		if (requestCode == CHECKPERMISSION){
+			if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				Platform platform = App.getInstance().getPlatformList().get(0);
+				ShareTypeManager shareManager = new ShareTypeManager(SharePlatformTypeActivity.this, platform);
+				shareManager.shareShow(CHECKPERMISSION, SharePlatformTypeActivity.this);
+			} else if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_DENIED) {
+				Toast.makeText(this, "您已拒绝提供权限，如需使用该功能需要在设置里为本应用提供相应权限", Toast.LENGTH_SHORT).show();
 			}
 		}
 	}
@@ -455,7 +510,7 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 	private void meipaiShareImage(String imagePath) {
 		myPlatformActionListener = new MyPlatformActionListener();
 		MeipaiShare meipaiShare = new MeipaiShare(myPlatformActionListener);
-		meipaiShare.shareImagePath(this, imagePath);
+		meipaiShare.shareImagePath(imagePath);
 	}
 
 	/**
@@ -464,7 +519,7 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 	private void meipaiShareVideo(String videoPath) {
 		myPlatformActionListener = new MyPlatformActionListener();
 		MeipaiShare meipaiShare = new MeipaiShare(myPlatformActionListener);
-		meipaiShare.shareVideo(this, videoPath);
+		meipaiShare.shareVideo(videoPath);
 	}
 
 	/**
@@ -537,13 +592,7 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 				@Override
 				public void run() {
 					try {
-						//if (platform.getName().equals("Douyin")) {
-							//Toast.makeText(context, "onComplete",  Toast.LENGTH_LONG).show();
-						//} else if (context != null) {
-							//dialog(context, "Share Complete");
-						//} else {
-							Toast.makeText(MobSDK.getContext(), "Share Complete", Toast.LENGTH_SHORT).show();
-						//}
+						Toast.makeText(MobSDK.getContext(), "Share Complete", Toast.LENGTH_SHORT).show();
 					} catch (Throwable t) {
 						Log.e("QQQ", " onComplete " + t);
 					}
@@ -558,31 +607,23 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 			runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					//if (platform.getName().equals("Douyin")) {
-						//Toast.makeText(MobSDK.getContext(), "Share Failure" + error, Toast.LENGTH_LONG).show();
-					//} else if (context != null) {
-						//dialog(MobSDK.getContext(), "Share Failure" + error);
-					//} else {
-						Toast.makeText(MobSDK.getContext(), "Share Failure" + error, Toast.LENGTH_LONG).show();
-					//}
-
+					Toast.makeText(MobSDK.getContext(), "Share Failure" + error, Toast.LENGTH_LONG).show();
 				}
 			});
 		}
 
 		@Override
 		public void onCancel(Platform platform, int i) {
-			try {
-				//if (platform.getName().equals("Douyin")) {
-					//Toast.makeText(MobSDK.getContext(), "Cancel Share", Toast.LENGTH_LONG).show();
-				//} else if (context != null) {
-					//dialog(MobSDK.getContext(), "Cancel Share");
-				//} else {
-					Toast.makeText(MobSDK.getContext(), "Cancel Share", Toast.LENGTH_LONG).show();
-				//}
-			} catch (Throwable t) {
-				Log.e("QQQ", " onCancel " + t);
-			}
+			runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						Toast.makeText(MobSDK.getContext(), "Cancel Share", Toast.LENGTH_LONG).show();
+					} catch (Throwable t) {
+						Log.e("QQQ", " onCancel " + t);
+					}
+				}
+			});
 		}
 	}
 

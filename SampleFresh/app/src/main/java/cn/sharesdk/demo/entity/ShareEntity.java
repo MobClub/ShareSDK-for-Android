@@ -4,9 +4,6 @@ import android.text.TextUtils;
 
 import cn.sharesdk.framework.Platform;
 
-/**
- * Created by yjin on 2017/5/12.
- */
 
 public class ShareEntity {
 	private static volatile Platform.ShareParams param;

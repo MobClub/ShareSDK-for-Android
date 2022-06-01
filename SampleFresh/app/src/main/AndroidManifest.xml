@@ -10,54 +10,13 @@
         android:resizeable="true"
         android:smallScreens="true" />
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
     <uses-permission
         android:name="android.permission.INTERNET" />
-    <uses-permission
-        android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission
-        android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission
-        android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--读取外部存储需要-->
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission
-        android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission
-        android:name="android.permission.RECEIVE_SMS" />
-    <uses-permission
-        android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission
-        android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission
-        android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission
-        android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission
-        android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission
-        android:name="android.permission.INTERNET" />
-    <uses-permission
-        android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission
-        android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name= "android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED"/>
-
-
 
     <application
         android:name=".App"
@@ -65,25 +24,11 @@
         android:debuggable="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:usesCleartextTraffic="true"
-        android:supportsRtl="true"
         android:requestLegacyExternalStorage="true"
+        android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:ignore="HardcodedDebugMode"
-        tools:replace="android:name"
-        >
-
-<!--        <activity-->
-<!--            android:name="cn.sharesdk.demo.wxapi.WXEntryActivity"-->
-<!--            android:configChanges="keyboardHidden|orientation|screenSize"-->
-<!--            android:exported="true"-->
-<!--            android:launchMode="singleTask"-->
-<!--            android:taskAffinity="cn.sharesdk.demo"-->
-<!--            android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
-
-
-        <!-- 抖音老的授权方式 -->
-        <!--<action android:name="douyin.callback.action" />-->
+        tools:replace="android:name">
 
         <activity android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
@@ -93,7 +38,6 @@
                 <action android:name="douyin.callback.action" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -103,19 +47,19 @@
         <activity android:name=".ui.TagsItemActivity" />
         <activity android:name=".ui.TagsItemInfoActivity" />
         <activity android:name=".ui.AnnouncementActivity" />
-        <activity android:name="cn.sharesdk.demo.ShareMobLinkActivity"></activity>
+        <activity android:name=".ShareMobLinkActivity"></activity>
 
-        <activity android:name="cn.sharesdk.demo.utils.PrivacyDialog"
+        <activity android:name=".utils.PrivacyDialog"
             android:theme="@style/dialogstyle"/>
 
         <activity android:name="cn.sharesdk.PassWordShow"
             android:theme="@style/dialogstyle"/>
 
-        <activity android:name="cn.sharesdk.demo.ui.VideoPassWordShow"
+        <activity android:name=".ui.VideoPassWordShow"
             android:theme="@style/dialogstyle"/>
 
 
-        <activity android:name="cn.sharesdk.demo.ui.LoadingActivity"
+        <activity android:name=".ui.LoadingActivity"
             android:theme="@style/dialogstyle"/>
 
 
@@ -123,20 +67,18 @@
         <meta-data
             android:name="com.snapchat.kit.sdk.scopes"
             android:resource="@array/snap_connect_scopes" />
-
         <meta-data
             android:name="com.snapchat.kit.sdk.clientId"
-            android:value="dc8e6068-0578-41b8-8392-4da009519725" />
-
-
+            android:value="d8f03743-ce0c-433b-a49b-50b4fb0dbd55" />
         <meta-data
             android:name="com.snapchat.kit.sdk.redirectUrl"
-            android:value="ssdkmoba0b0c0d0snap://mob" />
+            android:value="mob://sharesdk/demo" />
         <meta-data
             android:name="com.snapchat.kit.sdk.scopes"
-            android:resource="@array/snap_connect_scopes" /> <!-- This should be a string array of scopes !-->
+            android:resource="@array/snap_connect_scopes" />
 
         <activity
+            android:exported="true"
             android:name="com.snapchat.kit.sdk.SnapKitActivity"
             android:launchMode="singleTask">
             <intent-filter>
@@ -144,24 +86,32 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="ssdkmoba0b0c0d0snap" />
+                <data
+                    android:host="sharesdk"
+                    android:path="/demo"
+                    android:scheme="mob" />
             </intent-filter>
         </activity>
 
         <provider
-            android:authorities="${applicationId}.fileprovider"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
             android:exported="false"
-            android:grantUriPermissions="true"
-            >
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"
-                />
+                android:resource="@xml/file_paths" />
         </provider>
-        <!-- ========================   snapchat ============================= -->
 
-
+        <!--        打开微信小程序-->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:exported="true"
+            android:taskAffinity="cn.sharesdk.demo"
+            android:launchMode="singleTask">
+        </activity>
 
     </application>
 

@@ -10,13 +10,11 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import cn.sharesdk.demo.R;
 import cn.sharesdk.demo.manager.platform.PlatformUITypeManager;
 
-/**
- * Created by yjin on 2017/5/17.
- */
 
 public class SharePlatformAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 	private List<Integer> platForms;
@@ -33,19 +31,17 @@ public class SharePlatformAdapter extends RecyclerView.Adapter<RecyclerView.View
 		this.context = context;
 		inflater = LayoutInflater.from(context);
 	}
+	@NonNull
 	@Override
-	public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-		View view = null;
-		if(view == null){
-			view = inflater.inflate(R.layout.share_platform_item,parent,false);
-		}
+	public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+		View view = inflater.inflate(R.layout.share_platform_item,parent,false);
 		return new PlatFormViewHolder(view);
 	}
 
 	@Override
-	public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+	public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
 		final int shareType = platForms.get(position);
-		if (holder != null && holder instanceof PlatFormViewHolder) {
+		if (holder instanceof PlatFormViewHolder) {
 			PlatFormViewHolder viewHolder = (PlatFormViewHolder) holder;
 			viewHolder.platformIcon.setImageResource(PlatformUITypeManager.getPlatformIcon(shareType));
 			viewHolder.platformName.setText(PlatformUITypeManager.getPlatformName(shareType));
@@ -71,9 +67,9 @@ public class SharePlatformAdapter extends RecyclerView.Adapter<RecyclerView.View
 
 		public PlatFormViewHolder(View itemView) {
 			super(itemView);
-			platformIcon = (ImageView)itemView.findViewById(R.id.mSelectedPlatform);
-			platformName = (TextView)itemView.findViewById(R.id.mplatformName);
-			platformBtn = (RelativeLayout) itemView.findViewById(R.id.shareBtn);
+			platformIcon = itemView.findViewById(R.id.mSelectedPlatform);
+			platformName = itemView.findViewById(R.id.mplatformName);
+			platformBtn = itemView.findViewById(R.id.shareBtn);
 		}
 	}
 

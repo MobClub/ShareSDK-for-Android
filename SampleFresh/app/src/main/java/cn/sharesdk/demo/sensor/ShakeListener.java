@@ -6,9 +6,6 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
-/**
- * Created by yjin on 2017/5/17.
- */
 
 public class ShakeListener implements SensorEventListener {
 	// 速度阈值，当摇晃速度达到这值后产生作用

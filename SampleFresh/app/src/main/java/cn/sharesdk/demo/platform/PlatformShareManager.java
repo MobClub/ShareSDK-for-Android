@@ -1,8 +1,5 @@
 package cn.sharesdk.demo.platform;
 
-/**
- * Created by yjin on 2017/6/19.
- */
 
 import android.app.Activity;
 
@@ -35,6 +32,7 @@ import cn.sharesdk.demo.platform.meipai.MeipaiShare;
 import cn.sharesdk.demo.platform.mingdao.MingdaoShare;
 import cn.sharesdk.demo.platform.oasis.OasisShare;
 import cn.sharesdk.demo.platform.pinterest.PinterestShare;
+import cn.sharesdk.demo.platform.pocket.PocketShare;
 import cn.sharesdk.demo.platform.reddit.RedditShare;
 import cn.sharesdk.demo.platform.renren.RenrenShare;
 import cn.sharesdk.demo.platform.sina.WeiboShare;
@@ -83,6 +81,7 @@ import cn.sharesdk.meipai.Meipai;
 import cn.sharesdk.mingdao.Mingdao;
 import cn.sharesdk.oasis.Oasis;
 import cn.sharesdk.pinterest.Pinterest;
+import cn.sharesdk.pocket.Pocket;
 import cn.sharesdk.reddit.Reddit;
 import cn.sharesdk.renren.Renren;
 import cn.sharesdk.sina.weibo.SinaWeibo;
@@ -204,6 +203,9 @@ public class PlatformShareManager {
 		} else if (name.equals(Wework.NAME)) {
 			WeworkShare weworkShare = new WeworkShare(platformActionListener);
 			weworkShare.shareText();
+		} else if (name.equals(Facebook.NAME)) {
+			FacebookShare share = new FacebookShare(platformActionListener);
+			share.shareText();
 		} else if (name.equals(FacebookMessenger.NAME)) {
 			FacebookMessengerShare share = new FacebookMessengerShare(platformActionListener);
 			share.shareText();
@@ -257,7 +259,7 @@ public class PlatformShareManager {
 			fourSquareShare.shareImage();
 		} else if (name.equals(Instagram.NAME)) {
 			InstagramShare instagramShare = new InstagramShare(platformActionListener);
-			instagramShare.shareTextImage(activity);
+			instagramShare.shareTextImage();
 		} else if (name.equals(KaiXin.NAME)) {
 			KaiXinShare kaiXinShare = new KaiXinShare(platformActionListener);
 			kaiXinShare.shareImage();
@@ -426,6 +428,12 @@ public class PlatformShareManager {
 		}else if (name.equals(VKontakte.NAME)) {
 			VKontakteShare vKontakteShare = new VKontakteShare(platformActionListener);
 			vKontakteShare.shareWebPager();
+		} else if (name.equals(Tumblr.NAME)){
+			TumblrShare tumblrShare = new TumblrShare(platformActionListener);
+			tumblrShare.shareWebPager();
+		} else if (name.equals(Pocket.NAME)){
+			PocketShare pocketShare = new PocketShare(platformActionListener);
+			pocketShare.shareWebPager();
 		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
@@ -524,7 +532,10 @@ public class PlatformShareManager {
 		} else if (name.equals(FacebookMessenger.NAME)) {
 			FacebookMessengerShare share = new FacebookMessengerShare(platformActionListener);
 			share.shareVideo();
-		}else {
+		} else if (name.equals(Tumblr.NAME)){
+			TumblrShare tumblrShare = new TumblrShare(platformActionListener);
+			tumblrShare.shareVideo();
+		} else {
 			Platform platform = ShareSDK.getPlatform(name);
 			Platform.ShareParams shareParams = new Platform.ShareParams();
 			shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
@@ -628,4 +639,15 @@ public class PlatformShareManager {
 	}
 
 
+	public void shareDYMixFile(String name, Activity activity) {
+		DouyinShare douyinShare = new DouyinShare(platformActionListener);
+		douyinShare.shareMixFile(activity);
+	}
+
+	public void openQQMiniProgram(String name) {
+		if (name.equals(QQ.NAME)) {
+			QQShare qqShare = new QQShare(platformActionListener);
+			qqShare.openQQMiniProgram();
+		}
+	}
 }

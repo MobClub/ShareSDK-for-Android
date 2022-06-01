@@ -1,8 +1,5 @@
 package cn.sharesdk.demo.utils;
 
-/**
- * Created by yjin on 2017/5/22.
- */
 
 public class AuthorizationUserInfoUtils {
 
@@ -16,8 +13,7 @@ public class AuthorizationUserInfoUtils {
 				|| "Laiwang".equals(platform) || "LaiwangMoments".equals(platform)
 				|| "Alipay".equals(platform) || "AlipayMoments".endsWith(platform)
 				|| "FacebookMessenger".equals(platform) || "Youtube".equals(platform)
-				|| "Meipai".equals(platform) || "Tiktok".equals(platform)
-				|| "Telegram".equals(platform)
+				|| "Meipai".equals(platform)
 		);
 	}
 
@@ -29,7 +25,6 @@ public class AuthorizationUserInfoUtils {
 				|| "BaiduTieba".equals(platform) || "Laiwang".equals(platform)
 				|| "LaiwangMoments".equals(platform) || "Alipay".equals(platform)
 				|| "AlipayMoments".equals(platform) || "FacebookMessenger".equals(platform)
-				|| "Youtube".equals(platform) || "Meipai".equals(platform)
-				|| "Tiktok".equals(platform) || "Telegram".equals(platform));
+				|| "Youtube".equals(platform) || "Meipai".equals(platform));
 	}
 }

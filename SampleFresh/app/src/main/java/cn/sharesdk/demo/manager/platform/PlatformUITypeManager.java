@@ -3,9 +3,6 @@ package cn.sharesdk.demo.manager.platform;
 import cn.sharesdk.demo.R;
 import cn.sharesdk.framework.Platform;
 
-/**
- * Created by yjin on 2017/5/17.
- */
 
 /**
  * 类型资源管理类，资源图片跟分享类型的映射。
@@ -20,6 +17,7 @@ public class PlatformUITypeManager {
 			case Platform.SHARE_TEXT: {
 				return R.mipmap.share_text;
 			}
+			case Platform.DY_MIXFILE:
 			case Platform.SHARE_IMAGE: {
 				return R.mipmap.share_multimages;
 			}
@@ -32,17 +30,15 @@ public class PlatformUITypeManager {
 			case Platform.SHARE_EMOJI: {
 				return R.mipmap.share_icon;
 			}
-			case Platform.SHARE_WXMINIPROGRAM: {
+			case Platform.QQ_MINI_PROGRAM:
+			case Platform.OPEN_QQMINIPROGRAM:
+			case Platform.SHARE_WXMINIPROGRAM:
+			case Platform.OPEN_WXMINIPROGRAM: {
 				return R.mipmap.share_mini_program;
 			}
-			case Platform.SHARE_MUSIC: {
-				return R.mipmap.share_url_music;
-			}
+			case Platform.SHARE_MUSIC:
 			case Platform.SHARE_LINKCARD: {
 				return R.mipmap.share_url_music;
-			}
-			case Platform.SHARE_ZHIFUBAO: {
-				return R.mipmap.share_webpage;
 			}
 			default: {
 				return R.mipmap.share_webpage;
@@ -73,9 +69,6 @@ public class PlatformUITypeManager {
 			case Platform.SHARE_WXMINIPROGRAM: {
 				return R.string.platform_share_mini_app;
 			}
-			case Platform.SHARE_WEBPAGE: {
-				return R.string.platform_share_webpage;
-			}
 			case Platform.SHARE_MUSIC: {
 				return R.string.platform_share_music;
 			}
@@ -84,6 +77,15 @@ public class PlatformUITypeManager {
 			}
 			case Platform.QQ_MINI_PROGRAM: {
 				return R.string.platform_share_qqmini;
+			}
+			case Platform.OPEN_WXMINIPROGRAM: {
+				return R.string.platform_open_wxmini_app;
+			}
+			case Platform.OPEN_QQMINIPROGRAM:{
+				return R.string.platform_open_qqmini;
+			}
+			case Platform.DY_MIXFILE:{
+				return R.string.platform_share_dymixfile;
 			}
 			default: {
 				return R.string.platform_share_webpage;

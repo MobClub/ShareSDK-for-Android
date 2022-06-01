@@ -15,9 +15,6 @@ import com.mob.MobSDK;
 import androidx.annotation.NonNull;
 import cn.sharesdk.demo.R;
 
-/**
- * Created by xiangli on 2019/4/11.
- */
 
 public class CommomDialog extends Dialog implements View.OnClickListener{
 

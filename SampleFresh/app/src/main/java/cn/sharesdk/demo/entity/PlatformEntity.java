@@ -2,9 +2,6 @@ package cn.sharesdk.demo.entity;
 
 import cn.sharesdk.framework.Platform;
 
-/**
- * Created by yjin on 2017/5/12.
- */
 
 public class PlatformEntity extends OutBaseEntity {
 

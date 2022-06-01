@@ -15,9 +15,6 @@ import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_TEXT;
 import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
 import static cn.sharesdk.demo.entity.ResourcesManager.IMAGE_TEST_URL;
 
-/**
- * Created by yjin on 2017/6/22.
- */
 
 public class YixinShare {
 	private PlatformActionListener platformActionListener;
@@ -45,8 +42,6 @@ public class YixinShare {
 		shareParams.setText("yixinText");
 		shareParams.setTitle("title");
 		shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
-		//shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-		//shareParams.setImageData(ResourcesManager.getInstace(MobSDK.getContext()).getImageBmp());
 		shareParams.setShareType(Platform.SHARE_IMAGE);
 		shareParams.setScence(0);
 		platform.setPlatformActionListener(platformActionListener);

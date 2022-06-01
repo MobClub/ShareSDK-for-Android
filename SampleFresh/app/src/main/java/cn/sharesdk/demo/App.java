@@ -17,9 +17,6 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.loopshare.LoopShareResultListener;
 
-/**
- * Created by yjin on 2017/5/15.
- */
 
 public class App extends Application {
 	private BaseActivity currentActivity;
@@ -29,10 +26,7 @@ public class App extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-
-		//腾讯bugly
-		//CrashReport.initCrashReport(getApplicationContext(), "01e797c609", true);
-
+		MobSDK.submitPolicyGrantResult(true,null);
 		//loopshare init and set Listener
 		ShareSDK.prepareLoopShare(new LoopShareResultListener() {
 			@Override
@@ -50,15 +44,7 @@ public class App extends Application {
 
 		this.app = this;
 		ResourcesManager.getInstace(MobSDK.getContext());
-
-//		Intent intent = new Intent();
-//		intent.setClass(this, PrivacyDialog.class);
-//		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//		MobSDK.getContext().startActivity(intent);
-
 	}
-
-	//todo test
 
 	public static App getInstance(){
 		return app;

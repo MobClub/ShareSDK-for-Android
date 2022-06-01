@@ -21,7 +21,6 @@ import cn.sharesdk.wechat.friends.Wechat;
 public class ShareMobLinkActivity extends Activity implements View.OnClickListener{
 
     public final static String LINK_URL = "http://m.93lj.com/sharelink/";
-    //public final static String LINK_URL = "http://m.93lj.com/sharelink?mobid=ziqMNf";
     public final static String LINK_TEXT = "loopShare 重磅上线！一键实现分享闭环！错过它，就错过了全世界~";
 
     private LargeImageView imageShow;
@@ -46,18 +45,16 @@ public class ShareMobLinkActivity extends Activity implements View.OnClickListen
     @Override
     protected void onResume() {
         super.onResume();
-        //String str = ShareSDK.getCustomDataFromLoopShare().toString();
-        //Log.e("QQQ", " 测试场景还原数据 " + str);
     }
 
     private void initView() {
-        imageShow = (LargeImageView) findViewById(R.id.imageView);
+        imageShow = findViewById(R.id.imageView);
         imageShow.setImage(R.mipmap.sharelink);
 
-        btnShowlink = (Button) findViewById(R.id.btn_showlink);
+        btnShowlink = findViewById(R.id.btn_showlink);
         btnShowlink.setOnClickListener(this);
 
-        btn_back = (Button) findViewById(R.id.btn_back);
+        btn_back = findViewById(R.id.btn_back);
         btn_back.setOnClickListener(this);
 
         btnCustomShowlink = findViewById(R.id.btn_custome_showlink);
@@ -95,8 +92,7 @@ public class ShareMobLinkActivity extends Activity implements View.OnClickListen
             Platform.ShareParams shareParams = new  Platform.ShareParams();
             shareParams.setText(LINK_TEXT);
             shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-            //shareParams.setTitleUrl(LINK_URL);
-            shareParams.setUrl("http://j.mob.com/secure/Tempo.jspa/my-work/week?type=LIST");
+            shareParams.setUrl("https://f.moblink.mob.com/share/link/indexAnd.html");
             HashMap<String, Object> mobIdMap = new HashMap<String, Object>();
             mobIdMap.put("path", "pathTest");
 
@@ -123,7 +119,7 @@ public class ShareMobLinkActivity extends Activity implements View.OnClickListen
             Platform.ShareParams shareParams = new  Platform.ShareParams();
             shareParams.setText(LINK_TEXT);
             shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-            shareParams.setTitleUrl(LINK_URL);
+            shareParams.setTitleUrl("https://f.moblink.mob.com/share/link/indexAnd.html");
             shareParams.setShareType(Platform.SHARE_WEBPAGE);
             platform.share(shareParams);
         } else {

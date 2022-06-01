@@ -1,7 +1,5 @@
 package cn.sharesdk.demo.platform.linkedin;
 
-import android.app.Activity;
-
 import com.mob.MobSDK;
 
 import cn.sharesdk.demo.entity.ResourcesManager;
@@ -12,9 +10,7 @@ import cn.sharesdk.linkedin.LinkedIn;
 
 import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
 
-/**
- * Created by yjin on 2017/6/22.
- */
+
 public class LinkedinShare {
 	private PlatformActionListener platformActionListener;
 

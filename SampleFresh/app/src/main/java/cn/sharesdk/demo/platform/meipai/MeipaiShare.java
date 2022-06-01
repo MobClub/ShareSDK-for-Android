@@ -17,9 +17,6 @@ import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.littleredbook.Littleredbook;
 import cn.sharesdk.meipai.Meipai;
 
-/**
- * Created by yjin on 2017/6/22.
- */
 
 public class MeipaiShare {
 
@@ -52,7 +49,7 @@ public class MeipaiShare {
 		dialog.show();
 	}
 
-	public void shareVideo(Activity activity, String videoPath) {
+	public void shareVideo(String videoPath) {
 		Platform platform = ShareSDK.getPlatform(Meipai.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setFilePath(videoPath);
@@ -80,7 +77,7 @@ public class MeipaiShare {
 		dialog.show();
 	}
 
-	public void shareImagePath(Activity activity, String imagePath) {
+	public void shareImagePath(String imagePath) {
 		Platform platform = ShareSDK.getPlatform(Meipai.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setImagePath(imagePath);

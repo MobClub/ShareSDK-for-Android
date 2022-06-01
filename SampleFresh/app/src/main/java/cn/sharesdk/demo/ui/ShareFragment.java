@@ -55,9 +55,7 @@ import cn.sharesdk.framework.utils.SSDKLog;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.wechat.friends.Wechat;
 
-/**
- * Created by yjin on 2017/5/9.
- */
+
 
 public class ShareFragment extends BaseFragment implements CallBackShotImageView, ShareRecylerViewAdapter.ShotOnClickListener, OnSharkeShotListener {
 	private RecyclerView listView;
@@ -269,13 +267,6 @@ public class ShareFragment extends BaseFragment implements CallBackShotImageView
 						EventBus.getDefault().post(new MessageWrap(1));
 						dialog.dismiss();
 						Toast.makeText(getActivity(), "视频已经保存到相册，请去相册分享", Toast.LENGTH_LONG).show();
-
-//						Intent intent = new Intent();
-//						intent.setAction(Intent.ACTION_SEND);
-//						intent.setType("video/*");
-//						intent = Intent.createChooser(intent, String.valueOf("分享视频"));
-//						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//						MobSDK.getContext().startActivity(intent);
 					}
 
 					@Override
@@ -345,9 +336,6 @@ public class ShareFragment extends BaseFragment implements CallBackShotImageView
 	}
 
 	private void goToAnnouncement() {
-		/** linkcard的宣传 **/
-		//getContext().startActivity(new Intent(getContext(), AnnouncementActivity.class));
-		/** link + share 的宣传 **/
 		getContext().startActivity(new Intent(getContext(), ShareMobLinkActivity.class));
 	}
 

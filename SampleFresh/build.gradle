@@ -2,38 +2,26 @@
 
 buildscript {
     String urlStr = "http://mvn.mob.com/android"
-    if (hasProperty("mavenUrl")) {
-        urlStr = getProperty("mavenUrl")
+    if (rootProject.hasProperty("mavenUrl")) {
+        urlStr = rootProject.getProperty("mavenUrl")
     }
-    println "mavenUrl: ${urlStr}, ${hasProperty("mavenUrl")}"
+    println "mavenUrl: ${urlStr}, ${rootProject.hasProperty("mavenUrl")}"
     ext {
         mavenUrl = urlStr
     }
 
     repositories {
         jcenter()
-
+        mavenCentral()
         maven {
             url = mavenUrl
         }
-
-
-
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
-
-
-        //maven { url "https://maven.google.com" }
         google()
-
         //====================== snapchat ======================
         maven {
             url "https://storage.googleapis.com/snap-kit-build/maven"
         }
         //====================== snapchat ======================
-
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.3'
@@ -44,37 +32,25 @@ buildscript {
 
     configurations.all {
         resolutionStrategy.cacheDynamicVersionsFor 1, 'seconds'
-        //exclude group: 'com.mob', module: 'MobLink-3.0.2'
-        //resolutionStrategy.force 'com.mob:MobCommons:2020.0915.1032'
     }
 }
 
 allprojects {
     repositories {
-        maven {
-            name 'Google'
-            url "https://maven.google.com"
-        }
         jcenter()
+        mavenCentral()
         maven {
-//            url "http://mvn.mob.com/android"
-            url mavenUrl
+            url = mavenUrl
         }
-
-
         google()
-
-
         //====================== snapchat ======================
         maven {
             url "https://storage.googleapis.com/snap-kit-build/maven"
         }
         //====================== snapchat ======================
-
     }
     configurations.all {
         resolutionStrategy.cacheDynamicVersionsFor 1, 'seconds'
-        //exclude group: 'com.mob', module: 'MobLink-3.0.2'
     }
 }
 

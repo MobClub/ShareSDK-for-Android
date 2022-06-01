@@ -11,11 +11,8 @@ import java.lang.reflect.Method;
 public class ActivityHook {
     /**
      * java.lang.IllegalStateException: Only fullscreen opaque activities can request orientation
-     * <p>
      * 修复android 8.0存在的问题
-     * <p>
      * 在Activity中onCreate()中super之前调用
-     *
      * @param activity
      */
     public static void hookOrientation(Activity activity) {

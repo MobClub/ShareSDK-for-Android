@@ -18,9 +18,7 @@ import cn.sharesdk.tencent.qzone.QZone;
 import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_TEXT;
 import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
 
-/**
- * Created by yjin on 2017/6/22.
- */
+
 
 public class QQZoneShare {
 	private PlatformActionListener platformActionListener;
@@ -37,10 +35,6 @@ public class QQZoneShare {
 		Platform platform = ShareSDK.getPlatform(QZone.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText("Share SDK QQ空间文字分享");
-		/*shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-		shareParams.setTitleUrl(ResourcesManager.getInstace(MobSDK.getContext()).getTitleUrl());
-		shareParams.setSite(ResourcesManager.getInstace(MobSDK.getContext()).getText());
-		shareParams.setSiteUrl(ResourcesManager.getInstace(MobSDK.getContext()).getTitleUrl());*/
 		platform.setPlatformActionListener(platformActionListener);
 		shareParams.setShareType(Platform.SHARE_TEXT);
 		platform.share(shareParams);

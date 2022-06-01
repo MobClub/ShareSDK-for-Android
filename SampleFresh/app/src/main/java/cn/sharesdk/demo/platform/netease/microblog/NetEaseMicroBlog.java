@@ -7,9 +7,6 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 
-/**
- * Created by yjin on 2017/6/22.
- */
 
 public class NetEaseMicroBlog {
 	private PlatformActionListener platformActionListener;

@@ -77,12 +77,8 @@ public class TiktokShare {
 		builder.setMessage("请选择视频").setPositiveButton("视频", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				//Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
-				//intent.setDataAndType(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, "video/*");
-				//intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 				Intent intent = new Intent(Intent.ACTION_PICK);
 				intent.setType("video/*");
-//				intent.setAction(Intent.ACTION_GET_CONTENT);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 				activity.startActivityForResult(intent, KT_VIDEO);
 			}

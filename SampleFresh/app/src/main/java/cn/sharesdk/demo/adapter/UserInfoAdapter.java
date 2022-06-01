@@ -1,9 +1,9 @@
 package cn.sharesdk.demo.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +12,13 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import cn.sharesdk.demo.R;
 import cn.sharesdk.demo.entity.PlatformEntity;
 import cn.sharesdk.demo.entity.SharePlatformType;
 import cn.sharesdk.framework.Platform;
 
-/**
- * Created by yjin on 2017/5/11.
- */
 
 public class UserInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -44,8 +42,9 @@ public class UserInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 		this.authorizationOnItemClickListener = authorizationOnItemClickListener;
 	}
 
+	@NonNull
 	@Override
-	public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+	public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 		View view;
 		if (viewType == SharePlatformType.TITLE_SHARE_PLAT) {
 			view = inflater.inflate(R.layout.share_title_content, parent, false);
@@ -67,7 +66,7 @@ public class UserInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 	}
 
 	@Override
-	public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+	public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 		PlatformEntity entity = lists.get(position);
 		if (holder instanceof ShareViewHolderTitleNormal) {
 			ShareViewHolderTitleNormal holderTitleNormal = (ShareViewHolderTitleNormal) holder;
@@ -140,7 +139,7 @@ public class UserInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 		public ShareViewHolderTitleNormal(View itemView) {
 			super(itemView);
-			textView = (TextView) itemView.findViewById(R.id.titleTxt);
+			textView = itemView.findViewById(R.id.titleTxt);
 		}
 	}
 
@@ -151,9 +150,9 @@ public class UserInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 		public ShareViewAuthorizationNormal(View itemView) {
 			super(itemView);
-			textView = (TextView) itemView.findViewById(R.id.platName);
-			platIcon = (ImageView) itemView.findViewById(R.id.platIcon);
-			authorization = (TextView) itemView.findViewById(R.id.platStatus);
+			textView = itemView.findViewById(R.id.platName);
+			platIcon = itemView.findViewById(R.id.platIcon);
+			authorization = itemView.findViewById(R.id.platStatus);
 		}
 	}
 

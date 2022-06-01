@@ -8,9 +8,6 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.youtube.Youtube;
 
-/**
- * Created by yjin on 2017/6/22.
- */
 
 public class YoutubeShare {
 	private PlatformActionListener platformActionListener;

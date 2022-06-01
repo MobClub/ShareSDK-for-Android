@@ -17,9 +17,6 @@ import cn.sharesdk.instagram.Instagram;
 
 import static cn.sharesdk.demo.entity.ResourcesManager.IMAGE_TEST_URL;
 
-/**
- * Created by yjin on 2017/6/22.
- */
 
 public class InstagramShare {
 	public static final int INS_PHOTO = 21;
@@ -41,8 +38,7 @@ public class InstagramShare {
 		qqq.share(sp);
 	}
 
-	public void shareTextImage(Activity activity){
-		//openSystemGallery(activity);
+	public void shareTextImage(){
 		Platform platform = ShareSDK.getPlatform(Instagram.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText("Ins share test");
@@ -56,8 +52,6 @@ public class InstagramShare {
 		Platform platform = ShareSDK.getPlatform(Instagram.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText("Ins share test");
-		//shareParams.setImagePath(path);
-		//Log.e("QQQ", " ins选择的图片 " + path);
 		shareParams.setImageUrl(IMAGE_TEST_URL);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
@@ -71,7 +65,6 @@ public class InstagramShare {
 				Intent intent = new Intent(Intent.ACTION_PICK);
 				intent.setType("image/*");
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-				//startActivityForResult(intent, PHOTO_REQUEST_GALLERY);
 				activity.startActivityForResult(intent, INS_PHOTO);
 			}
 		});
@@ -84,7 +77,6 @@ public class InstagramShare {
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setFilePath(ResourcesManager.getInstace(MobSDK.getContext()).getFilePath());
-		//TODO
 		Log.e("WWW", " INS分享视频的路径 " + ResourcesManager.getInstace(MobSDK.getContext()).getFilePath());
 		shareParams.setShareType(Platform.SHARE_VIDEO);
 		platform.setPlatformActionListener(platformActionListener);

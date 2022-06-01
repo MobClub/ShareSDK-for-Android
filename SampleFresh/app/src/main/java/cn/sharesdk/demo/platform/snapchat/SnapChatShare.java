@@ -88,24 +88,8 @@ public class SnapChatShare {
         shareParams.setFileImage(mSnapFile);
         shareParams.setFileSticker(mStickerFile);
         shareParams.setText("hahahahTestonly");
-        shareParams.setUrl("https://www.baidu.com");
         shareParams.setShareType(Platform.SHARE_IMAGE);
-        platform.setPlatformActionListener(new PlatformActionListener() {
-            @Override
-            public void onComplete(Platform platform, int action, HashMap<String, Object> res) {
-                Log.e("QQQ", " onComplete " + res);
-            }
-
-            @Override
-            public void onError(Platform platform, int action, Throwable t) {
-                Log.e("QQQ", " onError " + t);
-            }
-
-            @Override
-            public void onCancel(Platform platform, int action) {
-                Log.e("QQQ", " onCancel ");
-            }
-        });
+        platform.setPlatformActionListener(platformActionListener);
         platform.share(shareParams);
 
     }
@@ -139,31 +123,15 @@ public class SnapChatShare {
         shareParams.setFileVideo(mSnapFile);
         shareParams.setFileSticker(mStickerFile);
         shareParams.setText("hahahahTestonly");
-        shareParams.setUrl("https://www.baidu.com");
         shareParams.setShareType(Platform.SHARE_VIDEO);
-        platform.setPlatformActionListener(new PlatformActionListener() {
-            @Override
-            public void onComplete(Platform platform, int action, HashMap<String, Object> res) {
-                Log.e("QQQ", " onComplete " + res);
-            }
-
-            @Override
-            public void onError(Platform platform, int action, Throwable t) {
-                Log.e("QQQ", " onError " + t);
-            }
-
-            @Override
-            public void onCancel(Platform platform, int action) {
-                Log.e("QQQ", " onCancel ");
-            }
-        });
+        platform.setPlatformActionListener(platformActionListener);
         platform.share(shareParams);
     }
 
 
-    private boolean saveContentLocally(Activity activity, Intent intent, File snapFile) {
+    private void saveContentLocally(Activity activity, Intent intent, File snapFile) {
         if (intent == null || intent.getData() == null) {
-            return false;
+            return;
         }
         InputStream inputStream;
 
@@ -171,19 +139,17 @@ public class SnapChatShare {
             inputStream = activity.getContentResolver().openInputStream(intent.getData());
         } catch (FileNotFoundException e) {
             Toast.makeText(activity, "Could not open file", Toast.LENGTH_SHORT).show();
-            return false;
+            return;
         }
         if (inputStream == null) {
             Toast.makeText(MobSDK.getContext(), "File does not exist", Toast.LENGTH_SHORT).show();
-            return false;
+            return;
         }
         try {
             copyFile(inputStream, snapFile);
         } catch (IOException e) {
             Toast.makeText(MobSDK.getContext(), "Failed save file locally", Toast.LENGTH_SHORT).show();
-            return false;
         }
-        return true;
     }
 
     private static void copyFile(InputStream inputStream, File file) throws IOException {

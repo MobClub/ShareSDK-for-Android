@@ -3,8 +3,6 @@ package cn.sharesdk.demo.platform.facebook;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -14,19 +12,15 @@ import com.mob.MobSDK;
 import com.mob.tools.utils.BitmapHelper;
 
 import androidx.appcompat.app.AlertDialog;
-import cn.sharesdk.demo.R;
-import cn.sharesdk.demo.entity.ResourcesManager;
+
+import cn.sharesdk.demo.UriUtil;
 import cn.sharesdk.facebook.Facebook;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 
 import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_TEXT;
-import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_URL;
 
-/**
- * Created by yjin on 2017/6/22.
- */
 
 public class FacebookShare {
 	public static final int FACEBOOK_VIDEO = 0X0520;
@@ -104,6 +98,9 @@ public class FacebookShare {
 			Platform platform = ShareSDK.getPlatform(Facebook.NAME);
 			if (platform.isClientValid()) {
 				Platform.ShareParams shareParams = new Platform.ShareParams();
+				//拆包使用FilePath
+//				shareParams.setFilePath(UriUtil.convertUriToPath(MobSDK.getContext(), videoUri));
+//				//原生使用videoUri
 				shareParams.setVideoUri(videoUri);
 				shareParams.setHashtag("Test share HashTag for video");
 				shareParams.setShareType(Platform.SHARE_VIDEO);
@@ -134,6 +131,15 @@ public class FacebookShare {
 			Log.e("ShareSDK", "shareWebPage catch: " + t);
 			Toast.makeText(MobSDK.getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
 		}
+	}
+
+	public void shareText(){
+		Platform platform = ShareSDK.getPlatform(Facebook.NAME);
+		Platform.ShareParams shareParams = new Platform.ShareParams();
+		shareParams.setText("test text");
+		shareParams.setShareType(Platform.SHARE_TEXT);
+		platform.setPlatformActionListener(platformActionListener);
+		platform.share(shareParams);
 	}
 
 }

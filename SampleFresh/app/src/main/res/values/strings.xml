@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">ShareSDK</string>
-    <string name="moblink_share">分享</string>
+    <string name="moblink_share">闭环分享到QQ</string>
     <string name="moblink_back">返回</string>
-    <string name="custom_link_share">自定义分享</string>
+    <string name="custom_link_share">闭环分享到微信</string>
 
     <!--title-->
     <string name="share_title_share_txt">分享</string>
@@ -89,6 +89,9 @@
     <string name="platform_share_mini_app">分享微信小程序</string>
     <string name="platform_share_linkcard">分享LinkCard</string>
     <string name="platform_share_qqmini">分享QQ小程序</string>
+    <string name="platform_open_qqmini">打开QQ小程序</string>
+    <string name="platform_open_wxmini_app">打开微信小程序</string>
+    <string name="platform_share_dymixfile">分享图片和视频</string>
     <string name="title_activity_tags_item">TagsItemActivity</string>
 
     <!-- TODO: Remove or change this placeholder text -->
