@@ -16,7 +16,6 @@ MobSDK {
     appSecret "5713f0d88511f9f4cf100cade0610a34"
 
     ShareSDK {
-        version '3.9.10'
         loopShare true
 
         //平台配置信息
