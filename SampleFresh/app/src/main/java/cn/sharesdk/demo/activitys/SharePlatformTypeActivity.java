@@ -102,8 +102,9 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 	private List<Integer> lists;
 	private String name;
 	private Context context;
-	int CHECKPERMISSION ;
-	String[] permissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE};
+	private int CHECKPERMISSION ;
+	String[] permissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE
+			,Manifest.permission.READ_MEDIA_IMAGES,Manifest.permission.READ_MEDIA_VIDEO};
 
 	@Override
 	public int getLayoutId() {

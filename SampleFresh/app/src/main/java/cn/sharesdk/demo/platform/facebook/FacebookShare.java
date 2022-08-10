@@ -81,7 +81,7 @@ public class FacebookShare {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					Intent intent = new Intent(Intent.ACTION_PICK);
-					intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
+					intent.setDataAndType(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, "video/*");
 					activity.startActivityForResult(intent, FACEBOOK_VIDEO);
 
 				}

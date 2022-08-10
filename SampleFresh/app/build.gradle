@@ -28,9 +28,9 @@ android {
     defaultConfig {
         applicationId "cn.sharesdk.demo"
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 80
-        versionName "3.9.9"
+        versionName "3.9.10"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -67,6 +67,12 @@ android {
 
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
 }
 
 
@@ -97,5 +103,9 @@ dependencies {
     ])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'org.greenrobot:eventbus:3.1.1'
+
+    implementation 'com.facebook.android:facebook-share:14.1.0'
+    implementation 'com.facebook.android:facebook-login:14.1.0'
+
 }
 
