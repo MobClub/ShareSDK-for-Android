@@ -112,9 +112,10 @@ MobSDK {
                 appKey "511964850136811"
                 appSecret "e16751673390039c15a78e2f8a41c234"
                 callbackUri "https://www.baidu.com"
-                officialVersion "default"
+                officialVersion "14.1.0"
                 faceBookLoginProtocolScheme "fb1412473428822331"
                 faceBookAppType "game"
+                faceBookClientToken "69328ee535a48e58af22bc42ecdb7174"
                 shareByAppClient true
                 enable true
             }

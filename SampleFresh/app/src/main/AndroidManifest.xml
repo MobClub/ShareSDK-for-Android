@@ -119,9 +119,6 @@
             android:launchMode="singleTask">
         </activity>
 
-        <meta-data android:name="com.facebook.sdk.ClientToken"
-            android:value="69328ee535a48e58af22bc42ecdb7174"/>
-
 
     </application>
 
