@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -103,8 +104,7 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 	private String name;
 	private Context context;
 	private int CHECKPERMISSION ;
-	String[] permissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE
-			,Manifest.permission.READ_MEDIA_IMAGES,Manifest.permission.READ_MEDIA_VIDEO};
+	String[] permissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
 	@Override
 	public int getLayoutId() {
@@ -221,6 +221,10 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 	/* 检查使用权限 */
 	private boolean checkPermissions() {
 		boolean havePermission = true;
+		if (Build.VERSION.SDK_INT >= 32){
+			permissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE
+					,Manifest.permission.READ_MEDIA_IMAGES,Manifest.permission.READ_MEDIA_VIDEO};
+		}
 		for (String permission : permissions) {
 			if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED){
 				havePermission = false;
