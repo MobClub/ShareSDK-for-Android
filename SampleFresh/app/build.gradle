@@ -104,8 +104,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'org.greenrobot:eventbus:3.1.1'
 
-    implementation 'com.facebook.android:facebook-share:14.1.0'
-    implementation 'com.facebook.android:facebook-login:14.1.0'
 
 }
 
