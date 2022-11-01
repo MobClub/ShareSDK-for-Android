@@ -105,17 +105,16 @@ MobSDK {
                 enable true
             }
 
-
             Facebook {
                 id 8
                 sortId 8
-                appKey "511964850136811"
-                appSecret "e16751673390039c15a78e2f8a41c234"
+                appKey "1412473428822331"
+                appSecret "a42f4f3f867dc947b9ed6020c2e93558"
                 callbackUri "https://www.baidu.com"
                 officialVersion "14.1.0"
                 faceBookLoginProtocolScheme "fb1412473428822331"
-                faceBookAppType "game"
                 faceBookClientToken "69328ee535a48e58af22bc42ecdb7174"
+                faceBookAppType "game"
                 shareByAppClient true
                 enable true
             }
@@ -123,9 +122,11 @@ MobSDK {
             Twitter {
                 id 9
                 sortId 9
-                appKey "viOnkeLpHBKs6KXV7MPpeGyzE"
-                appSecret "NJEglQUy2rqZ9Io9FcAU9p17omFqbORknUpRrCDOK46aAbIiey"
-                callbackUri "http://mob.com"
+                //v2
+                appKey "WjmQNOqQB5YwPTs3AcZXVXYn3"
+                appSecret "CWEkJUeq1sTMt4OzKMo08iRe1OlK468NAVh0XBxNtFgvvjbRl4"
+                callbackUri "https://www.mob.com"
+                IsUseV2 true
                 shareByAppClient true
                 bypassApproval true
                 enable true
@@ -455,9 +456,8 @@ MobSDK {
             Douyin {
                 id 59
                 sortId 1
-                appKey "aw9ivykfjvi4hpwo"
-                appSecret "42b4caa6bda60bd49f05f06d0a4956e1"
-                callbackAct "cn.sharesdk.demo.MainActivity"
+                appKey "awycvl19mldccyso"
+                appSecret "8793a4dfdc3636cbda0924a3cfbc8424"
                 enable true
             }
 
@@ -527,6 +527,17 @@ MobSDK {
                 appKey = "aw9g7ac2m73tiif8"
                 appSecret "8ecc1433b25147aa4c3b176cc8a7382b"
                 enable = true
+            }
+            TapTap {
+                id = 71
+                sortId = 71
+                appKey "r63Ew3PKSZuDGi3UUY"
+                appSecret "9sZ2Q0WmGlNuo5fXgUZutemXq0qbhbTflDChEixC"
+                callbackUri "https://r63ew3pk.cloud.tds1.tapapis.cn"
+                isUseDTS true
+                //TapRegionType.CN：中国大陆，TapRegionType.IO：其他国家或地区
+                regionType "CN"
+                enable  true
             }
         }
     }
