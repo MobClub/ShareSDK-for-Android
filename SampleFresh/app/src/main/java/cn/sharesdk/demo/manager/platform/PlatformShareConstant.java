@@ -65,7 +65,7 @@ public class PlatformShareConstant {
 
 
 	private PlatformShareConstant(){
-		douyin = new Integer[]{Platform.SHARE_VIDEO, Platform.SHARE_IMAGE, Platform.DY_MIXFILE};
+		douyin = new Integer[]{Platform.SHARE_VIDEO, Platform.SHARE_IMAGE, Platform.DY_MIXFILE,Platform.SHARE_DYIM_IMG,Platform.SHARE_DYIM_WEBPAGE};
 		sinaWeibo = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT, Platform.SHARE_VIDEO, Platform.SHARE_LINKCARD};
 		tencentWeibo = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT};
 		qzone = new Integer[]{Platform.SHARE_IMAGE, Platform.SHARE_TEXT,Platform.SHARE_WEBPAGE, Platform.SHARE_VIDEO};

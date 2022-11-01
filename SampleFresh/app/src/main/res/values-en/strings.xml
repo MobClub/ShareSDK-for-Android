@@ -55,6 +55,9 @@
     <string name="platform_open_qqmini">Opne QQ MiniProgram</string>
     <string name="platform_open_wxmini_app">Open Wechat MiniProgram</string>
     <string name="platform_share_dymixfile">Share DY Image And Video</string>
+    <string name="platform_douyin_im_img">share Douyin IM IMG</string>
+    <string name="platform_douyin_im_webpage">share Douyin IM WEBAGE</string>
+
 
     <string name="privacy_details">For details</string>
 </resources>

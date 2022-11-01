@@ -534,7 +534,7 @@ MobSDK {
                 appKey "r63Ew3PKSZuDGi3UUY"
                 appSecret "9sZ2Q0WmGlNuo5fXgUZutemXq0qbhbTflDChEixC"
                 callbackUri "https://r63ew3pk.cloud.tds1.tapapis.cn"
-                isUseDTS true
+                isUseDTS false
                 //TapRegionType.CN：中国大陆，TapRegionType.IO：其他国家或地区
                 regionType "CN"
                 enable  true

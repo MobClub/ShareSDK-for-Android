@@ -78,7 +78,14 @@ public class ShareTypeManager {
             }break;
             case Platform.OPEN_WXMINIPROGRAM:{
                 openWXMiniProgram();
-            }
+            }break;
+            case Platform.SHARE_DYIM_IMG:{
+                shareDYIMIMG(activity);
+            }break;
+            case Platform.SHARE_DYIM_WEBPAGE:{
+                shareDYIMWEBPAGE(activity);
+            }break;
+
         }
     }
 
@@ -99,6 +106,19 @@ public class ShareTypeManager {
         platformShareManager.setPlatformActionListener(myPlatformActionListener);
         platformShareManager.shareText(platform.getName());
     }
+
+    private void shareDYIMWEBPAGE(Activity activity) {
+        PlatformShareManager platformShareManager = new PlatformShareManager();
+        platformShareManager.setPlatformActionListener(myPlatformActionListener);
+        platformShareManager.shareDYIMWEBPAGE(platform.getName(),activity);
+    }
+
+    private void shareDYIMIMG(Activity activity) {
+        PlatformShareManager platformShareManager = new PlatformShareManager();
+        platformShareManager.setPlatformActionListener(myPlatformActionListener);
+        platformShareManager.shareDYIM(platform.getName(),activity);
+    }
+
 
     public void shareVideo(Activity activity) {
         PlatformShareManager platformShareManager = new PlatformShareManager();

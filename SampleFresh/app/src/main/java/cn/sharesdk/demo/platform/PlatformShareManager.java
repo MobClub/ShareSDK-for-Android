@@ -650,4 +650,15 @@ public class PlatformShareManager {
 			qqShare.openQQMiniProgram();
 		}
 	}
+
+	public void shareDYIM(String name,Activity activity) {
+		DouyinShare douyinShare = new DouyinShare(platformActionListener);
+		douyinShare.shareImIMG(activity);
+	}
+
+	public void shareDYIMWEBPAGE(String name,Activity activity) {
+		DouyinShare douyinShare = new DouyinShare(platformActionListener);
+		douyinShare.shareImWEBPAGE(activity);
+	}
+
 }

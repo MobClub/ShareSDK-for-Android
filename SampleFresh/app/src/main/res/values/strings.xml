@@ -121,6 +121,9 @@
     <string name="announce_try_it">赶紧戳下面按钮，试试看~</string>
     <string name="announce_txt_normal">普通分享</string>
     <string name="announce_txt_linkcard">LinkCard分享</string>
+    <string name="platform_douyin_im_img">分享到抖音好友(图片)</string>
+    <string name="platform_douyin_im_webpage">分享到抖音好友(链接)</string>
+
 
     <string name="passwrod_share_text">口令分享</string>
     <string name="passwrod_share_video">视频二维码</string>

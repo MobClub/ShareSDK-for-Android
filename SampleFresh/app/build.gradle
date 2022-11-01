@@ -104,6 +104,14 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'org.greenrobot:eventbus:3.1.1'
 
+    //taptap使用DTS需要
+    // 数据存储
+    implementation 'cn.leancloud:storage-android:+'
+    // 即时通讯
+    implementation 'cn.leancloud:realtime-android:+'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+
 
 }
 

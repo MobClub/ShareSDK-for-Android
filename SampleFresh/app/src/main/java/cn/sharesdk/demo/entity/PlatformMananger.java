@@ -36,7 +36,7 @@ public class PlatformMananger {
 	public static String[] china = {"SinaWeibo", "TencentWeibo", "QZone", "Wechat", "WechatMoments", "WechatFavorite"
 			, "QQ", "Renren", "KaiXin", "Douban", "YouDao", "Yixin", "YixinMoments", "Mingdao",
 			"Alipay", "AlipayMoments", "Dingding", "Meipai","Cmcc","Telecom", "Douyin", "Wework",
-			"HWAccount", "Oasis", "XMAccount", "Kuaishou", "Littleredbook", "Watermelonvideo"};
+			"HWAccount", "Oasis", "XMAccount", "Kuaishou", "Littleredbook", "Watermelonvideo","Taptap"};
 	public static String[] system = {"Email", "ShortMessage", "Bluetooth"};
 
 	private PlatformMananger(Context context) {

@@ -61,6 +61,7 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 
 import static cn.sharesdk.demo.platform.facebook.FacebookShare.FACEBOOK_VIDEO;
+import static cn.sharesdk.demo.platform.douyin.DouyinShare.DOUYIN_IM_IMG;
 import static cn.sharesdk.demo.platform.littleredbook.LittleredbookShare.LITTLEREDBOOK_IMAGE;
 import static cn.sharesdk.demo.platform.littleredbook.LittleredbookShare.LITTLEREDBOOK_VIDEO;
 import static cn.sharesdk.demo.platform.douyin.DouyinShare.DOUYIN_VIDEO;
@@ -86,9 +87,6 @@ import static cn.sharesdk.demo.platform.oasis.OasisShare.OASIS_PHOTO_REQUEST_GAL
 import static cn.sharesdk.demo.platform.whatsapp.WhatsAppShare.PHOTO_WHATS_APP;
 import static cn.sharesdk.demo.platform.whatsapp.WhatsAppShare.VIDEO_WHATS_APP;
 
-/**
- * Created by yjin on 2017/5/17.
- */
 
 /**
  * 具体类型分享界面
@@ -249,6 +247,10 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 					Uri douyinVideo = data.getData();
 					startShareVideo(UriUtil.convertUriToPath(this, douyinVideo));
 					break;
+				case DOUYIN_IM_IMG:
+					Uri douyinIMIMG = data.getData();
+					shareIMIMG(UriUtil.convertUriToPath(this, douyinIMIMG));
+					break;
 				case KT_IMAGE:
 					Uri tiktokImage = data.getData();
 					tiktokShareImage(UriUtil.convertUriToPath(this, tiktokImage));
@@ -345,6 +347,16 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 			}
 		}
 	}
+
+	/**
+	 * 抖音IM本地图片分享
+	 **/
+	private void shareIMIMG(String imgPath) {
+		myPlatformActionListener = new MyPlatformActionListener();
+		DouyinShare douyinShare = new DouyinShare(myPlatformActionListener);
+		douyinShare.shareIMIMG(this, imgPath);
+	}
+
 
 	@Override
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

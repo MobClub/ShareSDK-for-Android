@@ -91,9 +91,6 @@ public class AuthorizationFragment extends BaseFragment implements Authorization
 				return;
 			}
 		}
-		if (plat.getName().equals("Twitter")){
-			plat.SSOSetting(true);
-		}
 
 		if (plat.isAuthValid()) {
 			plat.removeAccount(true);

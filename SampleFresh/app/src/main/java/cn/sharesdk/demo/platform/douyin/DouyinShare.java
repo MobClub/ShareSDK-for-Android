@@ -21,6 +21,7 @@ public class DouyinShare {
 
     public static final int PHOTO_REQUEST_GALLERY = 10;
     public static final int DOUYIN_VIDEO = 11;
+    public static final int DOUYIN_IM_IMG = 111;
 
     private PlatformActionListener platformActionListener;
 
@@ -38,7 +39,9 @@ public class DouyinShare {
         shareParams.setVideoPathArray(videoPath);
         shareParams.setShareType(Platform.SHARE_VIDEO);
         shareParams.setActivity(activity);
-        shareParams.setHashtags(new String[]{"1","2"});
+        shareParams.setHashtags(new String[]{"tag1","tag2"});
+        shareParams.setStack("stack");
+        shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
         platform.setPlatformActionListener(platformActionListener);
         platform.share(shareParams);
     }
@@ -54,6 +57,10 @@ public class DouyinShare {
         sp.setShareType(Platform.SHARE_IMAGE);
         sp.setActivity(activity);
         sp.setHashtags(new String[]{});
+        sp.setTitle("title");
+        sp.setHashtag("addtag");
+        sp.setTagPosition(1);
+        sp.setStack("stack");
         douyin.setPlatformActionListener(platformActionListener);
         douyin.share(sp);
     }
@@ -96,8 +103,51 @@ public class DouyinShare {
         ResourcesManager instace = ResourcesManager.getInstace(MobSDK.getContext());
         sp.setDYMixFileArray(new String[]{instace.getImagePath(),instace.getFilePath()});
         sp.setActivity(activity);
-        sp.setHashtags(new String[]{"qqq","111"});
+        sp.setHashtags(new String[]{"tag1","tag2"});
+        sp.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
+        sp.setHashtag("TestHashtagTitle");
+        sp.setStack("mixfile");
         sp.setShareType(Platform.DY_MIXFILE);
+        douyin.setPlatformActionListener(platformActionListener);
+        douyin.share(sp);
+    }
+
+    public void shareImIMG(final Activity activity) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setMessage("请选择图片").setPositiveButton("图片", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                activity.startActivityForResult(intent, DOUYIN_IM_IMG);
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+
+    public void shareIMIMG(Activity activity,String imgpath){
+        Platform douyin = ShareSDK.getPlatform(Douyin.NAME);
+        Platform.ShareParams sp = new Platform.ShareParams();
+        sp.setImagePath(imgpath);
+        sp.setActivity(activity);
+        sp.setShareType(Platform.SHARE_DYIM_IMG);
+        douyin.setPlatformActionListener(platformActionListener);
+        douyin.share(sp);
+    }
+
+    public void shareImWEBPAGE(Activity activity) {
+        Platform douyin = ShareSDK.getPlatform(Douyin.NAME);
+        Platform.ShareParams sp = new Platform.ShareParams();
+        sp.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
+        sp.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
+        //链接需要在抖音后台认证
+        sp.setUrl("https://www.mob.com");
+        sp.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
+        sp.setActivity(activity);
+        sp.setShareType(Platform.SHARE_DYIM_WEBPAGE);
         douyin.setPlatformActionListener(platformActionListener);
         douyin.share(sp);
     }
