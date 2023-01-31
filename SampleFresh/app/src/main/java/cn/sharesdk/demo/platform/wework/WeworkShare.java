@@ -5,6 +5,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 
 import androidx.appcompat.app.AlertDialog;
+
+import java.io.File;
+
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
@@ -59,7 +62,8 @@ public class WeworkShare {
     public void shareFile(String path) {
         Platform platform = ShareSDK.getPlatform(Wework.NAME);
         Platform.ShareParams sp = new Platform.ShareParams();
-        sp.setText("文件分享");
+        File file = new File(path);
+        sp.setText(file.getName());
         sp.setFilePath(path);
         sp.setShareType(Platform.SHARE_FILE);
         platform.setPlatformActionListener(platformActionListener);
