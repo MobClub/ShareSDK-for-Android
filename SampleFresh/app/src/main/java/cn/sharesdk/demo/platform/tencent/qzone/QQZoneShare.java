@@ -55,17 +55,33 @@ public class QQZoneShare {
 		platform.share(shareParams);
 	}
 
-	public void shareImage(){
+	public void shareImage(Activity activity){
 		Platform platform = ShareSDK.getPlatform(QZone.NAME);
-		Platform.ShareParams shareParams = new  Platform.ShareParams();
-		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
-		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
-		shareParams.setImageArray(ResourcesManager.getInstace(MobSDK.getContext()).randomPic());
-		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
-		shareParams.setShareTencentWeibo(false);
-		shareParams.setShareType(Platform.SHARE_IMAGE);
-		platform.setPlatformActionListener(platformActionListener);
-		platform.share(shareParams);
+		Platform.ShareParams shareParams = new Platform.ShareParams();
+		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+		builder.setMessage("请选择分享单图或多图").setPositiveButton("单图", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+				shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
+				shareParams.setShareTencentWeibo(false);
+				shareParams.setShareType(Platform.SHARE_IMAGE);
+				platform.setPlatformActionListener(platformActionListener);
+				platform.share(shareParams);
+			}
+		}).setNegativeButton("多图", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				shareParams.setImageArray(ResourcesManager.getInstace(MobSDK.getContext()).getImgArrays());
+				shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
+				shareParams.setShareTencentWeibo(false);
+				shareParams.setShareType(Platform.SHARE_IMAGE);
+				platform.setPlatformActionListener(platformActionListener);
+				platform.share(shareParams);
+			}
+		});
+		AlertDialog dialog = builder.create();
+		dialog.show();
 	}
 
     public void shareVideo(Activity activity) {

@@ -60,8 +60,8 @@ public class ResourcesManager {
 	private String venueDescription;
 	public static final String IMAGE_TEST_URL = "http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg";
 	public static final String IMAGE_TEST_URL_TWO = "https://cdn.pixabay.com/photo/2019/08/08/11/33/stingray-4392776_960_720.jpg";
-	public static final String PIC1="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcambrian-images.cdn.bcebos.com%2Fb5e7f938e8233fdbe343817b5a2610bb_1513843872877.jpeg";
-	public static final String PIC2="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwx3.sinaimg.cn%2Flarge%2F00248yFrly4grmk1mrdepj605k05kt8m02.jpg";
+	public static final String PIC1="http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg";
+	public static final String PIC2="https://download.sdk.mob.com/2022/06/10/16/165485067279753.00.png";
 	public static ResourcesManager getInstace(Context context){
 		synchronized (ResourcesManager.class){
 			if(instance == null){
@@ -212,14 +212,11 @@ public class ResourcesManager {
 	private void download(){
 		new Thread() {
 			public void run() {
-				String[] urls = randomPic();
-				testImageUrl = urls[1];
 				imageUrl = "http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg";
 				try {
-					testImage = BitmapHelper.downloadBitmap(MobSDK.getContext(),
-							PIC1);
-					imageBmp = BitmapHelper.getBitmap(testImage);
-					imagePath = testImage;
+					imagePath = BitmapHelper.downloadBitmap(MobSDK.getContext(), PIC1);
+					testImage = BitmapHelper.downloadBitmap(MobSDK.getContext(), PIC2);
+					imageBmp = BitmapHelper.getBitmap(imagePath);
 				} catch (Throwable t) {
 					testImage = null;
 					try {
@@ -336,8 +333,9 @@ public class ResourcesManager {
 	}
 
 	public String[] getImgArrays() {
-		if(imgArrays == null){
-			imgArrays = new String []{};
+		if (imgArrays == null) {
+			if (!TextUtils.isEmpty(imagePath) && !TextUtils.isEmpty(testImage))
+				imgArrays = new String[]{imagePath, testImage};
 		}
 		return imgArrays;
 	}

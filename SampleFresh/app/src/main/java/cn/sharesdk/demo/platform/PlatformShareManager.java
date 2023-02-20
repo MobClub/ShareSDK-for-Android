@@ -286,7 +286,7 @@ public class PlatformShareManager {
 			qqShare.shareImage();
 		} else if (name.equals(QZone.NAME)) {
 			QQZoneShare qqZoneShare = new QQZoneShare(platformActionListener);
-			qqZoneShare.shareImage();
+			qqZoneShare.shareImage(activity);
 		} else if (name.equals(TencentWeibo.NAME)) {
 			cn.sharesdk.demo.platform.tencent.WeiboShare qqZoneShare = new cn.sharesdk.demo.platform.tencent.WeiboShare(platformActionListener);
 			qqZoneShare.shareImage();
