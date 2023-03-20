@@ -93,7 +93,7 @@ dependencies {
     })
     implementation 'com.android.support:appcompat-v7:26.0.0'
     implementation 'com.google.code.gson:gson:2.8.0'
-    implementation 'com.shizhefei:LargeImageView:1.0.9'
+    implementation 'com.shizhefei:LargeImageView:+'
 
     //snapchat
     implementation([

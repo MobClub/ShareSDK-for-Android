@@ -11,11 +11,13 @@ buildscript {
     }
 
     repositories {
-        jcenter()
+//        jcenter()
         mavenCentral()
         maven {
             url = mavenUrl
         }
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+
         google()
         //====================== snapchat ======================
         maven {
@@ -37,12 +39,14 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
+//        jcenter()
         mavenCentral()
         maven {
             url = mavenUrl
         }
         google()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+
         //====================== snapchat ======================
         maven {
             url "https://storage.googleapis.com/snap-kit-build/maven"
