@@ -101,7 +101,8 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 	private List<Integer> lists;
 	private String name;
 	private Context context;
-	private int CHECKPERMISSION ;
+	private int permissionCode;
+	boolean havePermission = false;
 	String[] permissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
 	@Override
@@ -196,8 +197,8 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 						.setPositiveButton("去允许", new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
-								CHECKPERMISSION = platformCode;
-								ActivityCompat.requestPermissions(SharePlatformTypeActivity.this, permissions,platformCode);
+								permissionCode = platformCode;
+								ActivityCompat.requestPermissions(SharePlatformTypeActivity.this, permissions,permissionCode);
 							}
 						})
 						.setNegativeButton("拒绝", new DialogInterface.OnClickListener() {
@@ -218,14 +219,13 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 
 	/* 检查使用权限 */
 	private boolean checkPermissions() {
-		boolean havePermission = true;
-		if (Build.VERSION.SDK_INT >= 32){
+		if (Build.VERSION.SDK_INT >= 33){
 			permissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE
 					,Manifest.permission.READ_MEDIA_IMAGES,Manifest.permission.READ_MEDIA_VIDEO};
 		}
 		for (String permission : permissions) {
-			if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED){
-				havePermission = false;
+			if (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED){
+				havePermission = true;
 			}
 		}
 		return havePermission;
@@ -360,13 +360,19 @@ public class SharePlatformTypeActivity extends BaseActivity implements View.OnCl
 
 	@Override
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-		if (requestCode == CHECKPERMISSION){
-			if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		if (requestCode == permissionCode) {
+			for (int grantResult : grantResults) {
+				if (grantResult == 0) {
+					havePermission = true;
+					break;
+				}
+			}
+			if (grantResults.length > 0 && havePermission) {
 				Platform platform = App.getInstance().getPlatformList().get(0);
 				ShareTypeManager shareManager = new ShareTypeManager(SharePlatformTypeActivity.this, platform);
-				shareManager.shareShow(CHECKPERMISSION, SharePlatformTypeActivity.this);
-			} else if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_DENIED) {
+				shareManager.shareShow(permissionCode, SharePlatformTypeActivity.this);
+			} else {
 				Toast.makeText(this, "您已拒绝提供权限，如需使用该功能需要在设置里为本应用提供相应权限", Toast.LENGTH_SHORT).show();
 			}
 		}
