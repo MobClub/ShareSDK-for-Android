@@ -43,7 +43,7 @@ public class GooglePlusShare {
 
 	public void shareVideo() {
 		Platform platform = ShareSDK.getPlatform(GooglePlus.NAME);
-		if (platform != null && platform.isClientValid()) {
+		if (platform != null) {
 			Platform.ShareParams shareParams = new Platform.ShareParams();
 			shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 			shareParams.setFilePath(ResourcesManager.getInstace(MobSDK.getContext()).getFilePath());

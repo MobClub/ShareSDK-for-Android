@@ -66,12 +66,6 @@ public class SdkTagsMainActivity extends Activity implements View.OnClickListene
         Platform plat = ShareSDK.getPlatform("SinaWeibo");
         plat.removeAccount(true);
         plat.setPlatformActionListener(this);
-        if (plat.isClientValid()) {
-
-        }
-        if (plat.isAuthValid()) {
-
-        }
         plat.showUser(null);
     }
 
@@ -80,12 +74,6 @@ public class SdkTagsMainActivity extends Activity implements View.OnClickListene
         ShareSDK.setEnableAuthTag(true);
         plat.removeAccount(true);
         plat.setPlatformActionListener(this);
-        if (plat.isClientValid()) {
-
-        }
-        if (plat.isAuthValid()) {
-
-        }
         plat.showUser(null);
     }
 

@@ -15,6 +15,7 @@ import java.util.HashMap;
 import cn.sharesdk.demo.entity.ResourcesManager;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.framework.ShareSDKCallback;
 import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.wechat.friends.Wechat;
 
@@ -87,44 +88,52 @@ public class ShareMobLinkActivity extends Activity implements View.OnClickListen
      * **/
     private void shareCustomUrl() {
         Platform platform = ShareSDK.getPlatform(Wechat.NAME);
-        boolean clientBool = platform.isClientValid();
-        if (clientBool) {
-            Platform.ShareParams shareParams = new  Platform.ShareParams();
-            shareParams.setText(LINK_TEXT);
-            shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-            shareParams.setUrl("https://f.moblink.mob.com/share/link/indexAnd.html");
-            HashMap<String, Object> mobIdMap = new HashMap<String, Object>();
-            mobIdMap.put("path", "pathTest");
+        platform.isClientValid(new ShareSDKCallback<Boolean>() {
+            @Override
+            public void onCallback(Boolean aBoolean) {
+                if (aBoolean) {
+                    Platform.ShareParams shareParams = new Platform.ShareParams();
+                    shareParams.setText(LINK_TEXT);
+                    shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
+                    shareParams.setUrl("https://f.moblink.mob.com/share/link/indexAnd.html");
+                    HashMap<String, Object> mobIdMap = new HashMap<String, Object>();
+                    mobIdMap.put("path", "pathTest");
 
-            HashMap<String, Object> paramasTest = new HashMap<String, Object>();
-            paramasTest.put("key1", "value1");
-            paramasTest.put("key2", "value2");
-            paramasTest.put("key3", "value3");
-            paramasTest.put("key4", "value4");
-            mobIdMap.put("params", paramasTest);
+                    HashMap<String, Object> paramasTest = new HashMap<String, Object>();
+                    paramasTest.put("key1", "value1");
+                    paramasTest.put("key2", "value2");
+                    paramasTest.put("key3", "value3");
+                    paramasTest.put("key4", "value4");
+                    mobIdMap.put("params", paramasTest);
 
-            shareParams.setLoopshareCustomParams(mobIdMap);
+                    shareParams.setLoopshareCustomParams(mobIdMap);
 
-            shareParams.setShareType(Platform.SHARE_WEBPAGE);
-            platform.share(shareParams);
-        } else {
-            Toast.makeText(MobSDK.getContext(), "请先安装QQ客户端", Toast.LENGTH_LONG).show();
-        }
+                    shareParams.setShareType(Platform.SHARE_WEBPAGE);
+                    platform.share(shareParams);
+                } else {
+                    Toast.makeText(MobSDK.getContext(), "请先安装QQ客户端", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     private void shareWebPager(){
         Platform platform = ShareSDK.getPlatform(QQ.NAME);
-        boolean clientBool = platform.isClientValid();
-        if (clientBool) {
-            Platform.ShareParams shareParams = new  Platform.ShareParams();
-            shareParams.setText(LINK_TEXT);
-            shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
-            shareParams.setTitleUrl("https://f.moblink.mob.com/share/link/indexAnd.html");
-            shareParams.setShareType(Platform.SHARE_WEBPAGE);
-            platform.share(shareParams);
-        } else {
-            Toast.makeText(MobSDK.getContext(), "请先安装QQ客户端", Toast.LENGTH_LONG).show();
-        }
+        platform.isClientValid(new ShareSDKCallback<Boolean>() {
+            @Override
+            public void onCallback(Boolean aBoolean) {
+                if (aBoolean) {
+                    Platform.ShareParams shareParams = new Platform.ShareParams();
+                    shareParams.setText(LINK_TEXT);
+                    shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
+                    shareParams.setTitleUrl("https://f.moblink.mob.com/share/link/indexAnd.html");
+                    shareParams.setShareType(Platform.SHARE_WEBPAGE);
+                    platform.share(shareParams);
+                } else {
+                    Toast.makeText(MobSDK.getContext(), "请先安装QQ客户端", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
 }

@@ -18,6 +18,7 @@ import cn.sharesdk.facebook.Facebook;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.framework.ShareSDKCallback;
 
 import static cn.sharesdk.demo.ShareMobLinkActivity.LINK_TEXT;
 
@@ -34,36 +35,41 @@ public class FacebookShare {
 	public void shareImage() {
 		try {
 			final Platform platform = ShareSDK.getPlatform(Facebook.NAME);
-			if (platform.isClientValid()) {
-				//使用原生SDK分享Facebook
-				Thread thread = new Thread() {
-					@Override
-					public void run() {
-						super.run();
-						try {
-							String path = BitmapHelper.downloadBitmap(MobSDK.getContext(), "http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
-							Log.d("ShareSDK", "path: " + path);
+			platform.isClientValid(new ShareSDKCallback<Boolean>() {
+				@Override
+				public void onCallback(Boolean aBoolean) {
+					if (aBoolean) {
+						//使用原生SDK分享Facebook
+						Thread thread = new Thread() {
+							@Override
+							public void run() {
+								super.run();
+								try {
+									String path = BitmapHelper.downloadBitmap(MobSDK.getContext(), "http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
+									Log.d("ShareSDK", "path: " + path);
 
-							Platform.ShareParams shareParams = new Platform.ShareParams();
-							shareParams.setImagePath(path);
-							shareParams.setHashtag("Test Share Image HashTag");
-							shareParams.setShareType(Platform.SHARE_IMAGE);
-							platform.setPlatformActionListener(platformActionListener);
-							platform.share(shareParams);
-						} catch (Throwable t) {
-							Log.d("ShareSDK", "catch:  " + t);
-						}
+									Platform.ShareParams shareParams = new Platform.ShareParams();
+									shareParams.setImagePath(path);
+									shareParams.setHashtag("Test Share Image HashTag");
+									shareParams.setShareType(Platform.SHARE_IMAGE);
+									platform.setPlatformActionListener(platformActionListener);
+									platform.share(shareParams);
+								} catch (Throwable t) {
+									Log.d("ShareSDK", "catch:  " + t);
+								}
+							}
+						};
+						thread.start();
+
+					} else {
+						Platform.ShareParams shareParams = new Platform.ShareParams();
+						shareParams.setText("elseelsetestesdfsdttwetwe");
+						shareParams.setUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
+						platform.setPlatformActionListener(platformActionListener);
+						platform.share(shareParams);
 					}
-				};
-				thread.start();
-
-			} else {
-				Platform.ShareParams shareParams = new Platform.ShareParams();
-				shareParams.setText("elseelsetestesdfsdttwetwe");
-				shareParams.setUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
-				platform.setPlatformActionListener(platformActionListener);
-				platform.share(shareParams);
-			}
+				}
+			});
 		} catch (Throwable t) {
 			Log.e("ShareSDK", "FacebookShare shareImage catch: " + t);
 			Toast.makeText(MobSDK.getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
@@ -96,20 +102,23 @@ public class FacebookShare {
 	public void shareFacebookVideo(Uri videoUri) {
 		try {
 			Platform platform = ShareSDK.getPlatform(Facebook.NAME);
-			if (platform.isClientValid()) {
-				Platform.ShareParams shareParams = new Platform.ShareParams();
-				//拆包使用FilePath
-//				shareParams.setFilePath(UriUtil.convertUriToPath(MobSDK.getContext(), videoUri));
-//				//原生使用videoUri
-				shareParams.setVideoUri(videoUri);
-				shareParams.setHashtag("Test share HashTag for video");
-				shareParams.setShareType(Platform.SHARE_VIDEO);
-				platform.setPlatformActionListener(platformActionListener);
-				platform.share(shareParams);
-			} else {
-				Toast.makeText(MobSDK.getContext(),
-						" Web Share not support share video", Toast.LENGTH_LONG).show();
-			}
+			platform.isClientValid(new ShareSDKCallback<Boolean>() {
+				@Override
+				public void onCallback(Boolean aBoolean) {
+					if (aBoolean) {
+						Platform.ShareParams shareParams = new Platform.ShareParams();
+						//shareParams.setFilePath(UriUtil.convertUriToPath(MobSDK.getContext(), videoUri));
+						shareParams.setVideoUri(videoUri);
+						shareParams.setHashtag("Test share HashTag for video");
+						shareParams.setShareType(Platform.SHARE_VIDEO);
+						platform.setPlatformActionListener(platformActionListener);
+						platform.share(shareParams);
+					} else {
+						Toast.makeText(MobSDK.getContext(),
+								" Web Share not support share video", Toast.LENGTH_LONG).show();
+					}
+				}
+			});
 		} catch (Throwable t) {
 			Log.e("ShareSDK", "shareFacebookVideo catch: " + t);
 			Toast.makeText(MobSDK.getContext(), t.getMessage(), Toast.LENGTH_LONG).show();

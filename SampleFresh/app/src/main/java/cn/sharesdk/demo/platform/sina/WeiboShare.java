@@ -12,6 +12,7 @@ import cn.sharesdk.demo.utils.DemoUtils;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.framework.ShareSDKCallback;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 
 
@@ -33,26 +34,31 @@ public class WeiboShare {
 
 	public void shareImage(){
 		Platform platform = ShareSDK.getPlatform(SinaWeibo.NAME);
-		if (platform.isClientValid()) {
-			Platform.ShareParams shareParams = new  Platform.ShareParams();
-			if (ResourcesManager.getInstace(MobSDK.getContext()).getImagePath() == null) {
-				shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
-			} else {
-				shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+		platform.isClientValid(new ShareSDKCallback<Boolean>() {
+			@Override
+			public void onCallback(Boolean aBoolean) {
+				if (aBoolean) {
+					Platform.ShareParams shareParams = new Platform.ShareParams();
+					if (ResourcesManager.getInstace(MobSDK.getContext()).getImagePath() == null) {
+						shareParams.setImageUrl("http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
+					} else {
+						shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
+					}
+					shareParams.setText("sina 分享 title");
+					shareParams.setShareType(Platform.SHARE_IMAGE);
+					shareParams.setLongitude(ResourcesManager.longitude);
+					shareParams.setLatitude(ResourcesManager.latitude);
+					platform.setPlatformActionListener(platformActionListener);
+					platform.share(shareParams);
+				} else {
+					Platform.ShareParams shareParams = new Platform.ShareParams();
+					shareParams.setText("sina image and text share   http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
+					shareParams.setShareType(Platform.SHARE_IMAGE);
+					platform.setPlatformActionListener(platformActionListener);
+					platform.share(shareParams);
+				}
 			}
-			shareParams.setText("sina 分享 title");
-			shareParams.setShareType(Platform.SHARE_IMAGE);
-			shareParams.setLongitude(ResourcesManager.longitude);
-			shareParams.setLatitude(ResourcesManager.latitude);
-			platform.setPlatformActionListener(platformActionListener);
-			platform.share(shareParams);
-		} else {
-			Platform.ShareParams shareParams = new  Platform.ShareParams();
-			shareParams.setText("sina image and text share   http://pic28.photophoto.cn/20130818/0020033143720852_b.jpg");
-			shareParams.setShareType(Platform.SHARE_IMAGE);
-			platform.setPlatformActionListener(platformActionListener);
-			platform.share(shareParams);
-		}
+		});
 	}
 
 	public void shareVideo(){
