@@ -23,8 +23,8 @@ MobSDK {
             SinaWeibo {
                 id 1
                 sortId 59
-                appKey "568898243"
-                appSecret "38a4f8204cc784f81f9f0daaf31e02e3"
+                appKey "500068354"
+                appSecret "0a5f391f938dc371fb44d47a4fa0822e"
                 callbackUri "http://www.sharesdk.cn"
                 shareByAppClient true
                 enable true
