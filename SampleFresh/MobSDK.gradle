@@ -123,8 +123,8 @@ MobSDK {
                 id 9
                 sortId 9
                 //v2
-                appKey "WjmQNOqQB5YwPTs3AcZXVXYn3"
-                appSecret "CWEkJUeq1sTMt4OzKMo08iRe1OlK468NAVh0XBxNtFgvvjbRl4"
+                appKey "YUJMMTFOcE93MGI4Zi1aRTlHQnM6MTpjaQ"
+                appSecret "ppuG1yR5Sb7PXn2IZAu-4nJwbhh1mLq3ieJXOkC5wOJpVxmWli"
                 callbackUri "https://www.mob.com"
                 IsUseV2 true
                 shareByAppClient true
