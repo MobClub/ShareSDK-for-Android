@@ -537,7 +537,17 @@ MobSDK {
                 isUseDTS false
                 //TapRegionType.CN：中国大陆，TapRegionType.IO：其他国家或地区
                 regionType "CN"
-                enable  true
+                enable true
+            }
+
+            HonorAccount {
+                id 72
+                sortId 72
+                appId "104409980"
+                appSecret "4581f103ba85bb8160dbc74d41dd275de5bc17684431da70ec580015c9d240e0"
+                //可不填 为空就是默认值为 honorid://redirect_url
+                callbackUri "honorid://redirect_url"
+                enable true
             }
         }
     }
