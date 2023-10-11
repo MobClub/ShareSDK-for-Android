@@ -21,6 +21,7 @@ import androidx.viewpager.widget.ViewPager;
 import cn.sharesdk.PassWordShow;
 import cn.sharesdk.demo.ui.VideoPassWordShow;
 import cn.sharesdk.demo.utils.PrivacyDialog;
+import cn.sharesdk.demo.utils.PrivacyDialogUtils;
 import cn.sharesdk.demo.utils.ScreenShotListenManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,11 +85,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 		viewPager.setOnPageChangeListener(this);
 		viewPager.setOffscreenPageLimit(3);
 		Log.e(TAG, " initView() ");
-
-
-		Intent intent = new Intent();
-		intent.setClass(this, PrivacyDialog.class);
-		startActivityForResult(intent, PRIVACY_CODE);
+		PrivacyDialogUtils privacyDialogUtils = new PrivacyDialogUtils();
+		privacyDialogUtils.showPrivacyDialogIfNeed(this);
 	}
 
 	@Override

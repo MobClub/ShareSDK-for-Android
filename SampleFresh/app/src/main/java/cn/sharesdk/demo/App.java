@@ -12,7 +12,6 @@ import java.util.List;
 
 import cn.sharesdk.demo.entity.ResourcesManager;
 import cn.sharesdk.demo.ui.BaseActivity;
-import cn.sharesdk.demo.utils.PrivacyDialog;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.loopshare.LoopShareResultListener;
