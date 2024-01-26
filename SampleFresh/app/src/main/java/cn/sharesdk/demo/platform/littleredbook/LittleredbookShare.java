@@ -7,6 +7,10 @@ import android.net.Uri;
 import android.provider.MediaStore;
 
 import androidx.appcompat.app.AlertDialog;
+
+import com.mob.MobSDK;
+
+import cn.sharesdk.demo.entity.ResourcesManager;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
@@ -45,14 +49,14 @@ public class LittleredbookShare {
 	public void shareVideo(Activity activity, Uri uri) {
 		Platform platform = ShareSDK.getPlatform(Littleredbook.NAME);
 		Platform.ShareParams shareParams = new Platform.ShareParams();
+		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
+		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		shareParams.setVideoUri(uri);
 		shareParams.setShareType(Platform.SHARE_VIDEO);
 		shareParams.setActivity(activity);
 		platform.setPlatformActionListener(platformActionListener);
 		platform.share(shareParams);
 	}
-
-
 
 
 	public void shareImage(Activity activity) {
@@ -74,13 +78,15 @@ public class LittleredbookShare {
 	}
 
 	public void shareImagePath(Activity activity, String imagePath) {
-		Platform douyin = ShareSDK.getPlatform(Littleredbook.NAME);
+		Platform littleRedBook = ShareSDK.getPlatform(Littleredbook.NAME);
 		Platform.ShareParams sp = new Platform.ShareParams();
-		sp.setImagePath(imagePath);
+		sp.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
+		sp.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
+		sp.setImageArray(new String[]{imagePath});
 		sp.setShareType(Platform.SHARE_IMAGE);
 		sp.setActivity(activity);
-		douyin.setPlatformActionListener(platformActionListener);
-		douyin.share(sp);
+		littleRedBook.setPlatformActionListener(platformActionListener);
+		littleRedBook.share(sp);
 	}
 
 }

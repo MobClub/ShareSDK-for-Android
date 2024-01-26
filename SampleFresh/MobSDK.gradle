@@ -22,7 +22,7 @@ MobSDK {
         devInfo {
             SinaWeibo {
                 id 1
-                sortId 59
+                sortId 1
                 appKey "500068354"
                 appSecret "0a5f391f938dc371fb44d47a4fa0822e"
                 callbackUri "http://www.sharesdk.cn"
@@ -455,7 +455,7 @@ MobSDK {
 
             Douyin {
                 id 59
-                sortId 1
+                sortId 59
                 appKey "awycvl19mldccyso"
                 appSecret "8793a4dfdc3636cbda0924a3cfbc8424"
                 enable true
@@ -503,7 +503,14 @@ MobSDK {
 
             Littleredbook {
                 id 67
-                sortId
+                sortId 67
+                appKey "6c1dd8dd64d074d56124c751f6bc240b"
+                //FileProvider 将 file 转换为 uri 所需要的 Authority
+                //默认：yourpackagename + “.provider”
+                fileProviderAuthority "cn.sharesdk.demo.fileprovider"
+                //分享过程中缓存文件的存储目录 可选
+                //默认：/storage/emulated/0/Android/data/yourpackagename/cache/xhs_share_cache_dir
+                cachePath "/storage/emulated/0/Android/data/cn.sharesdk.demo/cache/xhs_share_cache_dir"
             }
 
             Kuaishou {
