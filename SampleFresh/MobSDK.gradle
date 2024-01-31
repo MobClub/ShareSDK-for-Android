@@ -504,13 +504,14 @@ MobSDK {
             Littleredbook {
                 id 67
                 sortId 67
+                //小红书appkey
                 appKey "6c1dd8dd64d074d56124c751f6bc240b"
-                //FileProvider 将 file 转换为 uri 所需要的 Authority
-                //默认：yourpackagename + “.provider”
+                //FileProvider将file转换为uri所需要的Authority,不配置默认：yourpackagename + “.provider”
                 fileProviderAuthority "cn.sharesdk.demo.fileprovider"
-                //分享过程中缓存文件的存储目录 可选
-                //默认：/storage/emulated/0/Android/data/yourpackagename/cache/xhs_share_cache_dir
+                //分享过程中缓存文件的存储目录,不配置默认：/storage/emulated/0/Android/data/yourpackagename/cache/xhs_share_cache_dir
                 cachePath "/storage/emulated/0/Android/data/cn.sharesdk.demo/cache/xhs_share_cache_dir"
+                //不配置或配置为true:使用系统分享,配置false为使用小红书SDK分享
+                bypassApproval false
             }
 
             Kuaishou {
