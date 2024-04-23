@@ -388,12 +388,17 @@ public class PlatformAuthorizeUserInfoManager {
 
 		@Override
 		public void onCancel(Platform platform, int i) {
-			try {
-				Toast.makeText(MobSDK.getContext(), "Cancel Authorize", Toast.LENGTH_LONG).show();
-			} catch (Exception e) {
-				e.printStackTrace();
-				Toast.makeText(MobSDK.getContext(), "Cancel Authorize", Toast.LENGTH_LONG).show();
-			}
+			activity.runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						Toast.makeText(MobSDK.getContext(), "Cancel Authorize", Toast.LENGTH_LONG).show();
+					} catch (Exception e) {
+						e.printStackTrace();
+						Toast.makeText(MobSDK.getContext(), "Cancel Authorize", Toast.LENGTH_LONG).show();
+					}
+				}
+			});
 		}
 
 	}
