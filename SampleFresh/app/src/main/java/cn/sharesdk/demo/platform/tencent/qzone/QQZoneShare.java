@@ -36,6 +36,7 @@ public class QQZoneShare {
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
 		shareParams.setText("Share SDK QQ空间文字分享");
 		platform.setPlatformActionListener(platformActionListener);
+		shareParams.setDisableNewTask(true);
 		shareParams.setShareType(Platform.SHARE_TEXT);
 		platform.share(shareParams);
 	}
@@ -50,6 +51,7 @@ public class QQZoneShare {
 		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
 		shareParams.setSite("ShareSDK test site");
 		shareParams.setSiteUrl("https://www.mob.com");
+		shareParams.setDisableNewTask(true);
 		platform.setPlatformActionListener(platformActionListener);
 		shareParams.setShareType(Platform.SHARE_WEBPAGE);
 		platform.share(shareParams);
@@ -65,6 +67,7 @@ public class QQZoneShare {
 				shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
 				shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 				shareParams.setShareTencentWeibo(false);
+				shareParams.setDisableNewTask(true);
 				shareParams.setShareType(Platform.SHARE_IMAGE);
 				platform.setPlatformActionListener(platformActionListener);
 				platform.share(shareParams);
@@ -75,6 +78,7 @@ public class QQZoneShare {
 				shareParams.setImageArray(ResourcesManager.getInstace(MobSDK.getContext()).getImgArrays());
 				shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 				shareParams.setShareTencentWeibo(false);
+				shareParams.setDisableNewTask(true);
 				shareParams.setShareType(Platform.SHARE_IMAGE);
 				platform.setPlatformActionListener(platformActionListener);
 				platform.share(shareParams);
@@ -93,6 +97,7 @@ public class QQZoneShare {
         Platform.ShareParams shareParams = new  Platform.ShareParams();
         shareParams.setFilePath(videoPath);
         Log.e("WWW", " 视频文件路径===》 " + videoPath);
+	    shareParams.setDisableNewTask(true);
         shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
         shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
         shareParams.setShareType(Platform.SHARE_VIDEO);
@@ -119,6 +124,7 @@ public class QQZoneShare {
 	public void shareText(PlatformActionListener mListener){
 		Platform platform = ShareSDK.getPlatform(QZone.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
+		shareParams.setDisableNewTask(true);
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		shareParams.setTitleUrl(ResourcesManager.getInstace(MobSDK.getContext()).getTitleUrl());
@@ -130,6 +136,7 @@ public class QQZoneShare {
 	public void shareWebPager(PlatformActionListener mListener){
 		Platform platform = ShareSDK.getPlatform(QZone.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
+		shareParams.setDisableNewTask(true);
 		shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
 		shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
 		shareParams.setUrl(ResourcesManager.getInstace(MobSDK.getContext()).getUrl());
@@ -141,6 +148,7 @@ public class QQZoneShare {
 	public void shareImage(PlatformActionListener mListener){
 		Platform platform = ShareSDK.getPlatform(QZone.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
+		shareParams.setDisableNewTask(true);
 		shareParams.setImagePath(ResourcesManager.getInstace(MobSDK.getContext()).getImagePath());
 		shareParams.setImageUrl(ResourcesManager.getInstace(MobSDK.getContext()).getImageUrl());
 		shareParams.setShareType(Platform.SHARE_IMAGE);
@@ -151,6 +159,7 @@ public class QQZoneShare {
 	public void shareVideo(PlatformActionListener mListener){
 		Platform platform = ShareSDK.getPlatform(QZone.NAME);
 		Platform.ShareParams shareParams = new  Platform.ShareParams();
+		shareParams.setDisableNewTask(true);
 		shareParams.setFilePath(ResourcesManager.getInstace(MobSDK.getContext()).getFilePath());
 		shareParams.setShareType(Platform.SHARE_VIDEO);
 		platform.setPlatformActionListener(mListener);
@@ -160,6 +169,7 @@ public class QQZoneShare {
 	public void shareQQMiniProgram(Activity activity) {
 		Platform platform = ShareSDK.getPlatform(QZone.NAME);
 		Platform.ShareParams shareParams = new Platform.ShareParams();
+		shareParams.setDisableNewTask(true);
 		shareParams.setText("QQ小程序");
 		shareParams.setTitle("QQ互联");
 		shareParams.setTitleUrl("http://www.qq.com/");

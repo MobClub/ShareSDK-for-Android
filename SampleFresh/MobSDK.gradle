@@ -26,6 +26,7 @@ MobSDK {
                 appKey "500068354"
                 appSecret "0a5f391f938dc371fb44d47a4fa0822e"
                 callbackUri "http://www.sharesdk.cn"
+                supportAndroidX true
                 shareByAppClient true
                 enable true
             }
