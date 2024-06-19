@@ -25,6 +25,7 @@
 
 
     <application
+        android:usesCleartextTraffic="true"
         android:name=".App"
         android:allowBackup="false"
         android:debuggable="false"
