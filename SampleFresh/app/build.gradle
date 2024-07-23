@@ -97,9 +97,9 @@ dependencies {
 
     //snapchat
     implementation([
-            'com.snapchat.kit.sdk:login:1.1.4',
-            'com.snapchat.kit.sdk:core:1.1.4',
-            'com.snapchat.kit.sdk:creative:1.1.4'
+            'com.snapchat.kit.sdk:login:+',
+            'com.snapchat.kit.sdk:core:+',
+            'com.snapchat.kit.sdk:creative:+'
     ])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'org.greenrobot:eventbus:3.1.1'
