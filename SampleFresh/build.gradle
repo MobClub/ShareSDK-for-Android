@@ -23,9 +23,9 @@ buildscript {
 
         google()
         //====================== snapchat ======================
-        maven {
-            url "https://storage.googleapis.com/snap-kit-build/maven"
-        }
+//        maven {
+//            url "https://storage.googleapis.com/snap-kit-build/maven"
+//        }
         //====================== snapchat ======================
     }
     dependencies {
@@ -54,9 +54,9 @@ allprojects {
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
 
         //====================== snapchat ======================
-        maven {
-            url "https://storage.googleapis.com/snap-kit-build/maven"
-        }
+//        maven {
+//            url "https://storage.googleapis.com/snap-kit-build/maven"
+//        }
         //====================== snapchat ======================
     }
     configurations.all {
