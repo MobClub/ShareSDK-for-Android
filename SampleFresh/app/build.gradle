@@ -96,11 +96,12 @@ dependencies {
     implementation 'com.shizhefei:LargeImageView:+'
 
     //snapchat
-    implementation([
-            'com.snapchat.kit.sdk:login:+',
-            'com.snapchat.kit.sdk:core:+',
-            'com.snapchat.kit.sdk:creative:+'
-    ])
+    implementation fileTree(include: ['*.jar','*.aar'], dir: 'snapchatLib')
+//    implementation([
+//            'com.snapchat.kit.sdk:login:+',
+//            'com.snapchat.kit.sdk:core:+',
+//            'com.snapchat.kit.sdk:creative:+'
+//    ])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'org.greenrobot:eventbus:3.1.1'
 
