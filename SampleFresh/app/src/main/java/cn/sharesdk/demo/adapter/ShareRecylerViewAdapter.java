@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.mob.MobSDK;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
@@ -212,6 +213,26 @@ public class ShareRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 			public void onShare(Platform platform, Platform.ShareParams shareParams) {
 				if(platform.getName().equals("Douyin")){
 					shareParams.setShareType(Platform.SHARE_VIDEO);
+				}
+				if (platform.getName().equals("Tiktok")) {
+					shareParams.setShareType(Platform.SHARE_VIDEO);
+					shareParams.setHashtags(new String[]{"TAG", "TAGG"});
+				}
+				if (platform.getName().equals("SnapChat")) {
+					shareParams.setShareType(Platform.SHARE_VIDEO);
+					shareParams.setFileVideo(new File(manager.getFilePath()));
+				}
+				if (platform.getName().equals("KakaoTalk")) {
+					shareParams.setShareType(Platform.KAKAO_TEXT_TEMPLATE);
+				}
+				if (platform.getName().equals("KakaoTalk")) {
+					shareParams.setShareType(Platform.KAKAO_TEXT_TEMPLATE);
+				}
+				if (platform.getName().equals("Kuaishou")) {
+					shareParams.setTitle(ResourcesManager.getInstace(MobSDK.getContext()).getTitle());
+					shareParams.setText(ResourcesManager.getInstace(MobSDK.getContext()).getText());
+					shareParams.setImagePath(manager.getImagePath());
+					shareParams.setShareType(Platform.SHARE_IMAGE);
 				}
 			}
 		});
