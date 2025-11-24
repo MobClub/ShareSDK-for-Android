@@ -94,6 +94,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.0.0'
     implementation 'com.google.code.gson:gson:2.8.0'
     implementation 'com.shizhefei:LargeImageView:+'
+    implementation 'com.google.dagger:dagger:2.51.1'
 
     //snapchat
     implementation fileTree(include: ['*.jar','*.aar'], dir: 'snapchatLib')
