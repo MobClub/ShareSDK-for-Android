@@ -27,7 +27,7 @@ android {
     }
     defaultConfig {
         applicationId "cn.sharesdk.demo"
-        minSdkVersion 21
+        minSdkVersion 22
         targetSdkVersion 33
         versionCode 80
         versionName "3.9.10"
