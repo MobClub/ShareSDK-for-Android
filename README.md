@@ -1,3 +1,8 @@
+# ShareSDK 版本更新
+## V3.10.31
+> 1.支持微信获取AuthCode
+
+
 # ShareSDK 集成文档
 注：使用ShareSDK Gradle集成方式，不需要在AndroidMainfest.xml下面配置任何权限和Activity
 

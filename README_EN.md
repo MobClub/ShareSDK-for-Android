@@ -1,3 +1,8 @@
+# ShareSDK Version Update
+## V3.10.31
+1. Support WeChat for obtaining AuthCode
+
+
 # ShareSDK for Android
 
 文档语言 : [中文](https://github.com/MobClub/ShareSDK-for-Android/blob/master/README.md) | English
